@@ -44,6 +44,7 @@
 	$panel1 = "'panel_01'";
 	$panel2 = "'panel_02'";
 	
+	
 	$cont='
 		<fieldset style="height:530px;">
 			<legend style="font-size:17px;font-weight:bold;" align="center">Contacto Telefónico</legend>
@@ -55,9 +56,10 @@
 				<div id="paneles">
 					<section id="panel_01">
 						<div align="right">
-							<form method="POST" action="./?url">
-								<input type="search" class="search" placeholder="Buscar Paciente"/>
-							</form>
+							<input type="search" class="search" id="buscar" placeholder="Buscar Paciente"/>	
+							<select id="resultado" style="width:145px;">
+								
+							</select>
 						</div>
 						<table width="100%" style="margin:10px auto;border:1px solid #a3a3a3; background:#fafafa;">
 							<tr>
@@ -143,7 +145,7 @@
 						<form method="POST" action="./?url">
 							<table width="55%">
 								<tr>
-									<td><input type="search" class="search" placeholder="Buscar Paciente" name="busc_paciente"/></td>
+									<td><input type="search" class="search" id="buscar" placeholder="Buscar Paciente"  name="busc_paciente"/></td>
 									<td><input type="radio" name="selectipo">Nombre</input></td>
 									<td><input type="radio" name="selectipo">Cédula</input></td>
 								</tr>
