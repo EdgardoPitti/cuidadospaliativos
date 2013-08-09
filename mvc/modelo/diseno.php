@@ -376,7 +376,7 @@ class Diseno {
 					</aside>
 					<!--Diseño del contenido de la página-->
 					<div class="contenido">	
-						'.$this->derecha.'
+						'.$this->latino($this->derecha).'
 					</div>
 					<!--Fin del Contenido-->
 				</div>';
