@@ -371,9 +371,14 @@ form input[type="search"]{
 	border-radius:5px;
 	border:1px solid #a3a3a3;
 }
-form input [type="text"]{
-	border-radius:5px;
-	border:1px solid #a3a3a3;
+/*Diseño del resultado de la búsqueda**/
+.resultado{
+	width:145px;
+	padding:3px;
+	text-align:left;
+	background:#fff;
+	border:1px solid #919191;
+	border-radius:0 0 12px 12px;
 }
 /*Pie de página*/
 footer{
