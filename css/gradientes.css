@@ -253,6 +253,19 @@ ul.menu ul li:hover > ul {
     box-shadow: inset 0px 0px 5px 4px #6383c2;
 }
 /**diseño para las listas dentro de la acordeon*/
+.acordeon article{
+	background: #fafafa;
+	margin-top:0px;
+	overflow:hidden;
+	height:0px;
+	display:block;
+	z-index:10;
+	-webkit-transition: height 0.3s ease-in-out;
+	-moz-transition: height 0.3s ease-in-out;
+    -ms-transition: height 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out;
+	transition: height 0.3s ease-in-out;
+}
 .acordeon article li{
 	color:black;
 	font-size:12px;
@@ -274,19 +287,7 @@ ul.menu ul li:hover > ul {
     -o-transition: height 0.3s ease-in-out;
 	transition: height 0.3s ease-in-out;
 }
-.acordeon article{
-	background: #fafafa;
-	margin-top:0px;
-	overflow:hidden;
-	height:0px;
-	display:block;
-	z-index:10;
-	-webkit-transition: height 0.3s ease-in-out;
-	-moz-transition: height 0.3s ease-in-out;
-    -ms-transition: height 0.3s ease-in-out;
-    -o-transition: height 0.3s ease-in-out;
-	transition: height 0.3s ease-in-out;
-}
+
 .acordeon input:checked article{
 	-webkit-transition: height 0.5s ease-in-out;
 	-moz-transition: height 0.5s ease-in-out;
@@ -305,10 +306,11 @@ ul.menu ul li:hover > ul {
 	height:110px;
 }
 .acordeon input:checked ~ article.tab-height2{
-	height:200px;
+	height:160px;
+	overflow-y:auto;
 }
 .acordeon input:checked ~ article.tab-height3{
-	height:220px;
+	height:170px;
 }
 .acordeon input:checked ~ article.tab-height4{
 	height:125px;
@@ -348,7 +350,31 @@ ul.menu ul li:hover > ul {
 	padding:5px;
 	border:1px solid #a3a3a3;
 }
-
+.dsfieldset {
+	height:140px;
+	width:332px;
+	padding:5px;
+}
+.dsfieldset legend{
+	font-size:13px;font-weight:bold;
+}	
+.dsfieldset p{
+	margin: 5px 5px 5px 0;
+}
+form input.search{ 
+	background-position: left center; 
+	padding:3px 0 3px 18px;
+	background-image: url(../iconos/search.png); 
+	background-repeat: no-repeat; 
+}
+form input[type="search"]{
+	border-radius:5px;
+	border:1px solid #a3a3a3;
+}
+form input [type="text"]{
+	border-radius:5px;
+	border:1px solid #a3a3a3;
+}
 /*Pie de página*/
 footer{
 	color:#000;
