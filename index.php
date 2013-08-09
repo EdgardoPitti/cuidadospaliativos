@@ -6,6 +6,7 @@
 	<style type="text/css"><!--@import url("./css/tabs.css");-->	</style>
 	<script src="jquery.js"></script>
 	<script src="funciones.js"></script>
+	<script src="funcionbuscar.js"></script>
 	<script type="text/javascript">
 		function tab(pestana,panel){
 			pst 	= document.getElementById(pestana);
