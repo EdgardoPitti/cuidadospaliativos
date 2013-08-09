@@ -6,7 +6,7 @@
 				
 					<div>
 						<input type="radio" id = "acor-ambul1" name="rb">
-							<label for="acor-ambul1">Registro de Visitas Domiciliaria</label>
+							<label for="acor-ambul1">Registro Diario de Actividades</label>
 						</input>
 						<article class="de-peq">
 							<ul>	
