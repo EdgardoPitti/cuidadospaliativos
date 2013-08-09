@@ -1,0 +1,94 @@
+/*****EFECTO ACORDEON EN ASIDE******/
+aside{
+	width:100px;
+	height:30px;
+}
+.acordeon{
+	width:240px;
+	margin:10px auto 0 auto;
+}
+.acordeon label{
+	font-size:13px;
+	padding: 10px;
+	z-index:20;
+	display:inline-block;
+	height:20px;
+	cursor:pointer;
+	font-weight:bold;
+	background: #f1f1f1;
+	background: -moz-linear-gradient(top,  #f1f1f1 0%, #ffffff 18%, #f6f6f6 82%, #e1e1e1 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f1f1), color-stop(18%,#ffffff), color-stop(82%,#f6f6f6), color-stop(100%,#e1e1e1));
+	background: -webkit-linear-gradient(top,  #f1f1f1 0%,#ffffff 18%,#f6f6f6 82%,#e1e1e1 100%);
+	background: -o-linear-gradient(top,  #f1f1f1 0%,#ffffff 18%,#f6f6f6 82%,#e1e1e1 100%);
+	background: -ms-linear-gradient(top,  #f1f1f1 0%,#ffffff 18%,#f6f6f6 82%,#e1e1e1 100%);
+	background: linear-gradient(to bottom,  #f1f1f1 0%,#ffffff 18%,#f6f6f6 82%,#e1e1e1 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e1e1e1',GradientType=0 );
+}
+.acordeon label:hover{
+	background: #6383c2;
+	color:#fff;
+	text-shadow: #000 1px 1px 1px;
+	-webkit-box-shadow: inset 0px 0px 5px 4px #6383c2;
+    box-shadow: inset 0px 0px 5px 4px #6383c2;
+}
+
+/*Para ocultar los radio button*/
+.acordeon input {
+	display:none;
+	overflow:hidden;
+}
+.acordeon input:checked + label{
+	background: #6383c2;
+	color:#fff;
+	text-shadow: #000 1px 1px 1px;
+	-webkit-box-shadow: inset 0px 0px 5px 4px #6383c2;
+    box-shadow: inset 0px 0px 5px 4px #6383c2;
+}
+/**diseño para las listas dentro de la acordeon*/
+.acordeon article li{
+	color:black;
+	font-size:12px;
+}
+.acordeon article li a{
+	display:block;
+	list-style-type:none;
+	text-decoration:none;
+	outline:none;
+	color:black;
+	padding:10px;
+}
+.acordeon article li a:hover{
+	padding-left:10px;
+	border-left: 5px solid #1dc0f2;
+	-webkit-transition: height 0.3s ease-in-out;
+	-moz-transition: height 0.3s ease-in-out;
+    -ms-transition: height 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out;
+	transition: height 0.3s ease-in-out;
+}
+.acordeon article{
+	background: #fafafa;
+	margin-top:0px;
+	overflow:hidden;
+	height:0px;
+	display:block;
+	z-index:10;
+	-webkit-transition: height 0.3s ease-in-out;
+	-moz-transition: height 0.3s ease-in-out;
+    -ms-transition: height 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out;
+	transition: height 0.3s ease-in-out;
+}
+.acordeon input:checked article{
+	-webkit-transition: height 0.5s ease-in-out;
+	-moz-transition: height 0.5s ease-in-out;
+    -ms-transition: height 0.5s ease-in-out;
+    -o-transition: height 0.5s ease-in-out;
+	transition: height 0.5s ease-in-out;
+}
+.acordeon input:checked ~ article.de-peq{
+	height:70px;
+}
+.acordeon input:checked ~ article.de-gra{
+	height:155px;
+}
