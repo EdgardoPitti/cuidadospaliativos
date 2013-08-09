@@ -15,7 +15,7 @@ $(document).ready(function(){
                                                                                   
               $.ajax({
                     type: "POST",
-                    url: "./mvc/vista/buscardistrito.php",
+                    url: "./mvc/vista/buscarpaciente.php",
                     data: "b="+consulta,
                     dataType: "html",
                    /* beforeSend: function(){
