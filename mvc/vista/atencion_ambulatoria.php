@@ -56,10 +56,10 @@
 				<div id="paneles">
 					<section id="panel_01">
 						<div align="right">
-							<input type="search" class="search" id="buscar" placeholder="Buscar Paciente"/>	
-							<select id="resultado" style="width:145px;">
+							<input type="search" class="search" id="buscar" placeholder="Buscar Paciente" list/>	
+							<datalist id="resultado" style="width:145px; display:hidden;">
 								
-							</select>
+							</datalist>
 						</div>
 						<table width="100%" style="margin:10px auto;border:1px solid #a3a3a3; background:#fafafa;">
 							<tr>
