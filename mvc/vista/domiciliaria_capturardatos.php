@@ -6,6 +6,7 @@
 	$distritos = new Accesatabla('distritos');
 	$etnia = new Accesatabla('etnia');
 	$estadocivil = new Accesatabla('estadocivil');
+	$nacionalidades = new Accesatabla('nacionalidades');
 	$ds = new Diseno();
 	$cont.='
 
@@ -14,7 +15,7 @@
 							<legend>
 								Capturar Datos
 							</legend>
-								<table width="100%" border="1">
+								<table width="100%">
 									<tr>
 										<td>
 											<fieldset>
@@ -33,7 +34,18 @@
 															</tr>
 															<tr>
 																<td align="right">Nacionalidad:</td>
-																<td><input type="text" id="cedula" name="cedula"><br></td>
+																<td><select id="nacionalidad" name="nacionalidad" style="width:160px">
+																		<option value="0"></option>';
+																		
+	$n = $nacionalidades->buscardonde('id > 0');
+	while($n){
+			$cont.='
+																		<option value="'.$nacionalidades->obtener('id').'">'.$ds->latino($nacionalidades->obtener('nacionalidad')).' - '.$ds->latino($nacionalidades->obtener('pais')).'</option>
+			';
+			$n = $nacionalidades->releer();
+	}
+	$cont.='														</select>
+																</td>
 															</tr>
 													</table>
 													Tipo de Paciente: <input type="radio" id="tipo" name="tipo" value="1" checked> Asegurado <input type="radio" id="tipo" name="tipo" value="0"> No Asegurado<br>
@@ -109,10 +121,8 @@
 															<td align="right">Ocupacion: </td>
 															<td><input type="text" id="ocupacion" name="ocupacion"></td>
 														</tr>
-														<tr>
-														</tr>
 													</table>
-														Sexo: <input type="radio" id="sexo" name="sexo" value="m" checked> Masculino <input type="radio" id="sexo" name="sexo" value="f"> Femenino<br>	
+														Sexo: <input type="radio" id="sexo" name="sexo" value="0" checked> Masculino <input type="radio" id="sexo" name="sexo" value="1"> Femenino<br>	
 												</center>
 												
 											</fieldset>
@@ -163,7 +173,7 @@
 														</tr>															
 													</table>
 													Direccion Detallada:<br>
-													<textarea></textarea>
+													<textarea id="direcciondetallada" name="direcciondetallada"></textarea>
 												</center>
 											</fieldset>
 										</td>
