@@ -132,7 +132,39 @@
 											<div class="tab">
 												<a href="#bhc" class="tab-e">BHC</a>
 												<div>
-													
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>
 										<span class="diana" id="urin"></span>
@@ -178,42 +210,234 @@
 											<div class="tab">
 												<a href="#hec" class="tab-e">Heces</a>
 												<div>
-												
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>							
 										<span class="diana" id="glic"></span>
 											<div class="tab">
 												<a href="#glic" class="tab-e">Glicemia</a>
 												<div>
-													
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>							
 										<span class="diana" id="creat"></span>
 											<div class="tab">
 												<a href="#creat" class="tab-e">Creatinina</a>
 												<div>
-									
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>							
 										<span class="diana" id="ndeu"></span>
 											<div class="tab">
 												<a href="#ndeu" class="tab-e">N de U</a>
 												<div>
-												
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>										
 										<span class="diana" id="elect"></span>
 											<div class="tab">
 												<a href="#elect" class="tab-e">Electrolitos</a>
 												<div>
-												
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>
 										<span class="diana" id="amil"></span>
 											<div class="tab">
 												<a href="#amil" class="tab-e">Amilasa</a>
 												<div>
-												
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td>
+																<table>
+																	<tr>
+																		<td>Diagnóstico:</td>
+																		<td class="showinput"><input type="text" name="hallaz_diag"></input></td>
+																	</tr>
+																	<tr>
+																		<td>CIE-10</td>
+																		<td>
+																			<select>
+																				<option value="1">opcion 1</option>
+																				<option value="2">opcion 2</option>																				
+																			</select>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Tratamiento/Complicaciones</td></tr>
+																	<tr><td><textarea style="width:164px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+															<td>
+																<table>
+																	<tr><td>Observaciones:</td></tr>
+																	<tr><td><textarea style="width:160px;height:50px;"></textarea></td></tr>
+																</table>
+															</td>
+														</tr>
+													</table>
 												</div>
 											</div>
 									</div>
