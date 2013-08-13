@@ -25,10 +25,6 @@
 												<center>
 													<table >
 															<tr>
-																<td >N° de tarjeta de Seguimiento:  </td>
-																<td><input type="text" id="tarjetaseguimiento" name="tarjetaseguimiento"><br></td>
-															</tr>
-															<tr>
 																<td align="right">N° de Cedula:</td>
 																<td><input type="text" id="cedula" name="cedula"><br></td>
 															</tr>
@@ -74,7 +70,7 @@
 														</tr>														
 														<tr>
 															<td align="right">Segundo Apellido: </td>
-															<td><input type="text" id="segundoapellido" name="segundosapellido"><br></td>
+															<td><input type="text" id="segundoapellido" name="segundoapellido"><br></td>
 														</tr>																												
 														<tr>
 															<td>Fecha de Nacimiento: </td>
