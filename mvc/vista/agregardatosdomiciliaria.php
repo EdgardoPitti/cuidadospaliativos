@@ -1,6 +1,9 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
+	include_once('./mvc/modelo/diseno.php');
 	$personas = new Accesatabla('personas');
+	$pacientes = new Accesatabla('pacientes');
+	$ds = new Diseno();
 	$personas->nuevo();
 	$personas->colocar("primer_nombre",$_POST['primernombre']);
 	$personas->colocar("segundo_nombre",$_POST['segundonombre']);
@@ -29,6 +32,11 @@
 	$personas->colocar("id_distrito_nacimiento",$_POST['distritosnacimiento']);
 	$personas->colocar("id_corregimiento_nacimiento",$_POST['corregimientosnacimiento']);
 	$personas->salvar();
-	echo 'Grabado Exitosamente';
-	
+	$personas->buscardonde('cedula = "'.$_POST['cedula'].'"');
+	$pacientes->colocar("id_persona",$personas->obtener('id'));
+	$pacientes->salvar();
+	$ds->nav($_SESSION['nav']);
+	$ds->izq($_SESSION['aside']);
+	$ds->contenido('<h1>Datos Almacenados Correctamente</h1>');
+	$ds->mostrar();
 ?>
