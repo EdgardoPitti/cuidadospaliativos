@@ -97,7 +97,7 @@
 											<td colspan="7"></td>										
 										</tr>
 									</table>	
-									<table class="tabla" cellspacing="0">
+									<table class="tabla showinput" cellspacing="0">
 										<tr>
 											<th>Hora</th>
 											<th>PA</th>
@@ -107,16 +107,18 @@
 											<th>T°</th>
 											<th>Peso<small>(Kg)</small></th>
 											<th>Talla<small>(mts)</small></th>
+											
 										</tr>
-										<tr>
+										<tr  align="center">
 											<td>10:30 A.M.</td>
-											<td>120/80</td>
-											<td>15</td>
-											<td>25</td>
-											<td>20</td>
-											<td>37</td>
-											<td>53</td>
-											<td>1.60</td>
+											<td><input style="width:40px;" type="text" name="pa"/></td>
+											<td><input style="width:40px;" type="text" name="fc"/></td>
+											<td><input style="width:40px;" type="text" name="fr"/></td>
+											<td><input style="width:40px;" type="text" name="fcf"/></td>
+											<td><input style="width:40px;" type="text" name="temperatura"/></td>
+											<td><input style="width:40px;" type="text" name="peso"/></td>
+											<td><input style="width:40px;" type="text" name="talla"/></td>
+											<td style="background:#fafafa;border:1px solid #fafafa;"><a href="./?url=registrar" title="Registrar"><img src="./iconos/add.gif"/></a> </td>
 										</tr>
 									</table>
 								</article>
@@ -500,14 +502,14 @@
 							<div class="contenedor-tabs">
 								<span class="diana" id="hacli"></span>
 									<div class="tab">
-										<a href="#hacli" class="tab-e">Hallazgos Clínicos</a>
-										<div class="showinput">
+										<a class="tab-e" href="#hacli" >Hallazgos Clínicos</a>
+										<div>
 											<textarea style="width:580px;min-height:50px;"></textarea>
 										</div>
 									</div>
 								<span class="diana" id="diag"></span>
 									<div class="tab">
-										<a href="#diag" class="tab-e">Diagnóstico</a>
+										<a class="tab-e" href="#diag">Diagnóstico</a>
 										<div>
 											<table width="90%" class="showinput" class="tabla-datos" cellpadding="0" cellspacing="0">
 												<tr>
@@ -545,7 +547,7 @@
 									</div>
 								<span class="diana" id="plantera"></span>
 									<div class="tab">
-										<a href="#plantera" class="tab-e">Recomendaciones/Plan Terapéutico</a>
+										<a class="tab-e" href="#plantera">Recomendaciones/Plan Terapéutico</a>
 										<div>
 											<table class="tabla-datos">
 												<tr>
