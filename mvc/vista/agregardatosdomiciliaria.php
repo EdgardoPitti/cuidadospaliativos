@@ -35,8 +35,6 @@
 	$personas->buscardonde('cedula = "'.$_POST['cedula'].'"');
 	$pacientes->colocar("id_persona",$personas->obtener('id'));
 	$pacientes->salvar();
-	$ds->nav($_SESSION['nav']);
-	$ds->izq($_SESSION['aside']);
 	$ds->contenido('<h1>Datos Almacenados Correctamente</h1>');
 	$ds->mostrar();
 ?>
