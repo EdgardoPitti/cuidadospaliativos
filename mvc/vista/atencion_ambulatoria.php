@@ -2,43 +2,6 @@
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	
-	$_SESSION['aside'] ='
-				
-					<div>
-						<input type="radio" id = "acor-ambul1" name="rb">
-							<label for="acor-ambul1">Registro Diario de Actividades</label>
-						</input>
-						<article class="de-peq">
-							<ul>	
-								<li><a class="a" href="./?url=ambulatoria_capturardatos">Capturar Datos</a></li>
-								<li><a class="a" href="#">Agenda</a></li>
-							</ul>
-						</article>
-					</div>
-					<div>
-						<input type="radio" id = "acor-ambul2" name="rb">
-							<label for="acor-ambul2">Contacto Telefónico</label>
-						</input>
-						<article class="de-peq">
-							<ul>
-								<li><a class="a" href="#">Atención al Paciente</a></li>
-								<li><a class="a" href="#">Interconsulta</a></li>								
-							</ul>
-						</article>
-					</div>
-					<div>
-						<input type="radio" id = "acor-ambul3" name="rb">
-							<label for="acor-ambul3">Indicadores</label>
-						</input>
-						<article class="de-peq">
-							<ul>
-								<li><a class="a" href="#">Frecuencia P/F a la instalación</a></li>
-								<li><a class="a" href="#">Actividades Realizadas</a></li>
-								
-							</ul>
-						</article>
-					</div>';
-	
 	$tab1="'tab_01'";
 	$tab2 = "'tab_02'";
 	$panel1 = "'panel_01'";
@@ -163,8 +126,6 @@
 				';
 	
 	
-	$ds->nav($_SESSION['nav']);
-	$ds->izq($_SESSION['aside']);
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
