@@ -7,13 +7,13 @@
 	margin: 10px auto 0 auto;
 }
 .acordeon label{
-	font-size:13px;
+	font-s ize:13px;
 	padding: 10px;
 	z-index:20;
 	display:block;
 	height:20px;
 	cursor:pointer;
-	font-weight:bold;
+	font-wei ght:bold;
 	background: #ededed;
 	background: -moz-linear-gradient(top,  #ededed 0%, #e5e5e5 63%, #cccccc 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(63%,#e5e5e5), color-stop(100%,#cccccc));
@@ -30,38 +30,7 @@
 	-webkit-box-shadow: inset 0px 0px 5px 4px #6383c2;
     box-shadow: inset 0px 0px 5px 4px #6383c2;
 }
-/**clase para hipervínculo unico en acordeon**/
-.acor_link a{
-	color:#000;
-	font-weight:bold;
-}
-.acor_link{
-	width:220px;
-	font-size:13px;
-	display:inline-block;
-	min-height:20px;
-	cursor:pointer;
-	padding:10px;
-	background: #ededed;
-	background: -moz-linear-gradient(top,  #ededed 0%, #e5e5e5 63%, #cccccc 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(63%,#e5e5e5), color-stop(100%,#cccccc));
-	background: -webkit-linear-gradient(top,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	background: -o-linear-gradient(top,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	background: -ms-linear-gradient(top,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	background: linear-gradient(to bottom,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#cccccc',GradientType=0 );
-}
-.acor_link a:hover{
-	color:#fff;
-	-webkit-box-shadow: inset 0px 0px 7px 4px #6383c2;
-    box-shadow: inset 0px 0px 7px 4px #6383c2;
-	text-shadow: #000 1px 1px 1px;
-}
-.acor_link:hover{
-	color:#fff;
-	background: #6383c2;
-}
-/**Fin de la clase del hipervinculo**/
+
 /*Para ocultar los radio button*/
 .acordeon input {
 	display:none;
