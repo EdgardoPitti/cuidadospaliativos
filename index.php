@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/component.css" />
 		
 		
-		<style type="text/css"><!--@import url("./css/tabs.css");-->	</style>
+		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
 		<script src="./js/funcionbuscar.js"></script>
@@ -108,10 +108,10 @@
 					<a href="#">Registro Diario de Actividades </a>
 						<!--Sub-Menú Nivel B-->
 						<ul>
-							<li><a href="javascript:enlace('#');">Capturar Datos</a></li>
+							<li><a href="#">Capturar Datos</a></li>
 							<li><a href="javascript:enlace('#');">Agenda</a></li>
 						</ul>
-					<a href="#">Contacto Telef&oacutenico</a>
+					<a href="./?url=ambulatoria_contacto_tel">Contacto Telef&oacutenico</a>
 						<ul>
 							<li><a href="javascript:enlace('#');">Atenci&oacuten al Paciente</a></li>
 							<li><a href="javascript:enlace('#');">Interconsulta</a></li>
