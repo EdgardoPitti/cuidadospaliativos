@@ -14,5 +14,5 @@
 	$cont.='</select>';
 	echo $pg->latino($cont);
 ?>
-<script src="jquery.js"></script>
-<script src="funciones.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/funciones.js"></script>
