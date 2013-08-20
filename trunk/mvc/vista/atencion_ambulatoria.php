@@ -124,8 +124,11 @@
 			tab("tab_01","panel_01");
 		</script>
 				';
+<<<<<<< .mine
+=======
 	
 	
+>>>>>>> .r49
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
