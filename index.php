@@ -103,7 +103,7 @@
 				<!--Título: Grupo de Menú-->
 				<h3>Menu Atenci&oacuten Domiciliaria</h3>
 					<!--Sub-Menú Nivel A-->
-					<a href="javascript:enlace('#');">Registro de Visitas Domiciliarias</a>
+					<a href=".?url=registrovisitasdomiciliaria">Registro de Visitas Domiciliarias</a>
 						<!--Sub-Menú Nivel B-->
 						<ul>
 							<li><a href="./?url=domiciliaria_capturardatos">Capturar Datos</a></li>
@@ -178,18 +178,14 @@
 			</nav>
 			
 			
-			
-			
 			<!--Marco del contenido-->
 			<div class="contentpanel" >
 					
-					
-						<?php include_once('./mvc/controlador/controlador.php'); new Controlador();?>
-					
+				<?php include_once('./mvc/controlador/controlador.php'); new Controlador();?>
+			
 			</div>
 			
-			
-			
+
 			<!--Menú Principal-->
 			<div class="botones">
 				
