@@ -103,8 +103,9 @@
 	margin:5px 10px;
 	padding:2px;
 	border:0; 
-	width:95%;
+	width:100%;
 	font-size:13px;
+	
 }
 .tabla-datos td{
 	width:60px;
@@ -129,6 +130,8 @@
 	background:#47a3da;
 	padding:5px;
 	border:1px solid #0d77b6;
+	color:#fff;
+	text-shadow: #000 1px 1px 1px;
 }
 .tabla td{
 	padding:5px;
