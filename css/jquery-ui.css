@@ -480,6 +480,7 @@ button.ui-button::-moz-focus-inner {
 	display: block;
 	border-width: 0;
 	padding: 1em 1.4em;
+	font-size:70%;
 	background: none;
 }
 
@@ -500,7 +501,7 @@ button.ui-button::-moz-focus-inner {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #aaaaaa/*{borderColorContent}*/;
+	border: 1px solid #29b8e5/*{borderColorContent}*/;
 	background: #ffffff/*{bgColorContent}*/ url(images/ui-bg_flat_75_ffffff_40x100.png)/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
 	color: #222222/*{fcContent}*/;
 }
@@ -508,8 +509,8 @@ button.ui-button::-moz-focus-inner {
 	color: #222222/*{fcContent}*/;
 }
 .ui-widget-header {
-	border: 1px solid #aaaaaa/*{borderColorHeader}*/;
-	background: #cccccc/*{bgColorHeader}*/ url(images/ui-bg_highlight-soft_75_cccccc_1x100.png)/*{bgImgUrlHeader}*/ 50%/*{bgHeaderXPos}*/ 50%/*{bgHeaderYPos}*/ repeat-x/*{bgHeaderRepeat}*/;
+	border: 1px solid #29b8e5/*{borderColorHeader}*/;
+	background: #47a3da;	
 	color: #222222/*{fcHeader}*/;
 	font-weight: bold;
 }
@@ -522,15 +523,23 @@ button.ui-button::-moz-focus-inner {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 1px solid #d3d3d3/*{borderColorDefault}*/;
-	background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #555555/*{fcDefault}*/;
+	border: 1px solid #29b8e5/*{borderColorDefault}*/;
+	background: #a3a3a3;
+	background: -moz-linear-gradient(top,  #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feffff), color-stop(35%,#ddf1f9), color-stop(100%,#a0d8ef));
+	background: -webkit-linear-gradient(top,  #feffff 0%,#ddf1f9 35%,#a0d8ef 100%);
+	background: -o-linear-gradient(top,  #feffff 0%,#ddf1f9 35%,#a0d8ef 100%);
+	background: -ms-linear-gradient(top,  #feffff 0%,#ddf1f9 35%,#a0d8ef 100%);
+	background: linear-gradient(to bottom,  #feffff 0%,#ddf1f9 35%,#a0d8ef 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=0 );
+
+	font-weight: bold/*{fwDefault}*/;
+	color: #222222/*{fcDefault}*/;
 }
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
-	color: #555555/*{fcDefault}*/;
+	color: #222222/*{fcDefault}*/;
 	text-decoration: none;
 }
 .ui-state-hover,
@@ -539,10 +548,18 @@ button.ui-button::-moz-focus-inner {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #999999/*{borderColorHover}*/;
-	background: #dadada/*{bgColorHover}*/ url(images/ui-bg_glass_75_dadada_1x400.png)/*{bgImgUrlHover}*/ 50%/*{bgHoverXPos}*/ 50%/*{bgHoverYPos}*/ repeat-x/*{bgHoverRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #212121/*{fcHover}*/;
+	border: 1px solid #29b8e5/*{borderColorHover}*/;
+	background: #a0d8ef;
+	background: -moz-linear-gradient(top,  #a0d8ef 0%, #ddf1f9 65%, #feffff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a0d8ef), color-stop(65%,#ddf1f9), color-stop(100%,#feffff));
+	background: -webkit-linear-gradient(top,  #a0d8ef 0%,#ddf1f9 65%,#feffff 100%);
+	background: -o-linear-gradient(top,  #a0d8ef 0%,#ddf1f9 65%,#feffff 100%);
+	background: -ms-linear-gradient(top,  #a0d8ef 0%,#ddf1f9 65%,#feffff 100%);
+	background: linear-gradient(to bottom,  #a0d8ef 0%,#ddf1f9 65%,#feffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0d8ef', endColorstr='#feffff',GradientType=0 );
+
+	font-weight: bold/*{fwDefault}*/;
+	color: #111111/*{fcHover}*/;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -554,15 +571,15 @@ button.ui-button::-moz-focus-inner {
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	border: 1px solid #aaaaaa/*{borderColorActive}*/;
+	border: 1px solid #29b8e5/*{borderColorActive}*/;
 	background: #ffffff/*{bgColorActive}*/ url(images/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #212121/*{fcActive}*/;
+	font-weight: bold/*{fwDefault}*/;
+	color: #414141;/*{fcActive}*/;
 }
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: #212121/*{fcActive}*/;
+	color: #414141/*{fcActive}*/;
 	text-decoration: none;
 }
 
