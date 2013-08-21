@@ -23,12 +23,12 @@
 		<script src="./js/funcionbuscar.js"></script>
 		
 		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
-		<link rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/themes/base/jquery-ui.css"/>		
-		<script src="./jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
-		<script src="./jquery-ui-1.10.3.custom/js/jquery-ui.js"></script>	
-		<link  rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/demos/demos.css"/>
+		<link rel="stylesheet" href="./css/jquery-ui.css"/>		
+		<script src="./js/jquery-1.9.1.js"></script>
+		<script src="./js/jquery-ui.js"></script>	
+		<!--<link  rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/demos/demos.css"/>-->
 				
-		<script type="text/javascript">
+		<!--<script type="text/javascript">
 			function tab(pestana,panel){
 				pst 	= document.getElementById(pestana);
 				pnl 	= document.getElementById(panel);
@@ -47,13 +47,22 @@
 				// Añadimos la clase "actual" a la pestaña activa
 				pnl.style.display = "block";
 			}
-		</script>
+		</script>-->
 		<script>
 			$(function() {
 			$( "#tabs" ).tabs();
 			});
 		</script>
-		
+		<script>
+			$(function() {
+			$( "#tabs2" ).tabs();
+			});
+		</script>
+		<script>
+			$(function() {
+			$( "#accordion" ).accordion();
+			});
+		</script>
 		<!--Script: Contenido
 		
 		<script> 
@@ -67,9 +76,7 @@
 				ventana.location.href = url;
 			} 
 		</script>-->
-=======
 
->>>>>>> .r53
 	</head>
 
 	<body class="cbp-spmenu-push">
