@@ -8,27 +8,20 @@
 }
 .acordeon label{
 	font-s ize:13px;
-	padding: 10px;
+	padding: 5px 10px 20px 10px;
 	z-index:20;
 	display:block;
 	height:20px;
 	cursor:pointer;
-	font-wei ght:bold;
-	background: #ededed;
-	background: -moz-linear-gradient(top,  #ededed 0%, #e5e5e5 63%, #cccccc 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(63%,#e5e5e5), color-stop(100%,#cccccc));
-	background: -webkit-linear-gradient(top,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	background: -o-linear-gradient(top,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	background: -ms-linear-gradient(top,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	background: linear-gradient(to bottom,  #ededed 0%,#e5e5e5 63%,#cccccc 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#cccccc',GradientType=0 );
+	font-weight:bold;
+	color:#fff;
+	background: #258ecd;
+	
 }
 .acordeon label:hover{
-	background: #6383c2;
+	background: #0d77b6;
 	color:#fff;
 	text-shadow: #000 1px 1px 1px;
-	-webkit-box-shadow: inset 0px 0px 5px 4px #6383c2;
-    box-shadow: inset 0px 0px 5px 4px #6383c2;
 }
 
 /*Para ocultar los radio button*/
@@ -37,11 +30,11 @@
 	overflow:hidden;
 }
 .acordeon input:checked + label{
-	background: #6383c2;
+	background: #0d77b6;
 	color:#fff;
 	text-shadow: #000 1px 1px 1px;
-	-webkit-box-shadow: inset 0px 0px 5px 4px #6383c2;
-    box-shadow: inset 0px 0px 5px 4px #6383c2;
+	-webkit-box-shadow: inset 0px 0px 5px 4px #0d77b6;
+    box-shadow: inset 0px 0px 5px 4px #0d77b6;
 }
 /**diseño para las listas dentro de la acordeon*/
 .acordeon article{
@@ -106,7 +99,41 @@
 .acordeon input:checked ~ article.tab-height4{
 	height:125px;
 }
-
+.tabla-datos{
+	margin:5px 10px;
+	padding:2px;
+	border:0; 
+	width:95%;
+	font-size:13px;
+}
+.tabla-datos td{
+	width:60px;
+}
+.tabla-datos textarea{
+	width:610px;
+	height:20px;
+}
+.showinput{
+	width:99%;
+	margin:10px 10px 0 0;
+	font-size:13px;
+}
+.showinput input {display:block;}
+.tabla{
+	margin:5px 0 5px 11px;
+	font-size:13px;
+	border:0;
+	width:95%;
+}
+.tabla th{
+	background:#d3d3d3;
+	padding:5px;
+	border:1px solid #a3a3a3;
+}
+.tabla td{
+	padding:5px;
+	border:1px solid #a3a3a3;
+}
 /***PESTAÑAS PRINCIPALES***/
 div#panel {
 	position: relative;
