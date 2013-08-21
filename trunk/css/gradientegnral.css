@@ -110,8 +110,8 @@
 	width:60px;
 }
 .tabla-datos textarea{
-	width:610px;
-	height:20px;
+	width:100%;
+	height:30px;
 }
 .showinput{
 	width:99%;
@@ -126,13 +126,15 @@
 	width:95%;
 }
 .tabla th{
-	background:#d3d3d3;
+	background:#47a3da;
 	padding:5px;
-	border:1px solid #a3a3a3;
+	border:1px solid #0d77b6;
 }
 .tabla td{
 	padding:5px;
-	border:1px solid #a3a3a3;
+	border-left:1px solid #a3a3a3;
+	border-right:1px solid #a3a3a3;
+	border-bottom:1px solid #a3a3a3;
 }
 /***PESTAÑAS PRINCIPALES***/
 div#panel {
