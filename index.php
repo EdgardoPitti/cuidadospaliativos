@@ -16,46 +16,13 @@
 		<link rel="stylesheet" type="text/css" href="./css/component.css" />
 		
 		
-		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
+		<style type="text/css"><!--@import url("./css/tabs.css");-->	</style>
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
 		<script src="./js/funcionbuscar.js"></script>
-		<script type="text/javascript">
-			function tab(pestana,panel){
-				pst 	= document.getElementById(pestana);
-				pnl 	= document.getElementById(panel);
-				psts	= document.getElementById("tabs").getElementsByTagName("li");
-				pnls	= document.getElementById("paneles").getElementsByTagName("section");
-				// eliminamos las clases de las pestañas
-				for(i=0; i< psts.length; i++){
-					psts[i].className = "";
-				}	
-				// Añadimos la clase "actual" a la pestaña activa
-				pst.className = "actual";
-				// eliminamos las clases de las pestañas
-				for(i=0; i< pnls.length; i++){
-					pnls[i].style.display = "none";	
-				}
-				// Añadimos la clase "actual" a la pestaña activa
-				pnl.style.display = "block";
-			}
-		</script>
-		<!--Script: Contenido
-		
-		<script> 
-			function enlace(url) 
-			{ 	// Quitar alerta cuando se pasen los url de los submenus 
-				//alert("Los enlaces para los submenus se pasan en la funcion Enlace() del Javascript");
-			
-			// La función de abajo habilita el url de los enlaces para los submenus
-			// cuando se pasan como parámetros dinámicos a este Javascript
-			// HABILITAR cuando se tengan los urls
-				ventana.location.href = url;
-			} 
-		</script>-->
+
 	</head>
-	
-	
+
 	<body class="cbp-spmenu-push">
 	
 			<!--Barra de Inicio-->
@@ -108,10 +75,10 @@
 					<a href="#">Registro Diario de Actividades </a>
 						<!--Sub-Menú Nivel B-->
 						<ul>
-							<li><a href="#">Capturar Datos</a></li>
+							<li><a href="javascript:enlace('#');">Capturar Datos</a></li>
 							<li><a href="javascript:enlace('#');">Agenda</a></li>
 						</ul>
-					<a href="./?url=ambulatoria_contacto_tel">Contacto Telef&oacutenico</a>
+					<a href="#">Contacto Telef&oacutenico</a>
 						<ul>
 							<li><a href="javascript:enlace('#');">Atenci&oacuten al Paciente</a></li>
 							<li><a href="javascript:enlace('#');">Interconsulta</a></li>
