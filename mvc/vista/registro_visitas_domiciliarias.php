@@ -9,14 +9,14 @@
 	$cedula = $_POST['cedula'];
 	$cont='
 			<center>
-				<b>Registro de Visitas Domiciliarias</b><br><br>
-				Introduzca el número de cédula del paciente, y añada las observaciones pertinentes.<br><br><br>
-				<form method="POST" action=".?url=registrovisitasdomiciliaria">Buscar: <input type="search" id="cedula" name="cedula"><button>Buscar</button></form>
+				<fieldset>
+					<legend>
+						Registro de Visitas Domiciliarias
+					</legend>
+						Introduzca el número de cédula del paciente, y añada las observaciones pertinentes.<br><br>
+						<form method="POST" action=".?url=registrovisitasdomiciliaria">Buscar: <input type="search" id="cedula" name="cedula"><button>Buscar</button></form>
+				</fieldset>
 			</center>
-			<br>
-			<br>
-			<br>
-			<br>
 	';
 	if(!empty($cedula)){
 		$personas->buscardonde('cedula = "'.$cedula.'"');
