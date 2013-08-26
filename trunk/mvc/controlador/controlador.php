@@ -8,7 +8,8 @@
 				case "domiciliaria_visita_realizada": 		$vista = "domiciliaria_visita_realizada"; 	 break;
 				case "atencion_ambulatoria": 		  		$vista = "atencion_ambulatoria";	 		 break;
 				case "agregardatosdomiciliaria": 		  	$vista = "agregardatosdomiciliaria";	 	 break;
-				case "registrovisitasdomiciliaria": 		$vista = "registro_visitas_domiciliarias";	 break;
+				case "registrovisitasdomiciliaria": 		$vista = "domiciliarias_registro_visitas";	 break;
+				case "hospitalaria_rae_capturardatos": 		$vista = "hospitalaria_rae_capturardatos";	 break;
 				default: $vista = "inicio";
 			}	
 			include_once('./mvc/vista/'.$vista.'.php');
