@@ -155,7 +155,7 @@
 					<a href="#">RAE</a>
 						<!--Sub-Menú Nivel B-->
 						<ul>
-							<li><a href="javascript:enlace('#');">Capturar Datos</a></li>
+							<li><a href="./?url=hospitalaria_rae_capturardatos">Capturar Datos</a></li>
 							<li><a href="javascript:enlace('#');">Evoluci&oacuten</a></li>
 						</ul>
 					<a href="#">Indicadores</a>
