@@ -1,8 +1,62 @@
 <?php
+	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
+	$personas = new Accesatabla('personas');
+	$tiposangre = new Accesatabla('tipos_de_sangre');
+	$provincias = new Accesatabla('provincias');
+	$distritos = new Accesatabla('distritos');
+	$corregimientos = new Accesatabla('corregimientos');
+	$cedula = $_POST['cedula'];
 	$ds = new Diseno();
+	if (Empty($cedula)){
+		$cont='
+			<form method="POST" action="./?url=domiciliaria_surco">
+				<left>Buscar Paciente<br><br>
+				Cedula: <input type="search" id="cedula" name="cedula"> <button>Buscar</button><br><br>
+				</left>
+			</form>';
+	}else{
+		$personas->buscardonde('cedula = "'.$cedula.'"');
+		$tiposangre->buscardonde('id = '.$personas->obtener('id_tipo_de_sangre').'');
+		$provincias->buscardonde('id = '.$personas->obtener('id_provincia_residencia').'');
+		$distritos->buscardonde('id = '.$personas->obtener('id_distrito_residencia').'');
+		$corregimientos->buscardonde('id = '.$personas->obtener('id_corregimiento_residencia').'');
+		if ($personas->obtener('femenino')){
+			$sexo = 'Femenino';
+		}else{
+			$sexo = 'Masculino';
+		}
+		list($anio, $mes, $dia) = explode("-", $personas->obtener('fecha_de_nacimiento'));
+		$cont=' <table>
+					<tr>
+						<td>
+							<fieldset>
+								<legend>
+									Paciente
+								</legend>
+									'.$personas->obtener('primer_nombre').' '.$personas->obtener('segundo_nombre').' '.$personas->obtener('primer_apellido').' '.$personas->obtener('segundo_apellido').'<br>
+									'.$cedula.' &nbsp&nbsp&nbsp '.$tiposangre->obtener('tipo_sangre').'<br>
+									'.$sexo.' &nbsp&nbsp&nbsp '.$personas->obtener('ocupacion').'<br>
+									'.$ds->edad($dia,$mes,$anio).' &nbsp&nbsp&nbsp '.$dia.'/'.$mes.'/'.$anio.'
+							</fieldset>
+						</td>
+						<td>
+							<fieldset>
+								<legend>
+									Dirección
+								</legend>
+									&nbsp&nbsp<br>
+									'.$distritos->obtener('descripcion').' , '.$provincias->obtener('descripcion').'<br>
+									'.$corregimientos->obtener('descripcion').' , '.$personas->obtener('direccion_detallada').'<br>
+									&nbsp&nbsp
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+		';
+	}
 	
-	$cont='
+	$cont.='
 		<div id="tabs">
 			<ul>
 				<li><a href="#tabs-1">Referencia</a></li>
