@@ -152,12 +152,14 @@
 																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
 																	<select style="width:140px"></select>
 																</td>
+																<td align="right">Dirección</td><td>Detallada:</td>
 															</tr>
-														</table>
-														Direccion Detallada:<br>
-														<textarea id="direcciondetallada" name="direcciondetallada"></textarea>
-														<table>
-														
+															<tr>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td><textarea id="direcciondetallada" name="direcciondetallada"></textarea></td>
+															</tr>
 														</table>
 													</center>
 												</fieldset>
@@ -219,23 +221,23 @@
 		$e = $etnia->releer();
 	}
 														
-						$cont.='											</select>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td align="right">Programa: </td>
-																		<td><select id="programas" name="programas">
-																				<option value="0"></option>
-																				<option value="1">Infantil</option>
-																				<option value="2">Maternal</option>
-																				<option value="3">Adulto</option>
-																			</select>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td align="right">Categoria: </td>
-																		<td id="mostrarcategorias" name="mostrarcategorias"><select style="width:140px"></select></td>
-																	</tr>
+						$cont.='												</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="right">Programa: </td>
+																			<td><select id="programas" name="programas">
+																					<option value="0"></option>
+																					<option value="1">Infantil</option>
+																					<option value="2">Maternal</option>
+																					<option value="3">Adulto</option>
+																				</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="right">Categoria: </td>
+																			<td id="mostrarcategorias" name="mostrarcategorias"><select style="width:140px"></select></td>
+																		</tr>																
 																	</table>
 																</center>
 															</fieldset>
