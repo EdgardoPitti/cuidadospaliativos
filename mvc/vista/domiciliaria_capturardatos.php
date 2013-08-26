@@ -134,7 +134,7 @@
 	$p = $provincias->buscardonde("id > 0");
 	while($p){
 			$cont.='
-																<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
+																		<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
 			
 			';
 			$p = $provincias->releer();
@@ -142,14 +142,14 @@
 	}
 		$cont.='												   </select>
 																</td>
-																<td align="right">Distritos:</td>
-																<td id="mostrardistritos" name="mostrardistritos">
+																<td align="right">Corregimientos:</td>
+																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
 																	<select style="width:140px"></select>
 																</td>
 															</tr>
 															<tr>
-																<td align="right">Corregimientos:</td>
-																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
+																<td align="right">Distritos:</td>
+																<td id="mostrardistritos" name="mostrardistritos">
 																	<select style="width:140px"></select>
 																</td>
 																<td align="right">Dirección</td><td>Detallada:</td>
