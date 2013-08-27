@@ -6,7 +6,7 @@ function inicio(){
 	$("#provinciasnacimiento").change(cargarDistritosnacimiento);
 	$("#distritos").change(cargarCorregimientos);
 	$("#distritosnacimiento").change(cargarCorregimientosnacimiento);
-	$("#programas").change(cargarCategorias)
+	$("#programas").change(cargarCategorias);	
 }
 function cargarDistritos(){
 	var p = $("#provincias").attr("value");
