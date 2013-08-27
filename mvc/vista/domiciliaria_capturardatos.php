@@ -152,7 +152,7 @@
 																<td id="mostrardistritos" name="mostrardistritos">
 																	<select style="width:140px"></select>
 																</td>
-																<td align="right">Dirección</td><td>Detallada:</td>
+																<td align="right"></td><td>Dirección Detallada:</td>
 															</tr>
 															<tr>
 																<td></td>
