@@ -26,28 +26,6 @@
 		<link rel="stylesheet" href="./css/jquery-ui.css"/>		
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>	
-		<!--<link  rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/demos/demos.css"/>-->
-				
-		<!--<script type="text/javascript">
-			function tab(pestana,panel){
-				pst 	= document.getElementById(pestana);
-				pnl 	= document.getElementById(panel);
-				psts	= document.getElementById("tabs").getElementsByTagName("li");
-				pnls	= document.getElementById("paneles").getElementsByTagName("section");
-				// eliminamos las clases de las pestañas
-				for(i=0; i< psts.length; i++){
-					psts[i].className = "";
-				}	
-				// Añadimos la clase "actual" a la pestaña activa
-				pst.className = "actual";
-				// eliminamos las clases de las pestañas
-				for(i=0; i< pnls.length; i++){
-					pnls[i].style.display = "none";	
-				}
-				// Añadimos la clase "actual" a la pestaña activa
-				pnl.style.display = "block";
-			}
-		</script>-->
 		<script>
 			$(function() {
 			$( "#tabs" ).tabs();
@@ -156,7 +134,7 @@
 						<!--Sub-Menú Nivel B-->
 						<ul>
 							<li><a href="./?url=hospitalaria_rae_capturardatos">Capturar Datos</a></li>
-							<li><a href="javascript:enlace('#');">Evoluci&oacuten</a></li>
+							<li><a href="./?url=hospitalaria_rae_evolucion">Evoluci&oacuten</a></li>
 						</ul>
 					<a href="#">Indicadores</a>
 						<ul>
