@@ -2,6 +2,7 @@
 	private $db=null, $estatabla, $esnuevo, $registro, $totaldelineas, $estalinea, $totaldecampos=0, $ultimosql='' ;
 	private $cambiados = array () , $contenido = array ();
 	private $tipocampo = array () , $loscampos = array ();
+	
 	//Comentarios suponiendo que los parametros ingresados sean correctos.
 	public function __construct( $esatabla ){//Obtiene la informacion de la tabla que se envia al crear el objeto.
 		include_once('db.php');
