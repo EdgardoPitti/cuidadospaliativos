@@ -20,7 +20,7 @@
 
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
-		<script src="./js/funcionbuscar.js"></script>
+		<!--<script src="./js/funcionbuscar.js"></script> -->
 		
 		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
 		<link rel="stylesheet" href="./css/jquery-ui.css"/>		
@@ -34,6 +34,11 @@
 		<script>
 			$(function() {
 			$( "#tabs2" ).tabs();
+			});
+		</script>		
+		<script>
+			$(function() {
+			$( "#tabs3" ).tabs();
 			});
 		</script>
 		<script>
@@ -69,12 +74,11 @@
 				
 				<!--Barra de Sesión-->
 				<div class="main">
-					<div id="barlogged">Bienvenido</div>
+					<div id="barlogged"></div>
 				</div>
 			</div>
 			
-			
-			
+
 			
 			<!--Atención Domiciliaria-->
 			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
@@ -112,7 +116,7 @@
 							<li><a href="javascript:enlace('#');">Capturar Datos</a></li>
 							<li><a href="javascript:enlace('#');">Agenda</a></li>
 						</ul>
-					<a href="#">Contacto Telef&oacutenico</a>
+					<a href="./?url=atencion_ambulatoria">Contacto Telef&oacutenico</a>
 						<ul>
 							<li><a href="javascript:enlace('#');">Atenci&oacuten al Paciente</a></li>
 							<li><a href="javascript:enlace('#');">Interconsulta</a></li>
@@ -154,7 +158,6 @@
 					<a href="#">Eventos</a>
 					<a href="#">Especialistas</a>
 			</nav>
-			
 			
 			<!--Marco del contenido-->
 			<div class="contentpanel" >
