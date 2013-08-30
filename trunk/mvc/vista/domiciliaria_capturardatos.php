@@ -248,9 +248,6 @@
 						</fieldset>
 
 			</form>';
-	
-	//$ds->nav($_SESSION['nav']);
-	//$ds->izq($_SESSION['aside']);
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
