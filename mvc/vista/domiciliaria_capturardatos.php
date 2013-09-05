@@ -10,7 +10,7 @@
 	$ds = new Diseno();
 	$cont.='
 
-			<form action="./?url=agregardatosdomiciliaria" method="post">
+			<form action="./?url=" method="post">
 						<fieldset>
 							<legend>
 								Capturar Datos
@@ -170,7 +170,7 @@
 																<legend>
 																	Lugar de Nacimiento
 																</legend>
-																<table>
+																<table align="center">
 																	<tr>
 																		<td align="right">Provincia Nacimiento:</td>
 																		<td><select id="provinciasnacimiento" name="provinciasnacimiento">
@@ -199,47 +199,6 @@
 																		</td>
 																	</tr>
 																</table>
-															</fieldset>
-														</td>
-														<td>
-															<fieldset>
-																<legend>
-																	Datos de Registro Medico
-																</legend>
-																<center>
-																	<table>
-																		<tr>
-																			<td align="right">Etnia: </td>
-																			<td><select id="etnia" name="etnia">
-																					<option value="0"></option>
-																				';
-	$e = $etnia->buscardonde("id > 0");
-	while ($e){
-			$cont.='
-																				<option value="'.$etnia->obtener('id').'">'.$etnia->obtener('descripcion').'</option>
-			';
-		$e = $etnia->releer();
-	}
-														
-						$cont.='												</select>
-																			</td>
-																		</tr>
-																		<tr>
-																			<td align="right">Programa: </td>
-																			<td><select id="programas" name="programas">
-																					<option value="0"></option>
-																					<option value="1">Infantil</option>
-																					<option value="2">Maternal</option>
-																					<option value="3">Adulto</option>
-																				</select>
-																			</td>
-																		</tr>
-																		<tr>
-																			<td align="right">Categoria: </td>
-																			<td id="mostrarcategorias" name="mostrarcategorias"><select style="width:140px"></select></td>
-																		</tr>																
-																	</table>
-																</center>
 															</fieldset>
 														</td>
 													</tr>
