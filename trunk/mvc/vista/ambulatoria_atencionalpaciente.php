@@ -1,5 +1,11 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
+	include_once('./mvc/modelo/Accesatabla.php');
+	$personas = new Accesatabla('personas');
+	$tiposangre = new Accesatabla('tipos_de_sangre');
+	$provincias = new Accesatabla('provincias');
+	$distritos = new Accesatabla('distritos');
+	$corregimientos = new Accesatabla('corregimientos');
 	$ds = new Diseno();
 	
 	$tab1="'tab_01'";
@@ -7,52 +13,60 @@
 	$panel1 = "'panel_01'";
 	$panel2 = "'panel_02'";
 	
-	
-	$cont='
-		<fieldset style="height:530px;">
-			<legend style="font-size:17px;font-weight:bold;" align="center">Contacto Telefónico</legend>
-			<div id="panel">
-				<ul id="tabs">
-					<li id="tab_01"><a href="#" onclick="tab('.$tab1.','.$panel1.');">Atención al Paciente</a></li>
-					<li id="tab_02"><a href="#" onclick="tab('.$tab2.','.$panel2.');">Interconsulta</a></li>
-				</ul>
+	$cedula = $_POST['cedula'];
+	$personas->buscardonde('cedula = "'.$cedula.'"');
+	if ($personas->obtener('femenino')){
+		$sexo = 'Femenino';
+	}else{
+		$sexo = 'Masculino';
+	}
+	if ($personas->obtener('asegurado')){
+		$tipo = 'Asegurado';
+	}else{
+		$tipo = 'No Asegurado';
+	}
+	list($anio, $mes, $dia) = explode("-", $personas->obtener('fecha_de_nacimiento'));
+	$cont.='
+		<fieldset>
+			<legend>Atención al Paciente</legend>
+			<div>
 				<div id="paneles">
 					<section id="panel_01">
 						<div align="right">
-							<input type="search" class="search" id="buscar" placeholder="Buscar Paciente" list/>	
-							<datalist id="resultado" style="width:145px; display:hidden;">
-								
-							</datalist>
+							<form method="POST" action="./?url=ambulatoria_atencionalpaciente">
+								<input type="search" class="search" id="buscar" name="cedula" placeholder="Buscar Paciente">	
+								<button>Buscar</button> 
+							</form>
 						</div>
 						<table width="100%" style="margin:10px auto;border:1px solid #a3a3a3; background:#fafafa;">
 							<tr>
-								<td style="width:150px;border:1px solid #a3a3a3;">
+								<td style="border:1px solid #a3a3a3;" width="50%">
 									<table class="tabla-datos">
 										<tr>
-											<td colspan="3"><strong>Fulanito de Tal</strong></td>
+											<td colspan="3"><strong>'.$personas->obtener('primer_nombre').' '.$personas->obtener('segundo_nombre').' '.$personas->obtener('primer_apellido').' '.$personas->obtener('segundo_apellido').'</strong></td>
 										</tr>
 										<tr>
-											<td>4-125-634</td>
-											<td>O+</td>
-											<td>Masculino</td>
+											<td>'.$personas->obtener('cedula').'</td>
+											<td>'.$tiposangre->renombrar($personas->obtener('id_tipo_de_sangre'),tipo_sangre).'</td>
+											<td>'.$sexo.'</td>
 										</tr>
 										<tr>
-											<td>15/09/1979</td>
-											<td>Asegurado</td>
-											<td>34 años</td>
+											<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
+											<td>'.$tipo.'</td>
+											<td>'.$ds->edad($dia,$mes,$anio).'</td>
 										</tr>
 									</table>
 								</td>
-								<td style="width:200px;border:1px solid #a3a3a3;">
+								<td style="border:1px solid #a3a3a3;" width="50%">
 									<table class="tabla-datos">
 										<tr>
 											<td colspan="3"><strong>Datos de Contacto/Dirección:</strong></td>
 										</tr>
 										<tr>
-											<td colspan="3">Panamá La Chorrera</td>
+											<td colspan="3">'.$provincias->renombrar($personas->obtener('id_provincia_residencia'), descripcion).', '.$distritos->renombrar($personas->obtener('id_distrito_nacimiento'), descripcion).'</td>
 										</tr>
 										<tr>
-											<td colspan="3">Barrio Colón, Casa 2250, Calle Matuna</td>
+											<td colspan="3">'.$corregimientos->renombrar($personas->obtener('id_corregimiento_nacimiento'), descripcion).', '.$personas->obtener('direccion_detallada').'</td>
 										</tr>
 									</table>
 								</td>
@@ -118,11 +132,7 @@
 				</div>
 			</div>
 		</fieldset>
-					
-		<!-- Script para marcar la primera pestaña-->
-		<script type="text/javascript">
-			tab("tab_01","panel_01");
-		</script>
+
 				';
 	$ds->contenido($cont);
 	$ds->mostrar();
