@@ -361,25 +361,25 @@ class Diseno {
 		else
 			echo
 			   '
-				<!--Navegador-->
+				<!--Navegador
 				<nav class="fdgris">
 					<ul class="menu">
 						'.$this->navegador.'
 					</ul>
-				</nav>
-				<div class="cuerpo">
-					<!--Diseño de Lateral-->
+				</nav>-->
+				
+					<!--Diseño de Lateral
 					<aside>
 						<section class="acordeon">
 							'.$this->izquierda.'
 						</section>	
-					</aside>
+					</aside>-->
 					<!--Diseño del contenido de la página-->
-					<div class="contenido">	
+					<div class="span10" style="height:670px; overflow:auto;">	
 						'.$this->latino($this->derecha).'
 					</div>
 					<!--Fin del Contenido-->
-				</div>';
+				';
 	}
 	function latino( $texto ) {
 		$search  = array('á',       'é',       'í',       'ó',       'ú',       'ñ',       'Ñ',       'Á',       'É',       'Í',       'Ó',       'Ú',       'ü');
@@ -532,3 +532,23 @@ class Diseno {
 
 }
 ?>
+
+<!--Navegador--
+				<nav class="fdgris">
+					<ul class="menu">
+						'.$this->navegador.'
+					</ul>
+				</nav>
+				<div class="cuerpo">
+					<!--Diseño de Lateral--
+					<aside>
+						<section class="acordeon">
+							'.$this->izquierda.'
+						</section>	
+					</aside>
+					<!--Diseño del contenido de la página--
+					<div class="contenido">	
+						'.$this->latino($this->derecha).'
+					</div>
+					<!--Fin del Contenido>
+				</div>-->

@@ -4,6 +4,7 @@
 	$personas = new Accesatabla('personas');
 	$pacientes = new Accesatabla('pacientes');
 	$ds = new Diseno();
+	
 	$personas->nuevo();
 	$personas->colocar("primer_nombre",$_POST['primernombre']);
 	$personas->colocar("segundo_nombre",$_POST['segundonombre']);

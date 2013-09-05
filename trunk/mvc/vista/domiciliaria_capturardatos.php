@@ -8,15 +8,16 @@
 	$estadocivil = new Accesatabla('estadocivil');
 	$nacionalidades = new Accesatabla('nacionalidades');
 	$ds = new Diseno();
+	
 	$cont.='
 
-			<form action="./?url=" method="post">
+			<form action="./?url=agregardatosdomiciliaria" method="post" style="display:block;">
 						<fieldset>
-							<legend>
-								Capturar Datos
+							<legend align="center">
+								<h3 style="background:#f4f4f4;">Capturar Datos</h3>
 							</legend>
 							<fieldset>
-												<legend>
+												<legend align="center">
 													Datos de Identificacion/Personales del Paciente
 												</legend>
 												<center>
@@ -113,7 +114,7 @@
 													</center>
 												</fieldset>
 												<fieldset>
-													<legend>
+													<legend align="center">
 														Datos de Contacto/Direccion
 													</legend>
 													<center>
@@ -158,55 +159,103 @@
 																<td></td>
 																<td></td>
 																<td></td>
-																<td><textarea id="direcciondetallada" name="direcciondetallada"></textarea></td>
+																<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"></textarea></td>
 															</tr>
 														</table>
 													</center>
 												</fieldset>
+												<center>
 												<table width="100%">
 													<tr>
 														<td width="50%">
 															<fieldset>
-																<legend>
+																<legend align="center">
 																	Lugar de Nacimiento
 																</legend>
-																<table align="center">
-																	<tr>
-																		<td align="right">Provincia Nacimiento:</td>
-																		<td><select id="provinciasnacimiento" name="provinciasnacimiento">
-																				<option value="0"></option>';
+																<center>
+																	<table>
+																		<tr>
+																			<td align="right">Provincia Nacimiento:</td>
+																			<td><select id="provinciasnacimiento" name="provinciasnacimiento">
+																					<option value="0"></option>';
 	$p = $provincias->buscardonde('id > 0');
 	while($p){
 			$cont.='
-																				<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
+																					<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
 			';
 			$p = $provincias->releer();
 	}
 																	
-				$cont.='													</select>
-																		</td>
-																	<tr>
-																	</tr>
-																		<td align="right">Distrito Nacimiento: </td>
-																		<td id="mostrardistritosnacimiento" name="mostrardistritosnacimiento">
-																			<select style="width:140px"></select>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td align="right">Corregimiento Nacimiento: </td>
-																		<td id="mostrarcorregimientosnacimiento" name="mostrarcorregimientosnacimiento">
-																			<select style="width:140px"></select>
-																		</td>
-																	</tr>
-																</table>
+				$cont.='														</select>
+																			</td>
+																		<tr>
+																		</tr>
+																			<td align="right">Distrito Nacimiento: </td>
+																			<td id="mostrardistritosnacimiento" name="mostrardistritosnacimiento">
+																				<select style="width:140px"></select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="right">Corregimiento Nacimiento: </td>
+																			<td id="mostrarcorregimientosnacimiento" name="mostrarcorregimientosnacimiento">
+																				<select style="width:140px"></select>
+																			</td>
+																		</tr>
+																	</table>
+																</center>
+															</fieldset>
+														</td>
+														<td>
+															<fieldset>
+																<legend align="center">
+																	Datos de Registro Medico
+																</legend>
+																<center>
+																	<table>
+																		<tr>
+																			<td align="right">Etnia: </td>
+																			<td><select id="etnia" name="etnia">
+																					<option value="0"></option>
+																				';
+	$e = $etnia->buscardonde("id > 0");
+	while ($e){
+			$cont.='
+																				<option value="'.$etnia->obtener('id').'">'.$etnia->obtener('descripcion').'</option>
+			';
+		$e = $etnia->releer();
+	}
+														
+						$cont.='												</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="right">Programa: </td>
+																			<td><select id="programas" name="programas">
+																					<option value="0"></option>
+																					<option value="1">Infantil</option>
+																					<option value="2">Maternal</option>
+																					<option value="3">Adulto</option>
+																				</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="right">Categoria: </td>
+																			<td id="mostrarcategorias" name="mostrarcategorias"><select style="width:140px"></select></td>
+																		</tr>																
+																	</table>
+																</center>
 															</fieldset>
 														</td>
 													</tr>
 												</table>
-								<button type="submit">Enviar</button>
+												</center>
+								<button type="submit" class="btn btn-primary">Registrar</button>
 						</fieldset>
 
 			</form>';
+	
+	//$ds->nav($_SESSION['nav']);
+	//$ds->izq($_SESSION['aside']);
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
