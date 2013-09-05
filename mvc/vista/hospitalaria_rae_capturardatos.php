@@ -13,11 +13,11 @@
 
 			<form action="./?url=agregardatosdomiciliaria" method="post">
 						<fieldset>
-							<legend>
-								Capturar Datos
+							<legend align="center">
+								<h3 style="background:#f4f4f4;">Capturar Datos</h3>
 							</legend>
 							<fieldset>
-												<legend>
+												<legend align="center">
 													Datos de Identificacion/Personales del Paciente
 												</legend>
 												<center>
@@ -114,7 +114,7 @@
 													</center>
 												</fieldset>
 												<fieldset>
-													<legend>
+													<legend align="center">
 														Datos de Contacto/Direccion
 													</legend>
 													<center>
@@ -167,7 +167,7 @@
 			$p = $parentesco->releer();
 	}
 		$cont.='													</select></td>
-																<td><textarea id="direcciondetallada" name="direcciondetallada" rows="2" cols="16"></textarea></td>
+																<td><textarea class="textarea" id="direcciondetallada" name="direcciondetallada" rows="2" cols="16"></textarea></td>
 															</tr>
 														</table>
 													</center>
@@ -176,53 +176,50 @@
 													<tr>
 														<td width="50%">
 															<fieldset>
-																<legend>
+																<legend align="center">
 																	Lugar de Nacimiento
 																</legend>
-																<table>
-																	<tr>
-																		<td>&nbsp</td>
-																		<td>&nbsp</td>
-																		<td>&nbsp</td>
-																	</tr>
-																	<tr>
-																		<td align="right">Provincia Nacimiento:</td>
-																		<td><select id="provinciasnacimiento" name="provinciasnacimiento">
-																				<option value="0"></option>';
+																<center>
+																	<table>																	
+																		<tr>
+																			<td align="right">Provincia Nacimiento:</td>
+																			<td><select id="provinciasnacimiento" name="provinciasnacimiento">
+																					<option value="0"></option>';
 	$p = $provincias->buscardonde('id > 0');
 	while($p){
 			$cont.='
-																				<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
+																					<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
 			';
 			$p = $provincias->releer();
 	}
 																	
-				$cont.='													</select>
-																		</td>
-																	<tr>
-																	</tr>
-																		<td align="right">Distrito Nacimiento: </td>
-																		<td id="mostrardistritosnacimiento" name="mostrardistritosnacimiento">
-																			<select style="width:140px"></select>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td align="right">Corregimiento Nacimiento: </td>
-																		<td id="mostrarcorregimientosnacimiento" name="mostrarcorregimientosnacimiento">
-																			<select style="width:140px"></select>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>&nbsp</td>
-																		<td>&nbsp</td>
-																		<td>&nbsp</td>
-																	</tr>
-																</table>
+				$cont.='														</select>
+																			</td>
+																		<tr>
+																		</tr>
+																			<td align="right">Distrito Nacimiento: </td>
+																			<td id="mostrardistritosnacimiento" name="mostrardistritosnacimiento">
+																				<select style="width:140px"></select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="right">Corregimiento Nacimiento: </td>
+																			<td id="mostrarcorregimientosnacimiento" name="mostrarcorregimientosnacimiento">
+																				<select style="width:140px"></select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td>&nbsp</td>
+																			<td>&nbsp</td>
+																			<td>&nbsp</td>
+																		</tr>
+																	</table>
+																</center>
 															</fieldset>
 														</td>
 														<td>
 															<fieldset>
-																<legend>
+																<legend align="center">
 																	En caso de Emergencia: 
 																</legend>
 																	<center>
@@ -252,8 +249,7 @@
 																			</tr>
 																			<tr>
 																				<td>Direccion: </td>
-																				<td><textarea id="direccionemergencia" name="direccionemergencia" rows="1" cols="20"></textarea></td>
-																				
+																				<td><textarea class="textarea" id="direccionemergencia" name="direccionemergencia" rows="1" cols="20"></textarea></td>																				
 																			</tr>
 																		</table>
 																	</center>
@@ -261,7 +257,7 @@
 														</td>
 													</tr>
 												</table>
-								<button type="submit">Enviar</button>
+								<button type="submit" class="btn btn-primary">Registrar</button>
 						</fieldset>
 
 			</form>';
