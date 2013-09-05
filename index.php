@@ -88,7 +88,7 @@
 					<a href=".?url=registrovisitasdomiciliaria">Registro de Visitas Domiciliarias</a>
 						<!--Sub-Menú Nivel B-->
 						<ul>
-							<li><a href="./?url=domiciliaria_capturardatos">Capturar Datos</a></li>
+							<li><a href="">Capturar Datos</a></li>
 							<li><a href="javascript:enlace('#');">Agenda</a></li>
 						</ul>
 						
@@ -113,12 +113,12 @@
 					<a href="#">Registro Diario de Actividades </a>
 						<!--Sub-Menú Nivel B-->
 						<ul>
-							<li><a href="javascript:enlace('#');">Capturar Datos</a></li>
+							<li><a href="./?url=ambulatoria_capturardatos">Capturar Datos</a></li>
 							<li><a href="javascript:enlace('#');">Agenda</a></li>
 						</ul>
-					<a href="./?url=atencion_ambulatoria">Contacto Telef&oacutenico</a>
+					<a href="">Contacto Telef&oacutenico</a>
 						<ul>
-							<li><a href="javascript:enlace('#');">Atenci&oacuten al Paciente</a></li>
+							<li><a href="./?url=ambulatoria_atencionalpaciente">Atenci&oacuten al Paciente</a></li>
 							<li><a href="javascript:enlace('#');">Interconsulta</a></li>
 						</ul>
 					<a href="#">Indicadores</a>
