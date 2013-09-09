@@ -487,7 +487,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="page-footer">
-						Derechos Reservados 2013-2014
+						<b>Derechos Reservados 2013-2014</b>
 					</div>
 				</div>
 			</div>
