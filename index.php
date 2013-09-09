@@ -9,19 +9,8 @@
 		<script src="./js/modernizr.custom.js"></script>
 		<link rel="shortcut icon" href="./favicon.ico" />
 		
-		<!--CSS: Menú Principal-->
-		<link rel="stylesheet" type="text/css" href="./css/default.css" />
-		<link rel="stylesheet" type="text/css" href="./css/component.css" />
-		
-		
-		<style type="text/css"><!--@import url("./css/tabs.css");-->	</style>
-
-		<script src="./js/jquery.js"></script>
-		<script src="./js/funciones.js"></script>
-		<script src="./js/funcionbuscar.js"></script>
-		
-		
-		
+	<!--CSS: Menú Principal-->	
+	
 	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
 	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
 	<!--script src="js/js nuevos/less-1.3.3.min.js"></script-->
@@ -31,15 +20,18 @@
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	
-	
 		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
 		<link rel="stylesheet" href="./css/jquery-ui.css"/>	
-
+		
+		<script src="./js/jquery.js"></script>
+		<script src="./js/funciones.js"></script>
+		<script src="./js/funcionbuscar.js"></script>
 		<script type="text/javascript" src="js/js nuevos/jquery.min.js"></script>
 		<script type="text/javascript" src="js/js nuevos/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/js nuevos/scripts.js"></script>		
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>	
+		
 		<!--<link  rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/demos/demos.css"/>-->
 	
 	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -134,7 +126,6 @@
 						</ul>
 			</nav>
 			
-			
 			<!--Atención Ambulatoria--
 			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s2">
 				<!--Título: Grupo de Menú--
@@ -158,7 +149,6 @@
 						</ul>
 			</nav>
 			
-			
 			<!--Atención Hospitalaria--
 			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s3">
 				<!--Título: Grupo de Menú--
@@ -177,7 +167,6 @@
 						</ul>
 			</nav>
 			
-			
 			<!--Red Social--
 			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s4">
 			
@@ -189,14 +178,10 @@
 					<a href="#">Especialistas</a>
 			</nav>
 			
-			
 			<!--Marco del contenido--
 			<div class="contentpanel" >
-					
 				
-			
 			</div>
-			
 
 			<!--Menú Principal--
 			<div class="botones">
@@ -228,10 +213,8 @@
 							</li>
 						</ul>
 					</section>
-	
 			</div>
 			
-		
 			<!--Pie de página--
 			<div id="footer">
 				<img src="../../imgs/gises.png" alt="gises" title="gises" />
@@ -289,7 +272,6 @@
 				}
 			</script>-->
 			
-			
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
@@ -298,45 +280,6 @@
 							Red Social de Cuidados Paliativos Panam&aacute;
 						</h1>
 					</div>
-					<!--Nav
-					<div class="navbar">
-						<div class="navbar-inner">
-							<div class="container-fluid">
-								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">Atenciones</a>
-								<div class="nav-collapse navbar-responsive-collapse collapse">
-									<ul class="nav">
-										<li class="">
-											<a href="#" id="show1"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
-										</li>
-										<li class="">
-											<a href="#" id="show2"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
-										</li>
-										<li class="">
-											<a href="#" id="show3"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
-										</li>
-										<li class="">
-											<a href="#" id="show4"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
-										</li>
-									</ul>
-									<ul class="nav pull-right">
-										<li>
-											<a href="#">M&eacute;dico</a>
-										</li>
-										<li class="divider-vertical">
-										</li>
-										<li class="dropdown">
-											 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Configuraci&oacute;n<strong class="caret"></strong></a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="#">configurar</a>
-												</li>										
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>-->
 				</div>
 			</div>
 			
@@ -352,19 +295,19 @@
 							</div>
 							<div id="accordion-element-603066" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="./?url=domiciliaria_capturardatos"><i>Capturar Datos</i></a>
+									<a href="./?url=domiciliaria_capturardatos"><i style="font-size:1.1em; font-weight:bold;">Capturar Datos</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Agenda</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Agenda</i></a>
 								</div>
 							</div>
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-inner" style="border: 1px solid #258ECD;">
-								<a href="#"><b>Registro de Actividades Diarias</b></a>
+								<a href="#"><b style="font-size:1.2em;">Registro de Actividades Diarias</b></a>
 							</div>
 							<div class="accordion-inner" style="border: 1px solid #258ECD;margin-top:2px;">
-								<a href="./?url=domiciliaria_surco"><b>Surco</b></a>
+								<a href="./?url=domiciliaria_surco"><b style="font-size:1.2em;">Surco</b></a>
 							</div>
 						</div>
 						<div class="accordion-group">
@@ -373,16 +316,16 @@
 							</div>
 							<div id="accordion-element-229392" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="#"><i>Total de Visitas Realizadas</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Total de Visitas Realizadas</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Tiempo Promedio por Visita</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Tiempo Promedio por Visita</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Activadades Realizadas por Visitas</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Activadades Realizadas por Visitas</i></a>
 								</div>
 							</div>
 						</div>
@@ -397,10 +340,10 @@
 							</div>
 							<div id="accordion-element-603067" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="#"><i>Capturar Datos</i></a>
+									<a href="./?url=ambulatoria_capturardatos"><i style="font-size:1.1em; font-weight:bold;">Capturar Datos</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Agenda</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Agenda</i></a>
 								</div>
 							</div>
 						</div>
@@ -410,10 +353,10 @@
 							</div>
 							<div id="accordion-element-603068" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="#"><i>Atenci&oacute;n al Paciente</i></a>
+									<a href="./?url=ambulatoria_atencionalpaciente"><i style="font-size:1.1em; font-weight:bold;">Atenci&oacute;n al Paciente</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Interconsulta</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Interconsulta</i></a>
 								</div>
 							</div>
 						</div>
@@ -423,10 +366,10 @@
 							</div>
 							<div id="accordion-element-229393" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="#"><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Activadades Realizadas por Paciente</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Activadades Realizadas por Paciente</i></a>
 								</div>
 							</div>
 						</div>
@@ -441,10 +384,10 @@
 							</div>
 							<div id="accordion-element-603069" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="./?url=hospitalaria_rae_capturardatos"><i>Capturar Datos</i></a>
+									<a href="./?url=hospitalaria_rae_capturardatos"><i style="font-size:1.1em; font-weight:bold;">Capturar Datos</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="./?url=hospitalaria_rae_evolucion"><i>Evoluci&oacute;n</i></a>
+									<a href="./?url=hospitalaria_rae_evolucion"><i style="font-size:1.1em; font-weight:bold;">Evoluci&oacute;n</i></a>
 								</div>
 							</div>
 						</div>
@@ -454,10 +397,10 @@
 							</div>
 							<div id="accordion-element-229394" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="#"><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Porcentaje de Hospitalizados referidos de Consulta externa</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i>Razones de Readmisiones</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Razones de Readmisiones</i></a>
 								</div>
 							</div>
 						</div>
@@ -470,16 +413,16 @@
 						<div class="accordion-group">
 							<div class="accordion-body">
 								<div class="accordion-inner">
-									<b><a href="#">Mis Grupos</a></b>
+									<a href="#"><b style="font-size:1.2em;">Mis Grupos</b></a>
 								</div>	
 								<div class="accordion-inner">
-									<b><a href="#">Comunidades</a></b>
+									<a href="#"><b style="font-size:1.2em;">Comunidades</b></a>
 								</div>
 								<div class="accordion-inner">	
-									<b><a href="#">Eventos</a></b>
+									<a href="#"><b style="font-size:1.2em;">Eventos</b></a>
 								</div>
 								<div class="accordion-inner">
-									<b><a href="#">Especialistas</a></b>
+									<a href="#"><b style="font-size:1.2em;">Especialistas</b></a>
 								</div>
 							</div>
 						</div>
@@ -515,7 +458,7 @@
 											<a href="#" id="show4"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 										</li>
 									</ul>
-									<ul class="nav pull-right">
+									<!--<ul class="nav pull-right">
 										<li>
 											<a href="#">M&eacute;dico</a>
 										</li>
@@ -529,7 +472,7 @@
 												</li>										
 											</ul>
 										</li>
-									</ul>
+									</ul>-->
 								</div>
 							</div>
 						</div>
