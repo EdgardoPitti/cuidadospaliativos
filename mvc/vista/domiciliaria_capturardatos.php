@@ -14,9 +14,10 @@
 			<form action="./?url=agregardatosdomiciliaria" method="post" style="display:block;">
 						<fieldset>
 							<legend align="center">
-								<h3 style="background:#f4f4f4;">Capturar Datos</h3>
+								<h3 style="background:#f4f4f4;">Sistema de Captura de Datos de Atención Domiciliaria</h3>
 							</legend>
-							<fieldset>
+							<div style="float:left;width:50%;min-width:510px;">
+								<fieldset>
 												<legend align="center">
 													Datos de Identificacion/Personales del Paciente
 												</legend>
@@ -100,19 +101,21 @@
 															</tr>	
 															<tr>															
 																<td align="right">Tipo de Paciente:</td>
-																<td><input type="radio" id="tipo" name="tipo" value="1" checked>Asegurado</td>
+																<td style="padding-left:5px;"><input type="radio" id="tipo" name="tipo" value="1" checked> Asegurado</td>
 																<td align="right">N° de Seguro:</td>
 																<td><input type="text" id="numeroseguro" name="numeroseguro"></td>
 															</tr>
 															<tr>
 																<td></td>
-																<td><input type="radio" id="tipo" name="tipo" value="0"> No Asegurado</td>
+																<td style="padding-left:5px;"><input type="radio" id="tipo" name="tipo" value="0"> No Asegurado</td>
 																<td align="right">Ocupacion: </td>
 																<td><input type="text" id="ocupacion" name="ocupacion"></td>
 															</tr>
 														</table>
 													</center>
 												</fieldset>
+											</div>
+											<div style="float:none;">
 												<fieldset>
 													<legend align="center">
 														Datos de Contacto/Direccion
@@ -122,6 +125,7 @@
 															<tr>
 																<td>Correo Electrónico:</td>
 																<td><input type="text" id="correo" name="correo"></td>
+																<td></td>
 																<td align="right">Telefono:</td>
 																<td><input type="text" id="telefono" name="telefono"></td>
 															</tr>
@@ -143,27 +147,28 @@
 	}
 		$cont.='												   </select>
 																</td>
-																<td align="right">Corregimientos:</td>
-																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
-																	<select style="width:140px"></select>
-																</td>
+																<td></td>
+																<td>Dirección Detallada:</td>																
+																<td align="right"><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"></textarea></td>
 															</tr>
 															<tr>
 																<td align="right">Distritos:</td>
 																<td id="mostrardistritos" name="mostrardistritos">
 																	<select style="width:140px"></select>
-																</td>
-																<td align="right"></td><td>Dirección Detallada:</td>
+																</td>	
+																<td></td>	
 															</tr>
 															<tr>
+																<td align="right">Corregimientos:</td>
+																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
+																	<select style="width:140px"></select>
+																</td>
 																<td></td>
-																<td></td>
-																<td></td>
-																<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"></textarea></td>
 															</tr>
 														</table>
 													</center>
 												</fieldset>
+											</div>	
 												<center>
 												<table width="100%">
 													<tr>

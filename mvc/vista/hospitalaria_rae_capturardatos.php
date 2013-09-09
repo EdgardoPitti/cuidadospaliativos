@@ -14,9 +14,10 @@
 			<form action="./?url=agregardatosdomiciliaria" method="post">
 						<fieldset>
 							<legend align="center">
-								<h3 style="background:#f4f4f4;">Capturar Datos</h3>
+								<h3 style="background:#f4f4f4;">Sistema de Captura de Datos de Atención Hospitalaria</h3>
 							</legend>
-							<fieldset>
+							<div style="float:left;width:50%;min-width:510px;">
+								<fieldset>
 												<legend align="center">
 													Datos de Identificacion/Personales del Paciente
 												</legend>
@@ -113,6 +114,8 @@
 														</table>
 													</center>
 												</fieldset>
+											</div>
+											<div style="float:none;">	
 												<fieldset>
 													<legend align="center">
 														Datos de Contacto/Direccion
@@ -172,6 +175,8 @@
 														</table>
 													</center>
 												</fieldset>
+											</div>	
+												<center>
 												<table width="100%">
 													<tr>
 														<td width="50%">
@@ -209,9 +214,14 @@
 																			</td>
 																		</tr>
 																		<tr>
-																			<td>&nbsp</td>
-																			<td>&nbsp</td>
-																			<td>&nbsp</td>
+																			<td>&nbsp;</td>
+																			<td>&nbsp;</td>
+																			<td>&nbsp;</td>
+																		</tr>
+																		<tr>
+																			<td>&nbsp;</td>
+																			<td>&nbsp;</td>
+																			<td>&nbsp;</td>
 																		</tr>
 																	</table>
 																</center>
@@ -257,6 +267,7 @@
 														</td>
 													</tr>
 												</table>
+												</center>
 								<button type="submit" class="btn btn-primary">Registrar</button>
 						</fieldset>
 

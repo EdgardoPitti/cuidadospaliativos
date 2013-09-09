@@ -8,10 +8,22 @@
 	$corregimientos = new Accesatabla('corregimientos');
 	$cedula = $_POST['cedula'];
 	$ds = new Diseno();
+	$cont='
+		<fieldset>
+			<legend align="center">
+				<h3 style="background:#f4f4f4;"> Sistema Único de Referencia y Contrarreferencia</h3>
+			</legend>';
 	if (Empty($cedula)){
-		$cont='
+		$cont.='
 			<form class="form-search" method="POST" action="./?url=domiciliaria_surco">
-				Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>				
+				<!--Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>-->
+				<div class="input-group">
+				  <input type="search" class="form-control" id="cedula" placeholder="Cédula" name="cedula">
+				  <span class="input-group-btn">
+					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+				  </span>
+				</div>
+				
 			</form>';
 	}else{
 		$personas->buscardonde('cedula = "'.$cedula.'"');
@@ -24,18 +36,34 @@
 		}else{
 			$sexo = 'Masculino';
 		}
+		if($personas->obtener('asegurado')){
+			$asegurado = 'Asegurado';
+		}else{
+			$asegurado = 'No Asegurado';
+		}
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('fecha_de_nacimiento'));
-		$cont=' <table>
+		$cont.=' <table width="100%">
 					<tr>
 						<td>
 							<fieldset>
 								<legend>
 									Paciente
 								</legend>
-									'.$personas->obtener('primer_nombre').' '.$personas->obtener('segundo_nombre').' '.$personas->obtener('primer_apellido').' '.$personas->obtener('segundo_apellido').'<br>
-									'.$cedula.' &nbsp&nbsp&nbsp '.$tiposangre->obtener('tipo_sangre').'<br>
-									'.$sexo.' &nbsp&nbsp&nbsp '.$personas->obtener('ocupacion').'<br>
-									'.$ds->edad($dia,$mes,$anio).' &nbsp&nbsp&nbsp '.$dia.'/'.$mes.'/'.$anio.'
+									<table width="100%">											
+										<tr>
+											<td colspan="3"><h5>'.$personas->obtener('primer_nombre').' '.$personas->obtener('segundo_nombre').' '.$personas->obtener('primer_apellido').' '.$personas->obtener('segundo_apellido').'</h5></td>
+										</tr>
+										<tr align="left">
+											<td>'.$cedula.'</td>
+											<td>'.$tiposangre->obtener('tipo_sangre').'</td>
+											<td>'.$sexo.'</td>
+										</tr>
+										<tr align="left">
+											<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
+											<td>'.$asegurado.'</td>
+											<td>'.$ds->edad($dia,$mes,$anio).'</td>
+										</tr>
+									</table>
 							</fieldset>
 						</td>
 						<td>
@@ -43,14 +71,20 @@
 								<legend>
 									Dirección
 								</legend>
-									&nbsp&nbsp<br>
-									'.$distritos->obtener('descripcion').' , '.$provincias->obtener('descripcion').'<br>
-									'.$corregimientos->obtener('descripcion').' , '.$personas->obtener('direccion_detallada').'<br>
-									&nbsp&nbsp
+									<table width="100%">
+										<tr>
+											<td>'.$distritos->obtener('descripcion').' , '.$provincias->obtener('descripcion').'</td>
+										</tr>
+										<tr>
+											<td>'.$corregimientos->obtener('descripcion').' , '.$personas->obtener('direccion_detallada').'</td>
+										</tr>
+									</table>
 							</fieldset>
 						</td>
 					</tr>
 				</table>
+				
+				
 		';
 	}
 	
@@ -103,30 +137,30 @@
 								<td colspan="7"></td>										
 							</tr>
 						</table>	
-						<table class="tabla showinput" cellspacing="0">
-							<tr>
-								<th>Hora</th>
-								<th>PA</th>
-								<th>FC</th>
-								<th>FR</th>
-								<th>FCF</th>
-								<th>T°</th>
-								<th>Peso<small>(Kg)</small></th>
-								<th>Talla<small>(mts)</small></th>
-								
-							</tr>
-							<tr  align="center">
-								<td>10:30 A.M.</td>
-								<td><input style="width:70px;" type="text" name="pa"/></td>
-								<td><input style="width:70px;" type="text" name="fc"/></td>
-								<td><input style="width:70px;" type="text" name="fr"/></td>
-								<td><input style="width:70px;" type="text" name="fcf"/></td>
-								<td><input style="width:70px;" type="text" name="temperatura"/></td>
-								<td><input style="width:70px;" type="text" name="peso"/></td>
-								<td><input style="width:70px;" type="text" name="talla"/></td>
-								<td style="background:transparent;border:1px solid #fafafa;"><a class="btn btn-xs" href="./?url=registrar" title="Registrar">Registrar</a></td>
-							</tr>
-						</table>
+							<table class="tabla" cellspacing="0">
+								<tr>
+									<th>Hora</th>
+									<th>PA</th>
+									<th>FC</th>
+									<th>FR</th>
+									<th>FCF</th>
+									<th>T°</th>
+									<th>Peso<small>(Kg)</small></th>
+									<th>Talla<small>(mts)</small></th>
+									
+								</tr>
+								<tr  align="center">
+									<td>10:30 A.M.</td>
+									<td><input style="width:70px;" type="text" name="pa"/></td>
+									<td><input style="width:70px;" type="text" name="fc"/></td>
+									<td><input style="width:70px;" type="text" name="fr"/></td>
+									<td><input style="width:70px;" type="text" name="fcf"/></td>
+									<td><input style="width:70px;" type="text" name="temperatura"/></td>
+									<td><input style="width:70px;" type="text" name="peso"/></td>
+									<td><input style="width:70px;" type="text" name="talla"/></td>
+									<td style="background:transparent;border:1px solid #fafafa;"><a class="btn btn-xs" href="./?url=registrar" title="Registrar">Registrar</a></td>
+								</tr>
+							</table>
 					</div>
 					<h3>Resultado de Exámenes/Diagnóstico</h3>
 					<div>
@@ -357,7 +391,7 @@
 				</table>
 			</div>
 		</div>
-	
+	</fieldset>
 	';	
 		
 	$ds->contenido($cont);
