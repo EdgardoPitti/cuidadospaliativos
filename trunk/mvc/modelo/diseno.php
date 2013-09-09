@@ -375,7 +375,7 @@ class Diseno {
 						</section>	
 					</aside>-->
 					<!--Diseño del contenido de la página-->
-					<div class="span10" style="height:680px;">	
+					<div class="span10" style="height:100%;min-height:700px;">	
 						'.$this->latino($this->derecha).'
 					</div>
 					<!--Fin del Contenido-->
