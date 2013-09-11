@@ -8,7 +8,7 @@
 			';
 	$d = $corregimientos->buscardonde('id_distrito = '.$iddistrito.'');
 	while($d){
-		$cont.='<option value="'.$corregimientos->obtener('id').'">'.$corregimientos->obtener('descripcion').'</option>';
+		$cont.='<option value="'.$corregimientos->obtener('ID_CORREGIMIENTO').'">'.$corregimientos->obtener('CORREGIMIENTO').'</option>';
 		$d = $corregimientos->releer();
 	}
 	$cont.='</select>';

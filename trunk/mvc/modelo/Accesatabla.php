@@ -117,7 +117,7 @@
 		$this->ultimosql =  $syntax ;//guarda el sql
 		//****************************************************************************************************
 		}
-		$n=0;
+	/*	$n=0;
 		if(!$this->buscardonde('id > 0')){
 			$sql = 'ALTER TABLE '.$this->estatabla.' AUTO_INCREMENT = 1';
 			$this->db->query($sql);
@@ -130,7 +130,7 @@
 			}
 			$sql = 'ALTER TABLE '.$this->estatabla.' AUTO_INCREMENT = '.$n.'';
 			$this->db->query($sql);
-		}
+		}*/
 		//echo $syntax;
 		$this->db->query($syntax);//Realiza el query
 		if ( $this->db->affected_rows() > 0 ) {//Si se afecto un registro...

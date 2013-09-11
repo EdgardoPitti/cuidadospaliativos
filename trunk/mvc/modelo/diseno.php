@@ -1,6 +1,7 @@
 <?php
 class Diseno {
-	private $db,$izquierda,$derecha ;
+	private $izquierda,$derecha ;
+	var $db;
 	/* -- -- -- -- -- -- -- -- -- */
 	function __construct() {
 		include_once('db.php'); $this->db = new Db();

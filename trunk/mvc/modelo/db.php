@@ -6,7 +6,7 @@ class Db {/*====================================================================
 		$uid = 'root';
 		$pwd = 'sql';
 		$schema = $db;
-		if( empty($db) ){ $schema = 'paliativos'; }
+		if( empty($db) ){ $schema = 'cuidados_paliativos_panama'; }
 		$this->connect($host,$uid,$pwd,$schema);
 	}
 	function connect($host,$uid,$pwd,$db){/*=====================================================================*/
