@@ -1,17 +1,20 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
 	include_once('./mvc/modelo/Accesatabla.php');
-	$tiposangre = new Accesatabla('tipos_de_sangre');
+	$tiposangre = new Accesatabla('tipos_sanguineos');
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$etnia = new Accesatabla('etnia');
-	$estadocivil = new Accesatabla('estadocivil');
+	$zona = new Accesatabla('zona');
+	$tipopaciente = new Accesatabla('tipo_paciente');
+	$estadocivil = new Accesatabla('estados_civiles');
 	$nacionalidades = new Accesatabla('nacionalidades');
-	$parentesco = new Accesatabla('parentesco');
+	$sexo = new Accesatabla('sexo');
 	$ds = new Diseno();
+
 	$cont.='
 
-			<form action="./?url=agregardatosdomiciliaria" method="post">
+			<form action="./?url=agregardatospaciente&sw=1" method="post" style="display:block;">
 						<fieldset>
 							<legend align="center">
 								<h3 style="background:#f4f4f4;">Sistema de Captura de Datos de Atención Hospitalaria</h3>
@@ -31,10 +34,10 @@
 																<td><select id="nacionalidad" name="nacionalidad" style="width:160px">
 																		<option value="0"></option>';
 																		
-	$n = $nacionalidades->buscardonde('id > 0');
+	$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');
 	while($n){
 			$cont.='
-																		<option value="'.$nacionalidades->obtener('id').'">'.$ds->latino($nacionalidades->obtener('nacionalidad')).' - '.$ds->latino($nacionalidades->obtener('pais')).'</option>
+																		<option value="'.$nacionalidades->obtener('ID_NACIONALIDAD').'">'.$ds->latino($nacionalidades->obtener('NACIONALIDAD')).'</option>
 			';
 			$n = $nacionalidades->releer();
 	}
@@ -56,27 +59,35 @@
 															<tr>
 																<td>Fecha de Nacimiento: </td>
 																<td><input type="date" id="fechanacimiento" name="fechanacimiento"><br></td>
+																<td align="right">Edad:</td>
+																<td><input type="text" id="edad" name="edad"></td>
+															</tr>
+															<tr>
 																<td align="right" >Tipo de Sangre: </td>
 																<td align="center"><select id="tiposangre" name="tiposangre" style="width:100px">
 																						<option value="0"></option>';
 																			
-	$x = $tiposangre->buscardonde("id > 0");
+	$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
 	while($x){
 			$cont.='
-																						<option value="'.$tiposangre->obtener('id').'">'.$tiposangre->obtener('tipo_sangre').'</option>
+																						<option value="'.$tiposangre->obtener('ID_TIPO_SANGUINEO').'">'.$tiposangre->obtener('TIPO_SANGRE').'</option>
 			';
 			$x = $tiposangre->releer();
 	}													
 	$cont.='																	</select></td>
+														
+																<td>Lugar de Nacimiento: </td>
+																<td><input type="text" id="lugarnacimiento" name="lugarnacimiento"></td>
+
 															</tr>
 															<tr>
 																<td align="right">Estado Civil: </td>
 																<td align="center"><select id="estadocivil" name="estadocivil" style="width:100px">
 																						<option value="0"></option>';
-	$ec = $estadocivil->buscardonde('id > 0');
+	$ec = $estadocivil->buscardonde('ID_ESTADO_CIVIL > 0');
 	while ($ec){
 			$cont.='
-																						<option value="'.$estadocivil->obtener('id').'">'.$estadocivil->obtener('descripcion').'</option>
+																						<option value="'.$estadocivil->obtener('ID_ESTADO_CIVIL').'">'.$estadocivil->obtener('ESTADO_CIVIL').'</option>
 			';
 			$ec = $estadocivil->releer();
 	}
@@ -86,10 +97,15 @@
 																</td>
 																<td align="right">Sexo:</td>
 																<td align="center"><select id="sexo" name="sexo">
-																		<option value=""></option>
-																		<option value="0">Masculino</option>
-																		<option value="1">Femenino</option>
-																	</select>
+																		<option value=""></option>';
+	$s = $sexo->buscardonde('ID_SEXO > 0');
+	while($s){
+		$cont .= '
+																		<option value="'.$sexo->obtener('ID_SEXO').'">'.$sexo->obtener('SEXO').'</option>
+		';
+		$s = $sexo->releer();
+	}
+	$cont.='																</select>
 																</td>
 															</tr>
 															<tr>
@@ -101,21 +117,44 @@
 															</tr>	
 															<tr>															
 																<td align="right">Tipo de Paciente:</td>
-																<td><input type="radio" id="tipo" name="tipo" value="1" checked>Asegurado</td>
+																<td><select id="tipopaciente" name="tipopaciente">
+																		<option value="0"></option>';
+	$t = $tipopaciente->buscardonde('ID_TIPO_PACIENTE');
+	while ($t){
+		$cont.='
+																		<option value="'.$tipopaciente->obtener('ID_TIPO_PACIENTE').'">'.$tipopaciente->obtener('TIPO_PACIENTE').'</option>
+		';
+		$t = $tipopaciente->releer();
+	}
+	$cont.='																	
+																	</select>	
+																</td>
 																<td align="right">N° de Seguro:</td>
 																<td><input type="text" id="numeroseguro" name="numeroseguro"></td>
 															</tr>
 															<tr>
-																<td></td>
-																<td><input type="radio" id="tipo" name="tipo" value="0"> No Asegurado</td>
 																<td align="right">Ocupacion: </td>
 																<td><input type="text" id="ocupacion" name="ocupacion"></td>
+																<td align="right">Etnia: </td>
+																<td><select id="etnia" name="etnia">
+																		<option value="0"></option>
+																	';
+	$e = $etnia->buscardonde("ID_ETNIA > 0");
+	while ($e){
+			$cont.='
+																		<option value="'.$etnia->obtener('ID_ETNIA').'">'.$etnia->obtener('ETNIA').'</option>
+			';
+		$e = $etnia->releer();
+	}
+														
+						$cont.='									</select>
+																</td>																
 															</tr>
 														</table>
 													</center>
 												</fieldset>
 											</div>
-											<div style="float:none;">	
+											<div style="float:none;">
 												<fieldset>
 													<legend align="center">
 														Datos de Contacto/Direccion
@@ -125,6 +164,7 @@
 															<tr>
 																<td>Correo Electrónico:</td>
 																<td><input type="text" id="correo" name="correo"></td>
+																<td></td>
 																<td align="right">Telefono:</td>
 																<td><input type="text" id="telefono" name="telefono"></td>
 															</tr>
@@ -135,140 +175,96 @@
 																		<option value="0"></option>';
 															
 													
-	$p = $provincias->buscardonde("id > 0");
+	$p = $provincias->buscardonde("ID_PROVINCIA > 0");
 	while($p){
 			$cont.='
-																		<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
+																		<option value="'.$provincias->obtener('ID_PROVINCIA').'">'.$provincias->obtener('PROVINCIA').'</option>
 			
 			';
 			$p = $provincias->releer();
 
 	}
-		$cont.='												   </select>
+	$cont.='													   </select>
 																</td>
-																<td align="right">Corregimientos:</td>
-																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
-																	<select style="width:140px"></select>
-																</td>
-																
+																<td></td>
+																<td align="right">Celular:</td>
+																<td><input type="text" id="celular" name="celular"></td>
+
 															</tr>
 															<tr>
 																<td align="right">Distritos:</td>
 																<td id="mostrardistritos" name="mostrardistritos">
 																	<select style="width:140px"></select>
 																</td>
-																<td align="right"></td><td> Dirección Detallada:</td>
+																<td></td>																
+																<td align="right">Zona: </td>
+																<td><select id="zona" name="zona">
+																		<option value="0"></option>';
+	$z = $zona->buscardonde('ID_ZONA > 0');
+	while($z){
+		$cont.='
+																		<option value="'.$zona->obtener('ID_ZONA').'">'.$zona->obtener('ZONA').'</option>
+		';
+		$z = $zona->releer();
+	}
+
+	$cont.='														</select>
+																</td>
 															</tr>
 															<tr>
-																<td align="right">Informante: </td>
-																<td><input type="text" id="nombreinformante" name="nombreinformante"></td>
-																<td><select id="parentescoinformante" name="parentescoinformante">
-																		<option value="0"></option>';
-	$p = $parentesco->buscardonde('id > 0');
-	while($p){
-			$cont.='													<option value="'.$parentesco->obtener('id').'">'.$parentesco->obtener('descripcion').'</option>';
-			$p = $parentesco->releer();
-	}
-		$cont.='													</select></td>
-																<td><textarea class="textarea" id="direcciondetallada" name="direcciondetallada" rows="2" cols="16"></textarea></td>
+																<td align="right">Corregimientos:</td>
+																<td id="mostrarcorregimientos" name="mostrarcorregimientos">
+																	<select style="width:140px"></select>
+																</td>
+																<td></td>
+																<td>Dirección Detallada:</td>																
+																<td align="right"><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"></textarea></td>
+															</tr>
+															<tr>
+																<td align="right">Residencia Transitoria: </td>
+																<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria"></textarea></td>
+																<td></td>
+																<td></td>
+																<td></td>
 															</tr>
 														</table>
 													</center>
 												</fieldset>
+
+												<fieldset>
+													<center>
+													<legend>
+														Responsable del Paciente
+													</legend>
+													<table>
+														<tr>
+															<td align="right">Nombre: </td>
+															<td><input type="text" id="nombreresponsable" name="nombreresponsable"></td>
+															<td>&nbsp;</td>
+															<td align="right">Apellido: </td>
+															<td><input type="text" id="apellidoresponsable" name="apellidoresponsable"></td>
+														</tr>
+														<tr>
+															<td>Parentesco:</td>
+															<td><input type="text" id="parentesco" name="parentesco"></td>
+															<td></td>
+															<td>Direccion:</td>
+															<td><textarea class="textarea" id="direccionresponsable" name="direccionresponsable"></textarea></td>
+														</tr>
+														<tr>
+															<td>Telefono:</td>
+															<td><input type="text" id="telefonoresponsable" name="telefonoresponsable"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+													</table>
+													</center>
+												</fieldset>
 											</div>	
-												<center>
-												<table width="100%">
-													<tr>
-														<td width="50%">
-															<fieldset>
-																<legend align="center">
-																	Lugar de Nacimiento
-																</legend>
-																<center>
-																	<table>																	
-																		<tr>
-																			<td align="right">Provincia Nacimiento:</td>
-																			<td><select id="provinciasnacimiento" name="provinciasnacimiento">
-																					<option value="0"></option>';
-	$p = $provincias->buscardonde('id > 0');
-	while($p){
-			$cont.='
-																					<option value="'.$provincias->obtener('id').'">'.$provincias->obtener('descripcion').'</option>
-			';
-			$p = $provincias->releer();
-	}
-																	
-				$cont.='														</select>
-																			</td>
-																		<tr>
-																		</tr>
-																			<td align="right">Distrito Nacimiento: </td>
-																			<td id="mostrardistritosnacimiento" name="mostrardistritosnacimiento">
-																				<select style="width:140px"></select>
-																			</td>
-																		</tr>
-																		<tr>
-																			<td align="right">Corregimiento Nacimiento: </td>
-																			<td id="mostrarcorregimientosnacimiento" name="mostrarcorregimientosnacimiento">
-																				<select style="width:140px"></select>
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>&nbsp;</td>
-																			<td>&nbsp;</td>
-																			<td>&nbsp;</td>
-																		</tr>
-																		<tr>
-																			<td>&nbsp;</td>
-																			<td>&nbsp;</td>
-																			<td>&nbsp;</td>
-																		</tr>
-																	</table>
-																</center>
-															</fieldset>
-														</td>
-														<td>
-															<fieldset>
-																<legend align="center">
-																	En caso de Emergencia: 
-																</legend>
-																	<center>
-																		<table>
-																			<tr>
-																				<td align="right">Nombres:</td>
-																				<td><input type="text" id="nombresemergencia" name="nombresemergencia"></td>
-																				<td><select id="parentescoemergencia" name="parentescoemergencia">
-																						<option value="0"></option>';
-	$p = $parentesco->buscardonde('id > 0');
-	while($p){
-			$cont.='																	<option value="'.$parentesco->obtener('id').'">'.$parentesco->obtener('descripcion').'</option>';
-			$p = $parentesco->releer();
-	}
-	$cont.='																		</select>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td>Apellidos: </td>
-																				<td><input type="text" id="apellidosemergencia" name="apellidosemergencia"></td>
-																				<td></td>
-																			</tr>
-																			<tr>
-																				<td>Telefono: </td>
-																				<td><input type="text" id="telefonoemergencia" name="telefonoemergencia"></td>
-																				<td></td>
-																			</tr>
-																			<tr>
-																				<td>Direccion: </td>
-																				<td><textarea class="textarea" id="direccionemergencia" name="direccionemergencia" rows="1" cols="20"></textarea></td>																				
-																			</tr>
-																		</table>
-																	</center>
-															</fieldset>
-														</td>
-													</tr>
-												</table>
-												</center>
+								<center>			
 								<button type="submit" class="btn btn-primary">Registrar</button>
+								</center>
 						</fieldset>
 
 			</form>';
