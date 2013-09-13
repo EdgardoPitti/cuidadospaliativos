@@ -1,8 +1,8 @@
 $(document).ready(inicio)
 function inicio(){
-	$("#provincias").change(cargarDistritos);
-	$("#distritos").change(cargarCorregimientos);
-	$("#programas").change(cargarCategorias);
+	$("#provincias").click(cargarDistritos);
+	$("#distritos").click(cargarCorregimientos);
+	$("#programas").click(cargarCategorias);
 }
 function cargarDistritos(){
 	var p = $("#provincias").attr("value");
