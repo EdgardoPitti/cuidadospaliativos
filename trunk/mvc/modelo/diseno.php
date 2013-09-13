@@ -19,6 +19,7 @@ class Diseno {
 	}
 	function dime($quierosaber)	{
 		$aber = '¿ Que quieres saber ?';
+		date_default_timezone_set('America/Panama');
 		$nada = getdate();
 		switch( $quierosaber )
 		{
