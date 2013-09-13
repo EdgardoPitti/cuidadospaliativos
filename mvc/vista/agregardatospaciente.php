@@ -13,7 +13,8 @@
 	$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
 	$residencia->salvar();
 	
-	
+	$fechanacimiento = $_POST['fechanacimiento'];
+	$fecha = '"'.$fechanacimiento.'"';
 	$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
 	$id = $ds->db->obtenerArreglo($sql);
 
@@ -26,7 +27,7 @@
 	$datospaciente->colocar("APELLIDO_MATERNO", $_POST['segundoapellido']);
 	$datospaciente->colocar("ID_ESTADO_CIVIL", $_POST['estadocivil']);
 	$datospaciente->colocar("ID_SEXO", $_POST['sexo']);
-	$datospaciente->colocar("FECHA_NACIMIENTO", $_POST['fechanacimiento']);
+	$datospaciente->colocar("FECHA_NACIMIENTO",$fecha );
 	$datospaciente->colocar("LUGAR_NACIMIENTO", $_POST['lugarnacimiento']);
 	$datospaciente->colocar("EDAD_PACIENTE", $_POST['edad']);
 	$datospaciente->colocar("ID_ETNIA", $_POST['etnia']);
