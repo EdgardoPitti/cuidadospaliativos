@@ -66,9 +66,9 @@
 		}
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 		$cont.='<center>
-				<table width="50%">
+				<table width="80%">
 					<tr>
-						<td>
+						<td width="50%">
 							<fieldset>
 								<legend>
 									Paciente
@@ -96,12 +96,6 @@
 									Dirección
 								</legend>
 									<table width="100%">
-										<tr>
-											<td>&nbsp;</td>
-										</tr>
-										<tr>
-											<td>&nbsp;</td>
-										</tr>
 										<tr>
 											<td>'.$distritos->obtener('DISTRITO').' , '.$provincias->obtener('PROVINCIA').'</td>
 										</tr>
@@ -421,68 +415,147 @@
 							</div>
 							<h3>Datos del Profesional</h3>
 							<div>
-								<table class="tabla-datos" width="100%">
+								<table class="tabla-datos">
 									<tr align="center">
 										<td width="25%">Nombre de quien refiere:</td>	
 										<td><input type="text" name="refiere" class="auto" id="auto"/></td>											
 									</tr>
 									<tr align="center">
-										<td></td>								
+										<td><input type="text" name="refiere"/></td>
+										<td><input type="radio" name="galeno" style="margin-left:10px;">  Médico Gral.</input></td>										
+										<td><input type="radio" name="galeno">  Odontólogo</input></td>										
+										<td><input type="radio" name="galeno">  Médico Especializado</input></td>				
+										<td></td>					
 									</tr>
 									<tr align="center">
+										<td>Nombre del Receptor:</td>		
 										<td>Nombre del Receptor:</td>	
 										<td><input type="text" name="receptor"/></td>
 										<td><i>(Solo en caso de urgencias y hospitalización)</i></td>
 									</tr>
+									<tr align="center">
+										<td width="25%"><input type="text" name="receptor"/></td>
+										<td colspan="3" width="25%"><i>(Solo en caso de urgencias y hospitalización)</i></td>
+									</tr>
 								</table>
 						</div>
 					</div>
-						<button type="submit" class="btn btn-primary btn-lg" style="margin-top:10px;">Registrar</button>
+						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:1px;float:right;">Registrar</button>
 					</div>
 					
-					<div id="tabs-2">
-						<button type="submit" class="btn btn-default">Imprimir</button>
-						<button type="submit" class="btn btn-default">Descargar</button>
-						<table class="tabla-datos" width="100%">
-							<tr>
-								<td style="width:90px">Institución que Responde:</td>
-								<td><select id="institucionresponde" name="institucionresponde">
-										<option value=""></option>';
-										
+					<form method="POST" action="./?url=respuesta_referencia">	
+						<div id="tabs-2">
+							<button type="submit" class="btn btn-default">Imprimir</button>
+							<button type="submit" class="btn btn-default">Descargar</button>
+							<table class="tabla-datos" width="100%">
+								<tr>
+									<td style="wid th:90px">Institución que Responde:</td>
+									<td><select id="institucionresponde" name="institucionresponde">
+											<option value=""></option>';
+											
 			$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
 			while($i){
 				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
 				$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
 				$cont .= '
-											<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+												<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
 				';
 				$i = $instituciones->releer();
 			}
 			$cont.='
-									</select>
-								</td>
-								<td>Instalación Receptora:</td>
-								<td><select id="instalacionrepectora" name="instalacionreceptora">
-										<option value=""></option>';
-										
+										</select>
+									</td>
+									<td>Instalación Receptora:</td>
+									<td><select id="instalacionrepectora" name="instalacionreceptora">
+											<option value=""></option>';
+											
 			$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
 			while($i){
 				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
 				$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
 				$cont .= '
-											<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+												<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
 				';
 				$i = $instituciones->releer();
 			}
 			$cont.='
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="4" style="color:#fff;background:#47a3da;margin-top:5px;padding:10px;font-size:13px;font-weight:bold;text-shadow: #000 1px 1px 1px;">Respuesta a la Referencia</td>
-							</tr>	
-						</table>
-					</div>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4" class="fondo_azul">Respuesta a la Referencia</td>
+								</tr>	
+							</table>
+							<div id="tabs3">
+								<ul>
+									<li><a href="#tabs3-1">Hallazgos Clínicos</a></li>
+									<li><a href="#tabs3-2">Diagnóstico</a></li>
+									<li><a href="#tabs3-3">Recomendaciones/Plan Terapéutico</a></li>
+								</ul>							
+								<div id="tabs3-1" style="font-size:12px;">
+									<span style="font-size:12px;">Hallazgos Clínicos:</span>
+									<textarea style="width:99%;height:100px;margin-right:10px;border-color:#ccc;"></textarea> 
+								</div>
+								<div id="tabs3-2" style="font-size:12px;">
+									<center>
+									<table width="50%">
+										<tr>
+											<td>
+												<table width="50%">
+													<tr width="100px">
+														<td>Diagnóstico: </td>
+														<td><input type="text" name="diagnostico"></td>
+													</tr>
+													<tr>
+														<td>CIE-10: </td>
+														<td><input type="text" name="cie-10"></td>
+													</tr>
+													<tr>
+														<td colspan="2">
+															Observaciones:<br>
+															<textarea name="observaciones" style="min-width:300px;height:50px;border-color:#ccc;"></textarea>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table style="margin-left:20px;">
+													<tr>
+														<td>
+															Manejo y Tratamiento:<br>
+															<textarea name="manejo_tratamiento" style="min-width:300px;height:120px;border-color:#ccc;"></textarea>														
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									</center>
+								</div>
+								<div id="tabs3-3" style="font-size:12px;">
+									<center>
+										<table width="80%">
+											<tr>
+												<td>Reevaluación especializada: </td>
+												<td><input type="radio" name="reev_esp_si"/> Sí</td>
+												<td><input type="radio" name="reev_esp_no"/> No</td>
+												<td>Fecha:</td>
+												<td><input type="date" name="fecha"/></td>
+											</tr>
+											<tr>
+												<td colspan="5">
+													Observaciones: <br>
+													<textarea name="observaciones_recomendaciones" style="width:100%;height:100px;border-color:#ccc;margin-right:10px;"></textarea>	
+												</td>	
+											</tr>
+										</table>
+									</center>	
+								</div>
+							</div>	
+							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">+Nueva Nota</button>
+							<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>							
+						</div>
+					</form>	
 				</div>
 			</fieldset>
 			';	
