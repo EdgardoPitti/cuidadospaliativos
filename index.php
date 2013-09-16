@@ -18,7 +18,7 @@
 	
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+	<link href="css/gradientes.css" rel="stylesheet">
 	
 		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
 		<link rel="stylesheet" href="./css/jquery-ui.css"/>	
@@ -41,12 +41,17 @@
 	  
 		<script>
 			$(function() {
-			$( "#tabs" ).tabs();
+				$( "#tabs" ).tabs();
 			});
 		</script>
 		<script>
 			$(function() {
-			$( "#tabs2" ).tabs();
+				$( "#tabs2" ).tabs();
+			});
+		</script>
+		<script>
+			$(function(){
+				$("#tabs3").tabs();
 			});
 		</script>
 		<script>
@@ -54,8 +59,22 @@
 			$( "#accordion" ).accordion();
 			});
 		</script>
+<<<<<<< .mine
+		<script>
+			$(function() {
+			$( "#accordion2" ).accordion();
+			});
+		</script>
+		<script>
+			$(function() {
+			$( "#accordion4" ).accordion();
+			});
+		</script>
+		
+=======
 
 	
+>>>>>>> .r119
 		<script>
 		$(function(){
 		  $("#show1").click(function(){
@@ -87,193 +106,7 @@
 
 	</head>
 
-	<body> <!--class="cbp-spmenu-push"--> 
-	
-			<!--Barra de Inicio--
-			<div class="container">
-			
-				<!--Barra Principal--
-				<header class="clearfix">
-					<h1>Red Social de Cuidados Paliativos Panam&aacute</h1>
-				</header>
-				
-				<!--Barra de Sesión--
-				<div class="main">
-					<div id="barlogged">Bienvenido</div>
-				</div>
-			</div>
-			
-			
-			<!--Atención Domiciliaria--
-			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-				<!--Título: Grupo de Menú--
-				<h3>Menu Atenci&oacuten Domiciliaria</h3>
-					<!--Sub-Menú Nivel A--
-					<a href=".?url=registrovisitasdomiciliaria">Registro de Visitas Domiciliarias</a>
-						<!--Sub-Menú Nivel B--
-						<ul>
-							<li><a href="./?url=domiciliaria_capturardatos">Capturar Datos</a></li>
-							<li><a href="javascript:enlace('#');">Agenda</a></li>
-						</ul>
-						
-					<a href="#">Registro de Actividades Diarias</a>
-					<a href="./?url=domiciliaria_surco">Surco</a>
-					<a href="#">Indicadores</a>
-					
-						<ul>
-							<li><a href="javascript:enlace('#');">Total de Visitas Realizadas</a></li>
-							<li><a href="javascript:enlace('#');">Tiempo Promedio por Visita</a></li>
-							<li><a href="javascript:enlace('#');">N&deg de Visitas x Paciente Seg&uacuten Diagn&oacutestico</a></li>
-							<li><a href="javascript:enlace('#');">Activadades Realizadas por Visitas</a></li>
-						</ul>
-			</nav>
-			
-			<!--Atención Ambulatoria--
-			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s2">
-				<!--Título: Grupo de Menú--
-				<h3>Menu Atenci&oacuten Ambulatoria</h3>
-					<!--Sub-Menú Nivel A--
-					<a href="#">Registro Diario de Actividades </a>
-						<!--Sub-Menú Nivel B--
-						<ul>
-							<li><a href="javascript:enlace('#');">Capturar Datos</a></li>
-							<li><a href="javascript:enlace('#');">Agenda</a></li>
-						</ul>
-					<a href="#">Contacto Telef&oacutenico</a>
-						<ul>
-							<li><a href="javascript:enlace('#');">Atenci&oacuten al Paciente</a></li>
-							<li><a href="javascript:enlace('#');">Interconsulta</a></li>
-						</ul>
-					<a href="#">Indicadores</a>
-						<ul>
-							<li><a href="javascript:enlace('#');">Frecuentaci&oacuten P/F a la Instalación</a></li>
-							<li><a href="javascript:enlace('#');">Activadades Realizadas por Paciente</a></li>
-						</ul>
-			</nav>
-			
-			<!--Atención Hospitalaria--
-			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s3">
-				<!--Título: Grupo de Menú--
-				<h3>Menu Atenci&oacuten Hospitalaria</h3>
-					<!--Sub-Menú Nivel A--
-					<a href="#">RAE</a>
-						<!--Sub-Menú Nivel B--
-						<ul>
-							<li><a href="./?url=hospitalaria_rae_capturardatos">Capturar Datos</a></li>
-							<li><a href="./?url=hospitalaria_rae_evolucion">Evoluci&oacuten</a></li>
-						</ul>
-					<a href="#">Indicadores</a>
-						<ul>
-							<li><a href="javascript:enlace('#');">Porcentaje de Hospitalizados referidos de Consulta externa</a></li>
-							<li><a href="javascript:enlace('#');">Razones de Readmisiones</a></li>
-						</ul>
-			</nav>
-			
-			<!--Red Social--
-			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s4">
-			
-				<!--Título: Grupo de Menú--
-				<h3>Red Social</h3>
-					<a href="#">Mis Grupos</a>
-					<a href="#">Comunidades</a>
-					<a href="#">Eventos</a>
-					<a href="#">Especialistas</a>
-			</nav>
-			
-			<!--Marco del contenido--
-			<div class="contentpanel" >
-				
-			</div>
-
-			<!--Menú Principal--
-			<div class="botones">
-				
-					 <section class="buttonset" style="display: inline; width: 100px; margin-left:0%;">
-						<ul style="display: inline;">
-							<li style="display: inline;">
-								<button id="show1" alt="Atenci&oacuten Domiciliaria">
-									<img href="" src="./iconos/atencion_domiciliaria.png" style="width:25%; height:25%;"></img>
-								</button>
-							</li>
-										
-							<li style="display: inline;">
-								<button id="show2" alt="Atenci&oacuten Ambulatoria" style="float: rigth;">
-									<img href="" src="./iconos/atencion_ambulatoria.png" style="width:25%; height:25%;"></img>
-								</button>
-							</li>
-							
-							<li style="display: inline;">
-								<button id="show3" alt="Atenci&oacuten Hospitalaria" style="float: rigth;">
-									<img href="" src="./iconos/atencion_hospitalaria.png" style="width:25%; height:25%;"></img>
-								</button>
-							</li>
-										
-							<li style="display: inline;" style="float: rigth;">
-								<button id="show4" alt="Red social" style="float: rigth;">
-									<img href="" src="./iconos/social.png" style="width:25%; height:25%;"></img>
-								</button>
-							</li>
-						</ul>
-					</section>
-			</div>
-			
-			<!--Pie de página--
-			<div id="footer">
-				<img src="../../imgs/gises.png" alt="gises" title="gises" />
-				<p>Derechos Reservados 2013-2014</p>
-			</div>
-			
-			<!-- Script Menu--
-			<script src="./js/classie.js"></script>
-			<script>
-				var menu1 = document.getElementById( 'cbp-spmenu-s1' ),
-					menu2 = document.getElementById( 'cbp-spmenu-s2' ),
-					menu3 = document.getElementById( 'cbp-spmenu-s3' ),
-					menu4 = document.getElementById( 'cbp-spmenu-s4' ),
-					showLeft = document.getElementById( 'show1' ),
-					showRight = document.getElementById( 'show2' ),
-					showTop = document.getElementById( 'show3' ),
-					showBottom = document.getElementById( 'show4' ),
-					body = document.body;
-
-				showLeft.onclick = function() {
-					classie.toggle( this, 'active' );
-					classie.toggle( menu1, 'cbp-spmenu-open' );
-					disableOther( 'show1' );
-				};
-				showRight.onclick = function() {
-					classie.toggle( this, 'active' );
-					classie.toggle( menu2, 'cbp-spmenu-open' );
-					disableOther( 'show2' );
-				};
-				showTop.onclick = function() {
-					classie.toggle( this, 'active' );
-					classie.toggle( menu3, 'cbp-spmenu-open' );
-					disableOther( 'show3' );
-				};
-				showBottom.onclick = function() {
-					classie.toggle( this, 'active' );
-					classie.toggle( menu4, 'cbp-spmenu-open' );
-					disableOther( 'show4' );
-				};
-				
-				function disableOther( button ) {
-					if( button !== 'show1' ) {
-						classie.toggle( showLeft, 'disabled' );
-					}
-					if( button !== 'show2' ) {
-						classie.toggle( showRight, 'disabled' );
-					}
-					if( button !== 'show3' ) {
-						classie.toggle( showTop, 'disabled' );
-					}
-					if( button !== 'show4' ) {
-						classie.toggle( showBottom, 'disabled' );
-					}
-					
-				}
-			</script>-->
-			
+	<body> 			
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
@@ -285,8 +118,35 @@
 				</div>
 			</div>
 			
-			
-			
+			<div class="row-fluid">
+				<div class="span12">					
+					<!--Nav-->
+					<div class="navbar" style="margin-bottom:5px;">
+						<div class="navbar-inner">
+							<div class="container-fluid">
+								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a href="#" class="brand">Bienvenido</a>
+								<div class="nav-collapse navbar-responsive-collapse collapse">									
+									<ul class="nav pull-right">
+										<li>
+											<a href="#">M&eacute;dico</a>
+										</li>
+										<li class="divider-vertical">
+										</li>
+										<li class="dropdown">
+											 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-cog"></i>Configuraci&oacute;n<strong class="caret"></strong></a>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="#">configurar</a>
+												</li>										
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<div class="row-fluid">
 				<!--Aside-->
@@ -300,18 +160,18 @@
 							</div>
 							<div id="accordion-element-603066" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="./?url=domiciliaria_capturardatos"><i style="font-size:1.1em; font-weight:bold;">Capturar Datos</i></a>
+									<a href="./?url=domiciliaria_capturardatos"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Capturar Datos</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Agenda</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Agenda</i></a>
 								</div>
 							</div>
 						</div>
 						<div class="accordion-group">
-							<div class="accordion-inner" style="border: 1px solid #258ECD;">
+							<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;">
 								<a href="#"><b style="font-size:1.2em;">Registro de Actividades Diarias</b></a>
 							</div>
-							<div class="accordion-inner" style="border: 1px solid #258ECD;margin-top:2px;">
+							<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
 								<a href="./?url=domiciliaria_surco"><b style="font-size:1.2em;">Surco</b></a>
 							</div>
 						</div>
@@ -321,16 +181,16 @@
 							</div>
 							<div id="accordion-element-229392" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Total de Visitas Realizadas</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Total de Visitas Realizadas</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Tiempo Promedio por Visita</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Tiempo Promedio por Visita</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Activadades Realizadas por Visitas</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Activadades Realizadas por Visitas</i></a>
 								</div>
 							</div>
 						</div>
@@ -345,10 +205,10 @@
 							</div>
 							<div id="accordion-element-603067" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="./?url=ambulatoria_capturardatos"><i style="font-size:1.1em; font-weight:bold;">Capturar Datos</i></a>
+									<a href="./?url=ambulatoria_capturardatos"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Capturar Datos</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Agenda</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Agenda</i></a>
 								</div>
 							</div>
 						</div>
@@ -358,10 +218,10 @@
 							</div>
 							<div id="accordion-element-603068" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="./?url=ambulatoria_atencionalpaciente"><i style="font-size:1.1em; font-weight:bold;">Atenci&oacute;n al Paciente</i></a>
+									<a href="./?url=ambulatoria_atencionalpaciente"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Atenci&oacute;n al Paciente</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Interconsulta</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Interconsulta</i></a>
 								</div>
 							</div>
 						</div>
@@ -371,10 +231,10 @@
 							</div>
 							<div id="accordion-element-229393" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Activadades Realizadas por Paciente</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Activadades Realizadas por Paciente</i></a>
 								</div>
 							</div>
 						</div>
@@ -389,10 +249,10 @@
 							</div>
 							<div id="accordion-element-603069" class="accordion-body in collapse">
 								<div class="accordion-inner">
-									<a href="./?url=hospitalaria_rae_capturardatos"><i style="font-size:1.1em; font-weight:bold;">Capturar Datos</i></a>
+									<a href="./?url=hospitalaria_rae_capturardatos"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Capturar Datos</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="./?url=hospitalaria_rae_evolucion"><i style="font-size:1.1em; font-weight:bold;">Evoluci&oacute;n</i></a>
+									<a href="./?url=hospitalaria_rae_evolucion"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Evoluci&oacute;n</i></a>
 								</div>
 							</div>
 						</div>
@@ -402,10 +262,10 @@
 							</div>
 							<div id="accordion-element-229394" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Porcentaje de Hospitalizados referidos de Consulta externa</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Porcentaje de Hospitalizados referidos de Consulta externa</i></a>
 								</div>
 								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;">Razones de Readmisiones</i></a>
+									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Razones de Readmisiones</i></a>
 								</div>
 							</div>
 						</div>
@@ -417,16 +277,16 @@
 						<h3>Red Social</h3><hr>
 						<div class="accordion-group">
 							<div class="accordion-body">
-								<div class="accordion-inner">
+								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;">
 									<a href="#"><b style="font-size:1.2em;">Mis Grupos</b></a>
 								</div>	
-								<div class="accordion-inner">
+								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
 									<a href="#"><b style="font-size:1.2em;">Comunidades</b></a>
 								</div>
-								<div class="accordion-inner">	
+								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">	
 									<a href="#"><b style="font-size:1.2em;">Eventos</b></a>
 								</div>
-								<div class="accordion-inner">
+								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
 									<a href="#"><b style="font-size:1.2em;">Especialistas</b></a>
 								</div>
 							</div>
