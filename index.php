@@ -54,7 +54,8 @@
 			$( "#accordion" ).accordion();
 			});
 		</script>
-		
+
+	
 		<script>
 		$(function(){
 		  $("#show1").click(function(){
