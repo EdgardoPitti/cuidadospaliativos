@@ -44,22 +44,15 @@
 		}
 		
 	}else{
-<<<<<<< .mine
-			$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"');
-			$cont.='<center>
-						<table>
-						</table>
-					</center>
-			
-			';
+
 			$cont.='
 				<form method="POST" action="./?url=">
 						<div id="accordion">
 							<h3>Datos de Referencia</h3>
 								<div>
-									<table style="font-size:12px">
-=======
-		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
+									<table style="font-size:12px">';
+									
+		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
 		$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
@@ -85,7 +78,6 @@
 									Paciente
 								</legend>
 									<table width="100%">											
->>>>>>> .r112
 										<tr>
 											<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
 										</tr>
