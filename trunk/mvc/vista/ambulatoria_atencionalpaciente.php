@@ -1,124 +1,157 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
 	include_once('./mvc/modelo/Accesatabla.php');
-	$personas = new Accesatabla('personas');
-	$tiposangre = new Accesatabla('tipos_de_sangre');
+	$paciente = new Accesatabla('datos_pacientes');
+	$condicionsalida = new Accesatabla('condicion_salida');
+	$instituciones = new Accesatabla('institucion');
+	$tipoinstitucion = new Accesatabla('tipo_institucion');
+	$personas = new Accesatabla('datos_pacientes');
+	$tiposangre = new Accesatabla('tipos_sanguineos');
+	$residencia = new Accesatabla('residencia_habitual');
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
+	$provincias = new Accesatabla('provincias');
+	$referido = new Accesatabla('referido');
 	$ds = new Diseno();
-	
-	$tab1="'tab_01'";
-	$tab2 = "'tab_02'";
-	$panel1 = "'panel_01'";
-	$panel2 = "'panel_02'";
-	
-	$cedula = $_POST['cedula'];
-	$personas->buscardonde('cedula = "'.$cedula.'"');
-	if ($personas->obtener('femenino')){
-		$sexo = 'Femenino';
-	}else{
-		$sexo = 'Masculino';
-	}
-	if ($personas->obtener('asegurado')){
-		$tipo = 'Asegurado';
-	}else{
-		$tipo = 'No Asegurado';
-	}
-	list($anio, $mes, $dia) = explode("-", $personas->obtener('fecha_de_nacimiento'));
+	$buscar = $_POST['buscar'];
+	$mostrar='block';
 	$cont.='
-		<fieldset>
-			<legend>Atención al Paciente</legend>
-			<div>
-				<div id="paneles">
-					<section id="panel_01">
-						<div align="right">
-							<form method="POST" action="./?url=ambulatoria_atencionalpaciente">
-								<input type="search" class="search" id="buscar" name="cedula" placeholder="Buscar Paciente">	
-								<button>Buscar</button> 
-							</form>
-						</div>
-						<table width="100%" style="margin:10px auto;border:1px solid #a3a3a3; background:#fafafa;">
+	  <center>
+	  <fieldset>
+		<legend><h3 style="background:#f4f4f4;">Contacto Telefónico</h3></legend>';
+	/*	
+	if(empty($buscar)){
+		if(!$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){			
+			$agnadir.='
+						<a href="./?url=hospitalaria_rae_capturardatos">Paciente no Encotrado...Añadir</a>';
+		}
+		echo asdasdas;
+	}else{
+		$mostrar='none';
+		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
+		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
+		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
+		$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
+		$distritos->buscardonde('ID_DISTRITO = '.$residencia->obtener('ID_DISTRITO').'');
+		$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$residencia->obtener('ID_CORREGIMIENTO').'');
+		if ($personas->obtener('ID_SEXO') == 1){
+			$sexo = 'MASCULINO';
+		}else{
+			$sexo = 'FEMENINO';
+		}
+		if($personas->obtener('ID_TIPO_PACIENTE')){
+			$asegurado = 'ASEGURADO';
+		}else{
+			$asegurado = 'NO ASEGURADO';
+		}
+		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
+	}		*/
+	
+	$cont.='
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Atención al Paciente</a></li>
+					<li><a href="#tabs-2">Interconsulta</a></li>
+				</ul>
+				<div id="tabs-1" style="font-size:12px;">
+					<div align="right">
+						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente">
+							<div class="input-group">
+							  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula" name="buscar" id="buscar">
+							  <span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+							  </span>
+							</div>
+							'.$agnadir.'
+						</form>
+					</div>
+						<center style="display:'.$mostrar.';">
+							<table width="80%">
+								<tr>
+									<td width="50%">
+										<fieldset>
+											<legend>
+												Paciente
+											</legend>
+												<table width="100%">											
+													<tr>
+														<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
+													</tr>
+													<tr align="left">
+														<td>'.$cedula.'</td>
+														<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
+														<td>'.$sexo.'</td>
+													</tr>
+													<tr align="left">
+														<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
+														<td>'.$asegurado.'</td>
+														<td>'.$ds->edad($dia,$mes,$anio).'</td>
+													</tr>
+												</table>
+										</fieldset>
+									</td>
+									<td>
+										<fieldset>
+											<legend>
+												Dirección
+											</legend>
+												<table width="100%">
+													<tr>
+														<td>'.$distritos->obtener('DISTRITO').' , '.$provincias->obtener('PROVINCIA').'</td>
+													</tr>
+													<tr>
+														<td>'.$corregimientos->obtener('CORREGIMIENTO').' , '.$residencia->obtener('DETALLE').'</td>
+													</tr>
+												</table>
+										</fieldset>
+									</td>
+								</tr>
+							</table>
+						</center>
+						<table width="100%">
 							<tr>
-								<td style="border:1px solid #a3a3a3;" width="50%">
-									<table class="tabla-datos">
-										<tr>
-											<td colspan="3"><strong>'.$personas->obtener('primer_nombre').' '.$personas->obtener('segundo_nombre').' '.$personas->obtener('primer_apellido').' '.$personas->obtener('segundo_apellido').'</strong></td>
-										</tr>
-										<tr>
-											<td>'.$personas->obtener('cedula').'</td>
-											<td>'.$tiposangre->renombrar($personas->obtener('id_tipo_de_sangre'),tipo_sangre).'</td>
-											<td>'.$sexo.'</td>
-										</tr>
-										<tr>
-											<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
-											<td>'.$tipo.'</td>
-											<td>'.$ds->edad($dia,$mes,$anio).'</td>
-										</tr>
-									</table>
+								<td width="50%">
+									<fieldset>
+										<legend>
+											Resumen Médico
+										</legend>
+										<div id="accordion">
+											<h3>8/7/2013</h3>
+											<div>
+												<div id="accordion2">
+													<h3>Atención Domiciliaria</h3>
+													<div>
+														<ul>
+															<li><a>Actividades realizadas</a></li>
+															<li><a>Medicamentos Suministrados</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>	
+										
+											<h3>8/8/2013</h3>
+											<div>
+												<div id="accordion4">
+													<h3>Atención Domiciliaria</h3>
+													<div>
+														<ul>
+															<li><a>Actividades realizadas</a></li>
+															<li><a>Medicamentos Suministrados</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>	
+										</div>
+									</fieldset>
 								</td>
-								<td style="border:1px solid #a3a3a3;" width="50%">
-									<table class="tabla-datos">
-										<tr>
-											<td colspan="3"><strong>Datos de Contacto/Dirección:</strong></td>
-										</tr>
-										<tr>
-											<td colspan="3">'.$provincias->renombrar($personas->obtener('id_provincia_residencia'), descripcion).', '.$distritos->renombrar($personas->obtener('id_distrito_nacimiento'), descripcion).'</td>
-										</tr>
-										<tr>
-											<td colspan="3">'.$corregimientos->renombrar($personas->obtener('id_corregimiento_nacimiento'), descripcion).', '.$personas->obtener('direccion_detallada').'</td>
-										</tr>
-									</table>
-								</td>
+								<td></td>
 							</tr>
 						</table>
-						<fieldset style="padding:5px;float:left">
-							<legend style="font-size:14px;font-weight:bold;">Resumen Médico</legend>
-							<div class="acordeon">
-								<div>
-									<input type="radio" id = "acor-1" name="resumen_medico">
-										<label for="acor-1">08/Mar/2013</label>
-									</input>
-									<article class="de-gra">
-										<input type="radio" id = "acor-1-2" name="resumen_medico1_sub1">
-											<label style="margin-left:15px;" for="acor-1-2">Atención Domiciliaria</label>
-										</input>
-										<article class="de-gra" style="margin-left:25px;list-type-style:none;">
-											<ul>	
-												<li><p>Actividades Realizadas</p></li>
-												<li><p>Medicamentos Suministrados</p></li>
-											</ul>
-										</article>
-									</article>
-								</div>
-								<div>
-									<input type="radio" id = "acor-2" name="resumen_medico">
-										<label for="acor-2">02/Dic/2012</label>
-									</input>
-									<article class="de-gra">
-										<input type="radio" id = "acor-2-1" name="resumen_medico2_sub2">
-											<label style="margin-left:15px;" for="acor-2-1">Atención Domiciliaria</label>
-										</input>
-										<article class="de-gra" style="margin-left:25px;list-type-style:none;">	
-											<ul style="margin-left:25px;">
-												<li><p>Actividades Realizadas</p></li>
-												<li><p>Medicamentos Suministrados</p></li>
-											</ul>
-										</article>
-									</article>
-								</div>
-							</div>
-						</fieldset>
-						<div class="acor_link" align="center" style="margin:10px 0 0 75px; float:none;">
-							<a href="#">Agregar Observaciones</a>
-						</div>
-						<div class="acor_link" align="center" style="margin:20px 0 0 75px;float:none;">
-							<a href="#">Responder Interconsulta</a>
-						</div>
-					</section>
-					
-					
-					<section id="panel_02">
+				</div>	
+				
+				<div id="tabs-2">
+					<section>
 						<form method="POST" action="./?url">
 							<table width="55%">
 								<tr>
