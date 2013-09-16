@@ -1,6 +1,7 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
+	$paciente = new Accesatabla('datos_pacientes');
 	$condicionsalida = new Accesatabla('condicion_salida');
 	$instituciones = new Accesatabla('institucion');
 	$tipoinstitucion = new Accesatabla('tipo_institucion');
@@ -10,28 +11,54 @@
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
+	$provincias = new Accesatabla('provincias');
 	$referido = new Accesatabla('referido');
 	$ds = new Diseno();
 	$buscar = $_POST['buscar'];
+	$sw = 0;
 	$cont.='
 	  <center><h3 style="background:#f4f4f4;"> Registro de Admisión-Egreso (RAE)</h3></center>
 		<br><br>';
-		
-	if(empty($buscar)){
+	if(!empty($buscar)){
+		if(!$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){
+			$sw = 1;
+		}
+	}
+	if(empty($buscar) or $sw == 1){
 		$cont.='
 			<center>
 				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion">
-					<!--Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>-->
 					<div class="input-group">
-					  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula o Nombre" name="buscar" id="buscar">
+					  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula" name="buscar" id="buscar">
 					  <span class="input-group-btn">
 						<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 					  </span>
 					</div>
 				</form>
 			</center>';
+		if($sw == 1){
+			$cont.='<center>
+						<a href="./?url=hospitalaria_rae_capturardatos">Paciente no Encotrado...Añadir</a>
+					</center>
+			';
+		}
 		
 	}else{
+<<<<<<< .mine
+			$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"');
+			$cont.='<center>
+						<table>
+						</table>
+					</center>
+			
+			';
+			$cont.='
+				<form method="POST" action="./?url=">
+						<div id="accordion">
+							<h3>Datos de Referencia</h3>
+								<div>
+									<table style="font-size:12px">
+=======
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
@@ -58,6 +85,7 @@
 									Paciente
 								</legend>
 									<table width="100%">											
+>>>>>>> .r112
 										<tr>
 											<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
 										</tr>
