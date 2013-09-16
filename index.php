@@ -59,7 +59,6 @@
 			$( "#accordion" ).accordion();
 			});
 		</script>
-<<<<<<< .mine
 		<script>
 			$(function() {
 			$( "#accordion2" ).accordion();
@@ -71,10 +70,7 @@
 			});
 		</script>
 		
-=======
 
-	
->>>>>>> .r119
 		<script>
 		$(function(){
 		  $("#show1").click(function(){
