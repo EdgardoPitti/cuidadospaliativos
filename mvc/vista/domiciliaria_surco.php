@@ -13,7 +13,11 @@
 	$servicios = new Accesatabla('servicios_medicos');
 	$motivoreferencia = new Accesatabla('motivo_referencia');
 	$cie = new Accesatabla('cie10');
+	$sw = 0;
 	$cedula = $_POST['cedula'];
+	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
+		$sw = 1;
+	}
 	$ds = new Diseno();
 	$c = $cie->buscardonde('ID_CIE10 !=""');		
 	while($c){
@@ -27,7 +31,7 @@
 			<legend align="center">
 				<h3 style="background:#f4f4f4;"> Sistema Único de Referencia y Contrarreferencia</h3>
 			</legend>';
-	if (Empty($cedula)){
+	if (Empty($cedula) or $sw == 1){
 		$cont.='
 			<center>
 			<form class="form-search" method="POST" action="./?url=domiciliaria_surco">
@@ -40,6 +44,9 @@
 				</div>
 			</form>
 			</center>';
+		if($sw){
+			$cont.='<center><a href="./?url=domiciliaria_capturardatos">Paciente no encontrado...Añadir</a></center>';
+		}
 	}else{
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
@@ -416,21 +423,16 @@
 							<div>
 								<table class="tabla-datos" width="100%">
 									<tr align="center">
-										<td width="25%">Nombre de quien refiere:</td>									
+										<td width="25%">Nombre de quien refiere:</td>	
+										<td><input type="text" name="refiere" class="auto" id="auto"/></td>											
 									</tr>
 									<tr align="center">
-										<td><input type="text" name="refiere"/></td>
-										<td><input type="radio" name="galeno">  Médico Gral.</input></td>										
-										<td><input type="radio" name="galeno">  Odontólogo</input></td>										
-										<td><input type="radio" name="galeno">  Médico Especializado</input></td>										
+										<td></td>								
 									</tr>
 									<tr align="center">
-										<td width="25%">Nombre del Receptor:</td>										
-									</tr>
-									<tr align="center">
-										<td width="25%"><input type="text" name="receptor"/></td>
-										<td width="25%"><i>(Solo en caso de urgencias y hospitalización)</i></td>
-										<td colspan="2"></td>
+										<td>Nombre del Receptor:</td>	
+										<td><input type="text" name="receptor"/></td>
+										<td><i>(Solo en caso de urgencias y hospitalización)</i></td>
 									</tr>
 								</table>
 						</div>
