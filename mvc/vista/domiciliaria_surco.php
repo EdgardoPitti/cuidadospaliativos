@@ -557,8 +557,7 @@
 						</div>
 					</form>	
 				</div>
-			</fieldset>
-			';	
+			</fieldset>';	
 	}
 		
 	$ds->contenido($cont);

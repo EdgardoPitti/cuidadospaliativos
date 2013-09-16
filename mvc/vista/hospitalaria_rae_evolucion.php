@@ -17,8 +17,9 @@
 	$buscar = $_POST['buscar'];
 	$sw = 0;
 	$cont.='
-	  <center><h3 style="background:#f4f4f4;"> Registro de Admisión-Egreso (RAE)</h3></center>
-		<br><br>';
+	  <center>
+	  <fieldset>
+		<legend><h3 style="background:#f4f4f4;">Registro de Admisión-Egreso (RAE) </h3></legend>';
 	if(!empty($buscar)){
 		if(!$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){
 			$sw = 1;
@@ -44,6 +45,7 @@
 		}
 		
 	}else{
+		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
 
 			$cont.='
 				<form method="POST" action="./?url=">
@@ -76,13 +78,13 @@
 							<fieldset>
 								<legend>
 									Paciente
-								</legend>
-									<table width="100%">											
+								</legend>		
+									<table width="100%">	
 										<tr>
 											<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
 										</tr>
 										<tr align="left">
-											<td>'.$cedula.'</td>
+											<td>'.$buscar.'</td>
 											<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
 											<td>'.$sexo.'</td>
 										</tr>
@@ -122,7 +124,7 @@
 							<tr>
 								<td>
 									<center>
-										<table style="font-size:14px;">
+										<table style="font-size:14px;" width="100%">
 											<tr>
 												<td>Institución:</td>
 												<td><select id="institucion" name="institucion">
@@ -214,11 +216,10 @@
 						</table>
 					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:10px;float:right;">Registrar</button>
 				</form>
+			</fieldset>	
 			';
 	}
 
 	$ds->contenido($cont);
 	$ds->mostrar();
-
-
 ?>
