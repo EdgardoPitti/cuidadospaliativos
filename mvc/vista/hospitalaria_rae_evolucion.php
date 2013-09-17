@@ -49,10 +49,7 @@
 
 			$cont.='
 				<form method="POST" action="./?url=">
-						<div id="accordion">
-							<h3>Datos de Referencia</h3>
-								<div>
-									<table style="font-size:12px">';
+						';
 									
 		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
