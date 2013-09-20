@@ -13,22 +13,27 @@
 	$corregimientos = new Accesatabla('corregimientos');
 	$provincias = new Accesatabla('provincias');
 	$referido = new Accesatabla('referido');
+	$especialidad = new Accesatabla('especialidades_medicas');
+	
 	$ds = new Diseno();
+	$sw = 0;
+	
 	$buscar = $_POST['buscar'];
-	$mostrar='block';
+	
 	$cont.='
 	  <center>
 	  <fieldset>
-		<legend><h3 style="background:#f4f4f4;">Contacto Telefónico</h3></legend>';
-	/*	
-	if(empty($buscar)){
-		if(!$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){			
-			$agnadir.='
-						<a href="./?url=hospitalaria_rae_capturardatos">Paciente no Encotrado...Añadir</a>';
+		<legend><h3 style="background:#f4f4f4;padding:10px;">Contacto Telefónico</h3></legend>';
+	if(!empty($buscar) and !$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){			
+		$sw = 1;					
+	}
+	if(empty($buscar) or $sw == 1){	
+		if($sw == 1){
+			$agnadir='
+					<a href="./?url=hospitalaria_rae_capturardatos">Paciente no Encotrado...Añadir</a>';	
 		}
-		echo asdasdas;
 	}else{
-		$mostrar='none';
+		
 		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
@@ -46,7 +51,51 @@
 			$asegurado = 'NO ASEGURADO';
 		}
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
-	}		*/
+		$mostrar ='
+				<center>
+					<table width="80%">
+						<tr>
+							<td width="50%">
+								<fieldset>
+									<legend>
+										Paciente
+									</legend>
+										<table width="100%">											
+											<tr>
+												<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
+											</tr>
+											<tr align="left">
+												<td>'.$cedula.'</td>
+												<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
+												<td>'.$sexo.'</td>
+											</tr>
+											<tr align="left">
+												<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
+												<td>'.$asegurado.'</td>
+												<td>'.$ds->edad($dia,$mes,$anio).'</td>
+											</tr>
+										</table>
+								</fieldset>
+							</td>
+							<td>
+								<fieldset>
+									<legend>
+										Dirección
+									</legend>
+										<table width="100%">
+											<tr>
+												<td>'.$distritos->obtener('DISTRITO').' , '.$provincias->obtener('PROVINCIA').'</td>
+											</tr>
+											<tr>
+												<td>'.$corregimientos->obtener('CORREGIMIENTO').' , '.$residencia->obtener('DETALLE').'</td>
+											</tr>
+										</table>
+								</fieldset>
+							</td>
+						</tr>
+					</table>
+				</center>';
+	}		
 	
 	$cont.='
 			<div id="tabs">
@@ -58,7 +107,7 @@
 					<div align="right">
 						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente">
 							<div class="input-group">
-							  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula" name="buscar" id="buscar">
+							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="buscar">
 							  <span class="input-group-btn">
 								<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 							  </span>
@@ -66,52 +115,10 @@
 							'.$agnadir.'
 						</form>
 					</div>
-						<center style="display:'.$mostrar.';">
-							<table width="80%">
-								<tr>
-									<td width="50%">
-										<fieldset>
-											<legend>
-												Paciente
-											</legend>
-												<table width="100%">											
-													<tr>
-														<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
-													</tr>
-													<tr align="left">
-														<td>'.$cedula.'</td>
-														<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
-														<td>'.$sexo.'</td>
-													</tr>
-													<tr align="left">
-														<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
-														<td>'.$asegurado.'</td>
-														<td>'.$ds->edad($dia,$mes,$anio).'</td>
-													</tr>
-												</table>
-										</fieldset>
-									</td>
-									<td>
-										<fieldset>
-											<legend>
-												Dirección
-											</legend>
-												<table width="100%">
-													<tr>
-														<td>'.$distritos->obtener('DISTRITO').' , '.$provincias->obtener('PROVINCIA').'</td>
-													</tr>
-													<tr>
-														<td>'.$corregimientos->obtener('CORREGIMIENTO').' , '.$residencia->obtener('DETALLE').'</td>
-													</tr>
-												</table>
-										</fieldset>
-									</td>
-								</tr>
-							</table>
-						</center>
-						<table width="100%">
+						'.$mostrar.'
+						<table width="100%" class="table">
 							<tr>
-								<td width="50%">
+								<td width="50%" style="border-top-color:#fff;">
 									<fieldset>
 										<legend>
 											Resumen Médico
@@ -145,23 +152,100 @@
 										</div>
 									</fieldset>
 								</td>
-								<td></td>
+								<td style="border-top-color:#fff;">
+									
+									<!--AGREGAR OBSERVACIONES-->
+									<form method="POST" action="./?url=agregar_observacion">
+										<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
+											<div class="modal-header">  
+												<a class="close" data-dismiss="modal">×</a>  
+												<h4>Agregar Observaciones</h4>  
+											</div>  
+											<div class="modal-body" align="center">  
+												<h5>Motivo:</h5>  
+												<input type="text" name="motivo"/>
+												<h5>Observaciones:</h5>                
+												<input type="text" name="observaciones"/>
+											</div>  
+											<div class="modal-footer">  
+												<button type="submit" class="btn btn-primary">Guardar</button>  
+												<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+											</div>  
+										</div>  									
+									</form>
+									
+									<!--RESPONDER INTERCONSULTA-->
+									<form method="POST" action="./?url=agregar_resp_interconsulta">
+										<div id="res_inter" class="modal hide fade in" style="display: none; ">  
+											<div class="modal-header">  
+												<a class="close" data-dismiss="modal">×</a>  
+												<h4>Responder Interconsulta</h4>  
+											</div>  
+											<div class="modal-body" align="center">  
+												<h5>Código de Interconsulta:</h5>  
+												<input type="text" name="cod_interconsulta"/>
+												<h5>Observaciones:</h5>                
+												<input type="text" name="observaciones"/>
+											</div>  
+											<div class="modal-footer">  
+												<button type="submit" class="btn btn-primary">Guardar</button>  
+												<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+											</div>  
+										</div>  
+									</form>	
+									
+									<center>
+										<div class="centrar_botones">
+											<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
+											<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
+										</div>
+									</center>
+								</td>
 							</tr>
 						</table>
 				</div>	
 				
-				<div id="tabs-2">
-					<section>
-						<form method="POST" action="./?url">
-							<table width="55%">
-								<tr>
-									<td><input type="search" class="search" id="buscar" placeholder="Buscar Paciente"  name="busc_paciente"/></td>
-									<td><input type="radio" name="selectipo">Nombre</input></td>
-									<td><input type="radio" name="selectipo">Cédula</input></td>
-								</tr>
-							</table>
-						</form>
-					</section>
+				<div id="tabs-2" style="font-size:12px;">
+					<form class="form-search" method="POST" action="./?url=">
+						<!--Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>-->
+						<div class="input-group">
+						  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula o Nombre" name="cedula">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+						  </span>
+						</div>
+					</form>
+					<center style="width:100%;max-width:600px;">
+						<table width="100%">
+							<tr align="center">
+								<td>Especialista en: </td>
+								<td>
+									<select id="especialidad" name="especialidad">
+										<option value="0"></option>';
+						$x = $especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA > 0');				
+						while($x){
+								$cont.='
+										<option value="'.$especialidad->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$especialidad->obtener('DESCRIPCION').'</option>';
+								$x = $especialidad->releer();		
+						}		
+							$cont.='			
+									</select>
+								</td>
+							</tr>
+							<tr align="center">
+								<td align="center">Nombre:</td>
+								<td id="mostrarespecialista" name="mostrarespecialista">
+									<select style="width:150px"></select>
+								</td>
+							</tr>
+							<tr width="50%">
+								<td colspan="2">Observaciones/Comentarios</td>
+							</tr>
+							<tr width="50%">
+								<td colspan="2"><textarea id="obs_coment" name="obs_coment" style="width:98%;height:70px;border-color:#ccc;"></textarea></td>
+							</tr>
+						</table>
+					</center>
 				</div>
 			</div>
 		</fieldset>

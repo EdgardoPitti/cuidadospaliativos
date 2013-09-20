@@ -30,7 +30,7 @@
 	$cont='
 		<fieldset>
 			<legend align="center">
-				<h3 style="background:#f4f4f4;"> Sistema Único de Referencia y Contrarreferencia</h3>
+				<h3 style="background:#f4f4f4;padding:10px;"> Sistema Único de Referencia y Contrarreferencia</h3>
 			</legend>';
 	if (Empty($cedula) or $sw == 1){
 		$cont.='
@@ -435,11 +435,21 @@
 							<h3>Datos del Profesional</h3>
 							<div>
 								<table class="tabla-datos">
+									<tr align="center">
+										<td width="25%">Nombre de quien refiere:</td>		
 									<tr>
 										<td align="right">Nombre de quien refiere:</td>
 										<td  id="refiere"align="center"><input type="text" id="nombrerefiere"name="nombrerefiere"/></td>
-										<td></td>									
+										<td></td>		
 									</tr>
+									<tr align="center">
+										<td><input type="text" name="refiere"/></td>
+										<td><input type="radio" name="galeno" style="margin-left:10px;">  Médico Gral.</input></td>										
+										<td><input type="radio" name="galeno">  Odontólogo</input></td>										
+										<td><input type="radio" name="galeno">  Médico Especializado</input></td>					
+									</tr>
+									<tr align="center">
+										<td>Nombre del Receptor:</td>	
 									<tr>
 										<td align="right">Nombre del Receptor:</td>		
 										<td align="center"><input type="text" name="receptor"/></td>
@@ -565,8 +575,8 @@
 						</div>
 					</form>	
 				</div>
-			</fieldset>
-			';	
+			</fieldset>	
+		</fieldset>';	
 	}
 	//select substring(id_cie10, 1, 2) as ID from cie10 group by 1
 	$script = $ds->js('datos_profesionales_salud','nombrerefiere', 'PRIMER_NOMBRE','', 'SEGUNDO_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');

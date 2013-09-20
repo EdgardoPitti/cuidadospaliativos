@@ -17,7 +17,7 @@
 			<form action="./?url=agregardatospaciente" method="post" style="display:block;">
 						<fieldset>
 							<legend align="center">
-								<h3 style="background:#f4f4f4;">Sistema de Captura de Datos de Atención Domiciliaria</h3>
+								<h3 style="background:#f4f4f4;padding:10px;">Sistema de Captura de Datos de Atención Domiciliaria</h3>
 							</legend>
 							<div style="float:left;width:50%;min-width:510px;">
 								<fieldset>
@@ -180,7 +180,6 @@ $cont.='													</select>
 	while($p){
 			$cont.='
 																	<option value="'.$provincias->obtener('ID_PROVINCIA').'">'.$provincias->obtener('PROVINCIA').'</option>
-			
 			';
 			$p = $provincias->releer();
 
