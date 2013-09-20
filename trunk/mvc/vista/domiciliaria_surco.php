@@ -437,7 +437,7 @@
 								<table class="tabla-datos">
 									<tr align="center">
 										<td align="right">Nombre de quien refiere:</td>
-										<td  id="refiere"align="center"><input type="text" id="nombrerefiere "name="nombrerefiere"/></td>
+										<td align="center"><input type="text" id="nombrerefiere "name="nombrerefiere"/></td>
 										<td></td>
 									</tr>
 									<tr>
