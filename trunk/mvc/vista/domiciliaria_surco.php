@@ -262,17 +262,8 @@
 												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
-												<td>
-													<select id="cie1" name="cie1" style="width:60px;">
-														<option value="">Todos</option>
-														'.$contcie.'
-													</select>
-													<div id="mostrarcie1" name="mostrarcie1">
-														<select style="width:80px;">
-														</select>
-													</div>
-												</td>
+												<td align="right">CIE-10: </td>
+												<td><input type="text" id="cie10bhc" name="cie10bhc"></td>
 												<td><textarea id="complicacionesbhc"  name="complicacionesbhc" class="textarea"></textarea></td>
 												<td><textarea id="observacionesbhc"  name="observacionesbhc" class="textarea"></textarea></td>										
 										</table>
@@ -569,8 +560,9 @@
 			</fieldset>
 			';	
 	}
-	//select substring(id_cie10, 1, 2) as ID from cie10 group by 1
 	$script = $ds->js('datos_profesionales_salud','nombrerefiere', 'PRIMER_NOMBRE','', 'SEGUNDO_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
+	$script1 = $ds->js('cie10','cie10bhc', 'DESCRIPCION');
+	$cont.= $script1;
 	$cont.= $script;
 	$ds->contenido($cont);
 	$ds->mostrar();
