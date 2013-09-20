@@ -383,19 +383,6 @@ class Diseno {
 		else
 			echo
 			   '
-				<!--Navegador
-				<nav class="fdgris">
-					<ul class="menu">
-						'.$this->navegador.'
-					</ul>
-				</nav>-->
-				
-					<!--Diseño de Lateral
-					<aside>
-						<section class="acordeon">
-							'.$this->izquierda.'
-						</section>	
-					</aside>-->
 					<!--Diseño del contenido de la página-->
 					<div class="span10" style="min-height:650px;">	
 						'.$this->latino($this->derecha).'
