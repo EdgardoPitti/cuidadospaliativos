@@ -27,6 +27,8 @@
 		<script type="text/javascript" src="js/scripts.js"></script>		
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>
+
+
 	
 	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	  <!--[if lt IE 9]>
