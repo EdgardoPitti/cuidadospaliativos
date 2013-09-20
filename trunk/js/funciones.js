@@ -4,14 +4,6 @@ function inicio(){
 	$("#distritos").click(cargarCorregimientos);
 	$("#programas").click(cargarCategorias);
 	$("#especialidad").click(cargarEspecialista);
-	$("#cie1").click(cargarCIE1);
-	$("#cie2").click(cargarCIE2);
-	$("#cie3").click(cargarCIE3);
-	$("#cie4").click(cargarCIE4);
-	$("#cie5").click(cargarCIE5);
-	$("#cie6").click(cargarCIE6);
-	$("#cie7").click(cargarCIE7);
-	$("#cie8").click(cargarCIE8);
 }
 function cargarDistritos(){
 	var p = $("#provincias").attr("value");
@@ -38,13 +30,6 @@ function cargarEspecialista(){
 	var e = $("#especialidad").attr("value");
 	$.post("./mvc/vista/ambulatoria_atencionalpaciente_especialista.php",{idespecialidad:e},function(resultado){
 		$("#mostrarespecialista").html(resultado)
-	});
-	return false;
-}
-function cargarCIE1(){
-	var id = $("#cie1").attr("value");
-	$.post("./mvc/vista/cie10.php",{idcie:id},function(resultado){
-		$("#mostrarcie1").html(resultado)
 	});
 	return false;
 }
