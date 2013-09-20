@@ -14,7 +14,6 @@
 	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
 	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
 	<!--script src="js/js nuevos/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 	
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
@@ -40,32 +39,22 @@
 	  <![endif]-->	
 		<script>
 			$(function() {
-				$( "#tabs" ).tabs();
+				$( "#tabs" ).tabs(); //Pestañas principales de SURCO y Contacto Telefónico
 			});
-		</script>
-		<script>
 			$(function() {
-				$( "#tabs2" ).tabs();
-			});
-		</script>
-		<script>
+				$( "#tabs2" ).tabs(); //Pestañas para Resultados/Exámenes Diagnóstico de SURCO
+			});			
 			$(function(){
-				$("#tabs3").tabs();
-			});
-		</script>
-		<script>
+				$("#tabs3").tabs();	//Pestaña para Respuesta a Referencia de SURCO
+			});			
 			$(function() {
-			$( "#accordion" ).accordion();
-			});
-		</script>
-		<script>
+				$( "#accordion" ).accordion(); //Acordeon aplicado dentro de SURCO
+			});			
 			$(function() {
-			$( "#accordion2" ).accordion();
-			});
-		</script>
-		<script>
+				$( "#accordion2" ).accordion(); //Acordeon aplicado para Resumen Médico en Contac. Tel.
+			});			
 			$(function() {
-			$( "#accordion4" ).accordion();
+				$( "#accordion4" ).accordion(); //Acordeon interno de Resumen Med.
 			});
 		</script>
 		<script>
@@ -98,48 +87,36 @@
 		</script>
 
 	</head>
-
 	<body> 			
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="page-header">
-						<h1>
+						<h1 style="line-height:35px;">
 							Red Social de Cuidados Paliativos Panam&aacute;
 						</h1>
 					</div>
 				</div>
 			</div>
 			
+			<!--Navegación Superior-->
 			<div class="row-fluid">
-				<div class="span12">					
-					<!--Nav-->
-					<div class="navbar" style="margin-bottom:5px;">
-						<div class="navbar-inner">
-							<div class="container-fluid">
-								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a href="#" class="brand">Bienvenido</a>
-								<div class="nav-collapse navbar-responsive-collapse collapse">									
-									<ul class="nav pull-right">
-										<li>
-											<a href="#">M&eacute;dico</a>
-										</li>
-										<li class="divider-vertical">
-										</li>
-										<li class="dropdown">
-											 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-cog"></i>Configuraci&oacute;n<strong class="caret"></strong></a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="#">configurar</a>
-												</li>										
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="span12">
+					<ul class="nav nav-pills" style="float:right;margin-top:4px;">
+						<li>
+							<a href="#">M&eacute;dico</a>
+						</li>
+						<li class="dropdown pull-right">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Configuraci&oacute;n<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Acci&oacute;n</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Enlace separado</a></li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-			</div>
+			
 			
 			<div class="row-fluid">
 				<!--Aside-->
@@ -162,7 +139,7 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;">
-								<a href="#"><b style="font-size:1.2em;">Registro de Actividades Diarias</b></a>
+								<a href="./?url=domiciliarias_registro_visitas"><b style="font-size:1.2em;">Registro de Actividades Diarias</b></a>
 							</div>
 							<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
 								<a href="./?url=domiciliaria_surco"><b style="font-size:1.2em;">Surco</b></a>
