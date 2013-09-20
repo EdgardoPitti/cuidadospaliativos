@@ -6,14 +6,12 @@
 		<title>Cuidados Paliativos</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="./js/modernizr.custom.js"></script>
-		<link rel="shortcut icon" href="./favicon.ico" />
 		
 	<!--CSS: Menú Principal-->	
 	
 	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
 	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/js nuevos/less-1.3.3.min.js"></script-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
 	
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
@@ -24,18 +22,15 @@
 		
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
-		<script type="text/javascript" src="js/js nuevos/jquery.min.js"></script>
-		<script type="text/javascript" src="js/js nuevos/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/js nuevos/scripts.js"></script>		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>		
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>
-		
-		
-		<!--<link  rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/demos/demos.css"/>-->
 	
 	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	  <!--[if lt IE 9]>
-		<script src="js/js nuevos/html5shiv.js"></script>
+		<script src="js/html5shiv.js"></script>
 	  <![endif]-->	
 		<script>
 			$(function() {
