@@ -3,6 +3,7 @@ function inicio(){
 	$("#provincias").click(cargarDistritos);
 	$("#distritos").click(cargarCorregimientos);
 	$("#programas").click(cargarCategorias);
+	$("#especialidad").click(cargarEspecialista);
 	$("#cie1").click(cargarCIE1);
 	$("#cie2").click(cargarCIE2);
 	$("#cie3").click(cargarCIE3);
@@ -30,6 +31,13 @@ function cargarCategorias(){
 	var c = $("#programas").attr("value");
 	$.post("./mvc/vista/domiciliaria_capturardatos_categorias.php",{categoria:c},function(resultado){
 		$("#mostrarcategorias").html(resultado)
+	});
+	return false;
+}
+function cargarEspecialista(){
+	var e = $("#especialidad").attr("value");
+	$.post("./mvc/vista/ambulatoria_atencionalpaciente_especialista.php",{idespecialidad:e},function(resultado){
+		$("#mostrarespecialista").html(resultado)
 	});
 	return false;
 }
