@@ -3,6 +3,14 @@ function inicio(){
 	$("#provincias").click(cargarDistritos);
 	$("#distritos").click(cargarCorregimientos);
 	$("#programas").click(cargarCategorias);
+	$("#cie1").click(cargarCIE1);
+	$("#cie2").click(cargarCIE2);
+	$("#cie3").click(cargarCIE3);
+	$("#cie4").click(cargarCIE4);
+	$("#cie5").click(cargarCIE5);
+	$("#cie6").click(cargarCIE6);
+	$("#cie7").click(cargarCIE7);
+	$("#cie8").click(cargarCIE8);
 }
 function cargarDistritos(){
 	var p = $("#provincias").attr("value");
@@ -22,6 +30,13 @@ function cargarCategorias(){
 	var c = $("#programas").attr("value");
 	$.post("./mvc/vista/domiciliaria_capturardatos_categorias.php",{categoria:c},function(resultado){
 		$("#mostrarcategorias").html(resultado)
+	});
+	return false;
+}
+function cargarCIE1(){
+	var id = $("#cie1").attr("value");
+	$.post("./mvc/vista/cie10.php",{idcie:id},function(resultado){
+		$("#mostrarcie1").html(resultado)
 	});
 	return false;
 }

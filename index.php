@@ -25,12 +25,12 @@
 		
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
-		<script src="./js/funcionbuscar.js"></script>
 		<script type="text/javascript" src="js/js nuevos/jquery.min.js"></script>
 		<script type="text/javascript" src="js/js nuevos/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/js nuevos/scripts.js"></script>		
 		<script src="./js/jquery-1.9.1.js"></script>
-		<script src="./js/jquery-ui.js"></script>	
+		<script src="./js/jquery-ui.js"></script>
+		
 		
 		<!--<link  rel="stylesheet" href="./jquery-ui-1.10.3.custom/development-bundle/demos/demos.css"/>-->
 	
@@ -38,7 +38,6 @@
 	  <!--[if lt IE 9]>
 		<script src="js/js nuevos/html5shiv.js"></script>
 	  <![endif]-->	
-	  
 		<script>
 			$(function() {
 				$( "#tabs" ).tabs();
@@ -70,33 +69,33 @@
 			});
 		</script>
 		<script>
-		$(function(){
-		  $("#show1").click(function(){
-			$("#mostrar_ocultar1").toggle("1000");
-			$("#mostrar_ocultar2").hide();
-			$("#mostrar_ocultar3").hide();
-			$("#mostrar_ocultar4").hide();
-		  });
-		   $("#show2").click(function(){
-			$("#mostrar_ocultar2").toggle("1000");
-			$("#mostrar_ocultar1").hide();
-			$("#mostrar_ocultar3").hide();
-			$("#mostrar_ocultar4").hide();
-		  });
-		   $("#show3").click(function(){
-			$("#mostrar_ocultar3").toggle("1000");
-			$("#mostrar_ocultar2").hide();
-			$("#mostrar_ocultar1").hide();
-			$("#mostrar_ocultar4").hide();
-		  });
-		   $("#show4").click(function(){
-			$("#mostrar_ocultar4").toggle("1000");
-			$("#mostrar_ocultar1").hide();
-			$("#mostrar_ocultar3").hide();
-			$("#mostrar_ocultar2").hide();
-		  });
-		});
-	</script>
+			$(function(){
+			  $("#show1").click(function(){
+				$("#mostrar_ocultar1").toggle("1000");
+				$("#mostrar_ocultar2").hide();
+				$("#mostrar_ocultar3").hide();
+				$("#mostrar_ocultar4").hide();
+			  });
+			   $("#show2").click(function(){
+				$("#mostrar_ocultar2").toggle("1000");
+				$("#mostrar_ocultar1").hide();
+				$("#mostrar_ocultar3").hide();
+				$("#mostrar_ocultar4").hide();
+			  });
+			   $("#show3").click(function(){
+				$("#mostrar_ocultar3").toggle("1000");
+				$("#mostrar_ocultar2").hide();
+				$("#mostrar_ocultar1").hide();
+				$("#mostrar_ocultar4").hide();
+			  });
+			   $("#show4").click(function(){
+				$("#mostrar_ocultar4").toggle("1000");
+				$("#mostrar_ocultar1").hide();
+				$("#mostrar_ocultar3").hide();
+				$("#mostrar_ocultar2").hide();
+			  });
+			});
+		</script>
 
 	</head>
 

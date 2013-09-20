@@ -1,6 +1,7 @@
 <?php
 class Db {/*=====================================================================*/
 	private $result, $link, $affectedrows, $rows, $dbase, $errortext;
+
 	function __construct($db = ''){       /*=====================================================================*/
 		$host = 'localhost';
 		$uid = 'root';

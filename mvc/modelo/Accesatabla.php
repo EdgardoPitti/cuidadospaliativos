@@ -158,11 +158,16 @@
 		}
 		return ( $this->estalinea == 1 );
 	}
-	public function buscardonde ( $psyntax , $leer=1 ) {//Recibe una condicion para la seleccion de registros y regresa un valor booleano indicando si existe o no.
+	public function buscardonde ($psyntax , $leer=1, $query='') {//Recibe una condicion para la seleccion de registros y regresa un valor booleano indicando si existe o no.
 		$this->limpiar() ;//Reinicia los registros
 		$this->estalinea = -1;
 		$this->totaldelineas = 0;
-		$syntax = "select * from ".$this->estatabla." where ".$psyntax." ;";
+		if(empty($query)){
+			$syntax = "select * from ".$this->estatabla." where ".$psyntax." ;";
+		}else{
+			$syntax = "".$query."";
+		}
+
 		
 		//echo "<td><h1>".$syntax."</h1></td>";
 					
