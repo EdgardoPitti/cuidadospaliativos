@@ -54,7 +54,14 @@
 	z-index: 100;
 }
 
-
+.ui-autocomplete {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: default;
+	max-height:80px;
+	overflow-y:auto;
+}
 /* Interaction Cues
 ----------------------------------*/
 .ui-state-disabled {
