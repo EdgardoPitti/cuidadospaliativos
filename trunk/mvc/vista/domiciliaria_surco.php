@@ -30,7 +30,7 @@
 	$cont='
 		<fieldset>
 			<legend align="center">
-				<h3 style="background:#f4f4f4;padding:10px;"> Sistema Único de Referencia y Contrarreferencia</h3>
+				<h3 style="background:#f4f4f4;"> Sistema Único de Referencia y Contrarreferencia</h3>
 			</legend>';
 	if (Empty($cedula) or $sw == 1){
 		$cont.='
@@ -436,11 +436,10 @@
 							<div>
 								<table class="tabla-datos">
 									<tr align="center">
-										
 										<td align="right">Nombre de quien refiere:</td>
-										<td  id="refiere"align="center"><input type="text" id="nombrerefiere"name="nombrerefiere"/></td>
-										<td></td>		
-									</tr>									
+										<td  id="refiere"align="center"><input type="text" id="nombrerefiere "name="nombrerefiere"/></td>
+										<td></td>
+									</tr>
 									<tr>
 										<td align="right">Nombre del Receptor:</td>		
 										<td align="center"><input type="text" name="receptor"/></td>
@@ -566,8 +565,8 @@
 						</div>
 					</form>	
 				</div>
-			</fieldset>	
-		</fieldset>';	
+			</fieldset>
+			';	
 	}
 	//select substring(id_cie10, 1, 2) as ID from cie10 group by 1
 	$script = $ds->js('datos_profesionales_salud','nombrerefiere', 'PRIMER_NOMBRE','', 'SEGUNDO_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
