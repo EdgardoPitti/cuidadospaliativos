@@ -19,7 +19,7 @@
 	$cont.='
 	  <center>
 	  <fieldset>
-		<legend><h3 style="background:#f4f4f4;">Registro de Admisión-Egreso (RAE) </h3></legend>';
+		<legend><h3 style="background:#f4f4f4;padding:10px;">Registro de Admisión-Egreso (RAE) </h3></legend>';
 	if(!empty($buscar)){
 		if(!$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){
 			$sw = 1;

@@ -17,7 +17,7 @@
 			<form action="./?url=agregardatospaciente&sw=1" method="post" style="display:block;">
 						<fieldset>
 							<legend align="center">
-								<h3 style="background:#f4f4f4;">Sistema de Captura de Datos de Atención Hospitalaria</h3>
+								<h3 style="background:#f4f4f4;padding:10px;">Sistema de Captura de Datos de Atención Hospitalaria</h3>
 							</legend>
 							<div style="float:left;width:50%;min-width:510px;">
 								<fieldset>

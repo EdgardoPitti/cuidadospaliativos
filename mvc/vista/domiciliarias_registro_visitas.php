@@ -11,7 +11,7 @@
 			
 				<fieldset>
 					<legend>
-						Registro de Visitas Domiciliarias
+						<h3 style="background:#f4f4f4;padding:10px;">Registro de Visitas Domiciliarias</h3>
 					</legend>
 						Introduzca el número de cédula del paciente, y añada las observaciones pertinentes.<br><br>
 						<form method="POST" action=".?url=registrovisitasdomiciliaria">Buscar: <input type="search" id="cedula" name="cedula"><button>Buscar</button></form>
