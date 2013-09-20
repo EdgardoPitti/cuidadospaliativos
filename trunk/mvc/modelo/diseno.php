@@ -1,13 +1,13 @@
 <?php
 class Diseno {
-	private $izquierda,$derecha ;
+	private $izquierda,$derecha,$js ;
 	var $db;
 	/* -- -- -- -- -- -- -- -- -- */
 	function __construct() {
 		include_once('db.php'); $this->db = new Db();
-																//include_once('./modelo/Accesatabla.php');
 		$this->izquierda='';
 		$this->derecha='';
+		$this->js='';
 		$this->navegador='';
 	}
 	function moneda( $dinero, $pdec ){
@@ -354,6 +354,26 @@ class Diseno {
 		$this->der( $ind );
 		return;
 	}
+	
+	function js($tabla,$id,$cmp1,$cond='',$cmp2='',$cmp3='',$cmp4='') {
+		$sql = 'select * from '.$tabla;
+		if(!empty($cond)) $sql .= ' WHERE '.$cond ;
+		$query = $this->db->query($sql);	
+		while($row = $this->db->fetch($query)){
+			$elem[] = '"'.$row[$cmp1].' '.$row[$cmp2].' '.$row[$cmp3].' '.$row[$cmp4].'"' ;
+		}
+		$arreglo = implode(", ", $elem);
+		$script = '<script>
+					$(function() {
+						var availableTags = new Array('.$arreglo.');
+						$( "#'.$id.'" ).autocomplete({
+							source: availableTags
+						});
+					});
+					</script>';
+		return $script;
+	}
+	
 	function mostrar($noaside = false){
 		if($noaside)
 			echo '
@@ -532,25 +552,34 @@ class Diseno {
 		return $edad;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	<!--Navegador--
+	<nav class="fdgris">
+		<ul class="menu">
+			'.$this->navegador.'
+		</ul>
+	</nav>
+	<div class="cuerpo">
+		<!--Diseño de Lateral--
+		<aside>
+			<section class="acordeon">
+				'.$this->izquierda.'
+			</section>	
+		</aside>
+		<!--Diseño del contenido de la página--
+		<div class="contenido">	
+			'.$this->latino($this->derecha).'
+		</div>
+		<!--Fin del Contenido>
+	</div>-->
+	*/
 }
 ?>
-
-<!--Navegador--
-				<nav class="fdgris">
-					<ul class="menu">
-						'.$this->navegador.'
-					</ul>
-				</nav>
-				<div class="cuerpo">
-					<!--Diseño de Lateral--
-					<aside>
-						<section class="acordeon">
-							'.$this->izquierda.'
-						</section>	
-					</aside>
-					<!--Diseño del contenido de la página--
-					<div class="contenido">	
-						'.$this->latino($this->derecha).'
-					</div>
-					<!--Fin del Contenido>
-				</div>-->
