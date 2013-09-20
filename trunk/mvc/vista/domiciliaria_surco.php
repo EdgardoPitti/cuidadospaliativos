@@ -90,6 +90,7 @@
 										</tr>
 									</table>
 							</fieldset>
+						
 						</td>
 						<td>
 							<fieldset>
@@ -435,10 +436,10 @@
 							<h3>Datos del Profesional</h3>
 							<div>
 								<table class="tabla-datos">
-									<tr align="center">
+									<tr>
 										<td align="right">Nombre de quien refiere:</td>
-										<td align="center"><input type="text" id="nombrerefiere "name="nombrerefiere"/></td>
-										<td></td>
+										<td  id="refiere"align="center"><input type="text" id="nombrerefiere"name="nombrerefiere"/></td>
+										<td></td>									
 									</tr>
 									<tr>
 										<td align="right">Nombre del Receptor:</td>		
