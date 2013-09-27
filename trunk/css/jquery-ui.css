@@ -59,8 +59,13 @@
 	top: 0;
 	left: 0;
 	cursor: default;
+<<<<<<< .mine
+	width:250px;
+	max-height:80px;
+=======
 	width: 400px;
 	max-height:250px;
+>>>>>>> .r147
 	overflow-y:auto;
 }
 /* Interaction Cues

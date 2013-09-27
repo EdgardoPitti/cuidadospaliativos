@@ -23,12 +23,15 @@
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/scripts.js"></script>		
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>
+<<<<<<< .mine
+
+=======
 		
 	
+>>>>>>> .r147
 	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	  <!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
@@ -144,7 +147,6 @@
 			  });
 			});
 		</script>
-
 	</head>
 	<body> 			
 		<div class="container-fluid">

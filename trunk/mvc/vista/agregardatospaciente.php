@@ -59,7 +59,4 @@
 		$responsable->salvar();
 	}
 	include_once('./mvc/vista/inicio.php');
-
-
-
 ?>

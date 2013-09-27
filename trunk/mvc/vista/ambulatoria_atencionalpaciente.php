@@ -1,7 +1,6 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
 	include_once('./mvc/modelo/Accesatabla.php');
-	$paciente = new Accesatabla('datos_pacientes');
 	$condicionsalida = new Accesatabla('condicion_salida');
 	$instituciones = new Accesatabla('institucion');
 	$tipoinstitucion = new Accesatabla('tipo_institucion');
@@ -11,7 +10,6 @@
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
-	$provincias = new Accesatabla('provincias');
 	$referido = new Accesatabla('referido');
 	$especialidad = new Accesatabla('especialidades_medicas');
 	
@@ -24,7 +22,7 @@
 	  <center>
 	  <fieldset>
 		<legend><h3 style="background:#f4f4f4;padding:10px;">Contacto Telefónico</h3></legend>';
-	if(!empty($buscar) and !$paciente->buscardonde('NO_CEDULA = "'.$buscar.'"')){			
+	if(!empty($buscar) and !$personas->buscardonde('NO_CEDULA = "'.$buscar.'"')){			
 		$sw = 1;					
 	}
 	if(empty($buscar) or $sw == 1){	
@@ -209,7 +207,7 @@
 					<form class="form-search" method="POST" action="./?url=">
 						<!--Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>-->
 						<div class="input-group">
-						  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula o Nombre" name="cedula">
+						  Buscar paciente: <input type="search" class="form-control" id="nom_ced" placeholder="Cédula o Nombre" name="nom_ced">
 						  <span class="input-group-btn">
 							<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 						  </span>
@@ -248,9 +246,10 @@
 					</center>
 				</div>
 			</div>
-		</fieldset>
-
-				';
+		</fieldset>';
+	
+	$script = $ds->js('datos_profesionales_salud', 'nom_ced', 'NO_CEDULA', '', 'PRIMER_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
+	$cont.=$script;
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
