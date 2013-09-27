@@ -22,7 +22,7 @@
 	$cont='
 		<fieldset>
 			<legend align="center">
-				<h3 style="background:#f4f4f4;"> Sistema Único de Referencia y Contrarreferencia</h3>
+				<h3 style="background:#f4f4f4;padding:10px;"> Sistema Único de Referencia y Contrarreferencia</h3>
 			</legend>';
 	if (Empty($cedula) or $sw == 1){
 		$cont.='
@@ -372,7 +372,11 @@
 								<table class="tabla-datos">
 									<tr>
 										<td align="right">Nombre de quien refiere:</td>
+<<<<<<< .mine
+										<td  id="refiere" align="center"><input type="text" id="nombrerefiere"name="nombrerefiere"/></td>
+=======
 										<td  id="refiere"align="center"><input type="text" id="nombrerefiere" name="nombrerefiere"/></td>
+>>>>>>> .r147
 										<td></td>									
 									</tr>
 									<tr>
@@ -480,8 +484,8 @@
 										<table width="80%">
 											<tr>
 												<td>Reevaluación especializada: </td>
-												<td><input type="radio" name="reev_esp_si"/> Sí</td>
-												<td><input type="radio" name="reev_esp_no"/> No</td>
+												<td class="radio"><input type="radio" name="reev_esp"/> Sí</td>
+												<td class="radio"><input type="radio" name="reev_esp"/> No</td>
 												<td>Fecha:</td>
 												<td><input type="date" name="fecha"/></td>
 											</tr>

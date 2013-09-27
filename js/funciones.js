@@ -2,6 +2,7 @@ $(document).ready(inicio)
 function inicio(){
 	$("#provincias").click(cargarDistritos);
 	$("#distritos").click(cargarCorregimientos);
+	$("#distritos").click(cargarCorregimientos);
 	$("#programas").click(cargarCategorias);
 	$("#especialidad").click(cargarEspecialista);
 }

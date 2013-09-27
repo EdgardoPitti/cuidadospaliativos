@@ -360,7 +360,7 @@ class Diseno {
 		if(!empty($cond)) $sql .= ' WHERE '.$cond ;
 		$query = $this->db->query($sql);	
 		while($row = $this->db->fetch($query)){
-			$elem[] = '"'.$row[$cmp1].' '.$row[$cmp2].' '.$row[$cmp3].' '.$row[$cmp4].'"' ;
+			$elem[] = '"'.$row[$cmp1].' '.$row[$cmp2].' '.$row[$cmp3].' '.$row[$cmp4].'"';
 		}
 		$arreglo = implode(", ", $elem);
 		$script = '<script>

@@ -48,8 +48,7 @@
 		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
 
 			$cont.='
-				<form method="POST" action="./?url=">
-						';
+				<form method="POST" action="./?url=agregar_datos_rae&idpac='.$personas->obtener('ID_PACIENTE').'">';
 									
 		$personas->buscardonde('NO_CEDULA = "'.$buscar.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
@@ -68,8 +67,10 @@
 			$asegurado = 'NO ASEGURADO';
 		}
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
+		$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('año');
 		$cont.='<center>
-				<table width="80%">
+				<div style="float:right;"><i>'.$fecha.', '.$ds->dime('hora').':'.$ds->dime('minuto').'</i></div>
+				<table width="100%">
 					<tr>
 						<td width="50%">
 							<fieldset>
@@ -111,84 +112,85 @@
 					</tr>
 				</table>
 				</center>
-				<form method="POST" action="./?url=">
-						<table width="100%">
-							<tr>
-								<td class="fondo_azul">
-									Datos de Referencia
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<center>
-										<table style="font-size:14px;" width="100%">
-											<tr>
-												<td>Institución:</td>
-												<td><select id="institucion" name="institucion">
-														<option value=""></option>';
+				
+					<table width="100%">
+						<tr>
+							<td class="fondo_azul">
+								Datos de Referencia
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<center>
+									<table style="font-size:14px;" width="100%">
+										<tr>
+											<td>Institución:</td>
+											<td><select id="institucion" name="institucion">
+													<option value="0"></option>';
 														
 				$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
 				while($i){
 					$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
 					$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
 					$cont .= '
-														<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
 					';
 					$i = $instituciones->releer();
 				}
 				$cont.='
-													</select>
-												</td>
-												<td></td>
-												<td>Referido de: </td>
-												<td><select id="referido" name="referido">
-														<option value="0"></option>';
+												</select>
+											</td>
+											<td></td>
+											<td>Referido de: </td>
+											<td><select id="referido" name="referido">
+													<option value="0"></option>';
 				$r = $referido->buscardonde('ID_REFERIDO > 0');
 				while($r){
 					$cont.='
-														<option value="'.$referido->obtener('ID_REFERIDO').'">'.$referido->obtener('REFERIDO').'</option>
+													<option value="'.$referido->obtener('ID_REFERIDO').'">'.$referido->obtener('REFERIDO').'</option>
 					';
 					$r = $referido->releer();
 				}
 				$cont.='
-													</select>
-												</td>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</center>					
+							</td>
+						</tr>
+						<tr>
+							<td class="fondo_azul">
+								Datos de Hospitalización
+							</td>
+						</tr>							
+						<tr>
+							<td>
+								<center>
+									<table style="font-size:14px" width="100%">
+											<tr align="center">
+												<td>Diagnóstico de Admisión:</td>
+												<td>Diagnóstico de Egreso:</td>
+												<td>Tratamiento: </td>
+												<td>Condición de Salida: </td>
 											</tr>
-										</table>
-									</center>					
-								</td>
-							</tr>
-							<tr>
-								<td class="fondo_azul">
-									Datos de Hospitalización
-								</td>
-							</tr>							
-							<tr>
-								<td>
-									<center>
-										<table style="font-size:14px" width="100%">
-												<tr align="center">
-													<td>Diagnóstico de Admisión:</td>
-													<td>Diagnóstico de Egreso:</td>
-													<td>Tratamiento: </td>
-													<td>Condición de Salida: </td>
-												</tr>
-												<tr align="center">
-													<td><textarea id="diagnosticoadmision" name="diagnosticoadmision"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-													<td><textarea id="diagnosticoegreso" name="diagnosticoegreso"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-													<td><textarea id="tratamiento" name="tratamiento"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-													<td><select id="condicionsalida" name="condicionsalida">
-																			<option value="0"></option>';
-			$c = $condicionsalida->buscardonde('id > 0');
+											<tr align="center">
+												<td><textarea id="diagnosticoadmision" name="diagnosticoadmision"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+												<td><textarea id="diagnosticoegreso" name="diagnosticoegreso"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+												<td><textarea id="tratamiento" name="tratamiento"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+												<td>
+													<select id="condicionsalida" name="condicionsalida">
+														<option value="0"></option>';
+			$c = $condicionsalida->buscardonde('ID_CONDICION_SALIDA > 0');
 			while($c){
 					$cont.='
-																			<option value="'.$condicionsalida->obtener('id').'">'.$condicionsalida->obtener('descripcion').'</option>
+														<option value="'.$condicionsalida->obtener('ID_CONDICION_SALIDA').'">'.$condicionsalida->obtener('CONDICION_SALIDA').'</option>
 						';
 					$c = $condicionsalida->releer();
 			}					
-			$cont.='												</select>
-													</td>
-												</tr>
+			$cont.='								</select>
+												</td>
+											</tr>
 										</table>
 									</center>
 								</td>
@@ -201,12 +203,12 @@
 							<tr>
 								<td>
 									<table style="font-size:14px" width="100%">
-											<tr>
-												<td>Evolución:</td>
-											</tr>
-											<tr>
-												<td><textarea id="evolucion" name="evolucion" style="width:98%;height:50px;border-color:#ccc;"></textarea></td>
-											</tr>
+										<tr>
+											<td>Evolución:</td>
+										</tr>
+										<tr>
+											<td><textarea id="evolucion" name="evolucion" style="width:98%;height:50px;border-color:#ccc;"></textarea></td>
+										</tr>
 									</table>
 								</td>
 							</tr>
