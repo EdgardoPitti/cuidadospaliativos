@@ -373,7 +373,7 @@ class Diseno {
 					</script>';
 		return $script;
 	}
-	
+
 	function mostrar($noaside = false){
 		if($noaside)
 			echo '

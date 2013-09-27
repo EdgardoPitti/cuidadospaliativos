@@ -27,8 +27,7 @@
 		<script type="text/javascript" src="js/scripts.js"></script>		
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>
-
-
+		
 	
 	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	  <!--[if lt IE 9]>
@@ -52,6 +51,69 @@
 			});			
 			$(function() {
 				$( "#accordion4" ).accordion(); //Acordeon interno de Resumen Med.
+			});
+		</script>
+		<script>
+			$(function() {
+				$("#diagnosticobhc").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>	
+		<script>
+			$(function() {
+				$("#diagnosticoami").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>	
+		<script>
+			$(function() {
+				$("#diagnosticoelec").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>	
+		<script>
+			$(function() {
+				$("#diagnosticondeu").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>
+		<script>
+			$(function() {
+				$("#diagnosticocrea").autocomplete({
+					source:"./mvc/vista/buscar_personal.php"
+				});
+			});
+		</script>	
+		<script>
+			$(function() {
+				$("#diagnosticoglice").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>	
+		<script>
+			$(function() {
+				$("#diagnosticoheces").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>	
+		<script>
+			$(function() {
+				$("#diagnosticourin").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>
+		<script>
+			$(function() {
+				$("#nombrerefiere").autocomplete({
+					source:"./mvc/vista/buscar_personal.php"
+				});
 			});
 		</script>
 		<script>

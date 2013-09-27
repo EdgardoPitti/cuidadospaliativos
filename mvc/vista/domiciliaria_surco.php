@@ -15,14 +15,6 @@
 	$cie = new Accesatabla('cie10');
 	$sw = 0;
 	$cedula = $_POST['cedula'];
-	$c = $cie->buscardonde('','','select substring(id_cie10, 1, 2) as ID_CIE10 from cie10 group by 1;');
-	while($c){
-		
-		$contcie.='
-												<option value="'.$cie->obtener('ID_CIE10').'">'.$cie->obtener('ID_CIE10').'</option>
-		';
-		$c = $cie->releer();
-	}
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
 		$sw = 1;
 	}
@@ -90,7 +82,6 @@
 										</tr>
 									</table>
 							</fieldset>
-						
 						</td>
 						<td>
 							<fieldset>
@@ -110,6 +101,7 @@
 					</tr>
 				</table>
 				</center>
+				<form method="POST" action="./?url=agregardatosurco&id='.$personas->obtener('ID_PACIENTE').'">
 				<div id="tabs">
 					<ul>
 						<li><a href="#tabs-1">Referencia</a></li>
@@ -206,10 +198,12 @@
 								<table class="tabla-datos" width="100%">
 									<tr>
 										<td>Anamnesis:</td>
-										<td colspan="7"></td>
+										<td>Observaciones:</td>
 									</tr>
 									<tr>
-										<td colspan="8"><textarea class="textarea" width="100%" id="anamnesis" name="anamnesis"></textarea></td>
+										<td><textarea class="textarea" width="100%" id="anamnesis" name="anamnesis"></textarea></td>
+
+										<td><textarea class="textarea" width="100%" id="observaciones" name="observaciones"></textarea></td>
 									</tr>
 									<tr>
 										<td style="width:100px;">Examen Físico:</td>
@@ -229,7 +223,7 @@
 											
 										</tr>
 										<tr  align="center">
-											<td>'.$ds->dime('hora').':'.$ds->dime('minuto').'</td>
+											<td><input style="width:50px;" type="text" name="hora" value="'.$ds->dime('hora').':'.$ds->dime('minuto').'"></td>
 											<td><input style="width:50px;" type="text" name="pa"/></td>
 											<td><input style="width:50px;" type="text" name="fc"/></td>
 											<td><input style="width:50px;" type="text" name="fr"/></td>
@@ -257,169 +251,118 @@
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagbhc"></input></td>
+												<td><input type="text" name="diagnosticobhc" id="diagnosticobhc"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
 												<td align="right">CIE-10: </td>
-												<td><input type="text" id="cie10bhc" name="cie10bhc"></td>
-												<td><textarea id="complicacionesbhc"  name="complicacionesbhc" class="textarea"></textarea></td>
-												<td><textarea id="observacionesbhc"  name="observacionesbhc" class="textarea"></textarea></td>										
+												<td><input type="text" id="ciebhc" name="cie10bhc"></td>
+												<td><textarea id="complicacionesbhc"  name="complicacionesbhc" class="textarea"></textarea></td>										
 										</table>
 									</div>
 									<div id="tabs2-2">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagurin"></input></td>
+												<td><input type="text" name="diagnosticourin" id="diagnosticourin"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie2" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie2" name="mostrarcie2" style="width:80px;">
-															
-													</select>
+													<input type="text" id="cieurin" name="cieurin">
 												</td>
-												<td><textarea id="complicacionesurin" name="complicacionesurin" class="textarea"></textarea></td>
-												<td><textarea id="observacionesurin" name="observacionesurin" class="textarea"></textarea></td>										
+												<td><textarea id="complicacionesurin" name="complicacionesurin" class="textarea"></textarea></td>									
 										</table>
 									</div>
 									<div id="tabs2-3">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagheces"></input></td>
+												<td><input type="text" name="diagnosticoheces" id="diagnosticoheces"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie3" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie3" name="mostrarcie3" style="width:80px;">
-															
-													</select>													
+													<input type="text" id="cieheces" name="cieheces">
 												</td>
-												<td><textarea id="complicacionesheces" name="complicacionesheces" class="textarea"></textarea></td>
-												<td><textarea id="observacionesheces" name="observacionesheces" class="textarea"></textarea></td>										
+												<td><textarea id="complicacionesheces" name="complicacionesheces" class="textarea"></textarea></td>										
 										</table>
 									</div>
 									<div id="tabs2-4">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagglice"></input></td>
+												<td><input type="text" name="diagnosticoglice" id="diagnosticoglice"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie4" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie4" name="mostrarcie4" style="width:80px;">
-															
-													</select>													
+													<input type="text" id="cieglice" name="cieglice">
 												</td>
-												<td><textarea id="complicacionesglice" name="complicacionesglice" class="textarea"></textarea></td>
-												<td><textarea id="observacionesglice" name="observacionesglice" class="textarea"></textarea></td>										
+												<td><textarea id="complicacionesglice" name="complicacionesglice" class="textarea"></textarea></td>										
 										</table>
 									</div>
 									<div id="tabs2-5">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagcrea"></input></td>
+												<td><input type="text" name="diagnosticocrea" id="diagnosticocrea"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie5" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie5" name="mostrarcie5" style="width:80px;">
-															
-													</select>													
+													<input type="text" id="ciecrea" name="ciecrea">
 												</td>
 												<td><textarea id="complicacionescrea" name="complicacionescrea" class="textarea"></textarea></td>
-												<td><textarea id="observacionescrea" name="observacionescrea" class="textarea"></textarea></td>										
 										</table>
 									</div>
 									<div id="tabs2-6">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagn"></input></td>
+												<td><input type="text" name="diagnosticondeu" id="diagnosticondeu"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie6" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie6" name="mostrarcie6" style="width:80px;">
-															
-													</select>													
+													<input type="text" id="ciesn" name="ciesn">
 												</td>
-												<td><textarea id="complicacionesn" name="complicacionesn" class="textarea"></textarea></td>
-												<td><textarea id="observacionesn" name="observacionesn" class="textarea"></textarea></td>										
+												<td><textarea id="complicacionesn" name="complicacionesn" class="textarea"></textarea></td>									
 										</table>
 									</div>
 									<div id="tabs2-7">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagelec"></input></td>
+												<td><input type="text" name="diagnosticoelec" id="diagnosticoelec"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie7" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie7" name="mostrarcie7" style="width:80px;">
-															
-													</select>													
+													<input type="text" id="cieelec" name="cieelec">
 												</td>
 												<td><textarea id="complicacioneselec"  name="complicacioneselec" class="textarea"></textarea></td>
-												<td><textarea id="observacioneselec" name="observacioneselec" class="textarea"></textarea></td>										
 										</table>
 									</div>
 									<div id="tabs2-8">
 										<table class="tabla-datos">
 											<tr align="center">
 												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="hallaz_diagami"></input></td>
+												<td><input type="text" name="diagnosticoami" id="diagnosticoami"></input></td>
 												<td>Tratamiento/Complicaciones</td>		
-												<td>Observaciones:</td>
 											</tr>	
 											<tr align="center">
-												<td align="right">CIE-10</td>
+												<td align="right">CIE-10:</td>
 												<td>
-													<select id="cie8" style="width:60px;">
-														'.$contcie.'
-													</select>
-													<select id="mostrarcie8" name="mostrarcie8" style="width:80px;">
-															
-													</select>													
+													<input type="text" id="cieami" name="cieami">
 												</td>
 												<td><textarea id="complicacionesami" name="complicacionesami" class="textarea"></textarea></td>
-												<td><textarea id="observacionesami" name="observacionesami" class="textarea"></textarea></td>										
 										</table>
 									</div>
 								</div>
@@ -429,7 +372,7 @@
 								<table class="tabla-datos">
 									<tr>
 										<td align="right">Nombre de quien refiere:</td>
-										<td  id="refiere"align="center"><input type="text" id="nombrerefiere"name="nombrerefiere"/></td>
+										<td  id="refiere"align="center"><input type="text" id="nombrerefiere" name="nombrerefiere"/></td>
 										<td></td>									
 									</tr>
 									<tr>
@@ -442,7 +385,7 @@
 					</div>
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:1px;float:right;">Registrar</button>
 					</div>
-					
+					</form>
 					<form method="POST" action="./?url=respuesta_referencia">	
 						<div id="tabs-2">
 							<button type="submit" class="btn btn-default">Imprimir</button>
@@ -513,7 +456,7 @@
 													<tr>
 														<td colspan="2">
 															Observaciones:<br>
-															<textarea name="observaciones" style="min-width:300px;height:50px;border-color:#ccc;"></textarea>
+															<textarea name="observaciones2" style="min-width:300px;height:50px;border-color:#ccc;"></textarea>
 														</td>
 													</tr>
 												</table>
@@ -560,10 +503,10 @@
 			</fieldset>
 			';	
 	}
-	$script = $ds->js('datos_profesionales_salud','nombrerefiere', 'PRIMER_NOMBRE','', 'SEGUNDO_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
-	$script1 = $ds->js('cie10','cie10bhc', 'DESCRIPCION');
-	$cont.= $script1;
-	$cont.= $script;
+	//$script = $ds->js('datos_profesionales_salud','nombrerefiere', 'PRIMER_NOMBRE','', 'SEGUNDO_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
+	//$script1 = $ds->js('cie10','hallaz_diagbhc', 'DESCRIPCION');
+	//$cont.= $script1;
+	//$cont.= $script;
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>

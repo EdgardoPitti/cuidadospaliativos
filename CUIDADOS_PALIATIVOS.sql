@@ -124,7 +124,7 @@ CREATE TABLE `cie10` (
 
 /*!40000 ALTER TABLE `cie10` DISABLE KEYS */;
 INSERT INTO `cie10` (`ID_CIE10`,`DESCRIPCION`,`GRUPO`) VALUES 
- ('A00','CÓLERA','|I1'),
+ ('A00','COLERA','|I1'),
  ('A000','COLERA DEBIDO A VIBRIO CHOLERAE O1, BIOTIPO CHOLERAE',NULL),
  ('A001','COLERA DEBIDO A VIBRIO CHOLERAE O1, BIOTIPO EL TOR',NULL),
  ('A009','COLERA NO ESPECIFICADO',NULL),
@@ -15476,8 +15476,10 @@ CREATE TABLE `datos_profesionales_salud` (
 INSERT INTO `datos_profesionales_salud` (`ID_PROFESIONAL`,`NO_CEDULA`,`PRIMER_NOMBRE`,`SEGUNDO_NOMBRE`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`NO_IDONEIDAD`,`NO_REGISTRO`,`TELEFONO_CASA`,`TELEFONO_CELULAR`,`E_MAIL`) VALUES 
  (2,'3112','Esteban','dd','dd','dd','d','d','d','d','d'),
  (1,'4-750','Edgardo','Joel','Pitti','Sanchez','12121','1212','1212','1212','1212'),
+ (5,'7172727','Luis','Mendoza','Mendoza','Pitti','ajajssj','jsjsjsj','sjsjsj','sjsjs','sjsj'),
  (3,'ask','JOel','oi','io','oi','oi','oi','oi','oi','oi'),
- (4,'ioi','Sarah','op','io','i','POR DEFINIR','u','i','o','o');
+ (4,'ioi','Sarah','op','io','i','POR DEFINIR','u','i','o','o'),
+ (6,'jhsajsa','Brayan','sansan','sansanas','sanasn','sanasn','asnsan','asnsan','asas','POR DEFINIR');
 /*!40000 ALTER TABLE `datos_profesionales_salud` ENABLE KEYS */;
 
 
@@ -16450,7 +16452,7 @@ CREATE TABLE `profesionales_salud` (
   PRIMARY KEY  (`ID_PROFESIONAL`),
   KEY `ID_ESPECIALIDAD_MEDICA` (`ID_ESPECIALIDAD_MEDICA`),
   CONSTRAINT `profesionales_salud_ibfk_1` FOREIGN KEY (`ID_ESPECIALIDAD_MEDICA`) REFERENCES `especialidades_medicas` (`ID_ESPECIALIDAD_MEDICA`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `profesionales_salud`
@@ -16460,6 +16462,7 @@ CREATE TABLE `profesionales_salud` (
 INSERT INTO `profesionales_salud` (`ID_PROFESIONAL`,`ID_ESPECIALIDAD_MEDICA`) VALUES 
  (4,1),
  (5,1),
+ (6,1),
  (1,3),
  (2,3),
  (3,4);
@@ -16887,7 +16890,7 @@ CREATE TABLE `surco` (
   `ID_SURCO` int(11) NOT NULL auto_increment,
   `ID_PACIENTE` int(11) NOT NULL,
   `ID_TRAZABILIDAD` varchar(36) NOT NULL,
-  `FECHA` datetime default NULL,
+  `FECHA` date default NULL,
   `INSTALACION_REFIERE` varchar(150) default NULL,
   `INSTALACION_RECEPTORA` varchar(150) default NULL,
   `ID_MOTIVO_REFERENCIA` int(11) NOT NULL,
@@ -16978,13 +16981,22 @@ CREATE TABLE `tipo_examen` (
   `ID_TIPO_EXAMEN` int(11) NOT NULL auto_increment,
   `TIPO_EXAMEN` varchar(45) default NULL,
   PRIMARY KEY  (`ID_TIPO_EXAMEN`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tipo_examen`
 --
 
 /*!40000 ALTER TABLE `tipo_examen` DISABLE KEYS */;
+INSERT INTO `tipo_examen` (`ID_TIPO_EXAMEN`,`TIPO_EXAMEN`) VALUES 
+ (1,'BHC'),
+ (2,'Urin'),
+ (3,'Heces'),
+ (4,'Glicemia'),
+ (5,'Creatinina'),
+ (6,'N. de U.'),
+ (7,'Electrolitos'),
+ (8,'Amilasa');
 /*!40000 ALTER TABLE `tipo_examen` ENABLE KEYS */;
 
 
@@ -17081,6 +17093,8 @@ CREATE TABLE `trazabilidad` (
 --
 
 /*!40000 ALTER TABLE `trazabilidad` DISABLE KEYS */;
+INSERT INTO `trazabilidad` (`ID_TRAZABILIDAD`,`ID_PACIENTE`,`FECHA`) VALUES 
+ ('1',1,'2013-10-11');
 /*!40000 ALTER TABLE `trazabilidad` ENABLE KEYS */;
 
 
