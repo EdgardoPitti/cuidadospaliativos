@@ -28,7 +28,7 @@
 	if(empty($cedula) or $sw == 1){	
 		$cont.='
 				Introduzca el número de cédula del paciente, y añada las observaciones pertinentes.<br><br>
-				<form class="form-search" method="POST" action="./?url=domiciliarias_registro_visitas">
+				<form class="form-search" method="POST" action="./?url=domiciliarias_registro_actividades">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="cedula" id="cedula">
 					  <span class="input-group-btn">
@@ -103,70 +103,69 @@
 							</td>
 						</tr>
 					</table>
-				</center>';
+				</center>
+				<div class="row-fluid" style="margin-top:15px;">
+					<div class="span12">
+						<form method="POST" action="./?url=addregistroactividad"
+						<table width="100%">
+							<tr>
+								<td>Frecuentación: </td>
+								<td>
+									<select id="frecuencia" name="frecuencia">
+										<option value=""></option>';
+				$x = $frec->buscardonde('ID_FRECUENCIA > 0');						
+				while($x){
+					$cont.='			<option value="'.$frec->obtener('ID_FRECUENCIA').'">'.$frec->obtener('FRECUENCIA').'</option>';
+					$x = $frec->releer();
+				}
+			$cont.='	
+									</select>
+								</td>
+								<td>Tipo de Atención: </td>
+								<td>
+									<select id="tipoatencion" name="tipoatencion">
+										<option value=""></option>';
+				$y = $tipo_at->buscardonde('ID_TIPO_ATENCION');						
+				while($y){
+					$cont.='			<option value="'.$tipo_at->obtener('ID_TIPO_ATENCION').'">'.$tipo_at->obtener('TIPO_ATENCION').'</option>';
+					$y = $tipo_at->releer();
+				}
+			$cont.='				
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Diagnóstico: </td>
+								<td><input type="text" name="diagnostico" id="diagnostico"></td>
+								<td>Frecuentación: </td>
+								<td>
+									<select id="frec_diag" name="frec_diag">
+										<option value=""></option>';
+				$x = $frec->buscardonde('ID_FRECUENCIA > 0');						
+				while($x){
+					$cont.='			<option value="'.$frec->obtener('ID_FRECUENCIA').'">'.$frec->obtener('FRECUENCIA').'</option>';
+					$x = $frec->releer();
+				}
+			$cont.='	
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Actividad: </td>
+								<td><input type="text" name="actividad" id="actividad"></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>';
 	}		
 	
 	$cont.='	
-					<div class="row-fluid" style="margin-top:15px;">
-						<div class="span12">
-							<form method="POST" action="./?url=addregistroactividad"
-							<table width="100%">
-								<tr>
-									<td>Frecuentación: </td>
-									<td>
-										<select id="frecuencia" name="frecuencia">
-											<option value=""></option>';
-					$x = $frec->buscardonde('ID_FRECUENCIA > 0');						
-					while($x){
-						$cont.='			<option value="'.$frec->obtener('ID_FRECUENCIA').'">'.$frec->obtener('FRECUENCIA').'</option>';
-						$x = $frec->releer();
-					}
-				$cont.='	
-										</select>
-									</td>
-									<td>Tipo de Atención: </td>
-									<td>
-										<select id="tipoatencion" name="tipoatencion">
-											<option value=""></option>';
-					$y = $tipo_at->buscardonde('ID_TIPO_ATENCION');						
-					while($y){
-						$cont.='			<option value="'.$tipo_at->obtener('ID_TIPO_ATENCION').'">'.$tipo_at->obtener('TIPO_ATENCION').'</option>';
-						$y = $tipo_at->releer();
-					}
-				$cont.='				
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td>Diagnóstico: </td>
-									<td><input type="text" name="diagnostico" id="diagnostico"></td>
-									<td>Frecuentación: </td>
-									<td>
-										<select id="frec_diag" name="frec_diag">
-											<option value=""></option>';
-					$x = $frec->buscardonde('ID_FRECUENCIA > 0');						
-					while($x){
-						$cont.='			<option value="'.$frec->obtener('ID_FRECUENCIA').'">'.$frec->obtener('FRECUENCIA').'</option>';
-						$x = $frec->releer();
-					}
-				$cont.='	
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td>Actividad: </td>
-									<td><input type="text" name="actividad" id="actividad"></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-					</div>
+					
 				</fieldset>	
 			</center>';
 				
 	$ds->contenido($cont);
 	$ds->mostrar();
-
-
 ?>
