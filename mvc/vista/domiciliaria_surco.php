@@ -256,7 +256,7 @@
 											</tr>	
 											<tr align="center">
 												<td align="right">CIE-10: </td>
-												<td><input type="text" id="ciebhc" name="cie10bhc"></td>
+												<td><input type="text" id="ciebhc" name="ciebhc" size="5"></td>
 												<td><textarea id="complicacionesbhc"  name="complicacionesbhc" class="textarea"></textarea></td>										
 										</table>
 									</div>
@@ -330,7 +330,7 @@
 											<tr align="center">
 												<td align="right">CIE-10:</td>
 												<td>
-													<input type="text" id="ciesn" name="ciesn">
+													<input type="text" id="ciendu" name="ciendu">
 												</td>
 												<td><textarea id="complicacionesn" name="complicacionesn" class="textarea"></textarea></td>									
 										</table>
@@ -451,11 +451,11 @@
 												<table width="50%">
 													<tr width="100px">
 														<td>Diagnóstico: </td>
-														<td><input type="text" name="diagnostico"></td>
+														<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta"></td>
 													</tr>
 													<tr>
 														<td>CIE-10: </td>
-														<td><input type="text" name="cie-10"></td>
+														<td><input type="text" id="cierespuesta" name="cierespuesta"></td>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -507,10 +507,6 @@
 			</fieldset>
 			';	
 	}
-	//$script = $ds->js('datos_profesionales_salud','nombrerefiere', 'PRIMER_NOMBRE','', 'SEGUNDO_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
-	//$script1 = $ds->js('cie10','hallaz_diagbhc', 'DESCRIPCION');
-	//$cont.= $script1;
-	//$cont.= $script;
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
