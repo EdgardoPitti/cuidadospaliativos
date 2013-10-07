@@ -19,6 +19,7 @@
 	
 		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
 		<link rel="stylesheet" href="./css/jquery-ui.css"/>	
+		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>  
 		
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
@@ -26,16 +27,20 @@
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>
-<<<<<<< .mine
-
-=======
-		
-	
->>>>>>> .r147
+        <script type='text/javascript' src='./js/jquery-1.8.3.js'></script>
+        <script type='text/javascript' src='./js/jquery-ui-1.9.2.custom.js'></script>    
+        <!-- Scripts para el Autocomplete -->
+        <link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
+        <script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
+		 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		  <!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+		  <![endif]-->	
 	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	  <!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
 	  <![endif]-->	
+
 		<script>
 			$(function() {
 				$( "#tabs" ).tabs(); //Pestañas principales de SURCO y Contacto Telefónico
@@ -56,69 +61,303 @@
 				$( "#accordion4" ).accordion(); //Acordeon interno de Resumen Med.
 			});
 		</script>
-		<script>
-			$(function() {
-				$("#diagnosticobhc").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>	
-		<script>
-			$(function() {
-				$("#diagnosticoami").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>	
-		<script>
-			$(function() {
-				$("#diagnosticoelec").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>	
-		<script>
-			$(function() {
-				$("#diagnosticondeu").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>
-		<script>
-			$(function() {
-				$("#diagnosticocrea").autocomplete({
-					source:"./mvc/vista/buscar_personal.php"
-				});
-			});
-		</script>	
-		<script>
-			$(function() {
-				$("#diagnosticoglice").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>	
-		<script>
-			$(function() {
-				$("#diagnosticoheces").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>	
-		<script>
-			$(function() {
-				$("#diagnosticourin").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
-		</script>
-		<script>
-			$(function() {
-				$("#nombrerefiere").autocomplete({
-					source:"./mvc/vista/buscar_personal.php"
-				});
-			});
-		</script>
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticobhc").keypress(function() {
+                       palabra = $("#diagnosticobhc").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticobhc").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticobhc").result(function(event, data, formatted) {
+                        $("#ciebhc").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticourin").keypress(function() {
+                       palabra = $("#diagnosticourin").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticourin").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticourin").result(function(event, data, formatted) {
+                        $("#cieurin").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticoheces").keypress(function() {
+                       palabra = $("#diagnosticoheces").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticoheces").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticoheces").result(function(event, data, formatted) {
+                        $("#cieheces").val(data[1]); 
+                    });                   
+            });	            
+        </script>	
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticoglice").keypress(function() {
+                       palabra = $("#diagnosticoglice").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticoglice").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticoglice").result(function(event, data, formatted) {
+                        $("#cieglice").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticocrea").keypress(function() {
+                       palabra = $("#diagnosticocrea").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticocrea").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticocrea").result(function(event, data, formatted) {); 
+                        $("#ciecrea").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticondeu").keypress(function() {
+                       palabra = $("#diagnosticondeu").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticondeu").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticondeu").result(function(event, data, formatted) {
+                        $("#ciendu").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticoelec").keypress(function() {
+                       palabra = $("#diagnosticoelec").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticoelec").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticoelec").result(function(event, data, formatted) {
+                        $("#cieelec").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticoami").keypress(function() {
+                       palabra = $("#diagnosticoami").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticoami").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticoami").result(function(event, data, formatted) { 
+                        $("#cieami").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticorespuesta").keypress(function() {
+                       palabra = $("#diagnosticorespuesta").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticorespuesta").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnosticorespuesta").result(function(event, data, formatted) {
+                        $("#cierespuesta").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            // Esta función realiza el llamado via AJAX para el autocompletado 
+            // del formulario con base en un término o palabra que el usuario 
+            // indique en la medida que vaya digitando en el cuadro de texto
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#nombrerefiere").keypress(function() {
+                       palabra = $("#nombrerefiere").val(); // Completa la palabra
+                    });
+                    $("#nombrerefiere").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });             
+            });	            
+        </script>
+
 		<script>
 			$(function(){
 			  $("#show1").click(function(){
