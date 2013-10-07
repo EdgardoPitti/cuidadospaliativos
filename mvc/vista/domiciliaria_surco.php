@@ -372,11 +372,7 @@
 								<table class="tabla-datos">
 									<tr>
 										<td align="right">Nombre de quien refiere:</td>
-<<<<<<< .mine
-										<td  id="refiere" align="center"><input type="text" id="nombrerefiere"name="nombrerefiere"/></td>
-=======
 										<td  id="refiere"align="center"><input type="text" id="nombrerefiere" name="nombrerefiere"/></td>
->>>>>>> .r147
 										<td></td>									
 									</tr>
 									<tr>
