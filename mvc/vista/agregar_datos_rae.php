@@ -15,7 +15,6 @@
 	
 	$idpaciente = $_GET['idpac'];
 	$fecha = $ds->dime('año').'-'.$ds->dime('mes').'-'.$ds->dime('dia');
-	echo $fechaactual = '"'.$fecha.'"';
 	
 	$trazabilidad->nuevo();
 	$trazabilidad->colocar("ID_PACIENTE", $idpaciente);
