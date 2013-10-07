@@ -15,7 +15,6 @@
 	
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="css/gradientes.css" rel="stylesheet">
 	
 		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
 		<link rel="stylesheet" href="./css/jquery-ui.css"/>	
@@ -27,6 +26,7 @@
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 		<script src="./js/jquery-1.9.1.js"></script>
 		<script src="./js/jquery-ui.js"></script>
+
         <script type='text/javascript' src='./js/jquery-1.8.3.js'></script>
         <script type='text/javascript' src='./js/jquery-ui-1.9.2.custom.js'></script>    
         <!-- Scripts para el Autocomplete -->
@@ -36,11 +36,6 @@
 		  <!--[if lt IE 9]>
 			<script src="js/html5shiv.js"></script>
 		  <![endif]-->	
-	 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-	  <!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-	  <![endif]-->	
-
 		<script>
 			$(function() {
 				$( "#tabs" ).tabs(); //Pestañas principales de SURCO y Contacto Telefónico
@@ -359,6 +354,20 @@
         </script>
 
 		<script>
+			$(function() {
+				$("#diagnosticoadmision").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>
+		<script>
+			$(function() {
+				$("#diagnosticoegreso").autocomplete({
+					source:"./mvc/vista/buscar_cie10.php"
+				});
+			});
+		</script>
+		<script>
 			$(function(){
 			  $("#show1").click(function(){
 				$("#mostrar_ocultar1").toggle("1000");
@@ -416,153 +425,133 @@
 						</li>
 					</ul>
 				</div>
-			
+			</div>
 			
 			<div class="row-fluid">
 				<!--Aside-->
 				<div class="span2">
-					<!--DOMICILIARIA-->
-					<div class="accordion" id="mostrar_ocultar1" id="accordion-1" style="display:none;">
+				
+					<!--DOMICILIARIA-->					
+					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:none;">			
 						<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#accordion-element-603066"><b>Registro de Visitas Domiciliarias</b></a>
-							</div>
-							<div id="accordion-element-603066" class="accordion-body in collapse">
-								<div class="accordion-inner">
-									<a href="./?url=domiciliaria_capturardatos"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Capturar Datos</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Agenda</i></a>
-								</div>
-							</div>
+						<div style="margin-bottom:2px;">
+							<input id="ac-1" name="acordeon" type="radio" />
+							<label for="ac-1">Registro de Visitas Domiciliarias</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url=domiciliaria_capturardatos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="#"><i>Agenda</i></a></li>				
+								</ul>
+							</article>	
 						</div>
-						<div class="accordion-group">
-							<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;">
-								<a href="./?url=domiciliarias_registro_visitas"><b style="font-size:1.2em;">Registro de Actividades Diarias</b></a>
-							</div>
-							<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
-								<a href="./?url=domiciliaria_surco"><b style="font-size:1.2em;">Surco</b></a>
-							</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=domiciliarias_registro_actividades">Registro de Actividades Diarias</a></li>
+							</ul>
 						</div>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#accordion-element-229392"><b>Indicadores</b></a>
-							</div>
-							<div id="accordion-element-229392" class="accordion-body collapse">
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Total de Visitas Realizadas</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Tiempo Promedio por Visita</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Activadades Realizadas por Visitas</i></a>
-								</div>
-							</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=domiciliaria_surco">Surco</a></li>
+							</ul>
 						</div>
-					</div>
+						<div style="margin-bottom:10px;">
+							<input id="ac-2" name="acordeon" type="radio" />
+							<label for="ac-2">Indicadores</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url="><i>Total de Visitas Realizadas</i></a></li>
+									<li><a class="sublink" href="#"><i>Tiempo Promedio por Visita</i></a></li>
+									<li><a class="sublink" href="#"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
+									<li><a class="sublink" href="#"><i>Activadades Realizadas por Visitas</i></a></li>								
+								</ul>
+							</article>	
+						</div>
+					</div>	
 					
 					<!--AMBULATORIA-->
-					<div class="accordion" id="mostrar_ocultar2" id="accordion-2"  style="display:none">
+					<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:none;">			
 						<h3>Men&uacute; Atenci&oacute;n Ambulatoria</h3><hr>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-2" href="#accordion-element-603067"><b>Registro Diario de Actividades </b></a>
-							</div>
-							<div id="accordion-element-603067" class="accordion-body in collapse">
-								<div class="accordion-inner">
-									<a href="./?url=ambulatoria_capturardatos"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Capturar Datos</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Agenda</i></a>
-								</div>
-							</div>
+						<div style="margin-bott om:2px;">
+							<input id="ac-3" name="acordeon" type="radio" />
+							<label for="ac-3">Registro Diario de Actividades</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url=ambulatoria_capturardatos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="#"><i>Agenda</i></a></li>				
+								</ul>
+							</article>	
 						</div>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-2" href="#accordion-element-603068"><b>Contacto Telef&oacute;nico</b></a>
-							</div>
-							<div id="accordion-element-603068" class="accordion-body in collapse">
-								<div class="accordion-inner">
-									<a href="./?url=ambulatoria_atencionalpaciente"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Atenci&oacute;n al Paciente</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Interconsulta</i></a>
-								</div>
-							</div>
+						<div>
+							<input id="ac-4" name="acordeon" type="radio" />
+							<label for="ac-4">Contacto Telef&oacute;nico</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente"><i>Atenci&oacute;n al Paciente</i></a></li>
+									<li><a class="sublink" href="#"><i>Interconsulta</i></a></li>								
+								</ul>
+							</article>	
 						</div>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-2" href="#accordion-element-229393"><b>Indicadores</b></a>
-							</div>
-							<div id="accordion-element-229393" class="accordion-body collapse">
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Activadades Realizadas por Paciente</i></a>
-								</div>
-							</div>
+						<div style="margin-bottom:10px;">
+							<input id="ac-5" name="acordeon" type="radio" />
+							<label for="ac-5">Indicadores</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url="><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a></li>
+									<li><a class="sublink" href="#"><i>Activadades Realizadas por Paciente</i></a></li>								
+								</ul>
+							</article>	
 						</div>
-					</div>
-					
+					</div>	
+						
 					<!--HOSPITALARIA-->
-					<div class="accordion" id="mostrar_ocultar3" id="accordion-3" style="display:none">
+					<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:none;">			
 						<h3>Men&uacute; Atenci&oacute;n Hospitalaria</h3><hr>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-3" href="#accordion-element-603069"><b>RAE</b></a>
-							</div>
-							<div id="accordion-element-603069" class="accordion-body in collapse">
-								<div class="accordion-inner">
-									<a href="./?url=hospitalaria_rae_capturardatos"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Capturar Datos</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="./?url=hospitalaria_rae_evolucion"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Evoluci&oacute;n</i></a>
-								</div>
-							</div>
+						<div style="margin-bott om:2px;">
+							<input id="ac-6" name="acordeon" type="radio" />
+							<label for="ac-6">RAE</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion"><i>Evoluci&oacute;n</i></a></li>				
+								</ul>
+							</article>	
 						</div>
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-3" href="#accordion-element-229394"><b>Indicadores</b></a>
-							</div>
-							<div id="accordion-element-229394" class="accordion-body collapse">
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Porcentaje de Hospitalizados referidos de Consulta externa</i></a>
-								</div>
-								<div class="accordion-inner">
-									<a href="#"><i style="font-size:1.1em; font-weight:bold;padding-left:10px;">Razones de Readmisiones</i></a>
-								</div>
-							</div>
+						<div style="margin-bottom:10px;">
+							<input id="ac-7" name="acordeon" type="radio" />
+							<label for="ac-7">Indicadores</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url="><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
+									<li><a class="sublink" href="#"><i>Razones de Readmisiones</i></a></li>								
+								</ul>
+							</article>	
 						</div>
-					</div>
-				
+					</div>	
 					
 					<!--RED SOCIAL-->
-					<div class="accordion" id="mostrar_ocultar4" style="display:none" >
-						<h3>Red Social</h3><hr>
-						<div class="accordion-group">
-							<div class="accordion-body">
-								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;">
-									<a href="#"><b style="font-size:1.2em;">Mis Grupos</b></a>
-								</div>	
-								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
-									<a href="#"><b style="font-size:1.2em;">Comunidades</b></a>
-								</div>
-								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">	
-									<a href="#"><b style="font-size:1.2em;">Eventos</b></a>
-								</div>
-								<div class="accordion-inner" style="background-color:#afdefa;border: 1px solid #258ECD;margin-top:2px;">
-									<a href="#"><b style="font-size:1.2em;">Especialistas</b></a>
-								</div>
-							</div>
+					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4" style="display:none;">	
+					<h3>Red Social</h3><hr>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Mis Grupos</a></li>
+							</ul>
 						</div>
-					</div>
-					
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Comunidades</a></li>
+							</ul>
+						</div>					
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Eventos</a></li>
+							</ul>
+						</div>	
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Especialistas</a></li>
+							</ul>
+						</div>	
+					</div>	
 				</div>
 			
 				<!--Contenido-->
@@ -577,9 +566,14 @@
 					<div class="navbar">
 						<div class="navbar-inner">
 							<div class="container-fluid">
-								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">Atenciones</a>
+								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</a> 
+									<a href="#" class="brand">Atenciones</a>
 								<div class="nav-collapse navbar-responsive-collapse collapse">
-									<ul class="nav">
+									<ul class="nav">										
 										<li class="">
 											<a href="#" id="show1"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
 										</li>
