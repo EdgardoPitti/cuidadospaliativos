@@ -166,53 +166,51 @@
 						</tr>							
 						<tr>
 							<td>
-								<center>
-									<table style="font-size:14px" width="100%">
-											<tr align="center">
-												<td>Diagnóstico de Admisión:</td>
-												<td>Diagnóstico de Egreso:</td>
-												<td>Tratamiento: </td>
-												<td>Condición de Salida: </td>
-											</tr>
-											<tr align="center">
-												<td><textarea id="diagnosticoadmision" name="diagnosticoadmision"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-												<td><textarea id="diagnosticoegreso" name="diagnosticoegreso"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-												<td><textarea id="tratamiento" name="tratamiento"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-												<td>
-													<select id="condicionsalida" name="condicionsalida">
-														<option value="0"></option>';
+								<table style="font-size:14px" width="100%">
+									<tr align="center">
+										<td>Diagnóstico de Admisión:</td>
+										<td>Diagnóstico de Egreso:</td>
+										<td>Tratamiento: </td>
+										<td>Condición de Salida: </td>
+									</tr>
+									<tr align="center">
+										<td><textarea id="diagnosticoadmision" name="diagnosticoadmision"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+										<td><textarea id="diagnosticoegreso" name="diagnosticoegreso"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+										<td><textarea id="tratamiento" name="tratamiento"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+										<td>
+											<select id="condicionsalida" name="condicionsalida">
+												<option value="0"></option>';
 			$c = $condicionsalida->buscardonde('ID_CONDICION_SALIDA > 0');
 			while($c){
 					$cont.='
-														<option value="'.$condicionsalida->obtener('ID_CONDICION_SALIDA').'">'.$condicionsalida->obtener('CONDICION_SALIDA').'</option>
+												<option value="'.$condicionsalida->obtener('ID_CONDICION_SALIDA').'">'.$condicionsalida->obtener('CONDICION_SALIDA').'</option>
 						';
 					$c = $condicionsalida->releer();
 			}					
-			$cont.='								</select>
-												</td>
-											</tr>
-										</table>
-									</center>
-								</td>
-							</tr>
-							<tr>
-								<td class="fondo_azul">
-									Datos de Evolución
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<table style="font-size:14px" width="100%">
-										<tr>
-											<td>Evolución:</td>
-										</tr>
-										<tr>
-											<td><textarea id="evolucion" name="evolucion" style="width:98%;height:50px;border-color:#ccc;"></textarea></td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
+	$cont.='								</select>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="fondo_azul">
+								Datos de Evolución
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table style="font-size:14px" width="100%">
+									<tr>
+										<td>Evolución:</td>
+									</tr>
+									<tr>
+										<td><textarea id="evolucion" name="evolucion" style="width:98%;height:50px;border-color:#ccc;"></textarea></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
 					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:10px;float:right;">Registrar</button>
 				</form>
 			</fieldset>	

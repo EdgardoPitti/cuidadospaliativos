@@ -12,6 +12,136 @@
 	margin:70px auto;
  }
  
+ .fondo_azul{
+	color:#fff;
+	background:#47a3da;
+	margin-top:5px;
+	padding:10px;
+	font-size:16px;
+	font-weight:bold;
+	text-shadow: 1px 1px 1px #333;
+}	
+.css_acordeon{
+	text-align: left;
+}
+.css_acordeon h3{
+	padding: 20px;
+	background-color: #0d77b6;
+	color: #fff;
+	text-shadow: 0px 1px 0px #333;
+}
+.css_acordeon label{
+	padding:8px 12px;
+	display: block;
+	cursor: pointer;
+	color: #08c;
+	border-bottom: 0;
+	background-color: #afdefa;
+	text-shadow: 0px 1px 0px #fff;
+	border: 1px solid #258ECD;
+	font-size: 1.1em;
+	font-weight:bold;
+}
+.css_acordeon label:hover{
+	color:#08c;
+	font-weight:bold;
+	background-color: #afdefa;
+	text-shadow: 0px 1px 0px #fff;
+	border: 1px solid #258ECD;
+}
+.css_acordeon input:checked + label,
+.css_acordeon input:checked + label:hover{
+	color:#08c;
+	font-weight:bold;
+	font-size:1.1em;
+	background-color: #afdefa;
+	text-shadow: 0px 1px 0px #fff;
+	border: 1px solid #258ECD;
+	box-shadow: 
+		0px 0px 0px 1px rgba(155,155,155,0.3), 
+		0px 2px 2px rgba(0,0,0,0.1);
+}
+.css_acordeon input{
+	display: none; /*Oculta el radio button original*/
+	overflow:hidden;
+}
+.css_acordeon article{
+	background:#DEEFF7;
+	margin-top: -1px;
+	overflow: hidden;
+	height: 0px;
+}
+/*Diseño del menu ya desplegado*/
+.css_acordeon input:checked ~ article{
+	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	-moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	-o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	-ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+	
+}
+	/*Diseño de los sublink del acordeon*/
+	.css_acordeon article li{
+		list-style-type:none;
+		font-size: 14px;
+	}
+	.css_acordeon article li .sublink{
+		color: #08c;
+		display:block;
+		font-size:14px;
+		font-weight:bold;
+		text-shadow:1px 1px 0px #d3d3d3;
+		line-height:20px;
+		list-style-type:none;
+		text-decoration:none;
+		outline:none;
+		padding:7px 0px 7px 20px;
+		border-bottom:1px solid #A9DFF9;
+	}
+	.css_acordeon article li .sublink:hover{
+		color:#08c;
+		font-weight:bold;
+		text-decoration:underline;
+		background:#9CD8F4;
+		border-bottom:1px solid #A9DFF9 ;
+		-webkit-transition: background 0.5s ease-out;
+		-moz-transition: background 0.5s ease-out;
+        -ms-transition: background 0.5s ease-out;
+        -o-transition: background 0.5s ease-out;
+		transition: background 0.5s ease-out;
+	}
+	/*Fin del diseño de los sublink*/
+.css_acordeon input:checked ~ article{
+	height: 100%; /*Alto del espacio para los sublinks*/
+}
+	/*clase para hipervínculo único en acordeon*/
+	.css_acordeon div .acordeon_link ul{
+		font-size: 19px;
+		list-style-type: none;
+	}
+	.css_acordeon div .acordeon_link .link{
+		display: block;
+		color:#08c;
+		font-weight:bold;
+		font-size: 1.1em;
+		background-color: #afdefa;
+		text-shadow: 0px 1px 0px #fff;
+		border: 1px solid #258ECD;
+		list-style-type:none;
+		text-decoration:none;
+		outline:none;
+		padding:8px 12px;
+	}	
+	.css_acordeon div .acordeon_link .link:hover{
+		display:block;
+		color:#08c;
+		font-weight:bold;
+		background-color: #afdefa;
+		text-shadow: 0px 1px 0px #fff;
+		border: 1px solid #258ECD;
+	}
+
+ 
  .clearfix{*zoom:1}
  
  .clearfix:before,
@@ -198,7 +328,7 @@
  
  .page-footer{margin: 10px 0 0px;border-radius:5px;border-bottom: 1px solid #eee;padding: 15px;background-color: #1bb7f3;color: #ffffff;text-shadow: 0px 1px 0px #333;font-size:1.2em;}
 
- ul,ol{padding:0;margin:0 0 10px 25px}ul ul,ul ol,ol ol,ol ul{margin-bottom:0}li{line-height:20px}ul.unstyled,ol.unstyled{margin-left:0;list-style:none}ul.inline,ol.inline{margin-left:0;list-style:none}
+ ul,ol{padding:0;margin:0 0 5px 0px}ul ul,ul ol,ol ol,ol ul{margin-bottom:0}li{line-height:20px;list-style:none;}ul.unstyled,ol.unstyled{margin-left:0;list-style:none}ul.inline,ol.inline{margin-left:0;list-style:none}
  
  ul.inline>li,ol.inline>li{display:inline-block;*display:inline;padding-right:5px;padding-left:5px;*zoom:1}dl{margin-bottom:20px}dt,dd{line-height:20px}dt{font-weight:bold}dd{margin-left:10px}
  

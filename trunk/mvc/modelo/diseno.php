@@ -355,25 +355,39 @@ class Diseno {
 		return;
 	}
 	
-	function js($tabla,$id,$cmp1,$cond='',$cmp2='',$cmp3='',$cmp4='') {
-		$sql = 'select * from '.$tabla;
-		if(!empty($cond)) $sql .= ' WHERE '.$cond ;
-		$query = $this->db->query($sql);	
-		while($row = $this->db->fetch($query)){
-			$elem[] = '"'.$row[$cmp1].' '.$row[$cmp2].' '.$row[$cmp3].' '.$row[$cmp4].'"';
-		}
-		$arreglo = implode(", ", $elem);
+	function js($latitud,$longitud){
 		$script = '<script>
-					$(function() {
-						var availableTags = new Array('.$arreglo.');
-						$( "#'.$id.'" ).autocomplete({
-							source: availableTags
-						});
-					});
-					</script>';
+						function initialize()
+						{
+						  var mapProp = {
+							center: new google.maps.LatLng('.$latitud.', '.$longitud.'),
+							zoom:8,
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						  };
+						  var map = new google.maps.Map(document.getElementById("map"),mapProp);
+						}
+
+						function loadScript()
+						{
+						  var script = document.createElement("script");
+						  script.type = "text/javascript";
+						  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false&callback=initialize";
+						  document.body.appendChild(script);
+						}
+
+						window.onload = loadScript;
+					</script>
+					';
 		return $script;
 	}
-
+	
+	function alerta(){
+		$const = 1;
+		echo '
+			<audio src="./alertas/alerta.wav" type="audio/wav" preload="preload" controls="controls" autoplay="autoplay" loop></audio>
+		';
+		return;
+	}
 	function mostrar($noaside = false){
 		if($noaside)
 			echo '
