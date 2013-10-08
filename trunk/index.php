@@ -32,10 +32,8 @@
         <!-- Scripts para el Autocomplete -->
         <link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
         <script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
-		 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-		  <!--[if lt IE 9]>
-			<script src="js/html5shiv.js"></script>
-		  <![endif]-->	
+
+
 		<script>
 			$(function() {
 				$( "#tabs" ).tabs(); //Pestañas principales de SURCO y Contacto Telefónico
@@ -56,10 +54,12 @@
 				$( "#accordion4" ).accordion(); //Acordeon interno de Resumen Med.
 			});
 		</script>
+		
+		<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
+         del formulario con base en un término o palabra que el usuario 
+         indique en la medida que vaya digitando en el cuadro de texto -->
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
+		
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -88,9 +88,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -119,9 +116,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -150,9 +144,6 @@
             });	            
         </script>	
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -181,9 +172,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -212,9 +200,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -243,9 +228,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -274,9 +256,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -305,9 +284,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -336,9 +312,6 @@
             });	            
         </script>		
 		<script type="text/javascript">
-            // Esta función realiza el llamado via AJAX para el autocompletado 
-            // del formulario con base en un término o palabra que el usuario 
-            // indique en la medida que vaya digitando en el cuadro de texto
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
