@@ -59,8 +59,6 @@
 															<tr>
 																<td>Fecha de Nacimiento: </td>
 																<td><input type="date" id="fechanacimiento" name="fechanacimiento"><br></td>
-																<td align="right">Edad:</td>
-																<td><input type="text" id="edad" name="edad"></td>
 															</tr>
 															<tr>
 																<td align="right" >Tipo de Sangre: </td>
