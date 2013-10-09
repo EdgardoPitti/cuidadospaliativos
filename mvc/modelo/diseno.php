@@ -491,63 +491,16 @@ class Diseno {
     }
 	function edad($dia=0, $mes=0, $anio){
 		$edad = 0;
-		if($anio > $this->dime('año')){
-			$edad = 'No ha nacido aun';
+		if (!checkdate($mes,$dia,$anio)){
+			$edad = 'Fecha Inválida';
 		}else{
-			if ($anio == $this->dime('año')){
-				if($mes == $this->dime('mes')){
-					if($dia > $this->dime('dia')){
-						$edad = 'No ha nacido aun';
-					}else{
-						if ($dia == $this->dime('dia')){
-							$edad = 'Nacio Hoy';
-						}else{
-							$edad = $this->dime('dia')-$dia;
-							$edad.=' dias';
-						}
-					}
+			if($anio < $this->dime('año')){
+				if($mes < $this->dime('mes')){
+					$edad = $this->dime('año') - $anio;
 				}else{
-					if($mes > $this->dime('mes')){
-						$edad = 'No ha nacido aun';
-					}else{
-						if (($mes+1 == $this->dime('mes') and $dia > $this->dime('dia'))or ($mes == 12 and $this->dime('mes') == 1)){
-							if($mes == 1 or $mes == 3 or $mes == 5 or $mes == 7 or $mes == 8 or $mes == 10 or $mes == 12){
-								$edad = (31 - $dia) + $this->dime('dia').' dias';	
-							}
-							else{
-								if ($mes == 2 and $this->dime('año')%4==0){
-									$edad = (29 - $dia) + $this->dime('dia').' dias';	
-								}else{
-									if($mes == 2){
-										$edad = (28 - $dia) + $this->dime('dia').' dias';	
-									}else{
-										$edad = (30 - $dia) + $this->dime('dia').' dias';	
-									}
-								}
-							}
-						}else{
-							$edad = $this->dime('mes') - $mes.' meses';
-						}
-					}
-				}
-			}else{
-				$edad = $this->dime('año') - $anio;
-				if ($dia !=0 and $mes !=0){
-					if (!checkdate($mes,$dia,$anio)){
-						$edad = 'Fecha Inválida';
-					}else{
-						if ($mes > $this->dime('mes')){
-							$edad--;
-						}else{
-							if ($mes = $this->dime('mes')){
-								if($dia > $this->dime('dia')){
-									$edad--;
-								}
-							}
-						}
-					}
-				}
-				$edad.=' años';			
+					$edad = $this->dime('año') - $anio;
+					$edad--;
+				}				
 			}
 		}
 		return $edad;

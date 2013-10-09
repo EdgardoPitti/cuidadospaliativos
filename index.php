@@ -327,18 +327,32 @@
         </script>
 
 		<script>
-			$(function() {
-				$("#diagnosticoadmision").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticoadmision").keypress(function() {
+                       palabra = $("#diagnosticoadmision").val(); // Completa la palabra
+                    });
+                    $("#diagnosticoadmision").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });             
+            });	  
 		</script>
 		<script>
-			$(function() {
-				$("#diagnosticoegreso").autocomplete({
-					source:"./mvc/vista/buscar_cie10.php"
-				});
-			});
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnosticoegreso").keypress(function() {
+                       palabra = $("#diagnosticoegreso").val(); // Completa la palabra
+                    });
+                    $("#diagnosticoegreso").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });             
+            });	  
 		</script>
 		<script>
 			$(function(){

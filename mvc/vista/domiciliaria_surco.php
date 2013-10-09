@@ -78,7 +78,7 @@
 										<tr align="left">
 											<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
 											<td>'.$asegurado.'</td>
-											<td>'.$ds->edad($dia,$mes,$anio).'</td>
+											<td>'.$ds->edad($dia,$mes,$anio).' Años</td>
 										</tr>
 									</table>
 							</fieldset>

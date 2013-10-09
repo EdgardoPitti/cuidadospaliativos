@@ -15422,7 +15422,7 @@ CREATE TABLE `datos_pacientes` (
   CONSTRAINT `datos_pacientes_ibfk_5` FOREIGN KEY (`ID_NACIONALIDAD`) REFERENCES `nacionalidades` (`ID_NACIONALIDAD`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `datos_pacientes_ibfk_6` FOREIGN KEY (`ID_TIPO_PACIENTE`) REFERENCES `tipo_paciente` (`ID_TIPO_PACIENTE`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `datos_pacientes_ibfk_7` FOREIGN KEY (`ID_RESIDENCIA_HABITUAL`) REFERENCES `residencia_habitual` (`ID_RESIDENCIA_HABITUAL`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `datos_pacientes`
@@ -15431,18 +15431,7 @@ CREATE TABLE `datos_pacientes` (
 /*!40000 ALTER TABLE `datos_pacientes` DISABLE KEYS */;
 INSERT INTO `datos_pacientes` (`ID_PACIENTE`,`NO_CEDULA`,`SEGURO_SOCIAL`,`PRIMER_NOMBRE`,`SEGUNDO_NOMBRE`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`ID_ESTADO_CIVIL`,`ID_SEXO`,`FECHA_NACIMIENTO`,`LUGAR_NACIMIENTO`,`EDAD_PACIENTE`,`ID_ETNIA`,`ID_TIPO_SANGUINEO`,`ID_NACIONALIDAD`,`ID_TIPO_PACIENTE`,`TELEFONO_CASA`,`TELEFONO_CELULAR`,`E_MAIL`,`OCUPACION`,`ID_RESIDENCIA_HABITUAL`,`RESIDENCIA_TRANSITORIA`,`NOMBRE_PADRE`,`NOMBRE_MADRE`) VALUES 
  (1,'4-759-372','4-759-372','Edgardo','Joel','Pitti','Sanchez',2,1,'1991-10-28','David',21,1,3,62,1,'7743095','62510254','ed_joel28@hotmail.com','Estudiante',6,'Bda. San Jose','Edgardo Pitti','Fany de Pitti'),
- (2,'4-769-466','4-769-466','Sarah','Stephanie','Pimentel','Quiel',2,2,'1993-11-06','David',19,1,1,62,1,'','546','sarah_0611@gmail.com','Estudiante',8,'dad','Jeremias Pimentel','Kiria Quiel'),
- (3,'3323','32','2323','2323','2323','2323',1,1,'0000-00-00','23',23,1,3,1,1,'23','23','23','23',9,'23','23','23'),
- (4,'4-758-788','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (5,'4-758-78','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (6,'4-758-s78','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (7,'4-7d58-s78','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (8,'4-7ds58-s78','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (9,'4-7ds58-ds78','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (10,'4-7ds58-dss78','as','as','as','as','sa',1,1,'0000-00-00','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (11,'4-758e-788','as','as','as','as','sa',1,1,'2013-09-12','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (12,'4-758edd-788','as','as','as','as','sa',1,1,'2013-09-12','as',0,1,2,2,1,'sa','sa','as','as',16,'asas','as','as'),
- (13,'4-758-788333','as','as','as','as','sa',1,1,'2013-05-10','as',0,1,2,2,1,'sa','sa','as','as',23,'asas','as','as');
+ (2,'4-769-466','4-769-466','Sarah','Stephanie','Pimentel','Quiel',2,2,'1993-11-06','David',19,1,1,62,1,'','546','sarah_0611@gmail.com','Estudiante',8,'dad','Jeremias Pimentel','Kiria Quiel');
 /*!40000 ALTER TABLE `datos_pacientes` ENABLE KEYS */;
 
 
@@ -15474,12 +15463,12 @@ CREATE TABLE `datos_profesionales_salud` (
 
 /*!40000 ALTER TABLE `datos_profesionales_salud` DISABLE KEYS */;
 INSERT INTO `datos_profesionales_salud` (`ID_PROFESIONAL`,`NO_CEDULA`,`PRIMER_NOMBRE`,`SEGUNDO_NOMBRE`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`NO_IDONEIDAD`,`NO_REGISTRO`,`TELEFONO_CASA`,`TELEFONO_CELULAR`,`E_MAIL`) VALUES 
- (2,'3112','Esteban','dd','dd','dd','d','d','d','d','d'),
- (1,'4-750','Edgardo','Joel','Pitti','Sanchez','12121','1212','1212','1212','1212'),
- (5,'7172727','Luis','Mendoza','Mendoza','Pitti','ajajssj','jsjsjsj','sjsjsj','sjsjs','sjsj'),
- (3,'ask','JOel','oi','io','oi','oi','oi','oi','oi','oi'),
- (4,'ioi','Sarah','op','io','i','POR DEFINIR','u','i','o','o'),
- (6,'jhsajsa','Brayan','sansan','sansanas','sanasn','sanasn','asnsan','asnsan','asas','POR DEFINIR');
+ (6,'4-557-751','Brayan','Anibal','Lezcano','Mendoza','sanasn','asnsan','asnsan','asas','POR DEFINIR'),
+ (2,'4-758-785','Esteban','Manuel','Gonzalez','Arauz','d','d','d','d','d'),
+ (5,'4-758-788','Luis','Mendoza','Mendoza','Pitti','ajajssj','jsjsjsj','sjsjsj','sjsjs','sjsj'),
+ (1,'4-759-372','Edgardo','Joel','Pitti','Sanchez','12121','1212','1212','1212','1212'),
+ (3,'4-760-758','Joel','Elias','Caballero','Serrano','oi','oi','oi','oi','oi'),
+ (4,'4-769-466','Sarah','Stephanie','Pimentel','Quiel','POR DEFINIR','u','i','o','o');
 /*!40000 ALTER TABLE `datos_profesionales_salud` ENABLE KEYS */;
 
 
@@ -16173,7 +16162,7 @@ CREATE TABLE `institucion` (
   `ID_CORREGIMIENTO` int(11) NOT NULL,
   `ID_TIPO_INSTITUCION` int(11) NOT NULL,
   `LUGAR` varchar(200) NOT NULL default 'POR DEFINIR',
-  `DEPARTAMENTO` varchar(200) NOT NULL default 'POR DEFINIR',
+  `DENOMINACION` varchar(45) NOT NULL,
   PRIMARY KEY  (`ID_INSTITUCION`),
   KEY `ID_PROVINCIA` (`ID_PROVINCIA`),
   KEY `ID_DISTRITO` (`ID_DISTRITO`,`ID_PROVINCIA`,`ID_CORREGIMIENTO`),
@@ -16182,16 +16171,13 @@ CREATE TABLE `institucion` (
   CONSTRAINT `institucion_ibfk_2` FOREIGN KEY (`ID_DISTRITO`, `ID_PROVINCIA`) REFERENCES `distritos` (`ID_DISTRITO`, `ID_PROVINCIA`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `institucion_ibfk_3` FOREIGN KEY (`ID_DISTRITO`, `ID_PROVINCIA`, `ID_CORREGIMIENTO`) REFERENCES `corregimientos` (`ID_DISTRITO`, `ID_PROVINCIA`, `ID_CORREGIMIENTO`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `institucion_ibfk_4` FOREIGN KEY (`ID_TIPO_INSTITUCION`) REFERENCES `tipo_institucion` (`ID_TIPO_INSTITUCION`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `institucion`
 --
 
 /*!40000 ALTER TABLE `institucion` DISABLE KEYS */;
-INSERT INTO `institucion` (`ID_INSTITUCION`,`ID_PROVINCIA`,`ID_DISTRITO`,`ID_CORREGIMIENTO`,`ID_TIPO_INSTITUCION`,`LUGAR`,`DEPARTAMENTO`) VALUES 
- (1,1,1,1,1,'TORTI','SALUD'),
- (2,1,1,1,2,'TOLE','SALUD');
 /*!40000 ALTER TABLE `institucion` ENABLE KEYS */;
 
 
@@ -16674,7 +16660,7 @@ CREATE TABLE `residencia_habitual` (
   CONSTRAINT `residencia_habitual_ibfk_2` FOREIGN KEY (`ID_DISTRITO`, `ID_PROVINCIA`) REFERENCES `distritos` (`ID_DISTRITO`, `ID_PROVINCIA`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `residencia_habitual_ibfk_3` FOREIGN KEY (`ID_DISTRITO`, `ID_PROVINCIA`, `ID_CORREGIMIENTO`) REFERENCES `corregimientos` (`ID_DISTRITO`, `ID_PROVINCIA`, `ID_CORREGIMIENTO`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `residencia_habitual_ibfk_4` FOREIGN KEY (`ID_ZONA`) REFERENCES `zona` (`ID_ZONA`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `residencia_habitual`
@@ -16705,7 +16691,8 @@ INSERT INTO `residencia_habitual` (`ID_RESIDENCIA_HABITUAL`,`ID_PROVINCIA`,`ID_D
  (21,4,18,126,1,'assa'),
  (22,4,18,126,1,'assa'),
  (23,7,48,375,1,'assa'),
- (24,7,48,375,1,'assa');
+ (24,7,48,375,1,'assa'),
+ (25,1,2,7,2,'');
 /*!40000 ALTER TABLE `residencia_habitual` ENABLE KEYS */;
 
 
@@ -16725,7 +16712,7 @@ CREATE TABLE `responsable_paciente` (
   PRIMARY KEY  (`ID_RESPONSABLE_PACIENTE`),
   KEY `ID_PACIENTE` (`ID_PACIENTE`),
   CONSTRAINT `responsable_paciente_ibfk_1` FOREIGN KEY (`ID_PACIENTE`) REFERENCES `datos_pacientes` (`ID_PACIENTE`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `responsable_paciente`
@@ -16733,7 +16720,8 @@ CREATE TABLE `responsable_paciente` (
 
 /*!40000 ALTER TABLE `responsable_paciente` DISABLE KEYS */;
 INSERT INTO `responsable_paciente` (`ID_RESPONSABLE_PACIENTE`,`ID_PACIENTE`,`NOMBRE_CONTACTO`,`APELLIDO_CONTACTO`,`PARENTESCO_CONTACTO`,`DIRECCION_CONTACTO`,`TELEFONO_CONTACTO`) VALUES 
- (1,3,'2323','232323','232323','232332','22323');
+ (2,1,'Sarah','Pimentel','Novia','1',''),
+ (3,2,'Joel','Pitti','Novio','','');
 /*!40000 ALTER TABLE `responsable_paciente` ENABLE KEYS */;
 
 
@@ -17007,20 +16995,38 @@ INSERT INTO `tipo_examen` (`ID_TIPO_EXAMEN`,`TIPO_EXAMEN`) VALUES
 DROP TABLE IF EXISTS `tipo_institucion`;
 CREATE TABLE `tipo_institucion` (
   `ID_TIPO_INSTITUCION` int(11) NOT NULL auto_increment,
-  `TIPO_INSTITUCION` varchar(30) NOT NULL default 'POR DEFINIR',
-  `DENOMINACION` varchar(30) NOT NULL default 'POR DEFINIR',
+  `TIPO_INSTITUCION` varchar(60) NOT NULL default 'POR DEFINIR',
+  `DEPARTAMENTO` varchar(200) NOT NULL,
   PRIMARY KEY  (`ID_TIPO_INSTITUCION`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tipo_institucion`
 --
 
 /*!40000 ALTER TABLE `tipo_institucion` DISABLE KEYS */;
-INSERT INTO `tipo_institucion` (`ID_TIPO_INSTITUCION`,`TIPO_INSTITUCION`,`DENOMINACION`) VALUES 
- (1,'CLINICA','CLINICA'),
- (2,'CENTRO DE SALUD','CENTRO DE SALUD'),
- (3,'HOSPITAL','HOSPITAL');
+INSERT INTO `tipo_institucion` (`ID_TIPO_INSTITUCION`,`TIPO_INSTITUCION`,`DEPARTAMENTO`) VALUES 
+ (1,'HOSPITALES NACIONALES ESPECIALIZADOS','MINSA'),
+ (2,'INSTITUTOS ESPECIALIZADOS','MINSA'),
+ (3,'HOSPITALES DE REGIONALES','MINSA'),
+ (4,'HOSPITAL DE REGIONAL INTEGRADO','MINSA'),
+ (5,'HOSPITAL NACIONAL LARGA ESTANCIA','MINSA'),
+ (6,'HOSPITALES DE AREAS','MINSA'),
+ (7,'CENTROS DE REINTEGRA','MINSA'),
+ (8,'POLICENTROS','MINSA'),
+ (9,'CENTROS DE SALUD SIN CAMA','MINSA'),
+ (10,'CENTROS DE SALUD CON CAMA','MINSA'),
+ (11,'SUB-CENTROS DE SALUD','MINSA'),
+ (12,'PUESTOS DE SALUD','MINSA'),
+ (13,'CENTROS DE PROMOCION','MINSA'),
+ (14,'HOSPITALES NACIONALES ESPECIALIZADOS','C.S.S'),
+ (15,'HOSPITAL NACIONAL HOGAR DE LA ESPERANZA','C.S.S'),
+ (16,'HOSPITALES DE REGIONALES','C.S.S'),
+ (17,'HOSPTAL SECTORIAL','C.S.S'),
+ (18,'HOSPITALES DE AREAS','C.S.S'),
+ (19,'POLICLINICAS','C.S.S'),
+ (20,'ULAPS','C.S.S'),
+ (21,'CAPPS','C.S.S');
 /*!40000 ALTER TABLE `tipo_institucion` ENABLE KEYS */;
 
 
