@@ -398,7 +398,7 @@ class Diseno {
 			echo
 			   '
 					<!--Diseño del contenido de la página-->
-					<div class="span10" style="min-height:650px;">	
+					<div class="span10" style="min-height:650px;">							
 						'.$this->latino($this->derecha).'
 					</div>
 					<!--Fin del Contenido-->
