@@ -96,154 +96,154 @@
 	}		
 	
 	$cont.='
-			<div id="tabs">
-				<ul>
-					<li><a href="#tabs-1">Atención al Paciente</a></li>
-					<li><a href="#tabs-2">Interconsulta</a></li>
-				</ul>
-				<div id="tabs-1" style="font-size:12px;">
-					<div align="right">
-						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente">
-							<div class="input-group">
-							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="buscar">
-							  <span class="input-group-btn">
-								<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
-							  </span>
-							</div>
-							'.$agnadir.'
-						</form>
-					</div>
-						'.$mostrar.'
-						<table width="100%" class="table">
-							<tr>
-								<td width="50%" style="border-top-color:#fff;">
-									<fieldset>
-										<legend>
-											Resumen Médico
-										</legend>
-										<div id="accordion">
-											<h3>8/7/2013</h3>
-											<div>
-												<div id="accordion2">
-													<h3>Atención Domiciliaria</h3>
-													<div>
-														<ul>
-															<li><a>Actividades realizadas</a></li>
-															<li><a>Medicamentos Suministrados</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>	
-										
-											<h3>8/8/2013</h3>
-											<div>
-												<div id="accordion4">
-													<h3>Atención Domiciliaria</h3>
-													<div>
-														<ul>
-															<li><a>Actividades realizadas</a></li>
-															<li><a>Medicamentos Suministrados</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>	
+			<div class="row-fluid">
+				<div class="span12">
+					<!--REFERENCIA-->
+					<div class="tabbable" id="tabs-1">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">Atención al Paciente</a></li>
+							<li><a href="#tab2" data-toggle="tab">Interconsulta</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab1">
+								<div align="right">
+									<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente">
+										<div class="input-group">
+										  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="buscar">
+										  <span class="input-group-btn">
+											<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+										  </span>
 										</div>
-									</fieldset>
-								</td>
-								<td style="border-top-color:#fff;">
-									
-									<!--AGREGAR OBSERVACIONES-->
-									<form method="POST" action="./?url=agregar_observacion">
-										<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
-											<div class="modal-header">  
-												<a class="close" data-dismiss="modal">×</a>  
-												<h4>Agregar Observaciones</h4>  
-											</div>  
-											<div class="modal-body" align="center">  
-												<h5>Motivo:</h5>  
-												<input type="text" name="motivo"/>
-												<h5>Observaciones:</h5>                
-												<input type="text" name="observaciones"/>
-											</div>  
-											<div class="modal-footer">  
-												<button type="submit" class="btn btn-primary">Guardar</button>  
-												<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
-											</div>  
-										</div>  									
+										'.$agnadir.'
 									</form>
-									
-									<!--RESPONDER INTERCONSULTA-->
-									<form method="POST" action="./?url=agregar_resp_interconsulta">
-										<div id="res_inter" class="modal hide fade in" style="display: none; ">  
-											<div class="modal-header">  
-												<a class="close" data-dismiss="modal">×</a>  
-												<h4>Responder Interconsulta</h4>  
-											</div>  
-											<div class="modal-body" align="center">  
-												<h5>Código de Interconsulta:</h5>  
-												<input type="text" name="cod_interconsulta"/>
-												<h5>Observaciones:</h5>                
-												<input type="text" name="observaciones"/>
-											</div>  
-											<div class="modal-footer">  
-												<button type="submit" class="btn btn-primary">Guardar</button>  
-												<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
-											</div>  
-										</div>  
-									</form>	
-									
-									<center>
-										<div class="centrar_botones">
-											<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
-											<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
-										</div>
-									</center>
-								</td>
-							</tr>
-						</table>
-				</div>	
-				
-				<div id="tabs-2" style="font-size:12px;">
-					<form class="form-search" method="POST" action="./?url=">
-						<!--Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>-->
-						<div class="input-group">
-						  Buscar paciente: <input type="search" class="form-control" id="nom_ced" placeholder="Cédula o Nombre" name="nom_ced">
-						  <span class="input-group-btn">
-							<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
-						  </span>
+								</div>
+								'.$mostrar.'
+								<table width="100%" class="table">
+									<tr>
+										<td width="50%" style="border-top-color:#fff;">
+											<fieldset>
+												<legend>
+													Resumen Médico
+												</legend>
+												<div class="acordeon">
+													<div>
+														<input id="acordeon1" name="accordion" type="checkbox" />
+														<label for="acordeon1">Fechas</label>
+														<article>
+															<div class="acordeon_gp" style="padding:15px;">
+																<div>
+																	<input id="acordeon1-1" name="accordion_sub" type="radio" />
+																	<label for="acordeon1-1">Atención Domiciliaria</label>
+																	
+																	<div>
+																		<ul>
+																			<li><a>Actividades realizadas</a></li>
+																			<li><a>Medicamentos Suministrados</a></li>
+																		</ul>
+																	</div>
+																</div>	
+															</div>
+														</article>
+												
+													</div>
+												</div>
+											</fieldset>
+										</td>
+										<td style="border-top-color:#fff;">
+											<!--AGREGAR OBSERVACIONES-->
+											<form method="POST" action="./?url=agregar_observacion">
+												<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
+													<div class="modal-header">  
+														<a class="close" data-dismiss="modal">×</a>  
+														<h4>Agregar Observaciones</h4>  
+													</div>  
+													<div class="modal-body" align="center">  
+														<h5>Motivo:</h5>  
+														<input type="text" name="motivo"/>
+														<h5>Observaciones:</h5>                
+														<input type="text" name="observaciones"/>
+													</div>  
+													<div class="modal-footer">  
+														<button type="submit" class="btn btn-primary">Guardar</button>  
+														<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+													</div>  
+												</div>  									
+											</form>
+											
+											<!--RESPONDER INTERCONSULTA-->
+											<form method="POST" action="./?url=agregar_resp_interconsulta">
+												<div id="res_inter" class="modal hide fade in" style="display: none; ">  
+													<div class="modal-header">  
+														<a class="close" data-dismiss="modal">×</a>  
+														<h4>Responder Interconsulta</h4>  
+													</div>  
+													<div class="modal-body" align="center">  
+														<h5>Código de Interconsulta:</h5>  
+														<input type="text" name="cod_interconsulta"/>
+														<h5>Observaciones:</h5>                
+														<input type="text" name="observaciones"/>
+													</div>  
+													<div class="modal-footer">  
+														<button type="submit" class="btn btn-primary">Guardar</button>  
+														<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+													</div>  
+												</div>  
+											</form>	
+											
+											<center>
+												<div class="centrar_botones">
+													<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
+													<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
+												</div>
+											</center>
+										</td>
+									</tr>
+								</table>						
+							</div>
+							
+							<div class="tab-pane" id="tab2">
+								<form class="form-search" method="POST" action="./?url=">						
+									<div class="input-group">
+									  Buscar paciente: <input type="search" class="form-control" id="nom_ced" placeholder="Cédula o Nombre" name="nom_ced">
+									  <span class="input-group-btn">
+										<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+									  </span>
+									</div>
+								</form>
+								<center style="width:100%;max-width:600px;">
+									<table width="100%">
+										<tr align="center">
+											<td>Especialista en: </td>
+											<td>
+												<select id="especialidad" name="especialidad">
+													<option value="0"></option>';
+									$x = $especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA > 0');				
+									while($x){
+											$cont.='
+													<option value="'.$especialidad->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$especialidad->obtener('DESCRIPCION').'</option>';
+											$x = $especialidad->releer();		
+									}		
+										$cont.='			
+												</select>
+											</td>
+										</tr>
+										<tr align="center">
+											<td align="center">Nombre:</td>
+											<td id="mostrarespecialista" name="mostrarespecialista">
+												<select style="width:150px"></select>
+											</td>
+										</tr>
+										<tr width="50%">
+											<td colspan="2">Observaciones/Comentarios</td>
+										</tr>
+										<tr width="50%">
+											<td colspan="2"><textarea id="obs_coment" name="obs_coment" style="width:98%;height:70px;border-color:#ccc;"></textarea></td>
+										</tr>
+									</table>
+								</center>
+							</div>	
 						</div>
-					</form>
-					<center style="width:100%;max-width:600px;">
-						<table width="100%">
-							<tr align="center">
-								<td>Especialista en: </td>
-								<td>
-									<select id="especialidad" name="especialidad">
-										<option value="0"></option>';
-						$x = $especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA > 0');				
-						while($x){
-								$cont.='
-										<option value="'.$especialidad->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$especialidad->obtener('DESCRIPCION').'</option>';
-								$x = $especialidad->releer();		
-						}		
-							$cont.='			
-									</select>
-								</td>
-							</tr>
-							<tr align="center">
-								<td align="center">Nombre:</td>
-								<td id="mostrarespecialista" name="mostrarespecialista">
-									<select style="width:150px"></select>
-								</td>
-							</tr>
-							<tr width="50%">
-								<td colspan="2">Observaciones/Comentarios</td>
-							</tr>
-							<tr width="50%">
-								<td colspan="2"><textarea id="obs_coment" name="obs_coment" style="width:98%;height:70px;border-color:#ccc;"></textarea></td>
-							</tr>
-						</table>
-					</center>
+					</div>
 				</div>
 			</div>
 		</fieldset>';
