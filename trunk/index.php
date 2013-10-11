@@ -16,45 +16,25 @@
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 	
-		<style type="text/css"><!--@import url("./css/gradientegnral.css");-->	</style>
-		<link rel="stylesheet" href="./css/jquery-ui.css"/>	
-		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>  
-		
+	<script type='text/javascript' src="./js/jquery.js"></script>
+	<script src="./js/funciones.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
+	<script type='text/javascript' src="./js/jquery-1.9.1.js"></script>
+	<script type='text/javascript' src='./js/jquery-1.8.3.js'></script>
+	  
+
+
 		<script src="./js/jquery.js"></script>
 		<script src="./js/funciones.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 		<script src="./js/jquery-1.9.1.js"></script>
-		<script src="./js/jquery-ui.js"></script>
-
-        <script type='text/javascript' src='./js/jquery-1.8.3.js'></script>
-        <script type='text/javascript' src='./js/jquery-ui-1.9.2.custom.js'></script>    
+        <script type='text/javascript' src='./js/jquery-1.8.3.js'></script> 
         <!-- Scripts para el Autocomplete -->
         <link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
         <script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
 
-
-		<script>
-			$(function() {
-				$( "#tabs" ).tabs(); //Pestañas principales de SURCO y Contacto Telefónico
-			});
-			$(function() {
-				$( "#tabs2" ).tabs(); //Pestañas para Resultados/Exámenes Diagnóstico de SURCO
-			});			
-			$(function(){
-				$("#tabs3").tabs();	//Pestaña para Respuesta a Referencia de SURCO
-			});			
-			$(function() {
-				$( "#accordion" ).accordion(); //Acordeon aplicado dentro de SURCO
-			});			
-			$(function() {
-				$( "#accordion2" ).accordion(); //Acordeon aplicado para Resumen Médico en Contac. Tel.
-			});			
-			$(function() {
-				$( "#accordion4" ).accordion(); //Acordeon interno de Resumen Med.
-			});
-		</script>
-		
 		<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
          del formulario con base en un término o palabra que el usuario 
          indique en la medida que vaya digitando en el cuadro de texto -->
@@ -400,7 +380,7 @@
 				<div class="span12">
 					<ul class="nav nav-pills" style="float:right;margin-top:4px;">
 						<li>
-							<a href="#">M&eacute;dico</a>
+							<a href="#"><strong class="icon-forward"></strong>M&eacute;dico</a>
 						</li>
 						<li class="dropdown pull-right">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Configuraci&oacute;n<strong class="caret"></strong></a>
@@ -543,7 +523,7 @@
 			
 				<!--Contenido-->
 				
-					<?php include_once('./mvc/controlador/controlador.php'); new Controlador();?>
+				<?php include_once('./mvc/controlador/controlador.php'); new Controlador();?>
 				
 			</div>
 			
