@@ -13,6 +13,7 @@
 	$servicios = new Accesatabla('servicios_medicos');
 	$motivoreferencia = new Accesatabla('motivo_referencia');
 	$cie = new Accesatabla('cie10');
+	$tipoexamen = new Accesatabla('tipo_examen');
 	$sw = 0;
 	$cedula = $_POST['cedula'];
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
@@ -20,10 +21,9 @@
 	}
 	$ds = new Diseno();
 	$cont='
-		<fieldset>
-			<legend align="center">
+			<center>
 				<h3 style="background:#f4f4f4;padding:10px;"> Sistema Único de Referencia y Contrarreferencia</h3>
-			</legend>';
+			</center>';
 	if (Empty($cedula) or $sw == 1){
 		$cont.='
 			<center>
@@ -59,7 +59,7 @@
 		}
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 		$cont.='<center>
-				<table width="80%">
+				<table width="100%">
 					<tr>
 						<td width="50%">
 							<fieldset>
@@ -101,406 +101,330 @@
 					</tr>
 				</table>
 				</center>
-				<form method="POST" action="./?url=agregardatosurco&id='.$personas->obtener('ID_PACIENTE').'">
-				<div id="tabs">
-					<ul>
-						<li><a href="#tabs-1">Referencia</a></li>
-						<li><a href="#tabs-2">Respuesta a la Referencia</a></li>
-					</ul>
-					
-					<div id="tabs-1">
-						<button type="submit" class="btn btn-default">Imprimir</button>
-						<button type="submit" class="btn btn-default">Descargar</button>
-						<fieldset>
-							<legend style="font-weight:bold;font-size:bold">Datos de Referencia</legend>
-							<table class="tabla-datos">
-								<tr>
-									<td>Instalación que Refiere:</td>
-									<td><select id="instalacionrefiere" name="instalacionrefiere" height="125px">
-											<option value=""></option>';
-			$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
-			while($i){
-				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-				$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
-				$cont .= '
-											<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-				';
-				$i = $instituciones->releer();
-			}
-			$cont.='
-										</select>
-									</td>
-									<td>Servicio Médico al que se refiere:</td>
-									<td><select id="serviciomedico" name="serviciomedico">
-											<option value=""></option>';
-			$s = $servicios->buscardonde('ID_SERVICIO > 0');
-			while($s){
+				
+					<!--REFERENCIA-->
+					<div class="tabbable" id="tabs-1">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">Referencia</a></li>
+							<li><a href="#tab2" data-toggle="tab">Respuesta a la Referencia</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab1">
+							  <form method="POST" action="./?url=agregardatosurco&id='.$personas->obtener('ID_PACIENTE').'">
+								<button type="submit" class="btn btn-default">Imprimir</button>
+								<button type="submit" class="btn btn-default">Descargar</button>
+								
+								<div class="acordeon" style="margin-top:15px;">
+									<div>
+										<input id="acordeon1" name="accordion" type="radio"/>
+										<label for="acordeon1">Datos Referencia</label>
+										<article>
+											<table class="tabla-datos">
+												<tr>
+													<td>Instalación que Refiere:</td>
+													<td><select id="instalacionrefiere" name="instalacionrefiere" height="125px">
+															<option value=""></option>';
+						$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+						while($i){
+							$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
+							$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
+							$cont .= '
+														<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+							';
+							$i = $instituciones->releer();
+						}
+						$cont.='
+														</select>
+													</td>
+													<td>Servicio Médico al que se refiere:</td>
+													<td><select id="serviciomedico" name="serviciomedico">
+															<option value=""></option>';
+						$s = $servicios->buscardonde('ID_SERVICIO > 0');
+						while($s){
+							$cont.='
+															<option value="'.$servicios->obtener('ID_SERVICIO').'">'.$servicios->obtener('DESCRIPCION').'</option>
+							';
+							$s = $servicios->releer();
+						}
+						$cont.='
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>Instalación Receptora:</td>
+													<td><select id="instalacionreceptora" name="instalacionreceptora">
+															<option value=""></option>';
+						$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+						while($i){
+						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
+						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
+						$cont .= '
+															<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+							';
+							$i = $instituciones->releer();
+						}
+						$cont.='
+														</select>
+													</td>
+													<td>Clasificación de la Atención solicitada:</td>
+													<td><select id="clasificacionatencion" name="clasificacionatencion">
+															<option value=""></option>';
+						$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA');
+						while($c){
+							$cont.='
+															<option value="'.$clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'">'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</option>
+							';
+							$c = $clasificacion->releer();
+						}
+														
+						$cont.='	
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>Motivo de Referencia:</td>
+													<td><select id="motivoreferencia" name="motivoreferencia">
+															<option value=""></option>';
+						$m = $motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA > 0');
+						while($m){
+							$cont.='
+															<option value="'.$motivoreferencia->obtener('ID_MOTIVO_REFERENCIA').'">'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</option>
+							';
+							$m = $motivoreferencia->releer();
+						}
+						$cont.='		
+														</select>
+													</td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>
+										</article>
+									</div>
+									<div>
+										<input id="acordeon2" name="accordion" type="radio" />
+										<label for="acordeon2">Historial del Paciente</label>
+										<article>	
+											<table class="tabla-datos" width="100%">
+												<tr>
+													<td>Anamnesis:</td>
+													<td>Observaciones:</td>
+												</tr>
+												<tr>
+													<td><textarea class="textarea" width="100%" id="anamnesis" name="anamnesis"></textarea></td>
+													<td><textarea class="textarea" width="100%" id="observaciones" name="observaciones"></textarea></td>
+												</tr>
+												<tr>
+													<td style="width:100px;">Examen Físico:</td>
+													<td colspan="7"></td>										
+												</tr>
+											</table>	
+											<table class="tabla">
+												<tr class="fd-table">
+													<th>Hora</th>
+													<th>Presión Arterial</th>
+													<th>Frecuencia Cardiaca</th>
+													<th>Frecuencia Respiratoria</th>
+													<th>Frecuencia Cardiaca Fetal</th>
+													<th>Temperatura</th>
+													<th>Peso<small>(Kg)</small></th>
+													<th>Talla<small>(mts)</small></th>
+												</tr>
+												<tr  align="center">
+													<td><input style="width:50px;" type="text" name="hora" value="'.$ds->dime('hora').':'.$ds->dime('minuto').'"></td>
+													<td><input style="width:50px;" type="text" name="pa"/></td>
+													<td><input style="width:50px;" type="text" name="fc"/></td>
+													<td><input style="width:50px;" type="text" name="fr"/></td>
+													<td><input style="width:50px;" type="text" name="fcf"/></td>
+													<td><input style="width:50px;" type="text" name="temperatura"/></td>
+													<td><input style="width:50px;" type="text" name="peso"/></td>
+													<td><input style="width:50px;" type="text" name="talla"/></td>
+												</tr>
+											</table>
+										</article>	
+									</div>
+									<div>
+										<input id="acordeon3" name="accordion" type="radio" />
+										<label for="acordeon3">Resultado de Exámenes/Diagnóstico</label>
+										<article>
+											<table class="table">
+												<tr>
+													<th>Tipo de Examen</th>
+													<th>Diagnóstico</th>
+													<th>CIE-10</th>
+													<th>Tratamiento</th>
+													<th>Fecha del Examen</th>
+												</tr>';
+				$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
+				while($x){
+					$examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
+					switch($examen){
+						case 2: $nomb_examen = 'urin'; break;
+						case 3: $nomb_examen = 'heces'; break;
+						case 4: $nomb_examen = 'glice'; break;
+						case 5: $nomb_examen = 'crea'; break;
+						case 6: $nomb_examen = 'ndeu'; break;
+						case 7: $nomb_examen = 'elec'; break;
+						case 8: $nomb_examen = 'ami'; break;
+						default: $nomb_examen = 'bhc'; break;
+					}
+					$cont.='
+												<tr>
+													<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
+													<td><input type="text" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'"></td>
+													<td><input type="text" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5"></td>
+													<td><input type="text" name="complicaciones'.$nomb_examen.'" id="complicaciones'.$nomb_examen.'"></td>
+													<td><input type="date" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'"></td>
+												</tr>';
+					$x = $tipoexamen->releer();
+				}
 				$cont.='
-											<option value="'.$servicios->obtener('ID_SERVICIO').'">'.$servicios->obtener('DESCRIPCION').'</option>
-				';
-				$s = $servicios->releer();
-			}
-			$cont.='					</select>
-									</td>
-								</tr>
-								<tr>
-									<td>Instalación Receptora:</td>
-									<td><select id="instalacionreceptora" name="instalacionreceptora">
-											<option value=""></option>';
-				$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
-				while($i){
-				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-				$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
-				$cont .= '
-											<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-				';
-				$i = $instituciones->releer();
-			}
-			$cont.='						
-										</select>
-									</td>
-									<td>Clasificación de la Atención solicitada:</td>
-									<td><select id="clasificacionatencion" name="clasificacionatencion">
-											<option value=""></option>';
-			$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA');
-			while($c){
-				$cont.='
-											<option value="'.$clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'">'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</option>
-				';
-				$c = $clasificacion->releer();
-			}
-											
-			$cont.='					</select>
-									</td>
-								</tr>
-								<tr>
-									<td>Motivo de Referencia:</td>
-									<td><select id="motivoreferencia" name="motivoreferencia">
-											<option value=""></option>';
-			$m = $motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA > 0');
-			while($m){
-				$cont.='
-											<option value="'.$motivoreferencia->obtener('ID_MOTIVO_REFERENCIA').'">'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</option>
-				';
-				$m = $motivoreferencia->releer();
-			}
-			$cont.='										
-										</select>
-									</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</fieldset>	
-						<div id="accordion">
-							<h3>Historial del Paciente</h3>
-							<div>
-								<table class="tabla-datos" width="100%">
-									<tr>
-										<td>Anamnesis:</td>
-										<td>Observaciones:</td>
-									</tr>
-									<tr>
-										<td><textarea class="textarea" width="100%" id="anamnesis" name="anamnesis"></textarea></td>
-
-										<td><textarea class="textarea" width="100%" id="observaciones" name="observaciones"></textarea></td>
-									</tr>
-									<tr>
-										<td style="width:100px;">Examen Físico:</td>
-										<td colspan="7"></td>										
-									</tr>
-								</table>	
-									<table class="tabla" cellspacing="0">
-										<tr>
-											<th>Hora</th>
-											<th>PA</th>
-											<th>FC</th>
-											<th>FR</th>
-											<th>FCF</th>
-											<th>T°</th>
-											<th>Peso<small>(Kg)</small></th>
-											<th>Talla<small>(mts)</small></th>
-											
-										</tr>
-										<tr  align="center">
-											<td><input style="width:50px;" type="text" name="hora" value="'.$ds->dime('hora').':'.$ds->dime('minuto').'"></td>
-											<td><input style="width:50px;" type="text" name="pa"/></td>
-											<td><input style="width:50px;" type="text" name="fc"/></td>
-											<td><input style="width:50px;" type="text" name="fr"/></td>
-											<td><input style="width:50px;" type="text" name="fcf"/></td>
-											<td><input style="width:50px;" type="text" name="temperatura"/></td>
-											<td><input style="width:50px;" type="text" name="peso"/></td>
-											<td><input style="width:50px;" type="text" name="talla"/></td>
-										</tr>
-									</table>
+											</table>
+										</article>	
+									</div>
+									
+									<div>
+										<input id="acordeon4" name="accordion" type="radio" />
+										<label for="acordeon4">Datos del Profesional</label>
+										<article>
+											<table class="tabla-datos">
+												<tr>
+													<td align="right">Nombre de quien refiere:</td>
+													<td  id="refiere"align="center"><input type="text" id="nombrerefiere" name="nombrerefiere"/></td>
+													<td></td>									
+												</tr>
+												<tr>
+													<td align="right">Nombre del Receptor:</td>		
+													<td align="center"><input type="text" name="receptor"/></td>
+													<td><i>(Solo en caso de urgencias y hospitalización)</i></td>
+												</tr>
+											</table>
+										</article>
+									</div>
+								</div>
+								
+								<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:1px;float:right;">Registrar</button>
+							   </form>
 							</div>
-							<h3>Resultado de Exámenes/Diagnóstico</h3>
-							<div>
-								<div id="tabs2">
-									<ul>
-										<li><a href="#tabs2-1">BHC</a></li>
-										<li><a href="#tabs2-2">Urin</a></li>
-										<li><a href="#tabs2-3">Heces</a></li>
-										<li><a href="#tabs2-4">Glicemia</a></li>
-										<li><a href="#tabs2-5">Creatinina</a></li>
-										<li><a href="#tabs2-6">N. de U.</a></li>
-										<li><a href="#tabs2-7">Electrolitos</a></li>
-										<li><a href="#tabs2-8">Amilasa</a></li>
-									</ul>
-									<div id="tabs2-1">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticobhc" id="diagnosticobhc"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10: </td>
-												<td><input type="text" id="ciebhc" name="ciebhc" size="5"></td>
-												<td><textarea id="complicacionesbhc"  name="complicacionesbhc" class="textarea"></textarea></td>										
-										</table>
-									</div>
-									<div id="tabs2-2">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticourin" id="diagnosticourin"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="cieurin" name="cieurin">
-												</td>
-												<td><textarea id="complicacionesurin" name="complicacionesurin" class="textarea"></textarea></td>									
-										</table>
-									</div>
-									<div id="tabs2-3">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticoheces" id="diagnosticoheces"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="cieheces" name="cieheces">
-												</td>
-												<td><textarea id="complicacionesheces" name="complicacionesheces" class="textarea"></textarea></td>										
-										</table>
-									</div>
-									<div id="tabs2-4">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticoglice" id="diagnosticoglice"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="cieglice" name="cieglice">
-												</td>
-												<td><textarea id="complicacionesglice" name="complicacionesglice" class="textarea"></textarea></td>										
-										</table>
-									</div>
-									<div id="tabs2-5">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticocrea" id="diagnosticocrea"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="ciecrea" name="ciecrea">
-												</td>
-												<td><textarea id="complicacionescrea" name="complicacionescrea" class="textarea"></textarea></td>
-										</table>
-									</div>
-									<div id="tabs2-6">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticondeu" id="diagnosticondeu"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="ciendu" name="ciendu">
-												</td>
-												<td><textarea id="complicacionesn" name="complicacionesn" class="textarea"></textarea></td>									
-										</table>
-									</div>
-									<div id="tabs2-7">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticoelec" id="diagnosticoelec"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="cieelec" name="cieelec">
-												</td>
-												<td><textarea id="complicacioneselec"  name="complicacioneselec" class="textarea"></textarea></td>
-										</table>
-									</div>
-									<div id="tabs2-8">
-										<table class="tabla-datos">
-											<tr align="center">
-												<td align="right"> Diagnóstico:</td>
-												<td><input type="text" name="diagnosticoami" id="diagnosticoami"></input></td>
-												<td>Tratamiento/Complicaciones</td>		
-											</tr>	
-											<tr align="center">
-												<td align="right">CIE-10:</td>
-												<td>
-													<input type="text" id="cieami" name="cieami">
-												</td>
-												<td><textarea id="complicacionesami" name="complicacionesami" class="textarea"></textarea></td>
-										</table>
-									</div>
-								</div>
-							</div>
-							<h3>Datos del Profesional</h3>
-							<div>
-								<table class="tabla-datos">
-									<tr>
-										<td align="right">Nombre de quien refiere:</td>
-										<td  id="refiere"align="center"><input type="text" id="nombrerefiere" name="nombrerefiere"/></td>
-										<td></td>									
-									</tr>
-									<tr>
-										<td align="right">Nombre del Receptor:</td>		
-										<td align="center"><input type="text" name="receptor"/></td>
-										<td><i>(Solo en caso de urgencias y hospitalización)</i></td>
-									</tr>
-								</table>
-						</div>
-					</div>
-						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:1px;float:right;">Registrar</button>
-					</div>
-					</form>
-					<form method="POST" action="./?url=respuesta_referencia">	
-						<div id="tabs-2">
-							<button type="submit" class="btn btn-default">Imprimir</button>
-							<button type="submit" class="btn btn-default">Descargar</button>
-							<table class="tabla-datos" width="100%">
-								<tr>
-									<td style="wid th:90px">Institución que Responde:</td>
-									<td><select id="institucionresponde" name="institucionresponde">
-											<option value=""></option>';
-											
-			$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
-			while($i){
-				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-				$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
-				$cont .= '
-												<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-				';
-				$i = $instituciones->releer();
-			}
-			$cont.='
-										</select>
-									</td>
-									<td>Instalación Receptora:</td>
-									<td><select id="instalacionrepectora" name="instalacionreceptora">
-											<option value=""></option>';
-											
-			$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
-			while($i){
-				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-				$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
-				$cont .= '
-												<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-				';
-				$i = $instituciones->releer();
-			}
-			$cont.='
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="4" class="fondo_azul">Respuesta a la Referencia</td>
-								</tr>	
-							</table>
-							<div id="tabs3">
-								<ul>
-									<li><a href="#tabs3-1">Hallazgos Clínicos</a></li>
-									<li><a href="#tabs3-2">Diagnóstico</a></li>
-									<li><a href="#tabs3-3">Recomendaciones/Plan Terapéutico</a></li>
-								</ul>							
-								<div id="tabs3-1" style="font-size:12px;">
-									<span style="font-size:12px;">Hallazgos Clínicos:</span>
-									<textarea style="width:99%;height:100px;margin-right:10px;border-color:#ccc;"></textarea> 
-								</div>
-								<div id="tabs3-2" style="font-size:12px;">
-									<center>
-									<table width="50%">
+							<!--RESPUESTA A LA REFERENCIA -->
+							<div class="tab-pane" id="tab2">
+								<form method="POST" action="./?url=respuesta_referencia">	
+									<button type="submit" class="btn btn-default">Imprimir</button>
+									<button type="submit" class="btn btn-default">Descargar</button>							
+									<table class="tabla-datos" width="100%">
 										<tr>
-											<td>
-												<table width="50%">
-													<tr width="100px">
-														<td>Diagnóstico: </td>
-														<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta"></td>
-													</tr>
-													<tr>
-														<td>CIE-10: </td>
-														<td><input type="text" id="cierespuesta" name="cierespuesta"></td>
-													</tr>
-													<tr>
-														<td colspan="2">
-															Observaciones:<br>
-															<textarea name="observaciones2" style="min-width:300px;height:50px;border-color:#ccc;"></textarea>
-														</td>
-													</tr>
-												</table>
+											<td style="wid th:90px">Institución que Responde:</td>
+											<td><select id="institucionresponde" name="institucionresponde">
+													<option value=""></option>';
+													
+					$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+					while($i){
+						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
+						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
+						$cont .= '
+													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+						';
+						$i = $instituciones->releer();
+					}
+					$cont.='			
+												</select>
 											</td>
-											<td>
-												<table style="margin-left:20px;">
-													<tr>
-														<td>
-															Manejo y Tratamiento:<br>
-															<textarea name="manejo_tratamiento" style="min-width:300px;height:120px;border-color:#ccc;"></textarea>														
-														</td>
-													</tr>
-												</table>
+											<td>Instalación Receptora:</td>
+											<td><select id="instalacionrepectora" name="instalacionreceptora">
+													<option value=""></option>';
+													
+					$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+					while($i){
+						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
+						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
+						$cont .= '
+													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+						';
+						$i = $instituciones->releer();
+					}
+					$cont.='
+													
+												</select>
 											</td>
-										</tr>
+										</tr>	
 									</table>
-									</center>
-								</div>
-								<div id="tabs3-3" style="font-size:12px;">
-									<center>
-										<table width="80%">
-											<tr>
-												<td>Reevaluación especializada: </td>
-												<td class="radio"><input type="radio" name="reev_esp"/> Sí</td>
-												<td class="radio"><input type="radio" name="reev_esp"/> No</td>
-												<td>Fecha:</td>
-												<td><input type="date" name="fecha"/></td>
-											</tr>
-											<tr>
-												<td colspan="5">
-													Observaciones: <br>
-													<textarea name="observaciones_recomendaciones" style="width:100%;height:100px;border-color:#ccc;margin-right:10px;"></textarea>	
-												</td>	
-											</tr>
-										</table>
-									</center>	
-								</div>
+									<div class="acordeon">
+										<div>
+											<input type="radio" name="acc" id="acc-1">
+											<label for="acc-1">Hallazgos Clínicos</label>
+											<article>
+												<center>
+													<table width="100%">
+														<tr>
+															<td>
+																<center>
+																	<table>
+																		<tr>
+																			<td>Diagnóstico: </td>
+																			<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta"></td>
+																		</tr>
+																		<tr>
+																			<td>CIE-10: </td>
+																			<td><input type="text" id="cierespuesta" name="cierespuesta"></td>
+																		</tr>
+																		<tr>
+																			<td colspan="2">
+																				Observaciones:<br>
+																				<textarea name="observaciones2" style="max-width:300px;height:50px;border-color:#ccc;"></textarea>
+																			</td>
+																		</tr>
+																	</table>
+																</center>	
+															</td>
+															<td>
+																<center>
+																	<table style="ma rgin-left:20px;">
+																		<tr>
+																			<td>
+																				Manejo y Tratamiento:<br>
+																				<textarea name="manejo_tratamiento" style="max-width:300px;height:120px;border-color:#ccc;"></textarea>														
+																			</td>
+																		</tr>
+																	</table>
+																</center>	
+															</td>
+														</tr>
+													</table>
+												</center>
+											</article>
+										</div>
+										<div>
+											<input type="radio" name="acc" id="acc-2">
+											<label for="acc-2">Datos del Profesional</label>
+											<article>
+												<center>
+													<table width="80%">
+														<tr>
+															<td>Reevaluación especializada: </td>
+															<td class="radio"><input type="radio"  style="display:block" name="reev_esp" id="reev_esp"/> Sí</td>
+															<td class="radio"><input type="radio" style="display:block" name="reev_esp" id="reev_esp"/> No</td>
+															<td>Fecha:</td>
+															<td><input type="date" name="fecha"/></td>
+														</tr>
+														<tr>
+															<td colspan="5">
+																Observaciones: <br>
+																<textarea name="observaciones_recomendaciones" style="width:100%;height:100px;border-color:#ccc;margin-right:10px;"></textarea>	
+															</td>	
+														</tr>
+													</table>
+												</center>
+											</article>
+										</div>
+									</div>	
+									
+									<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">+Nueva Nota</button>
+									<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>							
+								</form>	
 							</div>	
-							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">+Nueva Nota</button>
-							<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>							
 						</div>
-					</form>	
+					
 				</div>
-			</fieldset>
 			';	
 	}
 	$ds->contenido($cont);
