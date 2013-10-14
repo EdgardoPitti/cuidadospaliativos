@@ -5,8 +5,7 @@
 		<meta content="text/html; charset=utf-8" />
 		<title>Cuidados Paliativos</title>
 		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<!--CSS: Menú Principal-->	
 	
 	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
@@ -16,28 +15,20 @@
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 	
-	<script type='text/javascript' src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
 	<script src="./js/funciones.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 	<script type='text/javascript' src="./js/jquery-1.9.1.js"></script>
 	<script type='text/javascript' src='./js/jquery-1.8.3.js'></script>
 	  
+	<!-- Scripts para el Autocomplete -->
+	<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
+	<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
 
-
-		<script src="./js/jquery.js"></script>
-		<script src="./js/funciones.js"></script>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>	
-		<script src="./js/jquery-1.9.1.js"></script>
-        <script type='text/javascript' src='./js/jquery-1.8.3.js'></script> 
-        <!-- Scripts para el Autocomplete -->
-        <link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
-        <script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
-
-		<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
-         del formulario con base en un término o palabra que el usuario 
-         indique en la medida que vaya digitando en el cuadro de texto -->
+	<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
+	del formulario con base en un término o palabra que el usuario 
+	indique en la medida que vaya digitando en el cuadro de texto -->
 		<script type="text/javascript">
 		
             $('document').ready(function() {
@@ -383,7 +374,7 @@
 							<a href="#"><strong class="icon-forward"></strong>M&eacute;dico</a>
 						</li>
 						<li class="dropdown pull-right">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Configuraci&oacute;n<strong class="caret"></strong></a>
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Configuraci&oacute;n <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Acci&oacute;n</a></li>
 								<li class="divider"></li>
