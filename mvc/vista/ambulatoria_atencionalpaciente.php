@@ -132,15 +132,35 @@
 														<article>
 															<div class="acordeon_gp" style="padding:15px;">
 																<div>
-																	<input id="acordeon1-1" name="accordion_sub" type="radio" />
+																	<input id="acordeon1-1" name="accordion_sub" type="checkbox" />
 																	<label for="acordeon1-1">Atención Domiciliaria</label>
-																	
-																	<div>
-																		<ul>
-																			<li><a>Actividades realizadas</a></li>
-																			<li><a>Medicamentos Suministrados</a></li>
+																	<article style="background:#fdfdfd;">
+																		<ul style="padding:5px 0 0 5px;">
+																			<li><a href="#">Actividades realizadas</a></li>
+																			<li><a href="#">Medicamentos Suministrados</a></li>
 																		</ul>
-																	</div>
+																	</article>
+																</div>	
+															</div>
+														</article>
+												
+													</div>
+												</div>
+												<div class="acordeon">
+													<div>
+														<input id="acordeon2" name="accordion" type="checkbox" />
+														<label for="acordeon2">Fechas</label>
+														<article>
+															<div class="acordeon_gp" style="padding:15px;">
+																<div>
+																	<input id="acordeon2-1" name="accordion_sub" type="checkbox" />
+																	<label for="acordeon2-1">Atención Domiciliaria</label>
+																	<article style="background:#fdfdfd;">
+																		<ul style="padding:5px 0 0 5px;">
+																			<li><a href="#">Actividades realizadas</a></li>
+																			<li><a href="#">Medicamentos Suministrados</a></li>
+																		</ul>
+																	</article>
 																</div>	
 															</div>
 														</article>
@@ -248,8 +268,6 @@
 			</div>
 		</fieldset>';
 	
-	$script = $ds->js('datos_profesionales_salud', 'nom_ced', 'NO_CEDULA', '', 'PRIMER_NOMBRE', 'APELLIDO_PATERNO', 'APELLIDO_MATERNO');
-	$cont.=$script;
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
