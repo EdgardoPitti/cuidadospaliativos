@@ -169,7 +169,8 @@
                         $("#ciecrea").val(data[1]); 
                     });                   
             });	            
-        </script>		
+        </script>	
+			
 		<script type="text/javascript">
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
@@ -284,16 +285,16 @@
         </script>		
 		<script type="text/javascript">
             $('document').ready(function() {
-                    var palabra =""; // Término a buscar
-                    // Evento al escribir sobre el cuadro de texto
-                    $("#nombrerefiere").keypress(function() {
-                       palabra = $("#nombrerefiere").val(); // Completa la palabra
-                    });
-                    $("#nombrerefiere").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
-                        matchContains: true,
-                        mustMatch: true,
-                        selectFirst: false
-                    });             
+				var palabra =""; // Término a buscar
+				// Evento al escribir sobre el cuadro de texto
+				$("#nombrerefiere").keypress(function() {
+				   palabra = $("#nombrerefiere").val(); // Completa la palabra
+				});
+				$("#nombrerefiere").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+					matchContains: true,
+					mustMatch: true,
+					selectFirst: false
+				});             
             });	            
         </script>
 
@@ -325,6 +326,24 @@
                     });             
             });	  
 		</script>
+		<script>
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#busqueda").keypress(function() {
+                       palabra = $("#busqueda").val(); // Completa la palabra
+                    });
+
+                    $("#busqueda").autocomplete("./mvc/vista/buscar_pacientes.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+					$("#busqueda").result(function(event, data, formatted) {
+                        $("#busqueda").val(data[1]); 
+                    });    
+            });	            
+        </script>	
 		<script>
 			$(function(){
 			  $("#show1").click(function(){
