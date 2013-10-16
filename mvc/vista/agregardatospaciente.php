@@ -4,10 +4,20 @@
 	$datospaciente = new Accesatabla('datos_pacientes');
 	$residencia = new Accesatabla('residencia_habitual');
 	$ds = new Diseno();
+	//Variable utilizada como Switch para controlar de que vista viene
 	$sw = $_GET['sw'];
 	$idpaciente = $_GET['id'];
+	//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
 	if(empty($idpaciente)){
-		$residencia->nuevo();
+		//busco en los datos del paciente para ver si ese paciente existe
+		$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'"');
+		//En caso de que exista se busca su residencia habitual para modificarla
+		if($datos){
+			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$datospaciente->obtener('ID_RESIDENCIA_HABITUAL').'');
+			$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
+		}else{
+			$residencia->nuevo();
+		}	
 		$residencia->colocar("ID_PROVINCIA", $_POST['provincias']);
 		$residencia->colocar("ID_DISTRITO", $_POST['distritos']);
 		$residencia->colocar("ID_CORREGIMIENTO", $_POST['corregimientos']);
@@ -15,16 +25,22 @@
 		$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
 		$residencia->salvar();
 
-		$fechanacimiento = $_POST['fechanacimiento'];
-		$fecha = '"'.$fechanacimiento.'"';
-		$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
-		$id = $ds->db->obtenerArreglo($sql);
+		
 
 		list($anio, $mes, $dia) = explode("-", $_POST['fechanacimiento']);
 		$edad = $ds->edad($dia,$mes,$anio);
-
-		$datospaciente->nuevo();
-		$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
+		if(!$datos){
+			$datospaciente->nuevo();
+			$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
+			$id = $ds->db->obtenerArreglo($sql);
+			$idresidencia = $id[0][id];
+			$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
+			$fechanacimiento = $_POST['fechanacimiento'];
+			$fecha = '"'.$fechanacimiento.'"';
+		}else{
+			$fecha = $_POST['fechanacimiento'];
+		}
+		$idpaciente = $datospaciente->obtener('ID_PACIENTE');
 		$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
 		$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
 		$datospaciente->colocar("SEGUNDO_NOMBRE", $_POST['segundonombre']);
@@ -43,20 +59,28 @@
 		$datospaciente->colocar("TELEFONO_CELULAR", $_POST['celular']);
 		$datospaciente->colocar("E_MAIL", $_POST['correo']);
 		$datospaciente->colocar("OCUPACION", $_POST['ocupacion']);
-		$datospaciente->colocar("ID_RESIDENCIA_HABITUAL", $id[0][id]);
+		$datospaciente->colocar("ID_RESIDENCIA_HABITUAL", $idresidencia);
 		$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $_POST['residenciatransitoria']);
 		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
 		$datospaciente->salvar();
-		$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
-		$id = $ds->db->obtenerArreglo($sql);
-		$idpaciente = $id[0][id];
+		if(!$datos){
+			$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
+			$id = $ds->db->obtenerArreglo($sql);
+			$idpaciente = $id[0][id];
+		}
+		
 	}
 
 	if(!empty($sw) or !empty($_GET['id'])){
 		$responsable = new Accesatabla('responsable_paciente');
-		$responsable->nuevo();
-		$responsable->colocar("ID_PACIENTE", $idpaciente);
+		if(!$datos){
+			$responsable->nuevo();
+			$responsable->colocar("ID_PACIENTE", $idpaciente);
+		}else{
+			$responsable->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+		}
+		
 		$responsable->colocar("NOMBRE_CONTACTO", $_POST['nombreresponsable']);
 		$responsable->colocar("APELLIDO_CONTACTO", $_POST['apellidoresponsable']);
 		$responsable->colocar("PARENTESCO_CONTACTO", $_POST['parentesco']);
