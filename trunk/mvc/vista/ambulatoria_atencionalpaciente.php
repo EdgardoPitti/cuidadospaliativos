@@ -101,7 +101,7 @@
 					<div align="right">
 						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente">
 							<div class="input-group">
-							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="buscar">
+							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
 							  <span class="input-group-btn">
 								<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 							  </span>
