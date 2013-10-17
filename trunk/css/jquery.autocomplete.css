@@ -35,11 +35,11 @@
 }
 
 .ac_loading {
-	background: #ffffff url('../imgs/indicator.gif') right center no-repeat;
+	background: #ffffff url('../iconos/cargando.gif') right center no-repeat;
 }
 
 .ac_odd {
-	background-color: #f4f4f4;
+	background-color: #E8FFFF;
 }
 
 .ac_over {
