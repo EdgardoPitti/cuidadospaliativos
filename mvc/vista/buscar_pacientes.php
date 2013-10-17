@@ -6,7 +6,8 @@
     flush();
 
     function obtenerPacientes($palabra) {    
-        
+        include_once('../modelo/Diseno.php');
+		$ds = new diseno();
         // Conexión a la base de datos, cambiar los parámetros si se requiere
         $conexionBD = mysqli_connect('localhost','root','sql','cuidados_paliativos_panama');
         if (!$conexionBD) {
@@ -14,8 +15,8 @@
         }
 
         $consultaSQL= 
-            'SELECT NO_CEDULA, concat(NO_CEDULA," ",PRIMER_NOMBRE," ",SEGUNDO_NOMBRE," ",APELLIDO_PATERNO," ",APELLIDO_MATERNO) AS NOMBRE FROM DATOS_PACIENTES WHERE NO_CEDULA LIKE "%' 
-            . strtoupper($palabra) . '%" ORDER BY NO_CEDULA'; 
+            'SELECT NO_CEDULA, concat(NO_CEDULA," ",PRIMER_NOMBRE," ",SEGUNDO_NOMBRE," ",APELLIDO_PATERNO," ",APELLIDO_MATERNO) AS NOMBRE FROM DATOS_PACIENTES WHERE 
+			 concat(NO_CEDULA," ",PRIMER_NOMBRE," ",SEGUNDO_NOMBRE," ",APELLIDO_PATERNO," ",APELLIDO_MATERNO) LIKE "%'.$palabra.'%" ORDER BY NO_CEDULA'; 
     
         // Ejecuta la consulta
         $datos = mysqli_query($conexionBD, $consultaSQL);
@@ -25,6 +26,6 @@
             $coincidencias .= $valores['NOMBRE'].'|'.$valores['NO_CEDULA']."\n";
         }
         mysqli_close($conexionBD); // Cierra la conexión
-        return $coincidencias; // Devuelve la lista
+        return $ds->latino($coincidencias); // Devuelve la lista
     }
 ?>

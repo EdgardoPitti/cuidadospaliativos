@@ -28,9 +28,8 @@
 		$cont.='
 			<center>
 			<form class="form-search" method="POST" action="./?url=domiciliaria_surco">
-				<!--Buscar Paciente  <input type="search" id="cedula" placeholder="Cédula" name="cedula" class="input-medium search-query"> <button type="submit" class="btn">Buscar</button><br><br>-->
 				<div class="input-group">
-				  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula" name="cedula">
+				  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula o Nombre" name="cedula" required>
 				  <span class="input-group-btn">
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 				  </span>
