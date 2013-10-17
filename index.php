@@ -390,12 +390,12 @@
 				<div class="span12">
 					<ul class="nav nav-pills" style="float:right;margin-top:4px;">
 						<li>
-							<a href="#"><strong class="icon-forward"></strong>M&eacute;dico</a>
+							<a href="#">M&eacute;dico</a>
 						</li>
 						<li class="dropdown pull-right">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Configuraci&oacute;n <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Acci&oacute;n</a></li>
+								<li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li>
 								<li class="divider"></li>
 								<li><a href="#">Enlace separado</a></li>
 							</ul>
@@ -464,7 +464,7 @@
 							<article>	
 								<ul>
 									<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente"><i>Atenci&oacute;n al Paciente</i></a></li>
-									<li><a class="sublink" href="#"><i>Interconsulta</i></a></li>								
+									<li><a class="sublink" href="./?url=ambulatoria_interconsulta"><i>Interconsulta</i></a></li>								
 								</ul>
 							</article>	
 						</div>
@@ -548,19 +548,19 @@
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</a> 
-									<a href="#" class="brand">Atenciones</a>
+									<a href="#" class="brand">Atenciones</a>	
 								<div class="nav-collapse navbar-responsive-collapse collapse">
 									<ul class="nav">										
-										<li class="">
+										<li>
 											<a href="#" id="show1"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
 										</li>
-										<li class="">
+										<li>
 											<a href="#" id="show2"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
 										</li>
-										<li class="">
+										<li>
 											<a href="#" id="show3"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
 										</li>
-										<li class="">
+										<li>
 											<a href="#" id="show4"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 										</li>
 									</ul>

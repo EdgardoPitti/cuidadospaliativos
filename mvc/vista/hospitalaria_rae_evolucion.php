@@ -216,9 +216,9 @@
 											<td>Condición de Salida: </td>
 										</tr>
 										<tr align="center">
-											<td><textarea id="diagnosticoadmision" name="diagnosticoadmision"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-											<td><textarea id="diagnosticoegreso" name="diagnosticoegreso"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
-											<td><textarea id="tratamiento" name="tratamiento"  style="width:100%;max-width:150px;height:50px;border-color:#ccc;"></textarea></td>
+											<td><input type="text" id="diagnosticoadmision" name="diagnosticoadmision"></td>
+											<td><input type="text" id="diagnosticoegreso" name="diagnosticoegreso"></td>
+											<td><input type="text" id="tratamiento" name="tratamiento"></td>
 											<td>
 												<select id="condicionsalida" name="condicionsalida">
 													<option value="0"></option>';
