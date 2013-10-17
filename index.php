@@ -311,6 +311,20 @@
                         selectFirst: false
                     });             
             });	  
+		</script>		
+		<script>
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnostico").keypress(function() {
+                       palabra = $("#diagnostico").val(); // Completa la palabra
+                    });
+                    $("#diagnostico").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });             
+            });	  
 		</script>
 		<script>
             $('document').ready(function() {
@@ -343,7 +357,7 @@
                         $("#busqueda").val(data[1]); 
                     });    
             });	            
-        </script>	
+        </script>		
 		<script>
 			$(function(){
 			  $("#show1").click(function(){
