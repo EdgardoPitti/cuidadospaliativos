@@ -30,7 +30,7 @@
 				Introduzca el número de cédula del paciente, y añada las observaciones pertinentes.<br><br>
 				<form class="form-search" method="POST" action="./?url=domiciliarias_registro_actividades">
 					<div class="input-group">
-					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="cedula" id="cedula">
+					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="cedula" id="busqueda">
 					  <span class="input-group-btn">
 						<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 					  </span>
