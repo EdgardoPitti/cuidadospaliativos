@@ -254,21 +254,22 @@
 													<th>CIE-10</th>
 													<th>Tratamiento</th>
 													<th>Fecha del Examen</th>
-												</tr>';
+												</tr>	';
 				$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
 				while($x){
 					$examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
 					switch($examen){
+						case 1: $nomb_examen = 'bhc'; break;
 						case 2: $nomb_examen = 'urin'; break;
 						case 3: $nomb_examen = 'heces'; break;
 						case 4: $nomb_examen = 'glice'; break;
 						case 5: $nomb_examen = 'crea'; break;
 						case 6: $nomb_examen = 'ndeu'; break;
 						case 7: $nomb_examen = 'elec'; break;
-						case 8: $nomb_examen = 'ami'; break;
-						default: $nomb_examen = 'bhc'; break;
+						default: $nomb_examen = 'ami'; break;						
 					}
-					$cont.='
+					 
+					 $cont.='
 												<tr>
 													<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
 													<td><input type="text" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'"></td>
@@ -276,6 +277,7 @@
 													<td><input type="text" name="complicaciones'.$nomb_examen.'" id="complicaciones'.$nomb_examen.'"></td>
 													<td><input type="date" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'"></td>
 												</tr>';
+					
 					$x = $tipoexamen->releer();
 				}
 				$cont.='
@@ -409,7 +411,7 @@
 														<tr>
 															<td colspan="5">
 																Observaciones: <br>
-																<textarea name="observaciones_recomendaciones" style="width:100%;height:100px;border-color:#ccc;margin-right:10px;"></textarea>	
+																<textarea name="observaciones_recomendaciones" style="width:100%;height:50px;border-color:#ccc;margin-right:10px;"></textarea>	
 															</td>	
 														</tr>
 													</table>
