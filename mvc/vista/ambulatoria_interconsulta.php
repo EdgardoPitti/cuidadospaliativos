@@ -9,7 +9,7 @@
 				<legend><h3 style="background:#f4f4f4;padding:10px;">Interconsulta</h3></legend>
 					<form class="form-search" method="POST" action="./?url=">						
 						<div class="input-group">
-						  Buscar paciente: <input type="search" class="form-control" id="nom_ced" placeholder="Cédula o Nombre" name="nom_ced">
+						  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="nom_ced">
 						  <span class="input-group-btn">
 							<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 						  </span>
