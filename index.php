@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="./js/jquery.js"></script>
 	<script src="./js/funciones.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
 	<script type='text/javascript' src="./js/jquery-1.9.1.js"></script>
 	<script type='text/javascript' src='./js/jquery-1.8.3.js'></script>
 	  
@@ -557,6 +557,7 @@
 					<div class="navbar">
 						<div class="navbar-inner">
 							<div class="container-fluid">
+							
 								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
