@@ -29,7 +29,7 @@
 			<center>
 			<form class="form-search" method="POST" action="./?url=domiciliaria_surco">
 				<div class="input-group">
-				  Buscar paciente: <input type="search" class="form-control" id="cedula" placeholder="Cédula o Nombre" name="cedula" required>
+				  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="cedula" required>
 				  <span class="input-group-btn">
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 				  </span>

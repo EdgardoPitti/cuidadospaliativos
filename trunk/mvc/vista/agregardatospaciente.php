@@ -16,8 +16,10 @@
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$datospaciente->obtener('ID_RESIDENCIA_HABITUAL').'');
 			$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
 		}else{
+			//Sino existe se crea un nuevo registro
 			$residencia->nuevo();
 		}	
+		//Se Almacenan los valores correspondientes y se salva
 		$residencia->colocar("ID_PROVINCIA", $_POST['provincias']);
 		$residencia->colocar("ID_DISTRITO", $_POST['distritos']);
 		$residencia->colocar("ID_CORREGIMIENTO", $_POST['corregimientos']);
@@ -26,20 +28,30 @@
 		$residencia->salvar();
 
 		
-
+		//Se descompone la fecha en año, mes y dia
 		list($anio, $mes, $dia) = explode("-", $_POST['fechanacimiento']);
+		//Se llama la funcion de diseño llamada edad mandandole la fecha desglozada para obtener la edad
 		$edad = $ds->edad($dia,$mes,$anio);
+		
+		//Si no encuentra a nadie con ese registro 
 		if(!$datos){
+			//se crea un nuevo
 			$datospaciente->nuevo();
+			//Se arma el sql para obtener el id max
 			$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
 			$id = $ds->db->obtenerArreglo($sql);
+			//Se almacena el id max en la variable $idresidencia
 			$idresidencia = $id[0][id];
+			//Si el registro es nuevo es necesario colocar la cedula, en caso contrario no
 			$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
+			//Se obtiene la fecha de nacimiento
 			$fechanacimiento = $_POST['fechanacimiento'];
 			$fecha = '"'.$fechanacimiento.'"';
 		}else{
+			//En caso de que el registro no sea nuevo la fecha se coloca asi mismo
 			$fecha = $_POST['fechanacimiento'];
 		}
+		//Se obtiene el id del paciente para usarlo despues y se actualizan los datos correspondientes
 		$idpaciente = $datospaciente->obtener('ID_PACIENTE');
 		$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
 		$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
@@ -64,23 +76,38 @@
 		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
 		$datospaciente->salvar();
+		//Si no encuentra a nadie con ese registro 
 		if(!$datos){
+			//Se arma el sql para obtener el id max
 			$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
 			$id = $ds->db->obtenerArreglo($sql);
 			$idpaciente = $id[0][id];
 		}
 		
 	}
-
+	//Si no esta vacia la variable $sw o si no esta vacio al obtener el id por GET quiere decir que el registro es 
+	//de un paciente de atencion hospitalaria por lo tanto debe almacenar una persona responsable
 	if(!empty($sw) or !empty($_GET['id'])){
+		//Se instancia la tabla que almacena los datos del responsable del paciente
 		$responsable = new Accesatabla('responsable_paciente');
+		//Comprobamos que el paciente no exista
 		if(!$datos){
+			//Sino existe se almacenara en un nuevo registro
 			$responsable->nuevo();
+			//Se coloca el id del paciente en la tabla del responsable
 			$responsable->colocar("ID_PACIENTE", $idpaciente);
 		}else{
-			$responsable->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+			//Si si existe el paciente se busca el responsable para con el id del paciente para actualizar los datos del responsable
+			$resp = $responsable->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+			if(!$resp){
+				//Sino existe se almacenara en un nuevo registro
+				$responsable->nuevo();
+				//Se coloca el id del paciente en la tabla del responsable
+				$responsable->colocar("ID_PACIENTE", $idpaciente);
+			}
+			
 		}
-		
+		//Se almacenan los datos correpondientes
 		$responsable->colocar("NOMBRE_CONTACTO", $_POST['nombreresponsable']);
 		$responsable->colocar("APELLIDO_CONTACTO", $_POST['apellidoresponsable']);
 		$responsable->colocar("PARENTESCO_CONTACTO", $_POST['parentesco']);
