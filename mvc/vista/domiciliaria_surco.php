@@ -123,15 +123,13 @@
 													<td>Instalación que Refiere:</td>
 													<td><select id="instalacionrefiere" name="instalacionrefiere" height="125px">
 															<option value=""></option>';
-						$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
-						while($i){
-							$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-							$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
-							$cont .= '
-														<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-							';
-							$i = $instituciones->releer();
-						}
+							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
+							while($i){
+								$cont .= '
+															<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
+								';
+								$i = $instituciones->releer();
+							}
 						$cont.='
 														</select>
 													</td>
@@ -153,15 +151,13 @@
 													<td>Instalación Receptora:</td>
 													<td><select id="instalacionreceptora" name="instalacionreceptora">
 															<option value=""></option>';
-						$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
-						while($i){
-						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
-						$cont .= '
-															<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-							';
-							$i = $instituciones->releer();
-						}
+							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
+							while($i){
+								$cont .= '
+															<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
+								';
+								$i = $instituciones->releer();
+							}
 						$cont.='
 														</select>
 													</td>
@@ -318,12 +314,10 @@
 											<td><select id="institucionresponde" name="institucionresponde">
 													<option value=""></option>';
 													
-					$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+					$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 					while($i){
-						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
 						$cont .= '
-													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
 						';
 						$i = $instituciones->releer();
 					}
@@ -334,12 +328,10 @@
 											<td><select id="instalacionrepectora" name="instalacionreceptora">
 													<option value=""></option>';
 													
-					$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+					$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 					while($i){
-						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
 						$cont .= '
-													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+													<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
 						';
 						$i = $instituciones->releer();
 					}
