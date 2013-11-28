@@ -107,7 +107,9 @@
 			$syntax = "UPDATE ".$this->estatabla." SET ";
 			for ( $i = 0; $i <= $this->totaldecampos; $i++ ) {
 				if ( $this->cambiados[ $i ] ) {//Si los campos fueron cambiados actualiza en...
-					$ab=""; if ( $this->tipocampo[ $i ] == 'cadena' || $this->tipocampo[ $i ] == 'date') { $ab="'"; }//Separacion entre parametros
+					$ab=""; 
+					if ( $this->tipocampo[ $i ] == 'cadena') { $ab="'"; }//Separacion entre parametros
+					if($this->tipocampo[$i]=='date') { $ab='"'; } // delimitador en doble comillas para los campos date...
 					$syntax = $syntax.$this->loscampos[ $i ]."=".$ab. $this->contenido[ $i ] .$ab.", ";//el campo y su valor
 				}
 			}
@@ -131,7 +133,7 @@
 			$sql = 'ALTER TABLE '.$this->estatabla.' AUTO_INCREMENT = '.$n.'';
 			$this->db->query($sql);
 		}	
-		//echo $syntax;
+		echo $syntax.'<br>';
 		$this->db->query($syntax);//Realiza el query
 		if ( $this->db->affected_rows() > 0 ) {//Si se afecto un registro...
 			for ( $i = 0; $i <= $this->totaldecampos; $i++ ) { 

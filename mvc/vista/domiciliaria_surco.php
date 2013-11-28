@@ -14,6 +14,7 @@
 	$motivoreferencia = new Accesatabla('motivo_referencia');
 	$cie = new Accesatabla('cie10');
 	$tipoexamen = new Accesatabla('tipo_examen');
+	$frecuencia = new Accesatabla('frecuencia');
 	$sw = 0;
 	$cedula = $_POST['cedula'];
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
@@ -121,7 +122,7 @@
 											<table class="tabla-datos">
 												<tr>
 													<td>Instalación que Refiere:</td>
-													<td><select id="instalacionrefiere" name="instalacionrefiere" height="125px">
+													<td><select id="instalacionrefiere" name="instalacionrefiere" height="125px" required>
 															<option value=""></option>';
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 							while($i){
@@ -247,29 +248,30 @@
 													<th>Tipo de Examen</th>
 													<th>Diagnóstico</th>
 													<th>CIE-10</th>
+													<th>Frecuencia</th>
 													<th>Tratamiento</th>
 													<th>Fecha del Examen</th>
 												</tr>	';
 				$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
 				while($x){
-					$examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
-					switch($examen){
-						case 1: $nomb_examen = 'bhc'; break;
-						case 2: $nomb_examen = 'urin'; break;
-						case 3: $nomb_examen = 'heces'; break;
-						case 4: $nomb_examen = 'glice'; break;
-						case 5: $nomb_examen = 'crea'; break;
-						case 6: $nomb_examen = 'ndeu'; break;
-						case 7: $nomb_examen = 'elec'; break;
-						default: $nomb_examen = 'ami'; break;						
-					}
-					 
+					$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
 					 $cont.='
 												<tr>
 													<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
 													<td><input type="text" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'"></td>
 													<td><input type="text" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5"></td>
-													<td><input type="text" name="complicaciones'.$nomb_examen.'" id="complicaciones'.$nomb_examen.'"></td>
+													<td><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'">
+															<option value=""></option>
+													';
+														
+					$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
+					while($f){
+						$cont.='							<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'">'.$frecuencia->obtener('FRECUENCIA').'</option>';
+						$f = $frecuencia->releer();
+					}
+					$cont.='
+														</select></td>
+													<td><input type="text" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'"></td>
 													<td><input type="date" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'"></td>
 												</tr>';
 					

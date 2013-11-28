@@ -34,8 +34,8 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticobhc").keypress(function() {
-                       palabra = $("#diagnosticobhc").val(); // Completa la palabra
+                    $("#diagnostico1").keypress(function() {
+                       palabra = $("#diagnostico1").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -44,7 +44,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticobhc").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico1").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -53,8 +53,8 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticobhc").result(function(event, data, formatted) {
-                        $("#ciebhc").val(data[1]); 
+                    $("#diagnostico1").result(function(event, data, formatted) {
+                        $("#cie1").val(data[1]); 
                     });                   
             });	            
         </script>		
@@ -62,8 +62,8 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticourin").keypress(function() {
-                       palabra = $("#diagnosticourin").val(); // Completa la palabra
+                    $("#diagnostico2").keypress(function() {
+                       palabra = $("#diagnostico2").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -72,7 +72,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticourin").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico2").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -81,8 +81,8 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticourin").result(function(event, data, formatted) {
-                        $("#cieurin").val(data[1]); 
+                    $("#diagnostico2").result(function(event, data, formatted) {
+                        $("#cie2").val(data[1]); 
                     });                   
             });	            
         </script>		
@@ -90,8 +90,8 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticoheces").keypress(function() {
-                       palabra = $("#diagnosticoheces").val(); // Completa la palabra
+                    $("#diagnostico3").keypress(function() {
+                       palabra = $("#diagnostico3").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -100,7 +100,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticoheces").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico3").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -109,8 +109,8 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticoheces").result(function(event, data, formatted) {
-                        $("#cieheces").val(data[1]); 
+                    $("#diagnostico3").result(function(event, data, formatted) {
+                        $("#cie3").val(data[1]); 
                     });                   
             });	            
         </script>	
@@ -118,8 +118,8 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticoglice").keypress(function() {
-                       palabra = $("#diagnosticoglice").val(); // Completa la palabra
+                    $("#diagnostico4").keypress(function() {
+                       palabra = $("#diagnostico4").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -128,7 +128,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticoglice").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico4").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -137,17 +137,17 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticoglice").result(function(event, data, formatted) {
-                        $("#cieglice").val(data[1]); 
+                    $("#diagnostico4").result(function(event, data, formatted) {
+                        $("#cie4").val(data[1]); 
                     });                   
             });	            
-        </script>		
+        </script>				
 		<script type="text/javascript">
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticocrea").keypress(function() {
-                       palabra = $("#diagnosticocrea").val(); // Completa la palabra
+                    $("#diagnostico5").keypress(function() {
+                       palabra = $("#diagnostico5").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -156,7 +156,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticocrea").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico5").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -165,18 +165,18 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticocrea").result(function(event, data, formatted) {); 
-                        $("#ciecrea").val(data[1]); 
+                    $("#diagnostico5").result(function(event, data, formatted) {
+                        $("#cie5").val(data[1]); 
                     });                   
             });	            
-        </script>	
+        </script>			
 			
 		<script type="text/javascript">
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticondeu").keypress(function() {
-                       palabra = $("#diagnosticondeu").val(); // Completa la palabra
+                    $("#diagnostico6").keypress(function() {
+                       palabra = $("#diagnostico6").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -185,7 +185,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticondeu").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico6").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -194,8 +194,8 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticondeu").result(function(event, data, formatted) {
-                        $("#ciendu").val(data[1]); 
+                    $("#diagnostico6").result(function(event, data, formatted) {
+                        $("#cie6").val(data[1]); 
                     });                   
             });	            
         </script>		
@@ -203,8 +203,8 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticoelec").keypress(function() {
-                       palabra = $("#diagnosticoelec").val(); // Completa la palabra
+                    $("#diagnostico7").keypress(function() {
+                       palabra = $("#diagnostico7").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -213,7 +213,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticoelec").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico7").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -222,8 +222,8 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticoelec").result(function(event, data, formatted) {
-                        $("#cieelec").val(data[1]); 
+                    $("#diagnostico7").result(function(event, data, formatted) {
+                        $("#cie7").val(data[1]); 
                     });                   
             });	            
         </script>		
@@ -231,8 +231,8 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticoami").keypress(function() {
-                       palabra = $("#diagnosticoami").val(); // Completa la palabra
+                    $("#diagnostico8").keypress(function() {
+                       palabra = $("#diagnostico8").val(); // Completa la palabra
                     });
                     // Tan pronto se empieza a escribir en el cuadro de texto, se
                     // dispara el evento de autocompletar que hace la consulta al
@@ -241,7 +241,7 @@
                     // las coincidencias de la palabra, completando el texto con
                     // una lista de sugerencias. Igualmente, se reciben, los ID's
                     // que coinciden con los términos buscados.
-                    $("#diagnosticoami").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico8").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
@@ -250,8 +250,8 @@
                     // la lista de sugerencias, se pasa a los campos txtAfecciones_val
                     // y txtCIE, el valor del ID del termino seleccionado, que es el 
                     // código CIE10 asignado.
-                    $("#diagnosticoami").result(function(event, data, formatted) { 
-                        $("#cieami").val(data[1]); 
+                    $("#diagnostico8").result(function(event, data, formatted) { 
+                        $("#cie8").val(data[1]); 
                     });                   
             });	            
         </script>		
@@ -294,7 +294,10 @@
 					matchContains: true,
 					mustMatch: true,
 					selectFirst: false
-				});             
+				});  
+				$("#nombrerefiere").result(function(event, data, formatted) {
+					$("#nombrerefiere").val(data[1]); 
+				});				
             });	            
         </script>
 

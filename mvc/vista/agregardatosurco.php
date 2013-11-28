@@ -4,17 +4,25 @@
 	$ds = new Diseno();
 	$surco = new Accesatabla('surco');
 	$profesional = new Accesatabla('datos_profesionales_salud');
-	$idpaciente = $_GET['id']
+	$idpaciente = $_GET['id'];
 	$trazabilidad = new Accesatabla('trazabilidad');
 	$historiapaciente = new Accesatabla('historia_paciente');
 	$examenfisico = new Accesatabla('examen_fisico');
-	$trazabilidad->colocar("ID_PACIENTE", $);
-	$trazabilidad->colocar("FECHA",$ds->dime('año').'-'.$ds->dime('mes').'-'.$ds->dime('dia'));
+	$tipoexamen = new Accesatabla('tipo_examen');
+	$resultados = new Accesatabla('resultados_examen_diagnostico');
+	$diagnostico = new Accesatabla('diagnostico');	
+	
+	$fecha = '"';
+	$fecha .= $ds->dime('año').'-'.$ds->dime('mes').'-'.$ds->dime('dia');
+	$fecha .= '"';	
+	$idtrazabilidad = $idpaciente.'_'.$ds->dime('año').'/'.$ds->dime('mes').'/'.$ds->dime('dia');
+	$trazabilidad->colocar("ID_TRAZABILIDAD", $idtrazabilidad);
+	$trazabilidad->colocar("ID_PACIENTE", $idpaciente);
+	$trazabilidad->colocar("FECHA",$fecha);
 	$trazabilidad->salvar();
-	
-	
+		
 	$examenfisico->colocar("ID_PACIENTE", $idpaciente);
-	$examenfisico->colocar("hora", $_POST['hora']);
+	$examenfisico->colocar("HORA", $_POST['hora']);
 	$examenfisico->colocar("PRESION_ARTERIAL", $_POST['pa']);
 	$examenfisico->colocar("FRECUENCIA_CARDIACA", $_POST['fc']);
 	$examenfisico->colocar("FRECUENCIA_RESPIRATORIA", $_POST['fr']);
@@ -23,7 +31,6 @@
 	$examenfisico->colocar("PESO", $_POST['peso']);
 	$examenfisico->colocar("TALLA", $_POST['talla']);
 	$examenfisico->salvar();
-	
 	
 	$sql = 'SELECT max(ID_EXAMEN_FISICO) as id FROM examen_fisico';
 	$idexamenfisico = $ds->db->obtenerArreglo($sql);
@@ -34,25 +41,51 @@
 
 	$sql = 'SELECT max(ID_HISTORIA_PACIENTE) as id FROM historia_paciente';
 	$idhistoriapaciente = $ds->db->obtenerArreglo($sql);
-	$profesional = $_POST['nombrerefiere'];
-	list($primernombre, $segundonombre, $primerapellido, $segundoapellido) = explode(" ", $profesional);
-	$profesional->buscaradonde('PRIMER_NOMBRE = "'.$primernombre.'" AND SEGUNDO_NOMBRE = "'.$segundonombre.'" AND APELLIDO_PATERNO = "'.$primerapellido.'" AND APELLIDO_MATERNO = "'.$segundoapellido.'"');
+	$cedulaprofesional = $_POST['nombrerefiere'];
+	$profesional->buscardonde('NO_CEDULA = "'.$cedulaprofesional.'"');
 	
 	
 	$sql = 'SELECT max(ID_TRAZABILIDAD) as id FROM trazabilidad';
 	$idtrazabilidad = $ds->db->obtenerArreglo($sql);
-	$surco->colocar("ID_PACIENTE", $id);
+	$surco->colocar("ID_PACIENTE", $idpaciente);
 	$surco->colocar("ID_TRAZABILIDAD", $idtrazabilidad[0][id]);
-	$surco->colocar("FECHA",$ds->dime('año').'-'.$ds->dime('mes').'-'.$ds->dime('dia'));
-	$surco->colocar("INSTALACION_REFIERE", $_POST['']);
-	$surco->colocar("INSTALACION_RECEPTORA", $_POST['']);
+	$surco->colocar("FECHA",$fecha);
+	$surco->colocar("INSTALACION_REFIERE", $_POST['instalacionrefiere']);
+	$surco->colocar("INSTALACION_RECEPTORA", $_POST['instalacionreceptora']);
 	$surco->colocar("ID_MOTIVO_REFERENCIA", $_POST['motivoreferencia']);
 	$surco->colocar("ID_CLASIFICACION_ATENCION_SOLICITADA", $_POST['clasificacionatencion']);
-	$surco->colocar("ID_HISTORIA_PACIENTE", $idhistoriapaciente);
-	$surco->colocar("ID_RESULTADOS_EXAMEN_DIAGNOSTICO",);
+	$surco->colocar("ID_HISTORIA_PACIENTE", $idhistoriapaciente[0][id]);
 	$surco->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
-	$surco->colocar("ID_RESPUESTA_REFERENCIA",);
 	$surco->salvar();
 
-
+	$sql = 'SELECT max(ID_SURCO) as id FROM surco';
+	$idsurco = $ds->db->obtenerArreglo($sql);
+	$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
+	while($x){
+		$diagnostico->nuevo();
+		$diagnostico->colocar("ID_FRECUENCIA", $_POST['frec'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
+		$diagnostico->colocar("ID_CIE10", $_POST['cie'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
+		$diagnostico->salvar();
+		$sql = 'SELECT max(ID_DIAGNOSTICO) as id FROM diagnostico';
+		$iddiagnostico = $ds->db->obtenerArreglo($sql);
+		$fecha = '"';
+		$fecha .= $_POST['fec_examen_'.$tipoexamen->obtener('ID_TIPO_EXAMEN').''];
+		$fecha .= '"';
+		$resultados->nuevo();
+		$resultados->colocar("ID_TIPO_EXAMEN", $tipoexamen->obtener('ID_TIPO_EXAMEN'));
+		$resultados->colocar("ID_DIAGNOSTICO", $iddiagnostico[0][id]);
+		$resultados->colocar("TRATAMIENTO", $_POST['tratamiento'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
+		$resultados->colocar("FECHA", $fecha);
+		$resultados->colocar("ID_SURCO", $idsurco[0][id]);
+		$resultados->salvar();
+		$x = $tipoexamen->releer();
+	}
+	$cont.='
+			<center>
+				<h1>Datos Salvados Correctamente</h1>
+				<a href="./?url=domiciliaria_surco">Click para continuar...</a>
+			</center>
+			';
+	$ds->contenido($cont);
+	$ds->mostrar();
 ?>
