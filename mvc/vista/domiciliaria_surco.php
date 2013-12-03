@@ -12,6 +12,7 @@
 	$clasificacion = new Accesatabla('clasificacion_atencion_solicitada');
 	$servicios = new Accesatabla('servicios_medicos');
 	$motivoreferencia = new Accesatabla('motivo_referencia');
+	$surco = new Accesatabla('surco');
 	$cie = new Accesatabla('cie10');
 	$tipoexamen = new Accesatabla('tipo_examen');
 	$frecuencia = new Accesatabla('frecuencia');
@@ -100,8 +101,11 @@
 						</td>
 					</tr>
 				</table>
-				</center>
-				
+				</center>';
+		$s = $surco->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'');
+		if($s == 0){
+		
+				$cont.='
 					<!--REFERENCIA-->
 					<div class="tabbable" id="tabs-1">
 						<ul class="nav nav-tabs">
@@ -304,16 +308,23 @@
 								
 								<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:1px;float:right;">Registrar</button>
 							   </form>
-							</div>
+							</div>';		
+		}else{
+			$cont.='<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab2" data-toggle="tab">Respuesta a la Referencia</a></li>
+						</ul>';
+		}
+
+				$cont.='
 							<!--RESPUESTA A LA REFERENCIA -->
 							<div class="tab-pane" id="tab2">
-								<form method="POST" action="./?url=respuesta_referencia">	
+								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'">	
 									<button type="submit" class="btn btn-default">Imprimir</button>
 									<button type="submit" class="btn btn-default">Descargar</button>							
 									<table class="tabla-datos" width="100%">
 										<tr>
 											<td style="wid th:90px">Institución que Responde:</td>
-											<td><select id="institucionresponde" name="institucionresponde">
+											<td><select id="institucionresponde" name="institucionrespondereceptora">
 													<option value=""></option>';
 													
 					$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
@@ -327,7 +338,7 @@
 												</select>
 											</td>
 											<td>Instalación Receptora:</td>
-											<td><select id="instalacionrepectora" name="instalacionreceptora">
+											<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta">
 													<option value=""></option>';
 													
 					$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
@@ -357,19 +368,42 @@
 																		<tr>
 																			<td>Diagnóstico: </td>
 																			<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta"></td>
+																			<td></td>
 																		</tr>
 																		<tr>
 																			<td>CIE-10: </td>
 																			<td><input type="text" id="cierespuesta" name="cierespuesta"></td>
+																			<td></td>
+																			<td></td>																			
 																		</tr>
 																		<tr>
-																			<td colspan="2">
-																				Observaciones:<br>
-																				<textarea name="observaciones2" style="max-width:300px;height:50px;border-color:#ccc;"></textarea>
+																			<td>Frecuencia:</td>
+																			<td><select id="frecuenciarespuesta" name="frecuenciarespuesta">
+																					<option value=""></option>
+																			';
+																			
+					$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
+					while($f){
+						$cont.='
+																					<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'">'.$frecuencia->obtener('FRECUENCIA').'</option>
+						';
+						$f = $frecuencia->releer();
+					}
+					
+					$cont.='														
+																				</select>
 																			</td>
+																			<td></td>
+																			<td></td>
 																		</tr>
 																	</table>
 																</center>	
+															</td>
+															<td>
+																			<td colspan="2">
+																				Hallazgos Clinicos:<br>
+																				<textarea name="hallazgosclinicos" style="max-width:300px;height:50px;border-color:#ccc;"></textarea>
+																			</td>
 															</td>
 															<td>
 																<center>
@@ -396,24 +430,21 @@
 													<table width="80%">
 														<tr>
 															<td>Reevaluación especializada: </td>
-															<td class="radio"><input type="radio"  style="display:block" name="reev_esp" id="reev_esp"/> Sí</td>
-															<td class="radio"><input type="radio" style="display:block" name="reev_esp" id="reev_esp"/> No</td>
-															<td>Fecha:</td>
-															<td><input type="date" name="fecha"/></td>
+															<td class="radio"><input type="radio"  style="display:block" name="reev_esp" id="reev_esp" value="1" checked> Sí<br> <input type="radio" style="display:block" name="reev_esp" id="reev_esp" value="0"> No</td>
 														</tr>
 														<tr>
-															<td colspan="5">
-																Observaciones: <br>
-																<textarea name="observaciones_recomendaciones" style="width:100%;height:50px;border-color:#ccc;margin-right:10px;"></textarea>	
-															</td>	
+															<td>Fecha:</td>
+															<td><input type="date" name="fecharespuesta"/></td>
+														</tr>
+														<tr>
+															<td>Profesional:</td>
+															<td><input type="text" id="profesionalrespuesta" name="profesionalrespuesta"></td>
 														</tr>
 													</table>
 												</center>
 											</article>
 										</div>
 									</div>	
-									
-									<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">+Nueva Nota</button>
 									<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>							
 								</form>	
 							</div>	

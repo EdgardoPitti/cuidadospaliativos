@@ -299,8 +299,24 @@
 					$("#nombrerefiere").val(data[1]); 
 				});				
             });	            
+        </script>		
+		<script type="text/javascript">
+            $('document').ready(function() {
+				var palabra =""; // Término a buscar
+				// Evento al escribir sobre el cuadro de texto
+				$("#profesionalrespuesta").keypress(function() {
+				   palabra = $("#profesionalrespuesta").val(); // Completa la palabra
+				});
+				$("#profesionalrespuesta").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+					matchContains: true,
+					mustMatch: true,
+					selectFirst: false
+				});  
+				$("#profesionalrespuesta").result(function(event, data, formatted) {
+					$("#profesionalrespuesta").val(data[1]); 
+				});				
+            });	            
         </script>
-
 		<script>
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
