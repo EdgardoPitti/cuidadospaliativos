@@ -6,23 +6,25 @@
 	$diagnostico = new Accesatabla('diagnostico');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$respuesta = new Accesatabla('respuesta_referencia');
+	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$idsurco = $_GET['id'];
 	
 	$profesional->buscardonde('NO_CEDULA = "'.$_POST['profesionalrespuesta'].'"');
 	
-	$d = $diagnostico->buscardonde('ID_CIE10 = "'.$_POST['cierespuesta'].'" AND ID_FRECUENCIA = '.$_POST['frecuenciarespuesta'].'');
-	if($d){
-		$iddiagnostico = $diagnostico->obtener('ID_DIAGNOSTICO');
-	}else{
-		$diagnostico->nuevo();
-		$diagnostico->colocar("ID_FRECUENCIA", $_POST['frecuenciarespuesta']);
-		$diagnostico->colocar("ID_CIE10", $_POST['cierespuesta']);
-		$diagnostico->salvar();
+	$diagnostico->nuevo();
+	$diagnostico->salvar();
 
-		$sql = 'SELECT max(ID_DIAGNOSTICO) as id FROM diagnostico';
-		$matriz = $ds->db->obtenerArreglo($sql);
-		$iddiagnostico = $matriz[0][id];
-	}
+	$sql = 'SELECT max(ID_DIAGNOSTICO) as id FROM diagnostico';
+	$matriz = $ds->db->obtenerArreglo($sql);
+	$iddiagnostico = $matriz[0][id];
+	
+	$detallediagnostico->nuevo();
+	$detallediagnostico->colocar("ID_DIAGNOSTICO", $iddiagnostico);
+	$detallediagnostico->colocar("ID_CIE10", $_POST['cierespuesta']);
+	$detallediagnostico->colocar("ID_FRECUENCIA", $_POST['frecuenciarespuesta']);
+	$detallediagnostico->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
+	$detallediagnostico->colocar("OBSERVACION", $_POST['observrespuesta']);
+	$detallediagnostico->salvar();
 	
 	$respuesta->nuevo();
 	$respuesta->colocar("FECHA", $_POST['fecharespuesta']);
