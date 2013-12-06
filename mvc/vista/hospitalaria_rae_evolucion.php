@@ -170,12 +170,10 @@
 												<td><select id="institucion" name="institucion">
 														<option value="0"></option>';
 															
-					$i = $instituciones->buscardonde('ID_INSTITUCION > 0');
+					$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 					while($i){
-						$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$instituciones->obtener('ID_CORREGIMIENTO').'');
-						$tipoinstitucion->buscardonde('ID_TIPO_INSTITUCION = '.$instituciones->obtener('ID_TIPO_INSTITUCION').'');
 						$cont .= '
-														<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$tipoinstitucion->obtener('TIPO_INSTITUCION').'-'.$instituciones->obtener('LUGAR').'-'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+														<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').' - '.$instituciones->obtener('LUGAR').'</option>
 						';
 						$i = $instituciones->releer();
 					}

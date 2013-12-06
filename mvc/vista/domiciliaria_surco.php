@@ -231,7 +231,19 @@
 													<th>Talla<small>(mts)</small></th>
 												</tr>
 												<tr  align="center">
-													<td><input style="width:50px;" type="text" name="hora" value="'.$ds->dime('hora').':'.$ds->dime('minuto').'"></td>
+													<td><input style="width:50px;" type="text" name="hora" value="';
+
+												if($ds->dime('hora') < 10){
+													$hora .= '0';
+												}
+												$hora .= $ds->dime('hora');
+												$hora .= ':';
+												if($ds->dime('minuto') < 10){
+													$hora .= '0';
+												}
+												$hora .= $ds->dime('minuto');
+								
+										$cont.=		''.$hora.'"></td>
 													<td><input style="width:50px;" type="text" name="pa"/></td>
 													<td><input style="width:50px;" type="text" name="fc"/></td>
 													<td><input style="width:50px;" type="text" name="fr"/></td>
@@ -253,6 +265,7 @@
 													<th>Diagnóstico</th>
 													<th>CIE-10</th>
 													<th>Frecuencia</th>
+													<th>Observaciones</th>
 													<th>Tratamiento</th>
 													<th>Fecha del Examen</th>
 												</tr>	';
@@ -275,6 +288,7 @@
 					}
 					$cont.='
 														</select></td>
+													<td><input type="text" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'"></td>
 													<td><input type="text" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'"></td>
 													<td><input type="date" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'"></td>
 												</tr>';
@@ -400,10 +414,20 @@
 																</center>	
 															</td>
 															<td>
-																			<td colspan="2">
-																				Hallazgos Clinicos:<br>
-																				<textarea name="hallazgosclinicos" style="max-width:300px;height:50px;border-color:#ccc;"></textarea>
-																			</td>
+																<table>
+																	<tr>
+																		<td colspan="2">
+																			Hallazgos Clinicos:<br>
+																			<textarea name="hallazgosclinicos" style="max-width:300px;height:50px;border-color:#ccc;"></textarea>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			Observaciones: <br>
+																			<textarea name="observrespuesta" style="max-width:300px;height:50px;border-color:#ccc;"></textarea>
+																		</td>
+																	</tr>
+																</table>
 															</td>
 															<td>
 																<center>

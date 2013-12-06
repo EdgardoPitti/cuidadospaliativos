@@ -11,6 +11,13 @@
 	$tipoexamen = new Accesatabla('tipo_examen');
 	$resultados = new Accesatabla('resultados_examen_diagnostico');
 	$diagnostico = new Accesatabla('diagnostico');	
+	$detallediagnostico = new Accesatabla('detalle_diagnostico');
+	
+	$diagnostico->nuevo();
+	$diagnostico->salvar();
+	$sql = 'SELECT max(ID_DIAGNOSTICO) as id FROM diagnostico';
+	$matriz = $ds->db->obtenerArreglo($sql);
+	$iddiagnostico = $matriz[0][id];
 	
 	$fecha = '"';
 	$fecha .= $ds->dime('año').'-'.$ds->dime('mes').'-'.$ds->dime('dia');
@@ -62,24 +69,22 @@
 	$idsurco = $ds->db->obtenerArreglo($sql);
 	$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
 	while($x){
-		$d = $diagnostico->buscardonde('ID_FRECUENCIA = '.$_POST['frec'.$tipoexamen->obtener('ID_TIPO_EXAMEN').''].' AND ID_CIE10 = "'.$_POST['cie'.$tipoexamen->obtener('ID_TIPO_EXAMEN').''].'"');
-		if($d){
-			$iddiagnostico = $diagnostico->obtener('ID_DIAGNOSTICO');
-		}else{
-			$diagnostico->nuevo();
-			$diagnostico->colocar("ID_FRECUENCIA", $_POST['frec'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
-			$diagnostico->colocar("ID_CIE10", $_POST['cie'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
-			$diagnostico->salvar();
-			$sql = 'SELECT max(ID_DIAGNOSTICO) as id FROM diagnostico';
-			$matriz = $ds->db->obtenerArreglo($sql);
-			$iddiagnostico = $matriz[0][id];
-		}
+		$detallediagnostico->nuevo();
+		$detallediagnostico->colocar("ID_DIAGNOSTICO",$iddiagnostico);
+		$detallediagnostico->colocar("ID_CIE10", $_POST['cie'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
+		$detallediagnostico->colocar("ID_FRECUENCIA", $_POST['frec'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
+		$detallediagnostico->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
+		$detallediagnostico->colocar("OBSERVACION", $_POST['obser'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
+		$detallediagnostico->salvar();
+		$sql = 'SELECT max(SECUENCIA) as id FROM detalle_diagnostico';
+		$iddetallediagnostico = $ds->db->ObtenerArreglo($sql);
+		
 		$fecha = '"';
 		$fecha .= $_POST['fec_examen_'.$tipoexamen->obtener('ID_TIPO_EXAMEN').''];
 		$fecha .= '"';
 		$resultados->nuevo();
 		$resultados->colocar("ID_TIPO_EXAMEN", $tipoexamen->obtener('ID_TIPO_EXAMEN'));
-		$resultados->colocar("ID_DIAGNOSTICO", $iddiagnostico);
+		$resultados->colocar("ID_DIAGNOSTICO", $iddetallediagnostico[0][id]);
 		$resultados->colocar("TRATAMIENTO", $_POST['tratamiento'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
 		$resultados->colocar("FECHA", $fecha);
 		$resultados->colocar("ID_SURCO", $idsurco[0][id]);
