@@ -10,33 +10,8 @@
 			<legend align="center">
 				<h3 style="background:#f4f4f4;padding:10px;">Profesional de la Salud</h3>
 			</legend>
-			<center>';
-		if(empty ($_GET['idprof'])){
-			$cont.='
+			<center>
 				<form method="POST" action="./?url=agregardatosprofesional">	
-					<table>
-						<tr>
-							<td>Especialidades Médicas: </td>
-							<td>
-								<select name="especialidad" id="especialidad">
-									<option value=""> </option>';
-						$x = $esp_medicas->buscardonde('ID_ESPECIALIDAD_MEDICA');			
-						while($x){
-							$cont.='<option value="'.$esp_medicas->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$esp_medicas->obtener('DESCRIPCION').'</option>';
-							$x = $esp_medicas->releer();
-						}
-						$cont.='			
-								</select>
-							</td>
-						</tr>
-					</table>
-					<button type="submit" class="btn btn-primary">Guardar</button>
-				</form>
-				';
-		}else{
-			
-			$cont.='
-				<form method="POST" action="./?url=agregardatosprofesional&idprof='.$_GET['idprof'].'">
 					<table>
 						<tr>
 							<td>Cédula: </td>
@@ -78,11 +53,23 @@
 							<td>Correo Electrónico: </td>
 							<td><input type="text" name="email" id="email"></td>
 						</tr>
+						<tr>
+							<td>Especialidad Médica: </td>
+							<td>
+								<select name="especialidad" id="especialidad">
+									<option value=""> </option>';
+						$x = $esp_medicas->buscardonde('ID_ESPECIALIDAD_MEDICA');			
+						while($x){
+							$cont.='<option value="'.$esp_medicas->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$esp_medicas->obtener('DESCRIPCION').'</option>';
+							$x = $esp_medicas->releer();
+						}
+						$cont.='			
+								</select>
+							</td>
+						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
-				</form>';
-		}	
-			$cont.='	
+				</form>	
 			</center>
 		</fieldset>
 	
