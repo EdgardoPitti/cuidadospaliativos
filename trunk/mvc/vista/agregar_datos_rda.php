@@ -7,7 +7,7 @@
 	$detalle_equipo = new Accesatabla('detalle_equipo_medico');
 	$profesional = new Accesatabla('profesionales_salud');
 	$datos_profesional = new Accesatabla('datos_profesionales_salud');
-	
+	$_SESSION[error] = '';
 	$sw = $_GET['sw'];
 	$id = $_GET['id'];
 	
@@ -45,27 +45,18 @@
 	$idequipo = $rda->obtener('ID_EQUIPO_MEDICO');
 	if($sw == 2){
 		$datos_profesional->buscardonde('NO_CEDULA = "'.$_POST['profesional'].'"');
-		$detalle_equipo->nuevo();
-		$detalle_equipo->colocar('ID_EQUIPO_MEDICO', $idequipo);
-		$detalle_equipo->colocar('ID_PROFESIONAL', $datos_profesional->obtener('ID_PROFESIONAL'));
-		$detalle_equipo->colocar('ID_ESPECIALIDAD_MEDICA', $_POST['especialidad']);
-		$detalle_equipo->salvar();
-		$p = $profesional->buscardonde('ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'');
-		if($p){
-			$e = $profesional->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$_POST['especialidad'].'');
-			if(!$e){
-				$profesional->nuevo();
-				$profesional->colocar('ID_PROFESIONAL',$datos_profesional->obtener('ID_PROFESIONAL'));
-				$profesional->colocar('ID_ESPECIALIDAD_MEDICA', $_POST['especialidad']);
-				$profesional->salvar();
-			}
+		$profesional->buscardonde('ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'');
+		if($detalle_equipo->buscardonde('ID_EQUIPO_MEDICO = '.$idequipo.' AND ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'')){
+			$_SESSION[error] = '<div style="color:RED;">Este profesional ya existe en el equipo</div>';
 		}else{
-			$profesional->nuevo();
-			$profesional->colocar('ID_PROFESIONAL',$datos_profesional->obtener('ID_PROFESIONAL'));
-			$profesional->colocar('ID_ESPECIALIDAD_MEDICA', $_POST['especialidad']);
-			$profesional->salvar();		
+			$detalle_equipo->nuevo();
+			$detalle_equipo->colocar('ID_EQUIPO_MEDICO', $idequipo);
+			$detalle_equipo->colocar('ID_PROFESIONAL', $datos_profesional->obtener('ID_PROFESIONAL'));
+			$detalle_equipo->colocar('ID_ESPECIALIDAD_MEDICA', $profesional->obtener('ID_ESPECIALIDAD_MEDICA'));
+			$detalle_equipo->salvar();	
+			$_SESSION[error] = '';
 		}
-		
+	
 		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 ?>

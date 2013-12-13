@@ -64,65 +64,58 @@
 	}else{
 		$rda->buscardonde('ID_RDA = '.$idrda.'');
 		$instituciones->buscardonde('ID_INSTITUCION = '.$rda->obtener('ID_INSTITUCION').'');
-		$cont.='	
-						<form method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
-						<table width="100%">
-							<tr align="center">
-								<td>Fecha: '.$rda->obtener('FECHA').'</td>
-							</tr>
-							<tr align="center">
-								<td>Instalacion: '.$instituciones->obtener('DENOMINACION').'<td>
-							</tr>
-							<tr align="center">
-								<td>Horas de Atencion: '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
-							</tr>
-						</table>
-						<h3 style="background:#f4f4f4;padding:10px;">Equipo Medico</h3>
-						<table width="100%">
-							<tr align="center">
-								<th>N°</th>
-								<th>Especialidad Medica</th>
-								<th>Profesional</th>
-								<th></th>
-							</tr>';
+		$cont.='			<table width="100%">
+								<tr align="center">
+									<td>Fecha: '.$rda->obtener('FECHA').'</td>
+								</tr>
+								<tr align="center">
+									<td>Instalacion: '.$instituciones->obtener('DENOMINACION').'<td>
+								</tr>
+								<tr align="center">
+									<td>Horas de Atencion: '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
+								</tr>
+							</table>';
 		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rda->obtener('ID_EQUIPO_MEDICO').'');
 		$n = 1;
-		while($e){
-			$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$equipo->obtener('ID_ESPECIALIDAD_MEDICA').'');
-			$profesional->buscardonde('ID_PROFESIONAL = '.$equipo->obtener('ID_PROFESIONAL').'');
-			$cont.='
-							<tr align="center">
-								<td>'.$n.'.</td>
-								<td>'.$especialidad->obtener('DESCRIPCION').'</td>
-								<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
-								<td></td>
-							</tr>
-			
-				';
-			$n++;
-			$e = $equipo->releer();
-		
-		}	
-		$cont .='		
-							<tr align="center">
-								<td>'.$n.'.</td>
-								<td><select id="especialidad" name="especialidad">
-										<option value=""></option>';
-		$e = $especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA > 0 ORDER BY DESCRIPCION');
-		while($e){
-			$cont.='
-										<option value="'.$especialidad->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$especialidad->obtener('DESCRIPCION').'</option>
-			';
-			$e = $especialidad->releer();
+		if($e){
+			$cont.='	
+							
+							<h3 style="background:#f4f4f4;padding:10px;">Equipo Medico</h3>
+							<table width="100%">
+								<tr align="center">
+									<th>N°</th>
+									<th>Especialidad Medica</th>
+									<th>Profesional</th>
+									<th></th>
+								</tr>';
+			while($e){
+				$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$equipo->obtener('ID_ESPECIALIDAD_MEDICA').'');
+				$profesional->buscardonde('ID_PROFESIONAL = '.$equipo->obtener('ID_PROFESIONAL').'');
+				$cont.='
+								<tr align="center">
+									<td>'.$n.'.</td>
+									<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
+									<td></td>
+								</tr>
+				
+					';
+				$n++;
+				$e = $equipo->releer();
+			}			
+			$cont.='</table>';
+		}else{
+			$cont.='<br><h3>No existe equipo medico para esta Actividad</h3>';
 		}
-		$cont .='					</select></td>
-								<td><input type="text" id="profesional" name="profesional"></td>
-								<td><button type="submit" style="background:none;border:none;"><img src="./iconos/next.png" title="Guardar"></button></td>
-							</tr>
-						</table>';
+		$cont.='
+					<form method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
+							<br>Nuevo Profesional:	<input type="text" id="profesional" name="profesional">
+							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
+							'.$_SESSION[error].'
+					</form>';
 	}
+	
 	$cont.='
-		
 					</div>
 					<div class="span2"></div>
 				</div>					
