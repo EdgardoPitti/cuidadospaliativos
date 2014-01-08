@@ -7,6 +7,7 @@
 	$detalle_equipo = new Accesatabla('detalle_equipo_medico');
 	$profesional = new Accesatabla('profesionales_salud');
 	$datos_profesional = new Accesatabla('datos_profesionales_salud');
+	$detalle_rda = new Accesatabla('detalle_rda');
 	$_SESSION[error] = '';
 	$sw = $_GET['sw'];
 	$id = $_GET['id'];
@@ -42,6 +43,7 @@
 		$ds->mostrar();	
 	}
 	$rda->buscardonde('ID_RDA = '.$id.'');
+	
 	$idequipo = $rda->obtener('ID_EQUIPO_MEDICO');
 	if($sw == 2){
 		$datos_profesional->buscardonde('NO_CEDULA = "'.$_POST['profesional'].'"');
@@ -57,6 +59,13 @@
 			$_SESSION[error] = '';
 		}
 	
+		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
+	}
+	if($sw = 3){
+		$detalle_rda->colocar();
+		$detalle_rda->colocar();
+		$detalle_rda->colocar();
+		$detalle_rda->colocar();
 		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 ?>
