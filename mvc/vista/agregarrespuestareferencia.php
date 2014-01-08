@@ -2,7 +2,6 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
-	$surco = new Accesatabla('surco');
 	$diagnostico = new Accesatabla('diagnostico');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$respuesta = new Accesatabla('respuesta_referencia');
@@ -35,14 +34,8 @@
 	$respuesta->colocar("INSTITUCION_RESPONDE", $_POST['institucionrespondereceptora']);
 	$respuesta->colocar("INSTALACION_RECEPTORA", $_POST['instalacionreceptorarespuesta']);
 	$respuesta->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
+	$respuesta->colocar("ID_SURCO", $idsurco);
 	$respuesta->salvar();
-	
-	$sql = 'SELECT max(ID_RESPUESTA_REFERENCIA) as id FROM respuesta_referencia';
-	$idrespuesta = $ds->db->obtenerArreglo($sql);
-	
-	$surco->buscardonde('ID_SURCO = '.$idsurco.'');
-	$surco->colocar("ID_RESPUESTA_REFERENCIA", $idrespuesta);
-	$surco->salvar();
 	
 	$cont.='
 			<center>

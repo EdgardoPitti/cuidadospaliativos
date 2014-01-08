@@ -276,7 +276,7 @@
 												<tr>
 													<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
 													<td><input type="text" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'"></td>
-													<td><input type="text" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5"></td>
+													<td><input type="text" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5" readonly></td>
 													<td><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'">
 															<option value=""></option>
 													';
@@ -307,7 +307,7 @@
 											<table class="tabla-datos">
 												<tr>
 													<td align="right">Nombre de quien refiere:</td>
-													<td  id="refiere"align="center"><input type="text" id="nombrerefiere" name="nombrerefiere"/></td>
+													<td  id="refiere"align="center"><input type="text" id="nombrerefiere1" name="nombrerefiere1"/>&nbsp;<input type="text" id="nombrerefiere" name="nombrerefiere" placeholder="C&eacute;dula Profesional" readonly></td>
 													<td></td>									
 												</tr>
 												<tr>
@@ -462,7 +462,8 @@
 														</tr>
 														<tr>
 															<td>Profesional:</td>
-															<td><input type="text" id="profesionalrespuesta" name="profesionalrespuesta"></td>
+															<td><input type="text" id="profesionalrespuesta1" name="profesionalrespuesta1">&nbsp;<input type="text" id="profesionalrespuesta" name="profesionalrespuesta" placeholder="C&eacute;dula Profesional" readonly></td>
+														
 														</tr>
 													</table>
 												</center>

@@ -13,8 +13,12 @@
 	$instituciones = new Accesatabla('institucion');
 	$rda = new Accesatabla('registro_diario_actividades');
 	$profesional = new Accesatabla('datos_profesionales_salud');
+	$detalle_rda = new Accesatabla('detalle_rda');
 	$equipo = new Accesatabla('detalle_equipo_medico');
 	$especialidad = new Accesatabla('especialidades_medicas');
+	$zona = new Accesatabla('zona');
+	$frecuencia = new Accesatabla('frecuencia');
+	$tipo_atencion = new Accesatabla('tipo_atencion');
 
 	$cont.='
 		<center>
@@ -112,6 +116,81 @@
 							<br>Nuevo Profesional:	<input type="text" id="profesional" name="profesional">
 							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
 							'.$_SESSION[error].'
+					</form><h3 style="background:#f4f4f4;padding:10px;">Pacientes</h3>';
+
+		$cont.='
+					<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">
+							<table class="table">
+								<tr>
+									<th>#</th>
+									<th>Zona</th>
+									<th>Frecuencia</th>
+									<th>Tipo de Atenci&oacute;n</th>
+									<th>Diagnostico</th>
+									<th>CIE10</th>
+									<th>Frecuencia/Diagnostico</th>
+									<th>Observaci&oacute;n</th>
+									<th>Actividad</th>
+									<th>Frecuencia/Actividad</th>
+									<th>Estado</th>
+									<th>Referido</th>
+									<th>Paciente</th>
+									<th></th>
+								</tr>';
+		$n = 1;
+		$d = $detalle_rda->buscardonde('ID_RDA = '.$idrda.'');
+		if($d){
+			$cont.='
+								<tr>
+								</tr>
+			';
+		}
+		$cont.='
+								<tr>
+									<td>'.$n.'</td>
+									<td><select id="zona" name="zona">
+											<option value=""></option>';
+		$z = $zona->buscardonde('ID_ZONA > 0');
+		while($z){
+				$cont.='
+											<option value="'.$zona->obtener('ID_ZONA').'">'.$zona->obtener('ZONA').'</option>
+				';
+				$z = $zona->releer();
+				$n++;
+		}
+									
+		$cont.='						</select></td>
+									<td><select id="frecuencia" name="frecuencia">
+											<option value=""></option>';
+		$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
+		while($f){
+			$cont.='
+											<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'">'.$frecuencia->obtener('FRECUENCIA').'</option>
+			';
+			$f = $frecuencia->releer();
+		}
+		$cont.='
+										</select>
+									</td>
+									<td><select id="tipo_atencion" name="tipo_atencion">
+											<option value=""></option>';
+		$t = $tipo_atencion->buscardonde('ID_TIPO_ATENCION > 0');
+		while($t){
+			$cont.='
+											<option value="'.$tipo_atencion->obtener('ID_TIPO_ATENCION').'">'.$tipo_atencion->obtener('TIPO_ATENCION').'</option>
+			';
+			$t = $tipo_atencion->releer();
+		}
+		$cont.='						</select>
+									</td>
+									<td><input type="text" id="diagnostico" name="diagnostico"></td>
+									<td><input type="text" id="cie" name="cie"></td>
+									<td></td>
+									<td></td>
+									<td><button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button></td>
+								</tr>
+							</table>
+							
 					</form>';
 	}
 	
