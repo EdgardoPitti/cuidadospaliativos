@@ -8,7 +8,6 @@
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
-	$frec = new Accesatabla('frecuencia');
 	$tipo_at = new Accesatabla('tipo_atencion');
 	$instituciones = new Accesatabla('institucion');
 	$rda = new Accesatabla('registro_diario_actividades');
@@ -19,7 +18,9 @@
 	$zona = new Accesatabla('zona');
 	$frecuencia = new Accesatabla('frecuencia');
 	$tipo_atencion = new Accesatabla('tipo_atencion');
-
+	$estado_paciente = new Accesatabla('estado_paciente');
+	$referido = new Accesatabla('referido');
+	
 	$cont.='
 		<center>
 			<fieldset>
@@ -31,6 +32,9 @@
 					<div class="span8">';
 
 	$idrda = $_GET['id'];
+	if(empty($idrda)){
+		$idrda = $_SESSION[idrda];
+	}
 	if(empty($idrda)){
 	
 		$cont.='
@@ -109,7 +113,7 @@
 			}			
 			$cont.='</table>';
 		}else{
-			$cont.='<br><h3>No existe equipo medico para esta Actividad</h3>';
+			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
 		}
 		$cont.='
 					<form method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
@@ -124,70 +128,109 @@
 								<tr>
 									<th>#</th>
 									<th>Zona</th>
-									<th>Frecuencia</th>
+									<th>Frec.</th>
 									<th>Tipo de Atenci&oacute;n</th>
-									<th>Diagnostico</th>
-									<th>CIE10</th>
-									<th>Frecuencia/Diagnostico</th>
+									<th>Diagn&oacute;stico</th>
+									<th>Diag./Frec.</th>
+									<th>Diag./Prof.</th>
 									<th>Observaci&oacute;n</th>
 									<th>Actividad</th>
-									<th>Frecuencia/Actividad</th>
+									<th>Act./Frec.</th>
 									<th>Estado</th>
 									<th>Referido</th>
 									<th>Paciente</th>
-									<th></th>
 								</tr>';
-		$n = 1;
-		$d = $detalle_rda->buscardonde('ID_RDA = '.$idrda.'');
-		if($d){
-			$cont.='
-								<tr>
-								</tr>
-			';
-		}
-		$cont.='
-								<tr>
-									<td>'.$n.'</td>
-									<td><select id="zona" name="zona">
-											<option value=""></option>';
 		$z = $zona->buscardonde('ID_ZONA > 0');
 		while($z){
-				$cont.='
+				$zon .='
 											<option value="'.$zona->obtener('ID_ZONA').'">'.$zona->obtener('ZONA').'</option>
 				';
 				$z = $zona->releer();
-				$n++;
 		}
-									
-		$cont.='						</select></td>
-									<td><select id="frecuencia" name="frecuencia">
-											<option value=""></option>';
 		$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
 		while($f){
-			$cont.='
+			$frec .='
 											<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'">'.$frecuencia->obtener('FRECUENCIA').'</option>
 			';
 			$f = $frecuencia->releer();
 		}
-		$cont.='
-										</select>
-									</td>
-									<td><select id="tipo_atencion" name="tipo_atencion">
-											<option value=""></option>';
 		$t = $tipo_atencion->buscardonde('ID_TIPO_ATENCION > 0');
 		while($t){
-			$cont.='
+			$tipoatencion .='
 											<option value="'.$tipo_atencion->obtener('ID_TIPO_ATENCION').'">'.$tipo_atencion->obtener('TIPO_ATENCION').'</option>
 			';
 			$t = $tipo_atencion->releer();
 		}
-		$cont.='						</select>
+		$e = $estado_paciente->buscardonde('ID_ESTADO_PACIENTE > 0');
+		while($e){
+			$estado .='
+											<option value="'.$estado_paciente->obtener('ID_ESTADO_PACIENTE').'">'.$estado_paciente->obtener('ESTADO_PACIENTE').'</option>
+			';
+			$e = $estado_paciente->releer();
+		}
+		$r = $referido->buscardonde('ID_REFERIDO > 0');
+		while($r){
+			$ref .='
+											<option value="'.$referido->obtener('ID_REFERIDO').'">'.$referido->obtener('REFERIDO').'</option>
+			';
+			$r = $referido->releer();
+		}
+		$n = 1;
+		$d = $detalle_rda->buscardonde('ID_RDA = '.$idrda.'');
+		while($d){
+			$cont.='
+								<tr>
+									<td>'.$n.'</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+			';
+			$d = $detalle_rda->releer();
+			$n++;
+		}
+		$cont.='
+								<tr>
+									<td>'.$n.'.</td>
+									<td><select id="zona" name="zona">
+											<option value=""></option>'.$zon.'</select></td>
+									<td><select id="frecuencia" name="frecuencia">
+											<option value=""></option>'.$frec.'<select>
+									</td>
+									<td><select id="tipo_atencion" name="tipo_atencion">
+											<option value=""></option>'.$tipoatencion.'</select>
 									</td>
 									<td><input type="text" id="diagnostico" name="diagnostico"></td>
-									<td><input type="text" id="cie" name="cie"></td>
+									<td><select id="frecdiag" name="frecdiag">
+											<option value=""></option>
+											'.$frec.'
+										</select>
+									</td>
+									<td><input type="text" name="profesionaldiag" id="profesionaldiag"></td>
+									<td><textarea class="textarea" id="observacion" name="observacion"></textarea></td>
 									<td></td>
-									<td></td>
-									<td><button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button></td>
+									<td><select id="frecact" name="frecact">
+											<option value=""></option>
+											'.$frec.'
+										</select>
+									</td>
+									<td><select id="estado" name="estado">
+											<option value=""></option>
+											'.$estado.'
+										</select>
+									</td>
+									<td><select id="referido" name="referido">
+											<option value=""></option>
+											'.$ref.'
+										</select>
+									</td>
+									<td><input type="text" name="busqueda" id="busqueda">&nbsp;<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button></td>
 								</tr>
 							</table>
 							
@@ -200,7 +243,7 @@
 				</div>					
 				</fieldset>	
 		</center>';
-				
+	$_SESSION[idrda] = '';
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
