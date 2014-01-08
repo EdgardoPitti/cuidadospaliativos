@@ -32,15 +32,8 @@
 		$sql = 'SELECT MAX(ID_RDA) as id from registro_diario_actividades';
 		$matriz = $ds->db->obtenerArreglo($sql);
 		$idrda = $matriz[0][id];
-		
-		$cont.='
-				<center>
-					<h1>Datos Salvados Correctamente</h1>
-					<a href="./?url=domiciliarias_registro_actividades&id='.$idrda.'">Click para continuar...</a>
-				</center>
-				';
-		$ds->contenido($cont);
-		$ds->mostrar();	
+		$_SESSION[idrda] = $idrda;
+		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 	$rda->buscardonde('ID_RDA = '.$id.'');
 	
@@ -62,10 +55,10 @@
 		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 	if($sw = 3){
+		/*$detalle_rda->colocar();
 		$detalle_rda->colocar();
 		$detalle_rda->colocar();
-		$detalle_rda->colocar();
-		$detalle_rda->colocar();
+		$detalle_rda->colocar();*/
 		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 ?>

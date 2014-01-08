@@ -285,17 +285,45 @@
         </script>		
 		<script type="text/javascript">
             $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#diagnostico").keypress(function() {
+                       palabra = $("#diagnostico").val(); // Completa la palabra
+                    });
+                    // Tan pronto se empieza a escribir en el cuadro de texto, se
+                    // dispara el evento de autocompletar que hace la consulta al
+                    // archivo listaCIE10.php con el término a buscar. En el 
+                    // archivo listaCIE10.php, se hace la consulta y se regresan 
+                    // las coincidencias de la palabra, completando el texto con
+                    // una lista de sugerencias. Igualmente, se reciben, los ID's
+                    // que coinciden con los términos buscados.
+                    $("#diagnosticorespuesta").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+                    // Con base en el valor del término que se ha seleccionado en 
+                    // la lista de sugerencias, se pasa a los campos txtAfecciones_val
+                    // y txtCIE, el valor del ID del termino seleccionado, que es el 
+                    // código CIE10 asignado.
+                    $("#diagnostico").result(function(event, data, formatted) {
+                        $("#cie").val(data[1]); 
+                    });                   
+            });	            
+        </script>		
+		<script type="text/javascript">
+            $('document').ready(function() {
 				var palabra =""; // Término a buscar
 				// Evento al escribir sobre el cuadro de texto
-				$("#nombrerefiere").keypress(function() {
+				$("#nombrerefiere1").keypress(function() {
 				   palabra = $("#nombrerefiere").val(); // Completa la palabra
 				});
-				$("#nombrerefiere").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+				$("#nombrerefiere1").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
 					matchContains: true,
 					mustMatch: true,
 					selectFirst: false
 				});  
-				$("#nombrerefiere").result(function(event, data, formatted) {
+				$("#nombrerefiere1").result(function(event, data, formatted) {
 					$("#nombrerefiere").val(data[1]); 
 				});				
             });	            
@@ -304,15 +332,15 @@
             $('document').ready(function() {
 				var palabra =""; // Término a buscar
 				// Evento al escribir sobre el cuadro de texto
-				$("#profesionalrespuesta").keypress(function() {
-				   palabra = $("#profesionalrespuesta").val(); // Completa la palabra
+				$("#profesionalrespuesta1").keypress(function() {
+				   palabra = $("#profesionalrespuesta1").val(); // Completa la palabra
 				});
-				$("#profesionalrespuesta").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+				$("#profesionalrespuesta1").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
 					matchContains: true,
 					mustMatch: true,
 					selectFirst: false
 				});  
-				$("#profesionalrespuesta").result(function(event, data, formatted) {
+				$("#profesionalrespuesta1").result(function(event, data, formatted) {
 					$("#profesionalrespuesta").val(data[1]); 
 				});				
             });	            
