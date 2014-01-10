@@ -51,7 +51,6 @@
 			$detalle_equipo->salvar();	
 			$_SESSION[error] = '';
 		}
-	
 		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 	if($sw = 3){

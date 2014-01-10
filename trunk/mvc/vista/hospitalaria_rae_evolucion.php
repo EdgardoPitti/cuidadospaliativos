@@ -41,7 +41,7 @@
 			</center>';
 		if($sw == 1){
 			$cont.='<center>
-						<a href="./?url=hospitalaria_rae_capturardatos">Paciente no Encotrado...Añadir</a>
+						Paciente no Encotrado...<a href="./?url=hospitalaria_rae_capturardatos"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
 					</center>
 			';
 		}
