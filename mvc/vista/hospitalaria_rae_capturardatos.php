@@ -50,7 +50,7 @@
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente&sw=1" method="post" style="display:block;">
+			<form action="./?url=agregardatospaciente&sw=1" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>
@@ -273,7 +273,7 @@
 						</fieldset>				
 					</div>
 				</div>	
-				<div class="row-fluid">
+				<div class="row-fluid posicion-datos">
 					<div class="span6">
 						<fieldset>
 							<legend>
@@ -405,6 +405,10 @@ $cont.='									</select>
 							</table>
 						</fieldset>	
 					</div>					
+					<div class="span6"></div>		
+				</div>	
+				
+				<div class="row-fluid margen-cap_datosH">
 					<div class="span6">
 						<fieldset>
 							<legend>
@@ -444,8 +448,10 @@ $cont.='									</select>
 									</tr>
 								</tbody>
 							</table>
-					</div>		
-				</div>	
+						</fieldset>
+					</div>
+					<div class="span6"></div>
+				</div>
 				<center style="margin-top:8px;">			
 					<button type="submit" class="btn btn-primary">Registrar</button>
 				</center>
