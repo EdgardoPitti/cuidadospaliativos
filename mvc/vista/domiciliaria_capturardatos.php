@@ -48,7 +48,7 @@
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente" method="post" style="display:block;">
+			<form action="./?url=agregardatospaciente" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>
@@ -268,157 +268,155 @@
 										</tr>
 									</tbody>
 								</table>
-						</fieldset>				
+								
+						</fieldset>		
 					</div>
 				</div>	
-				<div class="row-fluid">
-					<div class="span12">
+				<div class="row-fluid posicion-datos">
+					<div class="span6">
 						<fieldset>
 							<legend>
 								Datos de Contacto/Dirección
-							</legend>
-							<div class="row-fluid">
-								<div class="span6">
-									
-										<table class="table">
-											<tbody>
-												<tr>
-													<td style="text-align:left;padding-left:17%;">Correo Electr&oacute;nico:</td>
-												</tr>
-												<tr>
-													<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'"></td>
-												</tr>
-												<tr>
-													<td  style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
-												</tr>
-												<tr>
-													<td><input type="text" id="telefono" name="telefono" value="'.$datos->obtener('TELEFONO_CASA').'"></td>
-												</tr>
-												<tr>
-													<td  style="text-align:left;padding-left:17%;">Celular:</td>
-												</tr>
-												<tr>
-													<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'"></td>
-												</tr>	
-												<tr>
-													<td style="text-align:left;padding-left:17%;">Provincia:</td>
-												</tr>
-												<tr>
-													<td>
-														<select id="provincias" name="provincias">
-															<option value="0"></option>';															
-															
-			$p = $provincias->buscardonde("ID_PROVINCIA > 0");
-			while($p){
-					if($provincias->obtener('ID_PROVINCIA') == $idprovincia){
-						$value='selected';
-					}else{
-						$value='';
-					}
-					$cont.='
-															<option value="'.$provincias->obtener('ID_PROVINCIA').'" '.$value.'>'.$provincias->obtener('PROVINCIA').'</option>';
-					$p = $provincias->releer();
-			}
-			$cont.='								   </select>
-													</td>
-												</tr>
-												<tr>
-													<td style="text-align:left;padding-left:17%;">Distrito:</td>
-												</tr>
-												<tr>
-													<td id="mostrardistritos" name="mostrardistritos">
-														<select style="width:140px" id="distritos" name="distritos">
-															<option value=""></option>';
-			$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
-			while($d){
-				if($distritos->obtener('ID_DISTRITO') == $iddistrito){
-					$value='selected';
-				}else{
-					$value='';
-				}
-				$cont.='
-															<option value="'.$distritos->obtener('ID_DISTRITO').'" '.$value.'>'.$distritos->obtener('DISTRITO').'</option>
-				';
-				$d = $distritos->releer();
-			}
-			$cont.='
-														</select>
-													</td>
-												</tr>
-												<tr>
-													<td style="text-align:left;padding-left:17%;">Corregimiento:</td>
-												</tr>
-												<tr>
-													<td id="mostrarcorregimientos" name="mostrarcorregimientos">
-														<select style="width:140px" name="corregimientos">
-															<option value=""></option>';
-																		
-			$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
-			while($d){
-				if($corregimientos->obtener('ID_CORREGIMIENTO') == $idcorregimiento){
-					$value='selected';
-				}else{
-					$value='';
-				}
-				$cont.='
-															<option value="'.$corregimientos->obtener('ID_CORREGIMIENTO').'" '.$value.'>'.$corregimientos->obtener('CORREGIMIENTO').'</option>
-				';
-				$d = $corregimientos->releer();
-			}
-			$cont.='									</select>
-													</td>
-												</tr>
-												
-											</tbody>
-										</table>	
-											
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Zona:</td>
-											</tr>
-											<tr>
-												<td><select id="zona" name="zona">
-														<option value="0"></option>';
-		$z = $zona->buscardonde('ID_ZONA > 0');
-		while($z){
-			if($zona->obtener('ID_ZONA') == $idzona){
+							</legend>									
+								<table class="table">
+									<tbody>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Correo Electr&oacute;nico:</td>
+										</tr>
+										<tr>
+											<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'"></td>
+										</tr>
+										<tr>
+											<td  style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
+										</tr>
+										<tr>
+											<td><input type="text" id="telefono" name="telefono" value="'.$datos->obtener('TELEFONO_CASA').'"></td>
+										</tr>
+										<tr>
+											<td  style="text-align:left;padding-left:17%;">Celular:</td>
+										</tr>
+										<tr>
+											<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'"></td>
+										</tr>	
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Provincia:</td>
+										</tr>
+										<tr>
+											<td>
+												<select id="provincias" name="provincias">
+													<option value="0"></option>';															
+													
+	$p = $provincias->buscardonde("ID_PROVINCIA > 0");
+	while($p){
+			if($provincias->obtener('ID_PROVINCIA') == $idprovincia){
 				$value='selected';
 			}else{
 				$value='';
 			}
 			$cont.='
-														<option value="'.$zona->obtener('ID_ZONA').'" '.$value.'>'.$zona->obtener('ZONA').'</option>
-			';
-			$z = $zona->releer();
+													<option value="'.$provincias->obtener('ID_PROVINCIA').'" '.$value.'>'.$provincias->obtener('PROVINCIA').'</option>';
+			$p = $provincias->releer();
+	}
+	$cont.='								   </select>
+											</td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Distrito:</td>
+										</tr>
+										<tr>
+											<td id="mostrardistritos" name="mostrardistritos">
+												<select style="width:140px" id="distritos" name="distritos">
+													<option value=""></option>';
+	$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
+	while($d){
+		if($distritos->obtener('ID_DISTRITO') == $iddistrito){
+			$value='selected';
+		}else{
+			$value='';
 		}
+		$cont.='
+													<option value="'.$distritos->obtener('ID_DISTRITO').'" '.$value.'>'.$distritos->obtener('DISTRITO').'</option>
+		';
+		$d = $distritos->releer();
+	}
+	$cont.='
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Corregimiento:</td>
+										</tr>
+										<tr>
+											<td id="mostrarcorregimientos" name="mostrarcorregimientos">
+												<select style="width:140px" name="corregimientos">
+													<option value=""></option>';
+																
+	$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
+	while($d){
+		if($corregimientos->obtener('ID_CORREGIMIENTO') == $idcorregimiento){
+			$value='selected';
+		}else{
+			$value='';
+		}
+		$cont.='
+													<option value="'.$corregimientos->obtener('ID_CORREGIMIENTO').'" '.$value.'>'.$corregimientos->obtener('CORREGIMIENTO').'</option>
+		';
+		$d = $corregimientos->releer();
+	}
+	$cont.='									</select>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>	
+									
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Zona:</td>
+									</tr>
+									<tr>
+										<td><select id="zona" name="zona">
+												<option value="0"></option>';
+$z = $zona->buscardonde('ID_ZONA > 0');
+while($z){
+	if($zona->obtener('ID_ZONA') == $idzona){
+		$value='selected';
+	}else{
+		$value='';
+	}
+	$cont.='
+												<option value="'.$zona->obtener('ID_ZONA').'" '.$value.'>'.$zona->obtener('ZONA').'</option>
+	';
+	$z = $zona->releer();
+}
 
-		$cont.='									</select>
-												</td>
-											</tr>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Direcci&oacute;n Detallada:</td>
-											</tr>
-											<tr>
-												<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada" >'.$residencia->obtener('DETALLE').'</textarea></td>
-											</tr>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Residencia Transitoria:</td>
-											</tr>
-											<tr>
-												<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
+$cont.='									</select>
+										</td>
+									</tr>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Direcci&oacute;n Detallada:</td>
+									</tr>
+									<tr>
+										<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada" >'.$residencia->obtener('DETALLE').'</textarea></td>
+									</tr>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Residencia Transitoria:</td>
+									</tr>
+									<tr>
+										<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
+									</tr>
+								</tbody>
+							</table>
 						</fieldset>
 					</div>					
+					<div class="span6"></div>
 				</div>	
-				<center style="margin-top:8px;">			
-					<button type="submit" class="btn btn-primary">Registrar</button>
+				
+				<center>
+					<div class="margen-bt-datos"> 
+						<button type="submit" class="btn btn-primary">Registrar</button>
+					</div>
 				</center>
 			</form>';
 	
