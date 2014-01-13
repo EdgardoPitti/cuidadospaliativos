@@ -126,7 +126,6 @@
 					<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">
 							<table class="table">
 								<tr>
-									<th>#</th>
 									<th>Zona</th>
 									<th>Frec.</th>
 									<th>Tipo de Atenci&oacute;n</th>
@@ -180,7 +179,6 @@
 		while($d){
 			$cont.='
 								<tr>
-									<td>'.$n.'</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -197,7 +195,6 @@
 		}
 		$cont.='
 								<tr>
-									<td>'.$n.'.</td>
 									<td><select id="zona" name="zona">
 											<option value=""></option>'.$zon.'</select></td>
 									<td><select id="frecuencia" name="frecuencia">
