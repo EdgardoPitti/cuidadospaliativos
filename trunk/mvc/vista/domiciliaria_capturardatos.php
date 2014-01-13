@@ -276,7 +276,7 @@
 					<div class="span6">
 						<fieldset>
 							<legend>
-								Datos de Contacto/Dirección
+								Datos de Contacto/Direcci&oacute;n
 							</legend>									
 								<table class="table">
 									<tbody>
