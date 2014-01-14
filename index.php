@@ -16,7 +16,7 @@
 	<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="./js/jquery.js"></script>
-	<script src="./js/funciones.js"></script>
+	<script type="text/javascript" src="./js/funciones.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>	
 	<script type='text/javascript' src="./js/jquery-1.9.1.js"></script>
@@ -425,24 +425,28 @@
 		<script>
 			$(function(){
 			  $("#show1").click(function(){
+				$("#span2").toggle("1000");
 				$("#mostrar_ocultar1").toggle("1000");
 				$("#mostrar_ocultar2").hide();
 				$("#mostrar_ocultar3").hide();
 				$("#mostrar_ocultar4").hide();
 			  });
 			   $("#show2").click(function(){
+			    $("#span2").toggle("1000");
 				$("#mostrar_ocultar2").toggle("1000");
 				$("#mostrar_ocultar1").hide();
 				$("#mostrar_ocultar3").hide();
 				$("#mostrar_ocultar4").hide();
 			  });
 			   $("#show3").click(function(){
+				$("#span2").toggle("1000");
 				$("#mostrar_ocultar3").toggle("1000");
 				$("#mostrar_ocultar2").hide();
 				$("#mostrar_ocultar1").hide();
 				$("#mostrar_ocultar4").hide();
 			  });
 			   $("#show4").click(function(){
+				$("#span2").toggle("1000");
 				$("#mostrar_ocultar4").toggle("1000");
 				$("#mostrar_ocultar1").hide();
 				$("#mostrar_ocultar3").hide();
@@ -452,7 +456,7 @@
 		</script>
 	</head>
 	<body> 			
-		<div class="container-fluid">
+		<div class="container-fluid" >
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="page-header">
@@ -484,7 +488,7 @@
 			
 			<div class="row-fluid">
 				<!--Aside-->
-				<div class="span2">
+				<div class="span2" id="span2" style="display:none">
 				
 					<!--DOMICILIARIA-->					
 					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:none;">			
