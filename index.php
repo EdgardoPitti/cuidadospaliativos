@@ -29,8 +29,7 @@
 	<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
 	del formulario con base en un término o palabra que el usuario 
 	indique en la medida que vaya digitando en el cuadro de texto -->
-		<script type="text/javascript">
-		
+		<script type="text/javascript">	
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -169,8 +168,7 @@
                         $("#cie5").val(data[1]); 
                     });                   
             });	            
-        </script>			
-			
+        </script>						
 		<script type="text/javascript">
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
@@ -310,41 +308,7 @@
                         $("#cie").val(data[1]); 
                     });                   
             });	            
-        </script>		
-		<script type="text/javascript">
-            $('document').ready(function() {
-				var palabra =""; // Término a buscar
-				// Evento al escribir sobre el cuadro de texto
-				$("#nombrerefiere1").keypress(function() {
-				   palabra = $("#nombrerefiere").val(); // Completa la palabra
-				});
-				$("#nombrerefiere1").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
-					matchContains: true,
-					mustMatch: true,
-					selectFirst: false
-				});  
-				$("#nombrerefiere1").result(function(event, data, formatted) {
-					$("#nombrerefiere").val(data[1]); 
-				});				
-            });	            
-        </script>		
-		<script type="text/javascript">
-            $('document').ready(function() {
-				var palabra =""; // Término a buscar
-				// Evento al escribir sobre el cuadro de texto
-				$("#profesionalrespuesta1").keypress(function() {
-				   palabra = $("#profesionalrespuesta1").val(); // Completa la palabra
-				});
-				$("#profesionalrespuesta1").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
-					matchContains: true,
-					mustMatch: true,
-					selectFirst: false
-				});  
-				$("#profesionalrespuesta1").result(function(event, data, formatted) {
-					$("#profesionalrespuesta").val(data[1]); 
-				});				
-            });	            
-        </script>		
+        </script>				
 		<script type="text/javascript">
             $('document').ready(function() {
 				var palabra =""; // Término a buscar
@@ -358,10 +322,45 @@
 					selectFirst: false
 				});  
 				$("#profesional").result(function(event, data, formatted) {
-					$("#profesional").val(data[1]); 
+					$("#cedprofesional").val(data[1]);
+					
 				});				
             });	            
-        </script>
+        </script>		
+		<script type="text/javascript">
+            $('document').ready(function() {
+				var palabra =""; // Término a buscar
+				// Evento al escribir sobre el cuadro de texto
+				$("#profesional2").keypress(function() {
+				   palabra = $("#profesional2").val(); // Completa la palabra
+				});
+				$("#profesional2").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+					matchContains: true,
+					mustMatch: true,
+					selectFirst: false
+				});  
+				$("#profesional2").result(function(event, data, formatted) {
+					$("#cedprofesional2").val(data[1]); 
+				});				
+            });	            
+        </script>		
+		<script type="text/javascript">
+            $('document').ready(function() {
+				var palabra =""; // Término a buscar
+				// Evento al escribir sobre el cuadro de texto
+				$("#profesional3").keypress(function() {
+				   palabra = $("#profesional3").val(); // Completa la palabra
+				});
+				$("#profesional3").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+					matchContains: true,
+					mustMatch: true,
+					selectFirst: false
+				});  
+				$("#profesional3").result(function(event, data, formatted) {
+					$("#cedprofesional3").val(data[1]);
+				});				
+            });	            
+        </script>		
 		<script>
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
@@ -387,7 +386,10 @@
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
-                    });             
+                    }); 
+					$("#diagnostico").result(function(event, data, formatted) {
+                        $("#cie10").val(data[1]); 
+                    });   					
             });	  
 		</script>
 		<script>
@@ -401,7 +403,8 @@
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
-                    });             
+                    });    
+					
             });	  
 		</script>
 		<script>
@@ -419,6 +422,24 @@
                     });
 					$("#busqueda").result(function(event, data, formatted) {
                         $("#busqueda").val(data[1]); 
+                    });    
+            });	            
+        </script>		
+		<script>
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#paciente").keypress(function() {
+                       palabra = $("#paciente").val(); // Completa la palabra
+                    });
+
+                    $("#paciente").autocomplete("./mvc/vista/buscar_pacientes.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+					$("#paciente").result(function(event, data, formatted) {
+                        $("#cedpaciente").val(data[1]); 
                     });    
             });	            
         </script>		

@@ -2,13 +2,6 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
-	$personas = new Accesatabla('datos_pacientes');
-	$tiposangre = new Accesatabla('tipos_sanguineos');
-	$residencia = new Accesatabla('residencia_habitual');
-	$provincias = new Accesatabla('provincias');
-	$distritos = new Accesatabla('distritos');
-	$corregimientos = new Accesatabla('corregimientos');
-	$tipo_at = new Accesatabla('tipo_atencion');
 	$instituciones = new Accesatabla('institucion');
 	$rda = new Accesatabla('registro_diario_actividades');
 	$profesional = new Accesatabla('datos_profesionales_salud');
@@ -19,8 +12,10 @@
 	$frecuencia = new Accesatabla('frecuencia');
 	$tipo_atencion = new Accesatabla('tipo_atencion');
 	$estado_paciente = new Accesatabla('estado_paciente');
-	$referido = new Accesatabla('referido');
-	
+	$paciente = new Accesatabla('datos_pacientes');
+	$diagnostico = new Accesatabla('detalle_diagnostico');
+	$cie10 = new Accesatabla('cie10');
+	$actividad = new Accesatabla('actividad');
 	$cont.='
 		<center>
 			<fieldset>
@@ -117,28 +112,31 @@
 		}
 		$cont.='
 					<form method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
-							<br>Nuevo Profesional:	<input type="text" id="profesional" name="profesional">
+							<br>Nuevo Profesional:	<input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional">&nbsp;<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
+							
 							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
-							'.$_SESSION[error].'
+							'.$_SESSION[errorprof].'
 					</form><h3 style="background:#f4f4f4;padding:10px;">Pacientes</h3>';
-
 		$cont.='
-					<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">
+					<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">';
+		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
+			$cont.='
 							<table class="table">
 								<tr>
 									<th>Zona</th>
+									<th>Paciente</th>
 									<th>Frec.</th>
 									<th>Tipo de Atenci&oacute;n</th>
 									<th>Diagn&oacute;stico</th>
-									<th>Diag./Frec.</th>
 									<th>Diag./Prof.</th>
-									<th>Observaci&oacute;n</th>
 									<th>Actividad</th>
-									<th>Act./Frec.</th>
+									<th>Act./Prof.</th>
 									<th>Estado</th>
 									<th>Referido</th>
-									<th>Paciente</th>
+									
 								</tr>';
+		
+		}
 		$z = $zona->buscardonde('ID_ZONA > 0');
 		while($z){
 				$zon .='
@@ -167,73 +165,175 @@
 			';
 			$e = $estado_paciente->releer();
 		}
-		$r = $referido->buscardonde('ID_REFERIDO > 0');
-		while($r){
-			$ref .='
-											<option value="'.$referido->obtener('ID_REFERIDO').'">'.$referido->obtener('REFERIDO').'</option>
-			';
-			$r = $referido->releer();
-		}
 		$n = 1;
 		$d = $detalle_rda->buscardonde('ID_RDA = '.$idrda.'');
 		while($d){
+			$zona->buscardonde('ID_ZONA = '.$detalle_rda->obtener('ID_ZONA').'');
+			$paciente->buscardonde('ID_PACIENTE = '.$detalle_rda->obtener('ID_PACIENTE').'');
+			$frecuencia->buscardonde('ID_FRECUENCIA = '.$detalle_rda->obtener('ID_FRECUENCIA').'');
+			$tipo_atencion->buscardonde('ID_TIPO_ATENCION = '.$detalle_rda->obtener('ID_TIPO_ATENCION').'');
+			$diagnostico->buscardonde('ID_DIAGNOSTICO = '.$detalle_rda->obtener('ID_DIAGNOSTICO').'');
+			$cie10->buscardonde('ID_CIE10 = "'.$diagnostico->obtener('ID_CIE10').'"');
+			$actividad->buscardonde('ID_ACTIVIDAD = '.$detalle_rda->obtener('ID_ACTIVIDAD').'');
+			$estado_paciente->buscardonde('ID_ESTADO_PACIENTE = '.$detalle_rda->obtener('ID_ESTADO_PACIENTE').'');
+			$segundonombre = $paciente->obtener('SEGUNDO_NOMBRE');
+			$segundoapellido = $paciente->obtener('APELLIDO_MATERNO');
+			if($detalle_rda->obtener('REFERIDO_PACIENTE') == 0){
+				$referido = 'No Referido';
+			}else{
+				$referido = 'Dentro de la Inst.';
+			}
 			$cont.='
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>'.$zona->obtener('ZONA').'</td>
+									<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
+									<td>'.$frecuencia->obtener('FRECUENCIA').'</td>
+									<td>'.$tipo_atencion->obtener('TIPO_ATENCION').'</td>
+									<td>'.$cie10->obtener('DESCRIPCION').'</td>';
+			$profesional->buscardonde('ID_PROFESIONAL = '.$diagnostico->obtener('ID_PROFESIONAL').'');
+			$segundonombre = $profesional->obtener('SEGUNDO_NOMBRE');
+			$segundoapellido = $profesional->obtener('APELLIDO_MATERNO');
+			$cont.='
+									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
+									<td>'.$actividad->obtener('ACTIVIDAD').'</td>';
+			$profesional->buscardonde('ID_PROFESIONAL = '.$actividad->obtener('ID_PROFESIONAL').'');
+			$segundonombre = $profesional->obtener('SEGUNDO_NOMBRE');
+			$segundoapellido = $profesional->obtener('APELLIDO_MATERNO');
+			$cont.='
+									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
+									<td>'.$estado_paciente->obtener('LETRA_ESTADO').'</td>
+									<td>'.$referido.'</td>
 								</tr>
 			';
 			$d = $detalle_rda->releer();
 			$n++;
 		}
 		$cont.='
+							</table>
+		';
+		$cont.='
+							<table>
 								<tr>
-									<td><select id="zona" name="zona">
-											<option value=""></option>'.$zon.'</select></td>
-									<td><select id="frecuencia" name="frecuencia">
-											<option value=""></option>'.$frec.'<select>
+									<td><fieldset>
+											<legend>Paciente</legend>
+												<table>
+													<tr>
+														<td>Buscar: </td>
+														<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
+													</tr>
+													<tr>
+														<td>Zona: </td>
+														<td><select id="zona" name="zona">
+																<option value=""></option>'.$zon.'</select></td>
+													</tr>
+													<tr>
+														<td>Frecuencia: </td>
+														<td><select id="frecuencia" name="frecuencia">
+																<option value=""></option>'.$frec.'<select>
+														</td>
+													<tr>
+													</tr>
+														<td>Tipo de Atenci&oacute;n: </td>
+														<td><select id="tipo_atencion" name="tipo_atencion">
+																<option value=""></option>'.$tipoatencion.'</select>
+														</td>												
+													</tr>
+												</table>
+										</fieldset>
 									</td>
-									<td><select id="tipo_atencion" name="tipo_atencion">
-											<option value=""></option>'.$tipoatencion.'</select>
+									<td>
+										&nbsp;
+										&nbsp;
+										&nbsp;
+										&nbsp;
+										&nbsp;
 									</td>
-									<td><input type="text" id="diagnostico" name="diagnostico"></td>
-									<td><select id="frecdiag" name="frecdiag">
-											<option value=""></option>
-											'.$frec.'
-										</select>
+									<td>
+										<fieldset>
+											<legend>Diagn&oacute;stico</legend>
+												<table>
+													<tr>
+														<td>Diagn&oacute;stico: </td>
+														<td><input type="text" id="diagnostico" name="diagnostico" placeholder="Diagn&oacute;stico"><br>
+															<input type="text" id="cie10" name="cie10" placeholder="CIE10" readonly>
+														</td>
+													<tr>
+													</tr>
+														<td>Frecuencia: </td>
+														<td><select id="frecdiag" name="frecdiag">
+																<option value=""></option>
+																'.$frec.'
+															</select>
+														</td>
+													<tr>
+													</tr>
+														<td>Profesional: </td>
+														<td><input type="text" name="profesional2" id="profesional2" placeholder="Buscar Profesional"><br><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly></td>
+													<tr>
+													</tr>
+														<td>Observaci&oacute;n: </td>
+														<td><textarea class="textarea" id="observacion" name="observacion"></textarea></td>
+													</tr>
+												</table>
+											
+										</fieldset>
+									
 									</td>
-									<td><input type="text" name="profesionaldiag" id="profesionaldiag"></td>
-									<td><textarea class="textarea" id="observacion" name="observacion"></textarea></td>
-									<td></td>
-									<td><select id="frecact" name="frecact">
-											<option value=""></option>
-											'.$frec.'
-										</select>
+									<td>
+										&nbsp;
+										&nbsp;
+										&nbsp;
+										&nbsp;
+										&nbsp;
 									</td>
-									<td><select id="estado" name="estado">
-											<option value=""></option>
-											'.$estado.'
-										</select>
-									</td>
-									<td><select id="referido" name="referido">
-											<option value=""></option>
-											'.$ref.'
-										</select>
-									</td>
-									<td><input type="text" name="busqueda" id="busqueda">&nbsp;<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button></td>
+									<td>
+										<fieldset>
+											<legend>
+												Otros
+											</legend>
+											<table>
+												<tr>
+													<td>Actividad: </td>
+													<td><input type="text" name="actividad" id="actividad"></td>
+												</tr>
+												<tr>
+													<td>Frecuencia: </td>
+													<td><select id="frecact" name="frecact">
+															<option value=""></option>
+															'.$frec.'
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>Profesional: </td>
+													<td><input type="text" name="profesional3" id="profesional3" placeholder="Buscar Profesional"><br><input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="C&eacute;dula Profesional" readonly></td>
+												</tr>
+												<tr>
+													<td>Estado: </td>
+													<td><select id="estado" name="estado">
+															<option value=""></option>
+															'.$estado.'
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>Referido: </td>
+													<td><select id="referido" name="referido">
+															<option value=""></option>
+															<option value="0">No Referido</option>
+															<option value="1">Dentro de la Inst.</option>
+														</select>
+													</td>
+												</tr>
+											</table>
+										</fieldset>
+									</td>		
 								</tr>
 							</table>
-							
+							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
+							'.$_SESSION[errorpa].'
 					</form>';
 	}
-	
 	$cont.='
 					</div>
 					<div class="span2"></div>

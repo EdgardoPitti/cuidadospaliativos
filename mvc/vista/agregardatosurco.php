@@ -48,7 +48,7 @@
 
 	$sql = 'SELECT max(ID_HISTORIA_PACIENTE) as id FROM historia_paciente';
 	$idhistoriapaciente = $ds->db->obtenerArreglo($sql);
-	$cedulaprofesional = $_POST['nombrerefiere'];
+	$cedulaprofesional = $_POST['cedprofesional'];
 	$profesional->buscardonde('NO_CEDULA = "'.$cedulaprofesional.'"');
 	
 	
