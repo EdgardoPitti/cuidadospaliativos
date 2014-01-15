@@ -390,7 +390,7 @@
 										<article>
 											<div class="row-fluid" style="margin-top:10px">
 												<div class="span6" align="center">Nombre de quien refiere:</div>
-												<div class="span6" align="center"><input style="width:135px" type="text" id="nombrerefiere1" name="nombrerefiere1" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" '.$readonly.'/> <input style="width:135px"  type="text" id="nombrerefiere" name="nombrerefiere" placeholder="C&eacute;dula Profesional"  value="'.$profesional->obtener('NO_CEDULA').'" readonly></div>
+												<div class="span6" align="center"><input style="width:135px" type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" '.$readonly.'/> <input style="width:135px"  type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional"  value="'.$profesional->obtener('NO_CEDULA').'" readonly></div>
 											</div>
 											<div class="row-fluid">
 												<div class="span6" align="center">Nombre del Receptor:</div>
@@ -547,7 +547,7 @@
 															Profesional:
 														</div>
 														<div class="span6">
-															<input type="text" id="profesionalrespuesta1" name="profesionalrespuesta1">&nbsp;<input type="text" id="profesionalrespuesta" name="profesionalrespuesta" placeholder="C&eacute;dula Profesional" readonly>
+															<input type="text" id="profesional2" name="profesional2">&nbsp;<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
 														</div>
 													</div>
 												</center>

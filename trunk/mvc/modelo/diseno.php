@@ -65,6 +65,8 @@ class Diseno {
 			break;
 			case 'año':		$aber = $nada['year'] ;
 			break;
+			case 'agno':	$aber = $nada['year'] ;
+			break;
 			case 'hoy es':	$aber = $nada['wday'] ;
 			break;
 			case 'dia es':

@@ -8,7 +8,7 @@
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$idsurco = $_GET['id'];
 	
-	$profesional->buscardonde('NO_CEDULA = "'.$_POST['profesionalrespuesta'].'"');
+	$profesional->buscardonde('NO_CEDULA = "'.$_POST['ceprofesional2'].'"');
 	
 	$diagnostico->nuevo();
 	$diagnostico->salvar();
