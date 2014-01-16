@@ -63,8 +63,9 @@
 						</legend>
 						
 						<div class="row-fluid">
+							
 							<div class="span6">
-								<table class="table">
+								<table class="table" >
 									<tbody>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Nombre:</td>														
@@ -296,8 +297,8 @@
 										
 					<h3 class="fondo_azul">Datos de Evolución</h3>
 					<div class="row-fluid">
-						<div class="span12">
-							<textarea id="evolucion" name="evolucion" class="textarea2" style="width:98%;height:50px;border-color:#ccc;"></textarea>
+						<div class="span12" align="center">
+							<textarea id="evolucion" name="evolucion" class="textarea2" style="width:95%;"></textarea>							
 						</div>
 					</div>
 					
