@@ -18,13 +18,9 @@
 	$actividad = new Accesatabla('actividad');
 	$cont.='
 		<center>
-			<fieldset>
-				<legend align="center">
-					<h3 style="background:#f4f4f4;padding:10px;">Registro Diario de Actividades</h3>
-				</legend>
-				<div class="row-fluid" style="margin-top:15px;">
-					<div class="span2"></div>
-					<div class="span8">';
+			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro Diario de Actividades</h3>
+				<div class="row-fluid" style="margi n-top:15px;">					
+					<div class="span12">';
 
 	$idrda = $_GET['id'];
 	if(empty($idrda)){
@@ -35,14 +31,14 @@
 		$cont.='
 			
 						<form method="POST" action="./?url=agregar_datos_rda">
-							<table width="100%">
+							<table width="40%" >
 								<tr>
-									<td>Fecha: </td>
-									<td><input type="date" id="fecharda" name="fecharda"></td>
+									<td>Fecha:</td>
+									<td align="center"><input type="date" id="fecharda" name="fecharda"></td>
 								</tr>
 								<tr>
 									<td>Institucion:</td>
-									<td><select id="institucionrda" name="institucionrda">
+									<td align="center"><select id="institucionrda" name="institucionrda">
 											<option value=""></option>';
 			
 		$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
@@ -57,8 +53,8 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Horas de Atenci&oacuten:</td>
-									<td><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
+									<td>Horas de Atenci&oacute;n:</td>
+									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
 								</tr>
 							</table>
 							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>							
@@ -69,13 +65,13 @@
 		$instituciones->buscardonde('ID_INSTITUCION = '.$rda->obtener('ID_INSTITUCION').'');
 		$cont.='			<table width="100%">
 								<tr align="center">
-									<td>Fecha: '.$rda->obtener('FECHA').'</td>
+									<td><b>Fecha:</b> '.$rda->obtener('FECHA').'</td>
 								</tr>
 								<tr align="center">
-									<td>Instalacion: '.$instituciones->obtener('DENOMINACION').'<td>
+									<td><b>Instalacion:</b> '.$instituciones->obtener('DENOMINACION').'<td>
 								</tr>
 								<tr align="center">
-									<td>Horas de Atencion: '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
+									<td><b>Horas de Atencion:</b> '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
 								</tr>
 							</table>';
 		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rda->obtener('ID_EQUIPO_MEDICO').'');
@@ -83,13 +79,12 @@
 		if($e){
 			$cont.='	
 							
-							<h3 style="background:#f4f4f4;padding:10px;">Equipo Medico</h3>
-							<table width="100%">
+							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Equipo Médico</h3>
+							<table class="tabla-datos">
 								<tr align="center">
 									<th>N°</th>
 									<th>Especialidad Medica</th>
 									<th>Profesional</th>
-									<th></th>
 								</tr>';
 			while($e){
 				$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$equipo->obtener('ID_ESPECIALIDAD_MEDICA').'');
@@ -98,8 +93,7 @@
 								<tr align="center">
 									<td>'.$n.'.</td>
 									<td>'.$especialidad->obtener('DESCRIPCION').'</td>
-									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
-									<td></td>
+									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>									
 								</tr>
 				
 					';
@@ -111,18 +105,27 @@
 			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
 		}
 		$cont.='
-					<form method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
-							<br>Nuevo Profesional:	<input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional">&nbsp;<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
-							
-							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
-							'.$_SESSION[errorprof].'
-					</form><h3 style="background:#f4f4f4;padding:10px;">Pacientes</h3>';
-		$cont.='
+				<form class="form-search" method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
+					<div class="input-group">
+					 <br> Nuevo Profesional: <input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">&nbsp;<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
+					  <span class="input-group-btn">
+						<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
+						'.$_SESSION[errorprof].'
+					  </span>
+					</div>
+				</form>
+		
+		
+					
+					
+					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Pacientes</h3>
+					
 					<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">';
 		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
 			$cont.='
-							<table class="table">
-								<tr>
+					<div style="max-width=1024px;overflow-x:auto">
+							<table class="table2">
+								<tr class="fd-table">
 									<th>Zona</th>
 									<th>Paciente</th>
 									<th>Frec.</th>
@@ -133,7 +136,6 @@
 									<th>Act./Prof.</th>
 									<th>Estado</th>
 									<th>Referido</th>
-									
 								</tr>';
 		
 		}
@@ -210,136 +212,179 @@
 		}
 		$cont.='
 							</table>
+						</div>
+		</center>
 		';
 		$cont.='
-							<table>
-								<tr>
-									<td><fieldset>
-											<legend>Paciente</legend>
-												<table>
-													<tr>
-														<td>Buscar: </td>
-														<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
-													</tr>
-													<tr>
-														<td>Zona: </td>
-														<td><select id="zona" name="zona">
-																<option value=""></option>'.$zon.'</select></td>
-													</tr>
-													<tr>
-														<td>Frecuencia: </td>
-														<td><select id="frecuencia" name="frecuencia">
-																<option value=""></option>'.$frec.'<select>
-														</td>
-													<tr>
-													</tr>
-														<td>Tipo de Atenci&oacute;n: </td>
-														<td><select id="tipo_atencion" name="tipo_atencion">
-																<option value=""></option>'.$tipoatencion.'</select>
-														</td>												
-													</tr>
-												</table>
-										</fieldset>
-									</td>
-									<td>
-										&nbsp;
-										&nbsp;
-										&nbsp;
-										&nbsp;
-										&nbsp;
-									</td>
-									<td>
-										<fieldset>
-											<legend>Diagn&oacute;stico</legend>
-												<table>
-													<tr>
-														<td>Diagn&oacute;stico: </td>
-														<td><input type="text" id="diagnostico" name="diagnostico" placeholder="Diagn&oacute;stico"><br>
-															<input type="text" id="cie10" name="cie10" placeholder="CIE10" readonly>
-														</td>
-													<tr>
-													</tr>
-														<td>Frecuencia: </td>
-														<td><select id="frecdiag" name="frecdiag">
-																<option value=""></option>
-																'.$frec.'
-															</select>
-														</td>
-													<tr>
-													</tr>
-														<td>Profesional: </td>
-														<td><input type="text" name="profesional2" id="profesional2" placeholder="Buscar Profesional"><br><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly></td>
-													<tr>
-													</tr>
-														<td>Observaci&oacute;n: </td>
-														<td><textarea class="textarea" id="observacion" name="observacion"></textarea></td>
-													</tr>
-												</table>
-											
-										</fieldset>
-									
-									</td>
-									<td>
-										&nbsp;
-										&nbsp;
-										&nbsp;
-										&nbsp;
-										&nbsp;
-									</td>
-									<td>
-										<fieldset>
-											<legend>
-												Otros
-											</legend>
-											<table>
+							<div class="row-fluid">
+								<div class="span4">
+									<fieldset>
+										<legend>Paciente</legend>	
+										<table class="table">
+											<tbody>
 												<tr>
-													<td>Actividad: </td>
-													<td><input type="text" name="actividad" id="actividad"></td>
+													<td style="text-align:left;padding-left:17%;">Buscar:</td>														
 												</tr>
 												<tr>
-													<td>Frecuencia: </td>
-													<td><select id="frecact" name="frecact">
+													<td>
+														<input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br>
+														<input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Zona: </td>														
+												</tr>
+												<tr>
+													<td>
+														<select id="zona" name="zona">
+															<option value=""></option>
+															'.$zon.'
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Frecuencia: </td>														
+												</tr>
+												<tr>
+													<td>
+														<select id="frecuencia" name="frecuencia">
 															<option value=""></option>
 															'.$frec.'
 														</select>
 													</td>
 												</tr>
 												<tr>
-													<td>Profesional: </td>
-													<td><input type="text" name="profesional3" id="profesional3" placeholder="Buscar Profesional"><br><input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="C&eacute;dula Profesional" readonly></td>
+													<td style="text-align:left;padding-left:17%;">Tipo de Atenci&oacute;n:</td>														
 												</tr>
 												<tr>
-													<td>Estado: </td>
-													<td><select id="estado" name="estado">
+													<td>
+														<select id="tipo_atencion" name="tipo_atencion">
+															<option value=""></option>
+															'.$tipoatencion.'
+														</select>
+													</td>	
+												</tr>
+											</tbody>
+										</table>										
+									</fieldset>
+								</div>
+								
+								<div class="span4">
+									<fieldset>
+										<legend>Diagn&oacute;stico</legend>			
+										<table class="table">
+											<tbody>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Diagn&oacute;stico: </td>														
+												</tr>
+												<tr>
+													<td>
+														<input type="text" id="diagnostico" name="diagnostico" placeholder="Diagn&oacute;stico"><br>
+														<input type="text" id="cie10" name="cie10" placeholder="CIE10" readonly>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Frecuencia: </td>														
+												</tr>
+												<tr>
+													<td>
+														<select id="frecdiag" name="frecdiag">
+															<option value=""></option>
+															'.$frec.'
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Profesional: </td>														
+												</tr>
+												<tr>
+													<td>
+														<input type="text" name="profesional2" id="profesional2" placeholder="Buscar Profesional"><br>
+														<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Observaci&oacute;n: </td>														
+												</tr>
+												<tr>
+													<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;n"></textarea></td>
+												</tr>
+											</tbody>
+										</table>
+									</fieldset>
+								</div>
+								
+								<div class="span4">
+									<fieldset>
+										<legend>Otros</legend>
+										<table class="table">
+											<tbody>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Actividad: </td>														
+												</tr>
+												<tr>
+													<td><input type="text" name="actividad" id="actividad" placeholder="Actividad"></td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Frecuencia: </td>														
+												</tr>
+												<tr>
+													<td>
+														<select id="frecact" name="frecact">
+															<option value=""></option>
+															'.$frec.'
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Profesional: </td>														
+												</tr>
+												<tr>
+													<td>
+														<input type="text" name="profesional3" id="profesional3" placeholder="Buscar Profesional"><br>
+														<input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="C&eacute;dula Profesional" readonly>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align:left;padding-left:17%;">Estado: </td>														
+												</tr>
+												<tr>
+													<td>
+														<select id="estado" name="estado">
 															<option value=""></option>
 															'.$estado.'
 														</select>
 													</td>
 												</tr>
 												<tr>
-													<td>Referido: </td>
-													<td><select id="referido" name="referido">
+													<td style="text-align:left;padding-left:17%;">Referido: </td>														
+												</tr>
+												<tr>
+													<td>
+														<select id="referido" name="referido">
 															<option value=""></option>
 															<option value="0">No Referido</option>
 															<option value="1">Dentro de la Inst.</option>
 														</select>
 													</td>
 												</tr>
-											</table>
-										</fieldset>
-									</td>		
-								</tr>
-							</table>
-							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
-							'.$_SESSION[errorpa].'
+											</tbody>
+										</table>
+																
+									</fieldset>
+								</div>
+							</div>
+		
+							<center>
+								<button style="background:none;border:none;padding-top:7px"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
+								'.$_SESSION[errorpa].'
+							</center>
 					</form>';
 	}
 	$cont.='
 					</div>
-					<div class="span2"></div>
-				</div>					
-				</fieldset>	
-		</center>';
+				</div>			
+		';
 	$_SESSION[idrda] = '';
 	$ds->contenido($cont);
 	$ds->mostrar();
