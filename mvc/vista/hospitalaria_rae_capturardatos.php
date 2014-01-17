@@ -63,7 +63,7 @@
 											<td style="text-align:left;padding-left:17%;">C&eacute;dula:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="cedula" name="cedula" value="'.$busqueda.'"></td>
+											<td><input type="text" id="cedula" name="cedula" value="'.$busqueda.'" placeholder="C&eacute;dula"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Nacionalidad:</td>
@@ -112,7 +112,7 @@
 											<td style="text-align:left;padding-left:17%;">N&ordm; de Seguro:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'"></td>
+											<td><input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N° Seguro"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -129,25 +129,25 @@
 											<td style="text-align:left;padding-left:17%;">Primer Nombre:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="primernombre" name="primernombre" value="'.$datos->obtener('PRIMER_NOMBRE').'"></td>
+											<td><input type="text" id="primernombre" name="primernombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" placeholder="Primer Nombre"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Segundo Nombre:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="segundonombre" name="segundonombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'"></td>
+											<td><input type="text" id="segundonombre" name="segundonombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'"  placeholder="Segundo Nombre"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Primer Apellido:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="primerapellido" name="primerapellido" value="'.$datos->obtener('APELLIDO_PATERNO').'"></td>
+											<td><input type="text" id="primerapellido" name="primerapellido" value="'.$datos->obtener('APELLIDO_PATERNO').'" placeholder="Primer Apellido"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Segundo Apellido:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="segundoapellido" name="segundoapellido" value="'.$datos->obtener('APELLIDO_MATERNO').'"></td>
+											<td><input type="text" id="segundoapellido" name="segundoapellido" value="'.$datos->obtener('APELLIDO_MATERNO').'" placeholder="Segundo Apellido"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Fecha de Nacimiento:</td>	
@@ -159,7 +159,7 @@
 											<td style="text-align:left;padding-left:17%;">Lugar de Nacimiento:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="lugarnacimiento" name="lugarnacimiento" value="'.$datos->obtener('LUGAR_NACIMIENTO').'"></td>
+											<td><input type="text" id="lugarnacimiento" name="lugarnacimiento" value="'.$datos->obtener('LUGAR_NACIMIENTO').'" placeholder="Lugar de Nac."></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Sexo:</td>	
@@ -230,7 +230,7 @@
 											<td style="text-align:left;padding-left:17%;">Ocupaci&oacute;n:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="ocupacion" name="ocupacion" value="'.$datos->obtener('OCUPACION').'"></td>
+											<td><input type="text" id="ocupacion" name="ocupacion" value="'.$datos->obtener('OCUPACION').'" placeholder="Ocupaci&oacute;n"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Estado Civil:</td>	
@@ -260,13 +260,13 @@
 											<td style="text-align:left;padding-left:17%;">Nombre Padre:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="nombrepadre" name="nombrepadre" value="'.$datos->obtener('NOMBRE_PADRE').'"></td>
+											<td><input type="text" id="nombrepadre" name="nombrepadre" value="'.$datos->obtener('NOMBRE_PADRE').'" placeholder="Nombre Padre"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Nombre Madre:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="nombremadre"  name="nombremadre" value="'.$datos->obtener('NOMBRE_MADRE').'"></td>
+											<td><input type="text" id="nombremadre"  name="nombremadre" value="'.$datos->obtener('NOMBRE_MADRE').'" placeholder="Nombre Madre"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -285,19 +285,19 @@
 										<td style="text-align:left;padding-left:17%;">Correo Electr&oacute;nico:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'"></td>
+										<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'" placeholder="Correo Electrónico"></td>
 									</tr>
 									<tr>
 										<td  style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="telefono" name="telefono" value="'.$datos->obtener('TELEFONO_CASA').'"></td>
+										<td><input type="text" id="telefono" name="telefono" value="'.$datos->obtener('TELEFONO_CASA').'" placeholder="Tel&eacute;fono"></td>
 									</tr>
 									<tr>
 										<td  style="text-align:left;padding-left:17%;">Celular:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'"></td>
+										<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular"></td>
 									</tr>	
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Provincia:</td>
@@ -393,13 +393,13 @@ $cont.='									</select>
 										<td style="text-align:left;padding-left:17%;">Direcci&oacute;n Detallada:</td>
 									</tr>
 									<tr>
-										<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada" >'.$residencia->obtener('DETALLE').'</textarea></td>
+										<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"  placeholder="Direcci&oacute;n">'.$residencia->obtener('DETALLE').'</textarea></td>
 									</tr>
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Residencia Transitoria:</td>
 									</tr>
 									<tr>
-										<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
+										<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -420,31 +420,31 @@ $cont.='									</select>
 										<td style="text-align:left;padding-left:17%;">Nombre:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="nombreresponsable" name="nombreresponsable" value="'.$responsable->obtener('NOMBRE_CONTACTO').'" required></td>
+										<td><input type="text" id="nombreresponsable" name="nombreresponsable" value="'.$responsable->obtener('NOMBRE_CONTACTO').'" placeholder="Nombre" required></td>
 									</tr>
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Apellido:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="apellidoresponsable" name="apellidoresponsable" value="'.$responsable->obtener('APELLIDO_CONTACTO').'" required></td>
+										<td><input type="text" id="apellidoresponsable" name="apellidoresponsable" value="'.$responsable->obtener('APELLIDO_CONTACTO').'" placeholder="Apellido" required></td>
 									</tr>
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Parentesco:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="parentesco" name="parentesco" value="'.$responsable->obtener('PARENTESCO_CONTACTO').'" required></td>
+										<td><input type="text" id="parentesco" name="parentesco" value="'.$responsable->obtener('PARENTESCO_CONTACTO').'" placeholder="Parentesco" required></td>
 									</tr>
 									<tr>
-										<td style="text-align:left;padding-left:17%;">Direccion:</td>
+										<td style="text-align:left;padding-left:17%;">Direcci&oacute;n:</td>
 									</tr>
 									<tr>
-										<td><textarea class="textarea" id="direccionresponsable" name="direccionresponsable">'.$responsable->obtener('DIRECCION_CONTACTO').'</textarea></td>
+										<td><textarea class="textarea" id="direccionresponsable" name="direccionresponsable" placeholder="Direcci&oacute;n">'.$responsable->obtener('DIRECCION_CONTACTO').'</textarea></td>
 									</tr>
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
 									</tr>
 									<tr>
-										<td><input type="text" id="telefonoresponsable" name="telefonoresponsable" value="'.$responsable->obtener('TELEFONO_CONTACTO').'" required></td>
+										<td><input type="text" id="telefonoresponsable" name="telefonoresponsable" value="'.$responsable->obtener('TELEFONO_CONTACTO').'" placeholder="Tel&eacute;fono" required></td>
 									</tr>
 								</tbody>
 							</table>
