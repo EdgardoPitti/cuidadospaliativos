@@ -97,7 +97,7 @@
 			//Se coloca el id del paciente en la tabla del responsable
 			$responsable->colocar("ID_PACIENTE", $idpaciente);
 		}else{
-			//Si si existe el paciente se busca el responsable para con el id del paciente para actualizar los datos del responsable
+			//Si existe el paciente se busca el responsable para con el id del paciente para actualizar los datos del responsable
 			$resp = $responsable->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 			if(!$resp){
 				//Sino existe se almacenara en un nuevo registro
@@ -118,7 +118,8 @@
 	if(empty($_GET['id'])){
 		include_once('./mvc/vista/inicio.php');
 	}else{
-		echo '<br><br><br><br><br><br><br><br><center><h1><a href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'">Click para continuar....</a></h1></center><br><br><br><br><br><br><br><br>';
+		//echo '<br><br><br><br><br><br><br><br><center><h1><a href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'">Click para continuar....</a></h1></center><br><br><br><br><br><br><br><br>';
+		include_once('./mvc/vista/hospitalaria_rae_evolucion.php');
 	}
 	
 ?>
