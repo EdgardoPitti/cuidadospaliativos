@@ -365,14 +365,17 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticoadmision").keypress(function() {
-                       palabra = $("#diagnosticoadmision").val(); // Completa la palabra
+                    $("#diagnostico2").keypress(function() {
+                       palabra = $("#diagnostico2").val(); // Completa la palabra
                     });
-                    $("#diagnosticoadmision").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico2").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
-                    });             
+                    });  
+					$("#diagnostico2").result(function(event, data, formatted) {
+                        $("#cie2").val(data[1]); 
+                    });   
             });	  
 		</script>		
 		<script>
@@ -396,14 +399,18 @@
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
-                    $("#diagnosticoegreso").keypress(function() {
-                       palabra = $("#diagnosticoegreso").val(); // Completa la palabra
+                    $("#diagnostico1").keypress(function() {
+                       palabra = $("#diagnostico1").val(); // Completa la palabra
                     });
-                    $("#diagnosticoegreso").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+                    $("#diagnostico1").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
                         matchContains: true,
                         mustMatch: true,
                         selectFirst: false
-                    });    
+                    });
+					$("#diagnostico1").result(function(event, data, formatted) {
+                        $("#cie1").val(data[1]); 
+                    });   
+					
 					
             });	  
 		</script>
