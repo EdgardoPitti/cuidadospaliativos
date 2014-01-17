@@ -131,130 +131,151 @@
 										<input id="acordeon1" name="accordion" type="radio"/>
 										<label for="acordeon1">Datos Referencia</label>
 										<article>
-											<div class="row-fluid">
+											<div class="row-fluid" style="margin-top:10px">
 												<div class="span6">
-													<table class="tabla-datos">
-														<tr>
-															<td>Instalación que Refiere:</td>
-															<td><select id="instalacionrefiere" name="instalacionrefiere" height="125px" required '.$disabled.'>
-																<option value=""></option>';
-								$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
-								while($i){
-									if($instituciones->obtener('ID_INSTITUCION') == $surco->obtener('INSTALACION_REFIERE')){
-										$selected = 'selected';
-									}else{
-										$selected = '';
-									}
-									$cont .= '
-																<option value="'.$instituciones->obtener('ID_INSTITUCION').'" '.$selected.'>'.$instituciones->obtener('DENOMINACION').'</option>
-									';
-									$i = $instituciones->releer();
-								}
-							$cont.='
-																</select>
-															</td>													
-														</tr>
-													</table>
-												</div>												
-												<div class="span6">
-													<table class="tabla-datos">
-														<tr>
-															<td>Servicio Médico al que se refiere:</td>
-															<td><select id="serviciomedico" name="serviciomedico" '.$disabled.'>
-																	<option value=""></option>';
-								$s = $servicios->buscardonde('ID_SERVICIO > 0');
-								while($s){
-									if($servicios->obtener('ID_SERVICIO') == $surco->obtener('ID_SERVICIO')){
-										$selected = 'selected';
-									}else{
-										$selected = '';
-									}
+													<table class="table">
+														<tbody>
+															<tr>
+																<td style="text-align:left;padding-left:17%;">Instalación que Refiere:</td>	
+															</tr>
+															<tr>
+																<td>
+																	<select id="instalacionrefiere" name="instalacionrefiere" height="125px" required '.$disabled.'>
+																		<option value=""></option>';
+										$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
+										while($i){
+											if($instituciones->obtener('ID_INSTITUCION') == $surco->obtener('INSTALACION_REFIERE')){
+												$selected = 'selected';
+											}else{
+												$selected = '';
+											}
+											$cont .= '
+																		<option value="'.$instituciones->obtener('ID_INSTITUCION').'" '.$selected.'>'.$instituciones->obtener('DENOMINACION').'</option>
+											';
+											$i = $instituciones->releer();
+										}
 									$cont.='
-																	<option value="'.$servicios->obtener('ID_SERVICIO').'" '.$selected.'>'.$servicios->obtener('DESCRIPCION').'</option>
-									';
-									$s = $servicios->releer();
-								}
-								$cont.='
-																</select>
-															</td>
-														</tr>
-													</table>
+																	</select>
+																</td>
+															</tr>
+														</tbody>
+													</table>													
 												</div>												
-											</div>
-											<div class="row-fluid">
 												<div class="span6">
-													<table class="tabla-datos">												
-														<tr>
-															<td>Instalación Receptora:</td>
-															<td><select id="instalacionreceptora" name="instalacionreceptora" '.$disabled.'>
-																	<option value=""></option>';
-									$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
-									while($i){
-										if($instituciones->obtener('ID_INSTITUCION') == $surco->obtener('INSTALACION_RECEPTORA')){
+													<table class="table">
+														<tbody>
+															<tr>
+																<td style="text-align:left;padding-left:17%;">Servicio Médico al que se refiere:</td>	
+															</tr>
+															<tr>
+																<td><select id="serviciomedico" name="serviciomedico" '.$disabled.'>
+																		<option value=""></option>';
+									$s = $servicios->buscardonde('ID_SERVICIO > 0');
+									while($s){
+										if($servicios->obtener('ID_SERVICIO') == $surco->obtener('ID_SERVICIO')){
 											$selected = 'selected';
 										}else{
 											$selected = '';
 										}
-										$cont .= '
-																	<option value="'.$instituciones->obtener('ID_INSTITUCION').'" '.$selected.'>'.$instituciones->obtener('DENOMINACION').'</option>
+										$cont.='
+																		<option value="'.$servicios->obtener('ID_SERVICIO').'" '.$selected.'>'.$servicios->obtener('DESCRIPCION').'</option>
 										';
-										$i = $instituciones->releer();
-									}
-								$cont.='
-																</select>
-															</td>
-														</tr>
-													</table>
-												</div>												
-												<div class="span6">
-													<table class="tabla-datos">												
-														<tr>
-															<td>Clasificación de la Atención solicitada:</td>
-															<td><select id="clasificacionatencion" name="clasificacionatencion" '.$disabled.'>
-																	<option value=""></option>';
-								$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA');
-								while($c){
-									if($clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == $surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA')){
-										$selected = 'selected';
-									}else{
-										$selected = '';
+										$s = $servicios->releer();
 									}
 									$cont.='
-																	<option value="'.$clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'" '.$selected.'>'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</option>
-									';
-									$c = $clasificacion->releer();
-								}
-																
-								$cont.='	
-																</select>
-															</td>
-														</tr>
+																	</select>
+																</td>
+															</tr>
+														</tbody>
 													</table>
 												</div>												
 											</div>
 											<div class="row-fluid">
 												<div class="span6">
-													<table class="tabla-datos">																								
-														<tr>
-															<td>Motivo de Referencia:</td>
-															<td><select id="motivoreferencia" name="motivoreferencia" '.$disabled.'>
-																	<option value=""></option>';
-								$m = $motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA > 0');
-								while($m){
-									if($motivoreferencia->obtener('ID_MOTIVO_REFERENCIA') == $surco->obtener('ID_MOTIVO_REFERENCIA')){
-										$selected = 'selected';
-									}else{
-										$selected = '';
-									}
+													<table class="table">
+														<tbody>
+															<tr>
+																<td style="text-align:left;padding-left:17%;">Instalación Receptora:</td>	
+															</tr>
+															<tr>
+																<td><select id="instalacionreceptora" name="instalacionreceptora" '.$disabled.'>
+																		<option value=""></option>';
+										$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
+										while($i){
+											if($instituciones->obtener('ID_INSTITUCION') == $surco->obtener('INSTALACION_RECEPTORA')){
+												$selected = 'selected';
+											}else{
+												$selected = '';
+											}
+											$cont .= '
+																		<option value="'.$instituciones->obtener('ID_INSTITUCION').'" '.$selected.'>'.$instituciones->obtener('DENOMINACION').'</option>
+											';
+											$i = $instituciones->releer();
+										}
 									$cont.='
-																	<option value="'.$motivoreferencia->obtener('ID_MOTIVO_REFERENCIA').'" '.$selected.'>'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</option>
-									';
-									$m = $motivoreferencia->releer();
-								}
-								$cont.='		
-																</select>
-															</td>
-														</tr>
+																	</select>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>												
+												<div class="span6">
+													<table class="table">
+														<tbody>
+															<tr>
+																<td style="text-align:left;padding-left:17%;">Clasificación de la Atención solicitada:</td>	
+															</tr>
+															<tr>
+																<td><select id="clasificacionatencion" name="clasificacionatencion" '.$disabled.'>
+																		<option value=""></option>';
+									$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA');
+									while($c){
+										if($clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == $surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA')){
+											$selected = 'selected';
+										}else{
+											$selected = '';
+										}
+										$cont.='
+																		<option value="'.$clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'" '.$selected.'>'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</option>
+										';
+										$c = $clasificacion->releer();
+									}
+																	
+									$cont.='	
+																	</select>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>												
+											</div>
+											<div class="row-fluid">
+												<div class="span6">
+													<table class="table">
+														<tbody>
+															<tr>
+																<td style="text-align:left;padding-left:17%;">Motivo de Referencia:</td>	
+															</tr>
+															<tr>
+																<td><select id="motivoreferencia" name="motivoreferencia" '.$disabled.'>
+																		<option value=""></option>';
+									$m = $motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA > 0');
+									while($m){
+										if($motivoreferencia->obtener('ID_MOTIVO_REFERENCIA') == $surco->obtener('ID_MOTIVO_REFERENCIA')){
+											$selected = 'selected';
+										}else{
+											$selected = '';
+										}
+										$cont.='
+																		<option value="'.$motivoreferencia->obtener('ID_MOTIVO_REFERENCIA').'" '.$selected.'>'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</option>
+										';
+										$m = $motivoreferencia->releer();
+									}
+									$cont.='		
+																	</select>
+																</td>
+															</tr>
+														</tbody>
 													</table>
 												</div>												
 												<div class="span6"></div>												
@@ -276,8 +297,8 @@
 						$examenfisico->buscardonde('ID_EXAMEN_FISICO = '.$historia->obtener('ID_EXAMEN_FISICO').'');
 						$cont.='
 														<tr>
-															<td><textarea class="textarea" style="width:100%; max-width:30%;min-width:60%;" id="anamnesis" name="anamnesis" '.$readonly.'>'.$historia->obtener('ANAMNESIS').'</textarea></td>																												
-															<td><textarea class="textarea" style="width:100%;max-width:30%;min-width:60%;" id="observaciones" name="observaciones" '.$readonly.'>'.$historia->obtener('OBSERVACIONES').'</textarea></td>
+															<td><textarea class="textarea" style="width:100%; max-width:30%;min-width:60%;" id="anamnesis" name="anamnesis" placeholder="Anamnesis" '.$readonly.'>'.$historia->obtener('ANAMNESIS').'</textarea></td>																												
+															<td><textarea class="textarea" style="width:100%;max-width:30%;min-width:60%;" id="observaciones" name="observaciones" placeholder="Observaciones" '.$readonly.'>'.$historia->obtener('OBSERVACIONES').'</textarea></td>
 														</tr>
 														<tr>
 															<td style="text-align:left" colspan="2">Examen Físico:</td>									
@@ -287,7 +308,7 @@
 											</div>	
 											
 											<table class="tabla">
-												<tr class="fd-table">
+												<tr class="fd-tabla-gris">
 													<th>Hora</th>
 													<th>Presión Arterial</th>
 													<th>Frecuencia Cardiaca</th>
@@ -327,8 +348,8 @@
 										<input id="acordeon3" name="accordion" type="radio" />
 										<label for="acordeon3">Resultado de Exámenes/Diagnóstico</label>
 										<article>
-											<table class="table2">
-												<tr>
+											<table class="table2" style="margin-top:7px">
+												<tr class="fd-tabla-gris">
 													<th>Tipo de Examen</th>
 													<th>Diagnóstico</th>
 													<th>CIE-10</th>
