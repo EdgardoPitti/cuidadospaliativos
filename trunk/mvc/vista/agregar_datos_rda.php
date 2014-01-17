@@ -48,7 +48,7 @@
 		$datos_profesional->buscardonde('NO_CEDULA = "'.$_POST['cedprofesional'].'"');
 		$profesional->buscardonde('ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'');
 		if($detalle_equipo->buscardonde('ID_EQUIPO_MEDICO = '.$idequipo.' AND ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'')){
-			$_SESSION[errorprof] = '<div style="color:RED;">Este profesional ya existe en el equipo</div>';
+			$_SESSION[errorprof] = '<div style="color:RED;padding-top:10px">Este profesional ya existe en el equipo</div>';
 		}else{
 			$detalle_equipo->nuevo();
 			$detalle_equipo->colocar('ID_EQUIPO_MEDICO', $idequipo);
@@ -63,7 +63,7 @@
 		$datos_paciente->buscardonde('NO_CEDULA = "'.$_POST['cedpaciente'].'"');
 		$idpaciente = $datos_paciente->obtener('ID_PACIENTE');
 		if($detalle_rda->buscardonde('ID_PACIENTE = '.$idpaciente.' AND ID_RDA = '.$id.'')){
-			$_SESSION[errorpa] = '<div style="color:RED;">Este paciente ya existe en esta Actividad</div>';
+			$_SESSION[errorpa] = '<div style="color:RED;padding-top:7px">Este paciente ya existe en esta Actividad</div>';
 		}else{
 				
 			$diagnostico->nuevo();
