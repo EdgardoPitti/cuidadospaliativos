@@ -8,7 +8,6 @@
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
 	$instituciones = new Accesatabla('institucion');
-	$tipoinstitucion = new Accesatabla('tipo_institucion');
 	$clasificacion = new Accesatabla('clasificacion_atencion_solicitada');
 	$servicios = new Accesatabla('servicios_medicos');
 	$motivoreferencia = new Accesatabla('motivo_referencia');
@@ -21,10 +20,13 @@
 	$resultado = new Accesatabla('resultados_examen_diagnostico');
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$profesional = new Accesatabla('datos_profesionales_salud');
+	$respuesta = new Accesatabla('respuesta_referencia');
 	$sw = 0;
 	$cedula = $_POST['cedula'];
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
 		$sw = 1;
+	}else if(empty($cedula)){
+		$cedula = $_GET['idp'];
 	}
 	$ds = new Diseno();
 	$cont='
@@ -47,7 +49,7 @@
 			$cont.='<center><a href="./?url=domiciliaria_capturardatos">Paciente no encontrado...Añadir</a></center>';
 		}
 	}else{
-		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
+		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
 		$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
@@ -76,7 +78,7 @@
 										<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
 									</tr>
 									<tr>
-										<td>'.$cedula.'</td>
+										<td>'.$personas->obtener('NO_CEDULA').'</td>
 										<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
 										<td>'.$sexo.'</td>
 									</tr>
@@ -425,13 +427,74 @@
 								}
 							$cont.='
 							   </form>
-							</div>';		
-		
-
-				$cont.='
+							</div>
+							
 							<!--RESPUESTA A LA REFERENCIA -->
-							<div class="tab-pane" id="tab2">
-								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'">	
+							<div class="tab-pane" id="tab2">';
+							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){
+							
+									$cont.='
+										<fieldset>
+											<legend>
+												RESPUESTAS
+											</legend>
+												<center>
+												<table>
+													<tr>
+														<th>Fecha</th>
+														<th>Institucion Responde</th>
+														<th>Instalacion Receptora</th>
+														<th>Diagnostico</th>
+														<th>Observaciones</th>
+														<th>Hallazgos</th>
+														<th>Manejo y Tratamiento</th>
+														<th>Profesional</th>
+														<th></th>
+													</tr>';
+									$r = $respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'');
+									while($r){
+										$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
+										$cont.='
+													<tr>
+														<td>'.$respuesta->obtener('FECHA').'</td>
+														<td>'.$instituciones->obtener('DENOMINACION').'</td>';
+										$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
+										$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
+										$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
+										$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+										$segundon = $profesional->obtener('SEGUNDO_NOMBRE');
+										$segundoa = $profesional->obtener('APELLIDO_MATERNO');
+										$cont.='
+														<td>'.$instituciones->obtener('DENOMINACION').'</td>
+														<td>'.$cie->obtener('DESCRIPCION').'</td>
+														<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
+														<td>'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</td>
+														<td>'.$respuesta->obtener('TRATAMIENTO').'</td>
+														<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
+														<td><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'"><img src="./iconos/search.png"></a></td>
+													</tr>
+										';
+										$r = $respuesta->releer();
+									}
+									$cont.='
+												</table>
+													Agregrar Respuesta <a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'"><img src="./iconos/Flaticon_11724.png"></a>
+												<center>
+										</fieldset>';
+
+							}
+							$idr = $_GET['idr'];
+							$r  = $respuesta->buscardonde('ID_RESPUESTA_REFERENCIA = '.$idr.'');
+							if($r){
+								$readonly = 'readonly';
+								$disabled = 'disabled';
+							}else{
+								$readonly = '';
+								$disabled = '';
+							}
+							$cont.='
+
+								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'">	
 									<button type="submit" class="btn btn-default">Imprimir</button>
 									<button type="submit" class="btn btn-default">Descargar</button>		
 
@@ -440,13 +503,18 @@
 											<table class="tabla-datos">
 												<tr>
 													<td>Institución que Responde:</td>
-													<td><select id="institucionresponde" name="institucionrespondereceptora">
+													<td><select id="institucionresponde" name="institucionrespondereceptora" '.$disabled.'>
 															<option value=""></option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 							while($i){
+								if($instituciones->obtener('ID_INSTITUCION') == $respuesta->obtener('INSTITUCION_RESPONDE')){
+									$selected = 'selected';
+								}else{
+									$selected = '';
+								}
 								$cont .= '
-															<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
+															<option value="'.$instituciones->obtener('ID_INSTITUCION').'" '.$selected.'>'.$instituciones->obtener('DENOMINACION').'</option>
 								';
 								$i = $instituciones->releer();
 							}
@@ -460,13 +528,18 @@
 											<table class="tabla-datos">
 												<tr>
 													<td>Instalación Receptora:</td>
-													<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta">
+													<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta" '.$disabled.'>
 															<option value=""></option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 							while($i){
+								if($instituciones->obtener('ID_INSTITUCION') == $respuesta->obtener('INSTITUCION_RESPONDE')){
+									$selected = 'selected';
+								}else{
+									$selected = '';
+								}							
 								$cont .= '
-															<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
+															<option value="'.$instituciones->obtener('ID_INSTITUCION').'" '.$selected.'>'.$instituciones->obtener('DENOMINACION').'</option>
 								';
 								$i = $instituciones->releer();
 							}
@@ -483,28 +556,36 @@
 										<div>
 											<input type="radio" name="acc" id="acc-1">
 											<label for="acc-1">Hallazgos Clínicos</label>
-											<article>
+											<article>';
+							$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
+							$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
+							$cont.='
 												<div class="row-fluid">
 													<div class="span6">
 														<table class="table2" style="font-size:12px;">
 															<tr>
 																<td>Diagnóstico:</td>
-																<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta"></td>
+																<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
 															</tr>
 															<tr>
 																<td>CIE-10:</td>
-																<td><input type="text" id="cierespuesta" name="cierespuesta" readonly></td>
+																<td><input type="text" id="cierespuesta" name="cierespuesta" value="'.$cie->obtener('ID_CIE10').'" placeholder="ID_CIE10" readonly></td>
 															</tr>
 															<tr>
 																<td>Frecuencia:</td>
 																<td>
-																	<select id="frecuenciarespuesta" name="frecuenciarespuesta">
+																	<select id="frecuenciarespuesta" name="frecuenciarespuesta" '.$disabled.'>
 																		<option value=""></option>';
 																
 		$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
 		while($f){
+			if($frecuencia->obtener('ID_FRECUENCIA') == $detallediagnostico->obtener('ID_FRECUENCIA')){
+				$selected = 'selected';
+			}else{
+				$selected = '';
+			}
 			$cont.='
-																		<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'">'.$frecuencia->obtener('FRECUENCIA').'</option>';
+																		<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'" '.$selected.'>'.$frecuencia->obtener('FRECUENCIA').'</option>';
 			$f = $frecuencia->releer();
 		}		
 		$cont.='														
@@ -517,15 +598,15 @@
 														<table class="table2" style="font-size:12px;">
 															<tr>
 																<td>Hallazgos Clinicos:</td>
-																<td><input type="text" id="observrespuesta" name="hallazgosclinicos"></td>
+																<td><input type="text" id="hallazgosclinicos" name="hallazgosclinicos" placeholder="Hallazgos Clínicos" value="'.$respuesta->obtener('HALLAZGOS_CLINICOS').'" '.$readonly.'></td>
 															</tr>
 															<tr>
 																<td>Observaciones:</td>
-																<td><input type="text" id="observrespuesta" name="observrespuesta"></td>
+																<td><input type="text" id="observrespuesta" name="observrespuesta" placeholder="Observaciones" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.'></td>
 															</tr>
 															<tr>
 																<td>Manejo y Tratamiento:</td>
-																<td><input type="text" id="manejo_tratamiento" name="manejo_tratamiento"></td>
+																<td><input type="text" id="manejo_tratamiento" name="manejo_tratamiento" placeholder="Manejo y Tratamiento" value="'.$respuesta->obtener('TRATAMIENTO').'" '.$readonly.'></td>
 															</tr>
 														</table>
 													</div>
@@ -535,7 +616,22 @@
 										<div>
 											<input type="radio" name="acc" id="acc-2">
 											<label for="acc-2">Datos del Profesional</label>
-											<article>
+											<article>';
+										$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+										$var1 = $profesional->obtener('SEGUNDO_NOMBRE');
+										$var2 = $profesional->obtener('APELLIDO_MATERNO');
+										$nombre = $profesional->obtener('PRIMER_NOMBRE').' '.$var1[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$var2[0].'.';
+										if(empty($idr)){
+											$nombre = '';
+										}
+										if($respuesta->obtener('REEVALUACION_ESPECIALIZADA') == 1){
+											$si = 'checked';
+											$no = '';
+										}else{
+											$no = 'checked';
+											$si = '';
+										}
+										$cont.='
 												<center>
 													<div class="row-fluid">
 														<div class="span6">
@@ -545,10 +641,10 @@
 															<table width="30%">
 																<tr>
 																	<td style="text-align:center">
-																		<input type="radio" style="display:inline-block" name="reev_esp" id="reev_esp" value="1" checked/><span style="padding-top:4px"> Sí </span>
+																		<input type="radio" style="display:inline-block" name="reev_esp" id="reev_esp" value="1" '.$si.' '.$readonly.'><span style="padding-top:4px"> Sí </span>
 																	</td>
 																	<td style="text-align:center">
-																		<input type="radio" style="display:inline-block" name="reev_esp" id="reev_esp" value="0"/> <span style="padding-top:4px"> No </span>
+																		<input type="radio" style="display:inline-block" name="reev_esp" id="reev_esp" value="0" '.$no.' '.$readonly.'> <span style="padding-top:4px"> No </span>
 																	</td>
 																</tr>
 															</table>
@@ -560,7 +656,7 @@
 															Fecha:
 														</div>
 														<div class="span6">
-															<input type="date" name="fecharespuesta"/>
+															<input type="date" name="fecharespuesta" value="'.$respuesta->obtener('FECHA').'" '.$readonly.'>
 														</div>
 													</div>
 													<div class="row-fluid">
@@ -568,14 +664,18 @@
 															Profesional:
 														</div>
 														<div class="span6">
-															<input type="text" id="profesional2" name="profesional2">&nbsp;<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
+															<input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'>&nbsp;<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly>
 														</div>
 													</div>
 												</center>
 											</article>
 										</div>
-									</div>	
-									<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>							
+									</div>	';
+							if(empty($idr)){
+								$cont.='<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>';
+							}
+									
+							$cont.='
 								</form>	
 							</div>	
 				</div>

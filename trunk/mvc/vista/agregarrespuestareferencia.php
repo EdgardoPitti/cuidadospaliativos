@@ -8,7 +8,7 @@
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$idsurco = $_GET['id'];
 	
-	$profesional->buscardonde('NO_CEDULA = "'.$_POST['ceprofesional2'].'"');
+	$profesional->buscardonde('NO_CEDULA = "'.$_POST['cedprofesional2'].'"');
 	
 	$diagnostico->nuevo();
 	$diagnostico->salvar();
@@ -37,12 +37,5 @@
 	$respuesta->colocar("ID_SURCO", $idsurco);
 	$respuesta->salvar();
 	
-	$cont.='
-			<center>
-				<h1>Datos Salvados Correctamente</h1>
-				<a href="./?url=domiciliaria_surco">Click para continuar...</a>
-			</center>
-			';
-	$ds->contenido($cont);
-	$ds->mostrar();
+	include_once('./mvc/vista/domiciliaria_surco.php');
 ?>
