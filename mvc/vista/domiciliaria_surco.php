@@ -32,10 +32,6 @@
 	$cont='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;"> Sistema Único de Referencia y Contrarreferencia</h3>
-			</center>';
-	if (Empty($cedula) or $sw == 1){
-		$cont.='
-			<center>
 				<form class="form-search" method="POST" action="./?url=domiciliaria_surco">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="cedula" required>
@@ -45,10 +41,9 @@
 					</div>
 				</form>
 			</center>';
-		if($sw){
-			$cont.='<center><a href="./?url=domiciliaria_capturardatos">Paciente no encontrado...Añadir</a></center>';
-		}
-	}else{
+	if ($sw == 1){
+			$cont.='<center>Paciente no encontrado...<a href="./?url=domiciliaria_capturardatos"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
+	}else{ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
