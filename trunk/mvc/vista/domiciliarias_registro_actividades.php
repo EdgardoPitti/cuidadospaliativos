@@ -213,6 +213,7 @@
 		$cont.='
 							</table>
 						</div>
+					'.$_SESSION[errorpa].'
 		</center>
 		';
 		$cont.='
@@ -377,7 +378,6 @@
 		
 							<center>
 								<button style="background:none;border:none;padding-top:7px"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
-								'.$_SESSION[errorpa].'
 							</center>
 					</form>';
 	}
