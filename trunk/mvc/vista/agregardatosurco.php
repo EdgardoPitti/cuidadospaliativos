@@ -62,6 +62,7 @@
 	$surco->colocar("ID_MOTIVO_REFERENCIA", $_POST['motivoreferencia']);
 	$surco->colocar("ID_CLASIFICACION_ATENCION_SOLICITADA", $_POST['clasificacionatencion']);
 	$surco->colocar("ID_HISTORIA_PACIENTE", $idhistoriapaciente[0][id]);
+	$surco->colocar("ID_SERVICIO", $_POST['serviciomedico']);
 	$surco->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
 	$surco->salvar();
 
@@ -91,12 +92,5 @@
 		$resultados->salvar();
 		$x = $tipoexamen->releer();
 	}
-	$cont.='
-			<center>
-				<h1>Datos Salvados Correctamente</h1>
-				<a href="./?url=domiciliaria_surco">Click para continuar...</a>
-			</center>
-			';
-	$ds->contenido($cont);
-	$ds->mostrar();
+	include_once('./mvc/vista/domiciliaria_surco.php');
 ?>
