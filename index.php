@@ -25,7 +25,7 @@
 	<!-- Scripts para el Autocomplete -->
 	<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
 	<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
-
+	
 	<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
 	del formulario con base en un término o palabra que el usuario 
 	indique en la medida que vaya digitando en el cuadro de texto -->
@@ -432,7 +432,7 @@
                     });    
             });	            
         </script>		
-		<script>
+		<script>			
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto
@@ -450,31 +450,65 @@
                     });    
             });	            
         </script>		
+		
+		<script language="javascript">
+			function TamVentana() {
+			  var Tamanyo = [0, 0];
+			  if (typeof window.innerWidth != 'undefined')
+			  {
+				Tamanyo = [
+					window.innerWidth,
+					window.innerHeight
+				];
+			  }
+			  else if (typeof document.documentElement != 'undefined'
+				  && typeof document.documentElement.clientWidth !=
+				  'undefined' && document.documentElement.clientWidth != 0)
+			  {
+			 Tamanyo = [
+					document.documentElement.clientWidth,
+					document.documentElement.clientHeight
+				];
+			  }
+			  else   {
+				Tamanyo = [
+					document.getElementsByTagName('body')[0].clientWidth,
+					document.getElementsByTagName('body')[0].clientHeight
+				];
+			  }
+			  return Tamanyo;
+			}
+			window.onresize = function() {
+			  var Tam = TamVentana();
+			  if(Tam[0] <= 979){			  
+				//alert('Debe aparecer el slide');
+			  }else{
+				//alert('No hacer nada');
+			  }
+			};
+		</script>
+		
 		<script>
-			$(function(){
-			  $("#show1").click(function(){
-				$("#span2").toggle("1000");
+			$(function(){				
+			  $("#show1").click(function(){		
 				$("#mostrar_ocultar1").toggle("1000");
 				$("#mostrar_ocultar2").hide();
 				$("#mostrar_ocultar3").hide();
 				$("#mostrar_ocultar4").hide();
 			  });
 			   $("#show2").click(function(){
-			    $("#span2").toggle("1000");
 				$("#mostrar_ocultar2").toggle("1000");
 				$("#mostrar_ocultar1").hide();
 				$("#mostrar_ocultar3").hide();
 				$("#mostrar_ocultar4").hide();
 			  });
 			   $("#show3").click(function(){
-				$("#span2").toggle("1000");
 				$("#mostrar_ocultar3").toggle("1000");
 				$("#mostrar_ocultar2").hide();
 				$("#mostrar_ocultar1").hide();
 				$("#mostrar_ocultar4").hide();
 			  });
 			   $("#show4").click(function(){
-				$("#span2").toggle("1000");
 				$("#mostrar_ocultar4").toggle("1000");
 				$("#mostrar_ocultar1").hide();
 				$("#mostrar_ocultar3").hide();
@@ -483,13 +517,13 @@
 			});
 		</script>
 	</head>
-	<body> 			
+	<body> 	
 		<div class="container-fluid" >
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="page-header">
-						<h1 style="line-height:35px;">
-							Red Social de Cuidados Paliativos Panam&aacute;
+						<h1 style="line-height:35px;">			
+							Red Social de Cuidados Paliativos Panam&aacute;		
 						</h1>
 					</div>
 				</div>
@@ -503,11 +537,12 @@
 							<a href="#">M&eacute;dico</a>
 						</li>
 						<li class="dropdown pull-right">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Configuraci&oacute;n <strong class="caret"></strong></a>
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li>
+								<!--li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li-->
+								<li><a href="./?url=login">Iniciar Sesi&oacute;n</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Enlace separado</a></li>
+								<li><a href="#">Cerrar Sesi&oacute;n</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -516,7 +551,7 @@
 			
 			<div class="row-fluid">
 				<!--Aside-->
-				<div class="span2" id="span2" style="display:none">
+				<div class="span2" id="span2" style="dis play:none;">
 				
 					<!--DOMICILIARIA-->					
 					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:none;">			
@@ -533,7 +568,7 @@
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliarias_registro_actividades">Registro de Actividades Diarias</a></li>
+								<li><a class="link" href="./?url=domiciliarias_diario_actividades">Registro de Actividades Diarias</a></li>
 							</ul>
 						</div>
 						<div>
@@ -615,8 +650,8 @@
 						</div>
 					</div>	
 					
-					<!--RED SOCIAL-->
-					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4" style="display:none;">	
+					<!--RED SOCIAL   onclick="show_span()"-->
+					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:none;">	
 					<h3>Red Social</h3><hr>
 						<div>
 							<ul class="acordeon_link">
@@ -647,8 +682,8 @@
 				
 			</div>
 			
-			<div class="row-fluid">
-				<div class="span12">					
+			<div class="row-fluid" id="ate nciones">
+				<div class="span12">	
 					<!--Nav-->
 					<div class="navbar">
 						<div class="navbar-inner">
@@ -663,33 +698,18 @@
 								<div class="nav-collapse navbar-responsive-collapse collapse">
 									<ul class="nav">										
 										<li>
-											<a href="#" id="show1"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
+											<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
 										</li>
 										<li>
-											<a href="#" id="show2"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
+											<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
 										</li>
 										<li>
-											<a href="#" id="show3"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
+											<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
 										</li>
 										<li>
-											<a href="#" id="show4"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+											<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 										</li>
 									</ul>
-									<!--<ul class="nav pull-right">
-										<li>
-											<a href="#">M&eacute;dico</a>
-										</li>
-										<li class="divider-vertical">
-										</li>
-										<li class="dropdown">
-											 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-cog"></i>Configuraci&oacute;n<strong class="caret"></strong></a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="#">configurar</a>
-												</li>										
-											</ul>
-										</li>
-									</ul>-->
 								</div>
 							</div>
 						</div>

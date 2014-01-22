@@ -123,8 +123,8 @@
 					<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">';
 		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
 			$cont.='
-					<div style="max-width=1024px;overflow-x:auto">
-							<table class="table2">
+					<div style="overflow-x:auto">
+							<table class="table2 borde-tabla">
 								<tr class="fd-table">
 									<th>Zona</th>
 									<th>Paciente</th>
@@ -212,7 +212,7 @@
 		}
 		$cont.='
 							</table>
-						</div>
+						</div>					
 					'.$_SESSION[errorpa].'
 		</center>
 		';

@@ -309,7 +309,7 @@
 												</div>												
 											</div>	
 											
-											<table class="tabla">
+											<table class="table2 borde-tabla">
 												<tr class="fd-tabla-gris">
 													<th>Hora</th>
 													<th>Presión Arterial</th>
@@ -350,7 +350,7 @@
 										<input id="acordeon3" name="accordion" type="radio" />
 										<label for="acordeon3">Resultado de Exámenes/Diagnóstico</label>
 										<article>
-											<table class="table2" style="margin-top:7px">
+											<table class="table2 borde-tabla" style="margin-top:7px">
 												<tr class="fd-tabla-gris">
 													<th>Tipo de Examen</th>
 													<th>Diagnóstico</th>
@@ -434,53 +434,53 @@
 							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){
 							
 									$cont.='
-										<fieldset>
-											<legend>
-												RESPUESTAS
-											</legend>
-												<center>
-												<table>
-													<tr>
-														<th>Fecha</th>
-														<th>Institucion Responde</th>
-														<th>Instalacion Receptora</th>
-														<th>Diagnostico</th>
-														<th>Observaciones</th>
-														<th>Hallazgos</th>
-														<th>Manejo y Tratamiento</th>
-														<th>Profesional</th>
-														<th></th>
-													</tr>';
-									$r = $respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'');
-									while($r){
-										$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
-										$cont.='
-													<tr>
-														<td>'.$respuesta->obtener('FECHA').'</td>
-														<td>'.$instituciones->obtener('DENOMINACION').'</td>';
-										$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
-										$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
-										$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
-										$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
-										$segundon = $profesional->obtener('SEGUNDO_NOMBRE');
-										$segundoa = $profesional->obtener('APELLIDO_MATERNO');
-										$cont.='
-														<td>'.$instituciones->obtener('DENOMINACION').'</td>
-														<td>'.$cie->obtener('DESCRIPCION').'</td>
-														<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
-														<td>'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</td>
-														<td>'.$respuesta->obtener('TRATAMIENTO').'</td>
-														<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
-														<td><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'"><img src="./iconos/search.png"></a></td>
-													</tr>
-										';
-										$r = $respuesta->releer();
-									}
-									$cont.='
-												</table>
-													Agregrar Respuesta <a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'"><img src="./iconos/Flaticon_11724.png"></a>
-												<center>
-										</fieldset>';
+										<div class="row-fluid">
+											<div class="span12">
+												<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Respuestas</h3>
+													<div style="max-height:150px;overflow-x:auto;">
+														<table class="table2 borde-tabla">
+															<tr class="fd-tabla-gris">
+																<th>Fecha</th>
+																<th>Institucion Responde</th>
+																<th>Instalacion Receptora</th>
+																<th>Diagnostico</th>
+																<th>Observaciones</th>
+																<th>Hallazgos</th>
+																<th>Manejo y Tratamiento</th>
+																<th>Profesional</th>
+																<th style="background:transparent;border:0;min-width:35px;"></th>
+															</tr>';
+											$r = $respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'');
+											while($r){
+												$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
+												$cont.='
+															<tr>
+																<td><b>'.$respuesta->obtener('FECHA').'</b></td>
+																<td>'.$instituciones->obtener('DENOMINACION').'</td>';
+												$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
+												$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
+												$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
+												$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+												$segundon = $profesional->obtener('SEGUNDO_NOMBRE');
+												$segundoa = $profesional->obtener('APELLIDO_MATERNO');
+												$cont.='
+																<td>'.$instituciones->obtener('DENOMINACION').'</td>
+																<td>'.$cie->obtener('DESCRIPCION').'</td>
+																<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
+																<td>'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</td>
+																<td>'.$respuesta->obtener('TRATAMIENTO').'</td>
+																<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
+																<td style="border:0;"><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'"><img src="./iconos/search.png"></a></td>
+															</tr>
+												';
+												$r = $respuesta->releer();
+											}
+											$cont.='
+													</table>
+												</div>
+												<center style="margin-top:8px">Agregrar Respuesta <a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'"><img src="./iconos/plus.png"></a></center>
+											</div>
+										</div>';
 
 							}
 							$idr = $_GET['idr'];

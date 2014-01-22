@@ -296,24 +296,34 @@
 						<div class="span6">
 							<fieldset>
 								<legend>Diagnóstico de Admisión</legend>
-								<table class="table" align="center">
-									<tr>
-										<td style="line-height:15px">Diagnóstico :</td>
-										<td><input type="text" id="diagnostico1" name="diagnostico1" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
-									</tr>
-									<tr>
-										<td>CIE10:</td>
-										<td><input type="text" id="cie1" name="cie1" placeholder="CIE10" value="'.$cie->obtener('ID_CIE10').'" readonly></td>
-									</tr>
-									<tr>
-										<td>Profesional:</td>
-										<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
-									</tr>
-									<tr>
-										<td>Observación:</td>
-										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observación" '.$readonly.'>'.$detalle_adm->obtener('OBSERVACION').'</textarea></td>
-									</tr>
-								</table>
+								<table class="table">
+									<tbody>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Diagnóstico:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="diagnostico1" name="diagnostico1" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">CIE10:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="cie1" name="cie1" placeholder="CIE10" value="'.$cie->obtener('ID_CIE10').'" readonly></td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Profesional:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Observación:</td>														
+										</tr>
+										<tr>
+											<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observación" '.$readonly.'>'.$detalle_adm->obtener('OBSERVACION').'</textarea></td>
+										</tr>
+									</tbody>
+								</table>								
 							</fieldset>
 						</div>';
 		$detalle_egr->buscardonde('ID_DIAGNOSTICO_EGRESO = '.$rae->obtener('ID_DIAGNOSTICO_EGRESO').'');
@@ -344,51 +354,63 @@
 						<div class="span6">
 							<fieldset>
 								<legend>Diagnóstico Egreso</legend>
-								<table class="table" align="center">
-									<tr>
-										<td style="line-height:15px">Diagnóstico:</td>
-										<td><input type="text" id="diagnostico2" name="diagnostico2" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
-									</tr>
-									<tr>
-										<td>CIE10:</td>
-										<td><input type="text" id="cie2" name="cie2" placeholder="CIE10" value="'.$cie->obtener('ID_CIE10').'" readonly></td>
-									</tr>
-									<tr>
-										<td>Profesional:</td>
-										<td><input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
-									</tr>
-									<tr>
-										<td>Frecuencia:</td>
-										<td><select id="frecuencia" name="frecuencia" '.$disabled.'>
+								<table class="table">
+									<tbody>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Diagnóstico:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="diagnostico2" name="diagnostico2" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
+										</tr>	
+										<tr>
+											<td style="text-align:left;padding-left:17%;">CIE10:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="cie2" name="cie2" placeholder="CIE10" value="'.$cie->obtener('ID_CIE10').'" readonly></td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Profesional:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Frecuencia:</td>														
+										</tr>
+										<tr>
+											<td><select id="frecuencia" name="frecuencia" '.$disabled.'>
 													<option value=""></option>
 													<option value="1" '.$nuevo.'>NUEVO</option>
 													<option value="2" '.$sub.'>SUBSECUENCIA</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>Infección Nosocomial:</td>
-										<td>Si <input type="radio" id="infeccion" name="infeccion" value="1" '.$si.' '.$disabled.'>
-											No<input type="radio" id="infeccion" name="infeccion" value="0" '.$no.' '.$disabled.'>
-										</td>
-									</tr>
-									<tr>
-										<td>Causa Externa:</td>
-										<td><input type="text" id="causa" name="causa" placeholder="Causa Externa" value="'.$detalle_egr->obtener('CAUSA_EXTERNA').'" '.$readonly.'></td>
-									</tr>
-									<tr>
-										<td>Observación:</td>
-										<td><input type="text" id="observacion1" name="observacion1" placeholder="Observación" value="'.$detalle_egr->obtener('OBSERVACION').'" '.$readonly.'></td>
-									</tr>
-								</table>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Infección Nosocomial:</td>														
+										</tr>
+										<tr>
+											<td><input type="radio" id="infeccion" name="infeccion" value="1" '.$si.' '.$disabled.'> Si 
+												<input type="radio" id="infeccion" name="infeccion" value="0" '.$no.' '.$disabled.'> No
+											</td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Causa Externa:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="causa" name="causa" placeholder="Causa Externa" value="'.$detalle_egr->obtener('CAUSA_EXTERNA').'" '.$readonly.'></td>
+										</tr>
+										<tr>
+											<td style="text-align:left;padding-left:17%;">Observación:</td>														
+										</tr>
+										<tr>
+											<td><input type="text" id="observacion1" name="observacion1" placeholder="Observación" value="'.$detalle_egr->obtener('OBSERVACION').'" '.$readonly.'></td>
+										</tr>
+									</tbody>
+								</table>															
 							</fieldset>
 						</div>
 					</div>
-					
-					<div class="row-fluid">
-
-					</div>
-										
+																			
 					<h3 class="fondo_azul">Datos de Evolución</h3>
 					<div class="row-fluid">
 						<div class="span6">
@@ -429,7 +451,7 @@
 								</tr>
 								<tr>
 									<td>Muerte en SOP:</td>
-									<td>Si<input type="radio" id="muerte" name="muerte" value="1" '.$muerte_s.' '.$disabled.'> No<input type="radio" id="muerte" name="muerte" value="0" '.$muerte_n.' '.$disabled.'></td>
+									<td><input type="radio" id="muerte" name="muerte" value="1" '.$muerte_s.' '.$disabled.'> Si  <input type="radio" id="muerte" name="muerte" value="0" '.$muerte_n.' '.$disabled.'> No</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
@@ -437,7 +459,7 @@
 								</tr>
 								<tr>
 									<td>Autopsia:</td>
-									<td>Si<input type="radio" id="autopsia" name="autopsia" value="1" '.$autopsia_s.' '.$disabled.'> No<input type="radio" id="autopsia" name="autopsia" value="0" '.$autopsia_n.' '.$disabled.'></td>
+									<td><input type="radio" id="autopsia" name="autopsia" value="1" '.$autopsia_s.' '.$disabled.'> Si <input type="radio" id="autopsia" name="autopsia" value="0" '.$autopsia_n.' '.$disabled.'> No</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
