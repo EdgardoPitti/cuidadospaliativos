@@ -412,6 +412,7 @@ class Diseno {
 		$i = str_replace( $search, $replace, $texto );
 		return $i;
 	}
+	
 	function espaciosblancos($cantidad){
 		$text=''; for($k=1;$k<=$cantidad;$k++){ $text .='&nbsp'; }
 		return $text;                        
