@@ -569,7 +569,7 @@
 															</tr>
 															<tr>
 																<td>CIE-10:</td>
-																<td><input type="text" id="cierespuesta" name="cierespuesta" value="'.$cie->obtener('ID_CIE10').'" placeholder="ID_CIE10" readonly></td>
+																<td><input type="text" id="cierespuesta" name="cierespuesta" value="'.$cie->obtener('ID_CIE10').'" placeholder="ID CIE10" readonly></td>
 															</tr>
 															<tr>
 																<td>Frecuencia:</td>
