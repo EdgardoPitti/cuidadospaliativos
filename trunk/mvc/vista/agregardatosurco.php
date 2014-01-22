@@ -12,13 +12,13 @@
 	$resultados = new Accesatabla('resultados_examen_diagnostico');
 	$diagnostico = new Accesatabla('diagnostico');	
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
-	
+		
 	$diagnostico->nuevo();
 	$diagnostico->salvar();
 	$sql = 'SELECT max(ID_DIAGNOSTICO) as id FROM diagnostico';
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$iddiagnostico = $matriz[0][id];
-	
+
 	$fecha = '"';
 	$fecha .= $ds->dime('año').'-'.$ds->dime('mes').'-'.$ds->dime('dia');
 	$fecha .= '"';	
@@ -70,6 +70,7 @@
 	$idsurco = $ds->db->obtenerArreglo($sql);
 	$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
 	while($x){
+
 		$detallediagnostico->nuevo();
 		$detallediagnostico->colocar("ID_DIAGNOSTICO",$iddiagnostico);
 		$detallediagnostico->colocar("ID_CIE10", $_POST['cie'.$tipoexamen->obtener('ID_TIPO_EXAMEN').'']);
@@ -91,6 +92,7 @@
 		$resultados->colocar("ID_SURCO", $idsurco[0][id]);
 		$resultados->salvar();
 		$x = $tipoexamen->releer();
+
 	}
 	include_once('./mvc/vista/domiciliaria_surco.php');
 ?>

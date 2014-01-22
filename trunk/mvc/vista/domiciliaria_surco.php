@@ -41,7 +41,7 @@
 					</div>
 				</form>
 			</center>';
-	if ($sw == 1){
+	if ($sw == 1 or empty($cedula)){
 			$cont.='<center>Paciente no encontrado...<a href="./?url=domiciliaria_capturardatos"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
 	}else{ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
@@ -356,16 +356,10 @@
 													<th>Fecha del Examen</th>
 												</tr>	';
 				$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
-				$n = 1;
 				while($x){
 					$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
 					$resultado->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').' AND ID_TIPO_EXAMEN = '.$tipoexamen->obtener('ID_TIPO_EXAMEN').'');
-					if($n == 1){
-						$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$resultado->obtener('ID_DIAGNOSTICO').'');
-						$n = 0;
-					}else{
-						$detallediagnostico->releer();
-					}
+					$detallediagnostico->buscardonde('SECUENCIA = '.$resultado->obtener('ID_DIAGNOSTICO').'');
 					$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
 					 $cont.='
 												<tr>
@@ -615,9 +609,9 @@
 										$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
 										$var1 = $profesional->obtener('SEGUNDO_NOMBRE');
 										$var2 = $profesional->obtener('APELLIDO_MATERNO');
-										$nombre = $profesional->obtener('PRIMER_NOMBRE').' '.$var1[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$var2[0].'.';
-										if(empty($idr)){
-											$nombre = '';
+
+										if(!empty($idr)){
+											$nombre = $profesional->obtener('PRIMER_NOMBRE').' '.$var1[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$var2[0].'.';
 										}
 										if($respuesta->obtener('REEVALUACION_ESPECIALIZADA') == 1){
 											$si = 'checked';
