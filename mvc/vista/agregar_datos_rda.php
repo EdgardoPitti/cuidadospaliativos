@@ -39,7 +39,6 @@
 		$matriz = $ds->db->obtenerArreglo($sql);
 		$idrda = $matriz[0][id];
 		$_SESSION[idrda] = $idrda;
-		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 	$rda->buscardonde('ID_RDA = '.$id.'');
 	
@@ -57,7 +56,6 @@
 			$detalle_equipo->salvar();	
 			$_SESSION[errorprof] = '';
 		}
-		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
 	if($sw == 3){
 		$datos_paciente->buscardonde('NO_CEDULA = "'.$_POST['cedpaciente'].'"');
@@ -122,6 +120,6 @@
 			$detalle_rda->salvar();
 			$_SESSION[errorpa] = '';
 		}
-		include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 	}
+	include_once('./mvc/vista/domiciliarias_registro_actividades.php');
 ?>

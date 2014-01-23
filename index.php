@@ -562,6 +562,7 @@
 							<article>	
 								<ul>
 									<li><a class="sublink" href="./?url=domiciliaria_capturardatos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada"><i>Visitas Realizadas</i></a></li>				
 									<li><a class="sublink" href="#"><i>Agenda</i></a></li>				
 								</ul>
 							</article>	

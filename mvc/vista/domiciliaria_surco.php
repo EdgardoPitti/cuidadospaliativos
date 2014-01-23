@@ -41,9 +41,9 @@
 					</div>
 				</form>
 			</center>';
-	if ($sw == 1 or empty($cedula)){
+	if ($sw == 1 AND !empty($cedula)){
 			$cont.='<center>Paciente no encontrado...<a href="./?url=domiciliaria_capturardatos"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
-	}else{ 
+	}else if($sw == 0 AND !empty($cedula)){ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
@@ -119,7 +119,7 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab1">
-							  <form method="POST" action="./?url=agregardatosurco&id='.$personas->obtener('ID_PACIENTE').'">
+							  <form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">
 								<button type="submit" class="btn btn-default">Imprimir</button>
 								<button type="submit" class="btn btn-default">Descargar</button>
 								
@@ -359,7 +359,7 @@
 				while($x){
 					$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
 					$resultado->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').' AND ID_TIPO_EXAMEN = '.$tipoexamen->obtener('ID_TIPO_EXAMEN').'');
-					$detallediagnostico->buscardonde('SECUENCIA = '.$resultado->obtener('ID_DIAGNOSTICO').'');
+					$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$resultado->obtener('ID_DIAGNOSTICO').'');
 					$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
 					 $cont.='
 												<tr>
@@ -402,7 +402,7 @@
 										<article>
 											<div class="row-fluid" style="margin-top:10px">
 												<div class="span6" align="center">Nombre de quien refiere:</div>
-												<div class="span6" align="center"><input style="width:135px" type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" '.$readonly.'/> <input style="width:135px"  type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional"  value="'.$profesional->obtener('NO_CEDULA').'" readonly></div>
+												<div class="span6" align="center"><input style="width:135px" type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.'/> <input style="width:135px"  type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional"  value="'.$profesional->obtener('NO_CEDULA').'" readonly></div>
 											</div>
 											<div class="row-fluid">
 												<div class="span6" align="center">Nombre del Receptor:</div>
