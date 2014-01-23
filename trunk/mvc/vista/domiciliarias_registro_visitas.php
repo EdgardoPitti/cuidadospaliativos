@@ -1,187 +1,189 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
-	$personas = new Accesatabla('datos_pacientes');
-	$tiposangre = new Accesatabla('tipos_sanguineos');
-	$residencia = new Accesatabla('residencia_habitual');
-	$provincias = new Accesatabla('provincias');
-	$distritos = new Accesatabla('distritos');
-	$corregimientos = new Accesatabla('corregimientos');
-	
 	$ds = new Diseno();
-	$cedula = $_POST['cedula'];
+	$instituciones = new Accesatabla('institucion');
+	$rvd = new Accesatabla('registro_visitas_domiciliarias');
+	$detalle_rvd = new Accesatabla('detalle_registro_visitas_domiciliarias');
+	$paciente = new Accesatabla('datos_pacientes');
+	$equipo = new Accesatabla('detalle_equipo_medico');
+	$especialidad = new Accesatabla('especialidades_medicas');
+	$profesional = new Accesatabla('datos_profesionales_salud');
+	$programa = new Accesatabla('programa');
+	$categoria = new Accesatabla('categoria');
 	
-	$sw = 0;
-	
-	$cont='
-		<center>
-			<fieldset>
-				<legend align="center">
-					<h3 style="background:#f4f4f4;padding:10px;">Registro Diario de Visitas</h3>
-				</legend>';
-				
-	if(!empty($cedula) and !$personas->buscardonde('NO_CEDULA = "'.$cedula.'"')){			
-		$sw = 1;					
+	$idrvd = $_GET['id'];
+	if(empty($idrvd)){
+		$idrvd = $_SESSION[idrvd];
 	}
-	if(empty($cedula) or $sw == 1){	
+	$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
+	while($i){
+		$institucion .='
+							<option value="'.$instituciones->obtener('ID_INSTITUCION').'">'.$instituciones->obtener('DENOMINACION').'</option>
+		';
+		$i = $instituciones->releer();
+	}
+	$cont.='
+			<center>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Visitas Domiciliarias</h3>';
+	if(empty($idrvd)){
 		$cont.='
-				Introduzca el número de cédula del paciente, y añada las observaciones pertinentes.<br><br>
-				<form class="form-search" method="POST" action="./?url=domiciliarias_registro_visitas">
+					<form method="POST" action="./?url=agregar_datos_rvd">
+						<table>
+							<tr>
+								<td>Fecha: </td>
+								<td><input type="date" id="fecha" name="fecha"></td>
+							</tr>
+							<tr>
+								<td>Institucion: </td>
+								<td><select id="institucion" name="institucion">
+										<option value=""></option>
+										'.$institucion.'
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Horas de Atencion: </td>
+								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
+							</tr>
+						</table>
+						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
+					</form>';			
+	}else{
+		$rvd->buscardonde('ID_RVD = '.$idrvd.'');
+		$instituciones->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
+		$cont.='			<table width="100%">
+								<tr align="center">
+									<td><b>Fecha:</b> '.$rvd->obtener('FECHA').'</td>
+								</tr>
+								<tr align="center">
+									<td><b>Instalacion:</b> '.$instituciones->obtener('DENOMINACION').'<td>
+								</tr>
+								<tr align="center">
+									<td><b>Horas de Atencion:</b> '.$rvd->obtener('HORAS_DE_ATENCION').' horas</td>
+								</tr>
+							</table>';
+		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rvd->obtener('ID_EQUIPO_MEDICO').'');
+		$n = 1;
+		if($e){
+			$cont.='	
+							
+							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Equipo M&eacute;dico</h3>
+							<table class="tabla-datos">
+								<tr align="center">
+									<th>NÂ°</th>
+									<th>Especialidad Medica</th>
+									<th>Profesional</th>
+								</tr>';
+			while($e){
+				$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$equipo->obtener('ID_ESPECIALIDAD_MEDICA').'');
+				$profesional->buscardonde('ID_PROFESIONAL = '.$equipo->obtener('ID_PROFESIONAL').'');
+				$cont.='
+								<tr align="center">
+									<td>'.$n.'.</td>
+									<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>									
+								</tr>
+				
+					';
+				$n++;
+				$e = $equipo->releer();
+			}			
+			$cont.='</table>';
+		}else{
+			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
+		}
+		$cont.='
+				<form class="form-search" method="POST" action="./?url=agregar_datos_rvd&sw=2&id='.$idrvd.'">
 					<div class="input-group">
-					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="cedula" id="busqueda">
+					 <br> Nuevo Profesional: <input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">&nbsp;<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
 					  <span class="input-group-btn">
-						<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+						<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
+						'.$_SESSION[errorprof].'
 					  </span>
 					</div>
 				</form>
-			
-		';
-		if($sw == 1){
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Pacientes</h3>
+					
+				<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'">';
+		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
+		if($d){
 			$cont.='
-					<a href="./?url=domiciliaria_capturardatos">Paciente no Encotrado...Añadir</a>';	
+				<table class="table2 borde-tabla">
+					<tr>
+						<th>Paciente</th>
+						<th>Programa</th>
+						<th>Categoria</th>
+						<th>Observaciones</th>
+					</tr>
+			';
+			while($d){
+				$paciente->buscardonde('ID_PACIENTE = '.$detalle_rvd->obtener('ID_PACIENTE').'');
+				$segundon = $paciente->obtener('SEGUNDO_NOMBRE');
+				$segundoa = $paciente->obtener('APELLIDO_MATERNO');
+				$categoria->buscardonde('ID_CATEGORIA = '.$detalle_rvd->obtener('ID_CATEGORIA').'');
+				$programa->buscardonde('ID_PROGRAMA = '.$detalle_rvd->obtener('ID_PROGRAMA').'');
+				$cont.='
+					<tr>
+						<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
+						<td>'.$categoria->obtener('CATEGORIA').'</td>
+						<td>'.$programa->obtener('PROGRAMA').'</td>
+						<td>'.$detalle_rvd->obtener('OBSERVACIONES').'</td>
+					</tr>
+				';
+				$d = $detalle_rvd->releer();
+			}
+			$cont.='
+				</table>
+			';
 		}
-	}else{
-		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
-		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
-		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
-		$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
-		$distritos->buscardonde('ID_DISTRITO = '.$residencia->obtener('ID_DISTRITO').'');
-		$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$residencia->obtener('ID_CORREGIMIENTO').'');
-		if ($personas->obtener('ID_SEXO') == 1){
-			$sexo = 'MASCULINO';
-		}else{
-			$sexo = 'FEMENINO';
-		}
-		if($personas->obtener('ID_TIPO_PACIENTE')){
-			$asegurado = 'ASEGURADO';
-		}else{
-			$asegurado = 'NO ASEGURADO';
-		}
-		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
-		$cont .='
-				<center>
-					<table width="80%">
-						<tr>
-							<td width="50%">
-								<fieldset>
-									<legend>
-										Paciente
-									</legend>
-										<table width="100%">											
-											<tr>
-												<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
-											</tr>
-											<tr align="left">
-												<td>'.$cedula.'</td>
-												<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
-												<td>'.$sexo.'</td>
-											</tr>
-											<tr align="left">
-												<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
-												<td>'.$asegurado.'</td>
-												<td>'.$ds->edad($dia,$mes,$anio).'</td>
-											</tr>
-										</table>
-								</fieldset>
-							</td>
-							<td>
-								<fieldset>
-									<legend>
-										Dirección
-									</legend>
-										<table width="100%">
-											<tr>
-												<td>'.$distritos->obtener('DISTRITO').' , '.$provincias->obtener('PROVINCIA').'</td>
-											</tr>
-											<tr>
-												<td>'.$corregimientos->obtener('CORREGIMIENTO').' , '.$residencia->obtener('DETALLE').'</td>
-											</tr>
-										</table>
-								</fieldset>
-							</td>
-						</tr>
-					</table>
-				</center>';
-	}		
-	
-	$cont.='	
-				</fieldset>	
-			</center>';
-				/*
-	if(!empty($cedula)){
-		$personas->buscardonde('cedula = "'.$cedula.'"');
-		if($personas->obtener('femenino')){
-			$sexo = 'Femenino';
-		}else{
-			$sexo = 'Masculino';
+		$c = $categoria->buscardonde('ID_CATEGORIA > 0 ORDER BY ID_PROGRAMA');
+		while($c){
+			$programa->buscardonde('ID_PROGRAMA = '.$categoria->obtener('ID_PROGRAMA').'');
+			$categorias .= '
+							<option value="'.$categoria->obtener('ID_CATEGORIA').'">'.$categoria->obtener('CATEGORIA').' - '.$programa->obtener('PROGRAMA').'</option>
+			';
+			$c = $categoria->releer();
 		}
 		$cont.='
-				<table width="100%">
-					<tr>
-						<td width="50%">
-							<fieldset>
-								<legend>
-									Datos Generales del Paciente
-								</legend>
-								<center>
-									<table>
-										<tr>
-											<td align="right">Cedula: </td>
-											<td>&nbsp</td>
-											<td>'.$cedula.'</td>
-										</tr>
-										<tr>
-											<td align="right">Nombres: </td>
-											<td></td>
-											<td>'.$personas->obtener('primer_nombre').' '.$personas->obtener('segundo_nombre').'</td>
-										</tr>
-										<tr>
-											<td align="right">Apellidos: </td>
-											<td></td>
-											<td>'.$personas->obtener('primer_apellido').' '.$personas->obtener('segundo_apellido').'</td>
-										</tr>
-										<tr>
-											<td align="right">Tipo de Sangre: </td>
-											<td></td>
-											<td>'.$sangre->renombrar($personas->obtener('id_tipo_de_sangre'), tipo_sangre).'</td>
-										</tr>
-										<tr>
-											<td align="right">Sexo: </td>
-											<td></td>
-											<td>'.$sexo.'</td>
-										</tr>
-										<tr>
-											<td align="right">Nacionalidad: </td>
-											<td></td>
-											<td>'.$nacionalidades->renombrar($personas->obtener('id_nacionalidad'), nacionalidad).'</td>
-										</tr>
-										<tr>
-											<td align="right">Etnia: </td>
-											<td></td>
-											<td>'.$etnia->renombrar($personas->obtener('id_etnia'), descripcion).'</td>
-										</tr>
-									</table>
-								</center>
-							</fieldset>
-						</td>
-						<td width="50%">
-							<fieldset>
-								<legend>
-									Añadir Observaciones
-								</legend>
-								<form method="POST" action="./?url=">
-									<textarea id="observaciones" name="observaciones" rows="8" cols="45"></textarea>
-									<button>Añadir</button>
-								</form>
-								
-							</fieldset>
-						</td>
-					</tr>
-				</table>
+					<center>
+						'.$_SESSION[errorpa].'
+						<fieldset>
+							<legend>
+								A&ntilde;adir Paciente
+							</legend>
+							<table>
+								<tr>
+									<td>Paciente: </td> 
+									<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
+								</tr>
+								<tr>
+									<td>Categoria: </td>
+									<td><select id="categoria" name="categoria">
+											<option value=""></option>
+											'.$categorias.'
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>Observaciones:</td>
+									<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;nes"></textarea></td>
+								</tr>
+							</table>
+						</fieldset>
+
+					</center>
+					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
+				</form>
 		';
-	}*/
+	
+	}
+	$cont.='
+			</center>
+	';
+	$_SESSION[idrvd] = '';
+	$_SESSION[errorpa] = '';
+	$_SESSION[errorprof] = '';
 	$ds->contenido($cont);
 	$ds->mostrar();
-
-
 ?>
