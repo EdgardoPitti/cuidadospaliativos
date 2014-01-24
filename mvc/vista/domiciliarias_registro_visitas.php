@@ -25,7 +25,8 @@
 	}
 	$cont.='
 			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Visitas Domiciliarias</h3>';
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Visitas Domiciliarias</h3>
+			</center>';
 	if(empty($idrvd)){
 		$cont.='
 					<form method="POST" action="./?url=agregar_datos_rvd">
@@ -35,7 +36,7 @@
 								<td><input type="date" id="fecha" name="fecha"></td>
 							</tr>
 							<tr>
-								<td>Institucion: </td>
+								<td>Instituci&oacute;n: </td>
 								<td><select id="institucion" name="institucion">
 										<option value=""></option>
 										'.$institucion.'
@@ -57,7 +58,7 @@
 									<td><b>Fecha:</b> '.$rvd->obtener('FECHA').'</td>
 								</tr>
 								<tr align="center">
-									<td><b>Instalacion:</b> '.$instituciones->obtener('DENOMINACION').'<td>
+									<td><b>Instalaci&oacute;n:</b> '.$instituciones->obtener('DENOMINACION').'<td>
 								</tr>
 								<tr align="center">
 									<td><b>Horas de Atencion:</b> '.$rvd->obtener('HORAS_DE_ATENCION').' horas</td>
@@ -68,10 +69,10 @@
 		if($e){
 			$cont.='	
 							
-							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Equipo M&eacute;dico</h3>
+							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>
 							<table class="tabla-datos">
 								<tr align="center">
-									<th>N°</th>
+									<th>N&ordm;</th>
 									<th>Especialidad Medica</th>
 									<th>Profesional</th>
 								</tr>';
@@ -94,6 +95,7 @@
 			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
 		}
 		$cont.='
+			<center>
 				<form class="form-search" method="POST" action="./?url=agregar_datos_rvd&sw=2&id='.$idrvd.'">
 					<div class="input-group">
 					 <br> Nuevo Profesional: <input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">&nbsp;<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
@@ -103,14 +105,15 @@
 					  </span>
 					</div>
 				</form>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Pacientes</h3>
+			</center>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
 					
 				<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'">';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='
 				<table class="table2 borde-tabla">
-					<tr>
+					<tr class="fd-tabla-gris">
 						<th>Paciente</th>
 						<th>Programa</th>
 						<th>Categoria</th>
@@ -146,40 +149,41 @@
 			$c = $categoria->releer();
 		}
 		$cont.='
-					<center>
-						'.$_SESSION[errorpa].'
+					
+						<span style="text-align:center;">'.$_SESSION[errorpa].'</span>
 						<fieldset>
 							<legend>
 								A&ntilde;adir Paciente
 							</legend>
-							<table>
-								<tr>
-									<td>Paciente: </td> 
-									<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
-								</tr>
-								<tr>
-									<td>Categoria: </td>
-									<td><select id="categoria" name="categoria">
-											<option value=""></option>
-											'.$categorias.'
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td>Observaciones:</td>
-									<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;nes"></textarea></td>
-								</tr>
-							</table>
+							<center>
+								<table>
+									<tr>
+										<td>Paciente: </td> 
+										<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
+									</tr>
+									<tr>
+										<td>Categoria: </td>
+										<td><select id="categoria" name="categoria">
+												<option value=""></option>
+												'.$categorias.'
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>Observaciones:</td>
+										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;nes"></textarea></td>
+									</tr>
+								</table>
+							</center>
 						</fieldset>
 
-					</center>
+					
 					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
 				</form>
 		';
 	
 	}
 	$cont.='
-			</center>
 	';
 	$_SESSION[idrvd] = '';
 	$_SESSION[errorpa] = '';
