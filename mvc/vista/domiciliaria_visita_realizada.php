@@ -5,10 +5,19 @@
 	$rvd = new Accesatabla('registro_visitas_domiciliarias');
 	$institucion = new Accesatabla('institucion');
 	$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
+	
+	$inicio = $_POST['inicio'];
+	$final = $_POST['final'];
 	$cont.='
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
+				<center>
+					<form method="POST" action="./?url=domiciliaria_visita_realizada">
+						Filtrar de <input type="date" name="inicio"> hasta <input type="date" name="final">
+						<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+					</form>
+				</center>
 				<div style="overflow-x:auto;">
 					<table class="table2 borde-tabla">
 						<tr class="fd-table">
@@ -21,7 +30,11 @@
 							<th style="background:transparent;border:0;min-width:25px;"></th>
 						</tr>';
 		$n = 1;
-		$r = $rvd->buscardonde('ID_RVD > 0');
+		if(empty($inicio) OR empty($final)){
+			$r = $rvd->buscardonde('ID_RVD > 0');
+		}else{
+			$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"');
+		}
 		while($r){
 			$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
 			$cont.='

@@ -26,7 +26,7 @@
 	$cont.='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Visitas Domiciliarias</h3>
-			</center>';
+			';
 	if(empty($idrvd)){
 		$cont.='
 					<form method="POST" action="./?url=agregar_datos_rvd">
@@ -184,6 +184,7 @@
 	
 	}
 	$cont.='
+		</center>
 	';
 	$_SESSION[idrvd] = '';
 	$_SESSION[errorpa] = '';
