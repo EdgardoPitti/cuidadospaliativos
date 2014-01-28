@@ -272,8 +272,8 @@
 						</fieldset>		
 					</div>
 				</div>	
-				<div class="row-fluid posicion-datos">
-					<div class="span6">
+				<div class="row-fluid">
+					<div class="span6 posicion-datos">
 						<fieldset>
 							<legend>
 								Datos de Contacto/Direcci&oacute;n
@@ -410,7 +410,6 @@ $cont.='									</select>
 							</table>
 						</fieldset>
 					</div>					
-					<div class="span6"></div>
 				</div>	
 				
 				<center>

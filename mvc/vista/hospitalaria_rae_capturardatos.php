@@ -273,8 +273,8 @@
 						</fieldset>				
 					</div>
 				</div>	
-				<div class="row-fluid posicion-datos">
-					<div class="span6">
+				<div class="row-fluid">
+					<div class="span6 posicion-datos">
 						<fieldset>
 							<legend>
 								Datos de Contacto/Dirección
@@ -404,11 +404,10 @@ $cont.='									</select>
 								</tbody>
 							</table>
 						</fieldset>	
-					</div>					
-					<div class="span6"></div>		
+					</div>						
 				</div>	
 				
-				<div class="row-fluid margen-cap_datosH">
+				<div class="row-fluid" margen-cap_datosH>
 					<div class="span6">
 						<fieldset>
 							<legend>
