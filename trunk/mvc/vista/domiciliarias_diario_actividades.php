@@ -12,12 +12,21 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
-				<center>
-					<form method="POST" action="./?url=domiciliarias_diario_actividades">
-						Filtrar desde <input type="date" name="inicio"> hasta <input type="date" name="final">
-						<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
-					</form>
-				</center>';
+
+			<center>
+				<form method="POST" action="./?url=domiciliarias_diario_actividades">
+					<table class="tabla-datos">						
+						<tr>
+							<th>Filtrar</th>
+						</tr>
+						<tr align="center">
+							<td>
+								<input type="date" name="inicio" size="120px"> hasta <input type="date" name="final">
+								<button class="btn btn-default" style="margin-bottom:10px;"type="submit"><img src="./iconos/search.png"/></button>
+							</td>
+						</tr>					
+					</table>
+				</form>';
 	if(empty($inicio) OR empty($final)){
 		$r = $rda->buscardonde('ID_RDA > 0');
 		$p = '';
@@ -27,7 +36,7 @@
 	}
 	if($r){
 		$cont.='
-					<div style="overflow-x:auto;">
+					<divclass="overflow" id="overflow-movil">
 						<table class="table2 borde-tabla">
 							<tr class="fd-table">
 								<th>#</th>
