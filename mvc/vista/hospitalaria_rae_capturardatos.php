@@ -402,7 +402,7 @@ $cont.='									</select>
 					</div>						
 				</div>	
 				
-				<div class="row-fluid margen-cap_datosH" >
+				<div class="row-fluid margen-cap_datosH">
 					<div class="span6">
 						<fieldset>
 							<legend>

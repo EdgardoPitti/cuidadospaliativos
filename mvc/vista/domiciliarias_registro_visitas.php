@@ -24,11 +24,11 @@
 		$i = $instituciones->releer();
 	}
 	$cont.='
-			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Visitas Domiciliarias</h3>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
 			';
 	if(empty($idrvd)){
 		$cont.='
+				<center>
 					<form method="POST" action="./?url=agregar_datos_rvd">
 						<table>
 							<tr>
@@ -49,7 +49,8 @@
 							</tr>
 						</table>
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
-					</form>';			
+					</form>
+				</center>';			
 	}else{
 		$rvd->buscardonde('ID_RVD = '.$idrvd.'');
 		$instituciones->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
@@ -70,10 +71,10 @@
 			$cont.='	
 							
 							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>
-							<table class="tabla-datos">
-								<tr align="center">
+							<table class="tabla-datos borde-tabla">
+								<tr class="fd-tabla-gris">
 									<th>N&ordm;</th>
-									<th>Especialidad Medica</th>
+									<th>Especialidad M&eacute;dica</th>
 									<th>Profesional</th>
 								</tr>';
 			while($e){
@@ -92,18 +93,22 @@
 			}			
 			$cont.='</table>';
 		}else{
-			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
+			$cont.='<br><div style="color:RED;text-align:center">No existe equipo m&eacute;dico para esta Actividad</div>';
 		}
 		$cont.='
 			<center>
 				<form class="form-search" method="POST" action="./?url=agregar_datos_rvd&sw=2&id='.$idrvd.'">
-					<div class="input-group">
-					 <br> Nuevo Profesional: <input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">&nbsp;<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
-					  <span class="input-group-btn">
-						<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>
-						'.$_SESSION[errorprof].'
-					  </span>
-					</div>
+					<table class="tabla-datos">
+						<tr align="center">
+							<td>Nombre Profesional:</td>
+							<td>
+								<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">
+								<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
+							</td>
+							<td><button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button></td>
+						</tr>					
+					</table>
+					<center>'.$_SESSION[errorprof].'</center>				
 				</form>
 			</center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
@@ -112,32 +117,37 @@
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='
-				<table class="table2 borde-tabla">
-					<tr class="fd-tabla-gris">
-						<th>Paciente</th>
-						<th>Programa</th>
-						<th>Categoria</th>
-						<th>Observaciones</th>
-					</tr>
-			';
-			while($d){
-				$paciente->buscardonde('ID_PACIENTE = '.$detalle_rvd->obtener('ID_PACIENTE').'');
-				$segundon = $paciente->obtener('SEGUNDO_NOMBRE');
-				$segundoa = $paciente->obtener('APELLIDO_MATERNO');
-				$categoria->buscardonde('ID_CATEGORIA = '.$detalle_rvd->obtener('ID_CATEGORIA').'');
-				$programa->buscardonde('ID_PROGRAMA = '.$detalle_rvd->obtener('ID_PROGRAMA').'');
-				$cont.='
-					<tr>
-						<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
-						<td>'.$categoria->obtener('CATEGORIA').'</td>
-						<td>'.$programa->obtener('PROGRAMA').'</td>
-						<td>'.$detalle_rvd->obtener('OBSERVACIONES').'</td>
-					</tr>
+			<center>
+				<div  class="overflow" id="overflow-movil">
+				
+					<table class="table2 borde-tabla">
+						<tr class="fd-table">
+							<th>Paciente</th>
+							<th>Programa</th>
+							<th>Categoria</th>
+							<th>Observaciones</th>
+						</tr>
 				';
-				$d = $detalle_rvd->releer();
-			}
-			$cont.='
-				</table>
+				while($d){
+					$paciente->buscardonde('ID_PACIENTE = '.$detalle_rvd->obtener('ID_PACIENTE').'');
+					$segundon = $paciente->obtener('SEGUNDO_NOMBRE');
+					$segundoa = $paciente->obtener('APELLIDO_MATERNO');
+					$categoria->buscardonde('ID_CATEGORIA = '.$detalle_rvd->obtener('ID_CATEGORIA').'');
+					$programa->buscardonde('ID_PROGRAMA = '.$detalle_rvd->obtener('ID_PROGRAMA').'');
+					$cont.='
+						<tr>
+							<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
+							<td>'.$categoria->obtener('CATEGORIA').'</td>
+							<td>'.$programa->obtener('PROGRAMA').'</td>
+							<td>'.$detalle_rvd->obtener('OBSERVACIONES').'</td>
+						</tr>
+					';
+					$d = $detalle_rvd->releer();
+				}
+				$cont.='
+					</table>
+				</div>
+			</center>
 			';
 		}
 		$c = $categoria->buscardonde('ID_CATEGORIA > 0 ORDER BY ID_PROGRAMA');
@@ -177,15 +187,14 @@
 							</center>
 						</fieldset>
 
-					
-					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
+					<center>
+						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
+					</center>
 				</form>
 		';
 	
 	}
-	$cont.='
-		</center>
-	';
+	
 	$_SESSION[idrvd] = '';
 	$_SESSION[errorpa] = '';
 	$_SESSION[errorprof] = '';

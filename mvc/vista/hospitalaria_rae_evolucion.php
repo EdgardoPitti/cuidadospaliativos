@@ -165,7 +165,7 @@
 				$asegurado = 'NO ASEGURADO';
 			}
 			list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
-			$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('año');
+			$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('agno');
 			$hora = $ds->dime('hora');
 			$minutos = $ds->dime('minuto');
 			if($hora < 10){

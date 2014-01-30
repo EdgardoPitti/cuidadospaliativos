@@ -436,7 +436,7 @@
 										<div class="row-fluid">
 											<div class="span12">
 												<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Respuestas</h3>
-													<div style="max-height:150px;overflow-x:auto;">
+													<div class="overflow" style="max-height:170px;">
 														<table class="table2 borde-tabla">
 															<tr class="fd-tabla-gris">
 																<th>Fecha</th>
