@@ -399,10 +399,138 @@ class Diseno {
 		else
 			echo
 			   '
-					<!--Diseño del contenido de la página-->
-					<div class="span10" style="min-height:650px;">							
-						'.$this->latino($this->derecha).'
+			<!--Aside-->
+			<div class="span2" id="span2" style="dis play:none;">
+			
+				<!--DOMICILIARIA-->					
+				<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:none;">			
+					<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
+					<div style="margin-bottom:2px;">
+						<input id="ac-1" name="acordeon" type="radio" />
+						<label for="ac-1">Registro de Visitas Domiciliarias</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url=domiciliaria_capturardatos"><i>Capturar Datos</i></a></li>	
+								<li><a class="sublink" href="./?url=domiciliaria_visita_realizada"><i>Visitas Realizadas</i></a></li>				
+								<li><a class="sublink" href="./?url=domiciliaria_agenda"><i>Agenda</i></a></li>				
+							</ul>
+						</article>	
 					</div>
+					<div>
+						<ul class="acordeon_link">
+							<li><a class="link" href="./?url=domiciliarias_diario_actividades">Registro de Actividades Diarias</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul class="acordeon_link">
+							<li><a class="link" href="./?url=domiciliaria_surco">Surco</a></li>
+						</ul>
+					</div>
+					<div style="margin-bottom:10px;">
+						<input id="ac-2" name="acordeon" type="radio" />
+						<label for="ac-2">Indicadores</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url="><i>Total de Visitas Realizadas</i></a></li>
+								<li><a class="sublink" href="#"><i>Tiempo Promedio por Visita</i></a></li>
+								<li><a class="sublink" href="#"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
+								<li><a class="sublink" href="#"><i>Activadades Realizadas por Visitas</i></a></li>								
+							</ul>
+						</article>	
+					</div>
+				</div>	
+				
+				<!--AMBULATORIA-->
+				<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:none;">			
+					<h3>Men&uacute; Atenci&oacute;n Ambulatoria</h3><hr>
+					<div style="margin-bott om:2px;">
+						<input id="ac-3" name="acordeon" type="radio" />
+						<label for="ac-3">Registro Diario de Actividades</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url=ambulatoria_capturardatos"><i>Capturar Datos</i></a></li>	
+								<li><a class="sublink" href="#"><i>Agenda</i></a></li>				
+							</ul>
+						</article>	
+					</div>
+					<div>
+						<input id="ac-4" name="acordeon" type="radio" />
+						<label for="ac-4">Contacto Telef&oacute;nico</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente"><i>Atenci&oacute;n al Paciente</i></a></li>
+								<li><a class="sublink" href="./?url=ambulatoria_interconsulta"><i>Interconsulta</i></a></li>								
+							</ul>
+						</article>	
+					</div>
+					<div style="margin-bottom:10px;">
+						<input id="ac-5" name="acordeon" type="radio" />
+						<label for="ac-5">Indicadores</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url="><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a></li>
+								<li><a class="sublink" href="#"><i>Activadades Realizadas por Paciente</i></a></li>								
+							</ul>
+						</article>	
+					</div>
+				</div>	
+					
+				<!--HOSPITALARIA-->
+				<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:none;">			
+					<h3>Men&uacute; Atenci&oacute;n Hospitalaria</h3><hr>
+					<div style="margin-bott om:2px;">
+						<input id="ac-6" name="acordeon" type="radio" />
+						<label for="ac-6">RAE</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos"><i>Capturar Datos</i></a></li>	
+								<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion"><i>Evoluci&oacute;n</i></a></li>				
+							</ul>
+						</article>	
+					</div>
+					<div style="margin-bottom:10px;">
+						<input id="ac-7" name="acordeon" type="radio" />
+						<label for="ac-7">Indicadores</label>
+						<article>	
+							<ul>
+								<li><a class="sublink" href="./?url="><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
+								<li><a class="sublink" href="#"><i>Razones de Readmisiones</i></a></li>								
+							</ul>
+						</article>	
+					</div>
+				</div>	
+				
+				<!--RED SOCIAL   onclick="show_span()"-->
+				<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:none;">	
+				<h3>Red Social</h3><hr>
+					<div>
+						<ul class="acordeon_link">
+							<li><a class="link" href="#">Mis Grupos</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul class="acordeon_link">
+							<li><a class="link" href="#">Comunidades</a></li>
+						</ul>
+					</div>					
+					<div>
+						<ul class="acordeon_link">
+							<li><a class="link" href="#">Eventos</a></li>
+						</ul>
+					</div>	
+					<div>
+						<ul class="acordeon_link">
+							<li><a class="link" href="#">Especialistas</a></li>
+						</ul>
+					</div>	
+				</div>	
+			</div>
+		
+			<!--Diseño del contenido de la página-->
+			<div class="span10" style="min-height:650px;background:#fff;">							
+				'.$this->latino($this->derecha).'
+						
+			</div>
 					<!--Fin del Contenido-->
 				';
 	}
