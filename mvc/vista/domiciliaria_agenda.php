@@ -13,8 +13,23 @@
 						<h5>'.$ds->dime('mes-'.$ds->dime('mes').'').' '.$ds->dime('agno').'</h5>
 					</center>
 				</article>
+				<center>
+					<a href="#" class="btn" style="margin-top:10px" title="Notificar a Paciente">Notificar a Paciente</a>
+				</center>
 			</div>
-			<div class="span10"></div>
+			<div class="span10">
+				<div class="overflow" id="overflow-movil">
+					<table class="table borde-tabla">
+						<tr>
+							<td width="50px" style="background:#d9d9d9;font-weight:bold">08:00 AM</td>
+							<td width="350px">ASDA</td>
+							<td width="40px"><input type="checkbox" name=""></td>
+							<td width="40px"><input type="checkbox" name=""></td>
+							<td width="40px"><input type="checkbox" name=""></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 	';
 	
