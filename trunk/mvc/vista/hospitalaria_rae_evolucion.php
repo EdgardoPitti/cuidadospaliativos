@@ -153,6 +153,7 @@
 			$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
 			$distritos->buscardonde('ID_DISTRITO = '.$residencia->obtener('ID_DISTRITO').'');
 			$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$residencia->obtener('ID_CORREGIMIENTO').'');
+			$responsable->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'');
 			if ($personas->obtener('ID_SEXO') == 1){
 				$sexo = 'MASCULINO';
 			}else{
@@ -178,25 +179,43 @@
 			
 			$cont.='
 					<div style="float:right;"><i>'.$fecha.', '.$hora.':'.$minutos.'</i></div>
+					<div style="float:none;clear:both;">
+						<fieldset>
+							<legend>
+								Paciente
+							</legend>
+								<table class="table2">											
+									<tr>
+										<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
+									</tr>
+									<tr>
+										<td>'.$personas->obtener('NO_CEDULA').'</td>
+										<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
+										<td>'.$sexo.'</td>
+									</tr>
+									<tr>
+										<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
+										<td>'.$asegurado.'</td>
+										<td>'.$ds->edad($dia,$mes,$anio).' Años</td>
+									</tr>
+								</table>
+						</fieldset>					
+					</div>
 					<div class="row-fluid" style="float:none;clear:both;">
 						<div class="span6">
 							<fieldset>
 								<legend>
-									Paciente
+									Responsable
 								</legend>
-									<table class="table2">											
+									<table class="table2" style="height:86px;">
 										<tr>
-											<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
+											<td>'.$responsable->obtener('NOMBRE_CONTACTO').' '.$responsable->obtener('APELLIDO_CONTACTO').' <i>('.$responsable->obtener('PARENTESCO_CONTACTO').')</i></td>
 										</tr>
 										<tr>
-											<td>'.$personas->obtener('NO_CEDULA').'</td>
-											<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
-											<td>'.$sexo.'</td>
+											<td>'.$responsable->obtener('DIRECCION_CONTACTO').'</td>
 										</tr>
 										<tr>
-											<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
-											<td>'.$asegurado.'</td>
-											<td>'.$ds->edad($dia,$mes,$anio).' Años</td>
+											<td>'.$responsable->obtener('TELEFONO_CONTACTO').'</td>
 										</tr>
 									</table>
 							</fieldset>
@@ -216,7 +235,9 @@
 									</table>
 							</fieldset>
 						</div>	
-					</div>';
+					</div>
+					
+					';
 		$r = $rae->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 		if($r){
 			$readonly = 'readonly';
@@ -235,8 +256,10 @@
 						<div class="span6">
 							<table class="tabla-datos">
 								<tr>
-									<td>Referido de:</td>
-									<td><select id="referido" name="referido" '.$disabled.'>
+									<td>Referido de:</td>';
+		$referido->buscardonde('ID_REFERIDO = '.$rae->obtener('ID_REFERIDO').'');
+		$cont.='
+									<td><select id="referido" name="referido" '.$disabled.' title="'.$referido->obtener('REFERIDO').'">
 											<option value="0"></option>';
 		$r = $referido->buscardonde('ID_REFERIDO > 0');
 		while($r){
@@ -259,8 +282,11 @@
 						<div class="span6">
 							<table class="tabla-datos">
 								<tr>
-									<td>Cama:</td>
-									<td><select id="cama" name="cama" '.$disabled.'>
+									<td>Cama:</td>';
+		$cama->buscardonde('ID_CAMA = '.$rae->obtener('ID_CAMA').'');
+		$sala->buscardonde('ID_SALA = '.$cama->obtener('ID_SALA').'');
+		$cont.='
+									<td><select id="cama" name="cama" '.$disabled.' title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'">
 											<option value=""></option>';
 		$c = $cama->buscardonde('ID_CAMA > 0 ORDER BY CAMA');
 		while($c){
@@ -269,6 +295,7 @@
 			}else{
 				$selected = '';
 			}
+			$sala->buscardonde('ID_SALA = '.$cama->obtener('ID_SALA').'');
 			$cont.='
 											<option value="'.$cama->obtener('ID_CAMA').'" '.$selected.'>'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'</option>
 			';
@@ -302,7 +329,7 @@
 											<td style="text-align:left;padding-left:17%;">Diagnóstico:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="diagnostico1" name="diagnostico1" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
+											<td><input type="text" id="diagnostico1" name="diagnostico1" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">CIE10:</td>														
@@ -314,13 +341,13 @@
 											<td style="text-align:left;padding-left:17%;">Profesional:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
+											<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.' title="'.$nombre.'"><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly title="'.$profesional->obtener('NO_CEDULA').'"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Observación:</td>														
 										</tr>
 										<tr>
-											<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observación" '.$readonly.'>'.$detalle_adm->obtener('OBSERVACION').'</textarea></td>
+											<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observación" '.$readonly.' title="'.$detalle_adm->obtener('OBSERVACION').'">'.$detalle_adm->obtener('OBSERVACION').'</textarea></td>
 										</tr>
 									</tbody>
 								</table>								
@@ -339,9 +366,11 @@
 		if($detalle_egr->obtener('ID_FRECUENCIA') == 1){
 			$nuevo = 'selected';
 			$sub = '';
+			$title='NUEVO';
 		}else{
 			$nuevo = '';
 			$sub = 'selected';
+			$title='SUBSECUENCIA';
 		}
 		if($detalle_egr->obtener('INFECCION_NOSOCOMIAL')){
 			$si = 'checked';
@@ -360,7 +389,7 @@
 											<td style="text-align:left;padding-left:17%;">Diagnóstico:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="diagnostico2" name="diagnostico2" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
+											<td><input type="text" id="diagnostico2" name="diagnostico2" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
 										</tr>	
 										<tr>
 											<td style="text-align:left;padding-left:17%;">CIE10:</td>														
@@ -372,13 +401,13 @@
 											<td style="text-align:left;padding-left:17%;">Profesional:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
+											<td><input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.' title="'.$nombre.'"><br><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly title="'.$profesional->obtener('NO_CEDULA').'"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Frecuencia:</td>														
 										</tr>
 										<tr>
-											<td><select id="frecuencia" name="frecuencia" '.$disabled.'>
+											<td><select id="frecuencia" name="frecuencia" '.$disabled.' title="'.$title.'">
 													<option value=""></option>
 													<option value="1" '.$nuevo.'>NUEVO</option>
 													<option value="2" '.$sub.'>SUBSECUENCIA</option>
@@ -397,13 +426,13 @@
 											<td style="text-align:left;padding-left:17%;">Causa Externa:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="causa" name="causa" placeholder="Causa Externa" value="'.$detalle_egr->obtener('CAUSA_EXTERNA').'" '.$readonly.'></td>
+											<td><input type="text" id="causa" name="causa" placeholder="Causa Externa" value="'.$detalle_egr->obtener('CAUSA_EXTERNA').'" '.$readonly.' title="'.$detalle_egr->obtener('CAUSA_EXTERNA').'"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Observación:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="observacion1" name="observacion1" placeholder="Observación" value="'.$detalle_egr->obtener('OBSERVACION').'" '.$readonly.'></td>
+											<td><input type="text" id="observacion1" name="observacion1" placeholder="Observación" value="'.$detalle_egr->obtener('OBSERVACION').'" '.$readonly.' title="'.$detalle_egr->obtener('OBSERVACION').'"></td>
 										</tr>
 									</tbody>
 								</table>															
@@ -416,9 +445,11 @@
 						<div class="span6">
 							<table class="table" align="center">
 								<tr>
-									<td style="line-height:15px">Condición de Salida:</td>
+									<td style="line-height:15px">Condición de Salida:</td>';
+		$condicionsalida->buscardonde('ID_CONDICION_SALIDA = '.$rae->obtener('ID_CONDICION_SALIDA').'');
+		$cont.='
 									<td>
-										<select id="condicionsalida" name="condicionsalida" '.$disabled.'>
+										<select id="condicionsalida" name="condicionsalida" '.$disabled.' title="'.$condicionsalida->obtener('CONDICION_SALIDA').'">
 											<option value="0"></option>';
 		$c = $condicionsalida->buscardonde('ID_CONDICION_SALIDA > 0');
 		while($c){
@@ -474,8 +505,10 @@
 						<div class="span6">
 							<table class="table" align="center">
 								<tr>
-									<td style="line-height:15px">Motivo Salida:</td>
-									<td><select id="motivo" name="motivo" '.$disabled.'>
+									<td style="line-height:15px">Motivo Salida:</td>';
+		$motivo->buscardonde('ID_MOTIVO_SALIDA = '.$rae->obtener('ID_MOTIVO_SALIDA').'');
+		$cont.='
+									<td><select id="motivo" name="motivo" '.$disabled.' title="'.$motivo->obtener('MOTIVO_SALIDA').'">
 											<option value=""></option>';
 		$m = $motivo->buscardonde('ID_MOTIVO_SALIDA > 0');
 		while($m){
@@ -503,7 +536,7 @@
 								</tr>
 								<tr>
 									<td>Profesional:</td>
-									<td><input type="text" id="profesional3" name="profesional3" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.'><br><input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="Cédula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly></td>
+									<td><input type="text" id="profesional3" name="profesional3" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.' title="'.$nombre.'"><br><input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="Cédula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly title="'.$profesional->obtener('NO_CEDULA').'"></td>
 								</tr>		
 								<tr>
 									<td>Días de Estancia:</td>

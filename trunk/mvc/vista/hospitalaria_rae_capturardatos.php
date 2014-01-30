@@ -19,21 +19,16 @@
 	
 	$cont.='<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Hospitalaria</h3>
+				<div class="row-fluid">
+					<div class="span12">
+						<form method="POST" action="./?url=hospitalaria_rae_capturardatos">
+							<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>
+						</form>
+					</div>
+				</div>
 			</center>
-	';
-	if (empty($busqueda)){
-		$cont.='
-					<center>					
-						<div class="row-fluid">
-							<div class="span12">
-								<form method="POST" action="./?url=hospitalaria_rae_capturardatos">
-									<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>
-								</form>
-							</div>
-						</div>
-					</center>
 		 ';	
-	}else{
+	if(!empty($busqueda)){
 		$datos->buscardonde('NO_CEDULA = "'.$busqueda.'"');
 		$idnacionalidad = $datos->obtener('ID_NACIONALIDAD');
 		$idtiposangre = $datos->obtener('ID_TIPO_SANGUINEO');
@@ -407,7 +402,7 @@ $cont.='									</select>
 					</div>						
 				</div>	
 				
-				<div class="row-fluid" margen-cap_datosH>
+				<div class="row-fluid margen-cap_datosH" >
 					<div class="span6">
 						<fieldset>
 							<legend>
