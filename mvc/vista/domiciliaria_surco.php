@@ -136,8 +136,10 @@
 																<td style="text-align:left;padding-left:17%;">Instalación que Refiere:</td>	
 															</tr>
 															<tr>
-																<td>
-																	<select id="instalacionrefiere" name="instalacionrefiere" height="125px" required '.$disabled.'>
+																<td>';
+										$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_REFIERE').'');
+										$cont.='
+																	<select id="instalacionrefiere" name="instalacionrefiere" height="125px" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'">
 																		<option value=""></option>';
 										$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 										while($i){
@@ -164,8 +166,10 @@
 															<tr>
 																<td style="text-align:left;padding-left:17%;">Servicio Médico al que se refiere:</td>	
 															</tr>
-															<tr>
-																<td><select id="serviciomedico" name="serviciomedico" '.$disabled.'>
+															<tr>';
+									$servicios->buscardonde('ID_SERVICIO = '.$surco->obtener('ID_SERVICIO').'');
+									$cont.='														
+																<td><select id="serviciomedico" name="serviciomedico" '.$disabled.' title="'.$servicios->obtener('DESCRIPCION').'">
 																		<option value=""></option>';
 									$s = $servicios->buscardonde('ID_SERVICIO > 0');
 									while($s){
@@ -194,8 +198,10 @@
 															<tr>
 																<td style="text-align:left;padding-left:17%;">Instalación Receptora:</td>	
 															</tr>
-															<tr>
-																<td><select id="instalacionreceptora" name="instalacionreceptora" '.$disabled.'>
+															<tr>';
+										$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_RECEPTORA').'');
+										$cont.='
+																<td><select id="instalacionreceptora" name="instalacionreceptora" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'">
 																		<option value=""></option>';
 										$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 										while($i){
@@ -222,10 +228,12 @@
 															<tr>
 																<td style="text-align:left;padding-left:17%;">Clasificación de la Atención solicitada:</td>	
 															</tr>
-															<tr>
-																<td><select id="clasificacionatencion" name="clasificacionatencion" '.$disabled.'>
+															<tr>';
+									$clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA = '.$surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'');
+									$cont.='
+																<td><select id="clasificacionatencion" name="clasificacionatencion" '.$disabled.' title="'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'">
 																		<option value=""></option>';
-									$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA');
+									$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA > 0');
 									while($c){
 										if($clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == $surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA')){
 											$selected = 'selected';
@@ -253,8 +261,10 @@
 															<tr>
 																<td style="text-align:left;padding-left:17%;">Motivo de Referencia:</td>	
 															</tr>
-															<tr>
-																<td><select id="motivoreferencia" name="motivoreferencia" '.$disabled.'>
+															<tr>';
+									$motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA = '.$surco->obtener('ID_MOTIVO_REFERENCIA').'');
+									$cont.='
+																<td><select id="motivoreferencia" name="motivoreferencia" '.$disabled.' title="'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'">
 																		<option value=""></option>';
 									$m = $motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA > 0');
 									while($m){
@@ -364,7 +374,7 @@
 					 $cont.='
 												<tr>
 													<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
-													<td><input type="text" style="width:70px;" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
+													<td><input type="text" style="width:70px;" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
 													<td><input type="text" style="width:50px;" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5" value="'.$detallediagnostico->obtener('ID_CIE10').'" readonly></td>
 													<td><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'" '.$disabled.'>
 															<option value=""></option>
@@ -383,9 +393,9 @@
 					$cont.='
 														</select>
 													</td>
-													<td><input type="text" style="width:70px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.'></td>
-													<td><input type="text" style="width:70px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.'></td>
-													<td><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.'></td>
+													<td><input type="text" style="width:70px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
+													<td><input type="text" style="width:70px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'"></td>
+													<td><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'"></td>
 												</tr>';
 					
 					$x = $tipoexamen->releer();
@@ -491,8 +501,10 @@
 										<div class="span6">
 											<table class="tabla-datos">
 												<tr>
-													<td>Institución que Responde:</td>
-													<td><select id="institucionresponde" name="institucionrespondereceptora" '.$disabled.'>
+													<td>Institución que Responde:</td>';
+							$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
+							$cont.='
+													<td><select id="institucionresponde" name="institucionrespondereceptora" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'">
 															<option value=""></option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
@@ -516,8 +528,10 @@
 										<div class="span6">
 											<table class="tabla-datos">
 												<tr>
-													<td>Instalación Receptora:</td>
-													<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta" '.$disabled.'>
+													<td>Instalación Receptora:</td>';
+							$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
+							$cont.='
+													<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'">
 															<option value=""></option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
@@ -554,7 +568,7 @@
 														<table class="table2" style="font-size:12px;">
 															<tr>
 																<td>Diagnóstico:</td>
-																<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.'></td>
+																<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
 															</tr>
 															<tr>
 																<td>CIE-10:</td>
@@ -562,8 +576,10 @@
 															</tr>
 															<tr>
 																<td>Frecuencia:</td>
-																<td>
-																	<select id="frecuenciarespuesta" name="frecuenciarespuesta" '.$disabled.'>
+																<td>';
+							$frecuencia->buscardonde('ID_FRECUENCIA = '.$detallediagnostico->obtener('ID_FRECUENCIA').'');
+							$cont.='
+																	<select id="frecuenciarespuesta" name="frecuenciarespuesta" '.$disabled.' title="'.$frecuencia->obtener('FRECUENCIA').'">
 																		<option value=""></option>';
 																
 		$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
@@ -587,15 +603,15 @@
 														<table class="table2" style="font-size:12px;">
 															<tr>
 																<td>Hallazgos Clinicos:</td>
-																<td><input type="text" id="hallazgosclinicos" name="hallazgosclinicos" placeholder="Hallazgos Clínicos" value="'.$respuesta->obtener('HALLAZGOS_CLINICOS').'" '.$readonly.'></td>
+																<td><input type="text" id="hallazgosclinicos" name="hallazgosclinicos" placeholder="Hallazgos Clínicos" value="'.$respuesta->obtener('HALLAZGOS_CLINICOS').'" '.$readonly.' title="'.$respuesta->obtener('HALLAZGOS_CLINICOS').'"></td>
 															</tr>
 															<tr>
 																<td>Observaciones:</td>
-																<td><input type="text" id="observrespuesta" name="observrespuesta" placeholder="Observaciones" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.'></td>
+																<td><input type="text" id="observrespuesta" name="observrespuesta" placeholder="Observaciones" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
 															</tr>
 															<tr>
 																<td>Manejo y Tratamiento:</td>
-																<td><input type="text" id="manejo_tratamiento" name="manejo_tratamiento" placeholder="Manejo y Tratamiento" value="'.$respuesta->obtener('TRATAMIENTO').'" '.$readonly.'></td>
+																<td><input type="text" id="manejo_tratamiento" name="manejo_tratamiento" placeholder="Manejo y Tratamiento" value="'.$respuesta->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$respuesta->obtener('TRATAMIENTO').'"></td>
 															</tr>
 														</table>
 													</div>
