@@ -244,7 +244,7 @@
 	border:1px solid #c9c9c9;
 }
 .overflow{
-	overflow-x:auto;	
+	overflow:auto;	
 }
 .tabla{
 	width:100%;
@@ -256,15 +256,22 @@
 	height:100%;
 	
 }
-.scroll-movil {
-        display: none;
-        }
-.scroll-movil-boton {
-	display: inline-block;
-	text-align: center;
-	width: 25%;
-	cursor: pointer;
-	}   
+.pos_img-login{
+	position:absolute;
+	right:80px;
+	top:100px;
+	opacity:0.9;
+}   
+article{
+	background:#47a3da;
+	width:100%;
+	height:130px;
+	color:#fff;
+	text-shadow:1px 1px 0px #555;
+}
+article h2{	font-size:24px;padding-top:10px;}
+article h1, article h5{padding-top:10px;}
+
 /*para la posicion de los fieldset en capturar datos de las atenciones*/
 .posicion-datos{
 	position:absolute;
