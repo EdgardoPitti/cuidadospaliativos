@@ -1,16 +1,14 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
-	
+	$_SESSION['idu'] = '';
 	$cont='
 		<div style="position:relative"> 
 			<div class="row-fluid">
 				<img src="./iconos/cuidadospaliativos - copia.png" class="img_login" style="height:auto;">
 				<div class="span5 offset7 well pos_img-login">
 					<h3 style="text-align:center">Iniciar Sesión</h3><hr>
-					<div class="alert alert-error">
-						<a class="close" data-dismiss="alert" href="#">×</a>Usuario o Contraseña Incorrecto!
-					</div>
+					'.$_SESSION['errorlogin'].'
 					<form method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
 						<center>
 							<div class="row-fluid">
@@ -33,7 +31,7 @@
 				</div>
 			</div>
 		</div>';
-				
+	$_SESSION['errorlogin'] = '';
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>

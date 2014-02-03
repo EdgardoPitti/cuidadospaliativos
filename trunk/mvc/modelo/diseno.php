@@ -397,6 +397,13 @@ class Diseno {
 					'.$this->latino($this->derecha).'
 				</td>';
 		else
+			/*if(empty($_SESSION['idu'])){
+				$span2 = '';
+				$span1 = 'span12';
+			}else{
+				$span2 = 'span2';
+				$span1 = 'span10';
+			}*/
 			echo
 			   '
 			<!--Aside-->
@@ -434,7 +441,7 @@ class Diseno {
 								<li><a class="sublink" href="./?url="><i>Total de Visitas Realizadas</i></a></li>
 								<li><a class="sublink" href="#"><i>Tiempo Promedio por Visita</i></a></li>
 								<li><a class="sublink" href="#"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
-								<li><a class="sublink" href="#"><i>Activadades Realizadas por Visitas</i></a></li>								
+								<li><a class="sublink" href="#"><i>Actividades Realizadas por Visitas</i></a></li>								
 							</ul>
 						</article>	
 					</div>
