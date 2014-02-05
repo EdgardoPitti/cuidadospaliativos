@@ -30,16 +30,18 @@
 				</center>
 				<center>
 					<div class="overflow" id="overflow-movil">
-						<table class="table2 borde-tabla">
-							<tr class="fd-table">
-								<th>#</th>
-								<th>Fecha</th>
-								<th>Institucion</th>
-								<th>Profesionales</th>
-								<th>Pacientes Atendidos</th>
-								<th>Horas de Atencion</th>
-								<th style="background:transparent;border:0;min-width:25px;"></th>
-							</tr>';
+						<table class="table2 borde-tabla table-hover">
+							<thead>
+								<tr class="fd-table">
+									<th>#</th>
+									<th>Fecha</th>
+									<th>Institucion</th>
+									<th>Profesionales</th>
+									<th>Pacientes Atendidos</th>
+									<th>Horas de Atencion</th>
+									<th style="min-width:15px;"></th>
+								</tr>
+							</thead>';
 			$n = 1;
 			if(empty($inicio) OR empty($final)){
 				$r = $rvd->buscardonde('ID_RVD > 0');
@@ -49,22 +51,24 @@
 			while($r){
 				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
 				$cont.='
-							<tr al ign="center">
-								<td><b>'.$n.'</b></td>
-								<td><b>'.$rvd->obtener('FECHA').'</b></td>
-								<td>'.$institucion->obtener('DENOMINACION').'</td>';
-				$sql = 'SELECT COUNT(SECUENCIA) as cantidad FROM `detalle_equipo_medico` where  ID_EQUIPO_MEDICO = '.$rvd->obtener('ID_EQUIPO_MEDICO').'';
-				$matriz = $ds->db->obtenerarreglo($sql);
-				$cont.='
-								<td>'.$matriz[0][cantidad].'</td>
-						';
-				$sql = 'SELECT COUNT(SECUENCIA) AS cantidad FROM `detalle_registro_visitas_domiciliarias` where ID_RVD = '.$rvd->obtener('ID_RVD').'';
-				$matriz = $ds->db->obtenerarreglo($sql);
-				$cont.='
-								<td>'.$matriz[0][cantidad].'</td>
-								<td>'.$rvd->obtener('HORAS_DE_ATENCION').'</td>
-								<td style="border:0;"><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'"><img src="./iconos/search.png"></a></td>
-							</tr>
+							<tbody>
+								<tr>
+									<td><b>'.$n.'</b></td>
+									<td><b>'.$rvd->obtener('FECHA').'</b></td>
+									<td>'.$institucion->obtener('DENOMINACION').'</td>';
+					$sql = 'SELECT COUNT(SECUENCIA) as cantidad FROM `detalle_equipo_medico` where  ID_EQUIPO_MEDICO = '.$rvd->obtener('ID_EQUIPO_MEDICO').'';
+					$matriz = $ds->db->obtenerarreglo($sql);
+					$cont.='
+									<td>'.$matriz[0][cantidad].'</td>
+							';
+					$sql = 'SELECT COUNT(SECUENCIA) AS cantidad FROM `detalle_registro_visitas_domiciliarias` where ID_RVD = '.$rvd->obtener('ID_RVD').'';
+					$matriz = $ds->db->obtenerarreglo($sql);
+					$cont.='
+									<td>'.$matriz[0][cantidad].'</td>
+									<td>'.$rvd->obtener('HORAS_DE_ATENCION').'</td>
+									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'"><img src="./iconos/search.png"></a></td>
+								</tr>
+							</tbody>
 				';
 				$r = $rvd->releer();
 				$n++;

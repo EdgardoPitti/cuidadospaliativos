@@ -5,7 +5,7 @@
 	$cont='
 		<div style="position:relative"> 
 			<div class="row-fluid">
-				<img src="./iconos/cuidadospaliativos - copia.png" class="img_login" style="height:auto;">
+				<img src="./iconos/cuidadospaliativos.jpg" class="img_login" style="height:auto;">
 				<div class="span5 offset7 well pos_img-login">
 					<h3 style="text-align:center">Iniciar Sesión</h3><hr>
 					'.$_SESSION['errorlogin'].'
@@ -16,11 +16,11 @@
 									<table class="table" width="50%">
 										<tr align="center">	
 											<td style="padding-top:12px">Usuario:</td>
-											<td><input type="text" id="username" name="username"></td>
+											<td><input type="text" id="username" name="username" required></td>
 										</tr>
 										<tr align="center">
 											<td style="padding-top:12px">Contraseña:</td>
-											<td><input type="password" id="password" name="password"></td>
+											<td><input type="password" id="password" name="password" required></td>
 										</tr>
 									</table>
 								</div>

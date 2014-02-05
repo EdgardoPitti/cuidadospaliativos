@@ -8,13 +8,13 @@
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Interconsulta</h3>	
 			<form class="form-search" method="POST" action="./?url=">						
 				<div class="input-group">
-				  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="nom_ced">
+				  <input type="search" class="form-control" id="busqueda" placeholder="Buscar paciente" name="nom_ced">
 				  <span class="input-group-btn">
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 				  </span>
 				</div>
 			</form>
-			<center style="width:100%;max-width:600px;">
+			<div style="width:100%;max-width:600px;">
 				<table width="100%">
 					<tr align="center">
 						<td>Especialista en: </td>
@@ -46,7 +46,7 @@
 						<textarea id="obs_coment" name="obs_coment" class="textarea2" style="width:90%;h eight:70px;"></textarea>
 					</div>
 				</div>
-			</center>
+			</div>
 		</center>	
 	
 	';
