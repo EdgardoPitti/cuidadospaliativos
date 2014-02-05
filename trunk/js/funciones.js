@@ -4,6 +4,13 @@ function inicio(){
 	$("#distritos").click(cargarCorregimientos);
 	$("#programas").click(cargarCategorias);
 	$("#especialidad").click(cargarEspecialista);
+	$("#filtro_visitas").click(cargarFiltroVisitas);
+}
+function cargarFiltroVisitas(){
+	var f = $("#filtro_visitas").attr("value");
+	$.post("./mvc/vista/grafica_visita.php", {tipo:f},function(resultado){
+		$("#mostrargrafica").html(resultado)
+	});
 }
 function cargarDistritos(){
 	var p = $("#provincias").attr("value");
