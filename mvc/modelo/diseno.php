@@ -438,7 +438,7 @@ class Diseno {
 						<label for="ac-2">Indicadores</label>
 						<article>	
 							<ul>
-								<li><a class="sublink" href="./?url="><i>Total de Visitas Realizadas</i></a></li>
+								<li><a class="sublink" href="./?url="><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
 								<li><a class="sublink" href="#"><i>Tiempo Promedio por Visita</i></a></li>
 								<li><a class="sublink" href="#"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
 								<li><a class="sublink" href="#"><i>Actividades Realizadas por Visitas</i></a></li>								
@@ -475,7 +475,8 @@ class Diseno {
 						<label for="ac-5">Indicadores</label>
 						<article>	
 							<ul>
-								<li><a class="sublink" href="./?url="><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n</i></a></li>
+								<li><a class="sublink" href="./?url="><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>
+								<li><a class="sublink" href="#"><i>Nº de Consultas por Paciente x Unidad de Tiempo</i></a></li>								
 								<li><a class="sublink" href="#"><i>Activadades Realizadas por Paciente</i></a></li>								
 							</ul>
 						</article>	
@@ -538,7 +539,7 @@ class Diseno {
 				'.$this->latino($this->derecha).'
 						
 			</div>
-					<!--Fin del Contenido-->
+			<!--Fin del Contenido-->
 				';
 	}
 	function latino( $texto ) {

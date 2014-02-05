@@ -120,8 +120,8 @@
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab1">
 							  <form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">
-								<button type="submit" class="btn btn-default">Imprimir</button>
-								<button type="submit" class="btn btn-default">Descargar</button>
+								<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"></a> 
+								<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"></a> 
 								
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
@@ -290,81 +290,88 @@
 										</article>
 									</div>
 									<div>
-										<input id="acordeon2" name="accordion" type="radio" />
+										<input id="acordeon2" name="accordion" type="radio"/>
 										<label for="acordeon2">Historial del Paciente</label>
 										<article>	
-											<div class="row-fluid">
-												<div class="span12">
-													<table class="table" style="margin-top:10px;">
-														<tr>
-															<td>Anamnesis:</td>
-															<td>Observaciones:</td>
-														</tr>';
-						$historia->buscardonde('ID_HISTORIA_PACIENTE = '.$surco->obtener('ID_HISTORIA_PACIENTE').'');
-						$examenfisico->buscardonde('ID_EXAMEN_FISICO = '.$historia->obtener('ID_EXAMEN_FISICO').'');
-						$cont.='
-														<tr>
-															<td><textarea class="textarea" style="width:100%; max-width:30%;min-width:60%;" id="anamnesis" name="anamnesis" placeholder="Anamnesis" '.$readonly.'>'.$historia->obtener('ANAMNESIS').'</textarea></td>																												
-															<td><textarea class="textarea" style="width:100%;max-width:30%;min-width:60%;" id="observaciones" name="observaciones" placeholder="Observaciones" '.$readonly.'>'.$historia->obtener('OBSERVACIONES').'</textarea></td>
-														</tr>
-														<tr>
-															<td style="text-align:left" colspan="2">Examen Físico:</td>									
-														</tr>
-													</table>
+											<center>
+											<div class="overflow" id="overflow-movil">
+												<div class="row-fluid">
+													<div class="span12">
+														<table class="table" style="margin-top:10px;">
+															<tr>
+																<td>Anamnesis:</td>
+																<td>Observaciones:</td>
+															</tr>';
+							$historia->buscardonde('ID_HISTORIA_PACIENTE = '.$surco->obtener('ID_HISTORIA_PACIENTE').'');
+							$examenfisico->buscardonde('ID_EXAMEN_FISICO = '.$historia->obtener('ID_EXAMEN_FISICO').'');
+							$cont.='
+															<tr>
+																<td><textarea class="textarea" style="width:100%; max-width:30%;min-width:60%;" id="anamnesis" name="anamnesis" placeholder="Anamnesis" '.$readonly.'>'.$historia->obtener('ANAMNESIS').'</textarea></td>																												
+																<td><textarea class="textarea" style="width:100%;max-width:30%;min-width:60%;" id="observaciones" name="observaciones" placeholder="Observaciones" '.$readonly.'>'.$historia->obtener('OBSERVACIONES').'</textarea></td>
+															</tr>
+															<tr>
+																<td style="text-align:left" colspan="2">Examen Físico:</td>									
+															</tr>
+														</table>
+													</div>												
 												</div>												
-											</div>	
-											
-											<table class="table2 borde-tabla">
-												<tr class="fd-tabla-gris">
-													<th>Hora</th>
-													<th>Presión Arterial</th>
-													<th>Frecuencia Cardiaca</th>
-													<th>Frecuencia Respiratoria</th>
-													<th>Frecuencia Cardiaca Fetal</th>
-													<th>Temperatura</th>
-													<th>Peso<small>(Kg)</small></th>
-													<th>Talla<small>(mts)</small></th>
-												</tr>
-												<tr  align="center">
-													<td><input style="width:50px;" type="text" name="hora" value="';
-												$hora = $examenfisico->obtener('HORA');
-												if($hora == ''){
-													if($ds->dime('hora') < 10){
-													$hora .= '0';
-													}
-													$hora .= $ds->dime('hora');
-													$hora .= ':';
-													if($ds->dime('minuto') < 10){
+												<table class="table2 borde-tabla">
+													<tr class="fd-tabla-gris">
+														<th>Hora</th>
+														<th>Presión Arterial</th>
+														<th>Frecuencia Cardiaca</th>
+														<th>Frecuencia Respiratoria</th>
+														<th>Frecuencia Cardiaca Fetal</th>
+														<th>Temperatura</th>
+														<th>Peso<small>(Kg)</small></th>
+														<th>Talla<small>(mts)</small></th>
+													</tr>
+													<tr align="center">
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="hora" value="';
+													$hora = $examenfisico->obtener('HORA');
+													if($hora == ''){
+														if($ds->dime('hora') < 10){
 														$hora .= '0';
-													}
-													$hora .= $ds->dime('minuto');
-												}								
-										$cont.=		''.$hora.'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="pa" value="'.$examenfisico->obtener('PRESION_ARTERIAL').'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="fc" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA').'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="fr" value="'.$examenfisico->obtener('FRECUENCIA_RESPIRATORIA').'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="fcf" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA_FETAL').'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="temperatura" value="'.$examenfisico->obtener('TEMPERATURA').'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="peso" value="'.$examenfisico->obtener('PESO').'" '.$readonly.'></td>
-													<td><input style="width:50px;" type="text" name="talla" value="'.$examenfisico->obtener('TALLA').'" '.$readonly.'></td>
-												</tr>
-											</table>
+														}
+														$hora .= $ds->dime('hora');
+														$hora .= ':';
+														if($ds->dime('minuto') < 10){
+															$hora .= '0';
+														}
+														$hora .= $ds->dime('minuto');
+													}								
+											$cont.=		''.$hora.'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="pa" value="'.$examenfisico->obtener('PRESION_ARTERIAL').'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fc" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA').'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fr" value="'.$examenfisico->obtener('FRECUENCIA_RESPIRATORIA').'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fcf" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA_FETAL').'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="temperatura" value="'.$examenfisico->obtener('TEMPERATURA').'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="peso" value="'.$examenfisico->obtener('PESO').'" '.$readonly.'></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="talla" value="'.$examenfisico->obtener('TALLA').'" '.$readonly.'></td>
+													</tr>
+												</table>
+											</div>
+											</center>
 										</article>	
 									</div>
 									<div>
 										<input id="acordeon3" name="accordion" type="radio" />
 										<label for="acordeon3">Resultado de Exámenes/Diagnóstico</label>
 										<article>
-											<table class="table2 borde-tabla" style="margin-top:7px">
-												<tr class="fd-tabla-gris">
-													<th>Tipo de Examen</th>
-													<th>Diagnóstico</th>
-													<th>CIE-10</th>
-													<th>Frecuencia</th>
-													<th>Observaciones</th>
-													<th>Tratamiento</th>
-													<th>Fecha del Examen</th>
-												</tr>	';
+											<center>
+											<div class="overflow" id="overflow-movil">
+												<table class="table2 borde-tabla table-hover" style="margin-top:7px">
+													<thead>
+														<tr class="fd-tabla-gris">
+															<th width="80px">Tipo de Examen</th>
+															<th style="padding-top:10px">Diagnóstico</th>
+															<th style="padding-top:10px">CIE-10</th>
+															<th style="padding-top:10px">Frecuencia</th>
+															<th style="padding-top:10px">Observaciones</th>
+															<th style="padding-top:10px">Tratamiento</th>
+															<th style="padding-top:10px">Fecha del Examen</th>
+														</tr>	
+													</thead>';
 				$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
 				while($x){
 					$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
@@ -372,13 +379,14 @@
 					$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$resultado->obtener('ID_DIAGNOSTICO').'');
 					$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
 					 $cont.='
-												<tr>
-													<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
-													<td><input type="text" style="width:70px;" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
-													<td><input type="text" style="width:50px;" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5" value="'.$detallediagnostico->obtener('ID_CIE10').'" readonly></td>
-													<td><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'" '.$disabled.'>
-															<option value=""></option>
-													';
+													<tbody>
+														<tr>
+															<td style="padding:5px 5px 0px 5px">'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
+															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:130px;" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:50px;" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5" value="'.$detallediagnostico->obtener('ID_CIE10').'" readonly></td>
+															<td style="padding:5px 5px 0px 5px"><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'" '.$disabled.'>
+																	<option value=""></option>
+														';
 														
 					$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
 					while($f){
@@ -387,22 +395,25 @@
 						}else{
 							$selected = '';
 						}
-						$cont.='							<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'" '.$selected.'>'.$frecuencia->obtener('FRECUENCIA').'</option>';
+						$cont.='									<option value="'.$frecuencia->obtener('ID_FRECUENCIA').'" '.$selected.'>'.$frecuencia->obtener('FRECUENCIA').'</option>';
 						$f = $frecuencia->releer();
 					}
 					$cont.='
-														</select>
-													</td>
-													<td><input type="text" style="width:70px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
-													<td><input type="text" style="width:70px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'"></td>
-													<td><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'"></td>
-												</tr>';
+																</select>
+															</td>
+															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'"></td>
+														</tr>
+													</tbody>';
 					
 					$x = $tipoexamen->releer();
 				}
 				$profesional->buscardonde('ID_PROFESIONAL = '.$surco->obtener('ID_PROFESIONAL').'');
 				$cont.='
-											</table>
+												</table>
+											</div>
+											</center>
 										</article>	
 									</div>
 									
@@ -437,40 +448,44 @@
 											<div class="span12">
 												<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Respuestas</h3>
 													<div class="overflow" style="max-height:170px;">
-														<table class="table2 borde-tabla">
-															<tr class="fd-tabla-gris">
-																<th>Fecha</th>
-																<th>Institucion Responde</th>
-																<th>Instalacion Receptora</th>
-																<th>Diagnostico</th>
-																<th>Observaciones</th>
-																<th>Hallazgos</th>
-																<th>Manejo y Tratamiento</th>
-																<th>Profesional</th>
-																<th style="background:transparent;border:0;min-width:35px;"></th>
-															</tr>';
+														<table class="table2 borde-tabla table-hover">
+															<thead>
+																<tr class="fd-tabla-gris">
+																	<th>Fecha</th>
+																	<th>Institucion Responde</th>
+																	<th>Instalacion Receptora</th>
+																	<th>Diagnostico</th>
+																	<th>Observaciones</th>
+																	<th>Hallazgos</th>
+																	<th>Manejo y Tratamiento</th>
+																	<th>Profesional</th>
+																	<th style="min-width:25px;"></th>
+																</tr>
+															</thead>';
 											$r = $respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'');
 											while($r){
 												$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
 												$cont.='
-															<tr>
-																<td><b>'.$respuesta->obtener('FECHA').'</b></td>
-																<td>'.$instituciones->obtener('DENOMINACION').'</td>';
-												$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
-												$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
-												$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
-												$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
-												$segundon = $profesional->obtener('SEGUNDO_NOMBRE');
-												$segundoa = $profesional->obtener('APELLIDO_MATERNO');
-												$cont.='
-																<td>'.$instituciones->obtener('DENOMINACION').'</td>
-																<td>'.$cie->obtener('DESCRIPCION').'</td>
-																<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
-																<td>'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</td>
-																<td>'.$respuesta->obtener('TRATAMIENTO').'</td>
-																<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
-																<td style="border:0;"><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'"><img src="./iconos/search.png"></a></td>
-															</tr>
+															<tbody>
+																<tr>
+																	<td><b>'.$respuesta->obtener('FECHA').'</b></td>
+																	<td>'.$instituciones->obtener('DENOMINACION').'</td>';
+													$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
+													$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
+													$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
+													$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+													$segundon = $profesional->obtener('SEGUNDO_NOMBRE');
+													$segundoa = $profesional->obtener('APELLIDO_MATERNO');
+													$cont.='
+																	<td>'.$instituciones->obtener('DENOMINACION').'</td>
+																	<td>'.$cie->obtener('DESCRIPCION').'</td>
+																	<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
+																	<td>'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</td>
+																	<td>'.$respuesta->obtener('TRATAMIENTO').'</td>
+																	<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
+																	<td><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'"><img src="./iconos/search.png"></a></td>
+																</tr>
+															</tbody>
 												';
 												$r = $respuesta->releer();
 											}
@@ -494,8 +509,8 @@
 							$cont.='
 
 								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'">	
-									<button type="submit" class="btn btn-default">Imprimir</button>
-									<button type="submit" class="btn btn-default">Descargar</button>		
+									<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"></a> 
+									<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"></a> 
 
 									<div class="row-fluid">
 										<div class="span6">
@@ -565,7 +580,7 @@
 							$cont.='
 												<div class="row-fluid">
 													<div class="span6">
-														<table class="table2" style="font-size:12px;">
+														<table class="table2" style="font-size:14px;">
 															<tr>
 																<td>Diagnóstico:</td>
 																<td><input type="text" name="diagnosticorespuesta" id="diagnosticorespuesta" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
@@ -600,7 +615,7 @@
 														</table>
 													</div>
 													<div class="span6">
-														<table class="table2" style="font-size:12px;">
+														<table class="table2" style="font-size:14px;">
 															<tr>
 																<td>Hallazgos Clinicos:</td>
 																<td><input type="text" id="hallazgosclinicos" name="hallazgosclinicos" placeholder="Hallazgos Clínicos" value="'.$respuesta->obtener('HALLAZGOS_CLINICOS').'" '.$readonly.' title="'.$respuesta->obtener('HALLAZGOS_CLINICOS').'"></td>

@@ -120,13 +120,15 @@
 			<center>
 				<div  class="overflow" id="overflow-movil">
 				
-					<table class="table2 borde-tabla">
-						<tr class="fd-table">
-							<th>Paciente</th>
-							<th>Programa</th>
-							<th>Categoria</th>
-							<th>Observaciones</th>
-						</tr>
+					<table class="table2 borde-tabla table-hover">
+						<thead>
+							<tr class="fd-table">
+								<th>Paciente</th>
+								<th>Programa</th>
+								<th>Categoria</th>
+								<th>Observaciones</th>
+							</tr>
+						</thead>
 				';
 				while($d){
 					$paciente->buscardonde('ID_PACIENTE = '.$detalle_rvd->obtener('ID_PACIENTE').'');
@@ -135,12 +137,14 @@
 					$categoria->buscardonde('ID_CATEGORIA = '.$detalle_rvd->obtener('ID_CATEGORIA').'');
 					$programa->buscardonde('ID_PROGRAMA = '.$detalle_rvd->obtener('ID_PROGRAMA').'');
 					$cont.='
-						<tr>
-							<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
-							<td>'.$categoria->obtener('CATEGORIA').'</td>
-							<td>'.$programa->obtener('PROGRAMA').'</td>
-							<td>'.$detalle_rvd->obtener('OBSERVACIONES').'</td>
-						</tr>
+						<tbody>
+							<tr>
+								<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
+								<td>'.$categoria->obtener('CATEGORIA').'</td>
+								<td>'.$programa->obtener('PROGRAMA').'</td>
+								<td>'.$detalle_rvd->obtener('OBSERVACIONES').'</td>
+							</tr>
+						</tbody>
 					';
 					$d = $detalle_rvd->releer();
 				}
