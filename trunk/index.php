@@ -4,12 +4,13 @@
 	<head>	
 		<meta content="text/html; charset=utf-8" />
 		<title>Cuidados Paliativos</title>
-		<link href="./iconos/logo.ico" type="image/x-icon" rel="shortcut icon" />
+		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--CSS: Menú Principal-->	
 		
-		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+		<link href="css/print.css" type="text/css" rel="stylesheet" media="print" />
 		
 		<script type="text/javascript" src="./js/jquery.js"></script>
 		<script type="text/javascript" src="./js/funciones.js"></script>
@@ -21,9 +22,9 @@
 		<script type='text/javascript' src='./js/overflow.js'></script>	
 
 		<!-- Scripts para el Autocomplete -->
-		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>        
+		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" media="screen"/>        
 		<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
-	
+		
 	<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
 	del formulario con base en un término o palabra que el usuario 
 	indique en la medida que vaya digitando en el cuadro de texto -->
@@ -412,11 +413,21 @@
                     });    
             });	            
         </script>		
+		<script>
+			function imprimir(){
+			  var objeto=document.getElementById('datos_imp');  //obtenemos el objeto a imprimir
+			  var ventana=window.open('','_blank');  //abrimos una ventana vacía nueva
+			  ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
+			  ventana.document.close();  //cerramos el documento
+			  ventana.print();  //imprimimos la ventana
+			  ventana.close();  //cerramos la ventana
+			}
+		</script>
 	</head>
 	<body> 				
 		<div class="container-fluid">
 					
-			<div class="row-fluid" >
+			<div class="row-fluid" id="header">
 				<div class="span12">
 					<div class="page-header">
 						<h1 style="line-height:35px;">	
@@ -427,10 +438,9 @@
 			</div>
 			
 			<!--Navegación Superior-->
-			<div class="row-fluid">
+			<div class="row-fluid" id="sub-header-nav">
 				<div class="span12">
-					<ul class="nav nav-pills" style="float:right;margin-top:4px;">
-						
+					<ul class="nav nav-pills" style="float:right;margin-top:4px;">						
 						<li class="dropdown pull-right">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
@@ -444,12 +454,12 @@
 				</div>
 			</div>
 			<!--Contenido-->
-			<div class="row-fluid">
+			<div class="row-fluid" id="contenido">
 				<?php include_once('./mvc/controlador/controlador.php'); new Controlador();?>
 				
 			</div>
 			
-			<div class="row-fluid">
+			<div class="row-fluid" id="navegacion">
 				<div class="span12">	
 					<!--Nav-->
 					<div class="navbar">
@@ -485,7 +495,7 @@
 			</div>
 			
 			<!--Pie de Página-->
-			<div class="row-fluid">
+			<div class="row-fluid" id="footer">
 				<div class="span12">
 					<div class="page-footer">
 						<b>Derechos Reservados 2013-2014</b>

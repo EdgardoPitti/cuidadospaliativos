@@ -31,7 +31,7 @@
 	$ds = new Diseno();
 	$cont='
 			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;"> Sistema Único de Referencia y Contrarreferencia</h3>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> Sistema Único de Referencia y Contra-Referencia (SURCO)</h3>
 				<form class="form-search" method="POST" action="./?url=domiciliaria_surco">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="cedula" required>
@@ -63,7 +63,7 @@
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 		$cont.='
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="span6" id="paciente">
 						<fieldset>
 							<legend>
 								Paciente
@@ -85,7 +85,7 @@
 								</table>
 						</fieldset>
 					</div>
-					<div class="span6">
+					<div class="span6" id="direccion">
 						<fieldset>
 							<legend>
 								Dirección
@@ -120,14 +120,14 @@
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab1">
 							  <form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">
-								<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"></a> 
-								<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"></a> 
+								<a href="javascript:window.print();" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 
+								<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
 								
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
 										<input id="acordeon1" name="accordion" type="radio"/>
 										<label for="acordeon1">Datos Referencia</label>
-										<article>
+										<article class="oculto">
 											<div class="row-fluid" style="margin-top:10px">
 												<div class="span6">
 													<table class="table">
@@ -286,8 +286,38 @@
 													</table>
 												</div>												
 												<div class="span6"></div>												
-											</div>	
-										</article>
+											</div>												
+										</article>';
+									//DATOS A MOSTRAR AL IMPRIMIR
+									$servicios->buscardonde('ID_SERVICIO = '.$surco->obtener('ID_SERVICIO').'');
+									$clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA = '.$surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'');									
+									$motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA = '.$surco->obtener('ID_MOTIVO_REFERENCIA').'');
+									$cont.='
+										<div id="datos_imp">
+											<table class="tabla-datos" width="100%">';
+												$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_REFIERE').'');
+											$cont.='
+												<tr>
+													<td>Instalación que Refiere:</td>
+													<td>'.$instituciones->obtener('DENOMINACION').'</td>
+													<td>Servicio Médico al que se refiere:</td>
+													<td>'.$servicios->obtener('DESCRIPCION').'</td>
+												</tr>
+												<tr>';
+												$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_RECEPTORA').'');
+											$cont.='
+													<td>Instalación Receptora:</td>
+													<td>'.$instituciones->obtener('DENOMINACION').'</td>
+													<td>Clasificación de la Atención solicitada:</td>
+													<td>'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</td>
+												</tr>
+												<tr>
+													<td>Motivo de Referencia:</td>
+													<td>'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</td>
+													<td colspan="2"></td>
+												</tr>
+											</table>
+										</div>
 									</div>
 									<div>
 										<input id="acordeon2" name="accordion" type="radio"/>
@@ -295,7 +325,7 @@
 										<article>	
 											<center>
 											<div class="overflow" id="overflow-movil">
-												<div class="row-fluid">
+												<div class="row-fluid oculto">
 													<div class="span12">
 														<table class="table" style="margin-top:10px;">
 															<tr>
@@ -314,8 +344,24 @@
 															</tr>
 														</table>
 													</div>												
-												</div>												
-												<table class="table2 borde-tabla">
+												</div>		
+												<div id="datos_imp">
+													<table class="tabla-datos" width="100%">
+														<tr>
+															<td><b>Anamnesis:</b></td>
+															<td><span style="width:500px;word-wrap:break-word;text-align:left">'.$historia->obtener('ANAMNESIS').'</span></td>															
+														</tr>	
+														<tr>	
+															<td><b>Observaciones:</b></td>
+															<td><span style="width:500px;word-wrap:break-word;text-align:left">'.$historia->obtener('OBSERVACIONES').'</span></td>
+														</tr>
+														<tr>
+															<td colspan="2" style="text-align:justify;text-decoration:underline;"><b>Exámen Físico:</b></td>
+														</tr>
+													</table>
+												</div>
+												
+												<table class="table2 borde-tabla table_imp" width="100%">
 													<tr class="fd-tabla-gris">
 														<th>Hora</th>
 														<th>Presión Arterial</th>
@@ -360,7 +406,7 @@
 										<article>
 											<center>
 											<div class="overflow" id="overflow-movil">
-												<table class="table2 borde-tabla table-hover" style="margin-top:7px">
+												<table class="table2 borde-tabla table-hover table_imp oculto" width="100%" style="margin-top:7px;text-align:center;">
 													<thead>
 														<tr class="fd-tabla-gris">
 															<th width="80px">Tipo de Examen</th>
@@ -400,15 +446,53 @@
 					}
 					$cont.='
 																</select>
+																
 															</td>
 															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
 															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'"></td>
 															<td style="padding:5px 5px 0px 5px"><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'"></td>
 														</tr>
-													</tbody>';
-					
+													</tbody>';					
 					$x = $tipoexamen->releer();
 				}
+				//IMPRESION DE RESULTADOS EXAMEN DIAGNOSTICO
+				$cont.='
+					<table class="tabla-datos table_imp" id="datos_imp" width="100%" style="margin-top:7px;text-align:center;">
+						<tr>
+							<th width="80px">Tipo de Examen</th>
+							<th>Diagnóstico</th>
+							<th style="width:60px">CIE-10</th>
+							<th>Frecuencia</th>
+							<th>Observaciones</th>
+							<th>Tratamiento</th>
+							<th style="width:75px">Fecha del Examen</th>
+						</tr>';
+	$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
+	while($x){
+		$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
+		$resultado->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').' AND ID_TIPO_EXAMEN = '.$tipoexamen->obtener('ID_TIPO_EXAMEN').'');
+		$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$resultado->obtener('ID_DIAGNOSTICO').'');
+		$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
+				$cont.='
+						<tr>
+							<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
+							<td>'.$cie->obtener('DESCRIPCION').'</td>
+							<td>'.$detallediagnostico->obtener('ID_CIE10').'</td>';
+		$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
+		while($f){					
+			if($frecuencia->obtener('ID_FRECUENCIA') == $detallediagnostico->obtener('ID_FRECUENCIA')){
+					$cont.='<td>'.$frecuencia->obtener('FRECUENCIA').'</td>';
+			}
+			$f = $frecuencia->releer();
+		}
+				$cont.='
+							<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
+							<td>'.$resultado->obtener('TRATAMIENTO').'</td>
+							<td>'.$resultado->obtener('FECHA').'</td>
+						</tr>';
+		$x = $tipoexamen->releer();
+	}		
+														
 				$profesional->buscardonde('ID_PROFESIONAL = '.$surco->obtener('ID_PROFESIONAL').'');
 				$cont.='
 												</table>
@@ -420,16 +504,24 @@
 									<div>
 										<input id="acordeon4" name="accordion" type="radio" />
 										<label for="acordeon4">Datos del Profesional</label>
-										<article>
+										<article class="oculto">
 											<div class="row-fluid" style="margin-top:10px">
 												<div class="span6" align="center">Nombre de quien refiere:</div>
 												<div class="span6" align="center"><input style="width:135px" type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.'/> <input style="width:135px"  type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional"  value="'.$profesional->obtener('NO_CEDULA').'" readonly></div>
 											</div>
-											<div class="row-fluid">
+											<!--div class="row-fluid">
 												<div class="span6" align="center">Nombre del Receptor:</div>
 												<div class="span6" align="center"><input style="width:135px" type="text" name="receptor" '.$readonly.'/><br><i><small>(Solo en caso de urgencias y hospitalización)</small></i></div>
-											</div>									
+											</div-->									
 										</article>
+										<div id="datos_imp">
+											<table class="tabla-datos" width="100%">
+												<tr>	
+													<td>Nombre de quien refiere:</td>
+													<td><p style="text-decoration:underline;">'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</p></td>													
+												</tr>
+											</table>
+										</div>
 									</div>
 								</div>';
 								if($readonly == ''){
@@ -441,8 +533,7 @@
 							
 							<!--RESPUESTA A LA REFERENCIA -->
 							<div class="tab-pane" id="tab2">';
-							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){
-							
+							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){							
 									$cont.='
 										<div class="row-fluid">
 											<div class="span12">
@@ -509,7 +600,7 @@
 							$cont.='
 
 								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'">	
-									<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"></a> 
+									<a href="javascript:window.print()" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"></a> 
 									<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"></a> 
 
 									<div class="row-fluid">
