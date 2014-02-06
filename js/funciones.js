@@ -5,10 +5,38 @@ function inicio(){
 	$("#programas").click(cargarCategorias);
 	$("#especialidad").click(cargarEspecialista);
 	$("#filtro_visitas").click(cargarFiltroVisitas);
+	$("#filtro_visitas1").click(cargarFiltroVisitas1);
+	$("#filtro_visitas2").click(cargarFiltroVisitas2);
+	$("#filtro_tipo").click(mostrarReferencia);
+	$("#filtro_tipo1").click(mostrarReferencia);
+	
+}
+function mostrarReferencia(){
+	if (document.getElementById('filtro_tipo').checked == true) {
+		document.getElementById('mostrar').style.display='block';
+		document.getElementById('ocultar').style.display='none';
+	}else{
+		document.getElementById('mostrar').style.display='none';
+		document.getElementById('ocultar').style.display='block';
+	}
 }
 function cargarFiltroVisitas(){
 	var f = $("#filtro_visitas").attr("value");
-	$.post("./mvc/vista/grafica_visita.php", {tipo:f},function(resultado){
+	var v = $("#var").attr("value");
+	$.post("./mvc/vista/grafica_visita.php", {tipo:f,filtro:v},function(resultado){
+		$("#mostrargrafica").html(resultado)
+	});
+}
+function cargarFiltroVisitas1(){
+	var f = $("#filtro_visitas1").attr("value");
+	var v = $("#var").attr("value");
+	$.post("./mvc/vista/grafica_visita.php", {tipo:f,filtro:v},function(resultado){
+		$("#mostrargrafica").html(resultado)
+	});
+}function cargarFiltroVisitas2(){
+	var f = $("#filtro_visitas2").attr("value");
+	var v = $("#var").attr("value");
+	$.post("./mvc/vista/grafica_visita.php", {tipo:f,filtro:v},function(resultado){
 		$("#mostrargrafica").html(resultado)
 	});
 }
