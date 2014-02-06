@@ -249,7 +249,7 @@
 .tabla{
 	width:100%;
 }
-
+#datos_imp{display:none;}
 .pos_img-login{
 	position:absolute;
 	right:80px;
