@@ -438,7 +438,7 @@ class Diseno {
 						<label for="ac-2">Indicadores</label>
 						<article>	
 							<ul>
-								<li><a class="sublink" href="./?url="><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
+								<li><a class="sublink" href="./?url=indicadores_total_visitas"><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
 								<li><a class="sublink" href="#"><i>Tiempo Promedio por Visita</i></a></li>
 								<li><a class="sublink" href="#"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
 								<li><a class="sublink" href="#"><i>Actividades Realizadas por Visitas</i></a></li>								
