@@ -44,9 +44,9 @@
 							</thead>';
 			$n = 1;
 			if(empty($inicio) OR empty($final)){
-				$r = $rvd->buscardonde('ID_RVD > 0');
+				$r = $rvd->buscardonde('ID_RVD > 0 ORDER BY FECHA');
 			}else{
-				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"');
+				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');
 			}
 			while($r){
 				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
