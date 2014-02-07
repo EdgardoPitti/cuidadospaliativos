@@ -70,5 +70,4 @@
 			</script>      
 			';
 	echo $cont;
-	echo $start;
 ?>
