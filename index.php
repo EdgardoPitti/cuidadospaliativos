@@ -414,13 +414,13 @@
             });	            
         </script>		
 		<script>
-			function imprimir(){
-			  var objeto=document.getElementById('datos_imp');  //obtenemos el objeto a imprimir
+			/*function imprimir(){
+			  var objeto=document.getElementById('tab2');  //obtenemos el objeto a imprimir
 			  var ventana=window.open('','_blank');  //abrimos una ventana vacía nueva
 			  ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
 			  ventana.document.close();  //cerramos el documento
 			  ventana.print();  //imprimimos la ventana
-			  ventana.close();  //cerramos la ventana
+			  ventana.close();  //cerramos la ventana*/
 			}
 		</script>
 	</head>

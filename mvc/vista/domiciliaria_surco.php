@@ -119,10 +119,13 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab1">
-							  <form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">
-								<a href="javascript:window.print();" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 
-								<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
-								
+							  <form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">';
+						if($readonly != ''){
+							$cont.='
+									<button onclick="window.print();" class="btn" title="Imprimir" ><img src="./iconos/imprimir.png" width="24px"> Imprimir</button> 
+									<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> ';
+						}
+							$cont.='
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
 										<input id="acordeon1" name="accordion" type="radio"/>
@@ -289,31 +292,31 @@
 											</div>												
 										</article>';
 									//DATOS A MOSTRAR AL IMPRIMIR
+									$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_REFIERE').'');
+									$inst_refiere = $instituciones->obtener('DENOMINACION');
 									$servicios->buscardonde('ID_SERVICIO = '.$surco->obtener('ID_SERVICIO').'');
+									$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_RECEPTORA').'');
+									$inst_receptora = $instituciones->obtener('DENOMINACION');
 									$clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA = '.$surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'');									
 									$motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA = '.$surco->obtener('ID_MOTIVO_REFERENCIA').'');
 									$cont.='
 										<div id="datos_imp">
-											<table class="tabla-datos" width="100%">';
-												$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_REFIERE').'');
-											$cont.='
+											<table class="tabla-datos" width="100%">
 												<tr>
 													<td>Instalación que Refiere:</td>
-													<td>'.$instituciones->obtener('DENOMINACION').'</td>
+													<td><p style="text-decoration:underline;">'.$inst_refiere.'</p></td>
 													<td>Servicio Médico al que se refiere:</td>
-													<td>'.$servicios->obtener('DESCRIPCION').'</td>
+													<td><p style="text-decoration:underline;">'.$servicios->obtener('DESCRIPCION').'</p></td>
 												</tr>
-												<tr>';
-												$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_RECEPTORA').'');
-											$cont.='
+												<tr>
 													<td>Instalación Receptora:</td>
-													<td>'.$instituciones->obtener('DENOMINACION').'</td>
+													<td><p style="text-decoration:underline;">'.$inst_receptora.'</p></td>
 													<td>Clasificación de la Atención solicitada:</td>
-													<td>'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</td>
+													<td><p style="text-decoration:underline;">'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</p></td>
 												</tr>
 												<tr>
 													<td>Motivo de Referencia:</td>
-													<td>'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</td>
+													<td><p style="text-decoration:underline;">'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</p></td>
 													<td colspan="2"></td>
 												</tr>
 											</table>
@@ -532,7 +535,10 @@
 							</div>
 							
 							<!--RESPUESTA A LA REFERENCIA -->
-							<div class="tab-pane" id="tab2">';
+							<div class="tab-pane" id="tab2">
+								<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 
+								<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+							';
 							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){							
 									$cont.='
 										<div class="row-fluid">
@@ -599,10 +605,7 @@
 							}
 							$cont.='
 
-								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'">	
-									<a href="javascript:window.print()" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"></a> 
-									<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"></a> 
-
+								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'">										
 									<div class="row-fluid">
 										<div class="span6">
 											<table class="tabla-datos">
