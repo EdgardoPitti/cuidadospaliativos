@@ -535,11 +535,15 @@
 							</div>
 							
 							<!--RESPUESTA A LA REFERENCIA -->
-							<div class="tab-pane" id="tab2">
-								<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 
-								<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
-							';
-							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){							
+							<div class="tab-pane" id="tab2">';
+							$idr = $_GET['idr'];
+							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){	
+								if(!empty($idr)){
+									$cont.='
+										<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 
+										<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+									';
+								}
 									$cont.='
 										<div class="row-fluid">
 											<div class="span12">
@@ -594,7 +598,7 @@
 										</div>';
 
 							}
-							$idr = $_GET['idr'];
+							
 							$r  = $respuesta->buscardonde('ID_RESPUESTA_REFERENCIA = '.$idr.'');
 							if($r){
 								$readonly = 'readonly';
