@@ -5,6 +5,57 @@
 	$visitas = new Accesatabla('registro_visitas_domiciliarias');
 	$visitas1 = new Accesatabla('registro_visitas_domiciliarias');
 	$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
+	$comillas = "'";
+	$script='
+		<script type="text/javascript">
+			$(function () {
+        $('.$comillas.'#grafica'.$comillas.').highcharts({
+            chart: {
+                type: '.$comillas.'column'.$comillas.'
+            },
+            title: {
+                text: '.$comillas.'Tiempo empleado por Visitas'.$comillas.'
+            },
+            subtitle: {
+                text: '.$comillas.'Datos obtenidos de Registro de Visitas Domiciliarias'.$comillas.'
+            },
+            xAxis: {
+                categories: [
+                    '.$comillas.'Jan'.$comillas.',
+                    '.$comillas.'Feb'.$comillas.',
+                    '.$comillas.'Mar'.$comillas.',
+                    '.$comillas.'Apr'.$comillas.',
+                    '.$comillas.'May'.$comillas.',
+                    '.$comillas.'Jun'.$comillas.',
+                    '.$comillas.'Jul'.$comillas.',
+                    '.$comillas.'Aug'.$comillas.',
+                    '.$comillas.'Sep'.$comillas.',
+                    '.$comillas.'Oct'.$comillas.',
+                    '.$comillas.'Nov'.$comillas.',
+                    '.$comillas.'Dec'.$comillas.'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '.$comillas.'Horas Usadas'.$comillas.'
+                }
+            },
+            tooltip: {
+                headerFormat: '.$comillas.'<span style="font-size:10px">{point.key}</span><table>'.$comillas.',
+                pointFormat: '.$comillas.'<tr><td style="color:{series.color};padding:0">{series.name}: </td>'.$comillas.' +
+                    '.$comillas.'<td style="padding:0"><b>{point.y:.1f} Horas</b></td></tr>'.$comillas.',
+                footerFormat: '.$comillas.'</table>'.$comillas.',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+			series:[';
 	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Tiempo Promedio empleado por Visitas</h3>
 			<center>';
 	$variable = $_POST['variable1'];
@@ -22,11 +73,21 @@
 	$sql = 'SELECT SUM(HORAS_DE_ATENCION) AS horas FROM registro_visitas_domiciliarias';
 	$matriz = $ds->db->obtenerarreglo($sql);
 	$horas_totales = $matriz[0][horas];
-	$cont.='<div id="grafica" style="min-width: 310px; height: 500px;"></div>
-				<pre id="tsv" style="display:none">Browser Version	Total Market Share';
+	$cont.='<div id="grafica" style="min-width: 310px; height: 500px;"></div>';
+	$x = 1;
 	while($variable <= $ds->dime('agno')){
 		$pacientes = 0;
 		$mes = 1;
+		if($x == 1){
+			$datos .= '{
+				name: '.$comillas.''.$variable.''.$comillas.',
+                data: [';
+		}else{
+			$datos .= ',{
+				name: '.$comillas.''.$variable.''.$comillas.',
+                data: [';
+		}
+		
 		while($mes < 13){
 			$sql = 'SELECT SUM(HORAS_DE_ATENCION) AS horas FROM registro_visitas_domiciliarias WHERE FECHA BETWEEN "'.$variable.'-'.$mes.'-01" AND "'.$variable.'-'.$mes.'-31"'; 
 			$matriz = $ds->db->obtenerarreglo($sql);
@@ -39,19 +100,35 @@
 				$v = $visitas->releer();
 			}
 			if($pacientes == 0){
-				$porcentaje = 0;
+				$promedio = 0;
 			}else{
-				$porcentaje = $horas/$pacientes;
+				$promedio = ($horas/$pacientes);
 			}
-			$cont .= '
-'.$variable.' '.$ds->dime('mes-'.$mes.'').'	'.number_format($porcentaje, 2, '.', '').'%';
+			if($mes == 1){
+				$datos .= $promedio;
+			}else{
+				$datos .= ','.$promedio;
+			}
 			$mes++;
 		}
+		$x = 0;
+		$datos.=']}';
 		$variable++;
 	}
-	$cont.='</pre>
-				</center>
+	$script.=$datos;
+    $script.='
+            ]
+        });
+    });
+	</script>
 	';
+	$cont.='
+			</center>'.$script.'
+	';
+	
+
+
+	
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
