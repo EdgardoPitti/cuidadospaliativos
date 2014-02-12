@@ -1,34 +1,29 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
-	include_once('./mvc/modelo/diseno.php');
+	include_once('./mvc/modelo/Diseno.php');
 	$ds = new Diseno();
-	$diagnostico = new Accesatabla('detalle_diagnostico');
-	$cie = new Accesatabla('cie10');
-	$datos = '';
-	$categorias = '';
+	$actividad = new Accesatabla('actividad');
+	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Actividades Realizadas</h3>	';
 	$comillas = "'";
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes por Diagn&oacute;stico</h3>		
-	';
 	$condicion = '';
 	$n = 1;
-	$x = $diagnostico->buscardonde('SECUENCIA > 0');
+	$x = $actividad->buscardonde('ID_ACTIVIDAD > 0');
 	while($x){
-		$sql = 'SELECT COUNT(SECUENCIA) AS cantidad FROM detalle_diagnostico WHERE ID_CIE10 = "'.$diagnostico->obtener('ID_CIE10').'"';
+		$sql = 'SELECT COUNT(ID_ACTIVIDAD) AS cantidad FROM actividad WHERE ACTIVIDAD = "'.$actividad->obtener('ACTIVIDAD').'"';
 		$matriz = $ds->db->obtenerarreglo($sql);
 		$cantidad = $matriz[0][cantidad];
-		$cie->buscardonde('ID_CIE10 = "'.$diagnostico->obtener('ID_CIE10').'"');	
 		if($n == 1){
 			$datos .= $cantidad;
 			$n = 0;
 			$categorias .='
-				  '.$comillas.''.$cie->obtener('ID_CIE10').''.$comillas;
+				  '.$comillas.''.$actividad->obtener('ACTIVIDAD').''.$comillas;
 		}else{
 			$datos .= ','.$cantidad;
 			$categorias .=',
-					  '.$comillas.''.$cie->obtener('ID_CIE10').''.$comillas;
+					  '.$comillas.''.$actividad->obtener('ACTIVIDAD').''.$comillas;
 		}
-		$condicion .= ' AND ID_CIE10 != "'.$diagnostico->obtener('ID_CIE10').'"';
-		$x = $diagnostico->buscardonde('SECUENCIA > 0 '.$condicion.'');
+		$condicion .= ' AND ACTIVIDAD != "'.$actividad->obtener('ACTIVIDAD').'"';
+		$x = $actividad->buscardonde('ID_ACTIVIDAD > 0 '.$condicion.'');
 		$cantidad = 0;		
 	}
 	$cont.='<div id="grafica" style="min-width: 310px; height: 500px;"></div>';
@@ -41,7 +36,7 @@
                 type: '.$comillas.'column'.$comillas.'
             },
             title: {
-                text: '.$comillas.'Cantidad de Personas segun Diagnostico'.$comillas.'
+                text: '.$comillas.'Cantidad de Personas segun Actividad'.$comillas.'
             },
             subtitle: {
                 text: '.$comillas.'Datos obtenidos de Registro de Visitas Domiciliarias'.$comillas.'
