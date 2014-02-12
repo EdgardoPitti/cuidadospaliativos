@@ -16,7 +16,7 @@
 							Filtrar por: 
 							A&ntilde;o &nbsp;<input type="radio" id="filtro_tipo1" name="filtro_tipo" value="0">&nbsp; Mes &nbsp;<input type="radio" id="filtro_tipo" name="filtro_tipo" value="1"><br> 
 							<div id="mostrar" style="display:none">
-									A&ntilde;o: <input style="width:60px;" type="number" id="variable" name="variable" min="2014" max="2050" value="'.$ds->dime('agno').'"><br>
+									A&ntilde;o: <input style="width:60px;" type="number" id="variable" name="variable" min="2000" max="2050" value="'.$ds->dime('agno').'"><br>
 									<center>
 										<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button>
 									</center>							
