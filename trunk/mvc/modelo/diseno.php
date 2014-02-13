@@ -54,6 +54,24 @@ class Diseno {
 			case 'mes-8':	$aber = 'Agosto';
 			break;
 			case 'mes-9':	$aber = 'Septiembre';
+			break;			
+			case 'mes-01':	$aber = 'Enero';
+			break;
+			case 'mes-02':	$aber = 'Febrero';
+			break;
+			case 'mes-03':	$aber = 'Marzo';
+			break;
+			case 'mes-04':	$aber = 'Abril';
+			break;
+			case 'mes-05':	$aber = 'Mayo';
+			break;
+			case 'mes-06':	$aber = 'Junio';
+			break;
+			case 'mes-07':	$aber = 'Julio';
+			break;
+			case 'mes-08':	$aber = 'Agosto';
+			break;
+			case 'mes-09':	$aber = 'Septiembre';
 			break;
 			case 'mes-10':	$aber = 'Octubre';
 			break;
@@ -628,6 +646,29 @@ class Diseno {
         }
         return $sig;
     }
+	function diasdespues($cant){
+		$dias[1] = 'Lunes';
+		$dias[2] = 'Martes';
+		$dias[3] = 'Miercoles';
+		$dias[4] = 'Jueves';
+		$dias[5] = 'Viernes';
+		$dias[6] = 'Sabado';
+		$dias[7] = 'Domingo';
+		$x = $this->dime('hoy es');
+		$mas = $x + $cant;
+		if($mas > 7){
+			$dia = $mas/7;
+			$mas = explode(".", $dia);
+			$multp = $dia - $mas[0];
+			$dia = $multp*7;
+		}else{
+			$dia = $mas;
+		}
+		if(($cant % 7) == 0){
+			$dia = $x;
+		}
+		return $dias[''.$dia.''];
+	}
 	function edad($dia=0, $mes=0, $anio){
 		$edad = 0;
 		if (!checkdate($mes,$dia,$anio)){
