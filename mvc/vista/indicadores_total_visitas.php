@@ -62,6 +62,7 @@
 		$variable = 2014;
 	}
 	$cont.='
+					
 					<form method="POST" action="./?url=indicadores_total_visitas">
 							Desde el A&ntilde;o: <input style="width:60px;" type="number" id="variable1" name="variable1" min="2013" max="'.$ds->dime('agno').'" value="2013"><br>
 							<center>
@@ -110,6 +111,9 @@
         });
     });
 	</script>
+	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/highcharts.js'.$comillas.'></script>	
+	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/grid.js'.$comillas.'></script>	
+	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>
 	';
 	$cont.='
 				</center>'.$script.'

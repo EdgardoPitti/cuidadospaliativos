@@ -14,34 +14,43 @@
                 type: '.$comillas.'column'.$comillas.'
             },
             title: {
-                text: '.$comillas.'Tiempo empleado por Visitas'.$comillas.'
+                text: '.$comillas.'Tiempo promedio empleado por Visitas'.$comillas.'
             },
             subtitle: {
                 text: '.$comillas.'Datos obtenidos de Registro de Visitas Domiciliarias'.$comillas.'
             },
             xAxis: {
                 categories: [
-                    '.$comillas.'Jan'.$comillas.',
+                    '.$comillas.'Ene'.$comillas.',
                     '.$comillas.'Feb'.$comillas.',
                     '.$comillas.'Mar'.$comillas.',
-                    '.$comillas.'Apr'.$comillas.',
+                    '.$comillas.'Abr'.$comillas.',
                     '.$comillas.'May'.$comillas.',
                     '.$comillas.'Jun'.$comillas.',
                     '.$comillas.'Jul'.$comillas.',
-                    '.$comillas.'Aug'.$comillas.',
+                    '.$comillas.'Ago'.$comillas.',
                     '.$comillas.'Sep'.$comillas.',
                     '.$comillas.'Oct'.$comillas.',
                     '.$comillas.'Nov'.$comillas.',
-                    '.$comillas.'Dec'.$comillas.'
+                    '.$comillas.'Dic'.$comillas.'
                 ]
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '.$comillas.'Horas Usadas'.$comillas.'
+                    text: '.$comillas.'Prom. de Horas Usadas'.$comillas.'
                 }
             },
             tooltip: {
+				 backgroundColor: {
+					linearGradient: [0, 0, 0, 60],
+					stops: [
+						[0, '.$comillas.'#FFFFFF'.$comillas.'],
+						[1, '.$comillas.'#E0E0E0'.$comillas.']
+					]
+				},
+				borderWidth: 1,
+				borderColor: '.$comillas.'#AAA'.$comillas.',
                 headerFormat: '.$comillas.'<span style="font-size:10px">{point.key}</span><table>'.$comillas.',
                 pointFormat: '.$comillas.'<tr><td style="color:{series.color};padding:0">{series.name}: </td>'.$comillas.' +
                     '.$comillas.'<td style="padding:0"><b>{point.y:.1f} Horas</b></td></tr>'.$comillas.',
@@ -52,7 +61,8 @@
             plotOptions: {
                 column: {
                     pointPadding: 0.2,
-                    borderWidth: 0
+                    borderWidth: 0,
+					shadow:true
                 }
             },
 			series:[';
@@ -70,9 +80,7 @@
 							</center>							
 					</form>
 					';
-	$sql = 'SELECT SUM(HORAS_DE_ATENCION) AS horas FROM registro_visitas_domiciliarias';
-	$matriz = $ds->db->obtenerarreglo($sql);
-	$horas_totales = $matriz[0][horas];
+	
 	$cont.='<div id="grafica" style="min-width: 310px; height: 500px;"></div>';
 	$x = 1;
 	while($variable <= $ds->dime('agno')){
@@ -121,13 +129,13 @@
         });
     });
 	</script>
+	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/highcharts.js'.$comillas.'></script>	
+	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/grid.js'.$comillas.'></script>	
+	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>
 	';
 	$cont.='
 			</center>'.$script.'
 	';
-	
-
-
 	
 	$ds->contenido($cont);
 	$ds->mostrar();

@@ -1,27 +1,26 @@
 <? SESSION_START();?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" Content-Type: application/pdf>
 	<head>	
-		<meta content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Cuidados Paliativos</title>
-		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<!--CSS: Menú Principal-->	
 		
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
 		<link href="css/print.css" type="text/css" rel="stylesheet" media="print" />
 		
-		<script type="text/javascript" src="./js/jquery.js"></script>
-		<script type="text/javascript" src="./js/funciones.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/funciones.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>	
-		<script type='text/javascript' src="./js/jquery-1.9.1.js"></script>
-		<script type='text/javascript' src='./js/jquery-1.8.3.js'></script>	
-		<script type='text/javascript' src='./js/show_hide.js'></script>	
-		<script type='text/javascript' src='./js/overflow.js'></script>	
-		<script src="./js/highcharts.js"></script>
-		<script src="./js/modules/exporting.js"></script>
+		<script type='text/javascript' src="js/jquery-1.9.1.js"></script>
+		<script type='text/javascript' src='js/jquery-1.8.3.js'></script>	
+		<script type='text/javascript' src='js/show_hide.js'></script>	
+		<script type='text/javascript' src='js/overflow.js'></script>	
 
 		<!-- Scripts para el Autocomplete -->
 		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" media="screen"/>        
@@ -414,21 +413,10 @@
                         $("#cedpaciente").val(data[1]); 
                     });    
             });	            
-        </script>		
-		<script>
-			/*function imprimir(){
-			  var objeto=document.getElementById('tab2');  //obtenemos el objeto a imprimir
-			  var ventana=window.open('','_blank');  //abrimos una ventana vacía nueva
-			  ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
-			  ventana.document.close();  //cerramos el documento
-			  ventana.print();  //imprimimos la ventana
-			  ventana.close();  //cerramos la ventana*/
-			}
-		</script>
+        </script>	
 	</head>
 	<body> 				
-		<div class="container-fluid">
-					
+		<div class="container-fluid">			
 			<div class="row-fluid" id="header">
 				<div class="span12">
 					<div class="page-header">
@@ -438,7 +426,6 @@
 					</div>
 				</div>
 			</div>
-			
 			<!--Navegación Superior-->
 			<div class="row-fluid" id="sub-header-nav">
 				<div class="span12">
@@ -461,7 +448,7 @@
 				
 			</div>
 			
-			<div class="row-fluid" id="navegacion">
+			<div class="row-fluid">
 				<div class="span12">	
 					<!--Nav-->
 					<div class="navbar">
