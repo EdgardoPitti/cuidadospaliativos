@@ -1,6 +1,7 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
+
 	$personas = new Accesatabla('datos_pacientes');
 	$tiposangre = new Accesatabla('tipos_sanguineos');
 	$residencia = new Accesatabla('residencia_habitual');
@@ -109,7 +110,6 @@
 			$readonly = '';
 			$disabled = '';
 		}
-		
 				$cont.='
 					<!--REFERENCIA-->
 					<div class="tabbable" id="tabs-1">
@@ -321,7 +321,8 @@
 												</tr>
 											</table>
 										</div>
-									</div>
+									</div>';
+								$cont.='	
 									<div>
 										<input id="acordeon2" name="accordion" type="radio"/>
 										<label for="acordeon2">Historial del Paciente</label>
@@ -799,6 +800,7 @@
 				</div>
 			';	
 	}
+	
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
