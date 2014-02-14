@@ -21,11 +21,11 @@
 			$datos .= $cantidad;
 			$n = 0;
 			$categorias .='
-				  '.$comillas.''.$cie->obtener('ID_CIE10').''.$comillas;
+				  '.$comillas.''.$cie->obtener('DESCRIPCION').''.$comillas;
 		}else{
 			$datos .= ','.$cantidad;
 			$categorias .=',
-					  '.$comillas.''.$cie->obtener('ID_CIE10').''.$comillas;
+					  '.$comillas.''.$cie->obtener('DESCRIPCION').''.$comillas;
 		}
 		$condicion .= ' AND ID_CIE10 != "'.$diagnostico->obtener('ID_CIE10').'"';
 		$x = $diagnostico->buscardonde('SECUENCIA > 0 '.$condicion.'');
