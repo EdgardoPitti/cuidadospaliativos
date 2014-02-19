@@ -17,7 +17,6 @@
 		<script type="text/javascript" src="js/funciones.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>	
-		<script type='text/javascript' src="js/jquery-1.9.1.js"></script>
 		<script type='text/javascript' src='js/jquery-1.8.3.js'></script>	
 		<script type='text/javascript' src='js/show_hide.js'></script>	
 		<script type='text/javascript' src='js/overflow.js'></script>	
