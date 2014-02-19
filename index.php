@@ -1,8 +1,8 @@
-<? SESSION_START();?>
+<?php SESSION_START();?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" Content-Type: application/pdf>
 	<head>	
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta content="text/html; charset=utf-8" />
 		<title>Cuidados Paliativos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
@@ -416,81 +416,13 @@
         </script>	
 	</head>
 	<body> 				
-		<div class="container-fluid">			
-			<div class="row-fluid" id="header">
-				<div class="span12">
-					<div class="page-header">
-						<h1 style="line-height:35px;">	
-							Red Social de Cuidados Paliativos Panam&aacute;
-						</h1>
-					</div>
-				</div>
-			</div>
-			<!--Navegación Superior-->
-			<div class="row-fluid" id="sub-header-nav">
-				<div class="span12">
-					<ul class="nav nav-pills" style="float:right;margin-top:4px;">						
-						<li class="dropdown pull-right">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<!--li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li-->
-								<li><a href="./?url=login">Iniciar Sesi&oacute;n</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Cerrar Sesi&oacute;n</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!--Contenido-->
-			<div class="row-fluid" id="contenido">
-				<?php include_once('./mvc/controlador/controlador.php'); new Controlador();?>
-				
-			</div>
+		
 			
-			<div class="row-fluid">
-				<div class="span12">	
-					<!--Nav-->
-					<div class="navbar">
-						<div class="navbar-inner">
-							<div class="container-fluid">
-							
-								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</a> 
-									<a href="#" class="brand">Atenciones</a>	
-								<div class="nav-collapse navbar-responsive-collapse collapse">
-									<ul class="nav">										
-										<li>
-											<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
-										</li>
-										<li>
-											<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
-										</li>
-										<li>
-											<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
-										</li>
-										<li>
-											<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		<!--Contenido-->
+		<?php 	include_once('./mvc/controlador/controlador.php'); new Controlador();?>
 			
-			<!--Pie de Página-->
-			<div class="row-fluid" id="footer">
-				<div class="span12">
-					<div class="page-footer">
-						<b>Derechos Reservados 2013-2014</b>
-					</div>
-				</div>
-			</div>
+			
+			
 		</div>
 	</body>
 </html>

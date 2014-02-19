@@ -118,14 +118,18 @@
 							<li><a href="#tab2" data-toggle="tab">Respuesta a la Referencia</a></li>
 						</ul>
 						<div class="tab-content">
-							<div class="tab-pane active" id="tab1">
-							  <form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">';
+							<div class="tab-pane active" id="tab1">';
+							 
 						if($readonly != ''){
 							$cont.='
-									<button onclick="window.print();" class="btn" title="Imprimir" ><img src="./iconos/imprimir.png" width="24px"> Imprimir</button> 
-									<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> ';
+									
+										<a href="datospdf.php?idpac='.$cedula.'&idr='.$idr.'&tiporef=1&imprimir=1"class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 																	
+										<a href="datospdf.php?idpac='.$cedula.'&idr='.$idr.'&tiporef=1" type="submit" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+									';
 						}
-							$cont.='
+						
+							$cont.=' 
+							<form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'">
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
 										<input id="acordeon1" name="accordion" type="radio"/>
@@ -459,6 +463,7 @@
 													</tbody>';					
 					$x = $tipoexamen->releer();
 				}
+			$cont.='</table>';
 				//IMPRESION DE RESULTADOS EXAMEN DIAGNOSTICO
 				$cont.='
 					<table class="tabla-datos table_imp" id="datos_imp" width="100%" style="margin-top:7px;text-align:center;">
@@ -540,9 +545,10 @@
 							$idr = $_GET['idr'];
 							if($respuesta->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').'')){	
 								if(!empty($idr)){
-									$cont.='
-										<a href="#" class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 
-										<a href="#" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+									$cont.='										
+																					
+											<a href="datospdf.php?idpac='.$cedula.'&idr='.$idr.'&tiporef=0&imprimir=1"class="btn" title="Imprimir"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 									
+											<a href="datospdf.php?idpac='.$cedula.'&idr='.$idr.'&tiporef=0" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
 									';
 								}
 									$cont.='
