@@ -116,7 +116,6 @@
 						</tr>
 			';
 			$e = $equipo->releer();
-			$n++;
 		}
 		$button = '<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button>';
 	}else{
