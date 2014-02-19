@@ -48,6 +48,7 @@
 								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
 							</tr>
 						</table>
+						<a href="./?url=domiciliaria_visita_realizada" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
 					</form>
 				</center>';			
@@ -185,14 +186,15 @@
 									</tr>
 									<tr>
 										<td>Observaciones:</td>
-										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;nes"></textarea></td>
+										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaciones"></textarea></td>
 									</tr>
 								</table>
 							</center>
 						</fieldset>
 
 					<center>
-						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
+						<a href="./?url=domiciliaria_visita_realizada" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;" title="Guardar">Guardar</button>
 					</center>
 				</form>
 		';

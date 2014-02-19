@@ -57,6 +57,7 @@
 									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
 								</tr>
 							</table>
+							<a href="./?url=domiciliarias_diario_actividades" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>							
 						</form>
 					</center>';	
@@ -381,6 +382,7 @@
 					</div>
 				</div>		
 				<center>
+					<a href="./?url=domiciliarias_diario_actividades" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 					<button style="background:none;border:none;padding-top:7px"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
 				</center>
 			</form>';
