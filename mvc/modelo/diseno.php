@@ -524,7 +524,7 @@ class Diseno {
 								<ul>
 									<li><a class="sublink" href="./?url="><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>
 									<li><a class="sublink" href="#"><i>Nº de Consultas por Paciente x Unidad de Tiempo</i></a></li>								
-									<li><a class="sublink" href="#"><i>Activadades Realizadas por Paciente</i></a></li>								
+									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas"><i>Actividades Realizadas por Paciente</i></a></li>								
 								</ul>
 							</article>	
 						</div>
@@ -548,7 +548,7 @@ class Diseno {
 							<label for="ac-7">Indicadores</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url="><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
+									<li><a class="sublink" href="./?url=indicadores_porcentaje_hospitalizados"><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
 									<li><a class="sublink" href="#"><i>Razones de Readmisiones</i></a></li>								
 								</ul>
 							</article>	
