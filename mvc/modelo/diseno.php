@@ -93,10 +93,10 @@ class Diseno {
 				{
 					case 1: $aber = 'Lunes';		break;
 					case 2: $aber = 'Martes';		break;
-					case 3: $aber = 'Miercoles';	break;
+					case 3: $aber = 'Mi&eacute;rcoles';	break;
 					case 4: $aber = 'Jueves';		break;
 					case 5: $aber = 'Viernes';		break;
-					case 6: $aber = 'Sabado';		break;
+					case 6: $aber = 'S&aacute;bado';		break;
 					case 7: $aber = 'Domingo';		break;
 				}
 			break;
@@ -582,7 +582,7 @@ class Diseno {
 				</div>
 			
 				<!--Diseño del contenido de la página-->
-				<div class="span10" style="min-height:650px;background:#fff;">							
+				<div class="span10" style="min-height:675px;background:#fff;">							
 					'.$this->latino($this->derecha).'
 							
 				</div>
