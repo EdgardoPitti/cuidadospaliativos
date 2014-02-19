@@ -34,25 +34,25 @@
 	
 	$cont='
 		<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>
-		<br>
+		
 		<center>
 			<form method="POST" action="./?url=domiciliaria_agenda">
-					Ir a: <input type="date" id="fecha" name="fecha"><br><button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+					Ir a: <input type="date" id="fecha" name="fecha"><br>
+					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
 			<b>Citas del '.$fecha.'</b>
 		</center>
 		<div class="row-fluid" style="width: 100%; height: 600px; overflow-y: scroll;">
 			<div class="span2">
-				<a href="./?url=domiciliaria_agenda" style="background:none;border:none;" title="Ir a Dia">
-				<article class="agenda">
-					<center>
-						<h2>'.$ds->dime('dia es').'</h2>
-						<h1>'.$ds->dime('dia').'</h1>
-						<h5>'.$ds->dime('mes-'.$ds->dime('mes').'').' '.$ds->dime('agno').'</h5>
-					</center>
-				</article>
-				</a>
-				';
+				<a href="./?url=domiciliaria_agenda" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
+					<article class="agenda">
+						<center>
+							<h2>'.$ds->dime('dia es').'</h2>
+							<h1>'.$ds->dime('dia').'</h1>
+							<h5>'.$ds->dime('mes-'.$ds->dime('mes').'').' '.$ds->dime('agno').'</h5>
+						</center>
+					</article>
+				</a>';
 	$x = 1; 
 	While($x < 6){
 		if($x == 1){
@@ -61,14 +61,14 @@
 			$next = explode("-",$ds->diasig($next[2], $next[1],$next[0]));	
 		}
 		$cont.='
-						<a href="./?url=domiciliaria_agenda&c='.$x.'" style="background:none;border:none;" title="Ir a Dia">
-						<article class="agenda">
-							<center>
-								<h2>'.$ds->diasdespues(''.$x.'').'</h2>
-								<h1>'.$next[2].'</h1>
-								<h5>'.$ds->dime('mes-'.(int)$next[1].'').' '.$next[0].'</h5>
-							</center>
-						</article>
+						<a href="./?url=domiciliaria_agenda&c='.$x.'" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">
+							<article class="agenda">
+								<center>
+									<h2>'.$ds->diasdespues(''.$x.'').'</h2>
+									<h1>'.$next[2].'</h1>
+									<h5>'.$ds->dime('mes-'.(int)$next[1].'').' '.$next[0].'</h5>
+								</center>
+							</article>
 						</a>
 						';		
 		$x++;

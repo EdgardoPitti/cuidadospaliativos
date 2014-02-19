@@ -22,5 +22,5 @@ $(function(){
 	$("#mostrar_ocultar1").hide();
 	$("#mostrar_ocultar3").hide();
 	$("#mostrar_ocultar2").hide();
-  });			  
+  });		
 });
