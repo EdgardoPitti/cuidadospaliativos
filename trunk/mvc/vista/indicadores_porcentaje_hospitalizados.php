@@ -54,6 +54,11 @@
 						pointFormat: '.$comillas.'{series.name}: <b>{point.percentage:.1f}%</b>'.$comillas.'
 					},
 					plotOptions: {
+						column: {
+							pointPadding: 0,
+							borderWidth: 0,
+							shadow:true
+						}
 						pie: {
 							allowPointSelect: true,
 							cursor: '.$comillas.'pointer'.$comillas.',

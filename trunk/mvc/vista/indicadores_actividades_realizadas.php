@@ -63,7 +63,8 @@
             plotOptions: {
                 column: {
                     pointPadding: 0,
-                    borderWidth: 0
+                    borderWidth: 0,
+					shadow:true
                 }
             },
 			series:[{

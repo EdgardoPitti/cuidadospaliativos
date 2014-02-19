@@ -36,11 +36,11 @@
 			<center>
 				<table>
 					<tr>
-						<td>Fecha: </td>
+						<td><b>Fecha: </b></td>
 						<td>'.$fecha.'</td>
 					</tr>
 					<tr>
-						<td>Hora: </td>
+						<td><b>Hora: </b></td>
 						<td>'.$hora.'</td>
 					</tr>
 				</table>
@@ -51,11 +51,11 @@
 					<table>
 						<tr>
 							<td>Paciente:</td>
-							<td><input type="text" id="paciente" name="paciente" value="'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Paciente" '.$readonly.'><br><input type="text" id="cedpaciente" name="cedpaciente" value="'.$paciente->obtener('NO_CEDULA').'" placeholder="Cédula Paciente" readonly></td>
+							<td><input type="text" id="paciente" name="paciente" value="'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Paciente" '.$readonly.'><br><input type="text" id="cedpaciente" name="cedpaciente" value="'.$paciente->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Paciente" readonly></td>
 						</tr>
 						<tr>
 							<td>Profesional:</td>
-							<td><input type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.'><br><input type="text" id="cedprofesional" name="cedprofesional" value="'.$profesional->obtener('NO_CEDULA').'" placeholder="Cédula Profesional" readonly></td>
+							<td><input type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.'><br><input type="text" id="cedprofesional" name="cedprofesional" value="'.$profesional->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Profesional" readonly></td>
 						</tr>
 						<tr>
 							<td>Servicio:</td>
@@ -90,17 +90,17 @@
 					<br>
 					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button><br>
 					</form>
-					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo Médico</h3>	
+					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>	
 					<form method="POST" action="./?url=agregar_citas&id='.$id.'&sw=1">
-					<table class="-datos">';
+						<table>';
 	if(!empty($id)){
 		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$citas->obtener('ID_EQUIPO_MEDICO').'');
 		if($e){
-			$cont.='	<tr>
-							<th>Profesional</th>
-							<th>&nbsp;&nbsp</th>
-							<th>Especialidad</th>
-						</tr>';
+			$cont.='		<tr>
+								<th>Profesional</th>
+								<th>&nbsp;&nbsp</th>
+								<th>Especialidad</th>
+							</tr>';
 		}
 		while($e){
 			$profesional->buscardonde('ID_PROFESIONAL = '.$equipo->obtener('ID_PROFESIONAL').'');
@@ -109,11 +109,11 @@
 			$segundo_nombre = $profesional->obtener('SEGUNDO_NOMBRE');
 			$segundo_apellido = $profesional->obtener('APELLIDO_MATERNO');
 			$cont.='
-						<tr>
-							<td align="center">'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
-							<td></td>
-							<td align="center">'.$especialidades->obtener('DESCRIPCION').'</td>
-						</tr>
+							<tr>
+								<td align="center">'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
+								<td></td>
+								<td align="center">'.$especialidades->obtener('DESCRIPCION').'</td>
+							</tr>
 			';
 			$e = $equipo->releer();
 		}
@@ -123,13 +123,19 @@
 	}
 	$cont.='
 					</table>
-						'.$_SESSION['error'].'<br>
-						Buscar Profesional: <input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional"><input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="Cédula Profesional" readonly>'.$button.'</td>
-						</tr>
-					
-					</form>
-						
-					<a href="./?url=domiciliaria_agenda">Volver Agenda</a>
+						<table class="tabla-datos">
+							<tr align="center">
+								<td>Buscar Profesional:</td>
+								<td>
+									<input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional">
+									<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
+								</td>
+								<td>'.$button.'</td>
+							</tr>					
+						</table>
+						<center>'.$_SESSION['error'].'</center>
+					</form>	
+					<a href="./?url=domiciliaria_agenda" class="btn btn-default">Volver Agenda</a>
 				</center>
 		';
 	$_SESSION['hora_'.$_GET['h'].''] = '';
