@@ -30,7 +30,7 @@
 	
 		$cont.='
 					<center>
-						<form method="POST" action="./?url=agregar_datos_rda">
+						<form method="POST" action="./?url=agregar_datos_rda&sbm=1">
 							<table width="40%" >
 								<tr>
 									<td>Fecha:</td>
@@ -57,7 +57,7 @@
 									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
 								</tr>
 							</table>
-							<a href="./?url=domiciliarias_diario_actividades" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+							<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>							
 						</form>
 					</center>';	
@@ -106,7 +106,7 @@
 			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
 		}
 		$cont.='
-				<form class="form-search" method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'">
+				<form class="form-search" method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'&sbm=1">
 					<table class="tabla-datos">
 						<tr align="center">
 							<td>Nombre Profesional:</td>
@@ -222,7 +222,7 @@
 			$e = $estado_paciente->releer();
 		}
 		$cont.='
-			<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'">			
+			<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1">			
 				<div class="row-fluid">
 					<div class="span4">
 						<fieldset>
@@ -382,7 +382,7 @@
 					</div>
 				</div>		
 				<center>
-					<a href="./?url=domiciliarias_diario_actividades" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+					<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 					<button style="background:none;border:none;padding-top:7px"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
 				</center>
 			</form>';

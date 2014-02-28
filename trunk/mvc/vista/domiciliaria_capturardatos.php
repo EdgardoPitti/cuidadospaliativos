@@ -21,7 +21,7 @@
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Domiciliaria</h3>						
 			<div class="row-fluid">
 				<div class="span12">
-					<form method="POST" action="./?url=domiciliaria_capturardatos">
+					<form method="POST" action="./?url=domiciliaria_capturardatos&sbm=1">
 						<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>
 					</form>
 				</div>
@@ -44,7 +44,7 @@
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente" method="post" style="display:block;position:relative">
+			<form action="./?url=agregardatospaciente&sbm=1" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>

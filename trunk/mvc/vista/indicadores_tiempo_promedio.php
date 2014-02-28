@@ -73,7 +73,7 @@
 		$variable = 2014;
 	}
 	$cont.='
-					<form method="POST" action="./?url=indicadores_tiempo_promedio">
+					<form method="POST" action="./?url=indicadores_tiempo_promedio&sbm=1">
 							Desde el A&ntilde;o: <input style="width:60px;" type="number" id="variable1" name="variable1" min="2013" max="'.$ds->dime('agno').'" value="2013"><br>
 							<center>
 								<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button>

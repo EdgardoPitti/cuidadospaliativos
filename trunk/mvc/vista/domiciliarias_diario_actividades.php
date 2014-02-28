@@ -71,7 +71,7 @@
 					$cont.='
 									<td>'.$matriz[0][cantidad].'</td>
 									<td>'.$rda->obtener('HORAS_DE_ATENCION').'</td>
-									<td><a href="./?url=domiciliarias_registro_actividades&id='.$rda->obtener('ID_RDA').'" title="Ver o Editar Actividad"><img src="./iconos/search.png"></a></td>
+									<td><a href="./?url=domiciliarias_registro_actividades&id='.$rda->obtener('ID_RDA').'&sbm=1" title="Ver o Editar Actividad"><img src="./iconos/search.png"></a></td>
 								</tr>
 							</tbody>
 		';
@@ -82,7 +82,7 @@
 				</table>
 			</div>
 			<center>
-				<a href="./?url=domiciliarias_registro_actividades" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
+				<a href="./?url=domiciliarias_registro_actividades&sbm=1" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
 			</center>
 		</div>
 	</div>

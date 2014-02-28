@@ -20,6 +20,7 @@
 		<script type='text/javascript' src='js/jquery-1.8.3.js'></script>	
 		<script type='text/javascript' src='js/show_hide.js'></script>	
 		<script type='text/javascript' src='js/overflow.js'></script>	
+		<script type='text/javascript' src='js/ajax.js'></script>	
 
 		<!-- Scripts para el Autocomplete -->
 		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" media="screen"/>        
@@ -441,33 +442,66 @@
 					</ul>
 				</div>
 			</div>   
-			   
+			<?php
+				$mantener = $_GET['sbm'];
+				if(empty($mantener)){
+					$display1='none';
+					$display2='none';
+					$display3='none';
+					$display4='none';
+				}else{
+					if($mantener == 1){
+						$display1='block';
+						$display2='none';
+						$display3='none';
+						$display4='none';
+					}
+					if($mantener == 2){
+						$display1='none';
+						$display2='block';
+						$display3='none';
+						$display4='none';
+					}
+					if($mantener == 3){
+						$display1='none';
+						$display2='none';
+						$display3='block';
+						$display4='none';
+					}
+					if($mantener == 4){
+						$display1='none';
+						$display2='none';
+						$display3='none';
+						$display4='block';
+					}
+				}
+			?>
 			<div class="row-fluid">  
 				<!--Aside-->
 				<div class="span2" id="menu">
 				
 					<!--DOMICILIARIA-->					
-					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:none;">			
+					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:<?php echo $display1; ?>;">			
 						<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
 						<div style="margin-bottom:2px;">
 							<input id="ac-1" name="acordeon" type="radio" />
 							<label for="ac-1">Registro de Visitas Domiciliarias</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=domiciliaria_capturardatos" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
-									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
-									<li><a class="sublink" href="./?url=domiciliaria_agenda" title="Agenda"><i>Agenda</i></a></li>				
+									<li><a class="sublink" href="./?url=domiciliaria_capturardatos&sbm=1" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
+									<li><a class="sublink" href="./?url=domiciliaria_agenda&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
 							</article>	
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliarias_diario_actividades" title="Registro de Actividades Diarias">Registro de Actividades Diarias</a></li>
+								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=1" title="Registro de Actividades Diarias">Registro de Actividades Diarias</a></li>
 							</ul>
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliaria_surco" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
+								<li><a class="link" href="./?url=domiciliaria_surco&sbm=1" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
 							</ul>
 						</div>
 						<div style="margin-bottom:10px;">
@@ -475,24 +509,24 @@
 							<label for="ac-2">Indicadores</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=indicadores_total_visitas" title="Total de Visitas Realizadas por Periodo de Tiempo"><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
-									<li><a class="sublink" href="./?url=indicadores_tiempo_promedio" title="Tiempo Promedio Empleado por Visita"><i>Tiempo Promedio Empleado por Visita</i></a></li>
-									<li><a class="sublink" href="./?url=indicadores_pacientes_diagnostico" title="N&deg de Visitas por Paciente Seg&uacute;n Diagn&oacute;stico"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
-									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas" title="Actividades Realizadas por Visitas"><i>Actividades Realizadas por Visitas</i></a></li>		
+									<li><a class="sublink" href="./?url=indicadores_total_visitas&sbm=1" title="Total de Visitas Realizadas por Periodo de Tiempo"><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
+									<li><a class="sublink" href="./?url=indicadores_tiempo_promedio&sbm=1" title="Tiempo Promedio Empleado por Visita"><i>Tiempo Promedio Empleado por Visita</i></a></li>
+									<li><a class="sublink" href="./?url=indicadores_pacientes_diagnostico&sbm=1" title="N&deg de Visitas por Paciente Seg&uacute;n Diagn&oacute;stico"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
+									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=1" title="Actividades Realizadas por Visitas"><i>Actividades Realizadas por Visitas</i></a></li>		
 								</ul>
 							</article>	
 						</div>
 					</div>	
 					
 					<!--AMBULATORIA-->
-					<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:none;">			
+					<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:<?php echo $display2; ?>;">			
 						<h3>Men&uacute; Atenci&oacute;n Ambulatoria</h3><hr>
 						<div style="margin-bott om:2px;">
 							<input id="ac-3" name="acordeon" type="radio" />
 							<label for="ac-3">Registro Diario de Actividades</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=ambulatoria_capturardatos" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="./?url=ambulatoria_capturardatos&sbm=2" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
 									<li><a class="sublink" href="#" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
 							</article>	
@@ -502,8 +536,8 @@
 							<label for="ac-4">Contacto Telef&oacute;nico</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente" title="Atenci&oacute;n al Paciente"><i>Atenci&oacute;n al Paciente</i></a></li>
-									<li><a class="sublink" href="./?url=ambulatoria_interconsulta" title="Interconsulta"><i>Interconsulta</i></a></li>								
+									<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente&sbm=2" title="Atenci&oacute;n al Paciente"><i>Atenci&oacute;n al Paciente</i></a></li>
+									<li><a class="sublink" href="./?url=ambulatoria_interconsulta&sbm=2" title="Interconsulta"><i>Interconsulta</i></a></li>								
 								</ul>
 							</article>	
 						</div>
@@ -514,22 +548,22 @@
 								<ul>
 									<li><a class="sublink" href="#" title="Frecuentaci&oacuten Paciente/Familiar a la Instalaci&oacute;n por Periodo de Tiempo"><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>
 									<li><a class="sublink" href="#" title="N&ordm; de Consultas por Paciente por Unidad de Tiempo"><i>N&ordm; de Consultas por Paciente x Unidad de Tiempo</i></a></li>								
-									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas" title="Actividades Realizadas por Paciente"><i>Actividades Realizadas por Paciente</i></a></li>								
+									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=2" title="Actividades Realizadas por Paciente"><i>Actividades Realizadas por Paciente</i></a></li>								
 								</ul>
 							</article>	
 						</div>
 					</div>	
 						
 					<!--HOSPITALARIA-->
-					<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:none;">			
+					<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:<?php echo $display3; ?>;">			
 						<h3>Men&uacute; Atenci&oacute;n Hospitalaria</h3><hr>
 						<div style="margin-bott om:2px;">
 							<input id="ac-6" name="acordeon" type="radio" />
 							<label for="ac-6">RAE</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
-									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
+									<li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos&sbm=3" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=3" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
 								</ul>
 							</article>	
 						</div>
@@ -544,14 +578,14 @@
 									<li><a class="sublink" href="#" title="Porcentaje de egresos"><i>Porcentaje de Egresos</i></a></li>								
 									<li><a class="sublink" href="#" title="Razones de Readmisiones"><i>Razones de Readmisiones</i></a></li>								
 									<li><a class="sublink" href="#" title="Porcentaje de Infecciones Nosocomiales"><i>Porcentaje de Infecciones Nosocomiales</i></a></li>								
-									<li><a class="sublink" href="./?url=indicadores_porcentaje_hospitalizados" title="Porcentaje de Hospitalizados referidos de Consulta externa"><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
+									<li><a class="sublink" href="./?url=indicadores_porcentaje_hospitalizados&sbm=3" title="Porcentaje de Hospitalizados referidos de Consulta externa"><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
 								</ul>
 							</article>	
 						</div>
 					</div>	
 					
 					<!--RED SOCIAL   onclick="show_span()"-->
-					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:none;">	
+					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:<?php echo $display4; ?>;">	
 					<h3>Red Social</h3><hr>
 						<div>
 							<ul class="acordeon_link">
@@ -623,9 +657,6 @@
 					</div>
 				</div>
 			</div>	
-		</div>
-			
-			
-		</div>
+		</div>	
 	</body>
 </html>

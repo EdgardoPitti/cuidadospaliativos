@@ -36,7 +36,7 @@
 		<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>
 		
 		<center>
-			<form method="POST" action="./?url=domiciliaria_agenda">
+			<form method="POST" action="./?url=domiciliaria_agenda&sbm=1">
 					Ir a: <input type="date" id="fecha" name="fecha"><br>
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
@@ -44,7 +44,7 @@
 		</center>
 		<div class="row-fluid" style="width: 100%; height: 600px; overflow-y: scroll;">
 			<div class="span2">
-				<a href="./?url=domiciliaria_agenda" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
+				<a href="./?url=domiciliaria_agenda&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
 					<article class="agenda">
 						<center>
 							<h2>'.$ds->dime('dia es').'</h2>
@@ -61,7 +61,7 @@
 			$next = explode("-",$ds->diasig($next[2], $next[1],$next[0]));	
 		}
 		$cont.='
-						<a href="./?url=domiciliaria_agenda&c='.$x.'" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">
+						<a href="./?url=domiciliaria_agenda&c='.$x.'&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">
 							<article class="agenda">
 								<center>
 									<h2>'.$ds->diasdespues(''.$x.'').'</h2>
@@ -112,7 +112,7 @@
 								'.$paciente->obtener('NO_CEDULA').' 
 								'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - 
 								'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - 
-								'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'" title="Editar Cita"><img src="./iconos/search.png"></a>
+								'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a>
 							</td>
 			';
 		

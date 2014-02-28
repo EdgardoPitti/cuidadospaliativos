@@ -6,7 +6,7 @@
 	$cont='
 		<center>
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Interconsulta</h3>	
-			<form class="form-search" method="POST" action="./?url=">						
+			<form class="form-search" method="POST" action="#">						
 				<div class="input-group">
 				  <input type="search" class="form-control" id="busqueda" placeholder="Buscar paciente" name="nom_ced">
 				  <span class="input-group-btn">

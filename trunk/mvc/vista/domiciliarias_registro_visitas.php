@@ -29,7 +29,7 @@
 	if(empty($idrvd)){
 		$cont.='
 				<center>
-					<form method="POST" action="./?url=agregar_datos_rvd">
+					<form method="POST" action="./?url=agregar_datos_rvd&sbm=1">
 						<table>
 							<tr>
 								<td>Fecha: </td>
@@ -48,7 +48,7 @@
 								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
 							</tr>
 						</table>
-						<a href="./?url=domiciliaria_visita_realizada" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+						<a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
 					</form>
 				</center>';			
@@ -98,7 +98,7 @@
 		}
 		$cont.='
 			<center>
-				<form class="form-search" method="POST" action="./?url=agregar_datos_rvd&sw=2&id='.$idrvd.'">
+				<form class="form-search" method="POST" action="./?url=agregar_datos_rvd&sw=2&id='.$idrvd.'&sbm=1">
 					<table class="tabla-datos">
 						<tr align="center">
 							<td>Nombre Profesional:</td>
@@ -114,7 +114,7 @@
 			</center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
 					
-				<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'">';
+				<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='
@@ -193,7 +193,7 @@
 						</fieldset>
 
 					<center>
-						<a href="./?url=domiciliaria_visita_realizada" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+						<a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;" title="Guardar">Guardar</button>
 					</center>
 				</form>
