@@ -46,7 +46,7 @@
 				</table>
 			</center>
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Datos</h3>	
-			<form method="POST" action="./?url=agregar_citas&id='.$id.'">
+			<form method="POST" action="./?url=agregar_citas&id='.$id.'&sbm=1">
 				<center>
 					<table>
 						<tr>
@@ -91,7 +91,7 @@
 					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button><br>
 					</form>
 					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>	
-					<form method="POST" action="./?url=agregar_citas&id='.$id.'&sw=1">
+					<form method="POST" action="./?url=agregar_citas&id='.$id.'&sw=1&sbm=1">
 						<table>';
 	if(!empty($id)){
 		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$citas->obtener('ID_EQUIPO_MEDICO').'');
@@ -135,7 +135,7 @@
 						</table>
 						<center>'.$_SESSION['error'].'</center>
 					</form>	
-					<a href="./?url=domiciliaria_agenda" class="btn btn-default">Volver Agenda</a>
+					<a href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-default">Volver Agenda</a>
 				</center>
 		';
 	$_SESSION['hora_'.$_GET['h'].''] = '';

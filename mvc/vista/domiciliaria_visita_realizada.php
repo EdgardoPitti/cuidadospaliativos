@@ -13,7 +13,7 @@
 			<div class="span12">
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
 				<center>
-					<form class="for m-search" method="POST" action="./?url=domiciliaria_visita_realizada">
+					<form class="for m-search" method="POST" action="./?url=domiciliaria_visita_realizada&sbm=1">
 						<table class="tabla-datos">						
 							<tr>
 								<th>Filtrar</th>
@@ -66,7 +66,7 @@
 					$cont.='
 									<td>'.$matriz[0][cantidad].'</td>
 									<td>'.$rvd->obtener('HORAS_DE_ATENCION').'</td>
-									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'"><img src="./iconos/search.png"></a></td>
+									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'&sbm=1"><img src="./iconos/search.png"></a></td>
 								</tr>
 							</tbody>
 				';
@@ -78,7 +78,7 @@
 					</div>
 				</center>
 				<center>
-					<a href="./?url=domiciliarias_registro_visitas" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
+					<a href="./?url=domiciliarias_registro_visitas&sbm=1" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
 				</center>
 			</div>
 		</div>

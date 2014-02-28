@@ -30,7 +30,7 @@
 	if(empty($buscar) or $sw == 1){	
 		if($sw == 1){
 			$agnadir='
-					<a href="./?url=hospitalaria_rae_capturardatos">Paciente no Encotrado...Añadir</a>';	
+					<a href="./?url=hospitalaria_rae_capturardatos&sbm=2">Paciente no Encotrado...Añadir</a>';	
 		}
 	}else{
 		
@@ -97,7 +97,7 @@
 			<div class="row-fluid">
 				<div class="span12">					
 					<div align="center">
-						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente">
+						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente&sbm=2">
 							<div class="input-group">
 							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
 							  <span class="input-group-btn">
@@ -170,7 +170,7 @@
 					</div>
 					
 					<!--AGREGAR OBSERVACIONES-->
-					<form method="POST" action="./?url=agregar_observacion">
+					<form method="POST" action="./?url=agregar_observacion&sbm=2">
 						<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
 							<div class="modal-header">  
 								<a class="close" data-dismiss="modal">×</a>  
@@ -190,7 +190,7 @@
 					</form>
 					
 					<!--RESPONDER INTERCONSULTA-->
-					<form method="POST" action="./?url=agregar_resp_interconsulta">
+					<form method="POST" action="./?url=agregar_resp_interconsulta&sbm=2">
 						<div id="res_inter" class="modal hide fade in" style="display: none; ">  
 							<div class="modal-header">  
 								<a class="close" data-dismiss="modal">×</a>  

@@ -30,7 +30,7 @@
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Admisión-Egreso (RAE)</h3>
 		</center>
 					<center>
-				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion">
+				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion&sbm=3">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
 					  <span class="input-group-btn">
@@ -48,7 +48,7 @@
 	if((empty($buscar) or $sw == 1) and empty($idpaciente)){
 		if($sw == 1){
 			$cont.='<center>
-						Paciente no Encotrado...<a href="./?url=hospitalaria_rae_capturardatos"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
+						Paciente no Encotrado...<a href="./?url=hospitalaria_rae_capturardatos&sbm=3"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
 					</center>
 			';
 		}
@@ -63,7 +63,7 @@
 		}
 		if(!$responsable->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'')){
 		$cont.='	
-			<form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'">
+			<form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sbm=3">
 					<fieldset>
 						<legend>
 							Responsable del Paciente
@@ -146,7 +146,7 @@
 			';
 		}else{
 			$cont.='
-				<form method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'">';
+				<form method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm=3">';
 									
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 			$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');

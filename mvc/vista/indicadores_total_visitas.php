@@ -20,18 +20,18 @@
             },
             xAxis: {
                 categories: [
-                    '.$comillas.'Jan'.$comillas.',
+                    '.$comillas.'Ene'.$comillas.',
                     '.$comillas.'Feb'.$comillas.',
                     '.$comillas.'Mar'.$comillas.',
-                    '.$comillas.'Apr'.$comillas.',
+                    '.$comillas.'Abr'.$comillas.',
                     '.$comillas.'May'.$comillas.',
                     '.$comillas.'Jun'.$comillas.',
                     '.$comillas.'Jul'.$comillas.',
-                    '.$comillas.'Aug'.$comillas.',
+                    '.$comillas.'Ago'.$comillas.',
                     '.$comillas.'Sep'.$comillas.',
                     '.$comillas.'Oct'.$comillas.',
                     '.$comillas.'Nov'.$comillas.',
-                    '.$comillas.'Dec'.$comillas.'
+                    '.$comillas.'Dic'.$comillas.'
                 ]
             },
             yAxis: {
@@ -64,7 +64,7 @@
 	}
 	$cont.='
 					
-					<form method="POST" action="./?url=indicadores_total_visitas">
+					<form method="POST" action="./?url=indicadores_total_visitas&sbm=1">
 							Desde el A&ntilde;o: <input style="width:60px;" type="number" id="variable1" name="variable1" min="2013" max="'.$ds->dime('agno').'" value="2013"><br>
 							<center>
 								<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button>

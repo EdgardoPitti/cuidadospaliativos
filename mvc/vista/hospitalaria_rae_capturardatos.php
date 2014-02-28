@@ -21,7 +21,7 @@
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Hospitalaria</h3>
 				<div class="row-fluid">
 					<div class="span12">
-						<form method="POST" action="./?url=hospitalaria_rae_capturardatos">
+						<form method="POST" action="./?url=hospitalaria_rae_capturardatos&sbm=3">
 							<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>
 						</form>
 					</div>
@@ -45,7 +45,7 @@
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente&sw=1" method="post" style="display:block;position:relative">
+			<form action="./?url=agregardatospaciente&sw=1&sbm=3" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>

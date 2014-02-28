@@ -15,6 +15,7 @@
 		$matriz = $ds->db->obtenerarreglo($sql);
 		$cantidad = $matriz[0][cantidad];
 		$porcentaje = number_format(($cantidad/$total)*100, 1);
+		
 		if($sw){
 			$data .= '
 				{
@@ -53,26 +54,22 @@
 					tooltip: {
 						pointFormat: '.$comillas.'{series.name}: <b>{point.percentage:.1f}%</b>'.$comillas.'
 					},
-					plotOptions: {
-						column: {
-							pointPadding: 0,
-							borderWidth: 0,
-							shadow:true
-						}
+					plotOptions: {						
 						pie: {
 							allowPointSelect: true,
 							cursor: '.$comillas.'pointer'.$comillas.',
 							dataLabels: {
 								enabled: false
 							},
-							showInLegend: true
+							showInLegend: true,
+							shadow:true
 						}
 					},
 					series: [{
 						type: '.$comillas.'pie'.$comillas.',
 						name: '.$comillas.'Porcentaje de Personsas'.$comillas.',
 						data: [
-							'.$data.'
+									'.$data.'
 						]
 					}]
 				});
