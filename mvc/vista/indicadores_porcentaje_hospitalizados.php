@@ -54,12 +54,15 @@
 					tooltip: {
 						pointFormat: '.$comillas.'{series.name}: <b>{point.percentage:.1f}%</b>'.$comillas.'
 					},
-					plotOptions: {						
+					plotOptions: {
 						pie: {
 							allowPointSelect: true,
 							cursor: '.$comillas.'pointer'.$comillas.',
 							dataLabels: {
-								enabled: false
+								enabled: true,
+								color: '.$comillas.'#000000'.$comillas.',
+								connectorColor: '.$comillas.'#000000'.$comillas.',
+								format: '.$comillas.'<b>{point.name}</b>: {point.percentage:.1f} %'.$comillas.'
 							},
 							showInLegend: true,
 							shadow:true
@@ -69,7 +72,8 @@
 						type: '.$comillas.'pie'.$comillas.',
 						name: '.$comillas.'Porcentaje de Personsas'.$comillas.',
 						data: [
-									'.$data.'
+								'.$data.'
+
 						]
 					}]
 				});
@@ -78,9 +82,8 @@
 		});
 	</script>
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/highcharts.js'.$comillas.'></script>	
-	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/grid.js'.$comillas.'></script>	
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>';
-	$cont.='<div id="grafica" style="min-width: 310px; height: 500px;"></div>
+	$cont.='<br><div id="grafica" style="min-width: 310px; height: 500px;"></div>
 			'.$script.'';
 	
 	$ds->contenido($cont);
