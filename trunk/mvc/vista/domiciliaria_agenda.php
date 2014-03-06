@@ -2,6 +2,8 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
+	$_SESSION['error_profesional'] = '';
+	$_SESSION['fecha_1'] = '';
 	$citas = new Accesatabla('citas_medicas');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$paciente = new Accesatabla('datos_pacientes');
@@ -103,19 +105,25 @@
 		';
 		$c = $citas->buscardonde('FECHA = "'.$date.'" AND HORA = "'.$hora.'" AND RESERVADA = 1');
 		if($c){
-			$paciente->buscardonde('ID_PACIENTE = '.$citas->obtener('ID_PACIENTE').'');
-			$profesional->buscardonde('ID_PROFESIONAL = '.$citas->obtener('ID_PROFESIONAL').'');
-			$servicio->buscardonde('ID_SERVICIO = '.$citas->obtener('ID_SERVICIO').'');
 			$cont.='
-				
-							<td>
-								'.$paciente->obtener('NO_CEDULA').' 
-								'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - 
-								'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - 
-								'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a>
-							</td>
+								<td>
 			';
-		
+			while($c){
+				$paciente->buscardonde('ID_PACIENTE = '.$citas->obtener('ID_PACIENTE').'');
+				$profesional->buscardonde('ID_PROFESIONAL = '.$citas->obtener('ID_PROFESIONAL').'');
+				$servicio->buscardonde('ID_SERVICIO = '.$citas->obtener('ID_SERVICIO').'');
+				$cont.='
+					
+									'.$paciente->obtener('NO_CEDULA').' 
+									'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - 
+									'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - 
+									'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'" title="Editar Cita"><img src="./iconos/search.png"></a><br>						
+				';
+				$c = $citas->releer();
+			}
+			$cont.='			
+									<a href="./?url=nueva_cita&h='.$x.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
+								</td>';
 		}else{
 			$cont.='		
 							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
