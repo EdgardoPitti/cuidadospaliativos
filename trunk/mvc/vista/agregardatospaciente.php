@@ -2,6 +2,7 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$datospaciente = new Accesatabla('datos_pacientes');
+	$paciente = new Accesatabla('pacientes');
 	$residencia = new Accesatabla('residencia_habitual');
 	$ds = new Diseno();
 	//Variable utilizada como Switch para controlar de que vista viene
@@ -35,6 +36,7 @@
 		
 		//Si no encuentra a nadie con ese registro 
 		if(!$datos){
+			
 			//se crea un nuevo
 			$datospaciente->nuevo();
 			//Se arma el sql para obtener el id max
@@ -75,7 +77,7 @@
 		$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $_POST['residenciatransitoria']);
 		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
-		$datospaciente->salvar();
+		$datospaciente->salvar();		
 		//Si no encuentra a nadie con ese registro 
 		if(!$datos){
 			//Se arma el sql para obtener el id max
@@ -83,7 +85,14 @@
 			$id = $ds->db->obtenerArreglo($sql);
 			$idpaciente = $id[0][id];
 		}
-		
+	}
+	$datospaciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+	$p = $paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+	if(!$p){
+		$paciente->nuevo();
+		$paciente->colocar("ID_PACIENTE", $idpaciente);
+		$paciente->colocar("ID_USUARIO", $idpaciente);
+		$paciente->salvar();
 	}
 	//Si no esta vacia la variable $sw o si no esta vacio al obtener el id por GET quiere decir que el registro es 
 	//de un paciente de atencion hospitalaria por lo tanto debe almacenar una persona responsable
@@ -119,7 +128,7 @@
 		include_once('./mvc/vista/inicio.php');
 	}else{
 		//echo '<br><br><br><br><br><br><br><br><center><h1><a href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'">Click para continuar....</a></h1></center><br><br><br><br><br><br><br><br>';
-		include_once('./mvc/vista/hospitalaria_rae_evolucion.php');
+		include_once('./mvc/vista/..php');
 	}
 	
 ?>

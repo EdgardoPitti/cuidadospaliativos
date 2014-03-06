@@ -10,8 +10,6 @@
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
-	$referido = new Accesatabla('referido');
-	$especialidad = new Accesatabla('especialidades_medicas');
 	
 	$ds = new Diseno();
 	$sw = 0;
