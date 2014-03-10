@@ -131,8 +131,8 @@
 						if($readonly != ''){
 							$cont.='
 									
-										<a href="datospdf.php?idpac='.$cedula.'&idr='.$idr.'&tiporef=1&imprimir=1"class="btn" title="Imprimir" target="_blank"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 																	
-										<a href="datospdf.php?idpac='.$cedula.'&idr='.$idr.'&tiporef=1" type="submit" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+										<a href="datospdf.php?idpac='.$cedula.'&tiporef=1&imprimir=1"class="btn" title="Imprimir" target="_blank"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 																	
+										<a href="datospdf.php?idpac='.$cedula.'&tiporef=1" type="submit" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
 									';
 						}
 						

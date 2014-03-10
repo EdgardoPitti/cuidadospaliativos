@@ -11,16 +11,13 @@
 		
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-		<link href="css/print.css" type="text/css" rel="stylesheet" media="print" />
 		
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/funciones.js"></script>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/funciones.js"></script>		
 		<script type="text/javascript" src="js/bootstrap.js"></script>	
-		<script type='text/javascript' src='js/jquery-1.8.3.js'></script>	
+		<script type='text/javascript' src='js/jquery-1.7.2.js'></script>	
 		<script type='text/javascript' src='js/show_hide.js'></script>	
 		<script type='text/javascript' src='js/overflow.js'></script>	
-		<script type='text/javascript' src='js/ajax.js'></script>	
 
 		<!-- Scripts para el Autocomplete -->
 		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" media="screen"/>        
@@ -584,7 +581,7 @@
 						</div>
 					</div>	
 					
-					<!--RED SOCIAL   onclick="show_span()"-->
+					<!--RED SOCIAL-->
 					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:<?php echo $display4; ?>;">	
 					<h3>Red Social</h3><hr>
 						<div>
