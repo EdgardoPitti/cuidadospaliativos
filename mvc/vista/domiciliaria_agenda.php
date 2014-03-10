@@ -117,12 +117,12 @@
 									'.$paciente->obtener('NO_CEDULA').' 
 									'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - 
 									'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - 
-									'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'" title="Editar Cita"><img src="./iconos/search.png"></a><br>						
+									'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a><br>						
 				';
 				$c = $citas->releer();
 			}
 			$cont.='			
-									<a href="./?url=nueva_cita&h='.$x.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
+									<a href="./?url=nueva_cita&h='.$x.'&sbm=1" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
 								</td>';
 		}else{
 			$cont.='		
