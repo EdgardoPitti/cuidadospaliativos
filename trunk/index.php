@@ -12,17 +12,32 @@
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
 		
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/funciones.js"></script>		
+		<script type="text/javascript" src="js/jquery.js"></script>	
 		<script type="text/javascript" src="js/bootstrap.js"></script>	
 		<script type='text/javascript' src='js/jquery-1.7.2.js'></script>	
 		<script type='text/javascript' src='js/show_hide.js'></script>	
 		<script type='text/javascript' src='js/overflow.js'></script>	
-
 		<!-- Scripts para el Autocomplete -->
 		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" media="screen"/>        
 		<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>   
 		
+		<script language="JavaScript" type="text/JavaScript">
+			//funcion para la seleccion de dropdown anidados
+			$(document).ready(function(){
+				$("#provincias").change(function(event){
+					var id = $("#provincias").find(':selected').val();
+					$("#distritos").load('./mvc/vista/capturardatos_distritos.php?idprovincia='+id);
+				});
+				$("#distritos").change(function(event){
+					var id = $("#distritos").find(':selected').val();
+					$("#corregimientos").load('./mvc/vista/capturardatos_corregimientos.php?iddistrito='+id);
+				});
+				$("#especialidad").change(function(event){
+					var id = $("#especialidad").find(':selected').val();
+					$("#nombre_esp").load('./mvc/vista/ambulatoria_atencionalpaciente_especialista.php?idespecialidad='+id);
+				});
+			});
+		</script>
 	<!-- Estas funciónes realizan el llamado via AJAX para el autocompletado 
 	del formulario con base en un término o palabra que el usuario 
 	indique en la medida que vaya digitando en el cuadro de texto -->

@@ -33,8 +33,8 @@
 					</tr>
 					<tr align="center">
 						<td align="center">Nombre:</td>
-						<td id="mostrarespecialista" name="mostrarespecialista">
-							<select style="width:150px"></select>
+						<td>
+							<select name="nombre_esp" id="nombre_esp" style="width:150px"></select>
 						</td>
 					</tr>
 				</table>

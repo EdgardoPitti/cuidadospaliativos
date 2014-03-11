@@ -320,7 +320,7 @@ $cont.='								   </select>
 										<td style="text-align:left;padding-left:17%;">Distrito:</td>
 									</tr>
 									<tr>
-										<td id="mostrardistritos" name="mostrardistritos">
+										<td>
 											<select style="width:140px" id="distritos" name="distritos">
 												<option value=""></option>';
 $d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
@@ -343,8 +343,8 @@ $cont.='
 										<td style="text-align:left;padding-left:17%;">Corregimiento:</td>
 									</tr>
 									<tr>
-										<td id="mostrarcorregimientos" name="mostrarcorregimientos">
-											<select style="width:140px" name="corregimientos">
+										<td>
+											<select style="width:140px" id="corregimientos" name="corregimientos">
 												<option value=""></option>';
 															
 $d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');

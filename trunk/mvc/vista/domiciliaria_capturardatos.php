@@ -299,28 +299,29 @@
 										</tr>
 										<tr>
 											<td>
-												<select id="provincias" name="provincias">
-													<option value="0"></option>';															
-													
-	$p = $provincias->buscardonde("ID_PROVINCIA > 0");
-	while($p){
-			if($provincias->obtener('ID_PROVINCIA') == $idprovincia){
-				$value='selected';
-			}else{
-				$value='';
-			}
-			$cont.='
-													<option value="'.$provincias->obtener('ID_PROVINCIA').'" '.$value.'>'.$provincias->obtener('PROVINCIA').'</option>';
-			$p = $provincias->releer();
-	}
-	$cont.='								   </select>
+												<select id="provincias" name="provincias"> 
+													<option value=""></option>';
+								$cont.= 
+						$x = $provincias->buscardonde('ID_PROVINCIA > 0');
+						while($x){
+							if($provincias->obtener('ID_PROVINCIA') == $idprovincia){
+								$value='selected';
+							}else{
+								$value='';
+							}
+							$cont.='
+													<option value="'.$provincias->obtener('ID_PROVINCIA').'" '.$value.'>'.$provincias->obtener('PROVINCIA').'</option>"';
+							$x = $provincias->releer();
+						}
+								$cont.='
+												</select>
 											</td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Distrito:</td>
 										</tr>
 										<tr>
-											<td id="mostrardistritos" name="mostrardistritos">
+											<td>
 												<select style="width:140px" id="distritos" name="distritos">
 													<option value=""></option>';
 	$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
@@ -334,17 +335,16 @@
 													<option value="'.$distritos->obtener('ID_DISTRITO').'" '.$value.'>'.$distritos->obtener('DISTRITO').'</option>
 		';
 		$d = $distritos->releer();
-	}
-	$cont.='
-												</select>
+	}					
+$cont.='												</select>
 											</td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Corregimiento:</td>
 										</tr>
 										<tr>
-											<td id="mostrarcorregimientos" name="mostrarcorregimientos">
-												<select style="width:140px" name="corregimientos">
+											<td>
+												<select style="width:140px" id="corregimientos" name="corregimientos">
 													<option value=""></option>';
 																
 	$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
@@ -359,7 +359,8 @@
 		';
 		$d = $corregimientos->releer();
 	}
-	$cont.='									</select>
+	$cont.='
+												</select>
 											</td>
 										</tr>
 										
@@ -418,3 +419,5 @@ $cont.='									</select>
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
+
+
