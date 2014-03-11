@@ -3,14 +3,11 @@
 	$corregimientos = new Accesatabla('corregimientos');
 	include_once('../modelo/diseno.php');
 	$pg = new Diseno();
-	$cont = '<select id="corregimientos" name="corregimientos" style="width:140px">
-				<option value="0"></option>
-			';
-	$d = $corregimientos->buscardonde('id_distrito = '.$iddistrito.'');
+	
+	$d = $corregimientos->buscardonde('id_distrito = '.$_GET['iddistrito'].'');
 	while($d){
 		$cont.='<option value="'.$corregimientos->obtener('ID_CORREGIMIENTO').'">'.$corregimientos->obtener('CORREGIMIENTO').'</option>';
 		$d = $corregimientos->releer();
 	}
-	$cont.='</select>';
 	echo $pg->latino($cont);	
 ?>
