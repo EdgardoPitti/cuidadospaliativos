@@ -1,5 +1,6 @@
 <?php
-    // Se recibe el término o palabra a buscar digitada desde el formulario 
+    
+	// Se recibe el término o palabra a buscar digitada desde el formulario 
     $palabra = $_REQUEST['buscar']; 
     
     echo obtenerPacientes($palabra);

@@ -21,12 +21,13 @@
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Domiciliaria</h3>						
 			<div class="row-fluid">
 				<div class="span12">
-					<form method="POST" action="./?url=domiciliaria_capturardatos&sbm=1">
-						<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>
+					<form method="POST" autocomplete="off"  action="./?url=domiciliaria_capturardatos&sbm=1">
+						<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>						
 					</form>
 				</div>
 			</div>
 		</center>
+		
 		 ';	
 	if(!empty($busqueda)){
 		$datos->buscardonde('NO_CEDULA = "'.$busqueda.'"');
@@ -323,7 +324,7 @@
 										<tr>
 											<td>
 												<select style="width:140px" id="distritos" name="distritos">
-													<option value=""></option>';
+													<option value="0"></option>';
 	$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
 	while($d){
 		if($distritos->obtener('ID_DISTRITO') == $iddistrito){
@@ -345,7 +346,7 @@ $cont.='												</select>
 										<tr>
 											<td>
 												<select style="width:140px" id="corregimientos" name="corregimientos">
-													<option value=""></option>';
+													<option value="0"></option>';
 																
 	$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
 	while($d){
