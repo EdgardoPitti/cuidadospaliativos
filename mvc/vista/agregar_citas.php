@@ -21,10 +21,13 @@
 	$cedprofesional = $_POST['cedprofesional'];
 	$cedpaciente = $_POST['cedpaciente'];
 	$profesional->buscardonde('NO_CEDULA = "'.$cedprofesional.'"');
+	$pacientes->buscardonde('NO_CEDULA = "'.$cedpaciente.'"');
 	$c = $citas_medicas->buscardonde('FECHA = '.$fecha.' AND HORA = "'.$hora.'" AND ID_PROFESIONAL = '.$profesional->obtener('ID_PROFESIONAL').'');
-	echo 'FECHA = '.$fecha.' AND HORA = "'.$hora.'" AND ID_PROFESIONAL = '.$profesional->obtener('ID_PROFESIONAL').'';
+	if(!$c){
+		$c = $citas_medicas->buscardonde('FECHA = '.$fecha.' AND HORA = "'.$hora.'" AND ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').'');
+	}
 	if($c){
-		$_SESSION['error_profesional'] = '<div style="color:red;">Este Profesional ya tiene cita para esta hora.</div>';
+		$_SESSION['error_profesional'] = '<div style="color:red;">Este Profesional o Paciente ya tiene cita para esta hora.</div>';
 		$_SESSION['fecha_1'] = $_POST['fecha'];
 	}else{
 		if(empty($id)){

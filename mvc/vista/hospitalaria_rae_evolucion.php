@@ -145,8 +145,9 @@
 			</form>								
 			';
 		}else{
+			$r = $rae->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 			$cont.='
-				<form method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm=3">';
+				<form method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm=3&r='.$rae->obtener('ID_REGISTRO_ADMISION_EGRESO').'">';
 									
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 			$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
@@ -238,7 +239,6 @@
 					</div>
 					
 					';
-		$r = $rae->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 		if($r){
 			$readonly = 'readonly';
 			$disabled = 'disabled';
@@ -286,7 +286,7 @@
 		$cama->buscardonde('ID_CAMA = '.$rae->obtener('ID_CAMA').'');
 		$sala->buscardonde('ID_SALA = '.$cama->obtener('ID_SALA').'');
 		$cont.='
-									<td><select id="cama" name="cama" '.$disabled.' title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'">
+									<td><select id="cama" name="cama" title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'">
 											<option value=""></option>';
 		$c = $cama->buscardonde('ID_CAMA > 0 ORDER BY CAMA');
 		while($c){
@@ -449,7 +449,7 @@
 		$condicionsalida->buscardonde('ID_CONDICION_SALIDA = '.$rae->obtener('ID_CONDICION_SALIDA').'');
 		$cont.='
 									<td>
-										<select id="condicionsalida" name="condicionsalida" '.$disabled.' title="'.$condicionsalida->obtener('CONDICION_SALIDA').'">
+										<select id="condicionsalida" name="condicionsalida" title="'.$condicionsalida->obtener('CONDICION_SALIDA').'">
 											<option value="0"></option>';
 		$c = $condicionsalida->buscardonde('ID_CONDICION_SALIDA > 0');
 		while($c){
@@ -482,7 +482,7 @@
 								</tr>
 								<tr>
 									<td>Muerte en SOP:</td>
-									<td><input type="radio" id="muerte" name="muerte" value="1" '.$muerte_s.' '.$disabled.'> Si  <input type="radio" id="muerte" name="muerte" value="0" '.$muerte_n.' '.$disabled.'> No</td>
+									<td><input type="radio" id="muerte" name="muerte" value="1" '.$muerte_s.'> Si  <input type="radio" id="muerte" name="muerte" value="0" '.$muerte_n.'> No</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
@@ -490,7 +490,7 @@
 								</tr>
 								<tr>
 									<td>Autopsia:</td>
-									<td><input type="radio" id="autopsia" name="autopsia" value="1" '.$autopsia_s.' '.$disabled.'> Si <input type="radio" id="autopsia" name="autopsia" value="0" '.$autopsia_n.' '.$disabled.'> No</td>
+									<td><input type="radio" id="autopsia" name="autopsia" value="1" '.$autopsia_s.'> Si <input type="radio" id="autopsia" name="autopsia" value="0" '.$autopsia_n.'> No</td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
@@ -498,7 +498,7 @@
 								</tr>								
 								<tr>
 									<td>Fecha Autopsia:</td>
-									<td><input type="date" name="fechautopsia" id="fechautopsia" value="'.$rae->obtener('FECHA_AUTOPSIA').'" '.$disabled.'></td>
+									<td><input type="date" name="fechautopsia" id="fechautopsia" value="'.$rae->obtener('FECHA_AUTOPSIA').'"></td>
 								</tr>
 							</table>
 						</div>
@@ -508,7 +508,7 @@
 									<td style="line-height:15px">Motivo Salida:</td>';
 		$motivo->buscardonde('ID_MOTIVO_SALIDA = '.$rae->obtener('ID_MOTIVO_SALIDA').'');
 		$cont.='
-									<td><select id="motivo" name="motivo" '.$disabled.' title="'.$motivo->obtener('MOTIVO_SALIDA').'">
+									<td><select id="motivo" name="motivo" title="'.$motivo->obtener('MOTIVO_SALIDA').'">
 											<option value=""></option>';
 		$m = $motivo->buscardonde('ID_MOTIVO_SALIDA > 0');
 		while($m){
@@ -540,16 +540,12 @@
 								</tr>		
 								<tr>
 									<td>Días de Estancia:</td>
-									<td><input type="text" id="dias" name="dias" placeholder="Días" value="'.$rae->obtener('TOTAL_DIAS_ESTANCIA').'" '.$readonly.'></td>
+									<td><input type="text" id="dias" name="dias" placeholder="Días" value="'.$rae->obtener('TOTAL_DIAS_ESTANCIA').'"></td>
 								</tr>
 							</table>
 						</div>
-					</div>';
-		if(empty($readonly)){
-			$cont.='
-					
-						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:10px;float:right;">Registrar</button>';
-		}
+					</div>		
+				<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:10px;float:right;">Registrar</button>';
 		$cont .= '
 				</form>';					
 		}

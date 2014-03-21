@@ -48,16 +48,17 @@
 				</table>
 			</center>
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Datos</h3>	
+			<center>'.$_SESSION['error_profesional'].'</center>
 			<form method="POST" action="./?url=agregar_citas&h='.$_GET['h'].'&id='.$id.'&sbm=1">
 				<center>
 					<table>
 						<tr>
 							<td>Paciente:</td>
-							<td><input type="text" id="paciente" name="paciente" value="'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Paciente" '.$readonly.'><br><input type="text" id="cedpaciente" name="cedpaciente" value="'.$paciente->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Paciente" readonly></td>
+							<td><input type="text" id="paciente" name="paciente" value="'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Paciente" '.$readonly.' required><br><input type="text" id="cedpaciente" name="cedpaciente" value="'.$paciente->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Paciente" readonly></td>
 						</tr>
 						<tr>
 							<td>Profesional:</td>
-							<td><input type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.'><br><input type="text" id="cedprofesional" name="cedprofesional" value="'.$profesional->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Profesional" readonly><br>'.$_SESSION['error_profesional'].'</td>
+							<td><input type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.' required><br><input type="text" id="cedprofesional" name="cedprofesional" value="'.$profesional->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Profesional" readonly><br></td>
 						</tr>
 						<tr>
 							<td>Servicio:</td>
