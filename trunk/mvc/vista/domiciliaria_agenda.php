@@ -126,7 +126,7 @@
 								</td>';
 		}else{
 			$cont.='		
-							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
+							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm=1" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
 		}
 		$cont.='		</tr>';
 		if($sw == 1){
