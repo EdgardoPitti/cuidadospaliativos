@@ -1,6 +1,6 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
-	include_once('./mvc/modelo/Diseno.php');
+	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	$actividad = new Accesatabla('actividad');
 	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Actividades Realizadas</h3>	';
