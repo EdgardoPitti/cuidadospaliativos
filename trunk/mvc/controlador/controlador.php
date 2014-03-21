@@ -2,8 +2,9 @@
 	class controlador{
 		function __construct(){
 			$url   = $_GET['url'];
-			$vista = './mvc/vista/'.$url.'.php';
-			if(!file_exists( $vista )){ $vista = './mvc/vista/file404.php'; }
+			if(empty($_SESSION['idu']) AND $url != verificar){$url = login;}
+			$vista = './mvc/vista/'.$url.'.php';	
+			if(!file_exists( $vista )){ $vista = './mvc/vista/login.php'; }
 			include_once($vista);
 		}
 	}

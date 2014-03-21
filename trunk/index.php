@@ -27,6 +27,7 @@
 				$("#provincias").change(function(event){
 					var id = $("#provincias").find(':selected').val();
 					$("#distritos").load('./mvc/vista/capturardatos_distritos.php?idprovincia='+id);
+					$("#corregimientos").load('./mvc/vista/capturardatos_corregimientos.php?iddistrito=0');
 				});
 				$("#distritos").change(function(event){
 					var id = $("#distritos").find(':selected').val();
@@ -444,12 +445,12 @@
 					<ul class="nav nav-pills" style="float:right;margin-top:4px;">						
 						<li class="dropdown pull-right">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<!--li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li-->
-								<li><a href="./?url=login">Iniciar Sesi&oacute;n</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Cerrar Sesi&oacute;n</a></li>
-							</ul>
+								<ul class="dropdown-menu">
+									<!--li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li-->
+									<li><a href="./?url=login">Iniciar Sesi&oacute;n</a></li>
+									<li class="divider"></li>
+									<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
+								</ul>
 						</li>
 					</ul>
 				</div>
@@ -626,40 +627,46 @@
 				<?php 	include_once('./mvc/controlador/controlador.php'); new Controlador();?>
 			
 			</div>
-			<div class="row-fluid">
-				<div class="span12">	
-					<!--Nav-->
-					<div class="navbar">
-						<div class="navbar-inner">
-							<div class="container-fluid">
-							
-								<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</a> 
-									<a href="#" class="brand">Atenciones</a>	
-								<div class="nav-collapse navbar-responsive-collapse collapse">
-									<ul class="nav">										
-										<li>
-											<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
-										</li>
-										<li>
-											<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
-										</li>
-										<li>
-											<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
-										</li>
-										<li>
-											<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
-										</li>
-									</ul>
+			<?php
+				if(!empty($_SESSION['idu'])){
+					echo '<div class="row-fluid">
+							<div class="span12">	
+								<!--Nav-->
+								<div class="navbar">
+									<div class="navbar-inner">
+										<div class="container-fluid">
+										
+											<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+											</a> 
+												<a href="#" class="brand">Atenciones</a>	
+											<div class="nav-collapse navbar-responsive-collapse collapse">
+												<ul class="nav">										
+													<li>
+														<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
+													</li>
+													<li>
+														<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
+													</li>
+													<li>
+														<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
+													</li>
+													<li>
+														<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+						</div>';				
+				}
+			
+			?>
+			
 			
 			<!--Pie de Página-->
 			<div class="row-fluid" id="footer">
