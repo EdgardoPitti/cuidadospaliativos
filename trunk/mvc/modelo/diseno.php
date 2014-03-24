@@ -436,7 +436,7 @@ class Diseno {
 					<div class="span12">
 						<ul class="nav nav-pills" style="float:right;margin-top:4px;">						
 							<li class="dropdown pull-right">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle">Bienvenido, <strong class="caret"></strong></a>
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario<strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
 										<!--li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li-->
 										<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
