@@ -21,8 +21,8 @@
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Domiciliaria</h3>						
 			<div class="row-fluid">
 				<div class="span12">
-					<form method="POST" autocomplete="off"  action="./?url=domiciliaria_capturardatos&sbm=1">
-						<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>						
+					<form method="POST" aut ocomplete="off"  action="./?url=domiciliaria_capturardatos&sbm=1">
+						<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> <button type="submit" class="btn"><img src="./iconos/search.png"></button>							
 					</form>
 				</div>
 			</div>
@@ -415,10 +415,11 @@ $cont.='									</select>
 						<button type="submit" class="btn btn-primary">Registrar</button>
 					</div>
 				</center>
-			</form>';
+			</form>
+		
+		';
 	
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>
-
 

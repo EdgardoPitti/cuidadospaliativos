@@ -462,14 +462,6 @@
 												<div class="span6" align="center"><input style="width:135px" type="text" name="receptor" '.$readonly.'/><br><i><small>(Solo en caso de urgencias y hospitalización)</small></i></div>
 											</div-->									
 										</article>
-										<div id="datos_imp">
-											<table class="tabla-datos" width="100%">
-												<tr>	
-													<td>Nombre de quien refiere:</td>
-													<td><p style="text-decoration:underline;">'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</p></td>													
-												</tr>
-											</table>
-										</div>
 									</div>
 								</div>';
 								if($readonly == ''){
