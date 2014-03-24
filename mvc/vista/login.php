@@ -8,7 +8,7 @@
 				<div style="position:relative"> 
 					<div class="row-fluid">
 						<img src="./iconos/cuidadospaliativos.jpg" class="img_login">
-						<div class="span5 offset7 well pos_img-login">
+						<div class="span5 offset7 well pos_img-login" style="max-height:300px;padding-top:30px;">
 							<h3 style="text-align:center">Iniciar Sesi&oacute;n</h3><hr>
 							'.$_SESSION['errorlogin'].'
 							<form method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
