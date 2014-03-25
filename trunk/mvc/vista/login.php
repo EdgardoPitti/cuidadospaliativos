@@ -1,6 +1,5 @@
 <?php
-	//include_once('./mvc/modelo/diseno.php');
-	//$ds = new Diseno();
+	
 	$_SESSION['idu'] = '';
 	$cont='
 		<div class="row-fluid" style="margin-top:10px;">
@@ -37,6 +36,4 @@
 		</div>';
 	$_SESSION['errorlogin'] = '';
 	echo $cont;
-	//$ds->contenido($cont);
-	//$ds->mostrar();
 ?>
