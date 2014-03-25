@@ -26,7 +26,7 @@
 										</div>
 									</div>		
 								</center>
-								<button type="submit" name="submit" class="btn btn-success btn-block"><b>Iniciar</b></button>
+								<button type="submit" name="submit" class="btn btn-primary btn-block"><b>Iniciar</b></button>
 							</form>    
 						</div>
 					</div>
