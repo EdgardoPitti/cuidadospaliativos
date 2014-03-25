@@ -105,7 +105,6 @@
 											<th>Profesional</th>
 											<th>Especialidad</th>
 											<th>Observacion / Comentario</th>
-											<th style="min-width:15px;"></th>
 										</tr>
 									</thead>
 									<tbody>';
@@ -123,7 +122,6 @@
 												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
 												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
 												<td>'.$interconsulta->obtener('OBSERVACIONES').'</td>
-												<td><a href="./?url=ambulatoria_interconsulta&id='.$interconsulta->obtener('ID_INTERCONSULTA').'&sbm=2"><img src="./iconos/search.png"></a></td>
 											</tr>';
 					$n++;
 					$i = $interconsulta->releer();
