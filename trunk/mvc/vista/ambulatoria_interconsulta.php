@@ -96,7 +96,7 @@
 			if($i){
 				$cont.='
 					<br>
-					<div class="overflow" id="overflow-movil">
+					<div class="overflow" id="overflow-movil" style="max-height:150px;">
 								<table class="table2 borde-tabla table-hover">
 									<thead>
 										<tr class="fd-table">
