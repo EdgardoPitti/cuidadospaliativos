@@ -486,7 +486,7 @@
 										<div class="row-fluid">
 											<div class="span12">
 												<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Respuestas</h3>
-													<div class="overflow" style="max-height:170px;">
+													<div class="overflow" id="overflow-movil" style="max-height:170px;">
 														<table class="table2 borde-tabla table-hover">
 															<thead>
 																<tr class="fd-tabla-gris">
