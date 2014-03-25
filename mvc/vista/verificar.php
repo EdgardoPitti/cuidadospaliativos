@@ -7,12 +7,11 @@
 	if($u){
 		$_SESSION['idu'] = $usuarios->obtener('ID_USUARIO');
 		include_once('./mvc/vista/inicio.php');
-		
+		echo '<SCRIPT LANGUAGE="javascript">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
 		$_SESSION['idu'] = '';
 		$_SESSION['errorlogin'] = '<center><div class="alert alert-error"><a class="close" data-dismiss="alert" href="#" title="Cerrar">x</a>Usuario o Contrase&ntilde;a Incorrecto!<br></div></center>';
-		//<a href="./?url=recuperar_acceso">Recuperar Contrase&ntilde;a</a>
 		include_once('./mvc/vista/login.php');
+		echo '<SCRIPT LANGUAGE="javascript">location.href = "./"</SCRIPT>';
 	}
-	
 ?>
