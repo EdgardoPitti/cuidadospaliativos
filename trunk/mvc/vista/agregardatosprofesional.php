@@ -4,17 +4,23 @@
 	$prof_salud = new Accesatabla('profesionales_salud');
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
+	$idp = $_GET['idp'];
+	if(empty($idp)){
+		$prof_salud->nuevo();
+		$prof_salud->colocar('ID_ESPECIALIDAD_MEDICA',$_POST['especialidad']);	
+		$prof_salud->salvar();
 
-	$prof_salud->nuevo();
-	$prof_salud->colocar('ID_ESPECIALIDAD_MEDICA',$_POST['especialidad']);	
-	$prof_salud->salvar();
-	
-	$sql = 'SELECT MAX(ID_PROFESIONAL) AS id FROM profesionales_salud';
-	$id = $ds->db->obtenerArreglo($sql);
-		
+		$sql = 'SELECT MAX(ID_PROFESIONAL) AS id FROM profesionales_salud';
+		$id = $ds->db->obtenerArreglo($sql);
+		$idp = $id[0][id];
 
-	$datos_prof_salud->nuevo();
-	$datos_prof_salud->colocar('ID_PROFESIONAL',$id[0][id]);
+		$datos_prof_salud->nuevo();
+		$datos_prof_salud->colocar('ID_PROFESIONAL',$idp);
+
+	}else{
+		$datos_prof_salud->buscardonde('ID_PROFESIONAL = '.$idp.'');
+		$prof_salud->buscardonde('ID_PROFESIONAL = '.$idp.'');
+	}
 	$datos_prof_salud->colocar('NO_CEDULA',$_POST['cedula']);
 	$datos_prof_salud->colocar('PRIMER_NOMBRE',$_POST['primernombre']);
 	$datos_prof_salud->colocar('SEGUNDO_NOMBRE',$_POST['segnombre']);
@@ -26,5 +32,10 @@
 	$datos_prof_salud->colocar('TELEFONO_CELULAR',$_POST['celular']);
 	$datos_prof_salud->colocar('E_MAIL',$_POST['email']);
 	$datos_prof_salud->salvar();
-	include_once('./mvc/vista/inicio.php');
+	if(!empty($idp)){
+		$prof_salud->colocar('ID_ESPECIALIDAD_MEDICA',$_POST['especialidad']);	
+		$prof_salud->salvar();
+	}
+	include_once('./mvc/vista/addmedico.php');
+	echo '<SCRIPT LANGUAGE="javascript">location.href = "./?url=addmedico&idp='.$idp.'"</SCRIPT>';
 ?>

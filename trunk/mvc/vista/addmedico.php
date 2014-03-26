@@ -3,55 +3,75 @@
 	$ds = new Diseno();
 	include_once('./mvc/modelo/Accesatabla.php');
 	$esp_medicas = new Accesatabla('especialidades_medicas');
-	$datos_prof_salud = new Accesatabla('datos_profesionales_salud');
+	$datos = new Accesatabla('datos_profesionales_salud');
+	$profesional = new Accesatabla('profesionales_salud');
+	$cedula = $_POST['buscar_cedula'];
+	if(empty($cedula)){
+		$cedula = $_GET['idp'];
+	}
 	
-	$cont = '
+	$ds = new Diseno();
+	$cont .= '
 		<fieldset>
 			<legend align="center">
 				<h3 style="background:#f4f4f4;padding:10px;">Profesional de la Salud</h3>
 			</legend>
 			<center>
-				<form method="POST" action="./?url=agregardatosprofesional">	
+				<form class="form-search" method="POST" action="./?url=addmedico">
+						<div class="input-group">
+						  Buscar Profesional: <input type="search" class="form-control" id="buscar_profesional" placeholder="Cédula o Nombre" name="buscar_cedula">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
+						  </span>
+						</div>
+				</form>';
+	$d = $datos->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PROFESIONAL = "'.$cedula.'"');
+	if($d){
+		$readonly = 'readonly';
+		$profesional->buscardonde('ID_PROFESIONAL = '.$datos->obtener('ID_PROFESIONAL').'');
+	}
+	$cont.='
+				<form method="POST" action="./?url=agregardatosprofesional&idp='.$datos->obtener('ID_PROFESIONAL').'">	
 					<table>
 						<tr>
-							<td>Cédula: </td>
-							<td><input type="text" name="cedula" id="cedula" required></td>
+							<td>No de C&eacute;dula: </td>
+							<td><input type="text" name="cedula" id="cedula" placeholder="No de C&eacute;dula" value="'.$datos->obtener('NO_CEDULA').'" '.$readonly.' required ></td>
 						</tr>
 						<tr>	
 							<td>Primer Nombre: </td>
-							<td><input type="text" name="primernombre" id="primernombre" required></td>
+							<td><input type="text" name="primernombre" id="primernombre" placeholder="Primer Nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" required></td>
 						</tr>
 						<tr>
 							<td>Segundo Nombre: </td>
-							<td><input type="text" name="segnombre" id="segnombre"></td>
+							<td><input type="text" name="segnombre" id="segnombre" placeholder="Segundo Nombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'"></td>
 						</tr>
 						<tr>	
 							<td>Apellido Paterno: </td>
-							<td><input type="text" name="primerapellido" id="primerapellido" required></td>
+							<td><input type="text" name="primerapellido" id="primerapellido" placeholder="Apellido Paterno" value="'.$datos->obtener('APELLIDO_PATERNO').'" required></td>
 						</tr>
 						<tr>
 							<td>Apellido Materno: </td>
-							<td><input type="text" name="segapellido" id="segapellido"></td>
+							<td><input type="text" name="segapellido" id="segapellido" placeholder="Apellido Materno" value="'.$datos->obtener('APELLIDO_MATERNO').'"></td>
 						</tr>
 						<tr>	
 							<td>No de Idoneidad: </td>
-							<td><input type="text" name="idoneidad" id="idoneidad"></td>
+							<td><input type="text" name="idoneidad" id="idoneidad" placeholder="No de Idoneidad" value="'.$datos->obtener('NO_IDONEIDAD').'"></td>
 						</tr>
 						<tr>
 							<td>No de Registro: </td>
-							<td><input type="text" name="registro" id="registro"></td>
+							<td><input type="text" name="registro" id="registro" placeholder="No de Registro" value="'.$datos->obtener('NO_REGISTRO').'"></td>
 						</tr>
 						<tr>	
-							<td>Teléfono de Casa: </td>
-							<td><input type="text" name="telefono" id="telefono"></td>
+							<td>Tel&eacute;fono de Casa: </td>
+							<td><input type="text" name="telefono" id="telefono" placeholder="Tel&eacute;fono de Casa" value="'.$datos->obtener('TELEFONO_CASA').'"></td>
 						</tr>
 						<tr>
 							<td>Teléfono Celular: </td>
-							<td><input type="text" name="celular" id="celular"></td>
+							<td><input type="text" name="celular" id="celular" placeholder="Tel&eacute;fono Celular" value="'.$datos->obtener('TELEFONO_CELULAR').'"></td>
 						</tr>
 						<tr>	
 							<td>Correo Electrónico: </td>
-							<td><input type="text" name="email" id="email"></td>
+							<td><input type="text" name="email" id="email" placeholder="Correo Electr&oacute;nico" value="'.$datos->obtener('E_MAIL').'"></td>
 						</tr>
 						<tr>
 							<td>Especialidad Médica: </td>
@@ -60,7 +80,12 @@
 									<option value=""> </option>';
 						$x = $esp_medicas->buscardonde('ID_ESPECIALIDAD_MEDICA');			
 						while($x){
-							$cont.='<option value="'.$esp_medicas->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$esp_medicas->obtener('DESCRIPCION').'</option>';
+							if($esp_medicas->obtener('ID_ESPECIALIDAD_MEDICA') == $profesional->obtener('ID_ESPECIALIDAD_MEDICA')){
+								$selected = 'selected';
+							}else{
+								$selected = '';
+							}
+							$cont.='<option value="'.$esp_medicas->obtener('ID_ESPECIALIDAD_MEDICA').'" '.$selected.'>'.$esp_medicas->obtener('DESCRIPCION').'</option>';
 							$x = $esp_medicas->releer();
 						}
 						$cont.='			
