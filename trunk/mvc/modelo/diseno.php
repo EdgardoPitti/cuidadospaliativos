@@ -445,27 +445,29 @@ class Diseno {
 				<!--Navegación Superior-->
 				<div class="row-fluid" id="sub-header-nav" style="'.$display.'">
 					<div class="span12">
-						<ul class="nav nav-pills" style="float:right;margin-top:4px;">						
-							<li class="dropdown pull-right">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle">'.$_SESSION['user'].'<strong class="caret"></strong></a>
-									<ul class="dropdown-menu">
-										<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
-									</ul>
-							</li>';	
+						
+							<div class="btn-group" style="float:right;margin-top:4px;">
+							  <a href="#" class="btn btn-primary">'.$_SESSION['user'].'</a>
+							  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu">
+								<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
+							  </ul>
+							</div>';	
 			if($_SESSION['idgu'] == 1){
 				$cont.='
-							<li class="dropdown pull-right">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle">Editar<strong class="caret"></strong></a>
-									<ul class="dropdown-menu">
-										<li><a href="./?url=addmedico">M&eacute;dicos</a></li>
-										<li><a href="./?url=addmedico">Camas</a></li>
-										<li><a href="./?url=addmedico">Salas</a></li>
-										<li><a href="./?url=addmedico">Servicios M&eacute;dicos</a></li>
-									</ul>
-							</li>';
+						<div class="btn-group" style="float:right;margin:4px; 10px 0 0">
+						  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Editar <span class="caret"></span></a>
+						  <ul class="dropdown-menu margin-menu">
+							<li><a href="./?url=addmedico">M&eacute;dicos</a></li>
+							<li><a href="./?url=addmedico">Camas</a></li>
+							<li><a href="./?url=addmedico">Salas</a></li>
+							<li><a href="./?url=addmedico">Servicios M&eacute;dicos</a></li>
+						  </ul>
+						</div>';
 			}
-			$cont.='
-						</ul>
+			$cont.='						
 					</div>
 				</div> ';
 				
