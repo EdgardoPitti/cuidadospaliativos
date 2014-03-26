@@ -17,6 +17,17 @@ class Diseno {
 		$forma = number_format($dinero , $pdec);
 		return $forma ;
 	}
+	function ip(){
+		$ip = '';
+		if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip=$_SERVER['HTTP_CLIENT_IP'];
+		}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip=$_SERVER['REMOTE_ADDR'];
+		}
+		return $ip;
+	}
 	function dime($quierosaber)	{
 		$aber = '¿ Que quieres saber ?';
 		date_default_timezone_set('America/Panama');
@@ -436,12 +447,24 @@ class Diseno {
 					<div class="span12">
 						<ul class="nav nav-pills" style="float:right;margin-top:4px;">						
 							<li class="dropdown pull-right">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario<strong class="caret"></strong></a>
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle">'.$_SESSION['user'].'<strong class="caret"></strong></a>
 									<ul class="dropdown-menu">
-										<!--li><a href="./?url=addmedico">Agregar M&eacute;dico</a></li-->
 										<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
 									</ul>
-							</li>
+							</li>';	
+			if($_SESSION['idgu'] == 1){
+				$cont.='
+							<li class="dropdown pull-right">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle">Editar<strong class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li><a href="./?url=addmedico">M&eacute;dicos</a></li>
+										<li><a href="./?url=addmedico">Camas</a></li>
+										<li><a href="./?url=addmedico">Salas</a></li>
+										<li><a href="./?url=addmedico">Servicios M&eacute;dicos</a></li>
+									</ul>
+							</li>';
+			}
+			$cont.='
 						</ul>
 					</div>
 				</div> ';
