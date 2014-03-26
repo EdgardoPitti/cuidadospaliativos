@@ -1,6 +1,5 @@
 <?php
 	
-	$_SESSION['idu'] = '';
 	$cont='
 		<div class="row-fluid" style="margin-top:10px;">
 			<div class="span12 margen-login">
@@ -34,6 +33,6 @@
 				</div>
 			</div>
 		</div>';
-	$_SESSION['errorlogin'] = '';
+
 	echo $cont;
 ?>
