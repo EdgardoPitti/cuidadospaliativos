@@ -325,6 +325,24 @@
             $('document').ready(function() {
 				var palabra =""; // Término a buscar
 				// Evento al escribir sobre el cuadro de texto
+				$("#buscar_profesional").keypress(function() {
+				   palabra = $("#profesional").val(); // Completa la palabra
+				});
+				$("#buscar_profesional").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+					matchContains: true,
+					mustMatch: true,
+					selectFirst: false
+				});  
+				$("#buscar_profesional").result(function(event, data, formatted) {
+					$("#buscar_profesional").val(data[1]);
+					
+				});				
+            });	            
+        </script>		
+		<script type="text/javascript">
+            $('document').ready(function() {
+				var palabra =""; // Término a buscar
+				// Evento al escribir sobre el cuadro de texto
 				$("#profesional").keypress(function() {
 				   palabra = $("#profesional").val(); // Completa la palabra
 				});
