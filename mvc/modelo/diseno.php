@@ -460,10 +460,12 @@ class Diseno {
 						<div class="btn-group" style="float:right;margin:4px; 10px 0 0">
 						  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Editar <span class="caret"></span></a>
 						  <ul class="dropdown-menu margin-menu">
+							<li><a href="./?url=usuarios">Usuarios</a></li>
 							<li><a href="./?url=addmedico">M&eacute;dicos</a></li>
-							<li><a href="./?url=addmedico">Camas</a></li>
-							<li><a href="./?url=addmedico">Salas</a></li>
-							<li><a href="./?url=addmedico">Servicios M&eacute;dicos</a></li>
+							<li><a href="./?url=camas">Camas</a></li>
+							<li><a href="./?url=salas">Salas</a></li>
+							<li><a href="./?url=servicios">Servicios M&eacute;dicos</a></li>
+							<li><a href="./?url=zona">Zona</a></li>
 						  </ul>
 						</div>';
 			}
