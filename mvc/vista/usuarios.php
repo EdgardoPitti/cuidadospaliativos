@@ -8,7 +8,7 @@
 			<center>
 			<fieldset>
 				<legend align="center">
-					<h3 style="background:#f4f4f4;padding:10px;">Profesional de la Salud</h3>
+					<h3 style="background:#f4f4f4;padding:10px;">Usuarios</h3>
 				</legend>
 				<form method="POST" action="./?url=addusuario">
 					<table>
