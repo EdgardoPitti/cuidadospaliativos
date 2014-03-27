@@ -1,7 +1,5 @@
 <?php
-	include_once('./mvc/modelo/Accesatabla.php');
-	include_once('./mvc/modelo/diseno.php');
-	$ds = new Diseno();
+	include_once('./mvc/modelo/Accesatabla.php');	
 	$usuario = new Accesatabla('usuarios');
 	
 	$usuario->nuevo();

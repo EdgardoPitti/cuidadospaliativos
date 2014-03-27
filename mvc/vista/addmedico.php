@@ -12,11 +12,9 @@
 	
 	$ds = new Diseno();
 	$cont .= '
-		<fieldset>
-			<legend align="center">
-				<h3 style="background:#f4f4f4;padding:10px;">Profesional de la Salud</h3>
-			</legend>
+		
 			<center>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Profesional de la Salud</h3>
 				<form class="form-search" method="POST" action="./?url=addmedico">
 						<div class="input-group">
 						  Buscar Profesional: <input type="search" class="form-control" id="buscar_profesional" placeholder="Cédula o Nombre" name="buscar_cedula">
@@ -96,7 +94,6 @@
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>	
 			</center>
-		</fieldset>
 	
 	';
 	
