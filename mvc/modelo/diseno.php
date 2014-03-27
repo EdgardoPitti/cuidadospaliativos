@@ -661,7 +661,7 @@ class Diseno {
 												<span class="icon-bar"></span>
 												<span class="icon-bar"></span>
 											</a> 
-												<a href="#" class="brand">Atenciones</a>	
+												<a href="./?url=inicio" class="brand">Atenciones</a>	
 											<div class="nav-collapse navbar-responsive-collapse collapse">
 												<ul class="nav">										
 													<li>
