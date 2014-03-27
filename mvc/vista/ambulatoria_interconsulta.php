@@ -171,7 +171,7 @@
 					</div>
 				</div>
 			</div><br>
-			<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Agregar</button>
+			<button type="submit" class="btn btn-primary" >Agregar</button>
 			</center>	
 	
 	';

@@ -465,7 +465,7 @@
 									</div>
 								</div>';
 								if($readonly == ''){
-									$cont.='<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:1px;float:right;">Registrar</button>';
+									$cont.='<button type="submit" class="btn btn-primary" style="margin-top:1px;float:right;">Registrar</button>';
 								}
 							$cont.='
 							   </form>
@@ -728,7 +728,7 @@
 										</div>
 									</div>	';
 							if(empty($idr)){
-								$cont.='<button type="submit" class="btn btn-primary" style="font-size:12px;float:right;margin-top:8px;">Agregar</button>';
+								$cont.='<button type="submit" class="btn btn-primary" style="float:right;margin-top:1px;">Agregar</button>';
 							}
 									
 							$cont.='

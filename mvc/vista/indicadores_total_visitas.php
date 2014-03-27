@@ -67,7 +67,7 @@
 					<form method="POST" action="./?url=indicadores_total_visitas&sbm=1">
 							Desde el A&ntilde;o: <input style="width:60px;" type="number" id="variable1" name="variable1" min="2013" max="'.$ds->dime('agno').'" value="2013"><br>
 							<center>
-								<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button>
+								<button type="submit" class="btn btn-primary" >Enviar</button>
 							</center>							
 					</form>
 					';
