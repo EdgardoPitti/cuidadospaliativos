@@ -643,7 +643,7 @@ class Diseno {
 				
 				<!--Contenido-->
 				<!--Diseño del contenido de la página-->
-				<div class="span10" id="contenido" style="min-height:675px;background:#fff;">
+				<div class="span10" id="contenido" style="min-height:450px;background:#fff;">
 					'.$this->latino($this->derecha).'
 				</div>
 				<!--Fin del Contenido-->

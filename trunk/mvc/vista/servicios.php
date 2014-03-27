@@ -5,10 +5,7 @@
 	$tiempos = new Accesatabla('tiempos_atencion');
 	$cont.='
 			<center>
-			<fieldset>
-				<legend align="center">
-					<h3 style="background:#f4f4f4;padding:10px;">Servicios Medicos</h3>
-				</legend>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Servicios M&eacute;dicos</h3>
 				<form method="POST" action="./?url=addservicio">
 					<table>
 						<tr>
@@ -34,7 +31,6 @@
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>
-			</fieldset>
 			</center>
 	';
 	$ds->contenido($cont);

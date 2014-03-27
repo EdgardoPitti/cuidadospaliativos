@@ -6,10 +6,7 @@
 	$grupo = new Accesatabla('grupos_usuarios');
 	$cont.='
 			<center>
-			<fieldset>
-				<legend align="center">
-					<h3 style="background:#f4f4f4;padding:10px;">Usuarios</h3>
-				</legend>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Usuarios</h3>		
 				<form method="POST" action="./?url=addusuario">
 					<table>
 						<tr>
@@ -38,8 +35,7 @@
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
-				</form>
-			</fieldset>
+				</form>			
 			</center>
 	';
 	$ds->contenido($cont);

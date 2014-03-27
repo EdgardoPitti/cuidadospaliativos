@@ -5,10 +5,7 @@
 	$salas = new Accesatabla('sala');
 	$cont.='
 			<center>
-			<fieldset>
-				<legend align="center">
-					<h3 style="background:#f4f4f4;padding:10px;">Camas</h3>
-				</legend>
+				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Camas</h3>
 				<form method="POST" action="./?url=addcama">
 					<table>
 						<tr>
@@ -32,8 +29,7 @@
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
-				</form>
-			</fieldset>
+				</form>			
 			</center>
 	';
 	$ds->contenido($cont);

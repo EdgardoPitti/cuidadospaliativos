@@ -9,9 +9,9 @@
 		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<!--CSS: Menú Principal-->	
 		
-		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" media="screen"/>
+		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>
 		
 		<script type="text/javascript" src="js/jquery.js"></script>	
 		<script type="text/javascript" src="js/bootstrap.js"></script>	
