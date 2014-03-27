@@ -465,7 +465,7 @@ class Diseno {
 							<li><a href="./?url=camas">Camas</a></li>
 							<li><a href="./?url=salas">Salas</a></li>
 							<li><a href="./?url=servicios">Servicios M&eacute;dicos</a></li>
-							<li><a href="./?url=zona">Zona</a></li>
+							<li><a href="./?url=zonas">Zona</a></li>
 						  </ul>
 						</div>';
 			}
