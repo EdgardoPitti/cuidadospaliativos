@@ -5,30 +5,37 @@
 	$salas = new Accesatabla('sala');
 	$cama = new Accesatabla('cama');
 	$id = $_GET['id'];
+	$comillas = "'";
 	if(!empty($id)){
 		$img = '<a href="./?url=camas" title="A&ntilde;adir Cama"><img src="./iconos/plus.png"></a><br><br>';
 	}
 	$cont.='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Camas</h3>
-				<table class="table2 borde-tabla table-hover">
-					<tr>
-						<th>#</th>
-						<th>Cama</th>
-						<th>Sala</th>
-						<th></th>
-					</tr>';
+				<label>Buscar No. de Cama:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<div id="overflow-movil" class="overflow" style="max-height:300px;overflow-y:auto;">
+					<table class="table2 borde-tabla table-hover" id="camas">
+						<thead>
+							<tr class="fd-table">
+								<th>#</th>
+								<th>Cama</th>
+								<th>Sala</th>
+								<th style="min-width:15px;"></th>
+							</tr>
+						</thead>
+						<tbody>
+						';
 	$c = $cama->buscardonde('ID_CAMA > 0');
 	$n = 1;
 	while($c){
 		$salas->buscardonde('ID_SALA = '.$cama->obtener('ID_SALA').'');
 		$cont.='
-					<tr>
-						<td>'.$n.'</td>
-						<td>'.$cama->obtener('CAMA').'</td>
-						<td>'.$salas->obtener('SALA').'</td>
-						<td><a href="./?url=camas&id='.$cama->obtener('ID_CAMA').'"><img src="./iconos/search.png"></a></td>
-					</tr>
+							<tr>
+								<td><strong>'.$n.'</strong></td>
+								<td class="nocama">'.$cama->obtener('CAMA').'</td>
+								<td>'.$salas->obtener('SALA').'</td>
+								<td><a href="./?url=camas&id='.$cama->obtener('ID_CAMA').'"><img src="./iconos/search.png"></a></td>
+							</tr>
 		';
 		$n++;
 		$c = $cama->releer();
@@ -36,7 +43,9 @@
 	$cama->buscardonde('ID_CAMA = '.$id.'');
 
 	$cont.='
-				</table>
+						</tbody>
+					</table>
+				</div>
 				'.$img.'
 				<form method="POST" action="./?url=addcama&id='.$id.'">
 					<table>
@@ -69,6 +78,31 @@
 				</form>			
 			</center>
 	';
+	
+	$cont.='
+		<script language="JavaScript" type="text/JavaScript">
+			// Con estas 3 líneas sobreescribimos el Constains para que no sea case sensitive pues por default en jquery  viene con case sensitive. Si no lo pones, queda como Case sensitive
+			$.expr['.$comillas.':'.$comillas.'].Contains = function(x, y, z){
+				return jQuery(x).text().toLowerCase().indexOf(z[3].toLowerCase())>=0;
+			};
+
+			// cada que escribamos, vamos a revisar lo que hay escrito 
+			$('.$comillas.'#search_string'.$comillas.').keyup(function() 
+			{
+				//tomamos el valor que tiene el input
+				var search = $('.$comillas.'#search_string'.$comillas.').val();
+				//mostramos todos los valores, para despues ir ocultando los que no coinciden
+				$('.$comillas.'#camas tr'.$comillas.').show();
+				
+				//esto es para revisar si tenemos algo que buscar, sino, que no lo haga.
+				if(search.length>0)
+				{
+					// con la clase .nocama le decimos en cual de las celdas buscar y si no coincide, ocultamos el tr que contiene a esa celda. 
+					$("#camas tr td.nocama").not(":Contains('.$comillas.'"+search+"'.$comillas.')").parent().hide();				
+				}
+
+			});
+		</script>';
 	$ds->contenido($cont);
 	$ds->mostrar();
 ?>

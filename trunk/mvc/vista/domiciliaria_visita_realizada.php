@@ -41,7 +41,8 @@
 									<th>Horas de Atencion</th>
 									<th style="min-width:15px;"></th>
 								</tr>
-							</thead>';
+							</thead>
+							<tbody>';
 			$n = 1;
 			if(empty($inicio) OR empty($final)){
 				$r = $rvd->buscardonde('ID_RVD > 0 ORDER BY FECHA');
@@ -51,7 +52,7 @@
 			while($r){
 				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
 				$cont.='
-							<tbody>
+							
 								<tr>
 									<td><b>'.$n.'</b></td>
 									<td><b>'.$rvd->obtener('FECHA').'</b></td>
@@ -68,12 +69,12 @@
 									<td>'.$rvd->obtener('HORAS_DE_ATENCION').'</td>
 									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'&sbm=1"><img src="./iconos/search.png"></a></td>
 								</tr>
-							</tbody>
 				';
 				$r = $rvd->releer();
 				$n++;
 			}
 			$cont.='
+							</tbody>
 						</table>
 					</div>
 				</center>

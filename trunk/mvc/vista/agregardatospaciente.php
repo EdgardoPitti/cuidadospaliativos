@@ -11,7 +11,7 @@
 	//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
 	if(empty($idpaciente)){
 		//busco en los datos del paciente para ver si ese paciente existe
-		$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'"');
+		$datos = $datospaciente->buscardonde('NO_CEDULA = '.$_POST['cedula'].'');
 		//En caso de que exista se busca su residencia habitual para modificarla
 		if($datos){
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$datospaciente->obtener('ID_RESIDENCIA_HABITUAL').'');
