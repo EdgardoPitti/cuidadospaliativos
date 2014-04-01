@@ -13,6 +13,8 @@
 	$tipopaciente = new Accesatabla('tipo_paciente');
 	$estadocivil = new Accesatabla('estados_civiles');
 	$nacionalidades = new Accesatabla('nacionalidades');
+	$usuarios = new Accesatabla('usuarios');
+	$paciente = new Accesatabla('pacientes');
 	$sexo = new Accesatabla('sexo');
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
@@ -42,6 +44,8 @@
 		$iddistrito = $residencia->obtener('ID_DISTRITO');
 		$idcorregimiento = $residencia->obtener('ID_CORREGIMIENTO');
 		$responsable->buscardonde('ID_PACIENTE = '.$datos->obtener('ID_PACIENTE').'');
+		$pacientes->buscardonde('ID_PACIENTE = '.$datos->obtener('ID_PACIENTE').'');
+		$usuarios->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');
 	}
     $cont.='
 
@@ -267,13 +271,13 @@
 											<td style="text-align:left;padding-left:17%;">Usuario:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="usuario"  name="usuario" value="" placeholder="Usuario"></td>
+											<td><input type="text" id="usuario"  name="usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" placeholder="Usuario"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Contrase&ntilde;a:</td>	
 										</tr>
 										<tr>
-											<td><input type="password" id="pass"  name="pass" value="" placeholder="Contrase&ntilde;a"></td>
+											<td><input type="password" id="pass"  name="pass" value="'.$usuarios->obtener('CLAVE_ACCESO').'" placeholder="Contrase&ntilde;a"></td>
 										</tr>
 									</tbody>
 								</table>
