@@ -71,6 +71,12 @@
 	$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
 	$residencia->salvar();
 	//
+	if(!$datos){
+			$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
+			$id = $ds->db->obtenerArreglo($sql);
+			//Se almacena el id max en la variable $idresidencia
+			$idresidencia = $id[0][id];
+	}
 	$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
 	$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
 	$datospaciente->colocar("SEGUNDO_NOMBRE", $_POST['segundonombre']);
@@ -102,6 +108,9 @@
 	$p = $paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 	if(!$p){
 		$paciente->nuevo();
+		$sql = 'SELECT MAX(ID_USUARIO) as id FROM USUARIOS';
+		$matriz = $ds->db->obtenerarreglo($sql);
+		$idusuario = $matriz[0][id];
 	}else{
 		$usuarios->buscardonde('NO_IDENTIFICACION = '.$_POST['usuario'].' AND CLAVE_ACCESO = '.$_POST['pass'].'');
 	}
