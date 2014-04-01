@@ -76,7 +76,6 @@
 			$id = $ds->db->obtenerArreglo($sql);
 			//Se almacena el id max en la variable $idresidencia
 			$idresidencia = $id[0][id];
-
 	}
 	$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
 	$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
@@ -106,15 +105,16 @@
 	$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
 	$usuarios->colocar("ID_GRUPO_USUARIO", 2);
 	$usuarios->salvar();
-	$p = $paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
-	if(!$p){
+	if(!$datos){
 		$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
 		$id = $ds->db->obtenerArreglo($sql);
 		$idpaciente = $id[0][id];
-		$paciente->nuevo();
+		
 		$sql = 'SELECT MAX(ID_USUARIO) as id FROM USUARIOS';
 		$matriz = $ds->db->obtenerarreglo($sql);
 		$idusuario = $matriz[0][id];
+		
+		$paciente->nuevo();
 		$paciente->colocar("ID_PACIENTE", $idpaciente);
 		$paciente->colocar("ID_USUARIO", $idusuario);
 		$paciente->salvar();
