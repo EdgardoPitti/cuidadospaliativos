@@ -108,19 +108,18 @@
 	$usuarios->salvar();
 	$p = $paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 	if(!$p){
+		$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
+		$id = $ds->db->obtenerArreglo($sql);
+		$idpaciente = $id[0][id];
 		$paciente->nuevo();
 		$sql = 'SELECT MAX(ID_USUARIO) as id FROM USUARIOS';
 		$matriz = $ds->db->obtenerarreglo($sql);
 		$idusuario = $matriz[0][id];
-	}else{
-		$usuarios->buscardonde('NO_IDENTIFICACION = '.$_POST['usuario'].' AND CLAVE_ACCESO = '.$_POST['pass'].'');
-		$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
-		$id = $ds->db->obtenerArreglo($sql);
-		$idpaciente = $id[0][id];
+		$paciente->colocar("ID_PACIENTE", $idpaciente);
+		$paciente->colocar("ID_USUARIO", $idusuario);
+		$paciente->salvar();
 	}
-	$paciente->colocar("ID_PACIENTE", $idpaciente);
-	$paciente->colocar("ID_USUARIO", $idusuario);
-	$paciente->salvar();
+
 	//Si no esta vacia la variable $sw o si no esta vacio al obtener el id por GET quiere decir que el registro es 
 	//de un paciente de atencion hospitalaria por lo tanto debe almacenar una persona responsable
 	if(!empty($sw)){
