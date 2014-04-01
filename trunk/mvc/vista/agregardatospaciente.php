@@ -17,38 +17,19 @@
 		if($datos){
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$datospaciente->obtener('ID_RESIDENCIA_HABITUAL').'');
 			$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
+			//Se obtiene el id del paciente para usarlo despues y se actualizan los datos correspondientes
+			$idpaciente = $datospaciente->obtener('ID_PACIENTE');	
 		}else{
 			//Sino existe se crea un nuevo registro
 			$residencia->nuevo();
 			$usuarios->nuevo();
-		}
-
-		//Si no encuentra a nadie con ese registro 
-		if(!$datos){
 			//se crea un nuevo
 			$datospaciente->nuevo();
-			//Se arma el sql para obtener el id max
-			$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
-			$id = $ds->db->obtenerArreglo($sql);
-			//Se almacena el id max en la variable $idresidencia
-			$idresidencia = $id[0][id];
 			//Si el registro es nuevo es necesario colocar la cedula, en caso contrario no
 			$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
 			//Se obtiene la fecha de nacimiento
 			$fechanacimiento = $_POST['fechanacimiento'];
 			$fecha = '"'.$fechanacimiento.'"';
-		}else{
-			//En caso de que el registro no sea nuevo la fecha se coloca asi mismo
-			$fecha = $_POST['fechanacimiento'];
-		}
-		//Se obtiene el id del paciente para usarlo despues y se actualizan los datos correspondientes
-		$idpaciente = $datospaciente->obtener('ID_PACIENTE');	
-		//Si no encuentra a nadie con ese registro 
-		if(!$datos){
-			//Se arma el sql para obtener el id max
-			$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
-			$id = $ds->db->obtenerArreglo($sql);
-			$idpaciente = $id[0][id];
 		}
 	}else{
 		$datospaciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
@@ -104,6 +85,7 @@
 	$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
 	$usuarios->colocar("ID_GRUPO_USUARIO", 2);
 	$usuarios->salvar();
+	
 	if(!$datos){
 		$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
 		$id = $ds->db->obtenerArreglo($sql);
