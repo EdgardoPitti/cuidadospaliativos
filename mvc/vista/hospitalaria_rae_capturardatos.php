@@ -45,7 +45,7 @@
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente&sw=1&sbm=3" method="post" style="display:block;position:relative">
+			<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').'&sw=1&sbm=3" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>
