@@ -482,27 +482,40 @@ class Diseno {
 				}else{
 					if($mantener == 1){
 						$display1='block';
+						$activo1 = 'class="active"';
 						$display2='none';
 						$display3='none';
 						$display4='none';
 					}
 					if($mantener == 2){
 						$display1='none';
+						$activo1 = '';
 						$display2='block';
+						$activo2 = 'class="active"';
 						$display3='none';
+						$activo3 = '';
 						$display4='none';
+						$activo4 = '';
 					}
 					if($mantener == 3){
 						$display1='none';
+						$activo1 = '';
 						$display2='none';
+						$activo2 = '';
 						$display3='block';
+						$activo3 = 'class="active"';
 						$display4='none';
+						$activo4 = '';
 					}
 					if($mantener == 4){
 						$display1='none';
+						$activo1 = '';
 						$display2='none';
+						$activo2 = '';
 						$display3='none';
+						$activo3 = '';
 						$display4='block';
+						$activo4 = 'class="active"';
 					}
 				}
 			
@@ -666,16 +679,16 @@ class Diseno {
 												<a href="./?url=inicio" class="brand">Atenciones</a>	
 											<div class="nav-collapse navbar-responsive-collapse collapse">
 												<ul class="nav">										
-													<li>
+													<li '.$activo1.'>
 														<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
 													</li>
-													<li>
+													<li '.$activo2.'>
 														<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
 													</li>
-													<li>
+													<li '.$activo3.'>
 														<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
 													</li>
-													<li>
+													<li '.$activo4.'>
 														<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 													</li>
 												</ul>
