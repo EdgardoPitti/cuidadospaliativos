@@ -11,7 +11,7 @@
 	$idpaciente = $_GET['id'];
 	$sbm = $_GET['sbm'];
 	//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
-	$datos = $datospaciente->buscardonde('NO_CEDULA = '.$_POST['cedula'].'');
+	$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'"');
 	if(empty($idpaciente)){
 		//En caso de que exista se busca su residencia habitual para modificarla
 		if($datos){
@@ -19,6 +19,8 @@
 			$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
 			//Se obtiene el id del paciente para usarlo despues y se actualizan los datos correspondientes
 			$idpaciente = $datospaciente->obtener('ID_PACIENTE');	
+			$usuarios->buscardonde('ID_USUARIO = '.$datospaciente->obtener('ID_USUARIO').'');
+			$idusuario = $usuarios->obtener('ID_USUARIO');
 		}else{
 			//Sino existe se crea un nuevo registro
 			$residencia->nuevo();
