@@ -14,7 +14,7 @@
 	$nacionalidades = new Accesatabla('nacionalidades');
 	$sexo = new Accesatabla('sexo');
 	$usuarios = new Accesatabla('usuarios');
-	$paciente = new Accesatabla('pacientes');
+	$pacientes = new Accesatabla('pacientes');
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
 	if(empty($busqueda)){
