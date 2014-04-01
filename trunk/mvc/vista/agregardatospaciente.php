@@ -114,12 +114,9 @@
 		$idusuario = $matriz[0][id];
 	}else{
 		$usuarios->buscardonde('NO_IDENTIFICACION = '.$_POST['usuario'].' AND CLAVE_ACCESO = '.$_POST['pass'].'');
-	}
-	if(!$datos){
-			//Se arma el sql para obtener el id max
-			$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
-			$id = $ds->db->obtenerArreglo($sql);
-			$idpaciente = $id[0][id];
+		$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
+		$id = $ds->db->obtenerArreglo($sql);
+		$idpaciente = $id[0][id];
 	}
 	$paciente->colocar("ID_PACIENTE", $idpaciente);
 	$paciente->colocar("ID_USUARIO", $idusuario);
