@@ -143,6 +143,5 @@
 	}
 	include_once('./mvc/vista/inicio.php');
 	echo '<script language="javascript">location.href="./?url='.$url.'&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
-	
-	
+
 ?>

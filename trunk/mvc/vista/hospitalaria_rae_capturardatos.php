@@ -14,7 +14,7 @@
 	$estadocivil = new Accesatabla('estados_civiles');
 	$nacionalidades = new Accesatabla('nacionalidades');
 	$usuarios = new Accesatabla('usuarios');
-	$paciente = new Accesatabla('pacientes');
+	$pacientes = new Accesatabla('pacientes');
 	$sexo = new Accesatabla('sexo');
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
