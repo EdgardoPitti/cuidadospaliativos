@@ -15,7 +15,9 @@
 	$sexo = new Accesatabla('sexo');
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
-	
+	if(empty($busqueda)){
+		$busqueda = $_GET['id'];
+	}
 	$cont='
 		<center>
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Domiciliaria</h3>						
@@ -30,7 +32,7 @@
 		
 		 ';	
 	if(!empty($busqueda)){
-		$datos->buscardonde('NO_CEDULA = "'.$busqueda.'"');
+		$datos->buscardonde('NO_CEDULA = "'.$busqueda.'" OR ID_PACIENTE = '.$busqueda.'');
 		$idnacionalidad = $datos->obtener('ID_NACIONALIDAD');
 		$idtiposangre = $datos->obtener('ID_TIPO_SANGUINEO');
 		$idestadocivil = $datos->obtener('ID_ESTADO_CIVIL');
@@ -45,7 +47,7 @@
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente&sbm=1" method="post" style="display:block;position:relative">
+			<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').'&sbm=1" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>
