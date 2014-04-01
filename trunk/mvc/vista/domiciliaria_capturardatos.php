@@ -60,7 +60,7 @@
 											<td style="text-align:left;padding-left:17%;">C&eacute;dula:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="cedula" name="cedula" value="'.$busqueda.'" placeholder="C&eacute;dula"></td>
+											<td><input type="text" id="cedula" name="cedula" value="'.$datos->obtener('NO_CEDULA').'" placeholder="C&eacute;dula"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Nacionalidad:</td>
