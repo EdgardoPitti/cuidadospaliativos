@@ -4,10 +4,12 @@
 	$datospaciente = new Accesatabla('datos_pacientes');
 	$paciente = new Accesatabla('pacientes');
 	$residencia = new Accesatabla('residencia_habitual');
+	$usuarios = new Accesatabla('usuarios');
 	$ds = new Diseno();
 	//Variable utilizada como Switch para controlar de que vista viene
 	$sw = $_GET['sw'];
 	$idpaciente = $_GET['id'];
+	$sbm = $_GET['sbm'];
 	//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
 	if(empty($idpaciente)){
 		//busco en los datos del paciente para ver si ese paciente existe
@@ -19,24 +21,11 @@
 		}else{
 			//Sino existe se crea un nuevo registro
 			$residencia->nuevo();
-		}	
-		//Se Almacenan los valores correspondientes y se salva
-		$residencia->colocar("ID_PROVINCIA", $_POST['provincias']);
-		$residencia->colocar("ID_DISTRITO", $_POST['distritos']);
-		$residencia->colocar("ID_CORREGIMIENTO", $_POST['corregimientos']);
-		$residencia->colocar("ID_ZONA", $_POST['zona']);
-		$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
-		$residencia->salvar();
+			$usuarios->nuevo();
+		}
 
-		
-		//Se descompone la fecha en año, mes y dia
-		list($anio, $mes, $dia) = explode("-", $_POST['fechanacimiento']);
-		//Se llama la funcion de diseño llamada edad mandandole la fecha desglozada para obtener la edad
-		$edad = $ds->edad($dia,$mes,$anio);
-		
 		//Si no encuentra a nadie con ese registro 
 		if(!$datos){
-			
 			//se crea un nuevo
 			$datospaciente->nuevo();
 			//Se arma el sql para obtener el id max
@@ -54,30 +43,7 @@
 			$fecha = $_POST['fechanacimiento'];
 		}
 		//Se obtiene el id del paciente para usarlo despues y se actualizan los datos correspondientes
-		$idpaciente = $datospaciente->obtener('ID_PACIENTE');
-		$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
-		$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
-		$datospaciente->colocar("SEGUNDO_NOMBRE", $_POST['segundonombre']);
-		$datospaciente->colocar("APELLIDO_PATERNO", $_POST['primerapellido']);
-		$datospaciente->colocar("APELLIDO_MATERNO", $_POST['segundoapellido']);
-		$datospaciente->colocar("ID_ESTADO_CIVIL", $_POST['estadocivil']);
-		$datospaciente->colocar("ID_SEXO", $_POST['sexo']);
-		$datospaciente->colocar("FECHA_NACIMIENTO",$fecha );
-		$datospaciente->colocar("LUGAR_NACIMIENTO", $_POST['lugarnacimiento']);
-		$datospaciente->colocar("EDAD_PACIENTE", $edad);
-		$datospaciente->colocar("ID_ETNIA", $_POST['etnia']);
-		$datospaciente->colocar("ID_TIPO_SANGUINEO", $_POST['tiposangre']);
-		$datospaciente->colocar("ID_NACIONALIDAD", $_POST['nacionalidad']);
-		$datospaciente->colocar("ID_TIPO_PACIENTE", $_POST['tipopaciente']);
-		$datospaciente->colocar("TELEFONO_CASA", $_POST['telefono']);
-		$datospaciente->colocar("TELEFONO_CELULAR", $_POST['celular']);
-		$datospaciente->colocar("E_MAIL", $_POST['correo']);
-		$datospaciente->colocar("OCUPACION", $_POST['ocupacion']);
-		$datospaciente->colocar("ID_RESIDENCIA_HABITUAL", $idresidencia);
-		$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $_POST['residenciatransitoria']);
-		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
-		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
-		$datospaciente->salvar();		
+		$idpaciente = $datospaciente->obtener('ID_PACIENTE');	
 		//Si no encuentra a nadie con ese registro 
 		if(!$datos){
 			//Se arma el sql para obtener el id max
@@ -85,18 +51,66 @@
 			$id = $ds->db->obtenerArreglo($sql);
 			$idpaciente = $id[0][id];
 		}
+	}else{
+		$datospaciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+		$paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$datospaciente->obtener('ID_RESIDENCIA_HABITUAL').'');
+		$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
+		$usuarios->buscardonde('ID_USUARIO = '.$paciente->obtener('ID_USUARIO').'');
+		$idusuario = $usuarios->obtener('ID_USUARIO');
 	}
-	$datospaciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+	//Se descompone la fecha en año, mes y dia
+	list($anio, $mes, $dia) = explode("-", $_POST['fechanacimiento']);
+	//Se llama la funcion de diseño llamada edad mandandole la fecha desglozada para obtener la edad
+	$edad = $ds->edad($dia,$mes,$anio);
+	//Se Almacenan los valores correspondientes y se salva
+	$residencia->colocar("ID_PROVINCIA", $_POST['provincias']);
+	$residencia->colocar("ID_DISTRITO", $_POST['distritos']);
+	$residencia->colocar("ID_CORREGIMIENTO", $_POST['corregimientos']);
+	$residencia->colocar("ID_ZONA", $_POST['zona']);
+	$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
+	$residencia->salvar();
+	//
+	$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
+	$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
+	$datospaciente->colocar("SEGUNDO_NOMBRE", $_POST['segundonombre']);
+	$datospaciente->colocar("APELLIDO_PATERNO", $_POST['primerapellido']);
+	$datospaciente->colocar("APELLIDO_MATERNO", $_POST['segundoapellido']);
+	$datospaciente->colocar("ID_ESTADO_CIVIL", $_POST['estadocivil']);
+	$datospaciente->colocar("ID_SEXO", $_POST['sexo']);
+	$datospaciente->colocar("FECHA_NACIMIENTO",$fecha );
+	$datospaciente->colocar("LUGAR_NACIMIENTO", $_POST['lugarnacimiento']);
+	$datospaciente->colocar("EDAD_PACIENTE", $edad);
+	$datospaciente->colocar("ID_ETNIA", $_POST['etnia']);
+	$datospaciente->colocar("ID_TIPO_SANGUINEO", $_POST['tiposangre']);
+	$datospaciente->colocar("ID_NACIONALIDAD", $_POST['nacionalidad']);
+	$datospaciente->colocar("ID_TIPO_PACIENTE", $_POST['tipopaciente']);
+	$datospaciente->colocar("TELEFONO_CASA", $_POST['telefono']);
+	$datospaciente->colocar("TELEFONO_CELULAR", $_POST['celular']);
+	$datospaciente->colocar("E_MAIL", $_POST['correo']);
+	$datospaciente->colocar("OCUPACION", $_POST['ocupacion']);
+	$datospaciente->colocar("ID_RESIDENCIA_HABITUAL", $idresidencia);
+	$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $_POST['residenciatransitoria']);
+	$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
+	$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
+	$datospaciente->salvar();
+	//
+	$usuarios->colocar("NO_IDENTIFICACION", $_POST['usuario']);
+	$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
+	$usuarios->colocar("ID_GRUPO_USUARIO", 2);
+	$usuarios->salvar();
 	$p = $paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 	if(!$p){
 		$paciente->nuevo();
-		$paciente->colocar("ID_PACIENTE", $idpaciente);
-		$paciente->colocar("ID_USUARIO", $idpaciente);
-		$paciente->salvar();
+	}else{
+		$usuarios->buscardonde('NO_IDENTIFICACION = '.$_POST['usuario'].' AND CLAVE_ACCESO = '.$_POST['pass'].'');
 	}
+	$paciente->colocar("ID_PACIENTE", $idpaciente);
+	$paciente->colocar("ID_USUARIO", $idusuario);
+	$paciente->salvar();
 	//Si no esta vacia la variable $sw o si no esta vacio al obtener el id por GET quiere decir que el registro es 
 	//de un paciente de atencion hospitalaria por lo tanto debe almacenar una persona responsable
-	if(!empty($sw) or !empty($_GET['id'])){
+	if(!empty($sw)){
 		//Se instancia la tabla que almacena los datos del responsable del paciente
 		$responsable = new Accesatabla('responsable_paciente');
 		//Comprobamos que el paciente no exista
@@ -124,11 +138,15 @@
 		$responsable->colocar("TELEFONO_CONTACTO", $_POST['telefonoresponsable']);
 		$responsable->salvar();
 	}
-	if(empty($_GET['id'])){
-		include_once('./mvc/vista/inicio.php');
-	}else{
-		//echo '<br><br><br><br><br><br><br><br><center><h1><a href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'">Click para continuar....</a></h1></center><br><br><br><br><br><br><br><br>';
-		include_once('./mvc/vista/..php');
+	if($sbm == 1){
+		$url = 'domiciliaria_capturardatos';
+	}elseif($sbm == 2){
+		$url = 'ambulatoria_capturardatos';
+	}elseif($sbm == 2){
+		$url = 'hospitalaria_rae_capturardatos';
 	}
+	include_once('./mvc/vista/inicio.php');
+	echo '<script language="javascript">location.href="./?url='.$url.'&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
+	
 	
 ?>
