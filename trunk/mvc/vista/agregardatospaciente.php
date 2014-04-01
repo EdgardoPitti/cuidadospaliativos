@@ -19,7 +19,8 @@
 			$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
 			//Se obtiene el id del paciente para usarlo despues y se actualizan los datos correspondientes
 			$idpaciente = $datospaciente->obtener('ID_PACIENTE');	
-			$usuarios->buscardonde('ID_USUARIO = '.$datospaciente->obtener('ID_USUARIO').'');
+			$paciente->buscardonde('ID_PACIENTE = '.$datospaciente->obtener('ID_PACIENTE').'');
+			$usuarios->buscardonde('ID_USUARIO = '.$paciente->obtener('ID_USUARIO').'');
 			$idusuario = $usuarios->obtener('ID_USUARIO');
 		}else{
 			//Sino existe se crea un nuevo registro
