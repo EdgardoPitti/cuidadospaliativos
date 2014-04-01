@@ -272,7 +272,7 @@
 											<td><input type="text" id="usuario"  name="usuario" value="" placeholder="Usuario"></td>
 										</tr>
 										<tr>
-											<td style="text-align:left;padding-left:17%;">Contrase&ntilde;:</td>	
+											<td style="text-align:left;padding-left:17%;">Contrase&ntilde;a:</td>	
 										</tr>
 										<tr>
 											<td><input type="password" id="pass"  name="pass" value="" placeholder="Contrase&ntilde;a"></td>
