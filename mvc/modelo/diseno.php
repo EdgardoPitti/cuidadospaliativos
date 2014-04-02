@@ -427,19 +427,17 @@ class Diseno {
 					'.$this->latino($this->derecha).'
 				</td>';
 		else
-			/*if(empty($_SESSION['idu'])){
-				$span2 = '';
-				$span1 = 'span12';
-			}else{
-				$span2 = 'span2';
-				$span1 = 'span10';
-			}*/
-			if(empty($_SESSION['idu'])){
+			if(empty($_SESSION['idu'])){//mostrar u ocultar la barra de navegación superior
 				$display = 'display:none;';
 			}else{
-				$display = 'display:block;';
+				$display = 'display:block;';				
 			}
 			
+			if($_SESSION['idgu'] == 1){//cambia el margin izq. del cerrar sesión
+				$style = 'margin:2px 0px 0px -44px;';
+			}else{
+				$style = 'margin:2px 0px 0px -88px;';
+			}
 			$cont=
 			   '
 				<!--Navegación Superior-->
@@ -451,7 +449,7 @@ class Diseno {
 							  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 								<span class="caret"></span>
 							  </button>
-							  <ul class="dropdown-menu">
+							  <ul class="dropdown-menu" style="'.$style.'">
 								<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
 							  </ul>
 							</div>';	

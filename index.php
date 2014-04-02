@@ -1,6 +1,6 @@
 <?php SESSION_START();?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en">
+<html lang="es-ES">
 	<head>	
 		<meta content="text/html; charset=utf-8" />
 		<title>Cuidados Paliativos</title>
@@ -18,7 +18,7 @@
 		<script type='text/javascript' src='js/show_hide.js'></script>	
 		<script type='text/javascript' src='js/overflow.js'></script>	
 		<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
-
+		
 		<script language="JavaScript" type="text/JavaScript">
 			//funcion para la seleccion de dropdown anidados
 			$(document).ready(function(){
@@ -471,6 +471,4 @@
 			</div>	
 		</div>	
 	</body>
-	
-		
 </html>
