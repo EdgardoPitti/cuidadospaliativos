@@ -40,13 +40,13 @@
 						<table class="table2 borde-tabla table-hover">
 							<thead>
 								<tr class="fd-table">
-									<th>#</th>
+									<th style="min-width:20px;">#</th>
 									<th>Fecha</th>
 									<th>Institucion</th>
 									<th>Profesionales</th>
 									<th>Pacientes Atendidos</th>
 									<th>Horas de Atencion</th>
-									<th style="min-width:15px;"></th>
+									<th style="min-width:20px;"></th>
 								</tr>
 							</thead>';
 	}else{
