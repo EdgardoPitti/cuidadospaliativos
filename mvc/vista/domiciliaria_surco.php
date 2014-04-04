@@ -64,7 +64,7 @@
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 		$cont.='
 				<div class="row-fluid">
-					<div class="span6" id="paciente">
+					<div class="span6">
 						<fieldset>
 							<legend>
 								Paciente
@@ -86,7 +86,7 @@
 								</table>
 						</fieldset>
 					</div>
-					<div class="span6" id="direccion">
+					<div class="span6">
 						<fieldset>
 							<legend>
 								Dirección
@@ -309,8 +309,8 @@
 										<label for="acordeon2">Historial del Paciente</label>
 										<article>	
 											<center>
-											<div class="overflow" id="overflow-movil">
-												<div class="row-fluid oculto">
+											<div class="overflow overthrow">
+												<div class="row-fluid">
 													<div class="span12">
 														<table class="table" style="margin-top:10px;">
 															<tr>
@@ -329,24 +329,8 @@
 															</tr>
 														</table>
 													</div>												
-												</div>		
-												<div id="datos_imp">
-													<table class="tabla-datos" width="100%">
-														<tr>
-															<td><b>Anamnesis:</b></td>
-															<td><span style="width:500px;word-wrap:break-word;text-align:left">'.$historia->obtener('ANAMNESIS').'</span></td>															
-														</tr>	
-														<tr>	
-															<td><b>Observaciones:</b></td>
-															<td><span style="width:500px;word-wrap:break-word;text-align:left">'.$historia->obtener('OBSERVACIONES').'</span></td>
-														</tr>
-														<tr>
-															<td colspan="2" style="text-align:justify;text-decoration:underline;"><b>Exámen Físico:</b></td>
-														</tr>
-													</table>
-												</div>
-												
-												<table class="table2 borde-tabla table_imp" width="100%">
+												</div>													
+												<table class="table2 borde-tabla overthrow" width="100%">
 													<tr class="fd-tabla-gris">
 														<th>Hora</th>
 														<th>Presión Arterial</th>
@@ -390,7 +374,7 @@
 										<label for="acordeon3">Resultado de Exámenes/Diagnóstico</label>
 										<article>
 											<center>
-											<div class="overflow" id="overflow-movil">
+											<div class="overflow overthrow">
 												<table class="table2 borde-tabla table-hover table_imp oculto" width="100%" style="margin-top:7px;text-align:center;">
 													<thead>
 														<tr class="fd-tabla-gris">
@@ -452,7 +436,7 @@
 									<div>
 										<input id="acordeon4" name="accordion" type="radio" />
 										<label for="acordeon4">Datos del Profesional</label>
-										<article class="oculto">
+										<article>
 											<div class="row-fluid" style="margin-top:10px">
 												<div class="span6" align="center">Nombre de quien refiere:</div>
 												<div class="span6" align="center"><input style="width:135px" type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.'/> <input style="width:135px"  type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional"  value="'.$profesional->obtener('NO_CEDULA').'" readonly></div>
@@ -486,7 +470,7 @@
 										<div class="row-fluid">
 											<div class="span12">
 												<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Respuestas</h3>
-													<div class="overflow" id="overflow-movil" style="max-height:170px;">
+													<div class="overflow overthrow" style="max-height:170px;">
 														<table class="table2 borde-tabla table-hover">
 															<thead>
 																<tr class="fd-tabla-gris">

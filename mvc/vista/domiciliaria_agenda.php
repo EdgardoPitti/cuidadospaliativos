@@ -44,7 +44,7 @@
 			</form>
 			<b>Citas del '.$fecha.'</b>
 		</center>
-		<div class="row-fluid" style="width: 100%; height: 600px; overflow-y: scroll;">
+		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;">
 			<div class="span2">
 				<a href="./?url=domiciliaria_agenda&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
 					<article class="agenda">

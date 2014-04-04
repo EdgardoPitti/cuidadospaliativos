@@ -141,7 +141,12 @@
 	}elseif($sbm == 2){
 		$url = 'hospitalaria_rae_capturardatos';
 	}
-	include_once('./mvc/vista/inicio.php');
+	if($_GET['ch']){
+		echo "<script language='javascript'>alert('Datos Actualizados Correctamente')</script>";		
+	}else{
+		echo "<script language='javascript'>alert('Datos Almacenados Correctamente')</script>";		
+	}
+	
 	echo '<script language="javascript">location.href="./?url='.$url.'&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
 
 ?>

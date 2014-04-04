@@ -13,14 +13,14 @@
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Servicios M&eacute;dicos</h3>
 				<label>Buscar Servicio M&eacute;dico:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
-				<div id="overflow-movil" class="overflow" style="max-height:300px;overflow-y:auto;">
+				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="servicios">
 						<thead>
 							<tr class="fd-table">
 								<th>#</th>
 								<th>Servicios</th>
 								<th>Tiempos de Atenci&oacute;n <i>(MIN)</i></th>
-								<th style="min-width:15px;"></th>
+								<th style="min-width:20px;"></th>
 							</tr>
 						</thead>
 						<tbody>';

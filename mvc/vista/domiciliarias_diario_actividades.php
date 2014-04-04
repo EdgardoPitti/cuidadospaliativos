@@ -36,7 +36,7 @@
 	}
 	if($r){
 		$cont.='
-					<div class="overflow" id="overflow-movil">
+					<div class="overflow overthrow">
 						<table class="table2 borde-tabla table-hover">
 							<thead>
 								<tr class="fd-table">
