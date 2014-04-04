@@ -26,7 +26,8 @@
 							</td>
 						</tr>					
 					</table>
-				</form>';
+				</form>
+			</center>';
 	if(empty($inicio) OR empty($final)){
 		$r = $rda->buscardonde('ID_RDA > 0');
 		$p = '';
@@ -79,13 +80,13 @@
 		$n++;
 	}
 	$cont.='
-				</table>
-			</div>
+					</table>
+				</div>
 			<center>
 				<a href="./?url=domiciliarias_registro_actividades&sbm=1" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
 			</center>
 		</div>
-	</div>
+	
 	';
 	$ds->contenido($cont);
 	$ds->mostrar();
