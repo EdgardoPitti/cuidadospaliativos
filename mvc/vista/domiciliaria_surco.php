@@ -89,7 +89,7 @@
 					<div class="span6">
 						<fieldset>
 							<legend>
-								Dirección
+								Direcci&oacute;n
 							</legend>
 								<table class="table2" style="height:86px;">
 									<tr>
