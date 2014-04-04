@@ -530,7 +530,7 @@ class Diseno {
 							<label for="ac-1">Registro de Visitas Domiciliarias</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=domiciliaria_capturardatos&sbm=1" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
+									<li><a class="sublink" href="./?url=domiciliaria_capturardatos&sbm=1" title="Datos del Paciente"><i>Datos Pacientes</i></a></li>	
 									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
 									<li><a class="sublink" href="./?url=domiciliaria_agenda&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>

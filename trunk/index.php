@@ -8,17 +8,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<!--CSS: Menú Principal-->	
-		
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>
 		
 		<script type="text/javascript" src="js/jquery.js"></script>	
-		<script type="text/javascript" src="js/bootstrap.js"></script>	
-		<script type='text/javascript' src='js/show_hide.js'></script>	
-		<script type='text/javascript' src='js/overflow.js'></script>	
-		<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
-		
 		<script language="JavaScript" type="text/JavaScript">
 			//funcion para la seleccion de dropdown anidados
 			$(document).ready(function(){
@@ -471,4 +465,13 @@
 			</div>	
 		</div>	
 	</body>
+	
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script type='text/javascript' src='js/show_hide.js'></script>	
+	<script src='js/overthrow/overthrow-detect.js'></script>	
+	<script src="js/overthrow/overthrow-polyfill.js"></script>
+	<script src="js/overthrow/overthrow-toss.js"></script>
+	<script src="js/overthrow/overthrow-init.js"></script>
+	<script src="js/overthrow/anchorscroll.overthrow.js"></script>
+	<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
 </html>

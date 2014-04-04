@@ -13,13 +13,13 @@
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Zonas</h3>
 				<label>Buscar Zonas:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
-				<div id="overflow-movil" class="overflow" style="max-height:300px;overflow-y:auto;">
+				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="zonas">
 						<thead>
 							<tr class="fd-table">
 								<th>#</th>
 								<th>Zona</th>
-								<th style="min-width:15px"></th>
+								<th style="min-width:20px"></th>
 							</tr>
 						</thead>
 						<tbody>';

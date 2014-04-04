@@ -15,7 +15,7 @@
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Usuarios</h3>		
 				<label>Buscar No. de Identificaci&oacuten:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
-				<div id="overflow-movil" class="overflow" style="max-height:300px;overflow-y:auto;">
+				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="usuarios">
 						<thead>
 							<tr class="fd-table">
@@ -23,7 +23,7 @@
 								<th>No de Identificaci&oacute;n</th>
 								<th>Clave de Acceso</th>
 								<th>Grupo de Usuario</th>
-								<th style="min-width:15px;"></th>
+								<th style="min-width:20px;"></th>
 							</tr>
 						</thead>
 						<tbody>

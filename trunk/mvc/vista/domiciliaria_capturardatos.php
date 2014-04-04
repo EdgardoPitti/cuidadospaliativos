@@ -15,12 +15,24 @@
 	$sexo = new Accesatabla('sexo');
 	$usuarios = new Accesatabla('usuarios');
 	$pacientes = new Accesatabla('pacientes');
+	$comillas = "'";
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
 	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
 	}
-	$cont='
+	
+	$script = '
+		<script language="javascript" type="text/javascript">
+			$(document).ready(function(){
+				$('.$comillas.'input[type="submit"]'.$comillas.').attr('.$comillas.'disabled'.$comillas.','.$comillas.'disabled'.$comillas.');	
+			});
+			function valida(dato) {
+				$('.$comillas.'input[type="submit"]'.$comillas.').removeAttr('.$comillas.'disabled'.$comillas.');
+			}
+		</script>
+	';
+	$cont.='
 		<center>
 			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Sistema de Captura de Datos de Atenci&oacute;n Domiciliaria</h3>						
 			<div class="row-fluid">
@@ -34,7 +46,7 @@
 		
 		 ';	
 	if(!empty($busqueda)){
-		$datos->buscardonde('NO_CEDULA = "'.$busqueda.'" OR ID_PACIENTE = '.$busqueda.'');
+		$act_boton = $datos->buscardonde('NO_CEDULA = "'.$busqueda.'" OR ID_PACIENTE = '.$busqueda.'');		
 		$idnacionalidad = $datos->obtener('ID_NACIONALIDAD');
 		$idtiposangre = $datos->obtener('ID_TIPO_SANGUINEO');
 		$idestadocivil = $datos->obtener('ID_ESTADO_CIVIL');
@@ -47,31 +59,37 @@
 		$iddistrito = $residencia->obtener('ID_DISTRITO');
 		$idcorregimiento = $residencia->obtener('ID_CORREGIMIENTO');
 		$pacientes->buscardonde('ID_PACIENTE = '.$datos->obtener('ID_PACIENTE').'');
-		$usuarios->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');
-		
+		$usuarios->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');			
+	}
+	if(!$act_boton){
+		$boton ='<input type="submit" class="btn btn-primary" value="Registrar"/>';
+	}else{
+		$cont.=$script;
+		$cambio ='&ch=1';
+		$boton = '<input type="submit" class="btn btn-primary" value="Guardar Cambios"/>';
 	}
     $cont.='
 
-			<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').'&sbm=1" method="post" style="display:block;position:relative">
+			<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').''.$cambio.'&sbm=1" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
 						<fieldset>
 							<legend>
 								Datos de Identificaci&oacute;n
-							</legend>
+							</legend>			
 								<table class="table">
 									<tbody>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">C&eacute;dula:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="cedula" name="cedula" value="'.$datos->obtener('NO_CEDULA').'" placeholder="C&eacute;dula"></td>
+											<td><input type="text" id="cedula" name="cedula" value="'.$datos->obtener('NO_CEDULA').'" placeholder="C&eacute;dula" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Nacionalidad:</td>
 										</tr>
 										<tr>
-											<td><select id="nacionalidad" name="nacionalidad">
+											<td><select id="nacionalidad" name="nacionalidad" onChange="valida(this.value)">
 													<option value="0"></option>';
 																			
 		$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');
@@ -93,7 +111,7 @@
 											<td style="text-align:left;padding-left:17%;">Tipo De Paciente</td>
 										</tr>
 										<tr>
-											<td><select id="tipopaciente" name="tipopaciente">
+											<td><select id="tipopaciente" name="tipopaciente"  onChange="valida(this.value)">
 													<option value="0"></option>';
 		$t = $tipopaciente->buscardonde('ID_TIPO_PACIENTE');
 		while ($t){
@@ -114,7 +132,7 @@
 											<td style="text-align:left;padding-left:17%;">N&ordm; de Seguro:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N&ordm; Seguro"></td>
+											<td><input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N&ordm; Seguro"  onChange="valida(this.value)"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -131,44 +149,44 @@
 											<td style="text-align:left;padding-left:17%;">Primer Nombre:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="primernombre" name="primernombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" placeholder="Primer Nombre"></td>
+											<td><input type="text" id="primernombre" name="primernombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" placeholder="Primer Nombre" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Segundo Nombre:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="segundonombre" name="segundonombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'" placeholder="Segundo Nombre"></td>
+											<td><input type="text" id="segundonombre" name="segundonombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'" placeholder="Segundo Nombre" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Primer Apellido:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="primerapellido" name="primerapellido" value="'.$datos->obtener('APELLIDO_PATERNO').'" placeholder="Primer Apellido"></td>
+											<td><input type="text" id="primerapellido" name="primerapellido" value="'.$datos->obtener('APELLIDO_PATERNO').'" placeholder="Primer Apellido" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Segundo Apellido:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="segundoapellido" name="segundoapellido" value="'.$datos->obtener('APELLIDO_MATERNO').'" placeholder="Segundo Apellido"></td>
+											<td><input type="text" id="segundoapellido" name="segundoapellido" value="'.$datos->obtener('APELLIDO_MATERNO').'" placeholder="Segundo Apellido" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Fecha de Nacimiento:</td>	
 										</tr>
 										<tr>
-											<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$datos->obtener('FECHA_NACIMIENTO').'"></td>
+											<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$datos->obtener('FECHA_NACIMIENTO').'" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Lugar de Nacimiento:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="lugarnacimiento" name="lugarnacimiento" value="'.$datos->obtener('LUGAR_NACIMIENTO').'" placeholder="Lugar de Nac."></td>
+											<td><input type="text" id="lugarnacimiento" name="lugarnacimiento" value="'.$datos->obtener('LUGAR_NACIMIENTO').'" placeholder="Lugar de Nac." onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Sexo:</td>	
 										</tr>
 										<tr>
 											<td>
-												<select id="sexo" name="sexo">
+												<select id="sexo" name="sexo" onChange="valida(this.value)">
 													<option value=""></option>';
 		$s = $sexo->buscardonde('ID_SEXO > 0');
 		while($s){
@@ -189,7 +207,7 @@
 										</tr>
 										<tr>
 											<td>
-												<select id="tiposangre" name="tiposangre" style="width:100px">
+												<select id="tiposangre" name="tiposangre" style="width:100px" onChange="valida(this.value)">
 													<option value="0"></option>';																	
 		$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
 		while($x){
@@ -210,7 +228,7 @@
 										<td style="text-align:left;padding-left:17%;">Etnia:</td>
 									</tr>
 									<tr>
-										<td><select id="etnia" name="etnia">
+										<td><select id="etnia" name="etnia" onChange="valida(this.value)">
 												<option value="0"></option>';																
 		$e = $etnia->buscardonde("ID_ETNIA > 0");
 		while ($e){
@@ -232,14 +250,14 @@
 											<td style="text-align:left;padding-left:17%;">Ocupaci&oacute;n:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="ocupacion" name="ocupacion" value="'.$datos->obtener('OCUPACION').'" placeholder="Ocupaci&oacute;n"></td>
+											<td><input type="text" id="ocupacion" name="ocupacion" value="'.$datos->obtener('OCUPACION').'" placeholder="Ocupaci&oacute;n" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Estado Civil:</td>	
 										</tr>
 										<tr>
 											<td align="center">
-												<select id="estadocivil" name="estadocivil" style="width:100px">
+												<select id="estadocivil" name="estadocivil" onChange="valida(this.value)">
 													<option value="0"></option>';
 		$ec = $estadocivil->buscardonde('ID_ESTADO_CIVIL > 0');
 		while ($ec){
@@ -262,25 +280,25 @@
 											<td style="text-align:left;padding-left:17%;">Nombre Padre:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="nombrepadre" name="nombrepadre" value="'.$datos->obtener('NOMBRE_PADRE').'" placeholder="Nombre Padre"></td>
+											<td><input type="text" id="nombrepadre" name="nombrepadre" value="'.$datos->obtener('NOMBRE_PADRE').'" placeholder="Nombre Padre" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Nombre Madre:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="nombremadre"  name="nombremadre" value="'.$datos->obtener('NOMBRE_MADRE').'" placeholder="Nombre Madre"></td>
+											<td><input type="text" id="nombremadre"  name="nombremadre" value="'.$datos->obtener('NOMBRE_MADRE').'" placeholder="Nombre Madre" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Usuario:</td>	
 										</tr>
 										<tr>
-											<td><input type="text" id="usuario"  name="usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" placeholder="Usuario"></td>
+											<td><input type="text" id="usuario"  name="usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" placeholder="Usuario" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Contrase&ntilde;a:</td>	
 										</tr>
 										<tr>
-											<td><input type="password" id="pass"  name="pass" value="'.$usuarios->obtener('CLAVE_ACCESO').'" placeholder="Contrase&ntilde;a"></td>
+											<td><input type="password" id="pass"  name="pass" value="'.$usuarios->obtener('CLAVE_ACCESO').'" placeholder="Contrase&ntilde;a" onChange="valida(this.value)"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -300,26 +318,26 @@
 											<td style="text-align:left;padding-left:17%;">Correo Electr&oacute;nico:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'" placeholder="Correo Electr&oacute;nico"></td>
+											<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'" placeholder="Correo Electr&oacute;nico" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td  style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="telefono" name="telefono" value="'.$datos->obtener('TELEFONO_CASA').'" placeholder="Tel&eacute;fono"></td>
+											<td><input type="text" id="telefono" name="telefono" value="'.$datos->obtener('TELEFONO_CASA').'" placeholder="Tel&eacute;fono" onChange="valida(this.value)"></td>
 										</tr>
 										<tr>
 											<td  style="text-align:left;padding-left:17%;">Celular:</td>
 										</tr>
 										<tr>
-											<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular"></td>
+											<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular" onChange="valida(this.value)"></td>
 										</tr>	
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Provincia:</td>
 										</tr>
 										<tr>
 											<td>
-												<select id="provincias" name="provincias"> 
+												<select id="provincias" name="provincias" onChange="valida(this.value)"> 
 													<option value=""></option>';
 								$cont.= 
 						$x = $provincias->buscardonde('ID_PROVINCIA > 0');
@@ -342,7 +360,7 @@
 										</tr>
 										<tr>
 											<td>
-												<select style="width:140px" id="distritos" name="distritos">
+												<select style="width:140px" id="distritos" name="distritos" onChange="valida(this.value)">
 													<option value="0"></option>';
 	$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
 	while($d){
@@ -364,7 +382,7 @@ $cont.='												</select>
 										</tr>
 										<tr>
 											<td>
-												<select style="width:140px" id="corregimientos" name="corregimientos">
+												<select style="width:140px" id="corregimientos" name="corregimientos" onChange="valida(this.value)">
 													<option value="0"></option>';
 																
 	$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
@@ -393,7 +411,7 @@ $cont.='												</select>
 										<td style="text-align:left;padding-left:17%;">Zona:</td>
 									</tr>
 									<tr>
-										<td><select id="zona" name="zona">
+										<td><select id="zona" name="zona" onChange="valida(this.value)">
 												<option value="0"></option>';
 $z = $zona->buscardonde('ID_ZONA > 0');
 while($z){
@@ -415,13 +433,13 @@ $cont.='									</select>
 										<td style="text-align:left;padding-left:17%;">Direcci&oacute;n Detallada:</td>
 									</tr>
 									<tr>
-										<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"  placeholder="Direcci&oacute;n Detallada">'.$residencia->obtener('DETALLE').'</textarea></td>
+										<td><textarea  class="textarea" id="direcciondetallada" name="direcciondetallada"  placeholder="Direcci&oacute;n Detallada" onChange="valida(this.value)">'.$residencia->obtener('DETALLE').'</textarea></td>
 									</tr>
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Residencia Transitoria:</td>
 									</tr>
 									<tr>
-										<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
+										<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria" onChange="valida(this.value)">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -431,7 +449,7 @@ $cont.='									</select>
 				
 				<center>
 					<div class="margen-bt-datos"> 
-						<button type="submit" class="btn btn-primary">Registrar</button>
+						'.$boton.'
 					</div>
 				</center>
 			</form>
