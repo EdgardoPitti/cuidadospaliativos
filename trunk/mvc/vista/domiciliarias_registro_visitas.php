@@ -72,7 +72,7 @@
 			$cont.='	
 							
 							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>
-							<table class="tabla-datos borde-tabla">
+							<table class="tabla-datos borde-tabla overthrow">
 								<tr class="fd-tabla-gris">
 									<th>N&ordm;</th>
 									<th>Especialidad M&eacute;dica</th>
@@ -119,8 +119,7 @@
 		if($d){
 			$cont.='
 			<center>
-				<div  class="overflow" id="overflow-movil">
-				
+				<div  class="overflow overthrow">				
 					<table class="table2 borde-tabla table-hover">
 						<thead>
 							<tr class="fd-table">

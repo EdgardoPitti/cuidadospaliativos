@@ -84,7 +84,7 @@
 					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Equipo Médico</h3>
 					<table class="tabla-datos borde-tabla">
 						<tr class="fd-tabla-gris">
-							<th>N°</th>
+							<th>N&deg;</th>
 							<th>Especialidad Medica</th>
 							<th>Profesional</th>
 						</tr>';
@@ -126,7 +126,7 @@
 		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
 			$cont.='
 				<center>
-					<div class="overflow" id="overflow-movil">
+					<div class="overflow overthrow">
 						<table class="table2 borde-tabla">
 							<tr class="fd-table">
 								<th>Zona</th>
