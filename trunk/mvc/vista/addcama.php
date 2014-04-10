@@ -11,5 +11,5 @@
 	$cama->colocar("ID_SALA", $_POST['sala']);
 	$cama->salvar();
 	include_once('./mvc/vista/camas.php');
-	echo '<SCRIPT languague="JAVASCRIPT">location.href = "./?url=camas&id='.$id.'"</SCRIPT>'
+	echo '<SCRIPT languague="JAVASCRIPT">location.href = "./?url=camas&id='.$id.'&sbm=5"</SCRIPT>'
 ?>

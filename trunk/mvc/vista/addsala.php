@@ -10,5 +10,5 @@
 	$sala->colocar("SALA", $_POST['sala']);
 	$sala->salvar();
 	include_once('./mvc/vista/salas.php');
-	echo '<SCRIPT LANGUAGE="javascript">location.href="./?url=salas&id='.$id.'"</SCRIPT>';
+	echo '<SCRIPT LANGUAGE="javascript">location.href="./?url=salas&id='.$id.'&sbm=5"</SCRIPT>';
 ?>

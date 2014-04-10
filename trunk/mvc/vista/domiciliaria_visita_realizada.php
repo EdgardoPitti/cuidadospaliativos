@@ -13,7 +13,7 @@
 			<div class="span12">
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
 				<center>
-					<form class="for m-search" method="POST" action="./?url=domiciliaria_visita_realizada&sbm=1">
+					<form method="POST" action="./?url=domiciliaria_visita_realizada&sbm=1">
 						<table class="tabla-datos">						
 							<tr>
 								<th>Filtrar</th>

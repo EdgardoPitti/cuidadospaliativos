@@ -13,6 +13,6 @@
 	$servicio->salvar();
 	
 	include_once('./mvc/vista/servicios.php');
-	echo '<SCRIPT LANGUAGE="javascript">location.href="./?url=servicios&id='.$id.'"</SCRIPT>';
+	echo '<SCRIPT LANGUAGE="javascript">location.href="./?url=servicios&id='.$id.'&sbm=5"</SCRIPT>';
 	
 ?>

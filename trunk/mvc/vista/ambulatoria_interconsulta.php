@@ -33,7 +33,7 @@
 				</form>
 			</center>';
 	if ($sw == 1 AND !empty($cedula)){
-			$cont.='<center>Paciente no encontrado...<a href="./?url=ambulatoria_capturardatos&sbm=2"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
+			$cont.='<center>Paciente no encontrado...<a href="./?url=nuevopaciente&sbm=5"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
 	}else if($sw == 0 AND !empty($cedula)){ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
@@ -96,7 +96,7 @@
 			if($i){
 				$cont.='
 					<br>
-					<div class="overflow" id="overflow-movil" style="max-height:150px;">
+					<div class="overflow overthrow" style="max-height:150px;">
 								<table class="table2 borde-tabla table-hover">
 									<thead>
 										<tr class="fd-table">

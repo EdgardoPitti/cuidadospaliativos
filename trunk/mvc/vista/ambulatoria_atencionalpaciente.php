@@ -28,7 +28,7 @@
 	if(empty($buscar) or $sw == 1){	
 		if($sw == 1){
 			$agnadir='
-					<a href="./?url=hospitalaria_rae_capturardatos&sbm=2">Paciente no Encotrado...Añadir</a>';	
+					<a href="./?url=nuevopaciente&sbm=5">Paciente no Encotrado...Añadir</a>';	
 		}
 	}else{
 		

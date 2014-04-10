@@ -6,12 +6,12 @@
 	$id = $_GET['id'];
 	$comillas = "'";
 	if(!empty($id)){
-		$img = '<a href="./?url=salas" title="A&ntilde;adir Sala"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=salas&sbm=5" title="A&ntilde;adir Sala"><img src="./iconos/plus.png"></a><br><br>';
 	}
 	$cont.='
 			<center>			
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Editar Salas</h3>
-				<label>Buscar Sala:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<label for="search_string">Buscar Sala:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="salas">
 						<thead>
@@ -42,7 +42,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form method="POST" action="./?url=addsala&id='.$id.'">
+				<form method="POST" action="./?url=addsala&id='.$id.'&sbm=5">
 					Sala: <input type="text" id="sala" name="sala" placeholder="Sala" value="'.$sala->obtener('SALA').'" required><br>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>

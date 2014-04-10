@@ -12,7 +12,7 @@
 	$cont.='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Camas</h3>
-				<label>Buscar No. de Cama:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<label for="search_string">Buscar No. de Cama:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="camas">
 						<thead>

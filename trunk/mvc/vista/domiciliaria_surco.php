@@ -43,7 +43,7 @@
 				</form>
 			</center>';
 	if ($sw == 1 AND !empty($cedula)){
-			$cont.='<center>Paciente no encontrado...<a href="./?url=domiciliaria_capturardatos&sbm=1"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
+			$cont.='<center>Paciente no encontrado...<a href="./?url=nuevopaciente&sbm=5"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
 	}else if($sw == 0 AND !empty($cedula)){ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');

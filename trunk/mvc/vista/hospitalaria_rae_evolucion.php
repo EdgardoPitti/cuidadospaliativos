@@ -48,7 +48,7 @@
 	if((empty($buscar) or $sw == 1) and empty($idpaciente)){
 		if($sw == 1){
 			$cont.='<center>
-						Paciente no Encotrado...<a href="./?url=hospitalaria_rae_capturardatos&sbm=3"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
+						Paciente no Encotrado...<a href="./?url=nuevopaciente&sbm=5"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
 					</center>
 			';
 		}
@@ -63,7 +63,8 @@
 		}
 		if(!$responsable->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'')){
 		$cont.='	
-			<form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sbm=3">
+			<!--form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sbm=3"-->
+			<form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sw=1">
 					<fieldset>
 						<legend>
 							Responsable del Paciente

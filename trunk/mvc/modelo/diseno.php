@@ -442,32 +442,16 @@ class Diseno {
 			   '
 				<!--Navegación Superior-->
 				<div class="row-fluid" id="sub-header-nav" style="'.$display.'">
-					<div class="span12">
-						
-							<div class="btn-group" style="float:right;margin-top:4px;">
-							  <a href="#" class="btn btn-primary">'.$_SESSION['user'].'</a>
-							  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-								<span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" style="'.$style.'">
-								<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
-							  </ul>
-							</div>';	
-			if($_SESSION['idgu'] == 1){
-				$cont.='
-						<div class="btn-group" style="float:right;margin:4px; 10px 0 0">
-						  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Editar <span class="caret"></span></a>
-						  <ul class="dropdown-menu margin-menu">
-							<li><a href="./?url=usuarios">Usuarios</a></li>
-							<li><a href="./?url=addmedico">M&eacute;dicos</a></li>
-							<li><a href="./?url=camas">Camas</a></li>
-							<li><a href="./?url=salas">Salas</a></li>
-							<li><a href="./?url=servicios">Servicios M&eacute;dicos</a></li>
-							<li><a href="./?url=zonas">Zona</a></li>
+					<div class="span12">																
+						<div class="btn-group" style="float:right;margin-top:4px;">
+						  <a href="#" class="btn btn-primary">'.$_SESSION['user'].'</a>
+						  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" style="'.$style.'">
+							<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
 						  </ul>
-						</div>';
-			}
-			$cont.='						
+						</div>					
 					</div>
 				</div> ';
 				
@@ -477,6 +461,7 @@ class Diseno {
 					$display2='none';
 					$display3='none';
 					$display4='none';
+					$display5='none';
 				}else{
 					if($mantener == 1){
 						$display1='block';
@@ -484,44 +469,97 @@ class Diseno {
 						$display2='none';
 						$display3='none';
 						$display4='none';
+						$display5='none';
 					}
 					if($mantener == 2){
 						$display1='none';
-						$activo1 = '';
 						$display2='block';
 						$activo2 = 'class="active"';
 						$display3='none';
-						$activo3 = '';
 						$display4='none';
-						$activo4 = '';
+						$display5='none';
 					}
 					if($mantener == 3){
 						$display1='none';
-						$activo1 = '';
 						$display2='none';
-						$activo2 = '';
 						$display3='block';
 						$activo3 = 'class="active"';
 						$display4='none';
-						$activo4 = '';
+						$display5='none';
 					}
 					if($mantener == 4){
 						$display1='none';
-						$activo1 = '';
 						$display2='none';
-						$activo2 = '';
 						$display3='none';
-						$activo3 = '';
 						$display4='block';
+						$display5='none';
 						$activo4 = 'class="active"';
+					}
+					if($mantener == 5){
+						$display1='none';
+						$display2='none';
+						$display3='none';
+						$display4='none';
+						$display5='block';
+						$activo5 = 'class="active"';
 					}
 				}
 			
 		$cont.= '	
 			<div class="row-fluid">  
 				<!--Aside-->
-				<div class="span2" id="menu">
-				
+				<div class="span2" id="menu">';
+
+					if($_SESSION['idgu'] == 1 or $_SESSION['idgu'] == 3){
+						$cont.='	
+					<!--Inicio (Exclusivo para editar doctores y capturar todos los datos generales para los administradores 
+						y el equipo médico)-->					
+					<div class="css_acordeon" id="mostrar_ocultar5" id="accordion-5" style="display:'.$display5.';">			
+						<h3>Men&uacute; Administrativo</h3>
+						<hr>';
+						if($_SESSION['idgu'] == 1){
+						$cont.='
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=usuarios&sbm=5" class="link" title="Editar Usuarios">Usuarios</a></li>
+							</ul>
+						</div>';
+						}
+						$cont.='
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=nuevopaciente&sbm=5" class="link" title="Agregar Nuevo Paciente">Agregar Paciente</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar M&eacute;dicos">M&eacute;dicos</a></li>
+							</ul>
+						</div>	
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=camas&sbm=5" class="link" title="Editar Camas">Camas</a></li>
+							</ul>
+						</div>	
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=salas&sbm=5" class="link" title="Editar Salas">Salas</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=servicios&sbm=5" class="link" title="Editar Servicios M&eacute;dicos">Servicios M&eacute;dicos</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=zonas&sbm=5" class="link" title="Editar Zonas">Zona</a></li>
+							</ul>
+						</div>							
+					</div>	';
+					}
+
+					$cont.='
 					<!--DOMICILIARIA-->					
 					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:'.$display1.';">			
 						<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
@@ -530,7 +568,7 @@ class Diseno {
 							<label for="ac-1">Registro de Visitas Domiciliarias</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=domiciliaria_capturardatos&sbm=1" title="Datos del Paciente"><i>Datos Pacientes</i></a></li>	
+									<!--li><a class="sublink" href="./?url=domiciliaria_capturardatos&sbm=1" title="Datos del Paciente"><i>Datos Pacientes</i></a></li-->	
 									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
 									<li><a class="sublink" href="./?url=domiciliaria_agenda&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
@@ -568,7 +606,7 @@ class Diseno {
 							<label for="ac-3">Registro Diario de Actividades</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=ambulatoria_capturardatos&sbm=2" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
+									<!--li><a class="sublink" href="./?url=ambulatoria_capturardatos&sbm=2" title="Capturar Datos"><i>Capturar Datos</i></a></li-->	
 									<li><a class="sublink" href="#" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
 							</article>	
@@ -604,7 +642,7 @@ class Diseno {
 							<label for="ac-6">RAE</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos&sbm=3" title="Capturar Datos"><i>Capturar Datos</i></a></li>	
+									<!--li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos&sbm=3" title="Capturar Datos"><i>Capturar Datos</i></a></li-->	
 									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=3" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
 								</ul>
 							</article>	
@@ -674,9 +712,19 @@ class Diseno {
 												<span class="icon-bar"></span>
 												<span class="icon-bar"></span>
 											</a> 
-												<a href="./?url=inicio" class="brand">Atenciones</a>	
+												<a href="./?url=inicio" class="brand">Menu</a>	
 											<div class="nav-collapse navbar-responsive-collapse collapse">
-												<ul class="nav">										
+												<ul class="nav">';
+												if($_SESSION['idgu'] == 1 or $_SESSION['idgu'] == 3){
+													$cont.='
+													<li '.$activo5.'>
+														<a href="#" id="show5" title="Inicio"><img src="./iconos/inicio.png"style="width:30px; heigth:30px;"/> Inicio</a>
+													</li>';
+
+												}
+
+												$cont.='
+
 													<li '.$activo1.'>
 														<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
 													</li>
