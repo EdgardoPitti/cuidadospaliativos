@@ -7,12 +7,12 @@
 	$comillas = "'";
 	
 	if(!empty($id)){
-		$img = '<a href="./?url=zonas" title="A&ntilde;adir Zonas"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=zonas&sbm=5" title="A&ntilde;adir Zonas"><img src="./iconos/plus.png"></a><br><br>';
 	}
 	$cont.='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Zonas</h3>
-				<label>Buscar Zonas:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<label for="search_string">Buscar Zonas:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="zonas">
 						<thead>
@@ -42,7 +42,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form method="POST" action="./?url=addzona&id='.$id.'">
+				<form method="POST" action="./?url=addzona&id='.$id.'&sbm=5">
 					Zona: <input type="text" id="zona" name="zona" placeholder="Nombre de la Zona" value="'.$zonas->obtener('ZONA').'" required><br>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>

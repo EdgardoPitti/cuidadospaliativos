@@ -78,7 +78,7 @@
 	$cont.='
 			</div>
 			<div class="span10" style="margin-top:10px;">
-				<div class="overflow" id="overflow-movil">
+				<div class="overflow overthrow">
 					<table class="table borde-tabla">';
 	$horas = '8';
 	$minutos = '00';

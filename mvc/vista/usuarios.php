@@ -8,13 +8,13 @@
 	$comillas = "'";
 	
 	if(!empty($id)){
-		$img = '<a href="./?url=usuarios" title="A&ntilde;adir Usuario"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=usuarios&sbm=5" title="A&ntilde;adir Usuario"><img src="./iconos/plus.png"></a><br><br>';
 	}
 	
 	$cont.='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Usuarios</h3>		
-				<label>Buscar No. de Identificaci&oacuten:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<label for="search_string">Buscar No. de Identificaci&oacuten:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="usuarios">
 						<thead>
@@ -50,7 +50,7 @@
 					</table>
 				</div>
 					'.$img.'
-				<form method="POST" action="./?url=addusuario&id='.$id.'">
+				<form method="POST" action="./?url=addusuario&id='.$id.'&sbm=5">
 					<table>
 						<tr>
 							<td>No de Identificaci&oacute;n: </td>

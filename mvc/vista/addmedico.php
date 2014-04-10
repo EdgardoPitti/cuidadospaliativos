@@ -15,7 +15,7 @@
 		
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Profesional de la Salud</h3>
-				<form class="form-search" method="POST" action="./?url=addmedico">
+				<form class="form-search" method="POST" action="./?url=addmedico&sbm=5">
 						<div class="input-group">
 						  Buscar Profesional: <input type="search" class="form-control" id="buscar_profesional" placeholder="Cédula o Nombre" name="buscar_cedula">
 						  <span class="input-group-btn">
@@ -29,7 +29,7 @@
 		$profesional->buscardonde('ID_PROFESIONAL = '.$datos->obtener('ID_PROFESIONAL').'');
 	}
 	$cont.='
-				<form method="POST" action="./?url=agregardatosprofesional&idp='.$datos->obtener('ID_PROFESIONAL').'">	
+				<form method="POST" action="./?url=agregardatosprofesional&idp='.$datos->obtener('ID_PROFESIONAL').'&sbm=5">	
 					<table>
 						<tr>
 							<td>No de C&eacute;dula: </td>

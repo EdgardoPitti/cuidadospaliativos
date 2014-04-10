@@ -7,12 +7,12 @@
 	$id = $_GET['id'];
 	$comillas = "'";
 	if(!empty($id)){
-		$img = '<a href="./?url=servicios" title="A&ntilde;adir Servicio M&eacute;dico"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=servicios&sbm=5" title="A&ntilde;adir Servicio M&eacute;dico"><img src="./iconos/plus.png"></a><br><br>';
 	}
 	$cont.='
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Servicios M&eacute;dicos</h3>
-				<label>Buscar Servicio M&eacute;dico:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<label for="search_string">Buscar Servicio M&eacute;dico:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="servicios">
 						<thead>
@@ -45,7 +45,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form method="POST" action="./?url=addservicio&id='.$id.'">
+				<form method="POST" action="./?url=addservicio&id='.$id.'&sbm=5">
 					<table>
 						<tr>
 							<td>Servicio M&eacute;dico: </td>

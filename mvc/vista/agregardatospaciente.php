@@ -9,9 +9,9 @@
 	//Variable utilizada como Switch para controlar de que vista viene
 	$sw = $_GET['sw'];
 	$idpaciente = $_GET['id'];
-	$sbm = $_GET['sbm'];
+	
 	//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
-	$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'"');
+	$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'" OR ID_PACIENTE = '.$idpaciente.'');
 	if(empty($idpaciente)){
 		//En caso de que exista se busca su residencia habitual para modificarla
 		if($datos){
@@ -134,19 +134,24 @@
 		$responsable->colocar("TELEFONO_CONTACTO", $_POST['telefonoresponsable']);
 		$responsable->salvar();
 	}
-	if($sbm == 1){
+	/*if($sbm == 1){
 		$url = 'domiciliaria_capturardatos';
 	}elseif($sbm == 2){
 		$url = 'ambulatoria_capturardatos';
 	}elseif($sbm == 2){
 		$url = 'hospitalaria_rae_capturardatos';
-	}
+	}*/
 	if($_GET['ch']){
 		echo "<script language='javascript'>alert('Datos Actualizados Correctamente')</script>";		
 	}else{
 		echo "<script language='javascript'>alert('Datos Almacenados Correctamente')</script>";		
 	}
-	
-	echo '<script language="javascript">location.href="./?url='.$url.'&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
+	if(!empty($sw)){
+		$url='hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm=3';
+	}else{
+		$url='nuevopaciente&id='.$idpaciente.'&sbm=5';
+	}
+	//echo '<script language="javascript">location.href="./?url='.$url.'&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
+	echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 
 ?>

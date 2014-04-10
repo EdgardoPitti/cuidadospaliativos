@@ -10,5 +10,5 @@
 	$zona->colocar("ZONA", $_POST['zona']);
 	$zona->salvar();
 	include_once('./mvc/vista/zonas.php');
-	echo '<script language="javascript">location.href="./?url=zonas&id='.$id.'"</script>';
+	echo '<script language="javascript">location.href="./?url=zonas&id='.$id.'&sbm=5"</script>';
 ?>

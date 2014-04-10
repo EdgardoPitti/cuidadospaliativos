@@ -466,12 +466,12 @@
 		</div>	
 	</body>
 	
-	<script type="text/javascript" src="js/bootstrap.js"></script>	
-	<script type='text/javascript' src='js/show_hide.js'></script>	
+	<script src="js/bootstrap.js"></script>	
+	<script src='js/show_hide.js'></script>	
 	<script src='js/overthrow/overthrow-detect.js'></script>	
 	<script src="js/overthrow/overthrow-polyfill.js"></script>
 	<script src="js/overthrow/overthrow-toss.js"></script>
 	<script src="js/overthrow/overthrow-init.js"></script>
 	<script src="js/overthrow/anchorscroll.overthrow.js"></script>
-	<script type='text/javascript' src='./js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
+	<script src='./js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
 </html>
