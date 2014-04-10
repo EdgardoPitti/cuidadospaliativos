@@ -567,8 +567,7 @@ class Diseno {
 							<input id="ac-1" name="acordeon" type="radio" />
 							<label for="ac-1">Registro de Visitas Domiciliarias</label>
 							<article>	
-								<ul>
-									<!--li><a class="sublink" href="./?url=domiciliaria_capturardatos&sbm=1" title="Datos del Paciente"><i>Datos Pacientes</i></a></li-->	
+								<ul>									
 									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
 									<li><a class="sublink" href="./?url=domiciliaria_agenda&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
@@ -606,7 +605,6 @@ class Diseno {
 							<label for="ac-3">Registro Diario de Actividades</label>
 							<article>	
 								<ul>
-									<!--li><a class="sublink" href="./?url=ambulatoria_capturardatos&sbm=2" title="Capturar Datos"><i>Capturar Datos</i></a></li-->	
 									<li><a class="sublink" href="#" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
 							</article>	
@@ -642,7 +640,6 @@ class Diseno {
 							<label for="ac-6">RAE</label>
 							<article>	
 								<ul>
-									<!--li><a class="sublink" href="./?url=hospitalaria_rae_capturardatos&sbm=3" title="Capturar Datos"><i>Capturar Datos</i></a></li-->	
 									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=3" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
 								</ul>
 							</article>	
