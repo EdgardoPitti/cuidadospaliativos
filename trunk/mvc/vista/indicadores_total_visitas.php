@@ -72,6 +72,7 @@
 					</form>
 					';
 	$cont.='<div id="mostrargrafica" style="min-width: 310px; height: 500px;"></div>';
+	$total = 0;
 	$x = 1;
 	while($variable <= $ds->dime('agno')){
 		$mes = 1;
@@ -97,8 +98,10 @@
 			}
 			if($mes == 1){
 				$datos .= $cantidad;
+				$total = $cantidad + $total;
 			}else{
 				$datos .= ','.$cantidad;
+				$total = $cantidad + $total;
 			}
 			$cantidad = 0;
 			$mes++;
@@ -116,6 +119,9 @@
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/grid.js'.$comillas.'></script>	
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>
 	';
+	if(empty($total)){
+		$script = 'No hay datos Almacenados para Graficar.';
+	}
 	$cont.='
 				</center>'.$script.'
 	';
