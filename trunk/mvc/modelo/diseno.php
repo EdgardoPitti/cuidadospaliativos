@@ -858,11 +858,11 @@ class Diseno {
 		if (!checkdate($mes,$dia,$anio)){
 			$edad = 'Fecha Inválida';
 		}else{
-			if($anio < $this->dime('año')){
+			if($anio < $this->dime('agno')){
 				if($mes < $this->dime('mes')){
-					$edad = $this->dime('año') - $anio;
+					$edad = $this->dime('agno') - $anio;
 				}else{
-					$edad = $this->dime('año') - $anio;
+					$edad = $this->dime('agno') - $anio;
 					$edad--;
 				}				
 			}
@@ -870,33 +870,4 @@ class Diseno {
 		return $edad;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	<!--Navegador--
-	<nav class="fdgris">
-		<ul class="menu">
-			'.$this->navegador.'
-		</ul>
-	</nav>
-	<div class="cuerpo">
-		<!--Diseño de Lateral--
-		<aside>
-			<section class="acordeon">
-				'.$this->izquierda.'
-			</section>	
-		</aside>
-		<!--Diseño del contenido de la página--
-		<div class="contenido">	
-			'.$this->latino($this->derecha).'
-		</div>
-		<!--Fin del Contenido>
-	</div>-->
-	*/
 }
