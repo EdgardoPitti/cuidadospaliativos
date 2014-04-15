@@ -83,7 +83,7 @@
 						</tr>
 						<tr>
 							<td>Reservada:</td>
-							<td><input type="radio" id="reservada" name="reservada" value="1" checked '.$si.'> Si <br><input type="radio" id="reservada" name="reservada" value="0" '.$no.'> No </td>
+							<td><input type="radio" id="reservada" name="reservada" value="1" checked '.$si.'> Si <input type="radio" id="reservada" name="reservada" value="0" '.$no.'> No </td>
 						</tr>
 						<tr>
 							<td><input style="display:none;" type="text" id="fecha" name="fecha" value="'.$fecha.'"></td>
@@ -91,7 +91,7 @@
 						</tr>
 					</table>
 					<br>
-					<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Enviar</button><br>
+					<button type="submit" class="btn btn-primary" style="margin-top:8px;">Enviar</button><br>
 					</form>
 					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>	
 					<form method="POST" action="./?url=agregar_citas&id='.$id.'&sw=1&sbm=1">
