@@ -134,13 +134,6 @@
 		$responsable->colocar("TELEFONO_CONTACTO", $_POST['telefonoresponsable']);
 		$responsable->salvar();
 	}
-	/*if($sbm == 1){
-		$url = 'domiciliaria_capturardatos';
-	}elseif($sbm == 2){
-		$url = 'ambulatoria_capturardatos';
-	}elseif($sbm == 2){
-		$url = 'hospitalaria_rae_capturardatos';
-	}*/
 	if($_GET['ch']){
 		echo "<script language='javascript'>alert('Datos Actualizados Correctamente')</script>";		
 	}else{
@@ -151,7 +144,6 @@
 	}else{
 		$url='nuevopaciente&id='.$idpaciente.'&sbm=5';
 	}
-	//echo '<script language="javascript">location.href="./?url='.$url.'&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
 	echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 
 ?>

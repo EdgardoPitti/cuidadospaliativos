@@ -63,7 +63,6 @@
 		}
 		if(!$responsable->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'')){
 		$cont.='	
-			<!--form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sbm=3"-->
 			<form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sw=1">
 					<fieldset>
 						<legend>
