@@ -38,7 +38,7 @@
 								<td class="identificacion">'.$usuarios->obtener('NO_IDENTIFICACION').'</td>
 								<td>******</td>
 								<td>'.$grupo->obtener('DESCRIPCION').'</td>
-								<td><a href="./?url=usuarios&id='.$usuarios->obtener('ID_USUARIO').'"><img src="./iconos/search.png"></a></td>
+								<td><a href="./?url=usuarios&id='.$usuarios->obtener('ID_USUARIO').'&sbm=5"><img src="./iconos/search.png"></a></td>
 							</tr>
 		';
 		$n++;

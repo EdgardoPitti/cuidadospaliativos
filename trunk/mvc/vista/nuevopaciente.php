@@ -69,7 +69,6 @@
 		$boton = '<input type="submit" class="btn btn-primary" value="Guardar Cambios"/>';
 	}
     $cont.='
-
 			<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" style="display:block;position:relative">
 				<div class="row-fluid">
 					<div class="span6">
