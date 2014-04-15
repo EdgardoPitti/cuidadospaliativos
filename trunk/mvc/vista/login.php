@@ -8,7 +8,9 @@
 						<img src="./iconos/cuidadospaliativos.jpg" class="img_login">
 						<div class="span4 offset8 pos_img-login fondo_login">
 							<h3 style="text-align:center">Iniciar Sesi&oacute;n</h3><hr>
-							'.$_SESSION['errorlogin'].'
+							';
+	$cont.= $_SESSION['errorlogin'];
+	$cont.='
 							<form method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
 								<center>
 									<div class="input-prepend">
