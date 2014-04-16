@@ -84,4 +84,5 @@
 	$rae->salvar();
 	
 	include_once('./mvc/vista/hospitalaria_rae_evolucion.php');
+	echo '<script language="javascript">location.href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm=3"</script>'
 ?>

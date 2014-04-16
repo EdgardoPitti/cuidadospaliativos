@@ -10,7 +10,7 @@
 	$total = $matriz[0][cantidad];
 	if($total == 0){
 		$total = 1;
-		$script = '<center style="font-size:16px;color:red;"><h3>No existen datos para graficar</h3></center>';
+		$script = '<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
 	}
 	$sw = 1;
 	$r = $referido->buscardonde('ID_REFERIDO > 0');

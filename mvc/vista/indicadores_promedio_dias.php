@@ -2,8 +2,8 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
-	$visitas = new Accesatabla('registro_visitas_domiciliarias');
-	$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
+	$rae = new Accesatabla('registro_admision_egreso');
+	
 	$comillas = "'";
 	$script='
 		<script type="text/javascript">
@@ -13,10 +13,10 @@
                 type: '.$comillas.'column'.$comillas.'
             },
             title: {
-                text: '.$comillas.'Total de Visitas Realizadas'.$comillas.'
+                text: '.$comillas.'Promedio de Dias de Estancia'.$comillas.'
             },
             subtitle: {
-                text: '.$comillas.'Datos obtenidos de Registro de Visitas Domiciliarias'.$comillas.'
+                text: '.$comillas.'Datos obtenidos de Registro de Amisi&oacute;n Egresos'.$comillas.'
             },
             xAxis: {
                 categories: [
@@ -37,13 +37,13 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: '.$comillas.'Cantidad de Pacientes'.$comillas.'
+                    text: '.$comillas.'Promedio de Dias'.$comillas.'
                 }
             },
             tooltip: {
                 headerFormat: '.$comillas.'<span style="font-size:10px">{point.key}</span><table>'.$comillas.',
                 pointFormat: '.$comillas.'<tr><td style="color:{series.color};padding:0">{series.name}: </td>'.$comillas.' +
-                    '.$comillas.'<td style="padding:0"><b>{point.y} Pacientes</b></td></tr>'.$comillas.',
+                    '.$comillas.'<td style="padding:0"><b>{point.y} Dias</b></td></tr>'.$comillas.',
                 footerFormat: '.$comillas.'</table>'.$comillas.',
                 shared: true,
                 useHTML: true
@@ -56,7 +56,7 @@
                 }
             },
 			series:[';
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Total de Visitas Realizadas</h3>
+	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Promedio de Dias de Estancia</h3>
 			<center>';
 	$variable = $_POST['variable1'];
 	if(empty($variable)){
@@ -64,7 +64,7 @@
 	}
 	$cont.='
 					
-					<form method="POST" action="./?url=indicadores_total_visitas&sbm=1">
+					<form method="POST" action="./?url=indicadores_promedio_dias&sbm=3">
 							Desde el A&ntilde;o: <input style="width:60px;" type="number" id="variable1" name="variable1" min="2013" max="'.$ds->dime('agno').'" value="2013"><br>
 							<center>
 								<button type="submit" class="btn btn-primary" >Enviar</button>
@@ -89,12 +89,11 @@
 		}
 		while($mes < 13){
 			$cantidad = 0;
-			$v = $visitas->buscardonde('FECHA BETWEEN "'.$variable.'-'.$mes.'-01" AND "'.$variable.'-'.$mes.'-31"');
-			while($v){
-				$sql = 'SELECT COUNT(SECUENCIA) AS cantidad FROM detalle_registro_visitas_domiciliarias WHERE ID_RVD = '.$visitas->obtener('ID_RVD').'';
-				$matriz = $ds->db->obtenerarreglo($sql);
-				$cantidad += $matriz[0][cantidad];
-				$v = $visitas->releer();
+			$sql = 'SELECT SUM(TOTAL_DIAS_ESTANCIA) AS cantidad FROM registro_admision_egreso WHERE FECHA BETWEEN "'.$variable.'-'.$mes.'-01" AND "'.$variable.'-'.$mes.'-31"';
+			$matriz = $ds->db->obtenerarreglo($sql);
+			$cantidad = $matriz[0][cantidad];
+			if(empty($cantidad)){
+				$cantidad = 0;
 			}
 			if($mes == 1){
 				$datos .= $cantidad;
@@ -123,7 +122,7 @@
 				</center>'.$script.'
 	';
 	if(empty($total)){
-		$cont = '<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Total de Visitas Realizadas</h3>
+		$cont = '<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Promedio de Dias de Estancia</h3>
 		<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
 	}
 	$ds->contenido($cont);
