@@ -11,6 +11,7 @@
 	';
 	$condicion = '';
 	$n = 1;
+	$total = 0;
 	$x = $diagnostico->buscardonde('SECUENCIA > 0');
 	while($x){
 		$sql = 'SELECT COUNT(SECUENCIA) AS cantidad FROM detalle_diagnostico WHERE ID_CIE10 = "'.$diagnostico->obtener('ID_CIE10').'"';
@@ -27,6 +28,7 @@
 			$categorias .=',
 					  '.$comillas.''.$cie->obtener('DESCRIPCION').''.$comillas;
 		}
+		$total += $cantidad;
 		$condicion .= ' AND ID_CIE10 != "'.$diagnostico->obtener('ID_CIE10').'"';
 		$x = $diagnostico->buscardonde('SECUENCIA > 0 '.$condicion.'');
 		$cantidad = 0;		
@@ -83,6 +85,11 @@
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/grid.js'.$comillas.'></script>	
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>
 	';
+	if($total == 0){
+		$cont = '
+			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes por Diagn&oacute;stico</h3>
+			<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
+	}
 	$cont.=$script;
 	$ds->contenido($cont);
 	$ds->mostrar();

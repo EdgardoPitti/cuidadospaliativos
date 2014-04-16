@@ -9,7 +9,7 @@
 	//Variable utilizada como Switch para controlar de que vista viene
 	$sw = $_GET['sw'];
 	$idpaciente = $_GET['id'];
-	
+	$fecha = $_POST['fechanacimiento'];
 	//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
 	$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'" OR ID_PACIENTE = '.$idpaciente.'');
 	if(empty($idpaciente)){
@@ -30,9 +30,6 @@
 			$datospaciente->nuevo();
 			//Si el registro es nuevo es necesario colocar la cedula, en caso contrario no
 			$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
-			//Se obtiene la fecha de nacimiento
-			$fechanacimiento = $_POST['fechanacimiento'];
-			$fecha = '"'.$fechanacimiento.'"';
 		}
 	}else{
 		$datospaciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');

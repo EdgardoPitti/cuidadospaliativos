@@ -15,6 +15,7 @@
 		$r = $rae->buscardonde('ID_CAMA = '.$camas->obtener('ID_CAMA').' AND MUERTE_EN_SOP = 0');
 		if($r){
 			$usadas++;
+			
 		}else{
 			$vacias++;
 		}
@@ -83,7 +84,6 @@
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>';
 	$cont.='<br><div id="grafica" style="min-width: 310px; height: 500px;"></div>
 			'.$script.'';
-		
 	$ds->contenido($cont);
 	$ds->mostrar();
 

@@ -83,6 +83,7 @@
 	
 	$cont.='<div id="grafica" style="min-width: 310px; height: 500px;"></div>';
 	$x = 1;
+	$total = 0;
 	while($variable <= $ds->dime('agno')){
 		$pacientes = 0;
 		$mes = 1;
@@ -111,11 +112,14 @@
 				$promedio = 0;
 			}else{
 				$promedio = ($horas/$pacientes);
+				$total += $promedio;
 			}
 			if($mes == 1){
 				$datos .= $promedio;
+				$total += $promedio;
 			}else{
 				$datos .= ','.$promedio;
+				$total += $promedio;
 			}
 			$mes++;
 		}
@@ -136,6 +140,11 @@
 	$cont.='
 			</center>'.$script.'
 	';
+	if($total == 0){
+		$cont = '
+			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Tiempo Promedio empleado por Visitas</h3>
+			<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
+	}
 	
 	$ds->contenido($cont);
 	$ds->mostrar();
