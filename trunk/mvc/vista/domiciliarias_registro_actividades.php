@@ -57,7 +57,7 @@
 									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
 								</tr>
 							</table>
-							<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+							<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar"><i class="icon-arrow-left"></i></a>
 							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>							
 						</form>
 					</center>';	
@@ -77,7 +77,7 @@
 					<td><b>Horas de Atencion:</b> '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
 				</tr>
 			</table>
-		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Pacientes</h3>';
+		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center"> <a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a> Pacientes</h3>';
 					
 				
 		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
@@ -338,7 +338,6 @@
 					</div>
 				</div>		
 				<center>
-					<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" title="Regresar">Regresar</a>
 					<button type="submit" class="btn btn-primary">Agregar</button>
 				</center>
 			</form>';

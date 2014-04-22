@@ -40,11 +40,11 @@
 					<table>
 						<tr>
 							<td>No de C&eacute;dula: </td>
-							<td><input type="text" name="cedula" id="cedula" placeholder="No de C&eacute;dula" value="'.$datos->obtener('NO_CEDULA').'" '.$readonly.' required ></td>
+							<td><input type="text" name="cedula" id="cedula" placeholder="No de C&eacute;dula" value="'.$datos->obtener('NO_CEDULA').'" '.$readonly.' required="required" ></td>
 						</tr>
 						<tr>	
 							<td>Primer Nombre: </td>
-							<td><input type="text" name="primernombre" id="primernombre" placeholder="Primer Nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" required></td>
+							<td><input type="text" name="primernombre" id="primernombre" placeholder="Primer Nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'"  required="required"></td>
 						</tr>
 						<tr>
 							<td>Segundo Nombre: </td>
@@ -52,7 +52,7 @@
 						</tr>
 						<tr>	
 							<td>Apellido Paterno: </td>
-							<td><input type="text" name="primerapellido" id="primerapellido" placeholder="Apellido Paterno" value="'.$datos->obtener('APELLIDO_PATERNO').'" required></td>
+							<td><input type="text" name="primerapellido" id="primerapellido" placeholder="Apellido Paterno" value="'.$datos->obtener('APELLIDO_PATERNO').'"  required="required"></td>
 						</tr>
 						<tr>
 							<td>Apellido Materno: </td>
@@ -60,7 +60,7 @@
 						</tr>
 						<tr>	
 							<td>No de Idoneidad: </td>
-							<td><input type="text" name="idoneidad" id="idoneidad" placeholder="No de Idoneidad" value="'.$datos->obtener('NO_IDONEIDAD').'"></td>
+							<td><input type="text" name="idoneidad" id="idoneidad" placeholder="No de Idoneidad" value="'.$datos->obtener('NO_IDONEIDAD').'"  required="required"></td>
 						</tr>
 						<tr>
 							<td>No de Registro: </td>
@@ -76,7 +76,7 @@
 						</tr>
 						<tr>	
 							<td>Correo Electrónico: </td>
-							<td><input type="text" name="email" id="email" placeholder="Correo Electr&oacute;nico" value="'.$datos->obtener('E_MAIL').'"></td>
+							<td><input type="text" name="email" id="email" placeholder="Correo Electr&oacute;nico" value="'.$datos->obtener('E_MAIL').'" ></td>
 						</tr>
 						<tr>
 							<td>Especialidad Médica: </td>
@@ -94,15 +94,15 @@
 							$x = $esp_medicas->releer();
 						}
 						if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
-							$preguntas = 'checked';
+							$preguntas = 'selected';
 							$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
 							$respuesta = $autenticacion->obtener('RESPUESTA');
 						}
 						if($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
-							$telefono = 'checked';
+							$telefono = 'selected';
 						}
 						if($preferencias->obtener('USAR_EMAIL_PREFERENCIAL') == 1){
-							$email = 'checked';
+							$email = 'selected';
 						}	
 						$cont.='			
 								</select>
@@ -110,17 +110,22 @@
 						</tr>
 						<tr>
 							<td>Usuario: </td>
-							<td><input type="text" id="usuario" name="usuario" placeholder="Usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'"></td>
+							<td><input type="text" id="usuario" name="usuario" placeholder="Usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" required="required"></td>
 						</tr>
 						<tr>
 							<td>Contrase&ntilde;a:  </td>							
-							<td><input type="password" id="pass" name="pass" placeholder="Contrase&ntilde;a" value="'.$usuarios->obtener('CLAVE_ACCESO').'"></td>
+							<td><input type="password" id="pass" name="pass" placeholder="Contrase&ntilde;a" value="'.$usuarios->obtener('CLAVE_ACCESO').'" required="required"></td>
 						</tr>
 						<tr>
 							<td>Recuperaci&oacute;n de Acceso: </td>
-							<td><input type="radio" id="preferencia" name="preferencia" value="1" onChange="valida(this.value)" '.$preguntas.'>&nbsp;Pregunta&nbsp;&nbsp;&nbsp;
-								<input type="radio" id="preferencia" name="preferencia" value="2" onChange="valida(this.value)" '.$telefono.'>&nbsp;Tel&eacute;fono&nbsp;&nbsp;&nbsp;
-								<input type="radio" id="preferencia" name="preferencia" value="3" onChange="valida(this.value)" '.$email.'>&nbsp;Correo</td>
+							<td>
+								<select name="preferencia" id="preferencia">
+									<option value="0"></option>
+									<option value="1" '.$preguntas.'>Pregunta</option>
+									<option value="2" '.$telefono.'>Tel&eacute;fono</option>
+									<option value="3" '.$email.'>Correo</option>
+								</select>	
+							</td>							
 						</tr>
 						<tr>
 							<td>Pregunta de Recuperaci&oacute;n: </td>
