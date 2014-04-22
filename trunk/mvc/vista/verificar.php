@@ -3,14 +3,28 @@
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	$usuarios = new Accesatabla('usuarios');
+	$sesiones = new Accesatabla('sesiones_usuarios');
+	$pacientes = new Accesatabla('pacientes');
+	$datos_pacientes = new Accesatabla('datos_pacientes');
+	$profesional = new Accesatabla('profesionales_salud');
+	$datos_profesionales = new Accesatabla('datos_profesionales_salud');
 	$usuario = $_POST['username'];
 	$pass = $_POST['password'];
-	$sesiones = new Accesatabla('sesiones_usuarios');
 	$u = $usuarios->buscardonde('NO_IDENTIFICACION = "'.$usuario.'" AND CLAVE_ACCESO = "'.$pass.'"');
 	if($u){
 		$_SESSION['idu'] = $usuarios->obtener('ID_USUARIO');
 		$_SESSION['idgu'] = $usuarios->obtener('ID_GRUPO_USUARIO');
-		$_SESSION['user'] = $usuarios->obtener('NO_IDENTIFICACION');
+		$p = $pacientes->buscardonde('ID_USUARIO = '.$usuarios->obtener('ID_USUARIO').'');
+		$pr = $profesional->buscardonde('ID_USUARIO = '.$usuarios->obtener('ID_USUARIO').'');
+		if($p <> 1 AND $pr <> 1){
+			$_SESSION['user'] = $usuarios->obtener('NO_IDENTIFICACION');
+		}elseif($p == 1){
+			$datos_pacientes->buscardonde('ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').'');
+			$_SESSION['user'] = $datos_pacientes->obtener('PRIMER_NOMBRE').' '.$datos_pacientes->obtener('APELLIDO_PATERNO');
+		}elseif($pr == 1){
+			$datos_profesionales->buscardonde('ID_PROFESIONAL = '.$profesional->obtener('ID_PROFESIONAL').'');
+			$_SESSION['user'] = $datos_profesionales->obtener('PRIMER_NOMBRE').' '.$datos_profesionales->obtener('APELLIDO_PATERNO');
+		}
 		$hora = $ds->dime('hora');
 		$minutos = $ds->dime('minuto');
 		if($hora < 10){

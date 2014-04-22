@@ -6,6 +6,10 @@
 	$datos = new Accesatabla('datos_profesionales_salud');
 	$profesional = new Accesatabla('profesionales_salud');
 	$cedula = $_POST['buscar_cedula'];
+	$pregunta = new Accesatabla('preguntas_seguridad');
+	$preferencias = new Accesatabla('preferencias_recuperacion_acceso');
+	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
+	$usuarios = new Accesatabla('usuarios');
 	if(empty($cedula)){
 		$cedula = $_GET['idp'];
 	}
@@ -27,6 +31,9 @@
 	if($d){
 		$readonly = 'readonly';
 		$profesional->buscardonde('ID_PROFESIONAL = '.$datos->obtener('ID_PROFESIONAL').'');
+		$autenticacion->buscardonde('ID_USUARIO = '.$profesional->obtener('ID_USUARIO').'');
+		$preferencias->buscardonde('ID_USUARIO = '.$profesional->obtener('ID_USUARIO').'');
+		$usuarios->buscardonde('ID_USUARIO = '.$profesional->obtener('ID_USUARIO').'');
 	}
 	$cont.='
 				<form method="POST" action="./?url=agregardatosprofesional&idp='.$datos->obtener('ID_PROFESIONAL').'&sbm=5">	
@@ -86,9 +93,58 @@
 							$cont.='<option value="'.$esp_medicas->obtener('ID_ESPECIALIDAD_MEDICA').'" '.$selected.'>'.$esp_medicas->obtener('DESCRIPCION').'</option>';
 							$x = $esp_medicas->releer();
 						}
+						if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
+							$preguntas = 'checked';
+							$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
+							$respuesta = $autenticacion->obtener('RESPUESTA');
+						}
+						if($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
+							$telefono = 'checked';
+						}
+						if($preferencias->obtener('USAR_EMAIL_PREFERENCIAL') == 1){
+							$email = 'checked';
+						}	
 						$cont.='			
 								</select>
 							</td>
+						</tr>
+						<tr>
+							<td>Usuario: </td>
+							<td><input type="text" id="usuario" name="usuario" placeholder="Usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'"></td>
+						</tr>
+						<tr>
+							<td>Contrase&ntilde;a:  </td>							
+							<td><input type="password" id="pass" name="pass" placeholder="Contrase&ntilde;a" value="'.$usuarios->obtener('CLAVE_ACCESO').'"></td>
+						</tr>
+						<tr>
+							<td>Recuperaci&oacute;n de Acceso: </td>
+							<td><input type="radio" id="preferencia" name="preferencia" value="1" onChange="valida(this.value)" '.$preguntas.'>&nbsp;Pregunta&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="preferencia" name="preferencia" value="2" onChange="valida(this.value)" '.$telefono.'>&nbsp;Tel&eacute;fono&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="preferencia" name="preferencia" value="3" onChange="valida(this.value)" '.$email.'>&nbsp;Correo</td>
+						</tr>
+						<tr>
+							<td>Pregunta de Recuperaci&oacute;n: </td>
+							<td><select  id="pregunta" name="pregunta">
+									<option value=""></option>';
+		$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
+		while($p){
+		if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
+			$selected = 'selected';
+		}else{
+			$selected = '';
+		}
+		$cont.='
+										<option value="'.$pregunta->obtener('ID_PREGUNTA').'" '.$selected.'>'.$pregunta->obtener('PREGUNTA').'</option>
+		';
+		$p = $pregunta->releer();
+		}
+$cont.='
+								</select>
+							</td>
+						</tr>									
+						<tr>
+							<td>Respuesta pregunta: </td>
+							<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" onChange="valida(this.value)" value="'.$respuesta.'"></td>
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>

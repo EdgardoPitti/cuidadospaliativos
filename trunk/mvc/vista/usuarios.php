@@ -19,7 +19,7 @@
 					<table class="table2 borde-tabla table-hover" id="usuarios">
 						<thead>
 							<tr class="fd-table">
-								<th>#</th>					
+								<th>#</th>		
 								<th>No de Identificaci&oacute;n</th>
 								<th>Clave de Acceso</th>
 								<th>Grupo de Usuario</th>
@@ -112,6 +112,11 @@
 		</script>
 	
 	';
-	$ds->contenido($cont);
-	$ds->mostrar();
+	if($_SESSION['idgu'] <> 1){
+		$cont='';
+		echo '<script language="javascript">location.href="./?url=inicio"</script>';
+	}else{
+		$ds->contenido($cont);
+		$ds->mostrar();
+	}
 ?>

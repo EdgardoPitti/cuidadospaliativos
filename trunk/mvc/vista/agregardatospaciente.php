@@ -5,6 +5,8 @@
 	$paciente = new Accesatabla('pacientes');
 	$residencia = new Accesatabla('residencia_habitual');
 	$usuarios = new Accesatabla('usuarios');
+	$preferencias = new Accesatabla('preferencias_recuperacion_acceso');
+	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
 	$ds = new Diseno();
 	//Variable utilizada como Switch para controlar de que vista viene
 	$sw = $_GET['sw'];
@@ -22,6 +24,8 @@
 			$paciente->buscardonde('ID_PACIENTE = '.$datospaciente->obtener('ID_PACIENTE').'');
 			$usuarios->buscardonde('ID_USUARIO = '.$paciente->obtener('ID_USUARIO').'');
 			$idusuario = $usuarios->obtener('ID_USUARIO');
+			$preferencias->buscardonde('ID_USUARIO = '.$idusuario.'');
+			$autenticacion->buscardonde('ID_USUARIO = '.$idusuario.'');
 		}else{
 			//Sino existe se crea un nuevo registro
 			$residencia->nuevo();
@@ -38,6 +42,8 @@
 		$idresidencia = $residencia->obtener('ID_RESIDENCIA_HABITUAL');
 		$usuarios->buscardonde('ID_USUARIO = '.$paciente->obtener('ID_USUARIO').'');
 		$idusuario = $usuarios->obtener('ID_USUARIO');
+		$preferencias->buscardonde('ID_USUARIO = '.$idusuario.'');
+		$autenticacion->buscardonde('ID_USUARIO = '.$idusuario.'');
 	}
 	//Se descompone la fecha en año, mes y dia
 	list($anio, $mes, $dia) = explode("-", $_POST['fechanacimiento']);
@@ -100,7 +106,29 @@
 		$paciente->colocar("ID_USUARIO", $idusuario);
 		$paciente->salvar();
 	}
-
+	$pregunta = 0;
+	$telefono = 0;
+	$email = 0;
+	if($_POST['preferencia'] == 1){
+		$pregunta = 1;
+	}elseif($_POST['preferencia'] == 2){
+		$telefono = 1;
+	}elseif($_POST['preferencia'] == 3){
+		$email = 1;
+	}
+	$preferencias->colocar("ID_USUARIO", $idusuario);
+	$preferencias->colocar("USAR_PREGUNTA_SEGURIDAD", $pregunta);
+	$preferencias->colocar("USAR_TELEFONO_PREFERENCIAL", $telefono);
+	$preferencias->colocar("USAR_EMAIL_PREFERENCIAL", $email);
+	$preferencias->salvar();
+	
+	$autenticacion->colocar("ID_USUARIO", $idusuario);
+	$autenticacion->colocar("ID_PREGUNTA", $_POST['pregunta']);
+	$autenticacion->colocar("RESPUESTA", $_POST['respuesta']);
+	$autenticacion->colocar("TELEFONO_PREFERENCIAL", $_POST['celular']);
+	$autenticacion->colocar("E_MAIL_PREFERENCIAL", $_POST['correo']);
+	$autenticacion->salvar();
+	
 	//Si no esta vacia la variable $sw o si no esta vacio al obtener el id por GET quiere decir que el registro es 
 	//de un paciente de atencion hospitalaria por lo tanto debe almacenar una persona responsable
 	if(!empty($sw)){
