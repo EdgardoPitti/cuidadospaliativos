@@ -23,7 +23,7 @@
 									</div>																		
 									<div align="center">
 										<button type="submit" name="submit" class="btn btn-primary btn-block"><b>Iniciar</b></button>
-										<small style="padding-top:5px;float:right;"><a href="./?url=recuperarpass">&iquest;Olvidaste la Contrase&ntilde;a?</a></small>
+										<small style="padding-top:5px;float:right;"><a href="./?url=recuperar_acceso">&iquest;Olvidaste la Contrase&ntilde;a?</a></small>
 									</div>
 								</center>
 							</form>    
