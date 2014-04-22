@@ -454,15 +454,15 @@
 			
 				<?php 	include_once('./mvc/controlador/controlador.php'); new Controlador();?>
 					
-			
 			<!--Pie de Página-->
-			<div class="row-fluid" id="footer">
-				<div class="span12">
-					<div class="page-footer">
-						<b>Derechos Reservados 2013-2014</b>
-					</div>
-				</div>
-			</div>	
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="page-footer">
+                        <b>Derechos Reservados 2013-2014</b>
+                    </div>
+                </div>
+            </div>
+
 		</div>	
 	</body>
 	

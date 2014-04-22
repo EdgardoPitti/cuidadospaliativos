@@ -11,7 +11,7 @@
 	$cont.='
 		<div class="row-fluid">
 			<div class="span12">
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
 				<center>
 					<form method="POST" action="./?url=domiciliaria_visita_realizada&sbm=1">
 						<table class="tabla-datos">						
@@ -27,8 +27,24 @@
 						</table>
 						
 					</form>
-				</center>
-				<center>
+				</center>';
+				if(!empty($inicio) and !empty($final)){
+					$cont.='<div style="float:right;margin-bottom:4px;"><a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'&imprimir=1" class="btn btn-default" target="_blank"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a></div>';
+				}
+				$cont.='
+				
+				<center style="float:none;clear:both;">
+					';
+			$n = 1;
+			if(empty($inicio) OR empty($final)){
+				$r = $rvd->buscardonde('ID_RVD > 0 ORDER BY FECHA');
+				$p = '';
+			}else{
+				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');
+				$p = ' desde '.$inicio.' hasta '.$final.'';
+			}
+			if($r){
+				$cont.='
 					<div class="overflow overthrow">
 						<table class="table2 borde-tabla table-hover">
 							<thead>
@@ -42,12 +58,10 @@
 									<th style="min-width:20px;"></th>
 								</tr>
 							</thead>
-							<tbody>';
-			$n = 1;
-			if(empty($inicio) OR empty($final)){
-				$r = $rvd->buscardonde('ID_RVD > 0 ORDER BY FECHA');
+							<tbody>
+				';
 			}else{
-				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');
+				$cont.='<div style="color:red;">No estan registradas Actividades'.$p.'.</div>';
 			}
 			while($r){
 				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
@@ -68,8 +82,7 @@
 									<td>'.$matriz[0][cantidad].'</td>
 									<td>'.$rvd->obtener('HORAS_DE_ATENCION').'</td>
 									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'&sbm=1"><img src="./iconos/search.png"></a></td>
-								</tr>
-				';
+								</tr>';
 				$r = $rvd->releer();
 				$n++;
 			}
@@ -79,7 +92,7 @@
 					</div>
 				</center>
 				<center>
-					<a href="./?url=domiciliarias_registro_visitas&sbm=1" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
+					<a href="./?url=domiciliarias_registro_visitas&sbm=1" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
 				</center>
 			</div>
 		</div>

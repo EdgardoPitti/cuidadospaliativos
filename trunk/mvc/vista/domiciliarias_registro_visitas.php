@@ -24,7 +24,7 @@
 		$i = $instituciones->releer();
 	}
 	$cont.='
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
 			';
 	if(empty($idrvd)){
 		$cont.='
@@ -33,11 +33,11 @@
 						<table>
 							<tr>
 								<td>Fecha: </td>
-								<td><input type="date" id="fecha" name="fecha"></td>
+								<td><input type="date" id="fecha" name="fecha" required="required"></td>
 							</tr>
 							<tr>
 								<td>Instituci&oacute;n: </td>
-								<td><select id="institucion" name="institucion">
+								<td><select id="institucion" name="institucion" required="required">
 										<option value=""></option>
 										'.$institucion.'
 									</select>
@@ -45,7 +45,7 @@
 							</tr>
 							<tr>
 								<td>Horas de Atencion: </td>
-								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
+								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
 							</tr>
 						</table>
 						<a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
@@ -66,12 +66,12 @@
 									<td><b>Horas de Atencion:</b> '.$rvd->obtener('HORAS_DE_ATENCION').' horas</td>
 								</tr>
 							</table>';
-		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rvd->obtener('ID_EQUIPO_MEDICO').'');
+		/*$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rvd->obtener('ID_EQUIPO_MEDICO').'');
 		$n = 1;
 		if($e){
 			$cont.='	
 							
-							<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>
+							<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>
 							<table class="tabla-datos borde-tabla overthrow">
 								<tr class="fd-tabla-gris">
 									<th>N&ordm;</th>
@@ -111,10 +111,11 @@
 					</table>
 					<center>'.$_SESSION[errorprof].'</center>				
 				</form>
-			</center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
-					
-				<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
+			</center>*/
+	$cont.='
+		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
+			
+		<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='
@@ -173,11 +174,11 @@
 								<table>
 									<tr>
 										<td>Paciente: </td> 
-										<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
+										<td><input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente" required="required"><br><input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly></td>
 									</tr>
 									<tr>
 										<td>Categoria: </td>
-										<td><select id="categoria" name="categoria">
+										<td><select id="categoria" name="categoria" required="required">
 												<option value=""></option>
 												'.$categorias.'
 											</select>
@@ -185,7 +186,7 @@
 									</tr>
 									<tr>
 										<td>Observaciones:</td>
-										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaciones"></textarea></td>
+										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaciones" required="required"></textarea></td>
 									</tr>
 								</table>
 							</center>

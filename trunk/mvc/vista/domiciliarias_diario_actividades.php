@@ -83,7 +83,7 @@
 					</table>
 				</div>
 			<center>
-				<a href="./?url=domiciliarias_registro_actividades&sbm=1" title="Agregar Nuevo Registro"><img src="./iconos/registro.png"></a>
+				<a href="./?url=domiciliarias_registro_actividades&sbm=1" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
 			</center>
 		</div>
 	
