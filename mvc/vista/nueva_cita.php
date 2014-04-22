@@ -34,8 +34,73 @@
 			$si = '';
 		}
 	}
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Nueva Cita</h3>	
-			<center>
+	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Nueva Cita</h3>	
+			<form method="POST" action="./?url=agregar_citas&h='.$_GET['h'].'&id='.$id.'&sbm=1">
+				<div class="row-fluid">
+					<div class="span6" align="center">
+						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 1:</h5>
+						<label>Seleccione la fecha: </label>
+						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" required="required">					
+					</div>
+					<div class="span6" align="center" >
+						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>
+						<label>Seleccione el equipo m&eacute;dico: </label>
+						<input type="text" name="cod_equipo" id="cod_equipo" required="required" >
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 3:</h5>
+						<label>Seleccione el paciente: </label>
+						<div class="overflow overthrow" style="width: 100%; min-height: 150px; overflow-y: auto;">
+							<table class="table2 borde-tabla">
+								<thead>
+									<tr class="fd-table">
+										<th style="min-width:50px">Hora</th>
+										<th style="min-width:250px">Paciente</th>
+										<th style="min-width:250px">Profesional</th>
+										<th style="min-width:250px">Servicio</th>
+										<th style="min-width:100px">Reservada</th>										
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>'.$hora.'</td>
+										<td><input type="text" id="paciente" name="paciente" value="'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Paciente" '.$readonly.' required><br><input type="text" id="cedpaciente" name="cedpaciente" value="'.$paciente->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Paciente" readonly></td>
+										<td><input type="text" id="profesional" name="profesional" value="'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'" placeholder="Buscar Profesional" '.$readonly.' required><br><input type="text" id="cedprofesional" name="cedprofesional" value="'.$profesional->obtener('NO_CEDULA').'" placeholder="C&eacute;dula Profesional" readonly></td>
+										<td>
+											<select id="servicio" name="servicio" '.$disabled.' required="required">
+												<option value=""></option>';
+							$x = $servicios->buscardonde('ID_SERVICIO > 0');
+							while($x){
+								if($servicios->obtener('ID_SERVICIO') == $citas->obtener('ID_SERVICIO')){
+									$selected = 'selected';
+								}else{
+									$selected = '';
+								}
+								$cont.='
+												<option value="'.$servicios->obtener('ID_SERVICIO').'" '.$selected.'>'.$servicios->obtener('DESCRIPCION').'</option>
+								';
+								$x = $servicios->releer();
+							}
+							$cont.='
+											</select>
+										</td>
+										<td>
+											<input type="radio" id="reservada" name="reservada" value="1" checked '.$si.'> Si <input type="radio" id="reservada" name="reservada" value="0" '.$no.'> No 
+										</td>
+									</tr>
+									<tr>										
+										<td style="display:none;"><input type="text" id="hora" name="hora" value="'.$hora.'"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<center><button type="submit" class="btn btn-primary" style="margin-top:8px;">Enviar</button></center><br>
+			</form>';
+/*<!--center>
 				<table>
 					<tr>
 						<td><b>Fecha: </b></td>
@@ -47,7 +112,7 @@
 					</tr>
 				</table>
 			</center>
-			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Datos</h3>	
+			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Datos</h3-->	
 			<center>'.$_SESSION['error_profesional'].'</center>
 			<form method="POST" action="./?url=agregar_citas&h='.$_GET['h'].'&id='.$id.'&sbm=1">
 				<center>
@@ -62,7 +127,7 @@
 						</tr>
 						<tr>
 							<td>Servicio:</td>
-							<td><select id="servicio" name="servicio" '.$disabled.'>
+							<td><select id="servicio" name="servicio" '.$disabled.' required="required">
 									<option value=""></option>							
 					';
 	$x = $servicios->buscardonde('ID_SERVICIO > 0');
@@ -130,7 +195,7 @@
 							<tr align="center">
 								<td>Buscar Profesional:</td>
 								<td>
-									<input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional">
+									<input type="text" id="profesional2" name="profesional2" placeholder="Buscar Profesional" required="required">
 									<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
 								</td>
 								<td>'.$button.'</td>
@@ -140,7 +205,10 @@
 					</form>	
 					<a href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-default">Volver Agenda</a>
 				</center>
-		';
+		';*/
+
+
+			
 	$_SESSION['fecha'] = '';
 	$_SESSION['fecha_1'] = '';
 	$_SESSION['cita'] = '';

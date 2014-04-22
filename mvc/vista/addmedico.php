@@ -18,7 +18,7 @@
 	$cont .= '
 		
 			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Profesional de la Salud</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Profesional de la Salud</h3>
 				<form class="form-search" method="POST" action="./?url=addmedico&sbm=5">
 						<div class="input-group">
 						  Buscar Profesional: <input type="search" class="form-control" id="buscar_profesional" placeholder="Cédula o Nombre" name="buscar_cedula">
@@ -81,7 +81,7 @@
 						<tr>
 							<td>Especialidad Médica: </td>
 							<td>
-								<select name="especialidad" id="especialidad">
+								<select name="especialidad" id="especialidad"  required="required">
 									<option value=""> </option>';
 						$x = $esp_medicas->buscardonde('ID_ESPECIALIDAD_MEDICA');			
 						while($x){

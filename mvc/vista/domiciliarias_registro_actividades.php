@@ -18,7 +18,7 @@
 	$actividad = new Accesatabla('actividad');
 	$cont.='
 		
-			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
 				<div class="row-fluid">					
 					<div class="span12">';
 
@@ -34,11 +34,11 @@
 							<table width="40%" >
 								<tr>
 									<td>Fecha:</td>
-									<td align="center"><input type="date" id="fecharda" name="fecharda"></td>
+									<td align="center"><input type="date" id="fecharda" name="fecharda" required="required"></td>
 								</tr>
 								<tr>
 									<td>Institucion:</td>
-									<td align="center"><select id="institucionrda" name="institucionrda">
+									<td align="center"><select id="institucionrda" name="institucionrda" required="required">
 											<option value=""></option>';
 			
 		$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
@@ -54,7 +54,7 @@
 								</tr>
 								<tr>
 									<td>Horas de Atenci&oacute;n:</td>
-									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1"> horas</td>
+									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
 								</tr>
 							</table>
 							<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
@@ -65,62 +65,19 @@
 	}else{
 		$rda->buscardonde('ID_RDA = '.$idrda.'');
 		$instituciones->buscardonde('ID_INSTITUCION = '.$rda->obtener('ID_INSTITUCION').'');
-		$cont.='			<table width="100%">
-								<tr align="center">
-									<td><b>Fecha:</b> '.$rda->obtener('FECHA').'</td>
-								</tr>
-								<tr align="center">
-									<td><b>Instalacion:</b> '.$instituciones->obtener('DENOMINACION').'<td>
-								</tr>
-								<tr align="center">
-									<td><b>Horas de Atencion:</b> '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
-								</tr>
-							</table>';
-		$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rda->obtener('ID_EQUIPO_MEDICO').'');
-		$n = 1;
-		if($e){
-			$cont.='	
-							
-					<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Equipo Médico</h3>
-					<table class="tabla-datos borde-tabla">
-						<tr class="fd-tabla-gris">
-							<th>N&deg;</th>
-							<th>Especialidad Medica</th>
-							<th>Profesional</th>
-						</tr>';
-			while($e){
-				$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$equipo->obtener('ID_ESPECIALIDAD_MEDICA').'');
-				$profesional->buscardonde('ID_PROFESIONAL = '.$equipo->obtener('ID_PROFESIONAL').'');
-				$cont.='
-						<tr align="center">
-							<td>'.$n.'.</td>
-							<td>'.$especialidad->obtener('DESCRIPCION').'</td>
-							<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>									
-						</tr>				
-					';
-				$n++;
-				$e = $equipo->releer();
-			}			
-			$cont.='</table>';
-		}else{
-			$cont.='<br><div style="color:RED;">No existe equipo m&eacute;dico para esta Actividad</div>';
-		}
-		$cont.='
-				<form class="form-search" method="POST" action="./?url=agregar_datos_rda&sw=2&id='.$idrda.'&sbm=1">
-					<table class="tabla-datos">
-						<tr align="center">
-							<td>Nombre Profesional:</td>
-							<td>
-								<input type="search" id="profesional" name="profesional" placeholder="Buscar Profesional">
-								<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
-							</td>
-							<td><button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button></td>
-						</tr>					
-					</table>
-					<center>'.$_SESSION[errorprof].'</center>
-				</form>
-		
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Pacientes</h3>';
+		$cont.='			
+			<table width="100%">
+				<tr align="center">
+					<td><b>Fecha:</b> '.$rda->obtener('FECHA').'</td>
+				</tr>
+				<tr align="center">
+					<td><b>Instalacion:</b> '.$instituciones->obtener('DENOMINACION').'<td>
+				</tr>
+				<tr align="center">
+					<td><b>Horas de Atencion:</b> '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
+				</tr>
+			</table>
+		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">Pacientes</h3>';
 					
 				
 		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
@@ -159,37 +116,36 @@
 					$referido = 'Dentro de la Inst.';
 				}
 				$cont.='
-								<tr>
-									<td>'.$zona->obtener('ZONA').'</td>
-									<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
-									<td>'.$frecuencia->obtener('FRECUENCIA').'</td>
-									<td>'.$tipo_atencion->obtener('TIPO_ATENCION').'</td>
-									<td>'.$cie10->obtener('DESCRIPCION').'</td>';
+							<tr>
+								<td>'.$zona->obtener('ZONA').'</td>
+								<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
+								<td>'.$frecuencia->obtener('FRECUENCIA').'</td>
+								<td>'.$tipo_atencion->obtener('TIPO_ATENCION').'</td>
+								<td>'.$cie10->obtener('DESCRIPCION').'</td>';
 			$profesional->buscardonde('ID_PROFESIONAL = '.$diagnostico->obtener('ID_PROFESIONAL').'');
 			$segundonombre = $profesional->obtener('SEGUNDO_NOMBRE');
 			$segundoapellido = $profesional->obtener('APELLIDO_MATERNO');
 			$cont.='
-									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
-									<td>'.$actividad->obtener('ACTIVIDAD').'</td>';
+								<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
+								<td>'.$actividad->obtener('ACTIVIDAD').'</td>';
 			$profesional->buscardonde('ID_PROFESIONAL = '.$actividad->obtener('ID_PROFESIONAL').'');
 			$segundonombre = $profesional->obtener('SEGUNDO_NOMBRE');
 			$segundoapellido = $profesional->obtener('APELLIDO_MATERNO');
 			$cont.='
-									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
-									<td>'.$estado_paciente->obtener('LETRA_ESTADO').'</td>
-									<td>'.$referido.'</td>
-								</tr>
-			';
+								<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
+								<td>'.$estado_paciente->obtener('LETRA_ESTADO').'</td>
+								<td>'.$referido.'</td>
+							</tr>';
 				$d = $detalle_rda->releer();
 				$n++;
 			}
 			$cont.='
-							</table>
-						</div>	
+						</table>
+					</div>	
 
-						'.$_SESSION[errorpa].'
-					</center>
-			';
+					'.$_SESSION[errorpa].'
+				</center>
+		';
 		}
 		
 		
@@ -234,7 +190,7 @@
 									</tr>
 									<tr>
 										<td>
-											<input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente"><br>
+											<input type="text" id="paciente" name="paciente" placeholder="Buscar Paciente" required="required"><br>
 											<input type="text" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente" readonly>
 										</td>
 									</tr>
@@ -243,7 +199,7 @@
 									</tr>
 									<tr>
 										<td>
-											<select id="zona" name="zona">
+											<select id="zona" name="zona" required="required">
 												<option value=""></option>
 												'.$zon.'
 											</select>
@@ -254,7 +210,7 @@
 									</tr>
 									<tr>
 										<td>
-											<select id="frecuencia" name="frecuencia">
+											<select id="frecuencia" name="frecuencia" required="required">
 												<option value=""></option>
 												'.$frec.'
 											</select>
@@ -265,7 +221,7 @@
 									</tr>
 									<tr>
 										<td>
-											<select id="tipo_atencion" name="tipo_atencion">
+											<select id="tipo_atencion" name="tipo_atencion" required="required">
 												<option value=""></option>
 												'.$tipoatencion.'
 											</select>
@@ -286,7 +242,7 @@
 									</tr>
 									<tr>
 										<td>
-											<input type="text" id="diagnostico" name="diagnostico" placeholder="Diagn&oacute;stico"><br>
+											<input type="text" id="diagnostico" name="diagnostico" placeholder="Diagn&oacute;stico" required="required"><br>
 											<input type="text" id="cie10" name="cie10" placeholder="CIE10" readonly>
 										</td>
 									</tr>
@@ -295,7 +251,7 @@
 									</tr>
 									<tr>
 										<td>
-											<select id="frecdiag" name="frecdiag">
+											<select id="frecdiag" name="frecdiag" required="required">
 												<option value=""></option>
 												'.$frec.'
 											</select>
@@ -306,7 +262,7 @@
 									</tr>
 									<tr>
 										<td>
-											<input type="text" name="profesional2" id="profesional2" placeholder="Buscar Profesional"><br>
+											<input type="text" name="profesional2" id="profesional2" placeholder="Buscar Profesional" required="required"><br>
 											<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
 										</td>
 									</tr>
@@ -314,7 +270,7 @@
 										<td style="text-align:left;padding-left:17%;">Observaci&oacute;n: </td>														
 									</tr>
 									<tr>
-										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;n"></textarea></td>
+										<td><textarea class="textarea" id="observacion" name="observacion" placeholder="Observaci&oacute;n" required="required"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
@@ -330,14 +286,14 @@
 										<td style="text-align:left;padding-left:17%;">Actividad: </td>														
 									</tr>
 									<tr>
-										<td><input type="text" name="actividad" id="actividad" placeholder="Actividad"></td>
+										<td><input type="text" name="actividad" id="actividad" placeholder="Actividad" required="required"></td>
 									</tr>
 									<tr>
 										<td style="text-align:left;padding-left:17%;">Frecuencia: </td>														
 									</tr>
 									<tr>
 										<td>
-											<select id="frecact" name="frecact">
+											<select id="frecact" name="frecact" required="required">
 												<option value=""></option>
 												'.$frec.'
 											</select>
@@ -348,7 +304,7 @@
 									</tr>
 									<tr>
 										<td>
-											<input type="text" name="profesional3" id="profesional3" placeholder="Buscar Profesional"><br>
+											<input type="text" name="profesional3" id="profesional3" placeholder="Buscar Profesional" required="required"><br>
 											<input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="C&eacute;dula Profesional" readonly>
 										</td>
 									</tr>
@@ -357,7 +313,7 @@
 									</tr>
 									<tr>
 										<td>
-											<select id="estado" name="estado">
+											<select id="estado" name="estado" required="required">
 												<option value=""></option>
 												'.$estado.'
 											</select>
@@ -368,7 +324,7 @@
 									</tr>
 									<tr>
 										<td>
-											<select id="referido" name="referido">
+											<select id="referido" name="referido" required="required">
 												<option value=""></option>
 												<option value="0">No Referido</option>
 												<option value="1">Dentro de la Inst.</option>
@@ -382,8 +338,8 @@
 					</div>
 				</div>		
 				<center>
-					<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
-					<button style="background:none;border:none;padding-top:7px"><img src="./iconos/add_profesional.png" title="Guardar Paciente"></button>
+					<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" title="Regresar">Regresar</a>
+					<button type="submit" class="btn btn-primary">Agregar</button>
 				</center>
 			</form>';
 	}

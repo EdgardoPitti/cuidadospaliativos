@@ -27,7 +27,7 @@
 	$sw = 0;
 	$cont.='
 	    <center>
-			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Admisión-Egreso (RAE)</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Admisión-Egreso (RAE)</h3>
 		</center>
 					<center>
 				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion&sbm=3">

@@ -55,7 +55,7 @@
 						</tr>
 						<tr>
 							<td>Sala: </td>
-							<td><select id="sala" name="sala">
+							<td><select id="sala" name="sala" required="required">
 									<option value=""></option>';
 	$s = $salas->buscardonde('ID_SALA > 0');
 	while($s){

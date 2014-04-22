@@ -506,7 +506,7 @@ class Diseno {
 				}
 			
 		$cont.= '	
-			<div class="row-fluid">  
+			<div class="row-fluid" style="min-height:430px;background:#fff;">  
 				<!--Aside-->
 				<div class="span2" id="menu">';
 
@@ -533,9 +533,14 @@ class Diseno {
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar M&eacute;dicos">M&eacute;dicos</a></li>
+								<li><a href="#" class="link" title="Equipo M&eacute;dicos">Equipo M&eacute;dico</a></li>
 							</ul>
 						</div>	
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar Profesionales">Profesionales</a></li>
+							</ul>
+						</div>
 						<div>
 							<ul class="acordeon_link">
 								<li><a href="./?url=camas&sbm=5" class="link" title="Editar Camas">Camas</a></li>
@@ -624,8 +629,7 @@ class Diseno {
 							<label for="ac-5">Indicadores</label>
 							<article>	
 								<ul>
-									<li><a class="sublink" href="#" title="Frecuentaci&oacuten Paciente/Familiar a la Instalaci&oacute;n por Periodo de Tiempo"><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>
-									<li><a class="sublink" href="#" title="N&ordm; de Consultas por Paciente por Unidad de Tiempo"><i>N&ordm; de Consultas por Paciente x Unidad de Tiempo</i></a></li>								
+									<li><a class="sublink" href="#" title="Frecuentaci&oacuten Paciente/Familiar a la Instalaci&oacute;n por Periodo de Tiempo"><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>									
 									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=2" title="Actividades Realizadas por Paciente"><i>Actividades Realizadas por Paciente</i></a></li>								
 								</ul>
 							</article>	
@@ -689,7 +693,7 @@ class Diseno {
 				
 				<!--Contenido-->
 				<!--Diseño del contenido de la página-->
-				<div class="span10" id="contenido" style="min-height:580px;background:#fff;">
+				<div class="span10" id="contenido">
 					'.$this->latino($this->derecha).'
 				</div>
 				<!--Fin del Contenido-->
@@ -697,7 +701,8 @@ class Diseno {
 			';
 			
 			if(!empty($_SESSION['idu'])){
-					$cont.= '<div class="row-fluid">
+					$cont.= '						
+						<div class="row-fluid">
 							<div class="span12">	
 								<!--Nav-->
 								<div class="navbar">
@@ -741,7 +746,7 @@ class Diseno {
 								</div>
 							</div>
 						</div>';				
-				}
+				}				
 			echo $cont;
 	}
 	function latino( $texto ) {
