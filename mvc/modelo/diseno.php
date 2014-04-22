@@ -651,7 +651,7 @@ class Diseno {
 								<ul>
 									<li><a class="sublink" href="./?url=indicadores_porcentaje_camas&sbm=3" title="Porcentaje de Ocupaci&oacute;n de Camas"><i>Porcentaje de Ocupaci&oacute;n de Camas</i></a></li>								
 									<li><a class="sublink" href="#" title="Giro de Cama"><i>Giro de Cama</i></a></li>								
-									<li><a class="sublink" href="#" title="Promedio de D&iacute;as de Estancia"><i>Promedio de D&iacute;as de Estancia</i></a></li>								
+									<li><a class="sublink" href="./?url=indicadores_promedio_dias&sbm=3" title="Promedio de D&iacute;as de Estancia"><i>Promedio de D&iacute;as de Estancia</i></a></li>								
 									<li><a class="sublink" href="#" title="Porcentaje de egresos"><i>Porcentaje de Egresos</i></a></li>								
 									<li><a class="sublink" href="#" title="Razones de Readmisiones"><i>Razones de Readmisiones</i></a></li>								
 									<li><a class="sublink" href="./?url=indicadores_infeccion_nosocomial&sbm=3" title="Porcentaje de Infecciones Nosocomiales"><i>Porcentaje de Infecciones Nosocomiales</i></a></li>								

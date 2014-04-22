@@ -73,6 +73,11 @@
 		</script>	
 			
 	';
-	$ds->contenido($cont);
-	$ds->mostrar();
+	if($_SESSION['idgu'] <> 1){
+		$cont='';
+		echo '<script language="javascript">location.href="./?url=inicio"</script>';
+	}else{
+		$ds->contenido($cont);
+		$ds->mostrar();
+	}
 ?>
