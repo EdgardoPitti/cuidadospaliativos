@@ -49,6 +49,8 @@
 		}elseif($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
 			$cont.= 'Tel&eacute;fono: '.$autenticacion->obtener('TELEFONO_PREFERENCIAL').'<br><br>
 						<a href="./?url=login">Ir a Login.</a>';
+		}else{
+			$cont.='<script language="javascript">location.href="./?url=login"</script>';
 		}
 	
 	}else{
