@@ -56,7 +56,7 @@
 		$preferencias->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');
 	}
 	if(!$act_boton){
-		$boton ='<input type="submit" class="btn btn-primary" value="Registrar"/>';
+		$boton ='<input type="submit" class="btn btn-primary" value="Guardar"/>';
 	}else{
 		$cont.=$script;
 		$cambio ='&ch=1';

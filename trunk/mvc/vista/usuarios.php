@@ -8,7 +8,7 @@
 	$comillas = "'";
 	
 	if(!empty($id)){
-		$img = '<a href="./?url=usuarios&sbm=5" title="A&ntilde;adir Usuario"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=usuarios&sbm=5" title="A&ntilde;adir Usuario" class="btn btn-primary">A&ntilde;adir Usuario</a><br><br>';
 	}
 	
 	$cont.='
