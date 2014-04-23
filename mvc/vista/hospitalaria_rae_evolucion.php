@@ -545,7 +545,7 @@
 							</table>
 						</div>
 					</div>		
-				<button type="submit" class="btn btn-primary" style="float:right;">Registrar</button>';
+				<button type="submit" class="btn btn-primary" style="float:right;">Guardar</button>';
 		$cont .= '
 				</form>';					
 		}

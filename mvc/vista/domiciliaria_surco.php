@@ -449,7 +449,7 @@
 									</div>
 								</div>';
 								if($readonly == ''){
-									$cont.='<button type="submit" class="btn btn-primary" style="margin-top:1px;float:right;">Registrar</button>';
+									$cont.='<button type="submit" class="btn btn-primary" style="margin-top:1px;float:right;">Guardar</button>';
 								}
 							$cont.='
 							   </form>
