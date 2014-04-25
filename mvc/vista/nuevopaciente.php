@@ -359,15 +359,16 @@
 						}
 						if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
 								$preguntas = 'selected';
-								$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
-								$respuesta = $autenticacion->obtener('RESPUESTA');
+
 						}
 						if($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
 								$telefono = 'selected';
 						}
 						if($preferencias->obtener('USAR_EMAIL_PREFERENCIAL') == 1){
 								$email = 'selected';
-						}  						
+						} 
+						$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
+						$respuesta = $autenticacion->obtener('RESPUESTA'); 						
 						$cont.='
 																</select>
 															</td>
@@ -401,7 +402,7 @@
 														</tr>                                                                           
 														<tr>
 																<td>
-																	<select name="preferencia" id="preferencia" onChange="valida(this.value)">
+																	<select name="preferencia" id="preferencia" onChange="valida(this.value)" required>
 																		<option value="0"></option>
 																		<option value="1" '.$preguntas.'>Pregunta</option>
 																		<option value="3" '.$email.'>Correo</option>
@@ -414,19 +415,19 @@
 														<tr>
 																<td><select  id="pregunta" name="pregunta" onChange="valida(this.value)">
 																				<option value=""></option>';
-$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
-while($p){
-if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
-		$selected = 'selected';
-}else{
-		$selected = '';
-}
-$cont.='
+									$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
+									while($p){
+										if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
+											$selected = 'selected';
+										}else{
+											$selected = '';
+										}
+										$cont.='
 																				<option value="'.$pregunta->obtener('ID_PREGUNTA').'" '.$selected.'>'.$pregunta->obtener('PREGUNTA').'</option>
-';
-$p = $pregunta->releer();
-}
-$cont.='
+										';
+										$p = $pregunta->releer();
+									}
+									$cont.='
 																		</select>
 																</td>
 														</tr>                                                                   

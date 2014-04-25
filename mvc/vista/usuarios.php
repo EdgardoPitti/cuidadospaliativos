@@ -4,7 +4,13 @@
 	$ds = new Diseno();
 	$usuarios = new Accesatabla('usuarios');
 	$grupo = new Accesatabla('grupos_usuarios');
-	$preguntas = new Accesatabla('preguntas_seguridad');
+	$profesionales = new Accesatabla('profesionales_salud');
+	$datos_profesional = new Accesatabla('datos_profesionales_salud');
+	$pacientes = new Accesatabla('pacientes');
+	$datos_paciente = new Accesatabla('datos_pacientes');
+	$pregunta = new Accesatabla('preguntas_seguridad');
+	$preferencias = new Accesatabla('preferencias_recuperacion_acceso');
+	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
 	$id = $_GET['id'];
 	$comillas = "'";
 	
@@ -23,6 +29,8 @@
 								<th>#</th>		
 								<th>No de Identificaci&oacute;n</th>
 								<th>Clave de Acceso</th>
+								<th>C&eacute;dula</th>
+								<th>Paciente/Profesional</th>
 								<th>Grupo de Usuario</th>
 								<th style="min-width:20px;"></th>
 							</tr>
@@ -32,12 +40,32 @@
 	$u = $usuarios->buscardonde('ID_USUARIO > 0');
 	$n = 1;
 	while($u){
+		$pr = $profesionales->buscardonde('ID_USUARIO = '.$usuarios->obtener('ID_USUARIO').'');
+		$p = $pacientes->buscardonde('ID_USUARIO = '.$usuarios->obtener('ID_USUARIO').'');
+		if($p){
+			$datos_paciente->buscardonde('ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').'');
+			$segundo_nombre = $datos_paciente->obtener('SEGUNDO_NOMBRE');
+			$apellido_materno = $datos_paciente->obtener('APELLIDO_MATERNO');
+			$nombre = $datos_paciente->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datos_paciente->obtener('APELLIDO_PATERNO').' '.$apellido_materno[0].'.';
+			$cedula = $datos_paciente->obtener('NO_CEDULA');
+		}elseif($pr){
+			$datos_profesional->buscardonde('ID_PROFESIONAL = '.$profesionales->obtener('ID_PROFESIONAL').'');
+			$segundo_nombre = $datos_profesional->obtener('SEGUNDO_NOMBRE');
+			$apellido_materno = $datos_profesional->obtener('APELLIDO_MATERNO');
+			$nombre = $datos_profesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$apellido_materno[0].'.';
+			$cedula = $datos_profesional->obtener('NO_CEDULA');
+		}else{
+			$nombre = 'Administrador';
+			$cedula = 'Administrador';
+		}
 		$grupo->buscardonde('ID_GRUPO_USUARIO = '.$usuarios->obtener('ID_GRUPO_USUARIO').'');
 		$cont.='
 							<tr>
 								<td><strong>'.$n.'.</strong></td>
 								<td class="identificacion">'.$usuarios->obtener('NO_IDENTIFICACION').'</td>
-								<td>******</td>
+								<td>********</td>
+								<td>'.$cedula.'</td>
+								<td>'.$nombre.'</td>
 								<td>'.$grupo->obtener('DESCRIPCION').'</td>
 								<td><a href="./?url=usuarios&id='.$usuarios->obtener('ID_USUARIO').'&sbm=5"><img src="./iconos/search.png"></a></td>
 							</tr>
@@ -46,6 +74,8 @@
 		$u = $usuarios->releer();
 	}
 	$usuarios->buscardonde('ID_USUARIO = '.$id.'');
+	$preferencias->buscardonde('ID_USUARIO = '.$id.'');
+	$autenticacion->buscardonde('ID_USUARIO = '.$id.'');
 	$cont.='
 						</tbody>
 					</table>
@@ -78,13 +108,62 @@
 		';
 		$g = $grupo->releer();	
 	}
+	if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
+			$preguntas = 'selected';
+	}
+	if($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
+			$telefono = 'selected';
+	}
+	if($preferencias->obtener('USAR_EMAIL_PREFERENCIAL') == 1){
+			$email = 'selected';
+	}  	
+	$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
+	$respuesta = $autenticacion->obtener('RESPUESTA');	
 	$cont.='
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
+							<td>Recuperaci&oacute;n de Acceso: </td>
+							<td>
+								<select name="preferencia" id="preferencia" required>
+									<option value="0"></option>
+									<option value="1" '.$preguntas.'>Pregunta</option>
+									<option value="3" '.$email.'>Correo</option>
+								</select>	
+							</td>
+						</tr>
+						<tr>
+							<td>Correo Electr&oacute;nico: </td>
+							<td><input type="text" id="correo" name="correo" value="'.$autenticacion->obtener('E_MAIL_PREFERENCIAL').'"></td>
+						</tr>
+						<tr>
+							<td>Tel&eacute;fono: </td>
+							<td><input type="text" id="telefono" name="telefono" value="'.$autenticacion->obtener('TELEFONO_PREFERENCIAL').'"></td>
+						</tr>
+						<tr>
+							<td>Pregunta de Recuperaci&oacute;n: </td>
+							<td><select  id="pregunta" name="pregunta">
+											<option value=""></option>';
+	$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
+	while($p){
+		if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
+			$selected = 'selected';
+		}else{
+			$selected = '';
+		}
+		$cont.='
+											<option value="'.$pregunta->obtener('ID_PREGUNTA').'" '.$selected.'>'.$pregunta->obtener('PREGUNTA').'</option>
+		';
+		$p = $pregunta->releer();
+	}
+	$cont.='
+									</select>
+							</td>
+						</tr>                                                                   
+						<tr>
+							<td>Respuesta pregunta: </td>
+							<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" onChange="valida(this.value)" value="'.$respuesta.'"></td>
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
