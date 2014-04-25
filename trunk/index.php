@@ -419,6 +419,24 @@
                         $("#busqueda").val(data[1]); 
                     });  
             });	            
+        </script>			
+		<script type="text/javascript">
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#busqueda_paciente").keypress(function() {
+                       palabra = $("#busqueda_paciente").val(); // Completa la palabra
+                    });
+
+                    $("#busqueda_paciente").autocomplete("./mvc/vista/buscar_pacientes.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+					$("#busqueda_paciente").result(function(event, data, formatted) {
+                        $("#busqueda_paciente").val(data[1]); 
+                    });  
+            });	            
         </script>		
 		<script type="text/javascript">			
             $('document').ready(function() {

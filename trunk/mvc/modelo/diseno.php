@@ -518,24 +518,25 @@ class Diseno {
 							<ul class="acordeon_link">
 								<li><a href="./?url=usuarios&sbm=5" class="link" title="Editar Usuarios">Usuarios</a></li>
 							</ul>
-						</div>';
-						}
-						$cont.='
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=nuevopaciente&sbm=5" class="link" title="Agregar Nuevo Paciente">Agregar Paciente</a></li>
-							</ul>
 						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="#" class="link" title="Equipo M&eacute;dicos">Equipo M&eacute;dico</a></li>
-							</ul>
-						</div>	
 						<div>
 							<ul class="acordeon_link">
 								<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar Profesionales">Profesionales</a></li>
 							</ul>
 						</div>
+						';
+						}
+						$cont.='
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=nuevopaciente&sbm=5" class="link" title="Agregar Nuevo Paciente">Pacientes</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a href="./?url=equipos_medicos&sbm=5" class="link" title="Equipo M&eacute;dicos">Equipos M&eacute;dicos</a></li>
+							</ul>
+						</div>	
 						<div>
 							<ul class="acordeon_link">
 								<li><a href="./?url=camas&sbm=5" class="link" title="Editar Camas">Camas</a></li>
