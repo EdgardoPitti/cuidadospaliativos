@@ -18,7 +18,7 @@
 	$actividad = new Accesatabla('actividad');
 	$cont.='
 		
-			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>Registro Diario de Actividades</h3>
 				<div class="row-fluid">					
 					<div class="span12">';
 
@@ -56,8 +56,12 @@
 									<td>Horas de Atenci&oacute;n:</td>
 									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
 								</tr>
+								<tr>
+									<td>ID Equipo M&eacute;dico: </td>
+									<td align="center"><input type="text" id="equipo_medico" name="equipo_medico" placeholder="ID Equipo M&eacute;dico" required="required"></td>
+								</tr>
 							</table>
-							<a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar"><i class="icon-arrow-left"></i></a>
+							
 							<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>							
 						</form>
 					</center>';	
@@ -76,8 +80,11 @@
 				<tr align="center">
 					<td><b>Horas de Atencion:</b> '.$rda->obtener('HORAS_DE_ATENCION').' horas</td>
 				</tr>
+				<tr align="center">
+					<td><b>Id Equipo M&eacute;dico: </b> '.$rda->obtener('ID_EQUIPO_MEDICO').'</td>
+				</tr>
 			</table>
-		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center"> <a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a> Pacientes</h3>';
+		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center">  Pacientes</h3>';
 					
 				
 		if($detalle_rda->buscardonde('ID_RDA = '.$idrda.'')){
@@ -181,6 +188,7 @@
 			<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1">			
 				<div class="row-fluid">
 					<div class="span4">
+						
 						<fieldset>
 							<legend>Paciente</legend>	
 							<table class="table">
@@ -258,15 +266,6 @@
 										</td>
 									</tr>
 									<tr>
-										<td style="text-align:left;padding-left:17%;">Profesional: </td>														
-									</tr>
-									<tr>
-										<td>
-											<input type="text" name="profesional2" id="profesional2" placeholder="Buscar Profesional" required="required"><br>
-											<input type="text" id="cedprofesional2" name="cedprofesional2" placeholder="C&eacute;dula Profesional" readonly>
-										</td>
-									</tr>
-									<tr>
 										<td style="text-align:left;padding-left:17%;">Observaci&oacute;n: </td>														
 									</tr>
 									<tr>
@@ -300,15 +299,6 @@
 										</td>
 									</tr>
 									<tr>
-										<td style="text-align:left;padding-left:17%;">Profesional: </td>														
-									</tr>
-									<tr>
-										<td>
-											<input type="text" name="profesional3" id="profesional3" placeholder="Buscar Profesional" required="required"><br>
-											<input type="text" id="cedprofesional3" name="cedprofesional3" placeholder="C&eacute;dula Profesional" readonly>
-										</td>
-									</tr>
-									<tr>
 										<td style="text-align:left;padding-left:17%;">Estado: </td>														
 									</tr>
 									<tr>
@@ -338,7 +328,7 @@
 					</div>
 				</div>		
 				<center>
-					<button type="submit" class="btn btn-primary">Agregar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
 				</center>
 			</form>';
 	}
