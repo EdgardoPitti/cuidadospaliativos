@@ -29,7 +29,7 @@
 	}
 	
 	$script = '
-		<script language="javascript" type="text/javascript">
+		<script language="javascript">
 			$(document).ready(function(){
 				$('.$comillas.'input[type="submit"]'.$comillas.').attr('.$comillas.'disabled'.$comillas.','.$comillas.'disabled'.$comillas.');	
 			});
@@ -175,7 +175,7 @@
 															<td style="text-align:left;padding-left:17%;">Nacionalidad:</td>
 														</tr>
 														<tr>
-															<td><select id="nacionalidad" name="nacionalidad" onKeyPress="valida(this.value)" required="required">
+															<td><select id="nacionalidad" name="nacionalidad" onChange="valida(this.value)" required="required">
 																	<option value="0"></option>';
 																							
 						$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');
@@ -197,7 +197,7 @@
 															<td style="text-align:left;padding-left:17%;">Tipo De Paciente</td>
 														</tr>
 														<tr>
-															<td><select id="tipopaciente" name="tipopaciente"  onKeyPress="valida(this.value)" required="required">
+															<td><select id="tipopaciente" name="tipopaciente"  onChange="valida(this.value)" required="required">
 																	<option value="0"></option>';
 						$t = $tipopaciente->buscardonde('ID_TIPO_PACIENTE');
 						while ($t){
@@ -259,7 +259,7 @@
 															<td style="text-align:left;padding-left:17%;">Fecha de Nacimiento:</td>	
 														</tr>
 														<tr>
-															<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$datos->obtener('FECHA_NACIMIENTO').'" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$datos->obtener('FECHA_NACIMIENTO').'" onChange="valida(this.value)" required="required"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Lugar de Nacimiento:</td>	
@@ -272,7 +272,7 @@
 														</tr>
 														<tr>
 															<td>
-																<select id="sexo" name="sexo" onKeyPress="valida(this.value)" required="required">
+																<select id="sexo" name="sexo" onChange="valida(this.value)" required="required">
 																	<option value=""></option>';
 						$s = $sexo->buscardonde('ID_SEXO > 0');
 						while($s){
@@ -293,7 +293,7 @@
 														</tr>
 														<tr>
 															<td>
-																<select id="tiposangre" name="tiposangre" style="width:100px" onKeyPress="valida(this.value)" required="required">
+																<select id="tiposangre" name="tiposangre" style="width:100px" onChange="valida(this.value)" required="required">
 																	<option value="0"></option>';																	
 						$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
 						while($x){
@@ -314,7 +314,7 @@
 														<td style="text-align:left;padding-left:17%;">Etnia:</td>
 													</tr>
 													<tr>
-														<td><select id="etnia" name="etnia" onKeyPress="valida(this.value)" required="required">
+														<td><select id="etnia" name="etnia" onChange="valida(this.value)" required="required">
 																<option value="0"></option>';																
 						$e = $etnia->buscardonde("ID_ETNIA > 0");
 						while ($e){
@@ -343,7 +343,7 @@
 														</tr>
 														<tr>
 															<td align="center">
-																<select id="estadocivil" name="estadocivil" onKeyPress="valida(this.value)" required="required">
+																<select id="estadocivil" name="estadocivil" onChange="valida(this.value)" required="required">
 																	<option value="0"></option>';
 						$ec = $estadocivil->buscardonde('ID_ESTADO_CIVIL > 0');
 						while ($ec){
@@ -473,7 +473,7 @@ $cont.='
 														</tr>
 														<tr>
 															<td>
-																<select id="provincias" name="provincias" onKeyPress="valida(this.value)" required="required"> 
+																<select id="provincias" name="provincias" onChange="valida(this.value)" required="required"> 
 																	<option value=""></option>';
 												$cont.= 
 										$x = $provincias->buscardonde('ID_PROVINCIA > 0');
@@ -496,7 +496,7 @@ $cont.='
 														</tr>
 														<tr>
 															<td>
-																<select style="width:140px" id="distritos" name="distritos" onKeyPress="valida(this.value)" required="required">
+																<select style="width:140px" id="distritos" name="distritos" onChange="valida(this.value)" required="required">
 																	<option value="0"></option>';
 					$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
 					while($d){
@@ -518,7 +518,7 @@ $cont.='
 														</tr>
 														<tr>
 															<td>
-																<select style="width:140px" id="corregimientos" name="corregimientos" onKeyPress="valida(this.value)" required="required">
+																<select style="width:140px" id="corregimientos" name="corregimientos" onChange="valida(this.value)" required="required">
 																	<option value="0"></option>';
 																				
 					$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
@@ -547,7 +547,7 @@ $cont.='
 														<td style="text-align:left;padding-left:17%;">Zona:</td>
 													</tr>
 													<tr>
-														<td><select id="zona" name="zona" onKeyPress="valida(this.value)" required="required">
+														<td><select id="zona" name="zona" onChange="valida(this.value)" required="required">
 																<option value="0"></option>';
 				$z = $zona->buscardonde('ID_ZONA > 0');
 				while($z){
@@ -575,7 +575,7 @@ $cont.='
 														<td style="text-align:left;padding-left:17%;">Residencia Transitoria:</td>
 													</tr>
 													<tr>
-														<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria" onKeyPress="valida(this.value)" required="required">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
+														<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria" onChange="valida(this.value)">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
 													</tr>
 												</tbody>
 											</table>

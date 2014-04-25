@@ -17,14 +17,11 @@
 		$autenticacion->buscardonde('ID_USUARIO = '.$idusuario.'');
 		if($idpregunta == $autenticacion->obtener('ID_PREGUNTA') AND $respuesta == $autenticacion->obtener('RESPUESTA')){
 			$usuarios->buscardonde('ID_USUARIO = '.$idusuario.'');
-			echo '<center><h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Recuperaci&oacute;n de Acceso</h3>
+			echo '<center style="min-height:430px;">
+						<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Recuperaci&oacute;n de Acceso</h3>
 						<form method="POST" action="./?url=validar">
-							<table>
-								<tr>
-									<td>Contrase&ntilde;a Nueva: </td>
-									<td><input type="password" id="pass" name="pass"></td>
-								</tr>							
-							</table>
+							<label for="pass">Contrase&ntilde;a Nueva: </label>
+							<input type="password" id="pass" name="pass" required="required"><br>								
 							<input type="hidden" id="id" name="id" value="'.$idusuario.'">
 							<button type="submit" class="btn btn-primary">Enviar</button>
 						</form>
