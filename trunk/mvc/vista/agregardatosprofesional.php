@@ -80,5 +80,5 @@
 		$prof_salud->salvar();
 	}
 	include_once('./mvc/vista/addmedico.php');
-	echo '<SCRIPT LANGUAGE="javascript">location.href = "./?url=addmedico&idp='.$idp.'"</SCRIPT>';
+	echo '<SCRIPT LANGUAGE="javascript">location.href = "./?url=addmedico&idp='.$idp.'&&sbm=5"</SCRIPT>';
 ?>
