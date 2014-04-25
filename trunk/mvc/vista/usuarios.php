@@ -94,7 +94,7 @@
 						<tr>
 							<td>Grupo de Usuario: </td>
 							<td>
-								<select id="grupo" name="grupo">
+								<select id="grupo" name="grupo" required>
 									<option value=""></option>';
 	$g = $grupo->buscardonde('ID_GRUPO_USUARIO > 0');
 	while($g){
@@ -191,7 +191,6 @@
 				// con la clase .identificacion le decimos en cual de las celdas buscar y si no coincide, ocultamos el tr que contiene a esa celda. 
 				$("#usuarios tr td.identificacion").not(":Contains('.$comillas.'"+search+"'.$comillas.')").parent().hide();
 				}
-
 			});
 		</script>
 	

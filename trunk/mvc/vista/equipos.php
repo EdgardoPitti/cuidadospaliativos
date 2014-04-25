@@ -50,26 +50,17 @@
 				</div>
 				';
 	}else{
-		$cont.='Agregue un Profesional para crear un Equipo M&eacute;dico Nuevo.';
+		$cont.='<i>(Agregue un Profesional para crear un Equipo M&eacute;dico Nuevo).</i>';
 	
 	}	
 	$cont.= $_SESSION['error'];
 	$cont.='
-			<form method="POST" action="./?url=addequipo">
+			<form class="form-control" method="POST" action="./?url=addequipo"><br>
 				<input type="hidden" id="id" name="id" value="'.$id.'">
-				<table>
-					<tr>
-						<td>Nombre Profesional:</td>
-						<td>
-							<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">
-							<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
-						</td>
-						<td>
-							<button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="A&ntilde;adir Profesional"></button>
-						</td>
-					</tr>
-				</table>
-
+				<label>Nombre Profesional:</label>
+				<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">
+				<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly><br>
+				<button class="btn btn-primary" title="Agregar Profesional">Agregar Profesional</button>					
 			</form>
 			';
 				
