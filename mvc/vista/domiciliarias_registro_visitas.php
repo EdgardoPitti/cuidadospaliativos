@@ -24,7 +24,7 @@
 		$i = $instituciones->releer();
 	}
 	$cont.='
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a> Registro de Visitas Domiciliarias</h3>
 			';
 	if(empty($idrvd)){
 		$cont.='
@@ -66,54 +66,8 @@
 									<td><b>Horas de Atencion:</b> '.$rvd->obtener('HORAS_DE_ATENCION').' horas</td>
 								</tr>
 							</table>';
-		/*$e = $equipo->buscardonde('ID_EQUIPO_MEDICO = '.$rvd->obtener('ID_EQUIPO_MEDICO').'');
-		$n = 1;
-		if($e){
-			$cont.='	
-							
-							<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Equipo M&eacute;dico</h3>
-							<table class="tabla-datos borde-tabla overthrow">
-								<tr class="fd-tabla-gris">
-									<th>N&ordm;</th>
-									<th>Especialidad M&eacute;dica</th>
-									<th>Profesional</th>
-								</tr>';
-			while($e){
-				$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$equipo->obtener('ID_ESPECIALIDAD_MEDICA').'');
-				$profesional->buscardonde('ID_PROFESIONAL = '.$equipo->obtener('ID_PROFESIONAL').'');
-				$cont.='
-								<tr align="center">
-									<td>'.$n.'.</td>
-									<td>'.$especialidad->obtener('DESCRIPCION').'</td>
-									<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>									
-								</tr>
-				
-					';
-				$n++;
-				$e = $equipo->releer();
-			}			
-			$cont.='</table>';
-		}else{
-			$cont.='<br><div style="color:RED;text-align:center">No existe equipo m&eacute;dico para esta Actividad</div>';
-		}
-		$cont.='
-			<center>
-				<form class="form-search" method="POST" action="./?url=agregar_datos_rvd&sw=2&id='.$idrvd.'&sbm=1">
-					<table class="tabla-datos">
-						<tr align="center">
-							<td>Nombre Profesional:</td>
-							<td>
-								<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">
-								<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly>
-							</td>
-							<td><button style="background:none;border:none;"><img src="./iconos/add_profesional.png" title="Guardar Profesional"></button></td>
-						</tr>					
-					</table>
-					<center>'.$_SESSION[errorprof].'</center>				
-				</form>
-			</center>*/
 	$cont.='
-		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> <a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a> Pacientes</h3>
+		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
 			
 		<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
