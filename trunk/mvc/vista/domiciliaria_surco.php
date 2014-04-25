@@ -473,7 +473,7 @@
 													<div class="overflow overthrow" style="max-height:170px;">
 														<table class="table2 borde-tabla table-hover">
 															<thead>
-																<tr class="fd-tabla-gris">
+																<tr class="fd-table">
 																	<th>Fecha</th>
 																	<th>Institucion Responde</th>
 																	<th>Instalacion Receptora</th>
@@ -515,7 +515,7 @@
 											$cont.='
 													</table>
 												</div>
-												<center style="margin-top:8px">Agregrar Respuesta <a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'"><img src="./iconos/plus.png"></a></center>
+												<center style="margin-top:8px"><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1" class="btn btn-primary">Agregrar Respuesta</a></center>
 											</div>
 										</div>';
 
