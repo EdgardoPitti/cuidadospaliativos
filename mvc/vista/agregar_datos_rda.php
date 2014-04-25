@@ -19,44 +19,23 @@
 	$id = $_GET['id'];
 		
 	if(empty($id)){
-		$equipo->nuevo();
-		$equipo->salvar();
-		$sql = 'SELECT max(ID_EQUIPO_MEDICO) as id FROM equipo_medico';
-		$matriz = $ds->db->obtenerArreglo($sql);
-		$idequipo = $matriz[0][id];
-
 		$fecha .= '"';
 		$fecha .= $_POST['fecharda'];
 		$fecha .= '"';
 		$rda->nuevo();
 		$rda->colocar('FECHA', $fecha);
 		$rda->colocar('ID_INSTITUCION', $_POST['institucionrda']);
-		$rda->colocar('ID_EQUIPO_MEDICO', $idequipo);
+		$rda->colocar('ID_EQUIPO_MEDICO', $_POST['equipo_medico']);
 		$rda->colocar('HORAS_DE_ATENCION', $_POST['horas']);
 		$rda->salvar();
 
 		$sql = 'SELECT MAX(ID_RDA) as id from registro_diario_actividades';
 		$matriz = $ds->db->obtenerArreglo($sql);
-		$idrda = $matriz[0][id];
-		$_SESSION[idrda] = $idrda;
+		$id = $matriz[0][id];
+		$_SESSION[idrda] = $id;
 	}
 	$rda->buscardonde('ID_RDA = '.$id.'');
 	
-	$idequipo = $rda->obtener('ID_EQUIPO_MEDICO');
-	if($sw == 2){
-		$datos_profesional->buscardonde('NO_CEDULA = "'.$_POST['cedprofesional'].'"');
-		$profesional->buscardonde('ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'');
-		if($detalle_equipo->buscardonde('ID_EQUIPO_MEDICO = '.$idequipo.' AND ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'')){
-			$_SESSION[errorprof] = '<div style="color:RED;padding-top:10px">Este profesional ya existe en el equipo</div>';
-		}else{
-			$detalle_equipo->nuevo();
-			$detalle_equipo->colocar('ID_EQUIPO_MEDICO', $idequipo);
-			$detalle_equipo->colocar('ID_PROFESIONAL', $datos_profesional->obtener('ID_PROFESIONAL'));
-			$detalle_equipo->colocar('ID_ESPECIALIDAD_MEDICA', $profesional->obtener('ID_ESPECIALIDAD_MEDICA'));
-			$detalle_equipo->salvar();	
-			$_SESSION[errorprof] = '';
-		}
-	}
 	if($sw == 3){
 		$datos_paciente->buscardonde('NO_CEDULA = "'.$_POST['cedpaciente'].'"');
 		$idpaciente = $datos_paciente->obtener('ID_PACIENTE');
@@ -70,14 +49,12 @@
 			$matriz = $ds->db->obtenerArreglo($sql);
 			$iddiagnostico = $matriz[0][id];
 			
-			$datos_profesional->buscardonde('NO_CEDULA = "'.$_POST['cedprofesional2'].'"');
-			
 			
 			$detallediagnostico->nuevo();
 			$detallediagnostico->colocar('ID_DIAGNOSTICO', $iddiagnostico);
 			$detallediagnostico->colocar('ID_CIE10', $_POST['cie10']);
 			$detallediagnostico->colocar('ID_FRECUENCIA', $_POST['frecdiag']);
-			$detallediagnostico->colocar('ID_PROFESIONAL', $datos_profesional->obtener('ID_PROFESIONAL'));
+			$detallediagnostico->colocar('ID_PROFESIONAL', $_SESSION['idp']);
 			$detallediagnostico->colocar('OBSERVACION', $_POST['observacion']);
 			$detallediagnostico->salvar();
 			
@@ -91,15 +68,15 @@
 			$trazabilidad->colocar("FECHA",$fecha);
 			$trazabilidad->salvar();
 			
-			$datos_profesional->buscardonde('NO_CEDULA = "'.$_POST['cedprofesional3'].'"');
-			$a = $actividad->buscardonde('ACTIVIDAD = "'.$_POST['actividad'].'" AND ID_FRECUENCIA = '.$_POST['frecact'].' AND ID_PROFESIONAL = '.$datos_profesional->obtener('ID_PROFESIONAL').'');
+			
+			$a = $actividad->buscardonde('ACTIVIDAD = "'.$_POST['actividad'].'" AND ID_FRECUENCIA = '.$_POST['frecact'].' AND ID_PROFESIONAL = '.$_SESSION['idp'].'');
 			if($a){
 				$idactividad = $actividad->obtener('ID_ACTIVIDAD');
 			}else{
 				$actividad->nuevo();
 				$actividad->colocar('ACTIVIDAD', $_POST['actividad']);
 				$actividad->colocar('ID_FRECUENCIA', $_POST['frecact']);
-				$actividad->colocar('ID_PROFESIONAL', $datos_profesional->obtener('ID_PROFESIONAL'));
+				$actividad->colocar('ID_PROFESIONAL', $_SESSION['idp']);
 				$actividad->salvar();
 				$sql = 'SELECT max(ID_ACTIVIDAD) as id FROM actividad';
 				$matriz = $ds->db->obtenerArreglo($sql);
@@ -121,5 +98,5 @@
 			$_SESSION[errorpa] = '';
 		}
 	}
-	include_once('./mvc/vista/domiciliarias_registro_actividades.php');
+	echo '<script language="javascript">location.href="./?url=domiciliarias_registro_actividades&sbm=1&id='.$id.'"</script>'
 ?>

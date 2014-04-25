@@ -7,7 +7,7 @@
 	$respuesta = new Accesatabla('respuesta_referencia');
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$idsurco = $_GET['id'];
-	
+	$idp = $_GET['idp'];
 	$profesional->buscardonde('NO_CEDULA = "'.$_POST['cedprofesional2'].'"');
 	
 	$diagnostico->nuevo();
@@ -36,6 +36,5 @@
 	$respuesta->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
 	$respuesta->colocar("ID_SURCO", $idsurco);
 	$respuesta->salvar();
-	
-	include_once('./mvc/vista/domiciliaria_surco.php');
+	echo '<script>location.href="./?url=domiciliaria_surco&sbm=1&idp='.$idp.'"</script>'
 ?>

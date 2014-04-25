@@ -21,9 +21,11 @@
 		}elseif($p == 1){
 			$datos_pacientes->buscardonde('ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').'');
 			$_SESSION['user'] = $datos_pacientes->obtener('PRIMER_NOMBRE').' '.$datos_pacientes->obtener('APELLIDO_PATERNO');
+			$_SESSION['idp'] = $datos_pacientes->obtener('ID_PACIENTE');
 		}elseif($pr == 1){
 			$datos_profesionales->buscardonde('ID_PROFESIONAL = '.$profesional->obtener('ID_PROFESIONAL').'');
 			$_SESSION['user'] = $datos_profesionales->obtener('PRIMER_NOMBRE').' '.$datos_profesionales->obtener('APELLIDO_PATERNO');
+			$_SESSION['idp'] = $datos_profesionales->obtener('ID_PROFESIONAL');
 		}
 		$hora = $ds->dime('hora');
 		$minutos = $ds->dime('minuto');
