@@ -432,23 +432,18 @@ class Diseno {
 			}else{
 				$display = 'display:block;';				
 			}
-			
-			if($_SESSION['idgu'] == 1){//cambia el margin izq. del cerrar sesión
-				$style = 'margin:2px 0px 0px -44px;';
-			}else{
-				$style = 'margin:2px 0px 0px -88px;';
-			}
+						
 			$cont=
 			   '
 				<!--Navegación Superior-->
 				<div class="row-fluid" id="sub-header-nav" style="'.$display.'">
 					<div class="span12">																
-						<div class="btn-group" style="float:right;margin-top:4px;">
-						  <a href="#" class="btn btn-primary">'.$_SESSION['user'].'</a>
+						<div class="btn-group pull-right" style="margin-top:4px;">
+						  <a href="#" class="btn btn-primary"><i class="icon-user icon-white"></i> '.$_SESSION['user'].'</a>
 						  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 							<span class="caret"></span>
 						  </button>
-						  <ul class="dropdown-menu" style="'.$style.'">
+						  <ul class="dropdown-menu" style="margin:2px 0px 0px -44px;">
 							<li><a href="./?url=logout">Cerrar Sesi&oacute;n</a></li>
 						  </ul>
 						</div>					

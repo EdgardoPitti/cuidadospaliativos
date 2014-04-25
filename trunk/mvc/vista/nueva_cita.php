@@ -98,7 +98,7 @@
 						</div>
 					</div>
 				</div>
-				<center><button type="submit" class="btn btn-primary" style="margin-top:8px;">Enviar</button></center><br>
+				<center><button type="submit" class="btn btn-primary" style="margin-top:8px;">Guardar</button></center><br>
 			</form>';
 /*<!--center>
 				<table>
