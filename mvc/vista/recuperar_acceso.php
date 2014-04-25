@@ -45,7 +45,7 @@
 						<a href="./?url=login">Ir a Login.</a>
 			
 			';
-			//mail("'.$autenticacion->obtener('E_MAIL_PREFERENCIAL').'","Recuperacion de Acceso","Sus datos son <br>Usuario: $usuarios->obtener('NO_IDENTIFICACION')<br>Password: '.$usuarios->obtener('CLAVE_ACCESO').'");
+			//mail("'.$autenticacion->obtener('E_MAIL_PREFERENCIAL').'","Recuperacion de Acceso","Sus datos son \nUsuario: $usuarios->obtener('NO_IDENTIFICACION')\nPassword: '.$usuarios->obtener('CLAVE_ACCESO').'");
 		}elseif($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
 			$cont.= 'Tel&eacute;fono: '.$autenticacion->obtener('TELEFONO_PREFERENCIAL').'<br><br>
 						<a href="./?url=login">Ir a Login.</a>';

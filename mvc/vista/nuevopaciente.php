@@ -21,8 +21,11 @@
 	$comillas = "'";
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
-	if(empty($busqueda)){
+	$busqueda_paciente = $_POST['busqueda_paciente'];
+	if(empty($busqueda) && empty($busqueda_paciente)){
 		$busqueda = $_GET['id'];
+	}elseif(empty($busqueda)){
+		$busqueda = $busqueda_paciente;
 	}
 	
 	$script = '
@@ -103,15 +106,15 @@
 												<td>Sexo: </td>
 												<td>';						
 							if($idsexo == 2){
-								$value='selected';
+								$value='checked';
 								$novalue='';
 							}else{
-								$novalue='selected';
+								$novalue='checked';
 								$value='';
 							}
 							$cont.='
 													<input type="radio" name="sexo" value="2" '.$value.' disabled> Femenino
-													<input type="radio" name="sexo" value="1"  '.$novalue.' readonly> Masculino							
+													<input type="radio" name="sexo" value="1"  '.$novalue.' disabled> Masculino							
 												</td>
 											</tr>
 											<tr>
@@ -147,7 +150,7 @@
 								<div class="row-fluid">
 									<div class="span12">
 										<form method="POST" aut ocomplete="off"  action="./?url=nuevopaciente&act=1&sbm=5">
-											<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> 
+											<input type="text" id="busqueda_paciente" name="busqueda_paciente" placeholder="Buscar Paciente" class="search-query ac_input" /> 
 											<button type="submit" class="btn"><img src="./iconos/search.png"></button>							
 										</form>
 									</div>
@@ -354,7 +357,17 @@
 								';
 								$ec = $estadocivil->releer();
 						}
-																						
+						if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
+								$preguntas = 'selected';
+								$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
+								$respuesta = $autenticacion->obtener('RESPUESTA');
+						}
+						if($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
+								$telefono = 'selected';
+						}
+						if($preferencias->obtener('USAR_EMAIL_PREFERENCIAL') == 1){
+								$email = 'selected';
+						}  						
 						$cont.='
 																</select>
 															</td>
@@ -382,6 +395,46 @@
 														</tr>
 														<tr>
 															<td><input type="password" id="pass"  name="pass" value="'.$usuarios->obtener('CLAVE_ACCESO').'" placeholder="Contrase&ntilde;a" onKeyPress="valida(this.value)" required="required"></td>
+														</tr>
+														<tr>
+																<td style="text-align:left;padding-left:17%;">Recuperaci&oacute;n de Acceso: </td>
+														</tr>                                                                           
+														<tr>
+																<td>
+																	<select name="preferencia" id="preferencia" onChange="valida(this.value)">
+																		<option value="0"></option>
+																		<option value="1" '.$preguntas.'>Pregunta</option>
+																		<option value="3" '.$email.'>Correo</option>
+																	</select>	
+																</td>
+														</tr>
+														<tr>
+																<td style="text-align:left;padding-left:17%;">Pregunta de Recuperaci&oacute;n: </td>
+														</tr>
+														<tr>
+																<td><select  id="pregunta" name="pregunta" onChange="valida(this.value)">
+																				<option value=""></option>';
+$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
+while($p){
+if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
+		$selected = 'selected';
+}else{
+		$selected = '';
+}
+$cont.='
+																				<option value="'.$pregunta->obtener('ID_PREGUNTA').'" '.$selected.'>'.$pregunta->obtener('PREGUNTA').'</option>
+';
+$p = $pregunta->releer();
+}
+$cont.='
+																		</select>
+																</td>
+														</tr>                                                                   
+														<tr>
+																<td style="text-align:left;padding-left:17%;">Respuesta pregunta: </td>
+														</tr>                                                                           
+														<tr>
+																<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" onChange="valida(this.value)" value="'.$respuesta.'"></td>
 														</tr>
 													</tbody>
 												</table>

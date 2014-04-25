@@ -122,7 +122,6 @@
 								<select name="preferencia" id="preferencia">
 									<option value="0"></option>
 									<option value="1" '.$preguntas.'>Pregunta</option>
-									<option value="2" '.$telefono.'>Tel&eacute;fono</option>
 									<option value="3" '.$email.'>Correo</option>
 								</select>	
 							</td>							

@@ -4,6 +4,7 @@
 	$ds = new Diseno();
 	$usuarios = new Accesatabla('usuarios');
 	$grupo = new Accesatabla('grupos_usuarios');
+	$preguntas = new Accesatabla('preguntas_seguridad');
 	$id = $_GET['id'];
 	$comillas = "'";
 	
@@ -80,6 +81,10 @@
 	$cont.='
 								</select>
 							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
