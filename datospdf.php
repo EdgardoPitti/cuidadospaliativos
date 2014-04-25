@@ -10,6 +10,7 @@
 	$institucion = new Accesatabla('institucion');
 	$clasificacion = new Accesatabla('clasificacion_atencion_solicitada');
 	$servicios = new Accesatabla('servicios_medicos');
+	$especialidades = new Accesatabla('especialidades_medicas');
 	$motivoreferencia = new Accesatabla('motivo_referencia');
 	$surco = new Accesatabla('surco');
 	$cie = new Accesatabla('cie10');
@@ -36,10 +37,10 @@
 		<title>Cuidados Paliativos</title>
 	
 		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
-		<link href="./css/bootstrap/bootstrap.css">
+		
 		<style type="text/css">
 			.fd-title{background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;}
-			h3{text-decoration:underline;} p{padding:0px;margin:0px;}
+			.sub-title{width:100%;border:1px solid #3d3d3d;text-align:center;font-weight:bold;padding:4px 0px;} p{padding:0px;margin:0px;}
 			.fd-head-tabla{background:#f4f4f4;width:100%;text-align:center;}
 			.tabla td,.tabla th{border:1px solid #c9c9c9;}
 		</style>
@@ -50,13 +51,13 @@
 		
 		$resultado = new Accesatabla('resultados_examen_diagnostico');
 		$detallediagnostico = new Accesatabla('detalle_diagnostico');
-		$profesional = new Accesatabla('datos_profesionales_salud');
+		$datos_profesional = new Accesatabla('datos_profesionales_salud');
+		$profesional = new Accesatabla('profesionales_salud');
 		$respuesta = new Accesatabla('respuesta_referencia');
 
 		$cont_gral='
 			<center style="margin-top:-30px">
-				<h3 class="fd-title" style="font-size:16px">SISTEMA ÚNICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>
-				<span style="font-size:18px;font-weight:bold;">Referencia</span><br><br>
+				<h3 class="fd-title" style="font-size:16px">SISTEMA ÚNICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
 			</center>';
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$ced = $personas->obtener('NO_CEDULA');
@@ -75,41 +76,9 @@
 		}else{
 			$asegurado = 'NO ASEGURADO';
 		}
-		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 		
-		/*$cont_gral.='
-
-					<div style="width:100%;max-width:315px;float:left;"> 
-						<h3>Paciente</h3>
-						<table align="center" style="width:100%;text-align:center;padding-top:-28px">											
-							<tr>
-								<td colspan="3"><h4>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h4></td>
-							</tr>
-							<tr>
-								<td>'.$ced.'</td>
-								<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
-								<td>'.$sexo.'</td>
-							</tr>
-							<tr>
-								<td>'.$dia.'/'.$mes.'/'.$anio.'</td>
-								<td>'.$asegurado.'</td>
-								<td>'.$personas->obtener('EDAD_PACIENTE').' Años</td>
-							</tr>
-						</table>
-					</div>
-					<div style="width:100%;max-width:315px;float:right;">					
-						<h3>Dirección</h3>
-						<table align="center" style="width:100%;text-align:center;padding-top:10px">
-							<tr>
-								<td>'.$distritos->obtener('DISTRITO').' , '.$provincias->obtener('PROVINCIA').'</td>
-							</tr>
-							<tr>
-								<td>'.$corregimientos->obtener('CORREGIMIENTO').' , '.$residencia->obtener('DETALLE').'</td>
-							</tr>
-						</table>
-					</div>';
-			*/
-			$html .= $cont_gral;		
+		
+		$html .= $cont_gral;		
 			
 		if($tipo_surco == 1){
 				$archivofinal='Referencia-'.$ced.'';
@@ -124,12 +93,13 @@
 				$clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA = '.$surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'');									
 				$motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA = '.$surco->obtener('ID_MOTIVO_REFERENCIA').'');
 			$html.='
+				<span style="font-size:18px;font-weight:bold;">Referencia</span><br>
 				<div style="width:100%;">
 					<table style="width:100%;">
 						<tr align="center">
-							<td><span style="text-decoration:underline;font-size:14px">'.$inst_refiere.'</span></td>
-							<td><span style="text-decoration:underline;font-size:14px">'.$inst_receptora.'</span></td>
-							<td><span style="text-decoration:underline;font-size:14px">'.$servicios->obtener('DESCRIPCION').'</span></td>
+							<td style="border-bottom:1px solid #333;"><span style="font-size:14px">'.$inst_refiere.'</span></td>
+							<td style="border-bottom:1px solid #333;"><span style="font-size:14px">'.$inst_receptora.'</span></td>
+							<td style="border-bottom:1px solid #333;"><span style="font-size:14px">'.$servicios->obtener('DESCRIPCION').'</span></td>
 						</tr>
 						<tr align="center">
 							<td><span style="font-weight:bold;font-size:12px">Instalaci&oacute;n que Refiere</span></td>
@@ -223,141 +193,185 @@
 									  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:1px solid #333;padding:3px;">M</span> '.$masc.'	
 							</td>
 						</tr>
-					</table>
-					<b><Direcci&oacute;n</b>
-					';
-				$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
-				$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
-				$distritos->buscardonde('ID_DISTRITO = '.$residencia->obtener('ID_DISTRITO').'');
-				$corregimientos->buscardonde('ID_CORREGIMIENTO = '.$residencia->obtener('ID_CORREGIMIENTO').'');
+					</table>';
 				$zona->buscardonde('ID_ZONA = '.$residencia->obtener('ID_ZONA').'');
 			$html.='		
+					<span style="width:100%;font-weight:bold;text-decoration:underline;">Direcci&oacute;n</span>
 					<table width="100%">						
 						<tr align="center">
-							<td style="border-bottom:1px solid #333;">'.$provincias->obtener('PROVINCIA').'</td>
-							<td style="border-bottom:1px solid #333;">'.$distritos->obtener('DISTRITO').'</td>
-							<td style="border-bottom:1px solid #333;">'.$corregimientos->obtener('CORREGIMIENTO').'</td>
-							<td style="border-bottom:1px solid #333;">'.$zona->obtener('ZONA').'</td>
+							<td  width="13%" style="border-bottom:1px solid #333;">'.$provincias->obtener('PROVINCIA').'</td>
+							<td  width="20%" style="border-bottom:1px solid #333;">'.$distritos->obtener('DISTRITO').'</td>
+							<td  width="20%" style="border-bottom:1px solid #333;">'.$corregimientos->obtener('CORREGIMIENTO').'</td>
+							<td  width="27%" style="border-bottom:1px solid #333;"></td>
+							<td  width="20%" style="border-bottom:1px solid #333;">'.$zona->obtener('ZONA').'</td>
 						</tr>
 						<tr style="font-size:12px">
-							<th>Provincia</th>
-							<th>Distrito</th>
-							<th>Corregimiento</th>
-							<th>Zona</th>
-						</tr>
-					</table>
-
-				</div>
-				<div style="float:none;clear:both;">
-					<h3>Datos Referencia</h3>
-					<table width="100%" style="line-height:14px;">
-						<tr>
-							<td>Instalación que Refiere:</td>
-							<td><p style="text-decoration:underline;">'.$inst_refiere.'</p></td>
-							<td>Servicio Médico al que se refiere:</td>
-							<td><p style="text-decoration:underline;">'.$servicios->obtener('DESCRIPCION').'</p></td>
-						</tr>
-						<tr>
-							<td>Instalación Receptora:</td>
-							<td><p style="text-decoration:underline;">'.$inst_receptora.'</p></td>
-							<td>Clasificación de la Atención solicitada:</td>
-							<td><p style="text-decoration:underline;">'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'</p></td>
-						</tr>
-						<tr>
-							<td>Motivo de Referencia:</td>
-							<td><p style="text-decoration:underline;">'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'</p></td>
-							<td colspan="2"></td>
-						</tr>
-					</table>
-				</div>
-				<h3>Historial del Paciente</h3>
-				';
-				$historia->buscardonde('ID_HISTORIA_PACIENTE = '.$surco->obtener('ID_HISTORIA_PACIENTE').'');
-				$examenfisico->buscardonde('ID_EXAMEN_FISICO = '.$historia->obtener('ID_EXAMEN_FISICO').'');
-			$html.='	
-				<table style="margin-top:10px;">
-					<tr>
-						<td>Anamnesis: </td>
-						<td><p style="text-decoration:underline;">'.$historia->obtener('ANAMNESIS').'</p></td>
-					</tr>
-					<tr>							
-						<td>Observaciones: </td>
-						<td><p style="text-decoration:underline;">'.$historia->obtener('OBSERVACIONES').'</p></td>
-					</tr>
-				</table>
-				
-				<h4><b>Examen Físico:</b></h4>
-				<table class="tabla" width="100%">
-					<tr class="fd-head-tabla">
-						<th>Hora</th>
-						<th>Presión Arterial</th>
-						<th>Frecuencia Cardiaca</th>
-						<th>Frecuencia Respiratoria</th>
-						<th>Frecuencia Cardiaca Fetal</th>
-						<th>Temperatura</th>
-						<th>Peso<small>(Kg)</small></th>
-						<th>Talla<small>(mts)</small></th>
-					</tr>
-					<tr align="center">
-						<td style="padding-top:10px">'.$examenfisico->obtener('HORA').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('PRESION_ARTERIAL').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('FRECUENCIA_CARDIACA').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('FRECUENCIA_RESPIRATORIA').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('FRECUENCIA_CARDIACA_FETAL').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('TEMPERATURA').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('PESO').'</td>
-						<td style="padding-top:10px">'.$examenfisico->obtener('TALLA').'</td>
-					</tr>
-				</table>';
-					
-				//IMPRESION DE RESULTADOS EXAMEN DIAGNOSTICO
-				$html.='
-					<h3>Resultados de Exámenes/Diagnóstico</h3>			
-					<table class="tabla"  width="100%" style="margin-top:7px;text-align:center;">
-						<tr class="fd-head-tabla">
-							<th width="80px">Tipo de Examen</th>
-							<th>Diagnóstico</th>
-							<th style="width:60px">CIE-10</th>
-							<th>Frecuencia</th>
-							<th>Observaciones</th>
-							<th>Tratamiento</th>
-							<th style="width:75px">Fecha del Examen</th>
-						</tr>';
-			$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
-			while($x){
-				$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
-				$resultado->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').' AND ID_TIPO_EXAMEN = '.$tipoexamen->obtener('ID_TIPO_EXAMEN').'');
-				$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$resultado->obtener('ID_DIAGNOSTICO').'');
-				$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
-				$html.='
-						<tr>
-							<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
-							<td>'.$cie->obtener('DESCRIPCION').'</td>
-							<td>'.$detallediagnostico->obtener('ID_CIE10').'</td>';
-				$frecuencia->buscardonde('ID_FRECUENCIA = "'.$detallediagnostico->obtener('ID_FRECUENCIA').'"');
-						$html.='
-							<td>'.$frecuencia->obtener('FRECUENCIA').'</td>
-							<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
-							<td>'.$resultado->obtener('TRATAMIENTO').'</td>
-							<td>'.$resultado->obtener('FECHA').'</td>
-						</tr>';
-				$x = $tipoexamen->releer();
-			}		
-			//IMPRESIÓN DE LOS DATOS DEL PROFESIONAL
-				$profesional->buscardonde('ID_PROFESIONAL = '.$surco->obtener('ID_PROFESIONAL').'');			
-				$html.='
-					</table>
-					<h3>Datos del Profesional</h3>
-					<table width="100%">
-						<tr>	
-							<td>Nombre de quien refiere:</td>
-							<td><p style="text-decoration:underline;">'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</p></td>													
+							<th width="13%">Provincia</th>
+							<th width="20%">Distrito</th>
+							<th width="20%">Corregimiento</th>
+							<th width="27%">Comunidad</th>
+							<th width="20%">Zona</th>
 						</tr>
 					</table>';
+
+					if($surco->obtener('ID_MOTIVO_REFERENCIA') == 1){
+						$selec1='<img src="iconos/gancho.png">';
+					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 2){
+						$selec2='<img src="iconos/gancho.png">';
+					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 3){
+						$selec3='<img src="iconos/gancho.png">';
+					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 4){
+						$selec4='<img src="iconos/gancho.png">';
+					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 5){
+						$selec5='<img src="iconos/gancho.png">';
+					}else{
+						$selec6='<img src="iconos/gancho.png">';
+					}
+			$html.='
+					<div class="sub-title" style="margin:8px 0px;">Motivo de Referencia</div>		
+					<table width="100%" style="margin-bottom:5px;">
+						<tr>
+							<td width="25%">1. Servicio No Ofertado </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec1.'</div></td>
+							<td width="25%">2. Ausencia del Profesional </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec2.'</div></td>
+							<td width="25%">3. Falta de Equipos </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec3.'</div></td>
+						</tr>
+						<tr>
+							<td width="25%">4. Falta de Insumos </td>  <td align="center" width="4.16%" ><div style="border:1px solid #333;width:22px;height:20px;">'.$selec4.'</div></td>
+							<td width="25%">5. Cese de Actividades </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec5.'</div></td>
+							<td width="25%">6. Otro </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec6.'</div></td>
+						</tr>
+					</table>
+				</div>';
+				if($surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == 1){
+					$selec1='<img src="iconos/gancho.png">';
+				}elseif($surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == 2){
+					$selec2='<img src="iconos/gancho.png">';
+				}elseif($surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == 3){
+					$selec3='<img src="iconos/gancho.png">';
+				}else{
+					$selec4='<img src="iconos/gancho.png">';
+				}
+			$html.='	
+				<div class="sub-title" style="margin:8px 0px;">Clasificaci&oacute;n de la Atenci&oacute;n Solicitada</div>		
+				<table width="100%" style="margin-bottom:5px;">
+					<tr>
+						<td width="25%">1. Electiva </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec1.'</div></td>
+						<td width="25%">2. Electiva Prioritaria </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec2.'</div></td>
+						<td width="25%">3. Hospitalizaci&oacute;n </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec3.'</div></td>							
+						<td width="25%">4. Urgente </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec4.'</div></td>
+					</tr>
+				</table>';
+				$historia->buscardonde('ID_HISTORIA_PACIENTE = '.$surco->obtener('ID_HISTORIA_PACIENTE').'');
+				$examenfisico->buscardonde('ID_EXAMEN_FISICO = '.$historia->obtener('ID_EXAMEN_FISICO').'');
+
+			$html.='
+				<div class="sub-title">Historia del Paciente / Examen F&iacute;sico</div>
+				<table width="100%" style="font-size:14px;border:1px solid #fff;margin-bottom:5px">	
+					<tr>
+						<th width="10%">Anamnesis: </th>
+						<td width="90%"><p style="text-decoration:underline;">'.$historia->obtener('ANAMNESIS').'</p></td>
+					</tr>
+					<tr>
+						<th width="10%">Examen F&iacute;sico: </th>
+						<td width="90%">
+							<table class="tabla" width="100%">
+								<tr class="fd-head-tabla">
+									<th>Hora</th>
+									<th>Presión Arterial</th>
+									<th>Frecuencia Cardiaca</th>
+									<th>Frecuencia Respiratoria</th>
+									<th>Frecuencia Cardiaca Fetal</th>
+									<th>Temperatura</th>
+									<th>Peso<small>(Kg)</small></th>
+									<th>Talla<small>(mts)</small></th>
+								</tr>
+								<tr align="center">
+									<td style="padding -top:10px">'.$examenfisico->obtener('HORA').'</td>
+									<td style="padding -top:10px">'.$examenfisico->obtener('PRESION_ARTERIAL').'</td>
+									<td style="padding- top:10px">'.$examenfisico->obtener('FRECUENCIA_CARDIACA').'</td>
+									<td style="padding- top:10px">'.$examenfisico->obtener('FRECUENCIA_RESPIRATORIA').'</td>
+									<td style="padding- top:10px">'.$examenfisico->obtener('FRECUENCIA_CARDIACA_FETAL').'</td>
+									<td style="padding- top:10px">'.$examenfisico->obtener('TEMPERATURA').'</td>
+									<td style="padding- top:10px">'.$examenfisico->obtener('PESO').'</td>
+									<td style="padding- top:10px">'.$examenfisico->obtener('TALLA').'</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>							
+						<th width="10%" style="vertical-top:20px">Observaciones: </th>
+						<td width="90%"><p style="text-decoration:underline;">'.$historia->obtener('OBSERVACIONES').'</p></td>
+					</tr>
+				</table>
+				<div class="sub-title">Resultados de Examen / Diagn&oacute;stico</div>
+				<table class="tabla"  width="100%" style="margin:7px 0px;text-align:center;">
+					<tr class="fd-head-tabla">
+						<th width="80px">Tipo de Examen</th>
+						<th>Diagnóstico</th>
+						<th style="width:60px">CIE-10</th>
+						<th>Frecuencia</th>
+						<th>Observaciones</th>
+						<th>Tratamiento</th>
+						<th style="width:75px">Fecha del Examen</th>
+					</tr>';
+		$x = $tipoexamen->buscardonde('ID_TIPO_EXAMEN > 0');
+		while($x){
+			$nomb_examen = $tipoexamen->obtener('ID_TIPO_EXAMEN');
+			$resultado->buscardonde('ID_SURCO = '.$surco->obtener('ID_SURCO').' AND ID_TIPO_EXAMEN = '.$tipoexamen->obtener('ID_TIPO_EXAMEN').'');
+			$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$resultado->obtener('ID_DIAGNOSTICO').'');
+			$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
+			$html.='
+					<tr>
+						<td>'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
+						<td>'.$cie->obtener('DESCRIPCION').'</td>
+						<td>'.$detallediagnostico->obtener('ID_CIE10').'</td>';
+			$frecuencia->buscardonde('ID_FRECUENCIA = "'.$detallediagnostico->obtener('ID_FRECUENCIA').'"');
+					$html.='
+						<td>'.$frecuencia->obtener('FRECUENCIA').'</td>
+						<td>'.$detallediagnostico->obtener('OBSERVACION').'</td>
+						<td>'.$resultado->obtener('TRATAMIENTO').'</td>
+						<td>'.$resultado->obtener('FECHA').'</td>
+					</tr>';
+			$x = $tipoexamen->releer();
+		}		
+
+		$profesional->buscardonde('ID_PROFESIONAL = '.$surco->obtener('ID_PROFESIONAL').'');	
+		$datos_profesional->buscardonde('ID_PROFESIONAL = '.$profesional->obtener('ID_PROFESIONAL').'');		
+		$especialidades->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
+		$html.='
+				</table>
+				<div class="sub-title" style="margin:8px 0px;">Datos del Profesional</div>
+				<table width="100%">						
+					<tr align="center">
+						<td style="border-bottom:1px solid #333;">'.$datos_profesional->obtener('PRIMER_NOMBRE').' '.$datos_profesional->obtener('SEGUNDO_NOMBRE').' '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$datos_profesional->obtener('APELLIDO_MATERNO').'</td>
+						<td width="20%"></td>
+						<td style="border-bottom:1px solid #333;">'.$especialidades->obtener('DESCRIPCION').'</td>						
+					</tr>
+					<tr style="font-size:12px">
+						<th>Nombre de quien refiere</th>
+						<th width="20%"></th>
+						<th>Especialidad</th>						
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<th>Firma: </th>
+						<td>______________________________________</td>
+					</tr>
+					<tr>
+						<th>Sello: </th>
+						<td>	
+							<div style="width:100px;height:70px;border:1px solid #3d3d3d;"
+						</td>
+					</tr>
+				</table>
+
+								';
 		}else{
 			$archivofinal = 'Respuesta-a-la-Referencia-'.$ced.'';
 			$respuesta->buscardonde('ID_RESPUESTA_REFERENCIA = '.$resp.'');
 			$html.='
+				<span style="font-size:18px;font-weight:bold;">Respuesta a la Referencia</span><br>
 				<table style="width:100%;margin-top:150px;">
 					<tr>
 						<td>Institución que Responde:</td>';
@@ -398,10 +412,10 @@
 				</table>
 			<h3>Datos del Profesional</h3>
 			';
-			$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
-			$var1 = $profesional->obtener('SEGUNDO_NOMBRE');
-			$var2 = $profesional->obtener('APELLIDO_MATERNO');
-			$nombre = $profesional->obtener('PRIMER_NOMBRE').' '.$var1[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$var2[0].'.';
+			$datos_profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+			$var1 = $datos_profesional->obtener('SEGUNDO_NOMBRE');
+			$var2 = $datos_profesional->obtener('APELLIDO_MATERNO');
+			$nombre = $datos_profesional->obtener('PRIMER_NOMBRE').' '.$var1[0].'. '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$var2[0].'.';
 			if($respuesta->obtener('REEVALUACION_ESPECIALIZADA') == 1){
 				$reev_esp= 'Sí';
 			}else{
