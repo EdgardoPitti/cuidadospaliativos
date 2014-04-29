@@ -56,7 +56,7 @@
                 }
             },
 			series:[';
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Total de Visitas Realizadas</h3>
+	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Total de Visitas Realizadas</h3>
 			<center>';
 	$variable = $_POST['variable1'];
 	if(empty($variable)){
@@ -123,7 +123,7 @@
 				</center>'.$script.'
 	';
 	if(empty($total)){
-		$cont = '<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Total de Visitas Realizadas</h3>
+		$cont = '<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Total de Visitas Realizadas</h3>
 		<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
 	}
 	if($_SESSION['idgu'] == 2){

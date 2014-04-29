@@ -31,25 +31,25 @@
 			$no = 'checked';
 			$si = '';
 		}
-	}
+	}	
 	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Nueva Cita</h3>	
 			<form method="POST" action="./?url=agregar_citas&h='.$_GET['h'].'&id='.$id.'&sbm=1">
 				<div class="row-fluid">
 					<div class="span6" align="center">
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 1:</h5>
-						<label>Seleccione la fecha: </label>
+						<label for="fecha">Seleccione la fecha: </label>
 						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" required="required" '.$disabled.'>					
 					</div>
 					<div class="span6" align="center" >
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>
-						<label>Seleccione el equipo m&eacute;dico: </label>
+						<label for="cod_equipo">Seleccione el equipo m&eacute;dico: </label>
 						<input type="text" name="cod_equipo" id="cod_equipo" placeholder="ID del Equipo M&eacute;dico" value="'.$citas->obtener('ID_EQUIPO_MEDICO').'" required="required" '.$readonly.' >
 					</div>
 				</div>
 				<div class="row-fluid">
 					<div class="span12">
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 3:</h5>
-						<label>Seleccione el paciente: </label>
+						Seleccione el paciente: 
 						<div class="overflow overthrow" style="width: 100%; min-height: 150px; overflow-y: auto;">
 							<table class="table2 borde-tabla">
 								<thead>

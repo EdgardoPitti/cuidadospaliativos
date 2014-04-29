@@ -37,7 +37,7 @@
 		}
 		$r = $referido->releer();
 	}
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes Hospitalizados</h3>';
+	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes Hospitalizados</h3>';
 	if(empty($script)){
 		$script = '
 			<br><div id="grafica" style="min-width: 310px; height: 500px;"></div>

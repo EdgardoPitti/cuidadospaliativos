@@ -564,14 +564,14 @@
 											<table class="tabla-datos">
 												<tr>
 													<td>Instalación Receptora:</td>';
-							$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
+							$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
 							$cont.='
 													<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'" required="required">
 															<option value=""></option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 							while($i){
-								if($instituciones->obtener('ID_INSTITUCION') == $respuesta->obtener('INSTITUCION_RESPONDE')){
+								if($instituciones->obtener('ID_INSTITUCION') == $respuesta->obtener('INSTALACION_RECEPTORA')){
 									$selected = 'selected';
 								}else{
 									$selected = '';

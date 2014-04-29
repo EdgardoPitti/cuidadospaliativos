@@ -3,7 +3,7 @@
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	$actividad = new Accesatabla('actividad');
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Actividades Realizadas</h3>	';
+	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Actividades Realizadas</h3>	';
 	$comillas = "'";
 	$condicion = '';
 	$n = 1;
@@ -83,7 +83,7 @@
 	$cont.=$script;
 	if($total == 0){
 		$cont = '
-			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Actividades Realizadas</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Actividades Realizadas</h3>
 		<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
 	}
 	if($_SESSION['idgu'] == 2){

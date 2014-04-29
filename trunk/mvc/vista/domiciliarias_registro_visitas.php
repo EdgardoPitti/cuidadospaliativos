@@ -47,8 +47,7 @@
 								<td>Horas de Atencion: </td>
 								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
 							</tr>
-						</table>
-						<a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-default" style="margin-top:5px;" title="Regresar">Regresar</a>
+						</table>						
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
 					</form>
 				</center>';			
