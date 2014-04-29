@@ -14,13 +14,13 @@
 	while($c){
 		$r = $rae->buscardonde('ID_CAMA = '.$camas->obtener('ID_CAMA').' AND MUERTE_EN_SOP = 0');
 		if($r){
-			$usadas++;
-			
+			$usadas++;			
 		}else{
 			$vacias++;
 		}
 		$c = $camas->releer();
 	}
+
 	$porcentaje = number_format(($usadas/$total)*100, 1);
 	$data .= '
 		{
@@ -34,7 +34,7 @@
 	$data .= '
 		,['.$comillas.'Porcentajde de Camas sin Usar'.$comillas.', '.$porcentaje.']
 	';
-	$cont.='<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes Hospitalizados</h3>';
+	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes Hospitalizados</h3>';
 	$script = '
 	<script>
 	$(function () {
@@ -84,6 +84,13 @@
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>';
 	$cont.='<br><div id="grafica" style="min-width: 310px; height: 500px;"></div>
 			'.$script.'';
+
+	if($r == 0){
+		$cont = '
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes Hospitalizados</h3>
+			<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
+	}
+	
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
 	}else{

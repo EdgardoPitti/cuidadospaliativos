@@ -340,7 +340,7 @@
 		$especialidades->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
 		$html.='
 				</table>
-				<div class="sub-title" style="margin:8px 0px;">Datos del Profesional</div>
+				<div class="sub-title" style="margin:8px 0px;">Datos del Profesional</div><br>
 				<table width="100%">						
 					<tr align="center">
 						<td style="border-bottom:1px solid #333;">'.$datos_profesional->obtener('PRIMER_NOMBRE').' '.$datos_profesional->obtener('SEGUNDO_NOMBRE').' '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$datos_profesional->obtener('APELLIDO_MATERNO').'</td>
@@ -352,90 +352,159 @@
 						<th width="20%"></th>
 						<th>Especialidad</th>						
 					</tr>
-				</table>
-				<table>
+				</table><br>
+				<table width="100%" style="font-size:12px;">
 					<tr>
 						<th>Firma: </th>
 						<td>______________________________________</td>
 					</tr>
 					<tr>
+						<td colspan="2"></td>
+					</tr>
+					<tr>
 						<th>Sello: </th>
 						<td>	
-							<div style="width:100px;height:70px;border:1px solid #3d3d3d;"
+							<div style="width:130px;height:80px;border:1px solid #3d3d3d;"></div>
 						</td>
 					</tr>
-				</table>
+				</table>';
 
-								';
 		}else{
 			$archivofinal = 'Respuesta-a-la-Referencia-'.$ced.'';
 			$respuesta->buscardonde('ID_RESPUESTA_REFERENCIA = '.$resp.'');
+			$institucion->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');					
+			$instalacion_responde = $institucion->obtener('DENOMINACION');
+			$institucion->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
+			$instalacion_receptora = $institucion->obtener('DENOMINACION');
 			$html.='
-				<span style="font-size:18px;font-weight:bold;">Respuesta a la Referencia</span><br>
-				<table style="width:100%;margin-top:150px;">
-					<tr>
-						<td>Institución que Responde:</td>';
-				$institucion->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');					
-				$html .= '
-						<td><p style="text-decoration:underline;">'.$institucion->obtener('DENOMINACION').'</p></td>
-						<td>Instalación Receptora:</td>';
-				$institucion->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
+				<center><span style="font-size:18px;font-weight:bold;">Respuesta a la Referencia</span></center><br>
+				<div style="width:100%;">
+					<table style="width:100%;">
+						<tr align="center">
+							<td width="25%" style="border-bottom:1px solid #333;"><span style="font-size:14px;word-wrap:break-word;">'.$instalacion_responde.'</span></td>
+							<td width="50%"></td>
+							<td width="25%" style="border-bottom:1px solid #333;"><span style="font-size:14px;word-wrap:break-word;">'.$instalacion_receptora.'</span></td>
+						</tr>
+						<tr align="center">
+							<td><span style="font-weight:bold;font-size:12px">Instalaci&oacute;n que Responde</span></td>
+							<td></td>
+							<td><span style="font-weight:bold;font-size:12px">Instalaci&oacute;n Receptora</span></td>
+						</tr>
+					</table>
+					<table style="width:25%;">
+						<tr>
+							<th><span style="font-size:12px;">Fecha/Hora</span></th>						
+						</tr>
+						<tr>';							
+							$hora = $ds->dime('hora');
+							$minutos = $ds->dime('minuto');
+							if($hora < 10){
+								$hora = '0';
+								$hora .= $ds->dime('hora');
+							}
+							if($minutos < 10){
+								$minutos = '0'; 
+								$minutos .=  $ds->dime('minuto');
+							}
+							list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
+					$html.='
+							<td>
+								<table width="100%" style="font-size:14px" cellspacing="0">									
+									<tr align="center">
+										<td style="border:1px solid #333;">'.$ds->dime('dia').'</td>
+										<td style="border:1px solid #333;">'.$ds->dime('mes').'</td>
+										<td style="border:1px solid #333;">'.$ds->dime('agno').'</td>
+										<td style="border:1px solid #333;">'.$hora.'</td>
+										<td style="border:1px solid #333;">'.$minutos.'</td>
+										<td>'.date(A).'</td>
+									</tr>
+									<tr align="center" style="font-size:12px;font-weight:bold;">
+										<td>D</td>
+										<td>M</td>
+										<td>A</td> 
+										<td>Hora</td>
+										<td>Min.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>						
+					</table>
+					<div class="sub-title" style="margin:8px 0px;">Respuesta a la Referencia</div>';
+					$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
+					$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
 				$html.='
-						<td><p style="text-decoration:underline;">'.$institucion->obtener('DENOMINACION').'</p></td>
-					</tr>
-				</table>
-				<h3>Hallazgos Clínicos</h3>';
-				$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
-				$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
-			$html.='
-				<table style="width:100%;">
-					<tr>
-						<td>Diagnóstico:</td>
-						<td><p style="text-decoration:underline;">'.$cie->obtener('DESCRIPCION').'</p></td>
-						<td>Hallazgos Clinicos:</td>
-						<td><p style="text-decoration:underline;">'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</p></td>
-					</tr>
-					<tr>
-						<td>CIE-10:</td>
-						<td><p style="text-decoration:underline;">'.$cie->obtener('ID_CIE10').'</p></td>
-						<td>Observaciones:</td>
-						<td><p style="text-decoration:underline;">'.$detallediagnostico->obtener('OBSERVACION').'</p></td>
-					</tr>
-					<tr>
-						<td>Frecuencia:</td>';
-					$frecuencia->buscardonde('ID_FRECUENCIA = "'.$detallediagnostico->obtener('ID_FRECUENCIA').'"');
-					$html.='	
-						<td><p style="text-decoration:underline;">'.$frecuencia->obtener('FRECUENCIA').'</p></td>
-						<td>Manejo y Tratamiento:</td>
-						<td><p style="text-decoration:underline;">'.$respuesta->obtener('TRATAMIENTO').'</p></td>
-					</tr>
-				</table>
-			<h3>Datos del Profesional</h3>
-			';
+					<table width="100%" style="font-size:14px;border:1px solid #fff;margin-bottom:5px">	
+						<tr>
+							<th width="20%" align="left">Hallazgos Cl&iacute;nicos: </th>
+							<td width="80%"><p style="text-decoration:underline;">'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</p></td>
+						</tr>
+						<tr>
+							<th width="20%" align="left">Diagn&oacute;stico: </th>
+							<td width="80%"><p style="text-decoration:underline;">'.$cie->obtener('DESCRIPCION').' C&oacute;digo ('.$cie->obtener('ID_CIE10').')</p></td>
+						</tr>
+						<tr>
+							<th width="20%" align="left">Observaciones: </th>
+							<td width="80%"><p style="text-decoration:underline;">'.$detallediagnostico->obtener('OBSERVACION').'</p></td>
+						</tr>
+						<tr>
+							<th width="20%" align="left">Frecuencia: </th>';
+							$frecuencia->buscardonde('ID_FRECUENCIA = "'.$detallediagnostico->obtener('ID_FRECUENCIA').'"');
+				$html.='
+							<td width="80%"><p style="text-decoration:underline;">'.$frecuencia->obtener('FRECUENCIA').'</p></td>
+						</tr>
+						<tr>
+							<th width="20%" align="left">Manejo y Tratamiento: </th>
+							<td width="80%"><p style="text-decoration:underline;">'.$respuesta->obtener('TRATAMIENTO').'</p></td>
+						</tr>
+					</table>
+					<span style="font-weight:bold;text-decoration:underline">Recomendaciones</span>
+					<table width="100%" style="margin-bottom:5px;">';
+					if($respuesta->obtener('REEVALUACION_ESPECIALIZADA') == 1){
+						$selec1= '<img src="iconos/gancho.png">';
+					}else{
+						$selec2= '<img src="iconos/gancho.png">';
+					}
+				$html.='
+						<tr>
+							<td>Reevaluaci&oacute;n Especializada: </td> 
+							<td align="right">No</td> <td> <div style="border:1px solid #333;width:22px;height:20px;">'.$selec1.'</div></td>
+							<td align="right">Si</td> <td> <div style="border:1px solid #333;width:22px;height:20px;">'.$selec2.'</div></td>
+							<td align="left">Fecha: <p style="text-decoration:underline">'.$respuesta->obtener('FECHA').'</p></td>
+						</tr> 
+					</table>
+					<div class="sub-title" style="margin:8px 0px;">Datos del Profesional</div>';
+
 			$datos_profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
 			$var1 = $datos_profesional->obtener('SEGUNDO_NOMBRE');
 			$var2 = $datos_profesional->obtener('APELLIDO_MATERNO');
 			$nombre = $datos_profesional->obtener('PRIMER_NOMBRE').' '.$var1[0].'. '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$var2[0].'.';
-			if($respuesta->obtener('REEVALUACION_ESPECIALIZADA') == 1){
-				$reev_esp= 'Sí';
-			}else{
-				$reev_esp= 'No';
-			}
+			
 			$html.='
-			<table>
-				<tr>
-					<td>Reevaluación Especializada: </td>
-					<td><p style="text-decoration:underline;">'.$reev_esp.'</p></td>
-				</tr>
-				<tr>
-					<td>Fecha: </td>
-					<td><p style="text-decoration:underline;">'.$respuesta->obtener('FECHA').'</p></td>
-				</tr>
-				<tr>
-					<td>Profesional: </td>
-					<td><p style="text-decoration:underline;">'.$nombre.'</p></td>
-				</tr>
-			</table>';
+					<table width="100%" style="font-size:14px;margin-bottom:5px">	
+						<tr>
+							<th width="30%" align="left">Nombre del Profesional que responde: </th>
+							<td width="70%"><p style="text-decoration:underline;">'.$nombre.'</p></td>
+						</tr>
+					</table><br>
+					<table width="100%" style="font-size:12px;">
+						<tr>
+							<th>Firma: </th>
+							<td>______________________________________</td>
+							<th>No. de Registro: </th>
+							<td>______________________________________</td>
+						</tr>
+						<tr>
+							<td colspan="4"></td>
+						</tr>
+						<tr>
+							<th>Sello: </th>
+							<td>	
+								<div style="width:130px;height:80px;border:1px solid #3d3d3d;"></div>
+							</td>
+							<td colspan="2"></td>
+						</tr>
+					</table>
+				</div>';
 		}	
 	}else{
 		$rvd = new Accesatabla('registro_visitas_domiciliarias');		

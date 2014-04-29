@@ -503,16 +503,42 @@ class Diseno {
 		$cont.= '	
 			<div class="row-fluid" style="min-height:430px;background:#fff;">  
 				<!--Aside-->
-				<div class="span2" id="menu">';
-
-					if($_SESSION['idgu'] == 1 or $_SESSION['idgu'] == 3){
-						$cont.='	
+				<div class="span2" id="menu">';				
+				if($_SESSION['idgu'] == 2){
+					$cont.='
+					<!--RED SOCIAL-->
+					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:'.$display4.';">	
+					<h3>Red Social</h3><hr>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Mis Grupos</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Comunidades</a></li>
+							</ul>
+						</div>					
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Eventos</a></li>
+							</ul>
+						</div>	
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="#">Especialistas</a></li>
+							</ul>
+						</div>	
+					</div>	
+					';
+				}else{
+					$cont.='	
 					<!--Inicio (Exclusivo para editar doctores y capturar todos los datos generales para los administradores 
 						y el equipo médico)-->					
 					<div class="css_acordeon" id="mostrar_ocultar5" id="accordion-5" style="display:'.$display5.';">			
 						<h3>Men&uacute; Administrativo</h3>
 						<hr>';
-						if($_SESSION['idgu'] == 1){
+					if($_SESSION['idgu'] == 1){
 						$cont.='
 						<div>
 							<ul class="acordeon_link">
@@ -525,7 +551,7 @@ class Diseno {
 							</ul>
 						</div>
 						';
-						}
+					}
 						$cont.='
 						<div>
 							<ul class="acordeon_link">
@@ -557,10 +583,7 @@ class Diseno {
 								<li><a href="./?url=zonas&sbm=5" class="link" title="Editar Zonas">Zona</a></li>
 							</ul>
 						</div>							
-					</div>	';
-					}
-
-					$cont.='
+					</div>	
 					<!--DOMICILIARIA-->					
 					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:'.$display1.';">			
 						<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
@@ -684,8 +707,11 @@ class Diseno {
 								<li><a class="link" href="#">Especialistas</a></li>
 							</ul>
 						</div>	
-					</div>	
-				</div>
+					</div>';
+				}
+
+		$cont.='
+				</div>	
 				
 				<!--Contenido-->
 				<!--Diseño del contenido de la página-->
@@ -712,17 +738,17 @@ class Diseno {
 											</a> 
 												<a href="./?url=inicio" class="brand">Menu</a>	
 											<div class="nav-collapse navbar-responsive-collapse collapse">
-												<ul class="nav">';
-												if($_SESSION['idgu'] == 1 or $_SESSION['idgu'] == 3){
+												<ul class="nav">';																						
+												if($_SESSION['idgu'] == 2){
+													$cont.='
+													<li '.$activo4.'>
+														<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+													</li>';
+												}else{
 													$cont.='
 													<li '.$activo5.'>
 														<a href="#" id="show5" title="Inicio"><img src="./iconos/inicio.png"style="width:30px; heigth:30px;"/> Inicio</a>
-													</li>';
-
-												}
-
-												$cont.='
-
+													</li>
 													<li '.$activo1.'>
 														<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
 													</li>
@@ -734,7 +760,9 @@ class Diseno {
 													</li>
 													<li '.$activo4.'>
 														<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
-													</li>
+													</li>';													
+												}
+					$cont.='								
 												</ul>
 											</div>
 										</div>
