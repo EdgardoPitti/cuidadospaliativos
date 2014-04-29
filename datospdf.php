@@ -8,10 +8,8 @@
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
 	$institucion = new Accesatabla('institucion');
-	$clasificacion = new Accesatabla('clasificacion_atencion_solicitada');
 	$servicios = new Accesatabla('servicios_medicos');
 	$especialidades = new Accesatabla('especialidades_medicas');
-	$motivoreferencia = new Accesatabla('motivo_referencia');
 	$surco = new Accesatabla('surco');
 	$cie = new Accesatabla('cie10');
 	$tipoexamen = new Accesatabla('tipo_examen');
@@ -19,7 +17,6 @@
 	$historia = new Accesatabla('historia_paciente');
 	$examenfisico = new Accesatabla('examen_fisico');
 	$zona = new Accesatabla('zona');
-	$tipo_pac = new Accesatabla('tipo_paciente');
 	$etnia = new Accesatabla('etnia');
 	$sexo = new Accesatabla('sexo');
 	$programa = new Accesatabla('programa');
@@ -45,8 +42,7 @@
 			.tabla td,.tabla th{border:1px solid #c9c9c9;}
 		</style>
 	</head>
-	<body>
-		<div style="font- size:14px;">';
+	<body>';
 	if(empty($tipo_imp)){
 		
 		$resultado = new Accesatabla('resultados_examen_diagnostico');
@@ -90,8 +86,7 @@
 				$servicios->buscardonde('ID_SERVICIO = '.$surco->obtener('ID_SERVICIO').'');
 				$institucion->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_RECEPTORA').'');
 				$inst_receptora = $institucion->obtener('DENOMINACION');
-				$clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA = '.$surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'');									
-				$motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA = '.$surco->obtener('ID_MOTIVO_REFERENCIA').'');
+				
 			$html.='
 				<span style="font-size:18px;font-weight:bold;">Referencia</span><br>
 				<div style="width:100%;">
@@ -625,7 +620,6 @@
 			';
 	}
 	$html.='	
-		</div>
 	</body>
 </html>';
 	require_once("./mvc/modelo/dompdf_config.inc.php");
