@@ -146,6 +146,10 @@
 			<center style="font-size:16px;color:red;"><h3>No existen datos para graficar.</h3></center>';
 	}
 	
-	$ds->contenido($cont);
-	$ds->mostrar();
+	if($_SESSION['idgu'] == 2){
+		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
+	}else{
+		$ds->contenido($cont);
+		$ds->mostrar();
+	}
 ?>

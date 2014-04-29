@@ -177,6 +177,10 @@
 	';
 	}
 	
-	$ds->contenido($cont);
-	$ds->mostrar();
+	if($_SESSION['idgu'] == 2){
+		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
+	}else{
+		$ds->contenido($cont);
+		$ds->mostrar();
+	}
 ?>

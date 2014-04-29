@@ -84,7 +84,11 @@
 	<script type='.$comillas.'text/javascript'.$comillas.' src='.$comillas.'./js/modules/exporting.js'.$comillas.'></script>';
 	$cont.='<br><div id="grafica" style="min-width: 310px; height: 500px;"></div>
 			'.$script.'';
-	$ds->contenido($cont);
-	$ds->mostrar();
+	if($_SESSION['idgu'] == 2){
+		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
+	}else{
+		$ds->contenido($cont);
+		$ds->mostrar();
+	}
 
 ?>
