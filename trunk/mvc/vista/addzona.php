@@ -2,13 +2,17 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	$zona = new Accesatabla('zona');
 	$id = $_GET['id'];
-	if(empty($id)){
-		$zona->nuevo();
+	if($_SESSION['idgu'] == 2){
+		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
-		$zona->buscardonde('ID_ZONA = '.$id.'');
+		if(empty($id)){
+			$zona->nuevo();
+		}else{
+			$zona->buscardonde('ID_ZONA = '.$id.'');
+		}
+		$zona->colocar("ZONA", $_POST['zona']);
+		$zona->salvar();
+
+		echo '<script language="javascript">location.href="./?url=zonas&id='.$id.'&sbm=5"</script>';
 	}
-	$zona->colocar("ZONA", $_POST['zona']);
-	$zona->salvar();
-	include_once('./mvc/vista/zonas.php');
-	echo '<script language="javascript">location.href="./?url=zonas&id='.$id.'&sbm=5"</script>';
 ?>

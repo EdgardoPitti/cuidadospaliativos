@@ -196,8 +196,7 @@
 	
 	';
 	if($_SESSION['idgu'] <> 1){
-		$cont='';
-		echo '<script language="javascript">location.href="./?url=inicio"</script>';
+		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
 	}else{
 		$ds->contenido($cont);
 		$ds->mostrar();
