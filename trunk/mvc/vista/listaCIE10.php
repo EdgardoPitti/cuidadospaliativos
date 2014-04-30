@@ -38,7 +38,7 @@
             $coincidencias .= $valores['DESCRIPCION'].'|'.$valores['ID_CIE10']."\n";
         }
         mysqli_close($conexionBD); // Cierra la conexión
-        return $ds->latino($coincidencias); // Devuelve la lista
+        return UTF8_encode($coincidencias); // Devuelve la lista
     }
 ?>
 

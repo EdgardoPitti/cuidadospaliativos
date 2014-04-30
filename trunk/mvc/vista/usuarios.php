@@ -19,6 +19,19 @@
 	}
 	
 	$cont.='
+			<script>
+				function habilitar(value)
+				{
+					if(value != "1" || value != true)
+					{
+						// habilitamos
+						document.getElementById("respuesta").disabled=false;
+					}else{
+						// deshabilitamos
+						document.getElementById("respuesta").disabled=true;
+					}
+				}
+			</script>
 			<center>
 				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Usuarios</h3>		
 				<label for="search_string">Buscar No. de Identificaci&oacuten:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
@@ -143,7 +156,7 @@
 						</tr>
 						<tr>
 							<td>Pregunta de Recuperaci&oacute;n: </td>
-							<td><select  id="pregunta" name="pregunta">
+							<td><select  id="pregunta" name="pregunta" onChange="habilitar(this.value);">
 											<option value=""></option>';
 	$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 	while($p){
@@ -163,7 +176,7 @@
 						</tr>                                                                   
 						<tr>
 							<td>Respuesta pregunta: </td>
-							<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" onChange="valida(this.value)" value="'.$respuesta.'"></td>
+							<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" value="'.$respuesta.'"></td>
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>

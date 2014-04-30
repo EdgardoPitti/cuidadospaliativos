@@ -16,7 +16,19 @@
 	
 	$ds = new Diseno();
 	$cont .= '
-		
+			<script>
+				function habilitar(value)
+				{
+					if(value != "1" || value != true)
+					{
+						// habilitamos
+						document.getElementById("respuesta").disabled=false;
+					}else{
+						// deshabilitamos
+						document.getElementById("respuesta").disabled=true;
+					}
+				}
+			</script>
 			<center>
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Profesional de la Salud</h3>
 				<form class="form-search" method="POST" action="./?url=addmedico&sbm=5">
@@ -128,7 +140,7 @@
 						</tr>
 						<tr>
 							<td>Pregunta de Recuperaci&oacute;n: </td>
-							<td><select  id="pregunta" name="pregunta">
+							<td><select  id="pregunta" name="pregunta" onchange="habilitar(this.value)">
 									<option value=""></option>';
 		$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 		while($p){

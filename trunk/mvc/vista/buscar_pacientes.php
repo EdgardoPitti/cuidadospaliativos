@@ -39,6 +39,6 @@
             $coincidencias .= $valores['NOMBRE'].'|'.$valores['NO_CEDULA']."\n";
         }
         mysqli_close($conexionBD); // Cierra la conexi�n
-        return $ds->latino($coincidencias); // Devuelve la lista
+        return UTF8_encode($coincidencias); // Devuelve la lista
     }
 ?>
