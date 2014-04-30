@@ -13,8 +13,6 @@
 		$msj = '';
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
 	}else{
-		$h = $_GET['h'];
-		$sw = $_GET['sw'];
 		$id = $_GET['id'];
 		$hora = $_POST['hora'];
 		$fecha = $_POST['fecha'];
@@ -22,10 +20,9 @@
 		$cedpaciente = $_POST['cedpaciente'];
 		$profesional->buscardonde('NO_CEDULA = "'.$cedprofesional.'"');
 		$pacientes->buscardonde('NO_CEDULA = "'.$cedpaciente.'"');
-		$c = $citas_medicas->buscardonde('FECHA = '.$fecha.' AND HORA = "'.$hora.'" AND ID_PROFESIONAL = '.$profesional->obtener('ID_PROFESIONAL').' OR ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').' AND RESERVADA = 1');
+		$c = $citas_medicas->buscardonde('FECHA = '.$fecha.' AND HORA = "'.$hora.'" AND ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').' AND RESERVADA = 1');
 		if($c){
-			$_SESSION['fecha_1'] = $_POST['fecha'];
-			$msj = 'Este Profesional o Paciente ya tiene cita para esta fecha y hora.';
+			$msj = 'Este Paciente ya tiene cita para esta fecha y hora.';
 		}else{
 			if(empty($id)){				
 					$citas_medicas->nuevo();	
