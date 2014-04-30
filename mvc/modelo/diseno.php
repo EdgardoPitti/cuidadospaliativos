@@ -593,7 +593,7 @@ class Diseno {
 							<article>	
 								<ul>									
 									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
-									<li><a class="sublink" href="./?url=domiciliaria_agenda&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
+									<li><a class="sublink" href="./?url=nueva_cita&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
 								</ul>
 							</article>	
 						</div>
