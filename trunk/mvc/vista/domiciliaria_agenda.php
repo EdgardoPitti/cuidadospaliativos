@@ -79,25 +79,9 @@
 			<div class="span10" style="margin-top:10px;">
 				<div class="overflow overthrow">
 					<table class="table borde-tabla">';
-	$horas = '8';
-	$minutos = '00';
-	$s = 'AM';
-	$sw = 0;
+
 	for($x=0;$x<20;$x++){
-		if($horas < 10){
-			$cero = '0';
-		}else{
-			$cero = '';
-		}
-		if($horas == 12 AND $minutos == 00){
-			$s = 'MD';
-		}else{
-			if($horas == 12 AND $minutos == 30){
-				$s = 'PM';
-			}
-		}
-		$hora = ''.$cero.''.$horas.':'.$minutos.' '.$s.'';
-		$_SESSION['hora_'.$x.''] = $hora;
+		$hora = $_SESSION['hora_'.$x.''];
 		$cont.='
 						<tr>
 							<td width="70px" style="background:#d9d9d9;font-weight:bold;padding-top:15px">'.$hora.'</td>
@@ -128,20 +112,6 @@
 							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm=1" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
 		}
 		$cont.='		</tr>';
-		if($sw == 1){
-			if($minutos == 30){
-				$horas++;
-			}
-			$minutos = '00';
-			$sw = 0;
-		}else{
-			$minutos = 30;
-			$sw = 1;
-		}
-		if($horas > 12){
-			$horas = 1;
-			$s = 'PM';
-		}
 		
 	}
 	$cont.='
