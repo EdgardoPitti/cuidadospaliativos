@@ -36,8 +36,7 @@
 			function valida(dato) {
 				$('.$comillas.'input[type="submit"]'.$comillas.').removeAttr('.$comillas.'disabled'.$comillas.');
 			}
-		</script>
-	';
+		</script>';
 
 
 	if(!empty($busqueda)){
@@ -413,7 +412,7 @@
 																<td style="text-align:left;padding-left:17%;">Pregunta de Recuperaci&oacute;n: </td>
 														</tr>
 														<tr>
-																<td><select  id="pregunta" name="pregunta" onChange="valida(this.value)">
+																<td><select  id="pregunta" name="pregunta" onChange="valida(this.value);">
 																				<option value=""></option>';
 									$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 									while($p){
@@ -594,7 +593,8 @@
 					</div>
 				</div>
 			</div>
-		</div>';
+		</div>
+		';
 	
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
