@@ -143,6 +143,9 @@
 	$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 	while($p){
 		if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
+			if($idpregunta == 1){
+				$disable = 'disabled';
+			}
 			$selected = 'selected';
 		}else{
 			$selected = '';
@@ -158,7 +161,7 @@
 						</tr>                                                                   
 						<tr>
 							<td>Respuesta pregunta: </td>
-							<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" value="'.$respuesta.'"></td>
+							<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" value="'.$respuesta.'" '.$disable.'></td>
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">Guardar</button>
