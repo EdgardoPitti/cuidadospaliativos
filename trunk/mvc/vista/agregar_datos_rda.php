@@ -100,6 +100,6 @@
 				$_SESSION[errorpa] = '';
 			}
 		}
-		echo '<script language="javascript">location.href="./?url=domiciliarias_registro_actividades&sbm=1&id='.$id.'"</script>'
+		echo '<script language="javascript">location.href="./?url=domiciliarias_registro_actividades&sbm=1&id='.$id.'"</script>';
 	}
 ?>
