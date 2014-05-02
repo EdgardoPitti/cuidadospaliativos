@@ -15,7 +15,7 @@
 	$comillas = "'";
 	
 	if(!empty($id)){
-		$img = '<a href="./?url=usuarios&sbm=5" title="A&ntilde;adir Usuario" class="btn btn-primary">A&ntilde;adir Usuario</a><br><br>';
+		$img = '<a href="./?url=usuarios&sbm=5" title="A&ntilde;adir Usuario Administrador" class="btn btn-primary">A&ntilde;adir Usuario Administrador</a><br><br>';
 	}
 	
 	$cont.='
@@ -33,7 +33,7 @@
 				}
 			</script>
 			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Agregar o Editar Usuarios</h3>		
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Administradores o Editar Usuarios</h3>		
 				<label for="search_string">Buscar No. de Identificaci&oacuten:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="usuarios">
@@ -103,24 +103,8 @@
 						<tr>
 							<td>Clave de Acceso: </td>
 							<td><input type="text" id="clave" name="clave" placeholder="Clave de Acceso" value="'.$usuarios->obtener('CLAVE_ACCESO').'" required></td>
-						</tr>
-						<tr>
-							<td>Grupo de Usuario: </td>
-							<td>
-								<select id="grupo" name="grupo" required>
-									<option value=""></option>';
-	$g = $grupo->buscardonde('ID_GRUPO_USUARIO > 0');
-	while($g){
-		if($grupo->obtener('ID_GRUPO_USUARIO') == $usuarios->obtener('ID_GRUPO_USUARIO')){
-			$selected = 'selected';
-		}else{
-			$selected = '';
-		}
-		$cont.='
-									<option value="'.$grupo->obtener('ID_GRUPO_USUARIO').'" '.$selected.'>'.$grupo->obtener('DESCRIPCION').'</option>
-		';
-		$g = $grupo->releer();	
-	}
+						</tr>';
+
 	if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
 			$preguntas = 'selected';
 	}
@@ -133,9 +117,7 @@
 	$idpregunta = $autenticacion->obtener('ID_PREGUNTA');
 	$respuesta = $autenticacion->obtener('RESPUESTA');	
 	$cont.='
-								</select>
-							</td>
-						</tr>
+				
 						<tr>
 							<td>Recuperaci&oacute;n de Acceso: </td>
 							<td>

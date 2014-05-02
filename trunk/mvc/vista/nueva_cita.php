@@ -67,7 +67,7 @@
 							<table class="table2 borde-tabla">
 								<thead>
 									<tr class="fd-table">
-										<th style="min-width:50px">Hora</th>
+										<th style="min-width:120px">Hora</th>
 										<th style="min-width:250px">Paciente</th>
 										<th style="min-width:250px">Profesional</th>
 										<th style="min-width:250px">Servicio</th>

@@ -1,6 +1,6 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
-	include_once('./mvc/modelo/Diseno.php');
+	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	$profesionales = new Accesatabla('profesionales_salud');
 	$datos = new Accesatabla('datos_profesionales_salud');
