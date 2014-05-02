@@ -10,7 +10,7 @@
 	}
 	$cont.='
 			<center>			
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Editar Salas</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Editar Salas</h3>
 				<label for="search_string">Buscar Sala:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="salas">

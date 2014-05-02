@@ -22,7 +22,7 @@
 	$ds = new Diseno();
 	$cont='
 			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> Interconsulta</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> Interconsulta</h3>
 				<form class="form-search" method="POST" action="./?url=ambulatoria_interconsulta&sbm=2">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="C&eacute;dula o Nombre" name="cedula" required>

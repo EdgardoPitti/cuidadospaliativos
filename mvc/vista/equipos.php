@@ -10,7 +10,7 @@
 	$id = $_GET['id'];
 	$cont.='
 			<center>
-				<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;"><a href="./?url=equipos_medicos&sbm=5" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>Equipos M&eacute;dicos</h3>';
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;"><a href="./?url=equipos_medicos&sbm=5" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>Equipos M&eacute;dicos</h3>';
 	if(!empty($id)){
 		$cont.='
 				ID Equipo Medico = '.$id.'<br>
@@ -58,7 +58,7 @@
 			<form class="form-control" method="POST" action="./?url=addequipo"><br>
 				<input type="hidden" id="id" name="id" value="'.$id.'">
 				<label>Nombre Profesional:</label>
-				<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional">
+				<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional" required="required">
 				<input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly><br>
 				<button class="btn btn-primary" title="Agregar Profesional">Agregar Profesional</button>					
 			</form>

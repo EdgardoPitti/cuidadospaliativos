@@ -18,7 +18,7 @@
 	
 	$cont.='
 	    <center>
-			<h3 style="background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;">Atención al Paciente</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atención al Paciente</h3>
 		</center>
 		';
 		
@@ -171,7 +171,7 @@
 					<form method="POST" action="./?url=agregar_observacion&sbm=2">
 						<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
 							<div class="modal-header">  
-								<a class="close" data-dismiss="modal">×</a>  
+								<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
 								<h4>Agregar Observaciones</h4>  
 							</div>  
 							<div class="modal-body" align="center">  
@@ -191,7 +191,7 @@
 					<form method="POST" action="./?url=agregar_resp_interconsulta&sbm=2">
 						<div id="res_inter" class="modal hide fade in" style="display: none; ">  
 							<div class="modal-header">  
-								<a class="close" data-dismiss="modal">×</a>  
+								<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
 								<h4>Responder Interconsulta</h4>  
 							</div>  
 							<div class="modal-body" align="center">  
