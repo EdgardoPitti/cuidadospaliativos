@@ -9,6 +9,7 @@
 	$paciente = new Accesatabla('datos_pacientes');
 	$servicio = new Accesatabla('servicios_medicos');
 	$c = $_GET['c'];
+	$contador = $c;
 	for($x=0;$x<$c;$x++){
 		if($x == 0){
 			$next = explode("-",$ds->diasig($ds->dime('dia'), $ds->dime('mes'),$ds->dime('agno')));	
@@ -105,11 +106,11 @@
 				$c = $citas->releer();
 			}
 			$cont.='			
-									<a href="./?url=nueva_cita&h='.$x.'&sbm=1" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
+									<a href="./?url=nueva_cita&h='.$x.'&sbm=1&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
 								</td>';
 		}else{
 			$cont.='		
-							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm=1" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
+							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm=1&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
 		}
 		$cont.='		</tr>';
 		
