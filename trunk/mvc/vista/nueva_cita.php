@@ -10,20 +10,30 @@
 	$equipo = new Accesatabla('detalle_equipo_medico');
 	$especialidades = new Accesatabla('especialidades_medicas');
 	$id = $_GET['id'];
+	$c = $_GET['c'];
+	if(empty($c)){
+
+		if($_SESSION['fecha'][2] < 10){
+			$dia .= '0';
+			$dia .= $_SESSION['fecha'][2];
+		}else{
+			$dia = $_SESSION['fecha'][2];
+		}
+
+		if($_SESSION['fecha'][1] < 10){
+			$mes .= '0';
+			$mes .= $_SESSION['fecha'][1];
+		}else{
+			$mes = $_SESSION['fecha'][1];
+		}
+
+		$fecha = $_SESSION['fecha'][0].'-'.$mes.'-'.$dia.'';
+
+	}else{
+		$fecha = $_SESSION['fecha'][0].'-'.$_SESSION['fecha'][1].'-'.$_SESSION['fecha'][2].'';
+
+	}
 	
-	if($_SESSION['fecha'][2] < 10){
-		$dia .= '0';
-		$dia .= $_SESSION['fecha'][2];
-	}else{
-		$dia = $_SESSION['fecha'][2];
-	}
-	if($_SESSION['fecha'][1] < 10){
-		$mes .= '0';
-		$mes .= $_SESSION['fecha'][1];
-	}else{
-		$mes = $_SESSION['fecha'][1];
-	}
-	$fecha = $_SESSION['fecha'][0].'-'.$mes.'-'.$dia.'';
 	if(!empty($id)){
 		$citas->buscardonde('ID_CITA = '.$id.'');
 		$readonly = 'readonly';
