@@ -60,13 +60,15 @@
 			$apellido_materno = $datos_paciente->obtener('APELLIDO_MATERNO');
 			$nombre = $datos_paciente->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datos_paciente->obtener('APELLIDO_PATERNO').' '.$apellido_materno[0].'.';
 			$cedula = $datos_paciente->obtener('NO_CEDULA');
-		}elseif($pr){
+		}
+		if($pr){
 			$datos_profesional->buscardonde('ID_PROFESIONAL = '.$profesionales->obtener('ID_PROFESIONAL').'');
 			$segundo_nombre = $datos_profesional->obtener('SEGUNDO_NOMBRE');
 			$apellido_materno = $datos_profesional->obtener('APELLIDO_MATERNO');
 			$nombre = $datos_profesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$apellido_materno[0].'.';
 			$cedula = $datos_profesional->obtener('NO_CEDULA');
-		}else{
+		}
+		if($pr == 0 && $p == 0){
 			$nombre = 'Administrador';
 			$cedula = 'Administrador';
 		}
