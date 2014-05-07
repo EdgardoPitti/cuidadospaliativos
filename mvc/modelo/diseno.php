@@ -28,6 +28,23 @@ class Diseno {
 		}
 		return $ip;
 	}
+	function verARREGLO($arreglo=array() ){
+		if($arreglo== 'POST'   ) $arreglo = $_POST   ; 
+		if($arreglo== 'GET'    ) $arreglo = $_GET    ; 
+		if($arreglo== 'SESSION') $arreglo = $_SESSION; 
+		if($arreglo== 'FILES'  ) $arreglo = $_FILES  ; 
+		if($arreglo== 'SERVER' ) $arreglo = $_SERVER ; 
+		return $this->tag('pre',print_r($arreglo,true));
+	}
+	function tag( $tag, $texto='', $clase='', $otro='' ){
+		if( !empty($clase) ){ $clase=' class="'.$clase.'" '; }
+		if(is_array($texto)){
+			foreach($texto as $valor){ $tg .= '<'.$tag.' '.$otro.' '.$clase.'>'.$valor.'</'.$tag.'>'; }
+		}else{
+			$tg = '<'.$tag.' '.$otro.' '.$clase.' >'.$texto.'</'.$tag.'>';
+		}
+		return $tg;
+	}
 	function dime($quierosaber)	{
 		$aber = '¿ Que quieres saber ?';
 		date_default_timezone_set('America/Panama');
