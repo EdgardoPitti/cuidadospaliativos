@@ -105,13 +105,15 @@
 			$idusuario = $matriz[0][id];
 			
 			$paciente->nuevo();
-			$paciente->colocar("ID_PACIENTE", $idpaciente);
-			$paciente->colocar("ID_USUARIO", $idusuario);
-			$paciente->salvar();
 		}
+		$paciente->colocar("ID_PACIENTE", $idpaciente);
+		$paciente->colocar("ID_USUARIO", $idusuario);
+		$paciente->salvar();
+		
 		$pregunta = 0;
 		$telefono = 0;
 		$email = 0;
+		
 		if($_POST['preferencia'] == 1){
 			$pregunta = 1;
 		}elseif($_POST['preferencia'] == 2){
