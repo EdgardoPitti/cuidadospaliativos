@@ -117,7 +117,7 @@
 					$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
 					$cont.='
 											<tr>
-												<td>'.$n.'</td>
+												<td>'.$n.'.</td>
 												<td>'.$interconsulta->obtener('FECHA').'</td>
 												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
 												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
@@ -141,35 +141,10 @@
 						<td><input type="date" id="fecha" name="fecha" required></td>
 					</tr>
 					<tr align="center">
-						<td>Especialista en: </td>
-						<td>
-							<select id="especialidad" name="especialidad">
-								<option value="0"></option>';
-				$x = $especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA > 0');				
-				while($x){
-						$cont.='
-								<option value="'.$especialidad->obtener('ID_ESPECIALIDAD_MEDICA').'">'.$especialidad->obtener('DESCRIPCION').'</option>';
-						$x = $especialidad->releer();		
-				}		
-					$cont.='			
-							</select>
-						</td>
-					</tr>
-					<tr align="center">
-						<td align="center">Nombre:</td>
-						<td>
-							<select name="nombre_esp" id="nombre_esp" style="width:150px" required></select>
-						</td>
+						<td>Observaciones/Comentarios</td>
+						<td><textarea id="obs_coment" name="obs_coment" class="textarea2" style="width:90%;h eight:70px;"></textarea></td>
 					</tr>
 				</table>
-				<div class="row-fluid">
-					<div class="span6">
-						Observaciones/Comentarios
-					</div>
-					<div class="span6">
-						<textarea id="obs_coment" name="obs_coment" class="textarea2" style="width:90%;h eight:70px;"></textarea>
-					</div>
-				</div>
 			</div><br>
 			<button type="submit" class="btn btn-primary" >Agregar</button>
 			</center>	

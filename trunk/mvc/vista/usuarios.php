@@ -41,7 +41,6 @@
 							<tr class="fd-table">
 								<th>#</th>		
 								<th>No de Identificaci&oacute;n</th>
-								<th>Clave de Acceso</th>
 								<th>C&eacute;dula</th>
 								<th>Paciente/Profesional</th>
 								<th>Grupo de Usuario</th>
@@ -76,7 +75,6 @@
 							<tr>
 								<td><strong>'.$n.'.</strong></td>
 								<td class="identificacion">'.$usuarios->obtener('NO_IDENTIFICACION').'</td>
-								<td>********</td>
 								<td>'.$cedula.'</td>
 								<td>'.$nombre.'</td>
 								<td>'.$grupo->obtener('DESCRIPCION').'</td>
