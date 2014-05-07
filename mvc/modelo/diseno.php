@@ -455,15 +455,13 @@ class Diseno {
 					$display1='none';
 					$display2='none';
 					$display3='none';
-					$display4='none';
 					$display5='none';
 				}else{
 					if($mantener == 1){
 						$display1='block';
-						$activo1 = 'class="active"';
+						$activo1 ='class="active"';
 						$display2='none';
 						$display3='none';
-						$display4='none';
 						$display5='none';
 					}
 					if($mantener == 2){
@@ -471,7 +469,6 @@ class Diseno {
 						$display2='block';
 						$activo2 = 'class="active"';
 						$display3='none';
-						$display4='none';
 						$display5='none';
 					}
 					if($mantener == 3){
@@ -479,22 +476,18 @@ class Diseno {
 						$display2='none';
 						$display3='block';
 						$activo3 = 'class="active"';
-						$display4='none';
 						$display5='none';
 					}
 					if($mantener == 4){
 						$display1='none';
 						$display2='none';
-						$display3='none';
-						$display4='block';
+						$display3='none';					
 						$display5='none';
-						$activo4 = 'class="active"';
 					}
 					if($mantener == 5){
 						$display1='none';
 						$display2='none';
-						$display3='none';
-						$display4='none';
+						$display3='none';						
 						$display5='block';
 						$activo5 = 'class="active"';
 					}
@@ -503,36 +496,7 @@ class Diseno {
 		$cont.= '	
 			<div class="row-fluid" style="min-height:430px;background:#fff;">  
 				<!--Aside-->
-				<div class="span2" id="menu">';				
-				if($_SESSION['idgu'] == 2){
-					$cont.='
-					<!--RED SOCIAL-->
-					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:'.$display4.';">	
-					<h3>Red Social</h3><hr>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Mis Grupos</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Comunidades</a></li>
-							</ul>
-						</div>					
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Eventos</a></li>
-							</ul>
-						</div>	
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Especialistas</a></li>
-							</ul>
-						</div>	
-					</div>	
-					';
-				}else{
-					$cont.='	
+				<div class="span2" id="menu">				
 					<!--Inicio (Exclusivo para editar doctores y capturar todos los datos generales para los administradores 
 						y el equipo médico)-->					
 					<div class="css_acordeon" id="mostrar_ocultar5" id="accordion-5" style="display:'.$display5.';">			
@@ -682,35 +646,7 @@ class Diseno {
 								</ul>
 							</article>	
 						</div>
-					</div>	
-					
-					<!--RED SOCIAL-->
-					<div class="css_acordeon" id="mostrar_ocultar4" id="accordion-4"  style="display:'.$display4.';">	
-					<h3>Red Social</h3><hr>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Mis Grupos</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Comunidades</a></li>
-							</ul>
-						</div>					
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Eventos</a></li>
-							</ul>
-						</div>	
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="#">Especialistas</a></li>
-							</ul>
-						</div>	
-					</div>';
-				}
-
-		$cont.='
+					</div>						
 				</div>	
 				
 				<!--Contenido-->
@@ -742,7 +678,7 @@ class Diseno {
 												if($_SESSION['idgu'] == 2){
 													$cont.='
 													<li '.$activo4.'>
-														<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+														<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 													</li>';
 												}else{
 													$cont.='
@@ -758,8 +694,8 @@ class Diseno {
 													<li '.$activo3.'>
 														<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
 													</li>
-													<li '.$activo4.'>
-														<a href="#" id="show4" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+													<li>
+														<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 													</li>';													
 												}
 					$cont.='								
@@ -774,7 +710,7 @@ class Diseno {
 			echo $cont;
 	}
 	function latino( $texto ) {
-		$search  = array('á',       'é',       'í',       'ó',       'ú',       'ñ',       'Ñ',       'Á',       'É',       'Í',       'Ó',       'Ú',       'ü');
+		$search  = array('á','é','í','ó','ú','ñ','Ñ','Á','É','Í','Ó','Ú','ü');
 		$replace = array('&aacute;','&eacute;','&iacute;','&oacute;','&uacute;','&ntilde;','&Ntilde;','&Aacute;','&Eacute;','&Iacute;','&Oacute;','&Uacute;','&uuml;');
 		$i = str_replace( $search, $replace, $texto );
 		return $i;

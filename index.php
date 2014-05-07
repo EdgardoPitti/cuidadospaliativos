@@ -24,11 +24,7 @@
 				$("#distritos").change(function(event){
 					var id = $("#distritos").find(':selected').val();
 					$("#corregimientos").load('./mvc/vista/capturardatos_corregimientos.php?iddistrito='+id);
-				});
-				$("#especialidad").change(function(event){
-					var id = $("#especialidad").find(':selected').val();
-					$("#nombre_esp").load('./mvc/vista/ambulatoria_atencionalpaciente_especialista.php?idespecialidad='+id);
-				});
+				});				
 			});
 		</script>
 		
