@@ -106,6 +106,11 @@
 			
 			$paciente->nuevo();
 		}
+		if($idusuario == 0){
+			$sql = 'SELECT MAX(ID_USUARIO) as id FROM usuarios';
+			$matriz = $ds->db->obtenerarreglo($sql);
+			$idusuario = $matriz[0][id];
+		}
 		$paciente->colocar("ID_PACIENTE", $idpaciente);
 		$paciente->colocar("ID_USUARIO", $idusuario);
 		$paciente->salvar();
