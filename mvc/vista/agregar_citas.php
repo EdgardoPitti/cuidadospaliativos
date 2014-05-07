@@ -9,7 +9,7 @@
 	$equipo = new Accesatabla('equipo_medico');
 	$detalle_equipo = new Accesatabla('detalle_equipo_medico');
 	$profesionales_salud = new Accesatabla('profesionales_salud');
-	if($_SESSION['idgu'] <> 3){
+	if($_SESSION['idgu'] == 2){
 		$msj = '';
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
 	}else{

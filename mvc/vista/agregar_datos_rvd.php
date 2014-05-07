@@ -14,7 +14,7 @@
 	$trazabilidad = new Accesatabla('trazabilidad');
 	$id = $_GET['id'];
 	$sw = $_GET['sw'];
-	if($_SESSION['idgu'] <> 3){
+	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
 		if(empty($id)){

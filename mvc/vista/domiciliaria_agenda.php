@@ -39,7 +39,7 @@
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>		
 		<center>
 			<form method="POST" action="./?url=domiciliaria_agenda&sbm=1">
-					Ir a: <input type="date" id="fecha" name="fecha"><br>
+					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01"><br>
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
 			<b>Citas del '.$fecha.'</b>			

@@ -61,7 +61,7 @@
 		$residencia->salvar();
 		//
 		if(!$datos){
-				$sql = 'SELECT max(ID_RESIDENCIA_HABITUAL) as id FROM residencia_habitual';
+				$sql = 'SELECT MAX(ID_RESIDENCIA_HABITUAL) AS id FROM residencia_habitual';
 				$id = $ds->db->obtenerArreglo($sql);
 				//Se almacena el id max en la variable $idresidencia
 				$idresidencia = $id[0][id];
@@ -100,7 +100,7 @@
 			$id = $ds->db->obtenerArreglo($sql);
 			$idpaciente = $id[0][id];
 			
-			$sql = 'SELECT MAX(ID_USUARIO) as id FROM USUARIOS';
+			$sql = 'SELECT MAX(ID_USUARIO) as id FROM usuarios';
 			$matriz = $ds->db->obtenerarreglo($sql);
 			$idusuario = $matriz[0][id];
 			

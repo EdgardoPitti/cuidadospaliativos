@@ -258,7 +258,7 @@
 															<td style="text-align:left;padding-left:17%;">Fecha de Nacimiento:</td>	
 														</tr>
 														<tr>
-															<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$datos->obtener('FECHA_NACIMIENTO').'" onChange="valida(this.value)" required="required" max="2025-12-31"></td>
+															<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$datos->obtener('FECHA_NACIMIENTO').'" onChange="valida(this.value)" required="required" max="'.$ds->dime('agno').'-12-31" min="1915-01-01"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Lugar de Nacimiento:</td>	
