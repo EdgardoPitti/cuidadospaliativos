@@ -73,7 +73,7 @@
 		$datospaciente->colocar("APELLIDO_MATERNO", $_POST['segundoapellido']);
 		$datospaciente->colocar("ID_ESTADO_CIVIL", $_POST['estadocivil']);
 		$datospaciente->colocar("ID_SEXO", $_POST['sexo']);
-		$datospaciente->colocar("FECHA_NACIMIENTO","'.$fecha.'" );
+		$datospaciente->colocar("FECHA_NACIMIENTO",''.$fecha.'' );
 		$datospaciente->colocar("LUGAR_NACIMIENTO", $_POST['lugarnacimiento']);
 		$datospaciente->colocar("EDAD_PACIENTE", $edad);
 		$datospaciente->colocar("ID_ETNIA", $_POST['etnia']);
