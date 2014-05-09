@@ -15,6 +15,7 @@
 	$profesional = new Accesatabla('PROFESIONALES_SALUD');
 	$datosprofesional = new Accesatabla('DATOS_PROFESIONALES_SALUD');
 	$especialidad = new Accesatabla('ESPECIALIDADES_MEDICAS');
+	$atencion = new Accesatabla('atencion_paciente');
 	
 	$ds = new Diseno();
 	$sw = 0;
@@ -203,7 +204,66 @@
 									</tbody>
 								</table>
 					</div>';
-			}		
+			}
+		$a = $atencion->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY FECHA');
+		if($a){
+				$cont.='
+					<br>
+					<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenciones del Paciente</h3></center>
+					<div class="overflow overthrow" style="max-height:150px;">
+								<table class="table2 borde-tabla table-hover">
+									<thead>
+										<tr class="fd-table">
+											<th>#</th>
+											<th>Fecha</th>
+											<th>Profesional</th>
+											<th>Especialidad</th>
+											<th>Hora Inicio</th>
+											<th>Hora Fin</th>
+											<th>Minutos Utilizados</th>
+											<th>Motivo</th>
+											<th>Observacion</th>
+											<th>Tipo Contacto</th>
+											<th>E-Mail / Telefono</th>
+										</tr>
+									</thead>
+									<tbody>';
+				$n = 1;
+				while($a){								
+					$profesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
+					$datosprofesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
+					$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
+					$segundo_nombre = $datosprofesional->obtener('SEGUNDO_NOMBRE');
+					$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
+					if($atencion->obtener('TIPO_CONTACTO') == 1){
+						$tipo = 'Tel&eacute;fono';
+						$contacto = $atencion->obtener('TELEFONO');
+					}else{
+						$tipo = 'Correo Electr&oacute;nico';
+						$contacto = $atencion->obtener('E_MAIL');
+					}
+					$cont.='
+											<tr>
+												<td>'.$n.'.</td>
+												<td>'.$atencion->obtener('FECHA').'</td>
+												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
+												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+												<td>'.$atencion->obtener('HORA_INICIO').'</td>
+												<td>'.$atencion->obtener('HORA_FIN').'</td>
+												<td>'.$atencion->obtener('MINUTOS_UTILIZADOS').'</td>
+												<td>'.$atencion->obtener('MOTIVO').'</td>
+												<td>'.$atencion->obtener('OBSERVACION').'</td>
+												<td>'.$tipo.'</td>
+												<td>'.$contacto.'</td>
+											</tr>';
+					$n++;
+					$a = $atencion->releer();
+				}
+				$cont.='
+									</tbody>
+								</table>
+					</div>';
+			}
 		$cont.='
 				
 				<div class="row-fluid">
@@ -267,17 +327,33 @@
 				</div>
 				
 				<!--AGREGAR OBSERVACIONES-->
-				<form method="POST" action="./?url=agregar_observacion&sbm=2">
+				<form method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm=2">
 					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
 							<h4>Agregar Observaciones</h4>  
 						</div>  
 						<div class="modal-body" align="center">  
-							<h5>Motivo:</h5>  
-							<input type="text" name="motivo"/>
+							<h5>Hora Inicio:</h5>
+							<input type="time" id="hora_inicio" name="hora_inicio">
+							<h5>Hora Fin:</h5>
+							<input type="time" id="hora_fin" name="hora_fin">							
+							<h5>Minutos Utilizados: </h5>
+							<input type="number" id="minutos" name="minutos" min="1" max="360" required>
+							<h5>Tipo de Contacto: </h5>
+							<select id="tipo" name="tipo" required>
+								<option value="0"></option>
+								<option value="1">Tel&eacute;fono</option>
+								<option value="2">Correo Electr&oacute;nico</option>
+							</select>
+							<h5>Tel&eacute;fono: </h5>
+							<input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono">
+							<h5>Correo Electr&oacute;nico: </h5>
+							<input type="email" id="email" name="email" placeholder="Correo Electr&oacute;nico">
+							<h5>Motivo:</h5>
+							<input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n">
 							<h5>Observaciones:</h5>                
-							<input type="text" name="observaciones"/>
+							<textarea id="observacion" name="observacion" required placeholder="Observaci&oacute;nes"></textarea>
 						</div>  
 						<div class="modal-footer">  
 							<button type="submit" class="btn btn-primary">Guardar</button>  

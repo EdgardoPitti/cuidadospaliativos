@@ -1,7 +1,7 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
-	
+	echo $ds->dime('fecha');
 	//$sql = 'select d.PRIMER_NOMBRE, d.SEGUNDO_NOMBRE, d.APELLIDO_PATERNO, u.NO_IDENTIFICACION from pacientes p, datos_pacientes d, usuarios u where p.ID_USUARIO = u.ID_USUARIO AND p.ID_PACIENTE = d.ID_PACIENTE';	
 	//$sql = 'ALTER TABLE `cuidados_paliativos_panama`.`profesionales_salud` ADD COLUMN `ID_USUARIO` INTEGER(11)) UNSIGNED NOT NULL AFTER `ID_ESPECIALIDAD_MEDICA`;';	
 	$sql = 'CREATE TABLE `cuidados_paliativos_panama`.`respuesta_interconsulta` (
@@ -17,8 +17,8 @@
 					ON UPDATE RESTRICT
 				)
 				ENGINE = InnoDB;
-';
-	
+	';
+	$sql = 'ALTER TABLE `cuidados_paliativos_panama`.`atencion_paciente` MODIFY COLUMN `MINUTOS_UTILIZADOS` INTEGER UNSIGNED DEFAULT NULL;';
 	/*$sql = 'ALTER TABLE `cuidados_paliativos_panama`.`respuesta_interconsulta` ADD COLUMN `ID_PACIENTE` INTEGER UNSIGNED NOT NULL AFTER `OBSERVACIONES`;';
 	$sql = '
 		CREATE TABLE `cuidados_paliativos_panama`.`atencion_paciente` (
@@ -38,8 +38,8 @@
 		ENGINE = InnoDB;
 	';
 	$sql = 'ALTER TABLE `cuidados_paliativos_panama`.`respuesta_interconsulta` ADD COLUMN `ID_PROFESIONAL` INTEGER UNSIGNED NOT NULL AFTER `OBSERVACIONES`;';*/
-	
-	$ds->db->query($sql);
+	//$sql = 'ALTER TABLE `cuidados_paliativos_panama`.`atencion_paciente` ADD COLUMN `MOTIVO` VARCHAR(45) NOT NULL AFTER `TELEFONO`;';
+	//$ds->db->query($sql);
 	//echo $ds->verArreglo($ds->db->obtenerArreglo($sql));
 	
 ?>
