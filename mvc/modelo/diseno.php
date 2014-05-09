@@ -115,6 +115,19 @@ class Diseno {
 			break;
 			case 'hoy es':	$aber = $nada['wday'] ;
 			break;
+			case 'fecha': 
+				
+				$aber = $nada['year'];
+				$aber .= '-';
+				if($nada['mon'] < 10){
+					$aber .= 0;
+				}
+				$aber .= $nada['mon'].'-';
+				if($nada['wday'] < 10){
+					$aber .=0;
+				}				
+				$aber .= $nada['wday'];
+			break;
 			case 'dia es':
 				$aber = 'no se que dia es !';
 				switch ( $nada['wday'] )

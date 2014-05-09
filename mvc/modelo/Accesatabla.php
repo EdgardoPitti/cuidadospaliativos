@@ -133,7 +133,7 @@
 			$sql = 'ALTER TABLE '.$this->estatabla.' AUTO_INCREMENT = '.$n.'';
 			$this->db->query($sql);
 		}	
-		//echo $syntax.'<br>';
+		echo $syntax.'<br>';
 		$this->db->query($syntax);//Realiza el query
 		if ( $this->db->affected_rows() > 0 ) {//Si se afecto un registro...
 			for ( $i = 0; $i <= $this->totaldecampos; $i++ ) { 
