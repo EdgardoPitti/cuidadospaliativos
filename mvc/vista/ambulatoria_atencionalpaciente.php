@@ -10,11 +10,21 @@
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
+	$interconsulta = new Accesatabla('interconsulta');
+	$respuesta = new Accesatabla('respuesta_interconsulta');
+	$profesional = new Accesatabla('PROFESIONALES_SALUD');
+	$datosprofesional = new Accesatabla('DATOS_PROFESIONALES_SALUD');
+	$especialidad = new Accesatabla('ESPECIALIDADES_MEDICAS');
 	
 	$ds = new Diseno();
 	$sw = 0;
-	
+
 	$buscar = $_POST['buscar'];
+	$id = $_GET['id'];
+	if(!empty($id)){
+		$personas->buscardonde('ID_PACIENTE = '.$id.'');
+		$buscar = $personas->obtener('NO_CEDULA');
+	}
 	
 	$cont.='
 	    <center>
@@ -106,109 +116,199 @@
 						</form>
 					</div>
 					'.$mostrar.'
-					
-					<div class="row-fluid">
-						<div class="span6">
-							<fieldset style="padding:5px">
-								<legend>
-									Resumen Médico
-								</legend>
-								<div class="acordeon">
-									<div>
-										<input id="acordeon1" name="accordion" type="checkbox" />
-										<label for="acordeon1">Fechas</label>
-										<article>
-											<div class="acordeon_gp" style="padding:15px;">
-												<div>
-													<input id="acordeon1-1" name="accordion_sub" type="checkbox" />
-													<label for="acordeon1-1"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
-													<article style="background:#fdfdfd;">
-														<ul style="padding:5px 0 0 5px;">
-															<li><i class="icon-file"></i> <a href="#">Actividades realizadas</a></li>
-															<li><i class="icon-file"></i> <a href="#">Medicamentos Suministrados</a></li>
-														</ul>
-													</article>
-												</div>	
-											</div>
-										</article>
-								
-									</div>
+					';
+	if(!empty($mostrar)){
+		$idpaciente = $personas->obtener('ID_PACIENTE');
+		$i = $interconsulta->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY FECHA');
+		if($i){
+				$cont.='
+					<br>
+					<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Interconsultas</h3></center>
+					<div class="overflow overthrow" style="max-height:150px;">
+								<table class="table2 borde-tabla table-hover">
+									<thead>
+										<tr class="fd-table">
+											<th>#</th>
+											<th>C&oacute;digo Interconsulta</th>
+											<th>Fecha</th>
+											<th>Profesional</th>
+											<th>Especialidad</th>
+											<th>Observacion / Comentario</th>
+										</tr>
+									</thead>
+									<tbody>';
+				$n = 1;
+				while($i){								
+					$profesional->buscardonde('ID_PROFESIONAL = '.$interconsulta->obtener('ID_PROFESIONAL').'');
+					$datosprofesional->buscardonde('ID_PROFESIONAL = '.$interconsulta->obtener('ID_PROFESIONAL').'');
+					$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
+					$segundo_nombre = $datosprofesional->obtener('SEGUNDO_NOMBRE');
+					$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
+					$cont.='
+											<tr>
+												<td>'.$n.'.</td>
+												<td>'.$interconsulta->obtener('ID_INTERCONSULTA').'</td>
+												<td>'.$interconsulta->obtener('FECHA').'</td>
+												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
+												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+												<td>'.$interconsulta->obtener('OBSERVACIONES').'</td>
+											</tr>';
+					$n++;
+					$i = $interconsulta->releer();
+				}
+				$cont.='
+									</tbody>
+								</table>
+					</div>';
+			}
+		
+		$r = $respuesta->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY FECHA');
+		if($r){
+				$cont.='
+					<br>
+					<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Respuestas Interconsultas</h3></center>
+					<div class="overflow overthrow" style="max-height:150px;">
+								<table class="table2 borde-tabla table-hover">
+									<thead>
+										<tr class="fd-table">
+											<th>#</th>
+											<th>C&oacute;digo Interconsulta</th>
+											<th>Fecha</th>
+											<th>Profesional</th>
+											<th>Especialidad</th>
+											<th>Observacion / Comentario</th>
+										</tr>
+									</thead>
+									<tbody>';
+				$n = 1;
+				while($r){								
+					$profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+					$datosprofesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
+					$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
+					$segundo_nombre = $datosprofesional->obtener('SEGUNDO_NOMBRE');
+					$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
+					$cont.='
+											<tr>
+												<td>'.$n.'.</td>
+												<td>'.$respuesta->obtener('ID_INTERCONSULTA').'</td>
+												<td>'.$respuesta->obtener('FECHA').'</td>
+												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
+												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+												<td>'.$respuesta->obtener('OBSERVACIONES').'</td>
+											</tr>';
+					$n++;
+					$r = $respuesta->releer();
+				}
+				$cont.='
+									</tbody>
+								</table>
+					</div>';
+			}		
+		$cont.='
+				
+				<div class="row-fluid">
+					<div class="span6">
+						<fieldset style="padding:5px">
+							<legend>
+								Resumen Médico
+							</legend>
+							<div class="acordeon">
+								<div>
+									<input id="acordeon1" name="accordion" type="checkbox" />
+									<label for="acordeon1">Fechas</label>
+									<article>
+										<div class="acordeon_gp" style="padding:15px;">
+											<div>
+												<input id="acordeon1-1" name="accordion_sub" type="checkbox" />
+												<label for="acordeon1-1"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
+												<article style="background:#fdfdfd;">
+													<ul style="padding:5px 0 0 5px;">
+														<li><i class="icon-file"></i> <a href="#">Actividades realizadas</a></li>
+														<li><i class="icon-file"></i> <a href="#">Medicamentos Suministrados</a></li>
+													</ul>
+												</article>
+											</div>	
+										</div>
+									</article>
+							
 								</div>
-								<div class="acordeon">
-									<div>
-										<input id="acordeon2" name="accordion" type="checkbox" />
-										<label for="acordeon2" style="margin-top:5px">Fechas</label>
-										<article>
-											<div class="acordeon_gp" style="padding:15px;">
-												<div>
-													<input id="acordeon2-1" name="accordion_sub" type="checkbox" />
-													<label for="acordeon2-1"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
-													<article style="background:#fdfdfd;">
-														<ul style="padding:5px 0 0 5px;">
-															<li><i class="icon-file"></i> <a href="#">Actividades realizadas</a></li>
-															<li><i class="icon-file"></i> <a href="#">Medicamentos Suministrados</a></li>
-														</ul>
-													</article>
-												</div>	
-											</div>
-										</article>
-								
-									</div>
+							</div>
+							<div class="acordeon">
+								<div>
+									<input id="acordeon2" name="accordion" type="checkbox" />
+									<label for="acordeon2" style="margin-top:5px">Fechas</label>
+									<article>
+										<div class="acordeon_gp" style="padding:15px;">
+											<div>
+												<input id="acordeon2-1" name="accordion_sub" type="checkbox" />
+												<label for="acordeon2-1"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
+												<article style="background:#fdfdfd;">
+													<ul style="padding:5px 0 0 5px;">
+														<li><i class="icon-file"></i> <a href="#">Actividades realizadas</a></li>
+														<li><i class="icon-file"></i> <a href="#">Medicamentos Suministrados</a></li>
+													</ul>
+												</article>
+											</div>	
+										</div>
+									</article>
+							
 								</div>
-							</fieldset>
-						</div>
-						<div class="span6">
-							<center>
-								<div class="centrar_botones">
-									<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
-									<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
-								</div>
-							</center>
-						</div>
+							</div>
+						</fieldset>
 					</div>
-					
-					<!--AGREGAR OBSERVACIONES-->
-					<form method="POST" action="./?url=agregar_observacion&sbm=2">
-						<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
-							<div class="modal-header">  
-								<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
-								<h4>Agregar Observaciones</h4>  
-							</div>  
-							<div class="modal-body" align="center">  
-								<h5>Motivo:</h5>  
-								<input type="text" name="motivo"/>
-								<h5>Observaciones:</h5>                
-								<input type="text" name="observaciones"/>
-							</div>  
-							<div class="modal-footer">  
-								<button type="submit" class="btn btn-primary">Guardar</button>  
-								<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
-							</div>  
-						</div>  									
-					</form>
-					
-					<!--RESPONDER INTERCONSULTA-->
-					<form method="POST" action="./?url=agregar_resp_interconsulta&sbm=2">
-						<div id="res_inter" class="modal hide fade in" style="display: none; ">  
-							<div class="modal-header">  
-								<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
-								<h4>Responder Interconsulta</h4>  
-							</div>  
-							<div class="modal-body" align="center">  
-								<h5>Código de Interconsulta:</h5>  
-								<input type="text" name="cod_interconsulta"/>
-								<h5>Observaciones:</h5>                
-								<input type="text" name="observaciones"/>
-							</div>  
-							<div class="modal-footer">  
-								<button type="submit" class="btn btn-primary">Guardar</button>  
-								<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
-							</div>  
-						</div>  
-					</form>							
+					<div class="span6">
+						<center>
+							<div class="centrar_botones">
+								<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
+								<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
+							</div>
+						</center>
+					</div>
 				</div>
-			</div>';
-	
+				
+				<!--AGREGAR OBSERVACIONES-->
+				<form method="POST" action="./?url=agregar_observacion&sbm=2">
+					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
+						<div class="modal-header">  
+							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+							<h4>Agregar Observaciones</h4>  
+						</div>  
+						<div class="modal-body" align="center">  
+							<h5>Motivo:</h5>  
+							<input type="text" name="motivo"/>
+							<h5>Observaciones:</h5>                
+							<input type="text" name="observaciones"/>
+						</div>  
+						<div class="modal-footer">  
+							<button type="submit" class="btn btn-primary">Guardar</button>  
+							<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+						</div>  
+					</div>  									
+				</form>
+				
+				<!--RESPONDER INTERCONSULTA-->
+				<form method="POST" action="./?url=add_resp_interconsulta&id='.$idpaciente.'&sbm=2">
+					<div id="res_inter" class="modal hide fade in" style="display: none; ">  
+						<div class="modal-header">  
+							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+							<h4>Responder Interconsulta</h4>  
+						</div>  
+						<div class="modal-body" align="center">  
+							<h5>Código de Interconsulta:</h5>  
+							<input type="text" name="cod_interconsulta" id="cod_interconsulta" required placeholder="C&oacute;digo Interconsulta">
+							<h5>Observaciones:</h5>                
+							<textarea id="observaciones" name="observaciones" required placeholder="Observaciones"></textarea>
+						</div>  
+						<div class="modal-footer">  
+							<button type="submit" class="btn btn-primary">Guardar</button>  
+							<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+						</div>  
+					</div>  
+				</form>	';	
+	}
+	$cont.='
+			</div>
+		</div>';
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
 	}else{
