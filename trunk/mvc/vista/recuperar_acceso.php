@@ -14,7 +14,7 @@
 		if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
 			$cont.='
 				<center style="min-height:430px;">
-					<form method="POST" action="./?url=validar">
+					<form id="form" method="POST" action="./?url=validar">
 						<table>
 							<tr>
 								<td>Elija la Pregunta:</td>
@@ -57,7 +57,7 @@
 	
 		$cont.='
 			<center style="min-height:430px">
-				<form method="POST" action="./?url=recuperar_acceso">
+				<form id="form2" method="POST" action="./?url=recuperar_acceso">
 					<label for="usuario">Introduzca el nombre de Usuario: </label>
 						 <input type="text" id="usuario" name="usuario" required><br>
 						<button type="submit" class="btn btn-primary">Enviar</button>

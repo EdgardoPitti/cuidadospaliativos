@@ -42,7 +42,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form method="POST" action="./?url=addsala&id='.$id.'&sbm=5">
+				<form id="form" method="POST" action="./?url=addsala&id='.$id.'&sbm=5">
 					Sala: <input type="text" id="sala" name="sala" placeholder="Sala" value="'.$sala->obtener('SALA').'" required><br>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>

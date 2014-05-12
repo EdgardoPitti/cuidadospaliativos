@@ -30,7 +30,7 @@
 	
 		$cont.='
 					<center>
-						<form method="POST" action="./?url=agregar_datos_rda&sbm=1">
+						<form id="form" method="POST" action="./?url=agregar_datos_rda&sbm=1">
 							<table width="40%" >
 								<tr>
 									<td>Fecha:</td>
@@ -185,7 +185,7 @@
 			$e = $estado_paciente->releer();
 		}
 		$cont.='
-			<form method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1">			
+			<form id="form2" method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1">			
 				<div class="row-fluid">
 					<div class="span4">
 						

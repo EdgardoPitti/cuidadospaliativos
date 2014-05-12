@@ -11,8 +11,23 @@
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>
-		
-		<script type="text/javascript" src="js/jquery.js"></script>	
+        
+        <script type="text/javascript" src="js/jquery.js"></script>   
+        <script type="text/javascript" src="js/jquery.validate.js"></script>
+        <script type="text/javaScript">
+
+            $().ready(function() {
+                // validate the comment form when it is submitted
+                $("#form").validate();               
+            });
+        </script>
+		<script type="text/javaScript">
+
+            $().ready(function() {
+                // validate the comment form when it is submitted
+                $("#form2").validate();               
+            });
+        </script>        
 		<script language="JavaScript" type="text/JavaScript">
 			//funcion para la seleccion de dropdown anidados
 			$(document).ready(function(){

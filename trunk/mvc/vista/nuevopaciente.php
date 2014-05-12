@@ -155,7 +155,7 @@
 									</div>
 								</div>
 							</center>
-							<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" style="display:block;position:relative">
+							<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" id="form" style="display:block;position:relative">
 								<div class="row-fluid">
 									<div class="span6">
 										<fieldset>

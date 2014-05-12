@@ -11,7 +11,7 @@
 							';
 	$cont.= $_SESSION['errorlogin'];
 	$cont.='
-							<form method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
+							<form id="form" method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
 								<center>
 									<div class="input-prepend">
 									  <span class="add-on"><i class="icon-user"></i></span>

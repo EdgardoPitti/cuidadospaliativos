@@ -29,7 +29,7 @@
 	if(empty($idrvd)){
 		$cont.='
 				<center>
-					<form method="POST" action="./?url=agregar_datos_rvd&sbm=1">
+					<form id="form" method="POST" action="./?url=agregar_datos_rvd&sbm=1">
 						<table>
 							<tr>
 								<td>Fecha: </td>
@@ -68,7 +68,7 @@
 	$cont.='
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
 			
-		<form method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
+		<form  id="form2" method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='

@@ -63,91 +63,91 @@
 		}
 		if(!$responsable->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'')){
 		$cont.='	
-			<form method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sw=1&sbm=3">
-					<fieldset>
-						<legend>
-							Responsable del Paciente
-						</legend>
-						
-						<div class="row-fluid">
-							<div class="span6">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td style="text-align:left;padding-left:17%;">Nombre:</td>														
-										</tr>
-										<tr>
-											<td><input type="text" id="nombreresponsable" name="nombreresponsable" placeholder="Nombre del Responsable"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="span6">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td style="text-align:left;padding-left:17%;">Apellido:</td>	
-										</tr>
-										<tr>
-											<td><input type="text" id="apellidoresponsable" name="apellidoresponsable" placeholder="Apellido del Responsable"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+			<form id="form" method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sw=1&sbm=3">
+				<fieldset>
+					<legend>
+						Responsable del Paciente
+					</legend>
+					
+					<div class="row-fluid">
+						<div class="span6">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Nombre:</td>														
+									</tr>
+									<tr>
+										<td><input type="text" id="nombreresponsable" name="nombreresponsable" placeholder="Nombre del Responsable" required></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						
-						<div class="row-fluid">
-							<div class="span6">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td style="text-align:left;padding-left:17%;">Parentesco:</td>
-										</tr>	
-										<tr>	
-											<td><input type="text" id="parentesco" name="parentesco" placeholder="Parentesco"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="span6">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td style="text-align:left;padding-left:17%;">Dirección:</td>
-										</tr>
-										<tr>
-											<td><textarea class="textarea" id="direccionresponsable" name="direccionresponsable" placeholder="Dirección"></textarea></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+						<div class="span6">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Apellido:</td>	
+									</tr>
+									<tr>
+										<td><input type="text" id="apellidoresponsable" name="apellidoresponsable" placeholder="Apellido del Responsable" required></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
+					</div>
+					
+					<div class="row-fluid">
+						<div class="span6">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Parentesco:</td>
+									</tr>	
+									<tr>	
+										<td><input type="text" id="parentesco" name="parentesco" placeholder="Parentesco" required></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="span6">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Dirección:</td>
+									</tr>
+									<tr>
+										<td><textarea class="textarea" id="direccionresponsable" name="direccionresponsable" placeholder="Dirección"></textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 
-						<div class="row-fluid">
-							<div class="span6">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td style="text-align:left;padding-left:17%;">Teléfono:</td>
-										</tr>
-										<tr>
-											<td><input type="text" id="telefonoresponsable" name="telefonoresponsable" placeholder="Teléfono del Responsable"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="span6"></div>
+					<div class="row-fluid">
+						<div class="span6">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="text-align:left;padding-left:17%;">Teléfono:</td>
+									</tr>
+									<tr>
+										<td><input type="text" id="telefonoresponsable" name="telefonoresponsable" placeholder="Teléfono del Responsable" required></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-					</fieldset>		
-					<center style="margin-top:10px">
-						<button type="submit" class="btn btn-primary">Registrar</button>
-					</center>
+						<div class="span6"></div>
+					</div>
+				</fieldset>		
+				<center style="margin-top:10px">
+					<button type="submit" class="btn btn-primary">Registrar</button>
+				</center>
 			</form>								
 			';
 		}else{
 			$r = $rae->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 			$cont.='
-				<form method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm=3&r='.$rae->obtener('ID_REGISTRO_ADMISION_EGRESO').'">';
+				<form id="form2" method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm=3&r='.$rae->obtener('ID_REGISTRO_ADMISION_EGRESO').'">';
 									
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 			$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
@@ -259,7 +259,7 @@
 									<td>Referido de:</td>';
 		$referido->buscardonde('ID_REFERIDO = '.$rae->obtener('ID_REFERIDO').'');
 		$cont.='
-									<td><select id="referido" name="referido" '.$disabled.' title="'.$referido->obtener('REFERIDO').'">
+									<td><select id="referido" name="referido" '.$disabled.' title="'.$referido->obtener('REFERIDO').'" required>
 											<option value="0"></option>';
 		$r = $referido->buscardonde('ID_REFERIDO > 0');
 		while($r){
@@ -286,7 +286,7 @@
 		$cama->buscardonde('ID_CAMA = '.$rae->obtener('ID_CAMA').'');
 		$sala->buscardonde('ID_SALA = '.$cama->obtener('ID_SALA').'');
 		$cont.='
-									<td><select id="cama" name="cama" title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'">
+									<td><select id="cama" name="cama" title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'" required>
 											<option value=""></option>';
 		$c = $cama->buscardonde('ID_CAMA > 0 ORDER BY CAMA');
 		while($c){
@@ -329,7 +329,7 @@
 											<td style="text-align:left;padding-left:17%;">Diagnóstico:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="diagnostico1" name="diagnostico1" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
+											<td><input type="text" id="diagnostico1" name="diagnostico1" placeholder="Diagnóstico" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'" required></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">CIE10:</td>														
@@ -341,7 +341,7 @@
 											<td style="text-align:left;padding-left:17%;">Profesional:</td>														
 										</tr>
 										<tr>
-											<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.' title="'.$nombre.'"><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly title="'.$profesional->obtener('NO_CEDULA').'"></td>
+											<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" value="'.$nombre.'" '.$readonly.' title="'.$nombre.'" required><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" value="'.$profesional->obtener('NO_CEDULA').'" readonly title="'.$profesional->obtener('NO_CEDULA').'"></td>
 										</tr>
 										<tr>
 											<td style="text-align:left;padding-left:17%;">Observación:</td>														

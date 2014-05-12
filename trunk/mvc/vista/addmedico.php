@@ -48,15 +48,15 @@
 		$usuarios->buscardonde('ID_USUARIO = '.$profesional->obtener('ID_USUARIO').'');
 	}
 	$cont.='
-				<form method="POST" action="./?url=agregardatosprofesional&idp='.$datos->obtener('ID_PROFESIONAL').'&sbm=5">	
+				<form id="form" method="POST" action="./?url=agregardatosprofesional&idp='.$datos->obtener('ID_PROFESIONAL').'&sbm=5">	
 					<table>
 						<tr>
 							<td>No de C&eacute;dula: </td>
-							<td><input type="text" name="cedula" id="cedula" placeholder="No de C&eacute;dula" value="'.$datos->obtener('NO_CEDULA').'" '.$readonly.' required="required" ></td>
+							<td><input type="text" name="cedula" id="cedula" placeholder="No de C&eacute;dula" value="'.$datos->obtener('NO_CEDULA').'" '.$readonly.' required ></td>
 						</tr>
 						<tr>	
 							<td>Primer Nombre: </td>
-							<td><input type="text" name="primernombre" id="primernombre" placeholder="Primer Nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'"  required="required"></td>
+							<td><input type="text" name="primernombre" id="primernombre" placeholder="Primer Nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'"  required></td>
 						</tr>
 						<tr>
 							<td>Segundo Nombre: </td>
