@@ -42,7 +42,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form method="POST" action="./?url=addzona&id='.$id.'&sbm=5">
+				<form id="form" method="POST" action="./?url=addzona&id='.$id.'&sbm=5">
 					Zona: <input type="text" id="zona" name="zona" placeholder="Nombre de la Zona" value="'.$zonas->obtener('ZONA').'" required><br>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>

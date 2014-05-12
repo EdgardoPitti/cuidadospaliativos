@@ -137,7 +137,7 @@
 						}
 						
 							$cont.=' 
-							<form method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1">
+							<form id="form" method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1">
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
 										<input id="acordeon1" name="accordion" type="radio"/>
@@ -531,7 +531,7 @@
 							}
 							$cont.='
 
-								<form method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1">										
+								<form id="form2" method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1">										
 									<div class="row-fluid">
 										<div class="span6">
 											<table class="tabla-datos">

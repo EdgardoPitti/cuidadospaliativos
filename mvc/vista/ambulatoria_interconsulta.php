@@ -134,7 +134,7 @@
 			$cont.='
 			
 			<br><div style="width:100%;max-width:600px;">
-				<form method="POST" action="./?url=agregar_interconsulta&idp='.$personas->obtener('ID_PACIENTE').'">
+				<form id="form" method="POST" action="./?url=agregar_interconsulta&idp='.$personas->obtener('ID_PACIENTE').'">
 				<table width="100%">
 					<tr align="center">
 						<td>Fecha: </td>

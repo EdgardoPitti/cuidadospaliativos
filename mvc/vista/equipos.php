@@ -55,7 +55,7 @@
 	}	
 	$cont.= $_SESSION['error'];
 	$cont.='
-			<form class="form-control" method="POST" action="./?url=addequipo"><br>
+			<form id="form" class="form-control" method="POST" action="./?url=addequipo"><br>
 				<input type="hidden" id="id" name="id" value="'.$id.'">
 				<label>Nombre Profesional:</label>
 				<input type="search" class="form-control" id="profesional" name="profesional" placeholder="Buscar Profesional" required="required">

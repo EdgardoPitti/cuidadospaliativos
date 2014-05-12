@@ -30,7 +30,7 @@
 						// deshabilitamos
 						document.getElementById("respuesta").disabled=true;
 					}
-				}
+				}				
 			</script>
 			<center>
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Administradores o Editar Usuarios</h3>		
@@ -94,15 +94,15 @@
 					</table>
 				</div>
 					'.$img.'
-				<form method="POST" action="./?url=addusuario&id='.$id.'&sbm=5">
+				<form id="form" method="POST" action="./?url=addusuario&id='.$id.'&sbm=5" >
 					<table>
 						<tr>
 							<td>No de Identificaci&oacute;n: </td>
-							<td><input type="text" id="no_identificacion" name="no_identificacion" placeholder="No de Identificaci&oacute;n" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" required></td>
+							<td><input type="text" id="no_identificacion" name="no_identificacion" placeholder="No de Identificaci&oacute;n" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" required="required"></td>
 						</tr>
 						<tr>
 							<td>Clave de Acceso: </td>
-							<td><input type="text" id="clave" name="clave" placeholder="Clave de Acceso" value="'.$usuarios->obtener('CLAVE_ACCESO').'" required></td>
+							<td><input type="text" id="clave" name="clave" placeholder="Clave de Acceso" value="'.$usuarios->obtener('CLAVE_ACCESO').'" required="required"></td>
 						</tr>';
 
 	if($preferencias->obtener('USAR_PREGUNTA_SEGURIDAD') == 1){
@@ -121,7 +121,7 @@
 						<tr>
 							<td>Recuperaci&oacute;n de Acceso: </td>
 							<td>
-								<select name="preferencia" id="preferencia" required>
+								<select name="preferencia" id="preferencia" required="required">
 									<option value="0"></option>
 									<option value="1" '.$preguntas.'>Pregunta</option>
 									<option value="3" '.$email.'>Correo</option>

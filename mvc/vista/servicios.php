@@ -45,7 +45,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form method="POST" action="./?url=addservicio&id='.$id.'&sbm=5">
+				<form id="form" method="POST" action="./?url=addservicio&id='.$id.'&sbm=5">
 					<table>
 						<tr>
 							<td>Servicio M&eacute;dico: </td>
