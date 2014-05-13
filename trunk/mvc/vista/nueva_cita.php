@@ -125,10 +125,13 @@
 									</tr>
 								</tbody>
 							</table>
+							<center>
+								<button type="submit" class="btn btn-primary" style="margin-top:8px;">Agregar Nuevo Paciente</button><br>
+								<a  href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>
+							</center>
 						</div>
 					</div>
 				</div>
-				<center><a  href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>&nbsp;<button type="submit" class="btn btn-primary" style="margin-top:8px;">Guardar</button></center><br>
 			</form>';
 
 			
