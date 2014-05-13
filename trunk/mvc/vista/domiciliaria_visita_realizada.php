@@ -46,9 +46,10 @@
 				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');
 				$p = ' desde '.$inicio.' hasta '.$final.'';
 			}
+			$cont.='<div class="overflow overthrow">';
 			if($r){
 				$cont.='
-					<div class="overflow overthrow">
+					
 						<table class="table2 borde-tabla table-hover">
 							<thead>
 								<tr class="fd-table">

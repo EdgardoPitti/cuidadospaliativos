@@ -327,7 +327,7 @@
 				</div>
 				
 				<!--AGREGAR OBSERVACIONES-->
-				<form method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm=2">
+				<form id="form" method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm=2">
 					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
@@ -363,7 +363,7 @@
 				</form>
 				
 				<!--RESPONDER INTERCONSULTA-->
-				<form method="POST" action="./?url=add_resp_interconsulta&id='.$idpaciente.'&sbm=2">
+				<form id="form2" method="POST" action="./?url=add_resp_interconsulta&id='.$idpaciente.'&sbm=2">
 					<div id="res_inter" class="modal hide fade in" style="display: none; ">  
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
