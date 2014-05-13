@@ -30,7 +30,6 @@
 										
 			}else{
 					$citas_medicas->buscardonde('ID_CITA = '.$id.'');
-					$msj = 'Cita Editada correctamente.';
 			}
 			$citas_medicas->colocar("ID_PACIENTE", $pacientes->obtener('ID_PACIENTE'));				
 			$citas_medicas->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
@@ -44,9 +43,8 @@
 				$sql = 'SELECT MAX(ID_CITA) AS id FROM citas_medicas';
 				$matriz = $ds->db->obtenerarreglo($sql);
 				$id = $matriz[0][id];
-				$msj = 'Cita Salvada correctamente.';
 			}
 		}
-		echo '<script language="javascript">alert("'.$msj.'")</script><script>location.href="./?url=nueva_cita&id='.$id.'&h='.$h.'&sbm=1"</script>';
+		echo '<script>location.href="./?url=nueva_cita&id='.$id.'&h='.$h.'&sbm=1"</script>';
 	}
 ?>
