@@ -17,14 +17,14 @@
         <script type="text/javaScript">
 
             $().ready(function() {
-                // validate the comment form when it is submitted
+                // Utilizado para el validar required de una vista
                 $("#form").validate();               
             });
         </script>
 		<script type="text/javaScript">
 
             $().ready(function() {
-                // validate the comment form when it is submitted
+                //Se aplica si existe un segundo formulario dentro de una misma vista
                 $("#form2").validate();               
             });
         </script>        
