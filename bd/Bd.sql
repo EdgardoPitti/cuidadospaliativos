@@ -47,6 +47,35 @@ CREATE TABLE `actividad` (
 
 
 --
+-- Definition of table `atencion_paciente`
+--
+
+DROP TABLE IF EXISTS `atencion_paciente`;
+CREATE TABLE `atencion_paciente` (
+  `ID_ATENCION` int(10) unsigned NOT NULL auto_increment,
+  `ID_PROFESIONAL` int(10) unsigned NOT NULL,
+  `ID_PACIENTE` int(10) unsigned NOT NULL,
+  `FECHA` varchar(45) NOT NULL default '0000-00-00',
+  `HORA_INICIO` varchar(45) default NULL,
+  `HORA_FIN` varchar(45) default NULL,
+  `MINUTOS_UTILIZADOS` int(10) unsigned default NULL,
+  `OBSERVACION` text,
+  `TIPO_CONTACTO` tinyint(5) unsigned NOT NULL default '1',
+  `E_MAIL` varchar(45) default NULL,
+  `TELEFONO` varchar(45) default NULL,
+  `MOTIVO` varchar(45) NOT NULL,
+  PRIMARY KEY  (`ID_ATENCION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `atencion_paciente`
+--
+
+/*!40000 ALTER TABLE `atencion_paciente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `atencion_paciente` ENABLE KEYS */;
+
+
+--
 -- Definition of table `cama`
 --
 
@@ -14657,7 +14686,7 @@ CREATE TABLE `citas_medicas` (
   CONSTRAINT `citas_medicas_ibfk_2` FOREIGN KEY (`ID_PROFESIONAL`) REFERENCES `profesionales_salud` (`ID_PROFESIONAL`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `citas_medicas_ibfk_3` FOREIGN KEY (`ID_SERVICIO`) REFERENCES `servicios_medicos` (`ID_SERVICIO`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `citas_medicas_ibfk_4` FOREIGN KEY (`ID_EQUIPO_MEDICO`) REFERENCES `equipo_medico` (`ID_EQUIPO_MEDICO`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `citas_medicas`
@@ -15395,7 +15424,7 @@ INSERT INTO `corregimientos` (`ID_PROVINCIA`,`ID_DISTRITO`,`ID_CORREGIMIENTO`,`C
 DROP TABLE IF EXISTS `datos_autenticacion_usuario`;
 CREATE TABLE `datos_autenticacion_usuario` (
   `ID_USUARIO` int(11) NOT NULL,
-  `ID_PREGUNTA` int(11) NOT NULL,
+  `ID_PREGUNTA` int(11) NOT NULL default '1',
   `RESPUESTA` text,
   `TELEFONO_PREFERENCIAL` varchar(9) default NULL,
   `E_MAIL_PREFERENCIAL` varchar(150) default 'POR DEFINIR',
@@ -15468,8 +15497,8 @@ CREATE TABLE `datos_pacientes` (
 
 /*!40000 ALTER TABLE `datos_pacientes` DISABLE KEYS */;
 INSERT INTO `datos_pacientes` (`ID_PACIENTE`,`NO_CEDULA`,`SEGURO_SOCIAL`,`PRIMER_NOMBRE`,`SEGUNDO_NOMBRE`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`ID_ESTADO_CIVIL`,`ID_SEXO`,`FECHA_NACIMIENTO`,`LUGAR_NACIMIENTO`,`EDAD_PACIENTE`,`ID_ETNIA`,`ID_TIPO_SANGUINEO`,`ID_NACIONALIDAD`,`ID_TIPO_PACIENTE`,`TELEFONO_CASA`,`TELEFONO_CELULAR`,`E_MAIL`,`OCUPACION`,`ID_RESIDENCIA_HABITUAL`,`RESIDENCIA_TRANSITORIA`,`NOMBRE_PADRE`,`NOMBRE_MADRE`) VALUES 
- (1,'4-759-372','4-759-372','Edgardo','Joel','Pitti','Sanchez',2,1,'2013-01-04','David',1,9,3,62,1,'7743093','62510254','ed_joel28@hotmail.com','Estudiante',5,'','Edgardo Pitti','Fany de Pitti'),
- (2,'4-760-768','4-760-768','Luis','Agustin','Mendoza','Pitti',4,1,'1992-01-31','David',22,5,1,62,1,'7212232','65232668','luis2531@gmail.com','Estudiante',6,'','Luis Mendoza','Dioris Pitti');
+ (1,'4-759-372','4-759-372','Edgardo','Joel','Pitti','Sanchez',2,1,'1991-10-28','David',22,9,3,62,1,'7743095','62510254','ed_joel28@hotmail.com','Estudiante',1,'','Edgardo Pitti','Fany de Pitti'),
+ (2,'4-760-768','4-760-768','Luis','Agustin','Mendoza','Pitti',4,1,'2012-02-01','David',2,5,1,62,1,'7212232','65232668','luis2531@gmail.com','Estudiante',2,'','Luis Mendoza','Dioris Pitti');
 /*!40000 ALTER TABLE `datos_pacientes` ENABLE KEYS */;
 
 
@@ -15500,6 +15529,8 @@ CREATE TABLE `datos_profesionales_salud` (
 --
 
 /*!40000 ALTER TABLE `datos_profesionales_salud` DISABLE KEYS */;
+INSERT INTO `datos_profesionales_salud` (`ID_PROFESIONAL`,`NO_CEDULA`,`PRIMER_NOMBRE`,`SEGUNDO_NOMBRE`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`NO_IDONEIDAD`,`NO_REGISTRO`,`TELEFONO_CASA`,`TELEFONO_CELULAR`,`E_MAIL`) VALUES 
+ (1,'4-759-372','Edgardo','Joel','Pitti','Sanchez','4-759-372','4-759-372','7743095','62510254','ed_joel28@hotmail.com');
 /*!40000 ALTER TABLE `datos_profesionales_salud` ENABLE KEYS */;
 
 
@@ -15524,7 +15555,7 @@ CREATE TABLE `detalle_diagnostico` (
   CONSTRAINT `detalle_diagnostico_ibfk_2` FOREIGN KEY (`ID_CIE10`) REFERENCES `cie10` (`ID_CIE10`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `detalle_diagnostico_ibfk_3` FOREIGN KEY (`ID_FRECUENCIA`) REFERENCES `frecuencia` (`ID_FRECUENCIA`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `detalle_diagnostico_ibfk_4` FOREIGN KEY (`ID_PROFESIONAL`) REFERENCES `profesionales_salud` (`ID_PROFESIONAL`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detalle_diagnostico`
@@ -15612,7 +15643,7 @@ CREATE TABLE `detalle_equipo_medico` (
   CONSTRAINT `detalle_equipo_medico_ibfk_1` FOREIGN KEY (`ID_EQUIPO_MEDICO`) REFERENCES `equipo_medico` (`ID_EQUIPO_MEDICO`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `detalle_equipo_medico_ibfk_2` FOREIGN KEY (`ID_PROFESIONAL`) REFERENCES `profesionales_salud` (`ID_PROFESIONAL`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `detalle_equipo_medico_ibfk_3` FOREIGN KEY (`ID_ESPECIALIDAD_MEDICA`) REFERENCES `especialidades_medicas` (`ID_ESPECIALIDAD_MEDICA`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detalle_equipo_medico`
@@ -15692,7 +15723,7 @@ CREATE TABLE `detalle_registro_visitas_domiciliarias` (
   CONSTRAINT `detalle_registro_visitas_domiciliarias_ibfk_3` FOREIGN KEY (`ID_TRAZABILIDAD`) REFERENCES `trazabilidad` (`ID_TRAZABILIDAD`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `detalle_registro_visitas_domiciliarias_ibfk_4` FOREIGN KEY (`ID_PROGRAMA`) REFERENCES `programa` (`ID_PROGRAMA`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `detalle_registro_visitas_domiciliarias_ibfk_5` FOREIGN KEY (`ID_CATEGORIA`) REFERENCES `categoria` (`ID_CATEGORIA`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detalle_registro_visitas_domiciliarias`
@@ -15710,7 +15741,7 @@ DROP TABLE IF EXISTS `diagnostico`;
 CREATE TABLE `diagnostico` (
   `ID_DIAGNOSTICO` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`ID_DIAGNOSTICO`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `diagnostico`
@@ -15890,7 +15921,7 @@ DROP TABLE IF EXISTS `equipo_medico`;
 CREATE TABLE `equipo_medico` (
   `ID_EQUIPO_MEDICO` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`ID_EQUIPO_MEDICO`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `equipo_medico`
@@ -16078,7 +16109,7 @@ CREATE TABLE `examen_fisico` (
   PRIMARY KEY  (`ID_EXAMEN_FISICO`),
   KEY `ID_PACIENTE` (`ID_PACIENTE`),
   CONSTRAINT `examen_fisico_ibfk_1` FOREIGN KEY (`ID_PACIENTE`) REFERENCES `datos_pacientes` (`ID_PACIENTE`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `examen_fisico`
@@ -16146,7 +16177,7 @@ CREATE TABLE `historia_paciente` (
   PRIMARY KEY  (`ID_HISTORIA_PACIENTE`),
   KEY `ID_EXAMEN_FISICO` (`ID_EXAMEN_FISICO`),
   CONSTRAINT `historia_paciente_ibfk_1` FOREIGN KEY (`ID_EXAMEN_FISICO`) REFERENCES `examen_fisico` (`ID_EXAMEN_FISICO`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `historia_paciente`
@@ -16983,9 +17014,6 @@ CREATE TABLE `pacientes` (
 --
 
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
-INSERT INTO `pacientes` (`ID_PACIENTE`,`ID_USUARIO`) VALUES 
- (1,2),
- (2,3);
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 
 
@@ -17045,16 +17073,19 @@ DROP TABLE IF EXISTS `profesionales_salud`;
 CREATE TABLE `profesionales_salud` (
   `ID_PROFESIONAL` int(11) NOT NULL auto_increment,
   `ID_ESPECIALIDAD_MEDICA` int(11) NOT NULL,
+  `ID_USUARIO` int(11) unsigned NOT NULL,
   PRIMARY KEY  (`ID_PROFESIONAL`),
   KEY `ID_ESPECIALIDAD_MEDICA` (`ID_ESPECIALIDAD_MEDICA`),
   CONSTRAINT `profesionales_salud_ibfk_1` FOREIGN KEY (`ID_ESPECIALIDAD_MEDICA`) REFERENCES `especialidades_medicas` (`ID_ESPECIALIDAD_MEDICA`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `profesionales_salud`
 --
 
 /*!40000 ALTER TABLE `profesionales_salud` DISABLE KEYS */;
+INSERT INTO `profesionales_salud` (`ID_PROFESIONAL`,`ID_ESPECIALIDAD_MEDICA`,`ID_USUARIO`) VALUES 
+ (1,2,4);
 /*!40000 ALTER TABLE `profesionales_salud` ENABLE KEYS */;
 
 
@@ -17209,7 +17240,7 @@ CREATE TABLE `registro_diario_actividades` (
   KEY `ID_EQUIPO_MEDICO` (`ID_EQUIPO_MEDICO`),
   CONSTRAINT `registro_diario_actividades_ibfk_1` FOREIGN KEY (`ID_INSTITUCION`) REFERENCES `institucion` (`ID_INSTITUCION`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `registro_diario_actividades_ibfk_2` FOREIGN KEY (`ID_EQUIPO_MEDICO`) REFERENCES `equipo_medico` (`ID_EQUIPO_MEDICO`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `registro_diario_actividades`
@@ -17234,7 +17265,7 @@ CREATE TABLE `registro_visitas_domiciliarias` (
   KEY `ID_INSTITUCION` (`ID_INSTITUCION`),
   KEY `ID_EQUIPO_MEDICO` (`ID_EQUIPO_MEDICO`),
   CONSTRAINT `registro_visitas_domiciliarias_ibfk_1` FOREIGN KEY (`ID_INSTITUCION`) REFERENCES `institucion` (`ID_INSTITUCION`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `registro_visitas_domiciliarias`
@@ -17272,8 +17303,8 @@ CREATE TABLE `residencia_habitual` (
 
 /*!40000 ALTER TABLE `residencia_habitual` DISABLE KEYS */;
 INSERT INTO `residencia_habitual` (`ID_RESIDENCIA_HABITUAL`,`ID_PROVINCIA`,`ID_DISTRITO`,`ID_CORREGIMIENTO`,`ID_ZONA`,`DETALLE`) VALUES 
- (5,2,9,66,1,'San Cristobal'),
- (6,2,9,72,1,'Villa La Paz');
+ (1,2,9,66,1,'San Cristobal'),
+ (2,2,9,72,1,'Villa La Paz');
 /*!40000 ALTER TABLE `residencia_habitual` ENABLE KEYS */;
 
 
@@ -17293,7 +17324,7 @@ CREATE TABLE `responsable_paciente` (
   PRIMARY KEY  (`ID_RESPONSABLE_PACIENTE`),
   UNIQUE KEY `ID_PACIENTE` USING BTREE (`ID_PACIENTE`),
   CONSTRAINT `responsable_paciente_ibfk_1` FOREIGN KEY (`ID_PACIENTE`) REFERENCES `datos_pacientes` (`ID_PACIENTE`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `responsable_paciente`
@@ -17301,6 +17332,31 @@ CREATE TABLE `responsable_paciente` (
 
 /*!40000 ALTER TABLE `responsable_paciente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `responsable_paciente` ENABLE KEYS */;
+
+
+--
+-- Definition of table `respuesta_interconsulta`
+--
+
+DROP TABLE IF EXISTS `respuesta_interconsulta`;
+CREATE TABLE `respuesta_interconsulta` (
+  `ID_RESPUESTA_INTERCONSULTA` int(10) unsigned NOT NULL auto_increment,
+  `ID_INTERCONSULTA` int(10) unsigned NOT NULL,
+  `ID_PROFESIONAL` int(10) unsigned NOT NULL,
+  `FECHA` date NOT NULL,
+  `OBSERVACIONES` text NOT NULL,
+  `ID_PACIENTE` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`ID_RESPUESTA_INTERCONSULTA`),
+  KEY `FK_respuesta_interconsulta_interconsulta` (`ID_INTERCONSULTA`),
+  CONSTRAINT `FK_respuesta_interconsulta_interconsulta` FOREIGN KEY (`ID_INTERCONSULTA`) REFERENCES `interconsulta` (`ID_INTERCONSULTA`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `respuesta_interconsulta`
+--
+
+/*!40000 ALTER TABLE `respuesta_interconsulta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `respuesta_interconsulta` ENABLE KEYS */;
 
 
 --
@@ -17324,7 +17380,7 @@ CREATE TABLE `respuesta_referencia` (
   KEY `ID_PROFESIONAL` (`ID_PROFESIONAL`),
   CONSTRAINT `respuesta_referencia_ibfk_1` FOREIGN KEY (`ID_DIAGNOSTICO`) REFERENCES `diagnostico` (`ID_DIAGNOSTICO`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `respuesta_referencia_ibfk_2` FOREIGN KEY (`ID_PROFESIONAL`) REFERENCES `profesionales_salud` (`ID_PROFESIONAL`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `respuesta_referencia`
@@ -17353,7 +17409,7 @@ CREATE TABLE `resultados_examen_diagnostico` (
   CONSTRAINT `resultados_examen_diagnostico_ibfk_1` FOREIGN KEY (`ID_TIPO_EXAMEN`) REFERENCES `tipo_examen` (`ID_TIPO_EXAMEN`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `resultados_examen_diagnostico_ibfk_2` FOREIGN KEY (`ID_DIAGNOSTICO`) REFERENCES `detalle_diagnostico` (`ID_DIAGNOSTICO`),
   CONSTRAINT `resultados_examen_diagnostico_ibfk_3` FOREIGN KEY (`ID_SURCO`) REFERENCES `surco` (`ID_SURCO`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `resultados_examen_diagnostico`
@@ -17423,7 +17479,7 @@ CREATE TABLE `sesiones_usuarios` (
   PRIMARY KEY  (`ID_SESION`),
   KEY `ID_USUARIO` (`ID_USUARIO`),
   CONSTRAINT `sesiones_usuarios_ibfk_1` FOREIGN KEY (`ID_USUARIO`) REFERENCES `usuarios` (`ID_USUARIO`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sesiones_usuarios`
@@ -17485,7 +17541,7 @@ CREATE TABLE `surco` (
   CONSTRAINT `surco_ibfk_4` FOREIGN KEY (`ID_CLASIFICACION_ATENCION_SOLICITADA`) REFERENCES `clasificacion_atencion_solicitada` (`ID_CLASIFICACION_ATENCION_SOLICITADA`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `surco_ibfk_5` FOREIGN KEY (`ID_HISTORIA_PACIENTE`) REFERENCES `historia_paciente` (`ID_HISTORIA_PACIENTE`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `surco_ibfk_7` FOREIGN KEY (`ID_PROFESIONAL`) REFERENCES `profesionales_salud` (`ID_PROFESIONAL`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `surco`
@@ -17683,12 +17739,6 @@ CREATE TABLE `trazabilidad` (
 --
 
 /*!40000 ALTER TABLE `trazabilidad` DISABLE KEYS */;
-INSERT INTO `trazabilidad` (`ID_TRAZABILIDAD`,`ID_PACIENTE`,`FECHA`) VALUES 
- ('1_2014/4/21',1,'2014-04-21'),
- ('1_2014/4/23',1,'2014-04-23'),
- ('1_2014/4/24',1,'2014-04-24'),
- ('2_2014/4/23',2,'2014-04-23'),
- ('2_2014/4/24',2,'2014-04-24');
 /*!40000 ALTER TABLE `trazabilidad` ENABLE KEYS */;
 
 
@@ -17706,7 +17756,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `NO_IDENTIFICACION` (`NO_IDENTIFICACION`),
   KEY `ID_GRUPO_USUARIO` (`ID_GRUPO_USUARIO`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`ID_GRUPO_USUARIO`) REFERENCES `grupos_usuarios` (`ID_GRUPO_USUARIO`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `usuarios`
@@ -17716,7 +17766,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`ID_USUARIO`,`ID_GRUPO_USUARIO`,`CLAVE_ACCESO`,`NO_IDENTIFICACION`) VALUES 
  (1,1,'12345678','1-123-456'),
  (2,2,'2810','Cachii'),
- (3,2,'3125','Luis');
+ (3,2,'2531','Luis'),
+ (4,3,'2626','Edgardo');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 
