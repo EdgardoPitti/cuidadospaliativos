@@ -17014,6 +17014,9 @@ CREATE TABLE `pacientes` (
 --
 
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
+INSERT INTO `pacientes` (`ID_PACIENTE`,`ID_USUARIO`) VALUES 
+ (1,2),
+ (2,3);
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 
 
@@ -17479,13 +17482,15 @@ CREATE TABLE `sesiones_usuarios` (
   PRIMARY KEY  (`ID_SESION`),
   KEY `ID_USUARIO` (`ID_USUARIO`),
   CONSTRAINT `sesiones_usuarios_ibfk_1` FOREIGN KEY (`ID_USUARIO`) REFERENCES `usuarios` (`ID_USUARIO`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sesiones_usuarios`
 --
 
 /*!40000 ALTER TABLE `sesiones_usuarios` DISABLE KEYS */;
+INSERT INTO `sesiones_usuarios` (`ID_SESION`,`ID_USUARIO`,`FECHA_SESION`,`IP_USUARIO`) VALUES 
+ (1,1,'2014-5-16/13:33','127.0.0.1');
 /*!40000 ALTER TABLE `sesiones_usuarios` ENABLE KEYS */;
 
 
