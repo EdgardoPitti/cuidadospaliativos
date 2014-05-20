@@ -1,9 +1,6 @@
 <?php
 	include_once('./mvc/modelo/diseno.php');
 	include_once('./mvc/modelo/Accesatabla.php');
-	$condicionsalida = new Accesatabla('condicion_salida');
-	$instituciones = new Accesatabla('institucion');
-	$tipoinstitucion = new Accesatabla('tipo_institucion');
 	$personas = new Accesatabla('datos_pacientes');
 	$tiposangre = new Accesatabla('tipos_sanguineos');
 	$residencia = new Accesatabla('residencia_habitual');
@@ -12,10 +9,14 @@
 	$corregimientos = new Accesatabla('corregimientos');
 	$interconsulta = new Accesatabla('interconsulta');
 	$respuesta = new Accesatabla('respuesta_interconsulta');
-	$profesional = new Accesatabla('PROFESIONALES_SALUD');
-	$datosprofesional = new Accesatabla('DATOS_PROFESIONALES_SALUD');
-	$especialidad = new Accesatabla('ESPECIALIDADES_MEDICAS');
+	$profesional = new Accesatabla('profesionales_salud');
+	$datosprofesional = new Accesatabla('datos_profesionales_salud');
+	$especialidad = new Accesatabla('especialidades_medicas');
 	$atencion = new Accesatabla('atencion_paciente');
+	
+	$rda = new Accesatabla('registro_diario_actividades');
+	$detalle = new Accesatabla('detalle_rda');
+	$actividad = new Accesatabla('actividad');
 	
 	$ds = new Diseno();
 	$sw = 0;
@@ -271,49 +272,60 @@
 						<fieldset style="padding:5px">
 							<legend>
 								Resumen Médico
-							</legend>
+							</legend>';
+		$d = $detalle->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+		if($d){
+			$x = 1;
+			while($d){
+				$rda->buscardonde('ID_RDA = '.$detalle->obtener('ID_RDA').'');
+				$actividad->buscardonde('ID_ACTIVIDAD = '.$detalle->obtener('ID_ACTIVIDAD').'');
+				$datosprofesional->buscardonde('ID_PROFESIONAL = '.$actividad->obtener('ID_PROFESIONAL').'');
+				$cont.='
 							<div class="acordeon">
 								<div>
-									<input id="acordeon1" name="accordion" type="checkbox" />
-									<label for="acordeon1">Fechas</label>
+									<input id="acordeon'.$x.'" name="accordion" type="checkbox" />
+									<label for="acordeon'.$x.'">'.$rda->obtener('FECHA').'</label>
 									<article>
 										<div class="acordeon_gp" style="padding:15px;">
 											<div>
-												<input id="acordeon1-1" name="accordion_sub" type="checkbox" />
-												<label for="acordeon1-1"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
+												<input id="acordeon1-'.$x.'" name="accordion_sub" type="checkbox" />
+												<label for="acordeon1-'.$x.'"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
 												<article style="background:#fdfdfd;">
 													<ul style="padding:5px 0 0 5px;">
-														<li><i class="icon-file"></i> <a href="#">Actividades realizadas</a></li>
+														<li><i class="icon-file"></i> <a data-toggle="modal" href="#act_'.$x.'">Actividades realizadas</a></li>
 														<li><i class="icon-file"></i> <a href="#">Medicamentos Suministrados</a></li>
 													</ul>
 												</article>
 											</div>	
 										</div>
+										<div id="act_'.$x.'" class="modal hide fade in" style="display: none; ">  
+											<div class="modal-header">  
+												<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+												<h4>Actividades Realizadas</h4>  
+											</div>  
+											<div class="modal-body" align="center">  
+												<strong>Actividad Realizada</strong><br>
+												'.$actividad->obtener('ACTIVIDAD').'<br><br>
+												<strong>Profesional Encargado de la Actividad</strong>
+												'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$datosprofesional->obtener('SEGUNDO_NOMBRE').' '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$datosprofesional->obtener('APELLIDO_MATERNO').'
+											</div>  
+											<div class="modal-footer">  
+												<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+											</div>  
+										</div>  			
 									</article>
-							
 								</div>
-							</div>
-							<div class="acordeon">
-								<div>
-									<input id="acordeon2" name="accordion" type="checkbox" />
-									<label for="acordeon2" style="margin-top:5px">Fechas</label>
-									<article>
-										<div class="acordeon_gp" style="padding:15px;">
-											<div>
-												<input id="acordeon2-1" name="accordion_sub" type="checkbox" />
-												<label for="acordeon2-1"><i class="icon-folder-open icon-white"></i> Atención Domiciliaria</label>
-												<article style="background:#fdfdfd;">
-													<ul style="padding:5px 0 0 5px;">
-														<li><i class="icon-file"></i> <a href="#">Actividades realizadas</a></li>
-														<li><i class="icon-file"></i> <a href="#">Medicamentos Suministrados</a></li>
-													</ul>
-												</article>
-											</div>	
-										</div>
-									</article>
-							
-								</div>
-							</div>
+							</div>';
+			
+				$d = $detalle->releer();
+				$x++;
+			}
+		}else{
+			$cont.=  '<center><div style="color:red;">No existe res&uacute;menes para este paciente.</div></center>';
+		
+		}
+			
+		$cont.='
 						</fieldset>
 					</div>
 					<div class="span6">
