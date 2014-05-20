@@ -42,9 +42,13 @@
 					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01"><br>
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
-			<b>Citas del '.$fecha.'</b>			
+			<b style="float:none;clear:both;">Citas del '.$fecha.'</b>	
+			<div style="float:right">
+				<a href="datospdf.php?tipo=agenda&imprimir=1&fecha='.$ds->dime('agno').'-'.$ds->dime('mes').'-'.$ds->dime('dia').'" target="_blank" title="Imprimir Agenda" class="btn btn-default"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
+				<a href="datospdf.php?tipo=agenda&fecha='.$ds->dime('agno').'-'.$ds->dime('mes').'-'.$ds->dime('dia').'" title="Descargar Agenda" class="btn btn-default"><img src="./iconos/download.png" width="24px"> Descargar</a>
+			</div>
 		</center>
-		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;">
+		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;float:none;clear:both">
 			<div class="span2">
 				<a href="./?url=domiciliaria_agenda&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
 					<article class="agenda">
