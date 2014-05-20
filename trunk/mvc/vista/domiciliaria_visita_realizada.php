@@ -20,7 +20,7 @@
 							</tr>
 							<tr align="center">
 								<td>
-									<input type="date" name="inicio" size="120px"> hasta <input type="date" name="final">
+									<input type="date" name="inicio" id="test" size="120px"> hasta <input type="date" id="test" name="final">
 									<button class="btn btn-default" style="margin-bottom:10px;"type="submit"><img src="./iconos/search.png"/></button>
 								</td>
 							</tr>					
