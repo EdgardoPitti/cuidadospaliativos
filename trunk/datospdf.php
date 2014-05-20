@@ -2,13 +2,12 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$personas = new Accesatabla('datos_pacientes');
-	$tiposangre = new Accesatabla('tipos_sanguineos');
+	
 	$residencia = new Accesatabla('residencia_habitual');
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
 	$corregimientos = new Accesatabla('corregimientos');
 	$institucion = new Accesatabla('institucion');
-	$servicios = new Accesatabla('servicios_medicos');
 	$especialidades = new Accesatabla('especialidades_medicas');
 	$surco = new Accesatabla('surco');
 	$cie = new Accesatabla('cie10');
@@ -21,12 +20,15 @@
 	$sexo = new Accesatabla('sexo');
 	$programa = new Accesatabla('programa');
 	$categoria = new Accesatabla('categoria');
+	$datos_profesional = new Accesatabla('datos_profesionales_salud');
+	$profesional = new Accesatabla('profesionales_salud');
 	$ds = new Diseno();
 	
 	$cedula = $_GET['idpac'];
 	$resp = $_GET['idr'];
 	$tipo_surco = $_GET['tiporef'];
 	$tipo_imp = $_GET['visita'];
+	$tipo = $_GET['tipo'];
 	
 	$html='
 <html>
@@ -44,16 +46,14 @@
 	</head>
 	<body>';
 	if(empty($tipo_imp)){
-		
+		$tiposangre = new Accesatabla('tipos_sanguineos');
 		$resultado = new Accesatabla('resultados_examen_diagnostico');
-		$detallediagnostico = new Accesatabla('detalle_diagnostico');
-		$datos_profesional = new Accesatabla('datos_profesionales_salud');
-		$profesional = new Accesatabla('profesionales_salud');
+		$detallediagnostico = new Accesatabla('detalle_diagnostico');		
 		$respuesta = new Accesatabla('respuesta_referencia');
 
 		$cont_gral='
 			<center style="margin-top:-30px">
-				<h3 class="fd-title" style="font-size:16px">SISTEMA ÚNICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
+				<h3 class="fd-title" style="font-size:16px">SISTEMA ÃšNICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
 			</center>';
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$ced = $personas->obtener('NO_CEDULA');
@@ -272,7 +272,7 @@
 							<table class="tabla" width="100%">
 								<tr class="fd-head-tabla">
 									<th>Hora</th>
-									<th>Presión Arterial</th>
+									<th>PresiÃ³n Arterial</th>
 									<th>Frecuencia Cardiaca</th>
 									<th>Frecuencia Respiratoria</th>
 									<th>Frecuencia Cardiaca Fetal</th>
@@ -302,7 +302,7 @@
 				<table class="tabla"  width="100%" style="margin:7px 0px;text-align:center;">
 					<tr class="fd-head-tabla">
 						<th width="80px">Tipo de Examen</th>
-						<th>Diagnóstico</th>
+						<th>DiagnÃ³stico</th>
 						<th style="width:60px">CIE-10</th>
 						<th>Frecuencia</th>
 						<th>Observaciones</th>
@@ -504,7 +504,6 @@
 	}else{
 		$rvd = new Accesatabla('registro_visitas_domiciliarias');		
 		$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
-
 		$inicio = $_GET['inicio'];
 		$final = $_GET['final'];
 		$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('agno');
@@ -613,11 +612,30 @@
 							<td></td>
 							<td></td>
 						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
 					</table>
 				</div>
 
 			</div>
 			';
+	}
+	if($tipo = 'agenda'){
+		$cita = new Accesatabla('citas_medicas');
+		$equipo = new Accesatabla('equipo_medico');
+		$cita->buscardonde('FECHA = "'.$_GET['fecha'].'"');
+
+		$html.='
+
+		';
 	}
 	$html.='	
 	</body>
