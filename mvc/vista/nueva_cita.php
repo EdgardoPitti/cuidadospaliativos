@@ -40,6 +40,13 @@
 		$disabled = 'disabled';
 		$fecha = $citas->obtener('FECHA');
 		$idequipo = $citas->obtener('ID_EQUIPO_MEDICO');
+		if($citas->obtener('RESERVADA') == 1){
+			$si = 'checked';
+			$no='';
+		}else{
+			$no = 'checked';
+			$si='';
+		}
 	}
 	$hora = '<select id="hora" name="hora">
 				<option></option>
@@ -90,13 +97,15 @@
 					$profesional->buscardonde('ID_PROFESIONAL = '.$citas->obtener('ID_PROFESIONAL').'');
 					$paciente->buscardonde('ID_PACIENTE = '.$citas->obtener('ID_PACIENTE').'');
 					$servicios->buscardonde('ID_SERVICIO = '.$citas->obtener('ID_SERVICIO').'');
+
+					
 					$cont.='		<tr>
 										<td>'.$citas->obtener('HORA').'</td>
 										<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$servicios->obtener('DESCRIPCION').'</td>
 										<td>
-											<input type="radio" id="reservada" name="reservada" value="1" checked '.$si.'> Si <input type="radio" id="reservada" name="reservada" value="0" '.$no.'> No 
+											<input type="radio" id="reservada" name="reservada" value="1" '.$si.'> Si <input type="radio" id="reservada" name="reservada" value="0" '.$no.'> No 
 										</td>
 									</tr>';
 					$c = $citas->releer();
@@ -125,11 +134,11 @@
 									</tr>
 								</tbody>
 							</table>
-							<center>
-								<button type="submit" class="btn btn-primary" style="margin-top:8px;">Agregar Nuevo Paciente</button><br>
-								<a  href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>
-							</center>
 						</div>
+						<center>
+							<button type="submit" class="btn btn-primary" style="margin-top:8px;">Agregar Nuevo Paciente</button><br>
+							<a  href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>
+						</center>
 					</div>
 				</div>
 			</form>';

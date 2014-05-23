@@ -73,7 +73,7 @@
 										<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
 									</tr>
 									<tr>
-										<td>'.$cedula.'</td>
+										<td>'.$buscar.'</td>
 										<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
 										<td>'.$sexo.'</td>
 									</tr>

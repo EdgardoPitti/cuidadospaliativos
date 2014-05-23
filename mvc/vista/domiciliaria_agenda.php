@@ -33,7 +33,11 @@
 		$fecha = $var[2].' de '.$ds->dime('mes-'.$var[1].'').' del '.$var[0].'';
 		$date = $_POST['fecha'];
 		$_SESSION['fecha'] = $var;
+		$fechaelegida = $_POST['fecha'];
+	}else{
+		$fechaelegida = $ds->dime('agno').'-'.$ds->dime('mes').'-'.$ds->dime('dia');
 	}
+
 	
 	$cont='
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>		
@@ -42,12 +46,12 @@
 					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01"><br>
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
-			<b style="float:none;clear:both;">Citas del '.$fecha.'</b>	
-			<div style="float:right">
-				<a href="datospdf.php?tipo=agenda&imprimir=1&fecha='.$ds->dime('agno').'-'.$ds->dime('mes').'-'.$ds->dime('dia').'" target="_blank" title="Imprimir Agenda" class="btn btn-default"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
-				<a href="datospdf.php?tipo=agenda&fecha='.$ds->dime('agno').'-'.$ds->dime('mes').'-'.$ds->dime('dia').'" title="Descargar Agenda" class="btn btn-default"><img src="./iconos/download.png" width="24px"> Descargar</a>
-			</div>
+			<b style="float:none;clear:both">Citas del '.$fecha.'</b>	
 		</center>
+			<div style="float:right;postion:absolute;right:0px;top:0px;bottom:0px">
+				<a href="datospdf.php?agenda=1&imprimir=1&fecha='.$fechaelegida.'" target="_blank" title="Imprimir Agenda" class="btn btn-default"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
+				<a href="datospdf.php?agenda=1&fecha='.$fechaelegida.'" title="Descargar Agenda" class="btn btn-default"><img src="./iconos/download.png" width="24px"> Descargar</a>
+			</div>
 		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;float:none;clear:both">
 			<div class="span2">
 				<a href="./?url=domiciliaria_agenda&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
@@ -95,21 +99,39 @@
 		if($c){
 			$cont.='
 								<td>
+						<div class="overflow overthrow" style="max-height:170px;padding:0px 5px;" align="center">
+							<table class="table2 borde-tabla table-hover" style="width:100%;">
+								<thead>
+									<tr class="fd-table">
+										<th>C&eacute;dula</th>
+										<th>Paciente</th>
+										<th>Profesional</th>
+										<th>Servicio</th>
+										<th style="min-width:20px"></th>
+									</tr>
+								</thead>
 			';
 			while($c){
 				$paciente->buscardonde('ID_PACIENTE = '.$citas->obtener('ID_PACIENTE').'');
 				$profesional->buscardonde('ID_PROFESIONAL = '.$citas->obtener('ID_PROFESIONAL').'');
 				$servicio->buscardonde('ID_SERVICIO = '.$citas->obtener('ID_SERVICIO').'');
 				$cont.='
-					
-									'.$paciente->obtener('NO_CEDULA').' 
-									'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - 
-									'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - 
-									'.$servicio->obtener('DESCRIPCION').' <a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a><br>						
+						
+								<tbody>
+									<tr>
+										<td>'.$paciente->obtener('NO_CEDULA').' </td>
+										<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - </td>
+										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - </td>
+										<td>'.$servicio->obtener('DESCRIPCION').' </td>
+										<td><a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a></td>
+									</tr>
+								</tbody>							
 				';
 				$c = $citas->releer();
 			}
 			$cont.='			
+							</table>
+						</div>
 									<a href="./?url=nueva_cita&h='.$x.'&sbm=1&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
 								</td>';
 		}else{

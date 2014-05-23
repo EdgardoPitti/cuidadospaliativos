@@ -28,24 +28,27 @@
 						
 					</form>
 				</center>';
-				if(!empty($inicio) and !empty($final)){
-					$cont.='<div style="float:right;margin-bottom:4px;">
-								<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'&imprimir=1" class="btn btn-default" target="_blank"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
-								<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
-							</div>';
-				}
-				$cont.='
-				
-				<center style="float:none;clear:both;">
-					';
 			$n = 1;
 			if(empty($inicio) OR empty($final)){
 				$r = $rvd->buscardonde('ID_RVD > 0 ORDER BY FECHA');
-				$p = '';
+				$p = '';				
 			}else{
 				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');
-				$p = ' desde '.$inicio.' hasta '.$final.'';
+				if($r <> 0){
+					if(!empty($inicio) and !empty($final)){
+						$cont.='<div style="float:right;margin-bottom:4px;" >
+									<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'&imprimir=1" class="btn btn-default" target="_blank" ><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
+									<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+								</div>';
+					}			
+				}
+				$p = ' desde '.$inicio.' hasta '.$final.'';				
 			}
+						
+			$cont.='
+				
+				<center style="float:none;clear:both;">
+					';
 			$cont.='<div class="overflow overthrow">';
 			if($r){
 				$cont.='
@@ -65,7 +68,7 @@
 							<tbody>
 				';
 			}else{
-				$cont.='<div style="color:red;">No estan registradas Actividades'.$p.'.</div>';
+				$cont.='<div style="color:red;">No estan registradas Actividades '.$p.'.</div>';
 			}
 			while($r){
 				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
