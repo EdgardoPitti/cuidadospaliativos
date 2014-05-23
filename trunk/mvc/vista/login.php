@@ -11,7 +11,7 @@
 							';
 	$cont.= $_SESSION['errorlogin'];
 	$cont.='
-							<form id="form" method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
+							<form method="POST" action="./?url=verificar" accept-charset="UTF-8" >						
 								<center>
 									<div class="input-prepend">
 									  <span class="add-on"><i class="icon-user"></i></span>
@@ -23,7 +23,7 @@
 									</div>																		
 									<div align="center">
 										<button type="submit" name="submit" class="btn btn-primary btn-block"><b>Iniciar</b></button>
-										<small style="padding-top:5px;float:right;"><a href="./?url=recuperar_acceso">&iquest;Olvidaste la Contrase&ntilde;a?</a></small>
+										<span style="padding-top:5px;float:right;font-size:14px"><a href="./?url=recuperar_acceso">&iquest;Olvidaste la Contrase&ntilde;a?</a></span>
 									</div>
 								</center>
 							</form>    

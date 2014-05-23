@@ -45,6 +45,6 @@
 				$id = $matriz[0][id];
 			}
 		}
-		echo '<script>location.href="./?url=nueva_cita&id='.$id.'&h='.$h.'&sbm=1"</script>';
+		echo '<script>alert('.$msj.');location.href="./?url=nueva_cita&id='.$id.'&h='.$h.'&sbm=1"</script>';
 	}
 ?>

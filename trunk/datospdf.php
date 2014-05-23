@@ -2,7 +2,6 @@
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
 	$personas = new Accesatabla('datos_pacientes');
-	
 	$residencia = new Accesatabla('residencia_habitual');
 	$provincias = new Accesatabla('provincias');
 	$distritos = new Accesatabla('distritos');
@@ -22,13 +21,15 @@
 	$categoria = new Accesatabla('categoria');
 	$datos_profesional = new Accesatabla('datos_profesionales_salud');
 	$profesional = new Accesatabla('profesionales_salud');
+	$servicios = new Accesatabla('servicios_medicos');		
+
 	$ds = new Diseno();
 	
 	$cedula = $_GET['idpac'];
 	$resp = $_GET['idr'];
 	$tipo_surco = $_GET['tiporef'];
 	$tipo_imp = $_GET['visita'];
-	$tipo = $_GET['tipo'];
+	$agenda = $_GET['agenda'];
 	
 	$html='
 <html>
@@ -45,7 +46,57 @@
 		</style>
 	</head>
 	<body>';
-	if(empty($tipo_imp)){
+	if(!empty($agenda)){
+		$archivofinal = 'Agenda-del-'.$_GET['fecha'].'';
+		$cita = new Accesatabla('citas_medicas');
+		
+		$var = explode("-", $_GET['fecha']);
+		 
+		$html.='	
+				<center style="margin-top:-30px">
+					<h3 class="fd-title" style="font-size:16px">AGENDA DE CITAS M&Eacute;DICAS</h3>				
+				</center>
+				<div style="width:100%;font-size:14px">
+					<b>Citas del d&iacute;a '.$var[2].' de '.$ds->dime('mes-'.$var[1].'').' de '.$var[0].'</b><br><br>
+					<table class="tabla" width="100%" cellspacing="0" style="font-size:14px">
+						<tr class="fd-head-tabla">
+							<th style="width:100px">No Equipo M&eacute;dico</th>
+							<th>Hora</th>
+							<th>C&eacute;dula</th>
+							<th>Paciente</th>
+							<th>Profesional</th>
+							<th>Servicio</th>
+						</tr>';
+			
+				$h = $cita->buscardonde('FECHA = "'.$_GET['fecha'].'" ORDER BY ID_EQUIPO_MEDICO, HORA');
+				if($h == 0){
+					echo '<script>alert("No existen pacientes en la agenda");location.href="./?url=domiciliaria_agenda&sbm=1"</script>';
+				}else{
+					while($h){					
+						$personas->buscardonde('ID_PACIENTE = '.$cita->obtener('ID_PACIENTE').'');
+						$datos_profesional->buscardonde('ID_PROFESIONAL = '.$cita->obtener('ID_PROFESIONAL').'');
+						$servicios->buscardonde('ID_SERVICIO = '.$cita->obtener('ID_SERVICIO').'');
+
+								$html.='
+								<tr align="center">
+									<td>'.$cita->obtener('ID_EQUIPO_MEDICO').'</td>
+									<td width="70px">'.$cita->obtener('HORA').'</td>
+									<td>'.$personas->obtener('NO_CEDULA').'</td>
+									<td>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</td>
+									<td>'.$datos_profesional->obtener('PRIMER_NOMBRE').' '.$datos_profesional->obtener('SEGUNDO_NOMBRE').' '.$datos_profesional->obtener('APELLIDO_PATERNO').' '.$datos_profesional->obtener('APELLIDO_MATERNO').'</td>
+									<td>'.$servicios->obtener('DESCRIPCION').'</td>						
+								</tr>';
+		
+						$h = $cita->releer();
+					}
+				}			
+			$html.='
+					</table>
+				</div>
+			';
+		
+		
+	}elseif(empty($tipo_imp)){
 		$tiposangre = new Accesatabla('tipos_sanguineos');
 		$resultado = new Accesatabla('resultados_examen_diagnostico');
 		$detallediagnostico = new Accesatabla('detalle_diagnostico');		
@@ -53,7 +104,7 @@
 
 		$cont_gral='
 			<center style="margin-top:-30px">
-				<h3 class="fd-title" style="font-size:16px">SISTEMA ÚNICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
+				<h3 class="fd-title" style="font-size:16px">SISTEMA &Uacute;NICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
 			</center>';
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$ced = $personas->obtener('NO_CEDULA');
@@ -88,7 +139,7 @@
 				$inst_receptora = $institucion->obtener('DENOMINACION');
 				
 			$html.='
-				<span style="font-size:18px;font-weight:bold;">Referencia</span><br>
+				<center><span style="font-size:18px;font-weight:bold;">Referencia</span></center><br>
 				<div style="width:100%;">
 					<table style="width:100%;">
 						<tr align="center">
@@ -140,7 +191,7 @@
 							</td>
 						</tr>						
 					</table>
-					<h3 style="font-weight:bold;text-align:center">Identificaci&oacute;n del Paciente</h3>
+					<h3 style="font-weight:bold;text-align:center;text-decoration:underline">Identificaci&oacute;n del Paciente</h3>
 					<table width="100%">						
 						<tr align="center">
 							<td style="border-bottom:1px solid #333;">'.$personas->obtener('PRIMER_NOMBRE').'</td>
@@ -210,30 +261,30 @@
 					</table>';
 
 					if($surco->obtener('ID_MOTIVO_REFERENCIA') == 1){
-						$selec1='<img src="iconos/gancho.png">';
+						$select1='<img src="iconos/gancho.png">';
 					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 2){
-						$selec2='<img src="iconos/gancho.png">';
+						$select2='<img src="iconos/gancho.png">';
 					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 3){
-						$selec3='<img src="iconos/gancho.png">';
+						$select3='<img src="iconos/gancho.png">';
 					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 4){
-						$selec4='<img src="iconos/gancho.png">';
+						$select4='<img src="iconos/gancho.png">';
 					}elseif($surco->obtener('ID_MOTIVO_REFERENCIA') == 5){
-						$selec5='<img src="iconos/gancho.png">';
+						$select5='<img src="iconos/gancho.png">';
 					}else{
-						$selec6='<img src="iconos/gancho.png">';
+						$select6='<img src="iconos/gancho.png">';
 					}
 			$html.='
 					<div class="sub-title" style="margin:8px 0px;">Motivo de Referencia</div>		
 					<table width="100%" style="margin-bottom:5px;">
 						<tr>
-							<td width="25%">1. Servicio No Ofertado </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec1.'</div></td>
-							<td width="25%">2. Ausencia del Profesional </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec2.'</div></td>
-							<td width="25%">3. Falta de Equipos </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec3.'</div></td>
+							<td width="25%">1. Servicio No Ofertado </td> <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$select1.'</div></td>
+							<td width="25%">2. Ausencia del Profesional </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$select2.'</div></td>
+							<td width="25%">3. Falta de Equipos </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$select3.'</div></td>
 						</tr>
 						<tr>
-							<td width="25%">4. Falta de Insumos </td>  <td align="center" width="4.16%" ><div style="border:1px solid #333;width:22px;height:20px;">'.$selec4.'</div></td>
-							<td width="25%">5. Cese de Actividades </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec5.'</div></td>
-							<td width="25%">6. Otro </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$selec6.'</div></td>
+							<td width="25%">4. Falta de Insumos </td>  <td align="center" width="4.16%" ><div style="border:1px solid #333;width:22px;height:20px;">'.$select4.'</div></td>
+							<td width="25%">5. Cese de Actividades </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$select5.'</div></td>
+							<td width="25%">6. Otro </td>  <td align="center"  width="4.16%"><div style="border:1px solid #333;width:22px;height:20px;">'.$select6.'</div></td>
 						</tr>
 					</table>
 				</div>';
@@ -269,10 +320,10 @@
 					<tr>
 						<th width="10%">Examen F&iacute;sico: </th>
 						<td width="90%">
-							<table class="tabla" width="100%">
+							<table class="tabla" width="100%" cellspacing="0px">
 								<tr class="fd-head-tabla">
 									<th>Hora</th>
-									<th>Presión Arterial</th>
+									<th>Presi&oacute;n Arterial</th>
 									<th>Frecuencia Cardiaca</th>
 									<th>Frecuencia Respiratoria</th>
 									<th>Frecuencia Cardiaca Fetal</th>
@@ -299,10 +350,10 @@
 					</tr>
 				</table>
 				<div class="sub-title">Resultados de Examen / Diagn&oacute;stico</div>
-				<table class="tabla"  width="100%" style="margin:7px 0px;text-align:center;">
+				<table class="tabla"  width="100%" cellspacing="0px" style="margin:7px 0px;text-align:center;font-size:14px">
 					<tr class="fd-head-tabla">
 						<th width="80px">Tipo de Examen</th>
-						<th>Diagnóstico</th>
+						<th>Diagn&oacute;stico</th>
 						<th style="width:60px">CIE-10</th>
 						<th>Frecuencia</th>
 						<th>Observaciones</th>
@@ -464,7 +515,8 @@
 							<td>Reevaluaci&oacute;n Especializada: </td> 
 							<td align="right">No</td> <td> <div style="border:1px solid #333;width:22px;height:20px;">'.$selec1.'</div></td>
 							<td align="right">Si</td> <td> <div style="border:1px solid #333;width:22px;height:20px;">'.$selec2.'</div></td>
-							<td align="left">Fecha: <p style="text-decoration:underline">'.$respuesta->obtener('FECHA').'</p></td>
+							<td align="right">Fecha: </td>
+							<td><p style="text-decoration:underline">'.$respuesta->obtener('FECHA').'</p></td>
 						</tr> 
 					</table>
 					<div class="sub-title" style="margin:8px 0px;">Datos del Profesional</div>';
@@ -504,25 +556,32 @@
 	}else{
 		$rvd = new Accesatabla('registro_visitas_domiciliarias');		
 		$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
+		
 		$inicio = $_GET['inicio'];
 		$final = $_GET['final'];
 		$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('agno');
-		$archivofinal = 'registro-visitas-domiciliarias-'.$ds->dime('dia').'/'.$ds->dime('mes-'.$ds->dime('mes').'').'/'.$ds->dime('agno').'';
+		$archivofinal = 'Registro-Visitas-Domiciliarias-'.$ds->dime('dia').'/'.$ds->dime('mes-'.$ds->dime('mes').'').'/'.$ds->dime('agno').'';
+		$horasatencion =0;	
+		$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');			
+		while($r){
+			$horasatencion += $rvd->obtener('HORAS_DE_ATENCION');
+			$r = $rvd->releer();
+		}
 		$html.='
 			<center>
 				<h3 class="fd-title">REGISTRO DIARIO DE VISITAS DOMICILIARIAS</h3>				
 			</center>
-			<div style="width:100%;font-size:12px;">
-				<table style="width:100%">
+			<div style="width:100%;font-size:14px;">
+				<table style="width:100%;">
 					<tr>
 						<td><b>Fecha:</b> '.$fecha.'</td>
-						<td><b>Horas Utilizadas:</b> </td>
-					</tr>					
-					<tr>
-						<td colspan="2"><b>Equipo M&eacute;dico:</b> </td>
+						<td><b>Horas Utilizadas:</b> '.$horasatencion.' </td>
 					</tr>
 				</table>
-				<table class="tabla" width="100%">					
+				<div width="100%">
+					<h3 style="text-align:center;text-decoration:underline;">Visitas Realizadas de '.$inicio.' hasta '.$final.'</h3>
+				</div>
+				<table class="tabla" width="100%" cellspacing="0" style="font-size:12px">					
 					<tr class="fd-head-tabla">
 						<th style="min-width:20px;">No<br> Orden</th>
 						<th>Fecha</th>
@@ -533,31 +592,21 @@
 						<th>1. Masc.<br> 2. Fem.</th>
 						<th>C&eacute;dula</th>
 						<th>Nombre del Visitado</th>
-						<th>Categor&iacute; (Programa)</th>
+						<th>Categor&iacute;a (Programa)</th>
 						<th>Observaciones</th>
 					</tr>';
 			$n = 1;			
-			$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');			
-			while($r){
-				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
+			$r = $detalle->buscardonde('SECUENCIA > 0');	
+			while($r){				
+				$d = $rvd->buscardonde('ID_RVD = '.$detalle->obtener('ID_RVD').' AND FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');						
+				while($d){
+					
+					$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
 				$html.='							
 						<tr align="center">
-							<td><b>'.$n.'</b></td>
+							<td><b>'.$n++.'</b></td>
 							<td>'.$rvd->obtener('FECHA').'</td>
 							<td>'.$institucion->obtener('DENOMINACION').'</td>';
-				$sw = 1;
-				$d = $detalle->buscardonde('ID_RVD = '.$rvd->obtener('ID_RVD').'');	
-				$d1 = $d;
-				while($d){
-					if($sw == 1){
-						$sw = 0;
-					}else{
-						$html.='							
-							<tr align="center">
-								<td></td>
-								<td></td>
-								<td></td>';					
-					}
 					$personas->buscardonde('ID_PACIENTE = '.$detalle->obtener('ID_PACIENTE').'');
 					$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 					$zona->buscardonde('ID_ZONA = '.$residencia->obtener('ID_ZONA').'');
@@ -570,73 +619,24 @@
 									<td>'.$personas->obtener('NO_CEDULA').'</td>
 						  			<td>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').'</td>';
 
-					$categoria->buscardonde('ID_PROGRAMA = '.$detalle->obtener('ID_PROGRAMA').'');
+					$categoria->buscardonde('ID_CATEGORIA = '.$detalle->obtener('ID_CATEGORIA').'');
 					$programa->buscardonde('ID_PROGRAMA = '.$detalle->obtener('ID_PROGRAMA').'');			
 						$html.= '	<td>'.$categoria->obtener('CATEGORIA').' ('.$programa->obtener('PROGRAMA').')</td>
 									<td>'.$detalle->obtener('OBSERVACIONES').'</td>
 								</tr>
 						';
 
-					$d = $detalle->releer();
+					$d = $rvd->releer();
 				}
-				if(!$d1){
-					$html.='
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-							</tr>
-					';			
-
-				}
-				$r = $rvd->releer();
-				$n++;
+				$r = $detalle->releer();
+				
 			}
 			$html.='
 				</table>
-
-				<div style="float:left;width:50%;">
-					<h4 align="center">INTEGRANTES DEL EQUIPO M&Eacute;DICO</h4>
-					<table class="tabla" width="100%">
-						<tr>
-							<th>IDONEIDAD</th>
-							<th>NOMBRE</th>
-							<th>TIPO DE PROFESI&Oacute;N</th>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-
 			</div>
 			';
-	}
-	if($tipo = 'agenda'){
-		$cita = new Accesatabla('citas_medicas');
-		$equipo = new Accesatabla('equipo_medico');
-		$cita->buscardonde('FECHA = "'.$_GET['fecha'].'"');
+	}	
 
-		$html.='
-
-		';
-	}
 	$html.='	
 	</body>
 </html>';

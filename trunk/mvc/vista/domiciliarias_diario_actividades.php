@@ -14,7 +14,7 @@
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
 
 			<center>
-				<form method="POST" action="./?url=domiciliarias_diario_actividades">
+				<form method="POST" action="./?url=domiciliarias_diario_actividades&sbm=1">
 					<table class="tabla-datos">						
 						<tr>
 							<th>Filtrar</th>
