@@ -47,10 +47,6 @@
 								<td>ID Equipo M&eacute;dico: </td>
 								<td><input type="text" id="id_equipo" name="id_equipo" placeholder="ID Equipo M&eacute;dico" required></td>
 							</tr>
-							<tr>
-								<td>Horas de Atencion: </td>
-								<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
-							</tr>
 						</table>						
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
 					</form>
@@ -66,9 +62,6 @@
 									<td><b>Instalaci&oacute;n:</b> '.$instituciones->obtener('DENOMINACION').'<td>
 								</tr><tr align="center">
 									<td><b>ID Equipo M&eacute;dico:</b> '.$rvd->obtener('ID_EQUIPO_MEDICO').'<td>
-								</tr>
-								<tr align="center">
-									<td><b>Horas de Atencion:</b> '.$rvd->obtener('HORAS_DE_ATENCION').' horas</td>
 								</tr>
 							</table>';
 	$cont.='
