@@ -21,11 +21,8 @@
 	$comillas = "'";
 	$ds = new Diseno();
 	$busqueda = $_POST['busqueda'];
-	$busqueda_paciente = $_POST['busqueda_paciente'];
-	if(empty($busqueda) && empty($busqueda_paciente)){
+	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
-	}elseif(empty($busqueda)){
-		$busqueda = $busqueda_paciente;
 	}
 	
 	$script = '
@@ -38,7 +35,8 @@
 			}
 		</script>';
 
-
+	$act = $_GET['act'];
+	
 	if(!empty($busqueda)){
 		$act_boton = $datos->buscardonde('NO_CEDULA = "'.$busqueda.'" OR ID_PACIENTE = '.$busqueda.'');		
 		$idnacionalidad = $datos->obtener('ID_NACIONALIDAD');
@@ -56,6 +54,9 @@
 		$usuarios->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');
 		$autenticacion->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');
 		$preferencias->buscardonde('ID_USUARIO = '.$pacientes->obtener('ID_USUARIO').'');
+		$label ='Editar';
+	}else{
+		$label = 'Capturar';
 	}
 	if(!$act_boton){
 		$boton ='<input type="submit" class="btn btn-primary" value="Guardar"/>';
@@ -64,13 +65,12 @@
 		$cambio ='&ch=1';
 		$boton = '<input type="submit" class="btn btn-primary" value="Guardar Cambios"/>';
 	}
-
-	$act = $_GET['act'];
+	
 	if(!$act){
-		$noactive='active';
-		$active='';
+		$noactive = 'active';
+		$active = '';
 	}else{
-		$active='active';
+		$active = 'active';
 		$noactive='';
 	}
 
@@ -81,7 +81,7 @@
 				<div class="tabbable" id="tabs-2">
 					<ul class="nav nav-tabs">
 						<li class="'.$noactive.'""><a href="#tab1" data-toggle="tab">Buscar</a></li>
-						<li class="'.$active.'""><a href="#tab2" data-toggle="tab">Capturar</a></li>
+						<li class="'.$active.'""><a href="#tab2" data-toggle="tab">'.$label.'</a></li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane '.$noactive.'" id="tab1">
@@ -143,18 +143,7 @@
 								</div>
 							</center>
 						</div>
-						<div class="tab-pane '.$active.'" id="tab2">';
-	$cont.='
-							<center>													
-								<div class="row-fluid">
-									<div class="span12">
-										<form method="POST" aut ocomplete="off"  action="./?url=nuevopaciente&act=1&sbm=5">
-											<input type="text" id="busqueda_paciente" name="busqueda_paciente" placeholder="Buscar Paciente" class="search-query ac_input" /> 
-											<button type="submit" class="btn"><img src="./iconos/search.png"></button>							
-										</form>
-									</div>
-								</div>
-							</center>
+						<div class="tab-pane '.$active.'" id="tab2">
 							<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" id="form" style="display:block;position:relative">
 								<div class="row-fluid">
 									<div class="span6">
