@@ -177,7 +177,7 @@
 		if(!empty($sw)){
 			$url='hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm=3';
 		}else{
-			$url='nuevopaciente&id='.$idpaciente.'&act=1&sbm=5';
+			$url='nuevopaciente&act=1&sbm=5';
 		}
 		echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 	}
