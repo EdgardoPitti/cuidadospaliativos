@@ -30,7 +30,7 @@
 					<tr>
 						<td><strong>'.$n.'.</strong></td>
 						<td class="nombresala">'.$sala->obtener('SALA').'</td>
-						<td><a href="./?url=salas&id='.$sala->obtener('ID_SALA').'"><img src="./iconos/search.png"></a></td>
+						<td><a href="./?url=salas&id='.$sala->obtener('ID_SALA').'&sbm=5"><img src="./iconos/search.png"></a></td>
 					</tr>
 		';
 		$n++;

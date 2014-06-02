@@ -20,31 +20,20 @@
 		$cedpaciente = $_POST['cedpaciente'];
 		$profesional->buscardonde('NO_CEDULA = "'.$cedprofesional.'"');
 		$pacientes->buscardonde('NO_CEDULA = "'.$cedpaciente.'"');
-		$c = $citas_medicas->buscardonde('FECHA = '.$fecha.' AND HORA = "'.$hora.'" AND ID_PACIENTE = '.$pacientes->obtener('ID_PACIENTE').' AND RESERVADA = 1');
-		if($c){
-			$msj = 'Este Paciente ya tiene cita para esta fecha y hora.';
-		}else{
-			if(empty($id)){				
-					$citas_medicas->nuevo();	
-					$citas_medicas->colocar("HORA", $hora);
-										
-			}else{
-					$citas_medicas->buscardonde('ID_CITA = '.$id.'');
-			}
-			$citas_medicas->colocar("ID_PACIENTE", $pacientes->obtener('ID_PACIENTE'));				
-			$citas_medicas->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
-			$citas_medicas->colocar("ID_SERVICIO", $_POST['servicio']);
-			$citas_medicas->colocar("ID_EQUIPO_MEDICO", $_POST['cod_equipo']);
-			$citas_medicas->colocar("FECHA", '"'.$fecha.'"');
-			$citas_medicas->colocar("RESERVADA", $_POST['reservada']);
-			$citas_medicas->salvar();
-			
-			if(empty($id)){
-				$sql = 'SELECT MAX(ID_CITA) AS id FROM citas_medicas';
-				$matriz = $ds->db->obtenerarreglo($sql);
-				$id = $matriz[0][id];
-			}
+		$citas_medicas->nuevo();	
+		$citas_medicas->colocar("HORA", $hora);
+		$citas_medicas->colocar("ID_PACIENTE", $pacientes->obtener('ID_PACIENTE'));				
+		$citas_medicas->colocar("ID_PROFESIONAL", $profesional->obtener('ID_PROFESIONAL'));
+		$citas_medicas->colocar("ID_SERVICIO", $_POST['servicio']);
+		$citas_medicas->colocar("ID_EQUIPO_MEDICO", $_POST['cod_equipo']);
+		$citas_medicas->colocar("FECHA", '"'.$fecha.'"');
+		$citas_medicas->colocar("RESERVADA", $_POST['reservada']);
+		$citas_medicas->salvar();	
+		if(empty($id)){
+			$sql = 'SELECT MAX(ID_CITA) AS id FROM citas_medicas';
+			$matriz = $ds->db->obtenerarreglo($sql);
+			$id = $matriz[0][id];
 		}
-		echo '<script>alert('.$msj.');location.href="./?url=nueva_cita&id='.$id.'&h='.$h.'&sbm=1"</script>';
+		echo '<script>location.href="./?url=nueva_cita&id='.$id.'&sbm=1"</script>';
 	}
 ?>
