@@ -57,6 +57,7 @@
 				$detalle_rvd->salvar();
 				$_SESSION[errorpa] = '';
 			}
+			
 			$rvd->buscardonde('ID_RVD = '.$id.'');
 			$sql = 'SELECT COUNT(ID_RVD) AS cantidad FROM detalle_registro_visitas_domiciliarias WHERE ID_RVD = '.$id.'';
 			$arreglo = $ds->db->obtenerArreglo($sql);

@@ -7,6 +7,7 @@
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$detalle_rda = new Accesatabla('detalle_rda');
 	$equipo = new Accesatabla('detalle_equipo_medico');
+	$equipos = new Accesatabla('equipo_medico');
 	$especialidad = new Accesatabla('especialidades_medicas');
 	$zona = new Accesatabla('zona');
 	$frecuencia = new Accesatabla('frecuencia');
@@ -16,9 +17,11 @@
 	$diagnostico = new Accesatabla('detalle_diagnostico');
 	$cie10 = new Accesatabla('cie10');
 	$actividad = new Accesatabla('actividad');
+	$t = $_GET['t'];
+	$sbm = $_GET['sbm'];
 	$cont.='
 		
-			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=domiciliarias_diario_actividades&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>Registro Diario de Actividades</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=domiciliarias_diario_actividades&sbm='.$sbm.'&t='.$t.'" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>Registro Diario de Actividades</h3>
 				<div class="row-fluid">					
 					<div class="span12">';
 
@@ -30,7 +33,7 @@
 	
 		$cont.='
 					<center>
-						<form id="form" method="POST" action="./?url=agregar_datos_rda&sbm=1">
+						<form id="form" method="POST" action="./?url=agregar_datos_rda&sbm='.$sbm.'&t='.$t.'">
 							<table width="40%" >
 								<tr>
 									<td>Fecha:</td>
@@ -53,12 +56,19 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Horas de Atenci&oacute;n:</td>
-									<td align="center"><input type="number" id="horas" name="horas" min="1" max="24" style="width:50px;" value="1" required="required"> horas</td>
-								</tr>
-								<tr>
 									<td>ID Equipo M&eacute;dico: </td>
-									<td align="center"><input type="text" id="equipo_medico" name="equipo_medico" placeholder="ID Equipo M&eacute;dico" required="required"></td>
+									<td align="center"><select id="equipo_medico" name="equipo_medico" required="required">
+															<option value="0">Seleccione</option>';
+		$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
+		while($e){
+			$cont.='
+															<option value="'.$equipos->obtener('ID_EQUIPO_MEDICO').'">'.$equipos->obtener('ID_EQUIPO_MEDICO').'</option>
+			';
+			$e = $equipos->releer();
+		}
+		$cont.='
+														</select>
+									</td>
 								</tr>
 							</table>
 							
@@ -185,7 +195,7 @@
 			$e = $estado_paciente->releer();
 		}
 		$cont.='
-			<form id="form2" method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1">			
+			<form id="form2" method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1&t='.$t.'">			
 				<div class="row-fluid">
 					<div class="span4">
 						

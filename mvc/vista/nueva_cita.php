@@ -8,6 +8,7 @@
 	$profesional_salud = new Accesatabla('profesionales_salud');
 	$paciente = new Accesatabla('datos_pacientes');
 	$equipo = new Accesatabla('detalle_equipo_medico');
+	$equipos = new Accesatabla('equipo_medico');
 	$especialidades = new Accesatabla('especialidades_medicas');
 	$id = $_GET['id'];
 	$c = $_GET['c'];
@@ -73,7 +74,22 @@
 					<div class="span6" align="center" >
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>
 						<label for="cod_equipo">Seleccione el equipo m&eacute;dico: </label>
-						<input type="text" name="cod_equipo" id="cod_equipo" placeholder="ID del Equipo M&eacute;dico" value="'.$idequipo.'" required="required" '.$readonly.' >
+						<select id="cod_equipo" name="cod_equipo" required>
+							<option value="0">Seleccione</option>';
+	$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
+	while($e){
+		if($idequipo == $equipos->obtener('ID_EQUIPO_MEDICO')){
+			$selected = 'selected';
+		}else{
+			$selected = '';
+		}
+		$cont.='
+							<option value="'.$equipos->obtener('ID_EQUIPO_MEDICO').'" '.$selected.'>'.$equipos->obtener('ID_EQUIPO_MEDICO').'</option>
+		';
+		$e = $equipo->releer();
+	}
+	$cont.='
+						</select>
 					</div>
 				</div>
 				<div class="row-fluid">

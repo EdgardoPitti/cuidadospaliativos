@@ -8,6 +8,7 @@
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$paciente = new Accesatabla('datos_pacientes');
 	$servicio = new Accesatabla('servicios_medicos');
+	$equipos = new Accesatabla('equipo_medico');
 	$c = $_GET['c'];
 	$contador = $c;
 	for($x=0;$x<$c;$x++){
@@ -43,7 +44,24 @@
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>		
 		<center>
 			<form method="POST" action="./?url=domiciliaria_agenda&sbm=1">
-					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01"><br>
+					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01" value="'.$_POST['fecha'].'"><br>
+					ID Equipo M&eacute;dico: <select id="equipo" name="equipo">
+												<option value="0">Seleccione</option>';
+	$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
+	while($e){
+		if($_POST['equipo'] == $equipos->obtener('ID_EQUIPO_MEDICO')){
+				$selected = 'selected';
+		}else{
+				$selected = '';
+		}
+		$cont.='
+												<option value="'.$equipos->obtener('ID_EQUIPO_MEDICO').'" '.$selected.'>'.$equipos->obtener('ID_EQUIPO_MEDICO').'</option>
+		';
+		$e = $equipos->releer();
+	}
+	$cont.='
+											</select>
+					<br>
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
 			<b style="float:none;clear:both">Citas del '.$fecha.'</b>	
@@ -95,7 +113,12 @@
 						<tr>
 							<td width="70px" style="background:#d9d9d9;font-weight:bold;padding-top:15px">'.$hora.'</td>
 		';
-		$c = $citas->buscardonde('FECHA = "'.$date.'" AND HORA = "'.$hora.'" AND RESERVADA = 1');
+		if(empty($_POST['equipo'])){
+			$condicion = '';
+		}else{
+			$condicion = 'AND ID_EQUIPO_MEDICO = '.$_POST['equipo'].'';
+		}
+		$c = $citas->buscardonde('FECHA = "'.$date.'" AND HORA = "'.$hora.'" AND RESERVADA = 1 '.$condicion.'');
 		if($c){
 			$cont.='
 								<td>

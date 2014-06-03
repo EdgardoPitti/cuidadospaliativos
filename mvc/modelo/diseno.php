@@ -593,7 +593,7 @@ class Diseno {
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=1" title="Registro de Actividades Diarias">Registro de Actividades Diarias</a></li>
+								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=1&t=1" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
 							</ul>
 						</div>
 						<div>
@@ -618,14 +618,10 @@ class Diseno {
 					<!--AMBULATORIA-->
 					<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:'.$display2.';">			
 						<h3>Men&uacute; Atenci&oacute;n Ambulatoria</h3><hr>
-						<div style="margin-bott om:2px;">
-							<input id="ac-3" name="acordeon" type="radio" />
-							<label for="ac-3">Registro Diario de Actividades</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="#" title="Agenda"><i>Agenda</i></a></li>				
-								</ul>
-							</article>	
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=2&t=2" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
+							</ul>
 						</div>
 						<div>
 							<input id="ac-4" name="acordeon" type="radio" />
@@ -652,6 +648,11 @@ class Diseno {
 					<!--HOSPITALARIA-->
 					<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:'.$display3.';">			
 						<h3>Men&uacute; Atenci&oacute;n Hospitalaria</h3><hr>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=3&t=3" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
+							</ul>
+						</div>
 						<div style="margin-bott om:2px;">
 							<input id="ac-6" name="acordeon" type="radio" />
 							<label for="ac-6">RAE</label>
