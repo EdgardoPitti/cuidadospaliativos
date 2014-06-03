@@ -5,7 +5,8 @@
 	$rda = new Accesatabla('registro_diario_actividades');
 	$institucion = new Accesatabla('institucion');
 	$detalle = new Accesatabla('detalle_rda');
-	
+	$t = $_GET['t'];
+	$sbm = $_GET['sbm'];
 	$inicio = $_POST['inicio'];
 	$final = $_POST['final'];
 	$cont.='
@@ -14,7 +15,7 @@
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
 
 			<center>
-				<form method="POST" action="./?url=domiciliarias_diario_actividades&sbm=1">
+				<form method="POST" action="./?url=domiciliarias_diario_actividades&sbm='.$sbm.'&t='.$t.'">
 					<table class="tabla-datos">						
 						<tr>
 							<th>Filtrar</th>
@@ -29,10 +30,10 @@
 				</form>
 			</center>';
 	if(empty($inicio) OR empty($final)){
-		$r = $rda->buscardonde('ID_RDA > 0');
+		$r = $rda->buscardonde('ID_RDA > 0 AND TIPO_ATENCION = '.$t.'');
 		$p = '';
 	}else{
-		$r = $rda->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"');
+		$r = $rda->buscardonde('TIPO_ATENCION = '.$t.' AND FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"');
 		$p = ' desde '.$inicio.' hasta '.$final.'';
 	}
 	if($r){
@@ -72,7 +73,7 @@
 					$cont.='
 									<td>'.$matriz[0][cantidad].'</td>
 									<td>'.$rda->obtener('HORAS_DE_ATENCION').'</td>
-									<td><a href="./?url=domiciliarias_registro_actividades&id='.$rda->obtener('ID_RDA').'&sbm=1" title="Ver o Editar Actividad"><img src="./iconos/search.png"></a></td>
+									<td><a href="./?url=domiciliarias_registro_actividades&id='.$rda->obtener('ID_RDA').'&sbm='.$sbm.'&t='.$t.'" title="Ver o Editar Actividad"><img src="./iconos/search.png"></a></td>
 								</tr>
 							</tbody>
 		';
@@ -83,7 +84,7 @@
 					</table>
 				</div>
 			<center>
-				<a href="./?url=domiciliarias_registro_actividades&sbm=1" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
+				<a href="./?url=domiciliarias_registro_actividades&sbm='.$sbm.'&t='.$t.'" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
 			</center>
 		</div>
 	

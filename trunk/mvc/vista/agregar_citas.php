@@ -23,7 +23,7 @@
 		$pacientes->buscardonde('NO_CEDULA = "'.$cedpaciente.'"');
 		$id_paciente = $pacientes->obtener('ID_PACIENTE');
 		$id_profesional = $profesional->obtener('ID_PROFESIONAL');
-		$c = $citas_medicas->buscardonde('FECHA = "'.$fecha.'" AND HORA = "'.$hora.'"');
+		$c = $citas_medicas->buscardonde('FECHA = "'.$fecha.'" AND HORA = "'.$hora.'" AND ID_EQUIPO_MEDICO = '.$_POST['cod_equipo'].'');
 		$c1 = $citas_medicas->buscardonde('FECHA = "'.$fecha.'" AND ID_PACIENTE = '.$id_paciente.'');
 		if($c or $c1){
 			$msj = "alert('El paciente tiene una visita asignada y/o ya existe una visita para esa fecha y hora.')";

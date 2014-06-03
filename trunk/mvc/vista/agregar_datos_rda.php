@@ -3,8 +3,7 @@
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	$rda = new Accesatabla('registro_diario_actividades');
-	$equipo = new Accesatabla('equipo_medico');
-	$detalle_equipo = new Accesatabla('detalle_equipo_medico');
+	
 	$profesional = new Accesatabla('profesionales_salud');
 	$datos_profesional = new Accesatabla('datos_profesionales_salud');
 	$detalle_rda = new Accesatabla('detalle_rda');
@@ -17,6 +16,8 @@
 	$_SESSION[errorpa] = '';
 	$sw = $_GET['sw'];
 	$id = $_GET['id'];
+	$t = $_GET['t'];
+	$sbm = $_GET['sbm'];
 	if($_SESSION['idgu'] <> 3){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
@@ -28,7 +29,7 @@
 			$rda->colocar('FECHA', $fecha);
 			$rda->colocar('ID_INSTITUCION', $_POST['institucionrda']);
 			$rda->colocar('ID_EQUIPO_MEDICO', $_POST['equipo_medico']);
-			$rda->colocar('HORAS_DE_ATENCION', $_POST['horas']);
+			$rda->colocar('TIPO_ATENCION', $t);
 			$rda->salvar();
 
 			$sql = 'SELECT MAX(ID_RDA) as id from registro_diario_actividades';
@@ -98,8 +99,15 @@
 				$detalle_rda->colocar('REFERIDO_PACIENTE', $_POST['referido']);
 				$detalle_rda->salvar();
 				$_SESSION[errorpa] = '';
+				
+				$rda->buscardonde('ID_RDA = '.$id.'');
+				$sql = 'SELECT COUNT(ID_RDA) AS cantidad FROM detalle_rda WHERE ID_RDA = '.$id.'';
+				$arreglo = $ds->db->obtenerArreglo($sql);
+				$horas = $arreglo[0][cantidad]/2;
+				$rda->colocar('HORAS_DE_ATENCION', $horas);
+				$rda->salvar();
 			}
 		}
-		echo '<script language="javascript">location.href="./?url=domiciliarias_registro_actividades&sbm=1&id='.$id.'"</script>';
+		echo '<script language="javascript">location.href="./?url=domiciliarias_registro_actividades&sbm='.$sbm.'&id='.$id.'&t='.$t.'"</script>';
 	}
 ?>
