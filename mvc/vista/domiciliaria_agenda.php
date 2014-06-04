@@ -46,7 +46,7 @@
 			<form method="POST" action="./?url=domiciliaria_agenda&sbm=1">
 					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01" value="'.$_POST['fecha'].'"><br>
 					ID Equipo M&eacute;dico: <select id="equipo" name="equipo">
-												<option value="0">Seleccione</option>';
+												<option value="0">SELECCIONE</option>';
 	$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
 	while($e){
 		if($_POST['equipo'] == $equipos->obtener('ID_EQUIPO_MEDICO')){
@@ -67,7 +67,7 @@
 			<b style="float:none;clear:both">Citas del '.$fecha.'</b>	
 		</center>
 			<div style="float:right;postion:absolute;right:0px;top:0px;bottom:0px">
-				<a href="datospdf.php?agenda=1&imprimir=1&fecha='.$fechaelegida.'" target="_blank" title="Imprimir Agenda" class="btn btn-default"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
+				<a href="datospdf.php?agenda=1&imprimir=1&fecha='.$fechaelegida.'" title="Imprimir Agenda" class="btn btn-default"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
 				<a href="datospdf.php?agenda=1&fecha='.$fechaelegida.'" title="Descargar Agenda" class="btn btn-default"><img src="./iconos/download.png" width="24px"> Descargar</a>
 			</div>
 		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;float:none;clear:both">
@@ -142,10 +142,10 @@
 						
 								<tbody>
 									<tr>
-										<td>'.$paciente->obtener('NO_CEDULA').' </td>
-										<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').' - </td>
-										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').' - </td>
-										<td>'.$servicio->obtener('DESCRIPCION').' </td>
+										<td>'.$paciente->obtener('NO_CEDULA').'</td>
+										<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</td>
+										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
+										<td>'.$servicio->obtener('DESCRIPCION').'</td>
 										<td><a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a></td>
 									</tr>
 								</tbody>							

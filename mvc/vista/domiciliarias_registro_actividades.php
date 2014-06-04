@@ -40,9 +40,9 @@
 									<td align="center"><input type="date" id="fecharda" name="fecharda" required="required"></td>
 								</tr>
 								<tr>
-									<td>Institucion:</td>
+									<td>Instituci&oacute;n:</td>
 									<td align="center"><select id="institucionrda" name="institucionrda" required="required">
-											<option value=""></option>';
+											<option value="">SELECCIONE INSTALACI&Oacute;N</option>';
 			
 		$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 		while($i){
@@ -58,7 +58,7 @@
 								<tr>
 									<td>ID Equipo M&eacute;dico: </td>
 									<td align="center"><select id="equipo_medico" name="equipo_medico" required="required">
-															<option value="0">Seleccione</option>';
+															<option value="0">SELECCIONE EQUIPO</option>';
 		$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
 		while($e){
 			$cont.='
@@ -218,7 +218,7 @@
 									<tr>
 										<td>
 											<select id="zona" name="zona" required="required">
-												<option value=""></option>
+												<option value="">SELECCIONE ZONA</option>
 												'.$zon.'
 											</select>
 										</td>
@@ -229,7 +229,7 @@
 									<tr>
 										<td>
 											<select id="frecuencia" name="frecuencia" required="required">
-												<option value=""></option>
+												<option value="">SELECCIONE FRECUENCIA</option>
 												'.$frec.'
 											</select>
 										</td>
@@ -240,7 +240,7 @@
 									<tr>
 										<td>
 											<select id="tipo_atencion" name="tipo_atencion" required="required">
-												<option value=""></option>
+												<option value="">SELECCIONE TIPO ATENCI&OAacute;N</option>
 												'.$tipoatencion.'
 											</select>
 										</td>	
@@ -270,7 +270,7 @@
 									<tr>
 										<td>
 											<select id="frecdiag" name="frecdiag" required="required">
-												<option value=""></option>
+												<option value="">Seleccione</option>
 												'.$frec.'
 											</select>
 										</td>
@@ -303,7 +303,7 @@
 									<tr>
 										<td>
 											<select id="frecact" name="frecact" required="required">
-												<option value=""></option>
+												<option value="">Seleccione</option>
 												'.$frec.'
 											</select>
 										</td>
@@ -314,7 +314,7 @@
 									<tr>
 										<td>
 											<select id="estado" name="estado" required="required">
-												<option value=""></option>
+												<option value="">Seleccione</option>
 												'.$estado.'
 											</select>
 										</td>
@@ -325,7 +325,7 @@
 									<tr>
 										<td>
 											<select id="referido" name="referido" required="required">
-												<option value=""></option>
+												<option value="">Seleccione</option>
 												<option value="0">No Referido</option>
 												<option value="1">Dentro de la Inst.</option>
 											</select>

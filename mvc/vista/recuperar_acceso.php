@@ -19,7 +19,7 @@
 							<tr>
 								<td>Elija la Pregunta:</td>
 								<td><select id="pregunta" name="pregunta">
-										<option value=""></option>';
+										<option value="">SELECCIONE PREGUNTA</option>';
 				$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 				while($p){
 					$cont.='

@@ -55,7 +55,7 @@
 							<td>Tiempo de Atenci&oacute;n: </td>
 							<td>
 								<select id="tiempo" name="tiempo" required="required">
-									<option value=""></option>';
+									<option value="">SELECCIONE TIEMPO</option>';
 	$t = $tiempos->buscardonde('ID_TIEMPO_ATENCION');
 	while($t){
 		if($tiempos->obtener('ID_TIEMPO_ATENCION') == $servicios->obtener('ID_TIEMPO_ATENCION')){

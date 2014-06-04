@@ -11,7 +11,7 @@
 	$id = $_GET['id'];
 	$sw = $_GET['sw'];
 	if($_SESSION['idgu'] == 2){
-		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
+		echo '<script>alert("No tiene permitido entrar a estas vistas.");</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
 		if(empty($id)){
 	
@@ -26,6 +26,7 @@
 			$sql = 'SELECT MAX(ID_RVD) AS id FROM registro_visitas_domiciliarias';
 			$matriz = $ds->db->obtenerarreglo($sql);
 			$_SESSION[idrvd] = $matriz[0][id];	
+			$id = $matriz[0][id];	
 		}
 		$rvd->buscardonde('ID_RVD = '.$id.'');
 

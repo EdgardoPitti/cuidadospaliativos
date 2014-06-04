@@ -164,7 +164,7 @@
 														</tr>
 														<tr>
 															<td><select id="nacionalidad" name="nacionalidad" onChange="valida(this.value)" required="required">
-																	<option value="0"></option>';
+																	<option value="0">SELECCIONE NACIONALIDAD</option>';
 																							
 						$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');
 						while($n){
@@ -186,7 +186,7 @@
 														</tr>
 														<tr>
 															<td><select id="tipopaciente" name="tipopaciente"  onChange="valida(this.value)" required="required">
-																	<option value="0"></option>';
+																	<option value="0">SELECCIONE TIPO PACIENTE</option>';
 						$t = $tipopaciente->buscardonde('ID_TIPO_PACIENTE');
 						while ($t){
 							if($tipopaciente->obtener('ID_TIPO_PACIENTE') == $idtipopaciente){
@@ -261,7 +261,7 @@
 														<tr>
 															<td>
 																<select id="sexo" name="sexo" onChange="valida(this.value)" required="required">
-																	<option value=""></option>';
+																	<option value="">SELECCIONE SEXO</option>';
 						$s = $sexo->buscardonde('ID_SEXO > 0');
 						while($s){
 							if($sexo->obtener('ID_SEXO') == $idsexo){
@@ -282,7 +282,7 @@
 														<tr>
 															<td>
 																<select id="tiposangre" name="tiposangre" style="width:100px" onChange="valida(this.value)" required="required">
-																	<option value="0"></option>';																	
+																	<option value="0">SELECCIONE TIPO DE SANGRE</option>';																	
 						$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
 						while($x){
 								if($tiposangre->obtener('ID_TIPO_SANGUINEO') == $idtiposangre){
@@ -303,7 +303,7 @@
 													</tr>
 													<tr>
 														<td><select id="etnia" name="etnia" onChange="valida(this.value)" required="required">
-																<option value="0"></option>';																
+																<option value="0">SELECCIONE ETNIA</option>';																
 						$e = $etnia->buscardonde("ID_ETNIA > 0");
 						while ($e){
 								if($etnia->obtener('ID_ETNIA') == $idetnia){
@@ -332,7 +332,7 @@
 														<tr>
 															<td align="center">
 																<select id="estadocivil" name="estadocivil" onChange="valida(this.value)" required="required">
-																	<option value="0"></option>';
+																	<option value="0">SELECCIONE ESTADO CIVIL</option>';
 						$ec = $estadocivil->buscardonde('ID_ESTADO_CIVIL > 0');
 						while ($ec){
 								if($estadocivil->obtener('ID_ESTADO_CIVIL') == $idestadocivil){
@@ -391,7 +391,7 @@
 														<tr>
 																<td>
 																	<select name="preferencia" id="preferencia" onChange="valida(this.value)" required>
-																		<option value="0"></option>
+																		<option value="0">SELECCIONE PREFERENCIA</option>
 																		<option value="1" '.$preguntas.'>Pregunta</option>
 																		<option value="3" '.$email.'>Correo</option>
 																	</select>	
@@ -402,7 +402,7 @@
 														</tr>
 														<tr>
 																<td><select  id="pregunta" name="pregunta" onChange="valida(this.value);">
-																				<option value=""></option>';
+																				<option value="">SELECCIONE PREGUNTA</option>';
 									$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 									while($p){
 										if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
@@ -463,7 +463,7 @@
 														<tr>
 															<td>
 																<select id="provincias" name="provincias" onChange="valida(this.value)" required="required"> 
-																	<option value=""></option>';
+																	<option value="">SELECCIONE PROVINCIA</option>';
 												$cont.= 
 										$x = $provincias->buscardonde('ID_PROVINCIA > 0');
 										while($x){
@@ -486,7 +486,7 @@
 														<tr>
 															<td>
 																<select style="width:140px" id="distritos" name="distritos" onChange="valida(this.value)" required="required">
-																	<option value="0"></option>';
+																	<option value="0">SELECCIONE DISTRITO</option>';
 					$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
 					while($d){
 						if($distritos->obtener('ID_DISTRITO') == $iddistrito){
@@ -508,7 +508,7 @@
 														<tr>
 															<td>
 																<select style="width:140px" id="corregimientos" name="corregimientos" onChange="valida(this.value)" required="required">
-																	<option value="0"></option>';
+																	<option value="0">SELECCIONE CORREGIMIENTO</option>';
 																				
 					$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
 					while($d){
@@ -537,7 +537,7 @@
 													</tr>
 													<tr>
 														<td><select id="zona" name="zona" onChange="valida(this.value)" required="required">
-																<option value="0"></option>';
+																<option value="0">SELECCIONE ZONA</option>';
 				$z = $zona->buscardonde('ID_ZONA > 0');
 				while($z){
 					if($zona->obtener('ID_ZONA') == $idzona){

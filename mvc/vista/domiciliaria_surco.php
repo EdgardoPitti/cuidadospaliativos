@@ -155,7 +155,7 @@
 										$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_REFIERE').'');
 										$cont.='
 																	<select id="instalacionrefiere" name="instalacionrefiere" height="125px" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'"  required="required">
-																		<option value=""></option>';
+																		<option value="">SELECCIONE INSTALACI&Oacute;N</option>';
 										$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 										while($i){
 											if($instituciones->obtener('ID_INSTITUCION') == $surco->obtener('INSTALACION_REFIERE')){
@@ -185,7 +185,7 @@
 									$servicios->buscardonde('ID_SERVICIO = '.$surco->obtener('ID_SERVICIO').'');
 									$cont.='														
 																<td><select id="serviciomedico" name="serviciomedico" '.$disabled.' title="'.$servicios->obtener('DESCRIPCION').'" required="required">
-																		<option value=""></option>';
+																		<option value="">SELECCIONE SERVICIO</option>';
 									$s = $servicios->buscardonde('ID_SERVICIO > 0');
 									while($s){
 										if($servicios->obtener('ID_SERVICIO') == $surco->obtener('ID_SERVICIO')){
@@ -217,7 +217,7 @@
 										$instituciones->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_RECEPTORA').'');
 										$cont.='
 																<td><select id="instalacionreceptora" name="instalacionreceptora" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'" required="required">
-																		<option value=""></option>';
+																		<option value="">SELECCIONE INSTALACI&Oacute;N</option>';
 										$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 										while($i){
 											if($instituciones->obtener('ID_INSTITUCION') == $surco->obtener('INSTALACION_RECEPTORA')){
@@ -247,7 +247,7 @@
 									$clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA = '.$surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA').'');
 									$cont.='
 																<td><select id="clasificacionatencion" name="clasificacionatencion" '.$disabled.' title="'.$clasificacion->obtener('CLASIFICACION_ATENCION_SOLICITADA').'" required="required">
-																		<option value=""></option>';
+																		<option value="">SELECCIONE CLASIFICACI&Oacute;N</option>';
 									$c = $clasificacion->buscardonde('ID_CLASIFICACION_ATENCION_SOLICITADA > 0');
 									while($c){
 										if($clasificacion->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA') == $surco->obtener('ID_CLASIFICACION_ATENCION_SOLICITADA')){
@@ -280,7 +280,7 @@
 									$motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA = '.$surco->obtener('ID_MOTIVO_REFERENCIA').'');
 									$cont.='
 																<td><select id="motivoreferencia" name="motivoreferencia" '.$disabled.' title="'.$motivoreferencia->obtener('MOTIVO_REFERENCIA').'" required="required">
-																		<option value=""></option>';
+																		<option value="">SELECCIONE MOTIVO</option>';
 									$m = $motivoreferencia->buscardonde('ID_MOTIVO_REFERENCIA > 0');
 									while($m){
 										if($motivoreferencia->obtener('ID_MOTIVO_REFERENCIA') == $surco->obtener('ID_MOTIVO_REFERENCIA')){
@@ -359,7 +359,7 @@
 														<td style="padding-top:10px"><input style="width:50px;" type="text" name="pa" value="'.$examenfisico->obtener('PRESION_ARTERIAL').'" '.$readonly.' required="required"></td>
 														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fc" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA').'" '.$readonly.' required="required"></td>
 														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fr" value="'.$examenfisico->obtener('FRECUENCIA_RESPIRATORIA').'" '.$readonly.' required="required"></td>
-														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fcf" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA_FETAL').'" '.$readonly.' required="required"></td>
+														<td style="padding-top:10px"><input style="width:50px;" type="text" name="fcf" value="'.$examenfisico->obtener('FRECUENCIA_CARDIACA_FETAL').'" '.$readonly.'></td>
 														<td style="padding-top:10px"><input style="width:50px;" type="text" name="temperatura" value="'.$examenfisico->obtener('TEMPERATURA').'" '.$readonly.' required="required"></td>
 														<td style="padding-top:10px"><input style="width:50px;" type="text" name="peso" value="'.$examenfisico->obtener('PESO').'" '.$readonly.' required="required"></td>
 														<td style="padding-top:10px"><input style="width:50px;" type="text" name="talla" value="'.$examenfisico->obtener('TALLA').'" '.$readonly.' required="required"></td>
@@ -397,10 +397,10 @@
 													<tbody>
 														<tr>
 															<td style="padding:5px 5px 0px 5px">'.$tipoexamen->obtener('TIPO_EXAMEN').'</td>
-															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:130px;" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'" required="required"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:130px;" name="diagnostico'.$nomb_examen.'" id="diagnostico'.$nomb_examen.'" value="'.$cie->obtener('DESCRIPCION').'" '.$readonly.' title="'.$cie->obtener('DESCRIPCION').'"></td>
 															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:50px;" name="cie'.$nomb_examen.'" id="cie'.$nomb_examen.'" size="5" value="'.$detallediagnostico->obtener('ID_CIE10').'" readonly></td>
-															<td style="padding:5px 5px 0px 5px"><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'" '.$disabled.' required="required">
-																	<option value=""></option>
+															<td style="padding:5px 5px 0px 5px"><select name="frec'.$nomb_examen.'" id="frec'.$nomb_examen.'" '.$disabled.'>
+																	<option value="">SELECCIONE FRECUENCIA</option>
 														';
 														
 					$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
@@ -418,8 +418,8 @@
 																
 															</td>
 															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
-															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'" required="required"></td>
-															<td style="padding:5px 5px 0px 5px"><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'" required="required"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'"></td>
 														</tr>
 													</tbody>';					
 					$x = $tipoexamen->releer();
@@ -540,7 +540,7 @@
 							$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');
 							$cont.='
 													<td><select id="institucionresponde" name="institucionrespondereceptora" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'" required="required">
-															<option value=""></option>';
+															<option value="">SELECCIONE INSTITUCI&Oacute;N</option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 							while($i){
@@ -567,7 +567,7 @@
 							$instituciones->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTALACION_RECEPTORA').'');
 							$cont.='
 													<td><select id="instalacionrepectora" name="instalacionreceptorarespuesta" '.$disabled.' title="'.$instituciones->obtener('DENOMINACION').'" required="required">
-															<option value=""></option>';
+															<option value="">SELECCIONE INSTALACI&Oacute;N</option>';
 															
 							$i = $instituciones->buscardonde('ID_INSTITUCION > 0 ORDER BY DENOMINACION');
 							while($i){
@@ -615,7 +615,7 @@
 							$frecuencia->buscardonde('ID_FRECUENCIA = '.$detallediagnostico->obtener('ID_FRECUENCIA').'');
 							$cont.='
 																	<select id="frecuenciarespuesta" name="frecuenciarespuesta" '.$disabled.' title="'.$frecuencia->obtener('FRECUENCIA').'" required="required">
-																		<option value=""></option>';
+																		<option value="">SELECCIONE FRECUENCIA</option>';
 																
 		$f = $frecuencia->buscardonde('ID_FRECUENCIA > 0');
 		while($f){

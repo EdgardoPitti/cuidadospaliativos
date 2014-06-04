@@ -122,7 +122,7 @@
 							<td>Recuperaci&oacute;n de Acceso: </td>
 							<td>
 								<select name="preferencia" id="preferencia" required="required">
-									<option value="0"></option>
+									<option value="0">SELECCIONE PREFERENCIA</option>
 									<option value="1" '.$preguntas.'>Pregunta</option>
 									<option value="3" '.$email.'>Correo</option>
 								</select>	
@@ -139,7 +139,7 @@
 						<tr>
 							<td>Pregunta de Recuperaci&oacute;n: </td>
 							<td><select  id="pregunta" name="pregunta" onChange="habilitar(this.value);">
-											<option value=""></option>';
+											<option value="">SELECCIONE PREGUNTA</option>';
 	$p = $pregunta->buscardonde('ID_PREGUNTA > 0');
 	while($p){
 		if($pregunta->obtener('ID_PREGUNTA') == $idpregunta){
