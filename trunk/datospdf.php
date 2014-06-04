@@ -70,7 +70,7 @@
 			
 				$h = $cita->buscardonde('FECHA = "'.$_GET['fecha'].'" ORDER BY ID_EQUIPO_MEDICO, HORA');
 				if($h == 0){
-					echo '<script>alert("No existen pacientes en la agenda");location.href="./?url=domiciliaria_agenda&sbm=1"</script>';
+					 echo '<script>alert("No existen pacientes agendados en esta fecha.");location.href="./?url=domiciliaria_agenda&sbm=1"</script>';
 				}else{
 					while($h){					
 						$personas->buscardonde('ID_PACIENTE = '.$cita->obtener('ID_PACIENTE').'');

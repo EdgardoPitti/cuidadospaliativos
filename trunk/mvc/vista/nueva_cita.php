@@ -75,7 +75,7 @@
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>
 						<label for="cod_equipo">Seleccione el equipo m&eacute;dico: </label>
 						<select id="cod_equipo" name="cod_equipo" required>
-							<option value="0">Seleccione</option>';
+							<option value="0">SELECCIONE EQUIPO</option>';
 	$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
 	while($e){
 		if($idequipo == $equipos->obtener('ID_EQUIPO_MEDICO')){
@@ -86,7 +86,7 @@
 		$cont.='
 							<option value="'.$equipos->obtener('ID_EQUIPO_MEDICO').'" '.$selected.'>'.$equipos->obtener('ID_EQUIPO_MEDICO').'</option>
 		';
-		$e = $equipo->releer();
+		$e = $equipos->releer();
 	}
 	$cont.='
 						</select>
@@ -133,7 +133,7 @@
 										<td><input type="text" id="profesional" name="profesional" placeholder="Buscar Profesional" required><br><input type="text" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional" readonly></td>
 										<td>
 											<select id="servicio" name="servicio" required="required">
-												<option value=""></option>';
+												<option value="">SELECCIONE SERVICIO</option>';
 							$x = $servicios->buscardonde('ID_SERVICIO > 0');
 							while($x){
 								$cont.='

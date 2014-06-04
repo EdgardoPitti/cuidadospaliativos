@@ -260,7 +260,7 @@
 		$referido->buscardonde('ID_REFERIDO = '.$rae->obtener('ID_REFERIDO').'');
 		$cont.='
 									<td><select id="referido" name="referido" '.$disabled.' title="'.$referido->obtener('REFERIDO').'" required>
-											<option value="0"></option>';
+											<option value="0">SELECCIONE REFERENCIA</option>';
 		$r = $referido->buscardonde('ID_REFERIDO > 0');
 		while($r){
 			if($referido->obtener('ID_REFERIDO') == $rae->obtener('ID_REFERIDO')){
@@ -286,8 +286,8 @@
 		$cama->buscardonde('ID_CAMA = '.$rae->obtener('ID_CAMA').'');
 		$sala->buscardonde('ID_SALA = '.$cama->obtener('ID_SALA').'');
 		$cont.='
-									<td><select id="cama" name="cama" title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'" required>
-											<option value=""></option>';
+									<td><select id="cama" name="cama" title="'.$cama->obtener('CAMA').' - Sala '.$sala->obtener('SALA').'" >
+											<option value="">SELECCIONE CAMA</option>';
 		$c = $cama->buscardonde('ID_CAMA > 0 ORDER BY CAMA');
 		while($c){
 			if($cama->obtener('ID_CAMA') == $rae->obtener('ID_CAMA')){
@@ -408,7 +408,7 @@
 										</tr>
 										<tr>
 											<td><select id="frecuencia" name="frecuencia" '.$disabled.' title="'.$title.'">
-													<option value=""></option>
+													<option value="">SELECCIONE FRECUENCIA</option>
 													<option value="1" '.$nuevo.'>NUEVO</option>
 													<option value="2" '.$sub.'>SUBSECUENCIA</option>
 												</select>
@@ -450,7 +450,7 @@
 		$cont.='
 									<td>
 										<select id="condicionsalida" name="condicionsalida" title="'.$condicionsalida->obtener('CONDICION_SALIDA').'">
-											<option value="0"></option>';
+											<option value="0">SELECCIONE CONDICI&Oacute;N</option>';
 		$c = $condicionsalida->buscardonde('ID_CONDICION_SALIDA > 0');
 		while($c){
 				if($condicionsalida->obtener('ID_CONDICION_SALIDA') == $rae->obtener('ID_CONDICION_SALIDA')){
@@ -509,7 +509,7 @@
 		$motivo->buscardonde('ID_MOTIVO_SALIDA = '.$rae->obtener('ID_MOTIVO_SALIDA').'');
 		$cont.='
 									<td><select id="motivo" name="motivo" title="'.$motivo->obtener('MOTIVO_SALIDA').'">
-											<option value=""></option>';
+											<option value="">SELECCIONE MOTIVO</option>';
 		$m = $motivo->buscardonde('ID_MOTIVO_SALIDA > 0');
 		while($m){
 			if($motivo->obtener('ID_MOTIVO_SALIDA') == $rae->obtener('ID_MOTIVO_SALIDA')){

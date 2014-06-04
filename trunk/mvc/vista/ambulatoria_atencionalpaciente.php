@@ -340,38 +340,58 @@
 				
 				<!--AGREGAR OBSERVACIONES-->
 				<form id="form" method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm=2">
-					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  
+					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
 							<h4>Agregar Observaciones</h4>  
 						</div>  
-						<div class="modal-body" align="center">  
-							<h5>Hora Inicio:</h5>
-							<input type="time" id="hora_inicio" name="hora_inicio">
-							<h5>Hora Fin:</h5>
-							<input type="time" id="hora_fin" name="hora_fin">							
-							<h5>Minutos Utilizados: </h5>
-							<input type="number" id="minutos" name="minutos" min="1" max="360" required>
-							<h5>Tipo de Contacto: </h5>
-							<select id="tipo" name="tipo" required>
-								<option value="0"></option>
-								<option value="1">Tel&eacute;fono</option>
-								<option value="2">Correo Electr&oacute;nico</option>
-							</select>
-							<h5>Tel&eacute;fono: </h5>
-							<input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono">
-							<h5>Correo Electr&oacute;nico: </h5>
-							<input type="email" id="email" name="email" placeholder="Correo Electr&oacute;nico">
-							<h5>Motivo:</h5>
-							<input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n">
-							<h5>Observaciones:</h5>                
-							<textarea id="observacion" name="observacion" required placeholder="Observaci&oacute;nes"></textarea>
+						<div class="modal-body" align="center"> 
+								<table class="overthrow" style="overflow-y:auto;">
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
+										<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
+										<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>
+										<td><input type="number" id="minutos" name="minutos" min="1" max="360" required style="width:140px;margin-bottom:3px;"></td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Tipo de Contacto: </h5></td>
+										<td>
+											<select id="tipo" name="tipo" required style="width:140px;margin-bottom:3px;">
+												<option value="0">SELECCIONE TIPO CONTACTO</option>
+												<option value="1">Tel&eacute;fono</option>
+												<option value="2">Correo Electr&oacute;nico</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Tel&eacute;fono: </h5></td>
+										<td><input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono" style="width:140px;margin-bottom:3px;"></td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Correo Electr&oacute;nico: </h5></td>
+										<td><input type="email" id="email" name="email" placeholder="Correo Electr&oacute;nico" style="width:140px;margin-bottom:3px;"></td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Motivo:</h5></td>
+										<td><input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
+									</tr>
+									<tr>
+										<td><h5 style="margin-bottom:3px;">Observaciones:</h5> </td>
+										<td><textarea id="observacion" class="textarea" name="observacion" required placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
+									</tr>
+								</table>										
 						</div>  
 						<div class="modal-footer">  
-							<button type="submit" class="btn btn-primary">Guardar</button>  
-							<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+							<button type="submit" class="btn btn-primary btn-small">Guardar</button>  
+							<button type="submit" class="btn btn-default btn-small" data-dismiss="modal">Cerrar</button>  
 						</div>  
-					</div>  									
+					</div>  
 				</form>
 				
 				<!--RESPONDER INTERCONSULTA-->
@@ -385,11 +405,11 @@
 							<h5>Código de Interconsulta:</h5>  
 							<input type="text" name="cod_interconsulta" id="cod_interconsulta" required placeholder="C&oacute;digo Interconsulta">
 							<h5>Observaciones:</h5>                
-							<textarea id="observaciones" name="observaciones" required placeholder="Observaciones"></textarea>
+							<textarea id="observaciones" name="observaciones" class="textarea" required placeholder="Observaciones"></textarea>
 						</div>  
 						<div class="modal-footer">  
-							<button type="submit" class="btn btn-primary">Guardar</button>  
-							<button type="submit" class="btn" data-dismiss="modal">Cerrar</button>  
+							<button type="submit" class="btn btn-primary btn-small">Guardar</button>  
+							<button type="submit" class="btn btn-default btn-small" data-dismiss="modal">Cerrar</button>  
 						</div>  
 					</div>  
 				</form>	';	

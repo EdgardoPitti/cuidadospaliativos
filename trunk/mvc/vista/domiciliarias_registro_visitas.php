@@ -7,6 +7,7 @@
 	$detalle_rvd = new Accesatabla('detalle_registro_visitas_domiciliarias');
 	$paciente = new Accesatabla('datos_pacientes');
 	$equipo = new Accesatabla('detalle_equipo_medico');
+	$equipos = new Accesatabla('equipo_medico');
 	$especialidad = new Accesatabla('especialidades_medicas');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$programa = new Accesatabla('programa');
@@ -38,14 +39,23 @@
 							<tr>
 								<td>Instituci&oacute;n: </td>
 								<td><select id="institucion" name="institucion" required="required">
-										<option value=""></option>
+										<option value="">SELECCIONE INSTITUCI&Oacute;N</option>
 										'.$institucion.'
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>ID Equipo M&eacute;dico: </td>
-								<td><input type="text" id="id_equipo" name="id_equipo" placeholder="ID Equipo M&eacute;dico" required></td>
+								<td><select id="id_equipo" name="id_equipo" required>
+										<option value="">SELECCIONE EQUIPO</option>';
+								$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
+								while($e){
+									$cont.='<option value="'.$equipos->obtener('ID_EQUIPO_MEDICO').'">'.$equipos->obtener('ID_EQUIPO_MEDICO').'</option>';
+									$e = $equipos->releer();
+								}
+								$cont.='
+									</select>
+								</td>
 							</tr>
 						</table>						
 						<button type="submit" class="btn btn-primary" style="font-size:12px;margin-top:8px;">Guardar</button>
@@ -131,7 +141,7 @@
 									<tr>
 										<td>Categoria: </td>
 										<td><select id="categoria" name="categoria" required="required">
-												<option value=""></option>
+												<option value="">SELECCIONE CATEGOR&Iacute;A</option>
 												'.$categorias.'
 											</select>
 										</td>
