@@ -69,12 +69,12 @@
 					<div class="span6" align="center">
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 1:</h5>
 						<label for="fecha">Seleccione la fecha: </label>
-						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" max="2025-12-31" min="2010-12-31"required="required">
+						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" max="2025-12-31" min="2010-12-31" required="required">
 					</div>
 					<div class="span6" align="center" >
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>
 						<label for="cod_equipo">Seleccione el equipo m&eacute;dico: </label>
-						<select id="cod_equipo" name="cod_equipo" required>
+						<select id="cod_equipo" name="cod_equipo" required="required">
 							<option value="0">SELECCIONE EQUIPO</option>';
 	$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
 	while($e){
@@ -104,7 +104,7 @@
 										<th style="min-width:250px">Paciente</th>
 										<th style="min-width:250px">Profesional</th>
 										<th style="min-width:250px">Servicio</th>
-										<th style="min-width:100px">Reservada</th>										
+										<th style="min-width:100px">Editar</th>										
 									</tr>
 								</thead>
 								<tbody>';
@@ -121,7 +121,7 @@
 										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$servicios->obtener('DESCRIPCION').'</td>
 										<td>
-											<input type="radio" id="reservada" name="reservada" value="1" '.$si.'> Si <input type="radio" id="reservada" name="reservada" value="0" '.$no.'> No 
+											
 										</td>
 									</tr>';
 					$c = $citas->releer();
@@ -145,7 +145,7 @@
 											</select>
 										</td>
 										<td>
-											<input type="radio" id="reservada" name="reservada" value="1" checked> Si <input type="radio" id="reservada" name="reservada" value="0"> No 
+											
 										</td>
 									</tr>
 								</tbody>
