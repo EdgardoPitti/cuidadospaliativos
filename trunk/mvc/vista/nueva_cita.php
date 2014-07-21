@@ -104,11 +104,11 @@
 										<th style="min-width:250px">Paciente</th>
 										<th style="min-width:250px">Profesional</th>
 										<th style="min-width:250px">Servicio</th>
-										<th style="min-width:100px">Editar</th>										
+										<th style="min-width:100px">Cancelar</th>										
 									</tr>
 								</thead>
 								<tbody>';
-				$c = $citas->buscardonde('FECHA = "'.$fecha.'" AND ID_EQUIPO_MEDICO = '.$idequipo.'');
+				$c = $citas->buscardonde('FECHA = "'.$fecha.'" AND ID_EQUIPO_MEDICO = '.$idequipo.' AND RESERVADA = 1');
 				while($c){
 					$profesional->buscardonde('ID_PROFESIONAL = '.$citas->obtener('ID_PROFESIONAL').'');
 					$paciente->buscardonde('ID_PACIENTE = '.$citas->obtener('ID_PACIENTE').'');
@@ -121,7 +121,7 @@
 										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$servicios->obtener('DESCRIPCION').'</td>
 										<td>
-											<a data-toggle="modal" href="#editar" class="btn btn-primary">Editar Cita</a>
+											<a href="./?url=agregar_citas&sw=1&id='.$citas->obtener('ID_CITA').'&sbm=1" class="btn btn-danger">Cancelar Cita</a>
 										</td>
 									</tr>';
 					$c = $citas->releer();
@@ -151,20 +151,6 @@
 								</tbody>
 							</table>
 						</div>
-						<form id="form" method="POST" action="./?url=">
-							<div id="editar" class="modal hide fade in" style="display: none; ">  						
-								<div class="modal-header">  
-									<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
-									<h4>Editar Cita</h4>  
-								</div>  
-								<div class="modal-body" align="center"> 
-
-								</div>
-								<div class="modal-footer">
-								
-								</div>
-							</div>
-						</form>
 						<center>
 							<button type="submit" class="btn btn-primary" style="margin-top:8px;">Agregar Nuevo Paciente</button><br>
 							<a  href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>
