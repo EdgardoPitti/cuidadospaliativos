@@ -23,6 +23,7 @@
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$respuesta = new Accesatabla('respuesta_referencia');
 	$sw = 0;
+	$sbm = $_GET['sbm'];
 	$cedula = $_POST['cedula'];
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
 		$sw = 1;
@@ -33,7 +34,7 @@
 	$cont='
 			<center>
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> Sistema Único de Referencia y Contra-Referencia (SURCO)</h3>
-				<form class="form-search" method="POST" action="./?url=domiciliaria_surco&sbm=1">
+				<form class="form-search" method="POST" action="./?url=domiciliaria_surco&sbm='.$sbm.'">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="cedula" required="required">
 					  <span class="input-group-btn">
@@ -43,7 +44,7 @@
 				</form>
 			</center>';
 	if ($sw == 1 AND !empty($cedula)){
-			$cont.='<center>Paciente no encontrado...<a href="./?url=nuevopaciente&sbm=5"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
+			$cont.='<center>Paciente no encontrado...<a href="./?url=nuevopaciente&sbm='.$sbm.'"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
 	}else if($sw == 0 AND !empty($cedula)){ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');

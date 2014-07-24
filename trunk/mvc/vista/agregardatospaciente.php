@@ -7,6 +7,7 @@
 	$usuarios = new Accesatabla('usuarios');
 	$preferencias = new Accesatabla('preferencias_recuperacion_acceso');
 	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
+	$sbm = $_GET['sbm'];
 	$ds = new Diseno();
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
@@ -86,6 +87,7 @@
 		$datospaciente->colocar("OCUPACION", $_POST['ocupacion']);
 		$datospaciente->colocar("ID_RESIDENCIA_HABITUAL", $idresidencia);
 		$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $_POST['residenciatransitoria']);
+		$datospaciente->colocar("FECHA_INGRESO", $_POST['fecha_ingreso']);
 		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
 		$datospaciente->salvar();
@@ -175,9 +177,9 @@
 			echo "<script language='javascript'>alert('Datos Almacenados Correctamente')</script>";		
 		}
 		if(!empty($sw)){
-			$url='hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm=3';
+			$url='hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm='.$sbm.'';
 		}else{
-			$url='nuevopaciente&act=1&sbm=5';
+			$url='nuevopaciente&act=1&sbm='.$sbm.'';
 		}
 		echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 	}
