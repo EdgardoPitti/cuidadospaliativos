@@ -13,9 +13,10 @@
 	$datosprofesional = new Accesatabla('datos_profesionales_salud');
 	$especialidad = new Accesatabla('especialidades_medicas');
 	$atencion = new Accesatabla('atencion_paciente');
+	$ds = new Diseno();
 
-
-
+	 $ds->contenido('VISTA DE CONTACTO');
+	 $ds->mostrar();
 
 
 

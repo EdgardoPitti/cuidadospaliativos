@@ -741,7 +741,7 @@ class Diseno {
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=ambulatoria_atencionalpaciente&sbm=7&t=7" title="Registros Diarios de Actividades">Registro Diario de Actividades</a></li>
+								<li><a class="link" href="./?url=menu_diario_actividades&sbm=7&t=7" title="Registros Diarios de Actividades">Registro Diario de Actividades</a></li>
 							</ul>
 						</div>
 						<div>
@@ -760,7 +760,7 @@ class Diseno {
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliaria_surco&sbm=7" Title="Escala de Edmont">Escala de Edmont</a></li>
+								<li><a class="link" href="./?url=escala_edmont&sbm=7" Title="Escala de Edmont">Escala de Edmont</a></li>
 							</ul>
 						</div>
 					</div>
