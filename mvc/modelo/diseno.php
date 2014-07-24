@@ -123,10 +123,10 @@ class Diseno {
 					$aber .= 0;
 				}
 				$aber .= $nada['mon'].'-';
-				if($nada['wday'] < 10){
+				if($nada['mday'] < 10){
 					$aber .=0;
 				}				
-				$aber .= $nada['wday'];
+				$aber .= $nada['mday'];
 			break;
 			case 'dia es':
 				$aber = 'no se que dia es !';
@@ -467,6 +467,7 @@ class Diseno {
 			   '
 				<!--Navegación Superior-->
 				<div class="row-fluid" id="sub-header-nav" style="'.$display.'">
+
 					<div class="span12">																
 						<div class="btn-group pull-right" style="margin-top:4px;">
 						  <a href="#" class="btn btn-primary"><i class="icon-user icon-white"></i> '.$_SESSION['user'].'</a>
@@ -478,6 +479,7 @@ class Diseno {
 						  </ul>
 						</div>					
 					</div>
+					<div style="float:right;"><i>Hoy es '.$this->dime('dia es').' '.$this->dime('dia').' de '.$this->dime('mes es').' del '.$this->dime('agno').'</i></div>
 				</div> ';
 				
 				$mantener = $_GET['sbm'];
@@ -486,6 +488,8 @@ class Diseno {
 					$display2='none';
 					$display3='none';
 					$display5='none';
+					$display6='none';
+					$display7='none';
 				}else{
 					if($mantener == 1){
 						$display1='block';
@@ -493,6 +497,8 @@ class Diseno {
 						$display2='none';
 						$display3='none';
 						$display5='none';
+						$display6='none';
+						$display7='none';
 					}
 					if($mantener == 2){
 						$display1='none';
@@ -500,6 +506,8 @@ class Diseno {
 						$activo2 = 'class="active"';
 						$display3='none';
 						$display5='none';
+						$display6='none';
+						$display7='none';
 					}
 					if($mantener == 3){
 						$display1='none';
@@ -507,12 +515,16 @@ class Diseno {
 						$display3='block';
 						$activo3 = 'class="active"';
 						$display5='none';
+						$display6='none';
+						$display7='none';
 					}
 					if($mantener == 4){
 						$display1='none';
 						$display2='none';
 						$display3='none';					
 						$display5='none';
+						$display6='none';
+						$display7='none';
 					}
 					if($mantener == 5){
 						$display1='none';
@@ -520,6 +532,26 @@ class Diseno {
 						$display3='none';						
 						$display5='block';
 						$activo5 = 'class="active"';
+						$display6='none';
+						$display7='none';
+					}
+					if($mantener == 6){
+						$display1='none';
+						$display2='none';
+						$display3='none';						
+						$display5='none';
+						$display6='block';
+						$activo6 = 'class="active"';
+						$display7='none';
+					}
+					if($mantener == 7){
+						$display1='none';
+						$display2='none';
+						$display3='none';						
+						$display6='none';
+						$display5='none';
+						$display7='block';
+						$activo7 = 'class="active"';
 					}
 				}
 			
@@ -678,6 +710,62 @@ class Diseno {
 							</article>	
 						</div>
 					</div>						
+
+					<!--DATOS DEL PACIENTE-->
+					<div class="css_acordeon" id="mostrar_ocultar6" id="accordion-6" style="display:'.$display6.';">			
+						<h3>Men&uacute; Datos del Paciente</h3><hr>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=nuevopaciente&sbm=6&t=6" title="Paciente">Paciente</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=ambulatoria_atencionalpaciente&sbm=6&t=6" title="Historial del Paciente">Historial del Paciente</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!--DATOS CLINICOS-->
+					<div class="css_acordeon" id="mostrar_ocultar7" id="accordion-7" style="display:'.$display7.';">			
+						<h3>Men&uacute; Datos Cl&iacute;nicos</h3><hr>
+						<div style="margin-bottom:2px;">
+							<input id="ac-8" name="acordeon" type="radio" />
+							<label for="ac-8">Registro de Visitas Domiciliarias</label>
+							<article>	
+								<ul>									
+									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=7" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
+									<li><a class="sublink" href="./?url=nueva_cita&sbm=7" title="Agenda"><i>Agenda</i></a></li>				
+								</ul>
+							</article>	
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=ambulatoria_atencionalpaciente&sbm=7&t=7" title="Registros Diarios de Actividades">Registro Diario de Actividades</a></li>
+							</ul>
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=domiciliaria_surco&sbm=7" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
+							</ul>
+						</div>
+						<div style="margin-bott om:2px;">
+							<input id="ac-9" name="acordeon" type="radio" />
+							<label for="ac-9">RAE</label>
+							<article>	
+								<ul>
+									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=7" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
+								</ul>
+							</article>	
+						</div>
+						<div>
+							<ul class="acordeon_link">
+								<li><a class="link" href="./?url=domiciliaria_surco&sbm=7" Title="Escala de Edmont">Escala de Edmont</a></li>
+							</ul>
+						</div>
+					</div>
+
+
 				</div>	
 				
 				<!--Contenido-->
@@ -712,22 +800,40 @@ class Diseno {
 														<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
 													</li>';
 												}else{
-													$cont.='
-													<li '.$activo5.'>
-														<a href="#" id="show5" title="Inicio"><img src="./iconos/inicio.png"style="width:30px; heigth:30px;"/> Inicio</a>
-													</li>
-													<li '.$activo1.'>
-														<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
-													</li>
-													<li '.$activo2.'>
-														<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
-													</li>
-													<li '.$activo3.'>
-														<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
-													</li>
-													<li>
-														<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
-													</li>';													
+													if($_SESSION['idgu'] <> 4){
+														$cont.='
+														<li '.$activo5.'>
+															<a href="#" id="show5" title="Inicio"><img src="./iconos/inicio.png"style="width:30px; heigth:30px;"/> Inicio</a>
+														</li>
+														<li '.$activo1.'>
+															<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
+														</li>
+														<li '.$activo2.'>
+															<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
+														</li>
+														<li '.$activo3.'>
+															<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
+														</li>
+														<li>
+															<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+														</li>';													
+
+													}else{
+
+														$cont.='
+															<li '.$activo6.'>
+															<a href="#" id="show6" title="Datos del Paciente"><img src="./iconos/paciente.png" style="width:30px; heigth:30px;"/> Datos del Paciente</a>
+															</li>
+															<li '.$activo7.'>
+															<a href="#" id="show7" title="Datos Cl&iacute;nicos"><img src="./iconos/agenda.png" style="width:30px; heigth:30px;"/> Datos Cl&iacute;nicos</a>
+															</li>
+															<li '.$activo2.'>
+															<a href="./?url=contacto_telefonico" id="show8" title="Contacto Telef&oacute;nico"><img src="./iconos/telephone.png" style="width:30px; heigth:30px;"/> Contacto Telef&oacute;nico</a>
+															</li>
+
+														';
+
+													}
 												}
 					$cont.='								
 												</ul>

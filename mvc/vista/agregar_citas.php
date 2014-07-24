@@ -20,8 +20,6 @@
 			$citas_medicas->buscardonde('ID_CITA = '.$id.'');
 			$citas_medicas->colocar("RESERVADA", 0);
 			$citas_medicas->salvar();
-			
-
 		}else{
 			$hora = $_POST['hora'];
 			$fecha = $_POST['fecha'];

@@ -20,6 +20,7 @@
 	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
 	$comillas = "'";
 	$ds = new Diseno();
+	$sbm = $_GET['sbm'];
 	$busqueda = $_POST['busqueda'];
 	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
@@ -88,7 +89,7 @@
 							<center>		
 								<div class="row-fluid">
 									<div class="span12">
-										<form method="POST" aut ocomplete="off"  action="./?url=nuevopaciente&sbm=5">
+										<form method="POST" aut ocomplete="off"  action="./?url=nuevopaciente&sbm='.$sbm.'">
 											<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> 
 											<button type="submit" class="btn"><img src="./iconos/search.png"></button>							
 										</form>
@@ -144,7 +145,7 @@
 							</center>
 						</div>
 						<div class="tab-pane '.$active.'" id="tab2">
-							<form action="./?url=agregardatospaciente&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" id="form" style="display:block;position:relative">
+							<form action="./?url=agregardatospaciente&sbm='.$sbm.'&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" id="form" style="display:block;position:relative">
 								<div class="row-fluid">
 									<div class="span6">
 										<fieldset>
@@ -372,7 +373,11 @@
 														</tr>
 														<tr>
 															<td><input type="text" id="nombremadre"  name="nombremadre" value="'.$datos->obtener('NOMBRE_MADRE').'" placeholder="Nombre Madre" onKeyPress="valida(this.value)" required="required"></td>
-														</tr>
+														</tr>';
+
+
+						if($sbm <> 6){
+										$cont.='
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Usuario:</td>	
 														</tr>
@@ -424,7 +429,33 @@
 														</tr>                                                                           
 														<tr>
 																<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" onChange="valida(this.value)" value="'.$respuesta.'"></td>
-														</tr>
+														</tr>';
+
+
+
+								}else{
+											$cont.='
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+													<tr><td></td></tr>
+
+											';
+
+								}
+								$fecha = $datos->obtener('FECHA_INGRESO');
+								if(empty($fecha)){
+									$fecha = $ds->dime('fecha');
+								}
+								$cont.='
+														<tr><td style="text-align:left;padding-left:17%;">Fecha de Ingreso: </td></tr>
+														<tr><td><input type="date" id="fecha_ingreso" name="fecha_ingreso" value="'.$fecha.'" readonly></td></tr>
 													</tbody>
 												</table>
 												

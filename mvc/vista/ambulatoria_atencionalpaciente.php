@@ -21,6 +21,8 @@
 	$ds = new Diseno();
 	$sw = 0;
 
+	$sbm = $_GET['sbm'];
+
 	$buscar = $_POST['buscar'];
 	$id = $_GET['id'];
 	if(!empty($id)){
@@ -107,7 +109,7 @@
 			<div class="row-fluid">
 				<div class="span12">					
 					<div align="center">
-						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente&sbm=2">
+						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente&sbm='.$sbm.'">
 							<div class="input-group">
 							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
 							  <span class="input-group-btn">
@@ -327,15 +329,20 @@
 			
 		$cont.='
 						</fieldset>
-					</div>
-					<div class="span6">
-						<center>
-							<div class="centrar_botones">
-								<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
-								<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
-							</div>
-						</center>
-					</div>
+					</div>';
+		if($_SESSION['idgu'] <> 4){
+
+			$cont.='
+						<div class="span6">
+							<center>
+								<div class="centrar_botones">
+									<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
+									<p><a data-toggle="modal" href="#res_inter" class="btn btn-primary">Responder Interconsulta</a></p>  
+								</div>
+							</center>
+						</div>';
+		}
+		$cont.='
 				</div>
 				
 				<!--AGREGAR OBSERVACIONES-->
