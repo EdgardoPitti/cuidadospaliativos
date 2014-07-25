@@ -22,6 +22,8 @@
 	$cie = new Accesatabla('cie10');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	
+	$sbm = $_GET['sbm'];
+
 	$buscar = $_POST['buscar'];
 	$idpaciente = $_GET['id'];
 	$sw = 0;
@@ -30,7 +32,7 @@
 			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Admisión-Egreso (RAE)</h3>
 		</center>
 					<center>
-				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion&sbm=3">
+				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion&sbm='.$sbm.'">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
 					  <span class="input-group-btn">
@@ -48,7 +50,7 @@
 	if((empty($buscar) or $sw == 1) and empty($idpaciente)){
 		if($sw == 1){
 			$cont.='<center>
-						Paciente no Encotrado...<a href="./?url=nuevopaciente&sbm=5"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
+						Paciente no Encotrado...<a href="./?url=nuevopaciente&sbm='.$sbm.'"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
 					</center>
 			';
 		}
@@ -63,7 +65,7 @@
 		}
 		if(!$responsable->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'')){
 		$cont.='	
-			<form id="form" method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sw=1&sbm=3">
+			<form id="form" method="POST" action="./?url=agregardatospaciente&id='.$personas->obtener('ID_PACIENTE').'&sw=1&sbm='.$sbm.'">
 				<fieldset>
 					<legend>
 						Responsable del Paciente
@@ -147,7 +149,7 @@
 		}else{
 			$r = $rae->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 			$cont.='
-				<form id="form2" method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm=3&r='.$rae->obtener('ID_REGISTRO_ADMISION_EGRESO').'">';
+				<form id="form2" method="POST" action="./?url=agregar_datos_rae&id='.$personas->obtener('ID_PACIENTE').'&sbm='.$sbm.'&r='.$rae->obtener('ID_REGISTRO_ADMISION_EGRESO').'">';
 									
 			$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 			$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');

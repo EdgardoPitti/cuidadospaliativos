@@ -10,6 +10,7 @@
 	$detalle_eg = new Accesatabla('detalle_diagnostico_egreso');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$cama = new Accesatabla('cama');
+	$sbm = $_GET['sbm'];
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
@@ -85,6 +86,6 @@
 		$rae->colocar("TOTAL_DIAS_ESTANCIA",$_POST['dias']);
 		$rae->salvar();
 		
-		echo '<script language="javascript">location.href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm=3"</script>'
+		echo '<script language="javascript">location.href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
 	}
 ?>
