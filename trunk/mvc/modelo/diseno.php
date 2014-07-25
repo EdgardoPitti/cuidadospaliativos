@@ -553,6 +553,14 @@ class Diseno {
 						$display7='block';
 						$activo7 = 'class="active"';
 					}
+					if($mantener == 8){
+						$display1='none';
+						$display2='none';
+						$display3='none';						
+						$display6='none';
+						$display5='none';
+						$display7='none';
+					}
 				}
 			
 		$cont.= '	
@@ -828,7 +836,7 @@ class Diseno {
 															<a href="#" id="show7" title="Datos Cl&iacute;nicos"><img src="./iconos/agenda.png" style="width:30px; heigth:30px;"/> Datos Cl&iacute;nicos</a>
 															</li>
 															<li '.$activo2.'>
-															<a href="./?url=contacto_telefonico" id="show8" title="Contacto Telef&oacute;nico"><img src="./iconos/telephone.png" style="width:30px; heigth:30px;"/> Contacto Telef&oacute;nico</a>
+															<a href="./?url=contacto_telefonico" title="Contacto Telef&oacute;nico"><img src="./iconos/telephone.png" style="width:30px; heigth:30px;"/> Contacto Telef&oacute;nico</a>
 															</li>
 
 														';

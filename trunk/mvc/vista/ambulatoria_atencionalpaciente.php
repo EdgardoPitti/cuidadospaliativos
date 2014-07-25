@@ -32,7 +32,7 @@
 	
 	$cont.='
 	    <center>
-			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atención al Paciente</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenci&oacute;n al Paciente</h3>
 		</center>
 		';
 		
@@ -42,7 +42,7 @@
 	if(empty($buscar) or $sw == 1){	
 		if($sw == 1){
 			$agnadir='
-					<a href="./?url=nuevopaciente&sbm=5">Paciente no Encotrado...Añadir</a>';	
+					<a href="./?url=nuevopaciente&sbm=5">Paciente no Encotrado...A&ntilde;adir</a>';	
 		}
 	}else{
 		
@@ -111,7 +111,7 @@
 					<div align="center">
 						<form class="form-search" method="POST" action="./?url=ambulatoria_atencionalpaciente&sbm='.$sbm.'">
 							<div class="input-group">
-							  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
+							  Buscar paciente: <input type="search" class="form-control" placeholder="C&eacute;dula" name="buscar" id="busqueda">
 							  <span class="input-group-btn">
 								<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 							  </span>

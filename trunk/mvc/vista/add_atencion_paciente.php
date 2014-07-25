@@ -3,8 +3,9 @@
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	$atencion = new Accesatabla('atencion_paciente');
+	$sbm = $_GET['sbm'];
 	$id = $_GET['id'];
-	if($_SESSION['idgu'] <> 3){
+	if($_SESSION['idgu'] <> 3 AND $_SESSION['idgu'] <> 4){
 		if($_SESSION['idgu'] == 1){
 			$vista = 'ambulatoria_atencionalpaciente&sbm=2&id='.$id.'';
 		}else{
@@ -24,6 +25,11 @@
 		$atencion->colocar("TELEFONO", $_POST['telefono']);
 		$atencion->colocar("MOTIVO", $_POST['motivo']);
 		$atencion->salvar();
-		echo '<script>alert("Datos Ingresados Correctamente"); location.href="./?url=ambulatoria_atencionalpaciente&id='.$id.'&sbm=2"</script>';	
+		if($sbm == 8){
+			$url = 'contacto_telefonico';
+		}else{
+			$url = 'ambulatoria_atencionalpaciente';
+		}
+		echo '<script>alert("Datos Ingresados Correctamente"); location.href="./?url='.$url.'&id='.$id.'&sbm='.$sbm.'"</script>';	
 	}
 ?>
