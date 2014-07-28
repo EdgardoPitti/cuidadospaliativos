@@ -12,6 +12,7 @@
 	$especialidades = new Accesatabla('especialidades_medicas');
 	$id = $_GET['id'];
 	$c = $_GET['c'];
+	$sbm = $_GET['sbm'];
 	
 	if(empty($c)){
 
@@ -65,7 +66,7 @@
 	$hora.=	'</select>';
 	
 	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Nueva Cita</h3>	
-			<form id="form" method="POST" action="./?url=agregar_citas&sbm=1">
+			<form id="form" method="POST" action="./?url=agregar_citas&sbm='.$sbm.'">
 				<div class="row-fluid">
 					<div class="span6" align="center">
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 1:</h5>
@@ -122,7 +123,7 @@
 										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$servicios->obtener('DESCRIPCION').'</td>
 										<td>
-											<a href="./?url=agregar_citas&sw=1&id='.$citas->obtener('ID_CITA').'&sbm=1" class="btn btn-danger">Cancelar Cita</a>
+											<a href="./?url=agregar_citas&sw=1&id='.$citas->obtener('ID_CITA').'&sbm='.$sbm.'" class="btn btn-danger">Cancelar Cita</a>
 										</td>
 									</tr>';
 					$c = $citas->releer();
@@ -154,7 +155,7 @@
 						</div>
 						<center>
 							<button type="submit" class="btn btn-primary" style="margin-top:8px;">Agregar Nuevo Paciente</button><br>
-							<a  href="./?url=domiciliaria_agenda&sbm=1" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>
+							<a  href="./?url=domiciliaria_agenda&sbm='.$sbm.'" class="btn btn-primary" style="margin-top:8px;">Ir Agenda</a>
 						</center>
 					</div>
 				</div>

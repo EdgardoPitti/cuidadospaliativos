@@ -9,6 +9,8 @@
 	$paciente = new Accesatabla('datos_pacientes');
 	$servicio = new Accesatabla('servicios_medicos');
 	$equipos = new Accesatabla('equipo_medico');
+	$sbm = $_GET['sbm'];
+
 	$c = $_GET['c'];
 	$contador = $c;
 	for($x=0;$x<$c;$x++){
@@ -43,7 +45,7 @@
 	$cont='
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>		
 		<center>
-			<form method="POST" action="./?url=domiciliaria_agenda&sbm=1">
+			<form method="POST" action="./?url=domiciliaria_agenda&sbm='.$sbm.'">
 					Ir a: <input type="date" id="fecha" name="fecha" max="2025-12-31" min="2010-01-01" value="'.$_POST['fecha'].'"><br>
 					ID Equipo M&eacute;dico: <select id="equipo" name="equipo">
 												<option value="0">SELECCIONE</option>';
@@ -72,7 +74,7 @@
 			</div>
 		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;float:none;clear:both">
 			<div class="span2">
-				<a href="./?url=domiciliaria_agenda&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
+				<a href="./?url=domiciliaria_agenda&sbm='.$sbm.'" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
 					<article class="agenda">
 						<center>
 							<h2>'.$ds->dime('dia es').'</h2>
@@ -89,7 +91,7 @@
 			$next = explode("-",$ds->diasig($next[2], $next[1],$next[0]));	
 		}
 		$cont.='
-						<a href="./?url=domiciliaria_agenda&c='.$x.'&sbm=1" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">
+						<a href="./?url=domiciliaria_agenda&c='.$x.'&sbm='.$sbm.'" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">
 							<article class="agenda">
 								<center>
 									<h2>'.$ds->diasdespues(''.$x.'').'</h2>
@@ -146,7 +148,7 @@
 										<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$servicio->obtener('DESCRIPCION').'</td>
-										<td><a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm=1" title="Editar Cita"><img src="./iconos/search.png"></a></td>
+										<td><a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm='.$sbm.'" title="Editar Cita"><img src="./iconos/search.png"></a></td>
 									</tr>
 								</tbody>							
 				';
@@ -155,11 +157,11 @@
 			$cont.='			
 							</table>
 						</div>
-									<a href="./?url=nueva_cita&h='.$x.'&sbm=1&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
+									<a href="./?url=nueva_cita&h='.$x.'&sbm='.$sbm.'&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
 								</td>';
 		}else{
 			$cont.='		
-							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm=1&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
+							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm='.$sbm.'&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
 		}
 		$cont.='		</tr>';
 		
