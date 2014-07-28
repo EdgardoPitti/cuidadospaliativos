@@ -10,6 +10,7 @@
 	$detalle_equipo = new Accesatabla('detalle_equipo_medico');
 	$profesionales_salud = new Accesatabla('profesionales_salud');
 	$sw = $_GET['sw'];
+	$sbm = $_GET['sbm'];
 	if($_SESSION['idgu'] == 2){
 		$msj = '';
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><script>location.href="./?url=inicio"</script>';
@@ -55,6 +56,6 @@
 				}
 			}
 		}
-		echo '<script>'.$msj.';location.href="./?url=nueva_cita&id='.$id.'&sbm=1"</script>';
+		echo '<script>'.$msj.';location.href="./?url=nueva_cita&id='.$id.'&sbm='.$sbm.'"</script>';
 	}
 ?>
