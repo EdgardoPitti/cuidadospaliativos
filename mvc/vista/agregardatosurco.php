@@ -12,6 +12,8 @@
 	$resultados = new Accesatabla('resultados_examen_diagnostico');
 	$diagnostico = new Accesatabla('diagnostico');	
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
+	$sbm = $_GET['sbm'];
+
 	if($_SESSION['idgu'] <> 3){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
@@ -93,6 +95,6 @@
 			$x = $tipoexamen->releer();
 
 		}
-		echo '<script language="javascript">location.href="./?url=domiciliaria_surco&idp='.$idpaciente.'&sbm=1"</script>';
+		echo '<script language="javascript">location.href="./?url=domiciliaria_surco&idp='.$idpaciente.'&sbm='.$sbm.'"</script>';
 	}
 ?>

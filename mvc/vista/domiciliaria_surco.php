@@ -138,7 +138,7 @@
 						}
 						
 							$cont.=' 
-							<form id="form" method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1">
+							<form id="form" method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'&sbm='.$sbm.'">
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
 										<input id="acordeon1" name="accordion" type="radio"/>
@@ -507,7 +507,7 @@
 																	<td>'.$respuesta->obtener('HALLAZGOS_CLINICOS').'</td>
 																	<td>'.$respuesta->obtener('TRATAMIENTO').'</td>
 																	<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
-																	<td><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'&sbm=1"><img src="./iconos/search.png"></a></td>
+																	<td><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&idr='.$respuesta->obtener('ID_RESPUESTA_REFERENCIA').'&sbm='.$sbm.'"><img src="./iconos/search.png"></a></td>
 																</tr>
 															</tbody>
 												';
@@ -516,7 +516,7 @@
 											$cont.='
 													</table>
 												</div>
-												<center style="margin-top:8px"><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1" class="btn btn-primary">Agregrar Respuesta</a></center>
+												<center style="margin-top:8px"><a href="./?url=domiciliaria_surco&idp='.$personas->obtener('ID_PACIENTE').'&sbm='.$sbm.'" class="btn btn-primary">Agregrar Respuesta</a></center>
 											</div>
 										</div>';
 
@@ -532,7 +532,7 @@
 							}
 							$cont.='
 
-								<form id="form2" method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'&sbm=1">										
+								<form id="form2" method="POST" action="./?url=agregarrespuestareferencia&id='.$surco->obtener('ID_SURCO').'&idp='.$personas->obtener('ID_PACIENTE').'&sbm='.$sbm.'">										
 									<div class="row-fluid">
 										<div class="span6">
 											<table class="tabla-datos">

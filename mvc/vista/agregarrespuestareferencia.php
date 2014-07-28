@@ -8,6 +8,7 @@
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$idsurco = $_GET['id'];
 	$idp = $_GET['idp'];
+	$sbm = $_GET['sbm'];
 	if($_SESSION['idgu'] == 3){
 		$diagnostico->nuevo();
 		$diagnostico->salvar();
@@ -39,5 +40,5 @@
 	}else{
 		$msj = 'No es profesional y no puede agregar una respuesta de referencia.';
 	}
-	echo '<script language="javascript">alert("'.$msj.'")</script><script>location.href="./?url=domiciliaria_surco&sbm=1&idp='.$idp.'"</script>'
+	echo '<script language="javascript">alert("'.$msj.'")</script><script>location.href="./?url=domiciliaria_surco&sbm='.$sbm.'&idp='.$idp.'"</script>'
 ?>
