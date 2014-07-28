@@ -10,6 +10,7 @@
 	$trazabilidad = new Accesatabla('trazabilidad');
 	$id = $_GET['id'];
 	$sw = $_GET['sw'];
+	$sbm = $_GET['sbm'];
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.");</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
@@ -67,6 +68,6 @@
 			$rvd->salvar();
 			
 		}
-		echo '<script>location.href="./?url=domiciliarias_registro_visitas&id='.$id.'&sbm=1"</script>';
+		echo '<script>location.href="./?url=domiciliarias_registro_visitas&id='.$id.'&sbm='.$sbm.'"</script>';
 	}
 ?>
