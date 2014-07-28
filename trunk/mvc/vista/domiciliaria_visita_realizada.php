@@ -5,6 +5,8 @@
 	$rvd = new Accesatabla('registro_visitas_domiciliarias');
 	$institucion = new Accesatabla('institucion');
 	$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
+
+	$sbm = $_GET['sbm'];
 	
 	$inicio = $_POST['inicio'];
 	$final = $_POST['final'];
@@ -13,7 +15,7 @@
 			<div class="span12">
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro de Visitas Domiciliarias</h3>
 				<center>
-					<form method="POST" action="./?url=domiciliaria_visita_realizada&sbm=1">
+					<form method="POST" action="./?url=domiciliaria_visita_realizada&sbm='.$sbm.'">
 						<table class="tabla-datos">						
 							<tr>
 								<th>Filtrar</th>
@@ -88,7 +90,7 @@
 					$cont.='
 									<td>'.$matriz[0][cantidad].'</td>
 									<td>'.$rvd->obtener('HORAS_DE_ATENCION').'</td>
-									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'&sbm=1"><img src="./iconos/search.png"></a></td>
+									<td><a href="./?url=domiciliarias_registro_visitas&id='.$rvd->obtener('ID_RVD').'&sbm='.$sbm.'"><img src="./iconos/search.png"></a></td>
 								</tr>';
 				$r = $rvd->releer();
 				$n++;
@@ -99,7 +101,7 @@
 					</div>
 				</center>
 				<center>
-					<a href="./?url=domiciliarias_registro_visitas&sbm=1" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
+					<a href="./?url=domiciliarias_registro_visitas&sbm='.$sbm.'" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
 				</center>
 			</div>
 		</div>
