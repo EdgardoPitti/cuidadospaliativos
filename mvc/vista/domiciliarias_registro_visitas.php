@@ -12,7 +12,7 @@
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$programa = new Accesatabla('programa');
 	$categoria = new Accesatabla('categoria');
-	
+	$sbm = $_GET['sbm'];
 	$idrvd = $_GET['id'];
 	if(empty($idrvd)){
 		$idrvd = $_SESSION[idrvd];
@@ -25,12 +25,12 @@
 		$i = $instituciones->releer();
 	}
 	$cont.='
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=domiciliaria_visita_realizada&sbm=1" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a> Registro de Visitas Domiciliarias</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=domiciliaria_visita_realizada&sbm='.$sbm.'" class="btn btn-primary" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a> Registro de Visitas Domiciliarias</h3>
 			';
 	if(empty($idrvd)){
 		$cont.='
 				<center>
-					<form id="form" method="POST" action="./?url=agregar_datos_rvd&sbm=1">
+					<form id="form" method="POST" action="./?url=agregar_datos_rvd&sbm='.$sbm.'">
 						<table>
 							<tr>
 								<td>Fecha: </td>
@@ -77,7 +77,7 @@
 	$cont.='
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
 			
-		<form  id="form2" method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm=1">';
+		<form  id="form2" method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm='.$sbm.'">';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='
