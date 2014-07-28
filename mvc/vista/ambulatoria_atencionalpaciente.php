@@ -308,7 +308,7 @@
 											<div class="modal-body" align="center">  
 												<strong>Actividad Realizada</strong><br>
 												'.$actividad->obtener('ACTIVIDAD').'<br><br>
-												<strong>Profesional Encargado de la Actividad</strong>
+												<strong>Profesional Encargado de la Actividad</strong><br>
 												'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$datosprofesional->obtener('SEGUNDO_NOMBRE').' '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$datosprofesional->obtener('APELLIDO_MATERNO').'
 											</div>  
 											<div class="modal-footer">  
