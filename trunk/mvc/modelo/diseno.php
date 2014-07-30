@@ -442,14 +442,6 @@ class Diseno {
 		return $script;
 	}
 	
-	function alerta(){
-		$const = 1;
-		echo '
-			<audio src="./alertas/alerta.wav" type="audio/wav" preload="preload" controls="controls" autoplay="autoplay" loop></audio>
-		';
-		return;
-	}
-
 	function mostrar($noaside = false){
 		if($noaside)
 			echo '
@@ -720,7 +712,7 @@ class Diseno {
 					</div>						
 
 					<!--DATOS DEL PACIENTE-->
-					<div class="css_acordeon" id="mostrar_ocultar6" id="accordion-6" style="display:'.$display6.';">			
+					<div class="css_acordeon" id="mostrar_ocultar6" style="display:'.$display6.';">			
 						<h3>Men&uacute; Datos del Paciente</h3><hr>
 						<div>
 							<ul class="acordeon_link">
@@ -735,7 +727,7 @@ class Diseno {
 					</div>
 
 					<!--DATOS CLINICOS-->
-					<div class="css_acordeon" id="mostrar_ocultar7" id="accordion-7" style="display:'.$display7.';">			
+					<div class="css_acordeon" id="mostrar_ocultar7" style="display:'.$display7.';">			
 						<h3>Men&uacute; Datos Cl&iacute;nicos</h3><hr>
 						<div style="margin-bottom:2px;">
 							<input id="ac-8" name="acordeon" type="radio" />

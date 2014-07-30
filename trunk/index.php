@@ -3,7 +3,7 @@
 <html lang="es-ES">
 	<head>	
 		<meta  content="text/html; charset=utf-8" />
-		<title>Cuidados Paliativos</title>
+		<title>Gesti&oacute;n de Cuidados Paliativos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
@@ -456,7 +456,7 @@
 				<div class="span12">
 					<div class="page-header">
 						<h1 style="line-height:35px;">	
-							Red Social de Cuidados Paliativos Panam&aacute;
+							Gesti&oacute;n de Cuidados Paliativos Panam&aacute;
 						</h1>
 					</div>
 				</div>
