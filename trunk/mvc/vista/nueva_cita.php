@@ -12,8 +12,9 @@
 	$especialidades = new Accesatabla('especialidades_medicas');
 	$id = $_GET['id'];
 	$c = $_GET['c'];
+
 	$sbm = $_GET['sbm'];
-	
+
 	if(empty($c)){
 
 		if($_SESSION['fecha'][2] < 10){
