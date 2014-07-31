@@ -37,7 +37,7 @@
 							<table width="40%" >
 								<tr>
 									<td>Fecha:</td>
-									<td align="center"><input type="date" id="fecharda" name="fecharda" required="required"></td>
+									<td align="center"><input type="date" id="fecharda" name="fecharda" placeholder="AAAA-MM-DD" required="required"></td>
 								</tr>
 								<tr>
 									<td>Instituci&oacute;n:</td>

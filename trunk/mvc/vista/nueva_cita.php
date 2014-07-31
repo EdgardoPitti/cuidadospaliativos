@@ -72,7 +72,7 @@
 					<div class="span6" align="center">
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 1:</h5>
 						<label for="fecha">Seleccione la fecha: </label>
-						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" max="2025-12-31" min="2010-12-31" required="required">
+						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" placeholder="AAAA-MM-DD" max="2025-12-31" min="2010-12-31" required="required">
 					</div>
 					<div class="span6" align="center" >
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>

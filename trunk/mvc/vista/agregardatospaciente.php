@@ -92,10 +92,12 @@
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
 		$datospaciente->salvar();
 		//
-		$usuarios->colocar("NO_IDENTIFICACION", $_POST['usuario']);
-		$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
-		$usuarios->colocar("ID_GRUPO_USUARIO", 2);
-		$usuarios->salvar();
+		if($sbm <> 6){
+			$usuarios->colocar("NO_IDENTIFICACION", $_POST['usuario']);
+			$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
+			$usuarios->colocar("ID_GRUPO_USUARIO", 2);
+			$usuarios->salvar();
+		}
 		
 		if(!$datos){
 			$sql = 'SELECT max(ID_PACIENTE) as id FROM datos_pacientes';
@@ -113,9 +115,11 @@
 			$matriz = $ds->db->obtenerarreglo($sql);
 			$idusuario = $matriz[0][id];
 		}
-		$paciente->colocar("ID_PACIENTE", $idpaciente);
-		$paciente->colocar("ID_USUARIO", $idusuario);
-		$paciente->salvar();
+		if($sbm <> 6){
+			$paciente->colocar("ID_PACIENTE", $idpaciente);
+			$paciente->colocar("ID_USUARIO", $idusuario);
+			$paciente->salvar();
+		}
 		
 		$pregunta = 0;
 		$telefono = 0;
@@ -128,18 +132,20 @@
 		}elseif($_POST['preferencia'] == 3){
 			$email = 1;
 		}
-		$preferencias->colocar("ID_USUARIO", $idusuario);
-		$preferencias->colocar("USAR_PREGUNTA_SEGURIDAD", $pregunta);
-		$preferencias->colocar("USAR_TELEFONO_PREFERENCIAL", $telefono);
-		$preferencias->colocar("USAR_EMAIL_PREFERENCIAL", $email);
-		$preferencias->salvar();
-		
-		$autenticacion->colocar("ID_USUARIO", $idusuario);
-		$autenticacion->colocar("ID_PREGUNTA", $_POST['pregunta']);
-		$autenticacion->colocar("RESPUESTA", $_POST['respuesta']);
-		$autenticacion->colocar("TELEFONO_PREFERENCIAL", $_POST['celular']);
-		$autenticacion->colocar("E_MAIL_PREFERENCIAL", $_POST['correo']);
-		$autenticacion->salvar();
+		if($sbm <> 6){
+			$preferencias->colocar("ID_USUARIO", $idusuario);
+			$preferencias->colocar("USAR_PREGUNTA_SEGURIDAD", $pregunta);
+			$preferencias->colocar("USAR_TELEFONO_PREFERENCIAL", $telefono);
+			$preferencias->colocar("USAR_EMAIL_PREFERENCIAL", $email);
+			$preferencias->salvar();
+			
+			$autenticacion->colocar("ID_USUARIO", $idusuario);
+			$autenticacion->colocar("ID_PREGUNTA", $_POST['pregunta']);
+			$autenticacion->colocar("RESPUESTA", $_POST['respuesta']);
+			$autenticacion->colocar("TELEFONO_PREFERENCIAL", $_POST['celular']);
+			$autenticacion->colocar("E_MAIL_PREFERENCIAL", $_POST['correo']);
+			$autenticacion->salvar();
+		}
 		
 		//Si no esta vacia la variable $sw o si no esta vacio al obtener el id por GET quiere decir que el registro es 
 		//de un paciente de atencion hospitalaria por lo tanto debe almacenar una persona responsable
@@ -181,7 +187,7 @@
 		}else{
 			$url='nuevopaciente&act=1&sbm='.$sbm.'';
 		}
-		echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
+		//echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 	}
 
 ?>
