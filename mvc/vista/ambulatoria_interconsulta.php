@@ -138,7 +138,7 @@
 				<table width="100%">
 					<tr align="center">
 						<td>Fecha: </td>
-						<td><input type="date" id="fecha" name="fecha" required></td>
+						<td><input type="date" placeholder="AAAA-MM-DD" id="fecha" name="fecha" required></td>
 					</tr>
 					<tr align="center">
 						<td>Observaciones/Comentarios</td>

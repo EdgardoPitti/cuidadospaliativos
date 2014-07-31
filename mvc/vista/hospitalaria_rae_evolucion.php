@@ -500,7 +500,7 @@
 								</tr>								
 								<tr>
 									<td>Fecha Autopsia:</td>
-									<td><input type="date" name="fechautopsia" id="fechautopsia" value="'.$rae->obtener('FECHA_AUTOPSIA').'"></td>
+									<td><input type="date" name="fechautopsia" id="fechautopsia" placeholder="AAAA-MM-DD" value="'.$rae->obtener('FECHA_AUTOPSIA').'"></td>
 								</tr>
 							</table>
 						</div>

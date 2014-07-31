@@ -420,7 +420,7 @@
 															</td>
 															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="obser'.$nomb_examen.'" id="obser'.$nomb_examen.'" value="'.$detallediagnostico->obtener('OBSERVACION').'" '.$readonly.' title="'.$detallediagnostico->obtener('OBSERVACION').'"></td>
 															<td style="padding:5px 5px 0px 5px"><input type="text" style="width:125px;" name="tratamiento'.$nomb_examen.'" id="tratamiento'.$nomb_examen.'" value="'.$resultado->obtener('TRATAMIENTO').'" '.$readonly.' title="'.$resultado->obtener('TRATAMIENTO').'"></td>
-															<td style="padding:5px 5px 0px 5px"><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' title="'.$resultado->obtener('FECHA').'"></td>
+															<td style="padding:5px 5px 0px 5px"><input type="date" style="width:132px;" name="fec_examen_'.$nomb_examen.'" id="fec_examen_'.$nomb_examen.'" value="'.$resultado->obtener('FECHA').'" '.$readonly.' placeholder="AAAA-MM-DD" title="'.$resultado->obtener('FECHA').'"></td>
 														</tr>
 													</tbody>';					
 					$x = $tipoexamen->releer();
@@ -697,7 +697,7 @@
 															Fecha:
 														</div>
 														<div class="span6">
-															<input type="date" name="fecharespuesta" value="'.$respuesta->obtener('FECHA').'" '.$readonly.' required="required">
+															<input type="date" name="fecharespuesta" placeholder="AAAA-MM-DD" value="'.$respuesta->obtener('FECHA').'" '.$readonly.' required="required">
 														</div>
 													</div>
 													<div class="row-fluid">
