@@ -337,7 +337,7 @@
 														</tr>
 														<tr>
 															<td align="center">
-																<select id="estadocivil" name="estadocivil" onChange="valida(this.value)" required="required">
+																<select id="estadocivil" name="estadocivil">
 																	<option value="2">SELECCIONE ESTADO CIVIL</option>';
 						$ec = $estadocivil->buscardonde('ID_ESTADO_CIVIL > 0');
 						while ($ec){
