@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="./css/jquery-ui.css">
 		<link rel="stylesheet" href="./css/styles.css">
 		<center>
-			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">ESAS</h3>
+			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">ESAS-R</h3>
 		
 			<form class="form-search" method="POST" action="./?url=escala_edmont&sbm='.$sbm.'">
 				<div class="input-group">

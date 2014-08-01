@@ -66,7 +66,7 @@
 	}
 	$hora.=	'</select>';
 	
-	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Nueva Cita</h3>	
+	$cont.='<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agregar Nuevas Citas</h3>	
 			<form id="form" method="POST" action="./?url=agregar_citas&sbm='.$sbm.'">
 				<div class="row-fluid">
 					<div class="span6" align="center">
