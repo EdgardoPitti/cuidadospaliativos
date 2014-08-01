@@ -120,311 +120,17 @@
 			  	</table>
 		  	</center>';
 	}
-	$cont.='
-			<center>
-				<!-- Buscar Paciente que completa -->
-				<div class="row" id="patient" style="display:none">
-					<div class="span6 offset3 input-group" style="margin-bottom:10px;">
-						<strong>Buscar Paciente:</strong> <input type="search" name="paciente" id="paciente"><input type="hidden" id="cedpaciente" name="cedpaciente" placeholder="C&eacute;dula Paciente">
-					</div>					
-				</div>	
-				<!-- Agregar datos del familiar que completa -->	
-				<div class="row-fluid" id="familiar" style="display:none;margin-bottom:10px">
-					<div class="price-box">
-						<div class="form-pricing">
-							<h3 style="text-align:center">Datos del Familiar</h3><hr>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">C&eacute;dula:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="cedfamiliar" name="cedfamiliar" placeholder="C&eacute;dula"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Primer Nombre:</td>
-											</tr>									
-											<tr>
-												<td><input type="text" id="primernombrefamiliar" name="primernombrefamiliar" placeholder="Primer Nombre"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Segundo Nombre:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="segundonombrefamiliar" name="segundonombrefamiliar" placeholder="Segundo Nombre"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Apellido Paterno:</td>
-											</tr>									
-											<tr>
-												<td><input type="text" id="apellidopaternofamiliar" name="apellidopaternofamiliar" placeholder="Apellido Paterno"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Apellido Materno:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="apellidomaternofamiliar" name="apellidomaternofamiliar" placeholder="Apellido Materno"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Sexo:</td>														
-											</tr>
-											<tr>
-												<td>
-													<select  id="sexoflia" name="sexoflia">
-														<option value="0">SELECCIONAR</option>
-														<option value="1">MASCULINO</option>
-														<option value="2">FEMENINO</option>
-													</select>
-												</td>
-											</tr>
-										</tbody>
-									</table>								
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Direcci&oacute;n:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="direccionfamiliar" name="direccionfamiliar" placeholder="Direcci&oacute;n"></td>
-											</tr>
-										</tbody>
-									</table>																
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
-											</tr>									
-											<tr>
-												<td><input type="text" id="telefonofamiliar" name="telefonofamiliar" placeholder="Tel&eacute;fono"></td>
-											</tr>
-										</tbody>
-									</table>										
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Celular:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="celularfamiliar" name="celularfamiliar" placeholder="Celular"></td>
-											</tr>
-										</tbody>
-									</table>																	
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Parentesco:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="parentesco" name="parentesco" placeholder="Parentesco"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Buscar medico que completa -->
-				<div class="row" id="professional" style="display:none;">
-					<div class="span6 offset3 input-group" style="margin-bottom:10px;">
-						<strong>Buscar Profesional:</strong> <input type="search" name="profesional" id="profesional"><input type="hidden" id="cedprofesional" name="cedprofesional" placeholder="C&eacute;dula Profesional">
-					</div>
-				</div>
-				<!-- Agregar Del cuidador que completa -->
-				<div class="row-fluid" id="asistido" style="display:none;margin-bottom:10px;">
-					<div class="price-box">
-						<div class="form-pricing">
-							<h3 style="text-align:center">Datos del Cuidador</h3><hr>	
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">C&eacute;dula:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="cedula" name="cedula" placeholder="C&eacute;dula"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Primer Nombre:</td>
-											</tr>									
-											<tr>
-												<td><input type="text" id="primernombre" name="primernombre" placeholder="Primer Nombre"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Segundo Nombre:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="segundonombre" name="segundonombre" placeholder="Segundo Nombre"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Apellido Paterno:</td>
-											</tr>									
-											<tr>
-												<td><input type="text" id="apellidopaterno" name="apellidopaterno" placeholder="Apellido Paterno"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Apellido Materno:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="apellidomaterno" name="apellidomaterno" placeholder="Apellido Materno"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Sexo:</td>														
-											</tr>
-											<tr>
-												<td>
-													<select  id="sexo" name="sexo">
-														<option value="0">SELECCIONAR</option>
-														<option value="1">MASCULINO</option>
-														<option value="2">FEMENINO</option>
-													</select>
-												</td>
-											</tr>
-										</tbody>
-									</table>								
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Direcci&oacute;n:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="direccion" name="direccion" placeholder="Direcci&oacute;n"></td>
-											</tr>
-										</tbody>
-									</table>								
-								</div>
-								<div class="span6">									
-									<table class="table">
-										<tbody>
-
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>
-											</tr>									
-											<tr>
-												<td><input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono"></td>
-											</tr>
-										</tbody>
-									</table>																		
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<table class="table">
-										<tbody>
-											<tr>
-												<td style="text-align:left;padding-left:17%;">Celular:</td>														
-											</tr>
-											<tr>
-												<td><input type="text" id="celular" name="celular" placeholder="Celular"></td>
-											</tr>
-										</tbody>
-									</table>	
-								</div>
-								<div class="span6">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</center>
+		$cont.='
 			<div class="price-box">
 				<div class="form-pricing">
 				  <!-- Slider DOLOR  -->
 		          <div class="price-slider">
 		            <h4 class="great">DOLOR</h4>
 		            <div class="span12">
-						<div id="slider" style="width:90%;"></div>
-					 	<div style="width:90%">
-						 	<span size="8" style="float:left;">Sin Dolor</span>
-						  	<span size="8" style="float:right;">M&aacute;ximo Dolor</span>
+						<div id="slider" style="width:95%;"></div>
+					 	<div style="width:95%;margin-top:10px">
+						 	<span size="8" class="left" style="float:left;">Sin Dolor</span>
+						  	<span size="8" class="right" style="float:right;">M&aacute;ximo Dolor</span>
 						</div>
 		              
 		            </div>
@@ -446,10 +152,10 @@
 				    <div class="price-slider">
 						<h4 class="great">CANSANCIO</h4>
 						<div class="span12">
-							<div id="slider2" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin Cansancio</span>
-								<span size="8" style="float:right;">M&aacute;ximo Cansancio</span>
+							<div id="slider2" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin Cansancio</span>
+								<span size="8" class="right" style="float:right;">M&aacute;ximo Cansancio</span>
 							</div>
 						</div>
 					</div>
@@ -469,16 +175,16 @@
 				    <div class="price-slider">
 						<h4 class="great">N&Aacute;USEA</h4>
 						<div class="span12">
-							<div id="slider3" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin N&aacute;usea</span>
-								<span size="8" style="float:right;">M&aacute;ximo N&aacute;usea</span>
+							<div id="slider3" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin N&aacute;usea</span>
+								<span size="8" class="right" style="float:right;">M&aacute;ximo N&aacute;usea</span>
 							</div>
 						</div>
 					</div>
 						  <!-- Intensidad en números-->
 		            <div class="form-group span12" style="text-align:center">
-		              <label for="nausea" class="control-label">Intensidad de  la N&aacute;usea: </label>
+		              <label for="nausea" class="control-label">Intensidad de N&aacute;usea: </label>
 					  
 					 <!-- muestra valor de intensidad de nausea -->
 		              <div>
@@ -492,10 +198,10 @@
 				    <div class="price-slider">
 						<h4 class="great">DEPRESI&Oacute;N</h4>
 						<div class="span12">
-							<div id="slider4" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin Depresi&oacute;n</span>
-								<span size="8" style="float:right;">M&aacute;ximo Depresi&oacute;n</span>
+							<div id="slider4" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin Depresi&oacute;n</span>
+								<span size="8" class="right" style="float:right;">M&aacute;ximo Depresi&oacute;n</span>
 							</div>
 						</div>
 					</div>
@@ -516,10 +222,10 @@
 				    <div class="price-slider">
 						<h4 class="great">ANSIEDAD</h4>
 						<div class="span12">
-							<div id="slider5" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin Ansiedad</span>
-								<span size="8" style="float:right;">M&aacute;xima Ansiedad</span>
+							<div id="slider5" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin Ansiedad</span>
+								<span size="8" class="right" style="float:right;">M&aacute;xima Ansiedad</span>
 							</div>
 						</div>
 					</div>
@@ -540,10 +246,10 @@
 				    <div class="price-slider">
 						<h4 class="great">SOMNOLENCIA</h4>
 						<div class="span12">
-							<div id="slider6" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin Somnolencia</span>
-								<span size="8" style="float:right;">M&aacute;ximo Somnolencia</span>
+							<div id="slider6" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin Somnolencia</span>
+								<span size="8" class="right" style="float:right;">M&aacute;ximo Somnolencia</span>
 							</div>
 						</div>
 					</div>
@@ -564,10 +270,10 @@
 				    <div class="price-slider">
 						<h4 class="great">APETITO</h4>
 						<div class="span12">
-							<div id="slider7" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin Apetito</span>
-								<span size="8" style="float:right;">Buen Apetito</span>
+							<div id="slider7" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin Apetito</span>
+								<span size="8" class="right" style="float:right;">Buen Apetito</span>
 							</div>
 						</div>
 					</div>
@@ -588,10 +294,10 @@
 				    <div class="price-slider">
 						<h4 class="great">BIENESTAR	</h4>
 						<div class="span12">
-							<div id="slider8" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">M&aacute;ximo Bienestar	</span>
-								<span size="8" style="float:right;">M&aacute;ximo Malestar</span>
+							<div id="slider8" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">M&aacute;ximo Bienestar	</span>
+								<span size="8" class="right" style="float:right;">M&aacute;ximo Malestar</span>
 							</div>
 						</div>
 					</div>
@@ -612,10 +318,10 @@
 				    <div class="price-slider">
 						<h4 class="great">AIRE	</h4>
 						<div class="span12">
-							<div id="slider9" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Sin Falta de Aire</span>
-								<span size="8" style="float:right;">M&aacute;xima Falta de Aire</span>
+							<div id="slider9" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Sin Falta de Aire</span>
+								<span size="8" class="right" style="float:right;">M&aacute;xima Falta de Aire</span>
 							</div>
 						</div>
 					</div>
@@ -635,10 +341,10 @@
 				    <div class="price-slider">
 						<h4 class="great">DORMIR	</h4>
 						<div class="span12">
-							<div id="slider10" style="width:90%;"></div>
-					 		<div style="width:90%">
-								<span size="8" style="float:left;">Facilidad para Dormir</span>
-								<span size="8" style="float:right;">M&aacute;ximo Dificultad para Dormir</span>
+							<div id="slider10" style="width:95%;"></div>
+					 		<div style="width:95%;margin-top:10px">
+								<span size="8" class="left" style="float:left;">Facilidad para Dormir</span>
+								<span size="8" class="right" style="float:right;">M&aacute;ximo Dificultad para Dormir</span>
 							</div>
 						</div>
 					</div>
@@ -660,7 +366,6 @@
 		    </div>
         </form>
 	   	 
-	    <script src="./js/bootstrap.min.js"></script>
 		<script src="./js/jquery-ui.min.js"></script>
 		<script src="./js/slider.js"></script>		
 	';
