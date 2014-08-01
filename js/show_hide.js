@@ -62,38 +62,6 @@ $(function(){
 	$("#mostrar_ocultar2").hide();
 	$("#mostrar_ocultar5").hide();
 	$("#mostrar_ocultar6").hide();
-  });
-  $("#completado").change(function(){
-  	if($("#completado").val() == 0 ){  		
-  		$("#patient").hide("1000"); 
-  		$("#familiar").hide();
-  		$("#professional").hide();
-  		$("#asistido").hide();
-  	}
-  	if($("#completado").val() == 1 ){  		
-  		$("#patient").show("1000"); 
-  		$("#familiar").hide();
-  		$("#professional").hide();
-  		$("#asistido").hide();
-  	}
-	if($("#completado").val() == 2 ){		
-		$("#familiar").show("1000");
-		$("#professional").hide();
-		$("#asistido").hide();
-		$("#patient").hide();
-	}
-	if($("#completado").val() == 3 ){
-		$("#professional").show("1000");
-		$("#familiar").hide();
-		$("#asistido").hide();
-		$("#patient").hide();
-	}
-  	if($("#completado").val() == 4 ){
-		$("#asistido").show("1000");
-		$("#familiar").hide();
-		$("#professional").hide();
-		$("#patient").hide();
-	}
-  });
+  });  
 });
 

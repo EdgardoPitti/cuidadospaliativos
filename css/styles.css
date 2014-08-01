@@ -28,7 +28,7 @@
 
 .ui-slider .ui-slider-handle .color {
 	color: #FFFFFF;
-	margin: 0 3px; 
+	margin: 0 2px; 
 	font-size: 11px;
 	opacity: 0.5;
 }
@@ -114,6 +114,14 @@ h4.great {
 	color: #7f8c8d;
 	font-size: 12px;
 	font-weight: bold;
+	width: 100%;
+	max-width: 120px;
+}
+.left{
+	text-align: left;
+}
+.right{
+	text-align: right;
 }
 @media(min-width: 768px){
 	.price-slider span {
@@ -187,4 +195,9 @@ hr.style {
     border: 0;
     border-bottom: 1px dashed #ccc;
     background: #999;
+}
+.form-group .control-label{
+	font-weight: bold;
+	float: none;
+	clear:both;
 }

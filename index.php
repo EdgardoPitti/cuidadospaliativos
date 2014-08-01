@@ -468,8 +468,11 @@
 			<!--Pie de Página-->
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="page-footer">
-                        <b>Derechos Reservados 2013-2014</b>
+                    <div class="page-footer">                        
+                        <b class="pull-left">Derechos Reservados 2013-2014</b>
+                        <div class="pull-right">
+                            <img src="./iconos/UTP.png">
+                        </div>
                     </div>
                 </div>
             </div>
