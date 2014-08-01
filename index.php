@@ -472,6 +472,7 @@
                         <b class="pull-left">Derechos Reservados 2013-2014</b>
                         <div class="pull-right">
                             <img src="./iconos/UTP.png">
+                            <img src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin-right:5px">
                         </div>
                     </div>
                 </div>
