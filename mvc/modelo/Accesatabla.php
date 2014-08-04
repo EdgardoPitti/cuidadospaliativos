@@ -1,4 +1,4 @@
-<?	class Accesatabla {
+<?php	class Accesatabla {
 	private $db=null, $estatabla, $esnuevo, $registro, $totaldelineas, $estalinea, $totaldecampos=0, $ultimosql='' ;
 	private $cambiados = array () , $contenido = array ();
 	private $tipocampo = array () , $loscampos = array ();
@@ -133,7 +133,7 @@
 			$sql = 'ALTER TABLE '.$this->estatabla.' AUTO_INCREMENT = '.$n.'';
 			$this->db->query($sql);
 		}	
-		echo $syntax.'<br>';
+		//echo $syntax.'<br>';
 		$this->db->query($syntax);//Realiza el query
 		if ( $this->db->affected_rows() > 0 ) {//Si se afecto un registro...
 			for ( $i = 0; $i <= $this->totaldecampos; $i++ ) { 
@@ -343,15 +343,15 @@
 	public function eliminar( $id ){//Borra un registro, recibe el id del registro a ser eliminado
 		$this->db->query("DELETE FROM ".$this->estatabla." WHERE id=".$id);
 	}
-	public function automantenimiento( $pkaeditar,$editar='',$listar='' ){	//descripcion:Realiza el mantenimiento automático de cualquier tabla...
+	public function automantenimiento( $pkaeditar,$editar='',$listar='' ){	//descripcion:Realiza el mantenimiento autom\E1tico de cualquier tabla...
 		include_once('diseno.php'); $pg = new Diseno();
 		$vista = '<center><table class="mantenimiento" border="2">';
 		$formulario='';
 		$automatico = true; 
-		if( empty($pkaeditar) ){ //Verifica si el id está vacío o no
-			$this->nuevo(); //De estar vacío el id levanta un registro nuevo
+		if( empty($pkaeditar) ){ //Verifica si el id est\E1 vac\EDo o no
+			$this->nuevo(); //De estar vac\EDo el id levanta un registro nuevo
 		}else{
-			$automatico = $this->buscarprimaria($pkaeditar); //Búsqueda de la llave primaria capturada
+			$automatico = $this->buscarprimaria($pkaeditar); //B\FAsqueda de la llave primaria capturada
 		}
 		if($automatico){ //De Haberse encontrado la llave primaria
 			for($x=0; $x<=$this->totaldecampos; $x++){ //Recorrido de los campos de la tabla
@@ -417,7 +417,7 @@
 						$ind = $parts[0];
 						$descripcion[$ind] = $parts[1];
 					}
-					if($descripcion['desplegar']==='SI'){ // Si el campo está identificado como desplegar quiere decir que será el que se utilize como option dentro de un DropDown
+					if($descripcion['desplegar']==='SI'){ // Si el campo est\E1 identificado como desplegar quiere decir que ser\E1 el que se utilize como option dentro de un DropDown
 						$cols = $cols.'CONCAT('.$columna.')'; 
 						$cont++;
 						if( $cont > 1 ){
@@ -434,13 +434,13 @@
 			case 'checkbox':
 					$i = '<td>'.$comentarios['nombre'].'</td><td><input type="checkbox" value="1"></td>';
 			break;
-			//Caso de que sea radio armará la etiqueta RadioButton
+			//Caso de que sea radio armar\E1 la etiqueta RadioButton
 			case 'radio':
-				if(empty($comentarios['valores']))  $comentarios['valores'] ="SI¬1~NO¬0";
+				if(empty($comentarios['valores']))  $comentarios['valores'] ="SI\AC1~NO\AC0";
 				
 				$values = explode('~',$comentarios['valores']);
 				foreach($values as $valores){
-					$parts = explode('¬',$valores);
+					$parts = explode('\AC',$valores);
 					$idx = $parts[0];
 					$value[$idx] = $parts[1];
 					
@@ -452,11 +452,11 @@
 				}
 				$i.='</td>';
 			break;
-			//Caso de que sea password armará la etiqueta para contraseña
+			//Caso de que sea password armar\E1 la etiqueta para contrase\F1a
 			case 'password':
 				$i = '<td>'.$comentarios['nombre'].'</td><td>'.$pg->editar('clave',$nombrecampo,'45','45',$valorcampo,'').'</td>';
 			break;
-			//En caso de que sea dia armará el dropdown de los días
+			//En caso de que sea dia armar\E1 el dropdown de los d\EDas
 			case 'dia':
 				$ds = $pg->TAGselectDIAS($nombrecampo,'');
 				$i = '<td>'.$comentarios['nombre'].'</td><td>'.$ds.'</td>';
@@ -469,11 +469,11 @@
 				$as = $pg->TAGselectANOS($nombrecampo,'',2012,2050);
 				$i = '<td>'.$comentarios['nombre'].'</td><td>'.$as.'</td>';
 			break;
-			//En caso de que sea texto construirá un textbox
+			//En caso de que sea texto construir\E1 un textbox
 			case 'texto':
 				$i = '<td>'.$comentarios['nombre'].'</td><td>'.$pg->editar('campo',$nombrecampo,'45','90',$this->obtener($nombrecampo),'', 'required', '').'</td>';
 			break;
-			//En caso de que sea textarea construirá un textarea
+			//En caso de que sea textarea construir\E1 un textarea
 			case 'textarea':
 				$i = '<td>'.$comentarios['nombre'].'</td><td>'.$pg->editar('texto',$nombrecampo,'3','30',$this->obtener($nombrecampo),'').'</td>';
 			break;
@@ -546,9 +546,9 @@
 										$pg->enlace('./?accion='.$eliminar.'&id='.$reg['id'],'eliminar',$pg->imagen('./imagenes/delete.png" " style="margin-top:1px;"')).
 										$pg->enlace('./?accion='.$editar.'&opc='.$reg['id'],'editar',$pg->imagen('./imagenes/edit.png" " style="margin-top:1px;"')).
 									'</td>';
-									//Iconos de Eliminación y de Edición respectivamente
+									//Iconos de Eliminaci\F3n y de Edici\F3n respectivamente
 					$c = 1;				
-					foreach($reg as $campo => $valor ){ // Obtensión de los valores de los campos de la tabla
+					foreach($reg as $campo => $valor ){ // Obtensi\F3n de los valores de los campos de la tabla
 						$dex = 0;
 						foreach($campos as $campot){ 
 							$dex++; 
@@ -621,7 +621,7 @@
 	public function autovalidar( $valores , $listar='' ){
 			//Funcion : Autovalidar
 			//Descripcion: Realizar validacion de datos de forma automatica
-			//Fecha de Creación:25/03/2012
+			//Fecha de Creaci\F3n:25/03/2012
 			//Autor:Brayan Delgado
 			include_once('mvc/modelo/diseno.php');
 			$pg = new Diseno();
