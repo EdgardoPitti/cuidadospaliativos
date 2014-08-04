@@ -187,7 +187,7 @@
 		}else{
 			$url='nuevopaciente&act=1&sbm='.$sbm.'';
 		}
-		//echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
+		echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 	}
 
 ?>

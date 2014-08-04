@@ -180,12 +180,12 @@
 			';
 			$f = $frecuencia->releer();
 		}
-		$t = $tipo_atencion->buscardonde('ID_TIPO_ATENCION > 0');
-		while($t){
+		$t1 = $tipo_atencion->buscardonde('ID_TIPO_ATENCION > 0');
+		while($t1){
 			$tipoatencion .='
 											<option value="'.$tipo_atencion->obtener('ID_TIPO_ATENCION').'">'.$tipo_atencion->obtener('TIPO_ATENCION').'</option>
 			';
-			$t = $tipo_atencion->releer();
+			$t1 = $tipo_atencion->releer();
 		}
 		$e = $estado_paciente->buscardonde('ID_ESTADO_PACIENTE > 0');
 		while($e){
