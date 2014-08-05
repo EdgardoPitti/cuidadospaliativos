@@ -195,7 +195,7 @@
 			$e = $estado_paciente->releer();
 		}
 		$cont.='
-			<form id="form2" method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm=1&t='.$t.'">			
+			<form id="form2" method="POST" action="./?url=agregar_datos_rda&sw=3&id='.$idrda.'&sbm='.$sbm.'&t='.$t.'">			
 				<div class="row-fluid">
 					<div class="span4">
 						
