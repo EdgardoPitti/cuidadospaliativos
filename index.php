@@ -471,8 +471,8 @@
                     <div class="page-footer">                        
                         <b class="pull-left">Derechos Reservados 2013-2014</b>
                         <div class="pull-right">
-                            <img src="./iconos/UTP.png">
-                            <img src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin-right:5px">
+                            <img src="./iconos/UTP.png" style="width:40px;height:40px;margin-top:-9px;float:right;">
+                            <img src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin:-9px 5px 0px">
                         </div>
                     </div>
                 </div>
