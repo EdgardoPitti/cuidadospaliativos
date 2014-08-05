@@ -463,20 +463,21 @@
 			</div>
 			  
 			
-				<?php 	include_once('./mvc/controlador/controlador.php'); new Controlador();?>
+			<?php 	include_once('./mvc/controlador/controlador.php'); new Controlador();?>
 					
 			<!--Pie de Página-->
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="page-footer">                        
-                        <b class="pull-left">Derechos Reservados 2013-2014</b>
-                        <div class="pull-right">
-                            <img src="./iconos/UTP.png" style="width:40px;height:40px;margin-top:-9px;float:right;">
-                            <img src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin:-9px 5px 0px">
-                        </div>
-                    </div>
-                </div>
-            </div>
+		    <div class="row-fluid">
+		        <div class="span12">
+		            <div class="page-footer marketing-container">  
+				<div class="featurette">
+					<img class="featurette-image pull-right" src="./iconos/UTP.png" style="width:40px;height:40px;margin-top:-5px;">
+			                <img class="featurette-image pull-right" src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin:-3px 5px 0px;">
+					<p class="lead" style="padding-top:4px">Derechos Reservados 2013-2014</p>
+			       </div> 
+			
+		            </div>
+		        </div>
+		    </div>
 
 		</div>	
 	</body>
