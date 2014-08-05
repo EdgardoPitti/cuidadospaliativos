@@ -15,29 +15,30 @@
 
 	$sbm = $_GET['sbm'];
 
-	if(empty($c)){
+	if(!empty($_SESSION['fecha'])){
+		if(empty($c)){
+			if($_SESSION['fecha'][2] < 10){
+				$dia .= '0';
+				$dia .= $_SESSION['fecha'][2];
+			}else{
+				$dia = $_SESSION['fecha'][2];
+			}	
 
-		if($_SESSION['fecha'][2] < 10){
-			$dia .= '0';
-			$dia .= $_SESSION['fecha'][2];
-		}else{
-			$dia = $_SESSION['fecha'][2];
-		}
+			if($_SESSION['fecha'][1] < 10){
+				$mes .= '0';
+				$mes .= $_SESSION['fecha'][1];
+			}else{
+				$mes = $_SESSION['fecha'][1];
+			}
 
-		if($_SESSION['fecha'][1] < 10){
-			$mes .= '0';
-			$mes .= $_SESSION['fecha'][1];
-		}else{
-			$mes = $_SESSION['fecha'][1];
-		}
-
-		$fecha = $_SESSION['fecha'][0].'-'.$mes.'-'.$dia.'';
-
-	}else{
-		$fecha = $_SESSION['fecha'][0].'-'.$_SESSION['fecha'][1].'-'.$_SESSION['fecha'][2].'';
-
-	}
+			$fecha = $_SESSION['fecha'][0].'-'.$mes.'-'.$dia.'';
 	
+		}else{
+			$fecha = $_SESSION['fecha'][0].'-'.$_SESSION['fecha'][1].'-'.$_SESSION['fecha'][2].'';
+		}
+	}else{
+		$fecha = $ds->dime('fecha');
+	}	
 	if(!empty($id)){
 		$citas->buscardonde('ID_CITA = '.$id.'');
 		$readonly = 'readonly';
@@ -72,7 +73,7 @@
 					<div class="span6" align="center">
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 1:</h5>
 						<label for="fecha">Seleccione la fecha: </label>
-						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" placeholder="AAAA-MM-DD" max="2025-12-31" min="2010-12-31" required="required">
+						<input type="date" name="fecha" id="fecha" value="'.$fecha.'" placeholder="AAAA-MM-DD" max="2025-12-31" required="required">
 					</div>
 					<div class="span6" align="center" >
 						<h5 style="background:#f4f4f4;padding-top:3px;padding-bottom:3px;width:100%;text-align:center;">Paso 2:</h5>

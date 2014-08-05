@@ -479,7 +479,7 @@
 															<td style="text-align:left;padding-left:17%;">Correo Electr&oacute;nico:</td>
 														</tr>
 														<tr>
-															<td><input type="text" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'" placeholder="Correo Electr&oacute;nico"></td>
+															<td><input type="email" id="correo" name="correo" value="'.$datos->obtener('E_MAIL').'" placeholder="Correo Electr&oacute;nico"></td>
 														</tr>
 														<tr>
 															<td  style="text-align:left;padding-left:17%;">Tel&eacute;fono:</td>

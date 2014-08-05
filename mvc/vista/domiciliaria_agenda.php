@@ -46,7 +46,7 @@
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Agenda de Citas M&eacute;dicas</h3>		
 		<center>
 			<form method="POST" action="./?url=domiciliaria_agenda&sbm='.$sbm.'">
-					Ir a: <input type="date" id="fecha" name="fecha" placeholder="AAAA-MM-DD" max="2025-12-31" min="2010-01-01" value="'.$_POST['fecha'].'"><br>
+					Fecha: <input type="date" id="fecha" name="fecha" placeholder="AAAA-MM-DD" max="2025-12-31" min="2010-01-01" value="'.$_POST['fecha'].'"><br>
 					ID Equipo M&eacute;dico: <select id="equipo" name="equipo">
 												<option value="0">SELECCIONE</option>';
 	$e = $equipos->buscardonde('ID_EQUIPO_MEDICO > 0');
