@@ -2,10 +2,7 @@
 	include_once('./mvc/modelo/diseno.php');
 	$ds = new Diseno();
 	include_once('./mvc/modelo/Accesatabla.php');
-	$escala = new Accesatabla('escala_edmont');
-	$paciente = new Accesatabla('datos_pacientes');
-	$profesional = new Accesatabla('datos_profesionales_salud');
-	$residencia = new Accesatabla('residencia_habitual');
+	$escala = new Accesatabla('escala_edmonton');
 
 	$sbm = $_GET['sbm'];
 	$idp = $_GET['idp'];
@@ -30,5 +27,5 @@
 	$escala->colocar('DORMIR', $_POST['dormir']);
 	$escala->salvar();
 
-	echo '<script>location.href="./?url=escala_edmont&sbm='.$sbm.'";alert("ESAS almacenado exitosamente");</script>';
+	echo '<script>alert("ESAS-R almacenado exitosamente");location.href="./?url=escala_edmont&sbm='.$sbm.'";</script>';
 ?>
