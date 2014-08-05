@@ -27,7 +27,7 @@
 		//Procuren que si las tablas de las base de datos están en minúsculas, realizar las consultas 
 		// en minúsculas
 		
-	$consultaSQL = 'SELECT NO_CEDULA, concat(NO_CEDULA," ",PRIMER_NOMBRE," ",SEGUNDO_NOMBRE," ",APELLIDO_PATERNO) AS NOMBRE FROM datos_pacientes WHERE concat(NO_CEDULA," ",PRIMER_NOMBRE," ",SEGUNDO_NOMBRE," ",APELLIDO_PATERNO) LIKE "%'.$palabra.'%" ORDER BY NO_CEDULA'; 
+	$consultaSQL = 'SELECT NO_CEDULA, concat(NO_CEDULA," ",PRIMER_NOMBRE," ",APELLIDO_PATERNO) AS NOMBRE FROM datos_pacientes WHERE concat(NO_CEDULA," ",PRIMER_NOMBRE," ",APELLIDO_PATERNO) LIKE "%'.$palabra.'%" ORDER BY NO_CEDULA'; 
 
         // Ejecuta la consulta
 
