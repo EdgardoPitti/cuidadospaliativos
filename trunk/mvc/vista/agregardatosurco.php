@@ -14,7 +14,7 @@
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
 	$sbm = $_GET['sbm'];
 
-	if($_SESSION['idgu'] <> 3){
+	if($_SESSION['idgu'] <> 3 AND $_SESSION['idgu'] <> 4){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
 		$fecha = '"';

@@ -86,6 +86,6 @@
 		$rae->colocar("TOTAL_DIAS_ESTANCIA",$_POST['dias']);
 		$rae->salvar();
 		
-		echo '<script language="javascript">location.href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
+		echo '<script>alert("Datos Almacenados Correctamente");</script><script language="javascript">location.href="./?url=hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm='.$sbm.'"</script>';
 	}
 ?>
