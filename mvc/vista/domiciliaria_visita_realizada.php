@@ -39,7 +39,7 @@
 				if($r <> 0){
 					if(!empty($inicio) and !empty($final)){
 						$cont.='<div style="float:right;margin-bottom:4px;" >
-									<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'&imprimir=1" class="btn btn-default" target="_blank" ><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
+									<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'&imprimir=1" class="btn btn-default" target="_blank" onclick="window.open(this.href); return false;"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
 									<a href="datospdf.php?visita=1&inicio='.$inicio.'&final='.$final.'" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
 								</div>';
 					}			

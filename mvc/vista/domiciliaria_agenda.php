@@ -69,7 +69,7 @@
 			<b style="float:none;clear:both">Citas del '.$fecha.'</b>	
 		</center>
 			<div style="float:right;postion:absolute;right:0px;top:0px;bottom:0px">
-				<a href="datospdf.php?agenda=1&imprimir=1&fecha='.$fechaelegida.'" title="Imprimir Agenda" class="btn btn-default"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
+				<a href="datospdf.php?agenda=1&imprimir=1&fecha='.$fechaelegida.'" title="Imprimir Agenda" class="btn btn-default" target="_blank" onclick="window.open(this.href); return false;"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
 				<a href="datospdf.php?agenda=1&fecha='.$fechaelegida.'" title="Descargar Agenda" class="btn btn-default"><img src="./iconos/download.png" width="24px"> Descargar</a>
 			</div>
 		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;float:none;clear:both">

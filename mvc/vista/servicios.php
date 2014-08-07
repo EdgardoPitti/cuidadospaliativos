@@ -33,7 +33,7 @@
 								<td>'.$n.'.</td>
 								<td class="service">'.$servicios->obtener('DESCRIPCION').'</td>
 								<td>'.$tiempos->obtener('DURACION').'</td>
-								<td><a href="./?url=servicios&id='.$servicios->obtener('ID_SERVICIO').'"><img src="./iconos/search.png"></a></td>
+								<td><a href="./?url=servicios&id='.$servicios->obtener('ID_SERVICIO').'&sbm=5"><img src="./iconos/search.png"></a></td>
 							</tr>
 		';
 		$n++;
