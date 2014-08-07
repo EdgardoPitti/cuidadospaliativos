@@ -95,6 +95,6 @@
 			$x = $tipoexamen->releer();
 
 		}
-		echo '<script language="javascript">location.href="./?url=domiciliaria_surco&idp='.$idpaciente.'&sbm='.$sbm.'"</script>';
+		echo '<script language="javascript">location.href="./?url=domiciliaria_surco&sbm='.$sbm.'"</script>';
 	}
 ?>
