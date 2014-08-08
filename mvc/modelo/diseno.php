@@ -760,7 +760,7 @@ class Diseno {
 						</div>
 						<div>
 							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=escala_edmont&sbm=7" Title="Escala de Edmont">Escala de Edmont</a></li>
+								<li><a class="link" href="./?url=escala_edmont&sbm=7" Title="Escala de Edmonton">Escala de Edmonton</a></li>
 							</ul>
 						</div>
 					</div>
