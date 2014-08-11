@@ -168,20 +168,8 @@
 				$asegurado = 'NO ASEGURADO';
 			}
 			list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
-			$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('agno');
-			$hora = $ds->dime('hora');
-			$minutos = $ds->dime('minuto');
-			if($hora < 10){
-				$hora = '0';
-				$hora .= $ds->dime('hora');
-			}
-			if($minutos < 10){
-				$minutos = '0'; 
-				$minutos .=  $ds->dime('minuto');
-			}
 			
 			$cont.='
-					<div style="float:right;"><i>'.$fecha.', '.$hora.':'.$minutos.'</i></div>
 					<div style="float:none;clear:both;">
 						<fieldset>
 							<legend>
