@@ -6,9 +6,17 @@
 
 	$sbm = $_GET['sbm'];
 	$idp = $_GET['idp'];
-		
-	
-	$fecha = $ds->dime('agno').'-'.$ds->dime('mes').'-'.$ds->dime('dia').'';
+	if($ds->dime('dia') < 10){
+		$dia = '0'.$ds->dime('dia');	
+	}else {
+		$dia = $ds->dime('dia');	
+	}
+	if($ds->dime('mes') < 10) {
+		$mes = '0'.$ds->dime('mes');
+	}else{
+		$mes = $ds->dime('mes');
+	}
+	$fecha = $ds->dime('agno').'-'.$mes.'-'.$dia.'';
 
 	$escala->nuevo();
 	$escala->colocar('ID_PACIENTE', $idp);
