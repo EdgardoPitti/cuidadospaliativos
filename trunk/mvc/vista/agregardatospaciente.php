@@ -9,6 +9,7 @@
 	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
 	$sbm = $_GET['sbm'];
 	$ds = new Diseno();
+	$sw1 = $_GET['sw1'];
 	if($_SESSION['idgu'] == 2){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
@@ -90,6 +91,8 @@
 		$datospaciente->colocar("FECHA_INGRESO", $_POST['fecha_ingreso']);
 		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
+		$datospaciente->colocar("CUIDADOR", $_POST['cuidador']);
+		$datospaciente->colocar("PARENTEZCO_CUIDADOR", $_POST['parentezco']);
 		$datospaciente->salvar();
 		//
 		if($sbm <> 6){
@@ -185,7 +188,11 @@
 		if(!empty($sw)){
 			$url='hospitalaria_rae_evolucion&id='.$idpaciente.'&sbm='.$sbm.'';
 		}else{
-			$url='nuevopaciente&act=1&sbm='.$sbm.'';
+			if(!empty($sw1)){
+				$url = 'menu_categorias&id='.$idpaciente.'';
+			}else{
+				$url='nuevopaciente&act=1&sbm='.$sbm.'';
+			}
 		}
 		echo '<script language="javascript">location.href="./?url='.$url.'"</script>';
 	}
