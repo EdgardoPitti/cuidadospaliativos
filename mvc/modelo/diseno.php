@@ -554,223 +554,236 @@ class Diseno {
 						$display7='none';
 					}
 				}
-			
+		if($_SESSION['idgu'] == 5){
+			$style = 'style="display:none"';
+			$span2 = '';
+			$span = '12';
+		}else{
+			$span = '10';
+			$span2 = 'span2';
+		}
 		$cont.= '	
 			<div class="row-fluid" style="min-height:430px;background:#fff;">  
 				<!--Aside-->
-				<div class="span2" id="menu">				
-					<!--Inicio (Exclusivo para editar doctores y capturar todos los datos generales para los administradores 
-						y el equipo médico)-->					
-					<div class="css_acordeon" id="mostrar_ocultar5" id="accordion-5" style="display:'.$display5.';">			
-						<h3>Men&uacute; Administrativo</h3>
-						<hr>';
-					if($_SESSION['idgu'] == 1){
-						$cont.='
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=usuarios&sbm=5" class="link" title="Editar Usuarios">Usuarios</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar Profesionales">Profesionales</a></li>
-							</ul>
-						</div>
-						';
-					}
-						$cont.='
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=nuevopaciente&sbm=5" class="link" title="Agregar Nuevo Paciente">Pacientes</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=equipos_medicos&sbm=5" class="link" title="Equipo M&eacute;dicos">Equipos M&eacute;dicos</a></li>
-							</ul>
+				';
+		if($_SESSION['idgu'] <> 5){
+
+			$cont.='
+					<div class="'.$span2.'" id="menu" '.$style.'>				
+						<!--Inicio (Exclusivo para editar doctores y capturar todos los datos generales para los administradores 
+							y el equipo médico)-->					
+						 <div class="css_acordeon" id="mostrar_ocultar5" id="accordion-5" style="display:'.$display5.';">			
+							<h3>Men&uacute; Administrativo</h3>
+							<hr>';
+						if($_SESSION['idgu'] == 1){
+							$cont.='
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=usuarios&sbm=5" class="link" title="Editar Usuarios">Usuarios</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar Profesionales">Profesionales</a></li>
+								</ul>
+							</div>
+							';
+						}
+							$cont.='
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=nuevopaciente&sbm=5" class="link" title="Agregar Nuevo Paciente">Pacientes</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=equipos_medicos&sbm=5" class="link" title="Equipo M&eacute;dicos">Equipos M&eacute;dicos</a></li>
+								</ul>
+							</div>	
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=camas&sbm=5" class="link" title="Editar Camas">Camas</a></li>
+								</ul>
+							</div>	
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=salas&sbm=5" class="link" title="Editar Salas">Salas</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=servicios&sbm=5" class="link" title="Editar Servicios M&eacute;dicos">Servicios M&eacute;dicos</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a href="./?url=zonas&sbm=5" class="link" title="Editar Zonas">Zona</a></li>
+								</ul>
+							</div>							
 						</div>	
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=camas&sbm=5" class="link" title="Editar Camas">Camas</a></li>
-							</ul>
+						<!--DOMICILIARIA-->					
+						<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:'.$display1.';">			
+							<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
+							<div style="margin-bottom:2px;">
+								<input id="ac-1" name="acordeon" type="radio" />
+								<label for="ac-1">Registro de Visitas Domiciliarias</label>
+								<article>	
+									<ul>									
+										<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
+										<li><a class="sublink" href="./?url=nueva_cita&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
+									</ul>
+								</article>	
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=1&t=1" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=domiciliaria_surco&sbm=1" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
+								</ul>
+							</div>
+							<div style="margin-bottom:10px;">
+								<input id="ac-2" name="acordeon" type="radio" />
+								<label for="ac-2">Indicadores</label>
+								<article>	
+									<ul>
+										<li><a class="sublink" href="./?url=indicadores_total_visitas&sbm=1" title="Total de Visitas Realizadas por Periodo de Tiempo"><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
+										<li><a class="sublink" href="./?url=indicadores_tiempo_promedio&sbm=1" title="Tiempo Promedio Empleado por Visita"><i>Tiempo Promedio Empleado por Visita</i></a></li>
+										<li><a class="sublink" href="./?url=indicadores_pacientes_diagnostico&sbm=1" title="N&deg de Visitas por Paciente Seg&uacute;n Diagn&oacute;stico"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
+										<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=1" title="Actividades Realizadas por Visitas"><i>Actividades Realizadas por Visitas</i></a></li>		
+									</ul>
+								</article>	
+							</div>
 						</div>	
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=salas&sbm=5" class="link" title="Editar Salas">Salas</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=servicios&sbm=5" class="link" title="Editar Servicios M&eacute;dicos">Servicios M&eacute;dicos</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a href="./?url=zonas&sbm=5" class="link" title="Editar Zonas">Zona</a></li>
-							</ul>
-						</div>							
-					</div>	
-					<!--DOMICILIARIA-->					
-					<div class="css_acordeon" id="mostrar_ocultar1" id="accordion-1" style="display:'.$display1.';">			
-						<h3>Men&uacute; Atenci&oacute;n Domiciliaria</h3><hr>
-						<div style="margin-bottom:2px;">
-							<input id="ac-1" name="acordeon" type="radio" />
-							<label for="ac-1">Registro de Visitas Domiciliarias</label>
-							<article>	
-								<ul>									
-									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=1" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
-									<li><a class="sublink" href="./?url=nueva_cita&sbm=1" title="Agenda"><i>Agenda</i></a></li>				
-								</ul>
-							</article>	
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=1&t=1" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliaria_surco&sbm=1" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
-							</ul>
-						</div>
-						<div style="margin-bottom:10px;">
-							<input id="ac-2" name="acordeon" type="radio" />
-							<label for="ac-2">Indicadores</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="./?url=indicadores_total_visitas&sbm=1" title="Total de Visitas Realizadas por Periodo de Tiempo"><i>Total de Visitas Realizadas x Periodo de Tiempo</i></a></li>
-									<li><a class="sublink" href="./?url=indicadores_tiempo_promedio&sbm=1" title="Tiempo Promedio Empleado por Visita"><i>Tiempo Promedio Empleado por Visita</i></a></li>
-									<li><a class="sublink" href="./?url=indicadores_pacientes_diagnostico&sbm=1" title="N&deg de Visitas por Paciente Seg&uacute;n Diagn&oacute;stico"><i>N&deg de Visitas x Paciente Seg&uacute;n Diagn&oacute;stico</i></a></li>
-									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=1" title="Actividades Realizadas por Visitas"><i>Actividades Realizadas por Visitas</i></a></li>		
-								</ul>
-							</article>	
-						</div>
-					</div>	
-					
-					<!--AMBULATORIA-->
-					<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:'.$display2.';">			
-						<h3>Men&uacute; Atenci&oacute;n Ambulatoria</h3><hr>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=2&t=2" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
-							</ul>
-						</div>
-						<div>
-							<input id="ac-4" name="acordeon" type="radio" />
-							<label for="ac-4">Contacto Telef&oacute;nico</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente&sbm=2" title="Atenci&oacute;n al Paciente"><i>Atenci&oacute;n al Paciente</i></a></li>
-									<li><a class="sublink" href="./?url=ambulatoria_interconsulta&sbm=2" title="Interconsulta"><i>Interconsulta</i></a></li>								
-								</ul>
-							</article>	
-						</div>
-						<div style="margin-bottom:10px;">
-							<input id="ac-5" name="acordeon" type="radio" />
-							<label for="ac-5">Indicadores</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="#" title="Frecuentaci&oacuten Paciente/Familiar a la Instalaci&oacute;n por Periodo de Tiempo"><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>									
-									<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=2" title="Actividades Realizadas por Paciente"><i>Actividades Realizadas por Paciente</i></a></li>								
-								</ul>
-							</article>	
-						</div>
-					</div>	
 						
-					<!--HOSPITALARIA-->
-					<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:'.$display3.';">			
-						<h3>Men&uacute; Atenci&oacute;n Hospitalaria</h3><hr>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=3&t=3" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
-							</ul>
-						</div>
-						<div style="margin-bott om:2px;">
-							<input id="ac-6" name="acordeon" type="radio" />
-							<label for="ac-6">RAE</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=3" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
+						<!--AMBULATORIA-->
+						<div class="css_acordeon" id="mostrar_ocultar2" id="accordion-2" style="display:'.$display2.';">			
+							<h3>Men&uacute; Atenci&oacute;n Ambulatoria</h3><hr>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=2&t=2" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
 								</ul>
-							</article>	
-						</div>
-						<div style="margin-bottom:10px;">
-							<input id="ac-7" name="acordeon" type="radio" />
-							<label for="ac-7">Indicadores</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="./?url=indicadores_porcentaje_camas&sbm=3" title="Porcentaje de Ocupaci&oacute;n de Camas"><i>Porcentaje de Ocupaci&oacute;n de Camas</i></a></li>								
-									<li><a class="sublink" href="#" title="Giro de Cama"><i>Giro de Cama</i></a></li>								
-									<li><a class="sublink" href="./?url=indicadores_promedio_dias&sbm=3" title="Promedio de D&iacute;as de Estancia"><i>Promedio de D&iacute;as de Estancia</i></a></li>								
-									<li><a class="sublink" href="#" title="Porcentaje de egresos"><i>Porcentaje de Egresos</i></a></li>								
-									<li><a class="sublink" href="#" title="Razones de Readmisiones"><i>Razones de Readmisiones</i></a></li>								
-									<li><a class="sublink" href="./?url=indicadores_infeccion_nosocomial&sbm=3" title="Porcentaje de Infecciones Nosocomiales"><i>Porcentaje de Infecciones Nosocomiales</i></a></li>								
-									<li><a class="sublink" href="./?url=indicadores_porcentaje_hospitalizados&sbm=3" title="Porcentaje de Hospitalizados referidos de Consulta externa"><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
+							</div>
+							<div>
+								<input id="ac-4" name="acordeon" type="radio" />
+								<label for="ac-4">Contacto Telef&oacute;nico</label>
+								<article>	
+									<ul>
+										<li><a class="sublink" href="./?url=ambulatoria_atencionalpaciente&sbm=2" title="Atenci&oacute;n al Paciente"><i>Atenci&oacute;n al Paciente</i></a></li>
+										<li><a class="sublink" href="./?url=ambulatoria_interconsulta&sbm=2" title="Interconsulta"><i>Interconsulta</i></a></li>								
+									</ul>
+								</article>	
+							</div>
+							<div style="margin-bottom:10px;">
+								<input id="ac-5" name="acordeon" type="radio" />
+								<label for="ac-5">Indicadores</label>
+								<article>	
+									<ul>
+										<li><a class="sublink" href="#" title="Frecuentaci&oacuten Paciente/Familiar a la Instalaci&oacute;n por Periodo de Tiempo"><i>Frecuentaci&oacuten P/F a la Instalaci&oacute;n x Periodo de Tiempo</i></a></li>									
+										<li><a class="sublink" href="./?url=indicadores_actividades_realizadas&sbm=2" title="Actividades Realizadas por Paciente"><i>Actividades Realizadas por Paciente</i></a></li>								
+									</ul>
+								</article>	
+							</div>
+						</div>	
+							
+						<!--HOSPITALARIA-->
+						<div class="css_acordeon" id="mostrar_ocultar3" id="accordion-3" style="display:'.$display3.';">			
+							<h3>Men&uacute; Atenci&oacute;n Hospitalaria</h3><hr>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=domiciliarias_diario_actividades&sbm=3&t=3" title="Registro Diario de Actividades">Registro Diario de Actividades</a></li>
 								</ul>
-							</article>	
-						</div>
-					</div>						
+							</div>
+							<div style="margin-bott om:2px;">
+								<input id="ac-6" name="acordeon" type="radio" />
+								<label for="ac-6">RAE</label>
+								<article>	
+									<ul>
+										<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=3" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
+									</ul>
+								</article>	
+							</div>
+							<div style="margin-bottom:10px;">
+								<input id="ac-7" name="acordeon" type="radio" />
+								<label for="ac-7">Indicadores</label>
+								<article>	
+									<ul>
+										<li><a class="sublink" href="./?url=indicadores_porcentaje_camas&sbm=3" title="Porcentaje de Ocupaci&oacute;n de Camas"><i>Porcentaje de Ocupaci&oacute;n de Camas</i></a></li>								
+										<li><a class="sublink" href="#" title="Giro de Cama"><i>Giro de Cama</i></a></li>								
+										<li><a class="sublink" href="./?url=indicadores_promedio_dias&sbm=3" title="Promedio de D&iacute;as de Estancia"><i>Promedio de D&iacute;as de Estancia</i></a></li>								
+										<li><a class="sublink" href="#" title="Porcentaje de egresos"><i>Porcentaje de Egresos</i></a></li>								
+										<li><a class="sublink" href="#" title="Razones de Readmisiones"><i>Razones de Readmisiones</i></a></li>								
+										<li><a class="sublink" href="./?url=indicadores_infeccion_nosocomial&sbm=3" title="Porcentaje de Infecciones Nosocomiales"><i>Porcentaje de Infecciones Nosocomiales</i></a></li>								
+										<li><a class="sublink" href="./?url=indicadores_porcentaje_hospitalizados&sbm=3" title="Porcentaje de Hospitalizados referidos de Consulta externa"><i>Porcentaje de Hospitalizados referidos de Consulta externa</i></a></li>
+									</ul>
+								</article>	
+							</div>
+						</div>						
 
-					<!--DATOS DEL PACIENTE-->
-					<div class="css_acordeon" id="mostrar_ocultar6" style="display:'.$display6.';">			
-						<h3>Men&uacute; Datos del Paciente</h3><hr>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=nuevopaciente&sbm=6&t=6" title="Paciente">Paciente</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=ambulatoria_atencionalpaciente&sbm=6&t=6" title="Historial del Paciente">Historial del Paciente</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<!--DATOS CLINICOS-->
-					<div class="css_acordeon" id="mostrar_ocultar7" style="display:'.$display7.';">			
-						<h3>Men&uacute; Datos Cl&iacute;nicos</h3><hr>
-						<div style="margin-bottom:2px;">
-							<input id="ac-8" name="acordeon" type="radio" />
-							<label for="ac-8">Registro de Visitas Domiciliarias</label>
-							<article>	
-								<ul>									
-									<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=7" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
-									<li><a class="sublink" href="./?url=nueva_cita&sbm=7" title="Agenda"><i>Agenda</i></a></li>				
+						<!--DATOS DEL PACIENTE-->
+						<div class="css_acordeon" id="mostrar_ocultar6" style="display:'.$display6.';">			
+							<h3>Men&uacute; Datos del Paciente</h3><hr>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=nuevopaciente&sbm=6&t=6" title="Paciente">Paciente</a></li>
 								</ul>
-							</article>	
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=menu_diario_actividades&sbm=7&t=7" title="Registros Diarios de Actividades">Registro Diario de Actividades</a></li>
-							</ul>
-						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=domiciliaria_surco&sbm=7" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
-							</ul>
-						</div>
-						<div style="margin-bott om:2px;">
-							<input id="ac-9" name="acordeon" type="radio" />
-							<label for="ac-9">RAE</label>
-							<article>	
-								<ul>
-									<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=7" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=ambulatoria_atencionalpaciente&sbm=6&t=6" title="Historial del Paciente">Historial del Paciente</a></li>
 								</ul>
-							</article>	
+							</div>
 						</div>
-						<div>
-							<ul class="acordeon_link">
-								<li><a class="link" href="./?url=escala_edmont&sbm=7" Title="Escala de Edmonton">Escala de Edmonton</a></li>
-							</ul>
+
+						<!--DATOS CLINICOS-->
+						<div class="css_acordeon" id="mostrar_ocultar7" style="display:'.$display7.';">			
+							<h3>Men&uacute; Datos Cl&iacute;nicos</h3><hr>
+							<div style="margin-bottom:2px;">
+								<input id="ac-8" name="acordeon" type="radio" />
+								<label for="ac-8">Registro de Visitas Domiciliarias</label>
+								<article>	
+									<ul>									
+										<li><a class="sublink" href="./?url=domiciliaria_visita_realizada&sbm=7" title="Visitas Realizadas"><i>Visitas Realizadas</i></a></li>				
+										<li><a class="sublink" href="./?url=nueva_cita&sbm=7" title="Agenda"><i>Agenda</i></a></li>				
+									</ul>
+								</article>	
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=menu_diario_actividades&sbm=7&t=7" title="Registros Diarios de Actividades">Registro Diario de Actividades</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=domiciliaria_surco&sbm=7" Title="Sistema &Uacute;nico de Referencia y Contra-Referencia">Surco</a></li>
+								</ul>
+							</div>
+							<div style="margin-bott om:2px;">
+								<input id="ac-9" name="acordeon" type="radio" />
+								<label for="ac-9">RAE</label>
+								<article>	
+									<ul>
+										<li><a class="sublink" href="./?url=hospitalaria_rae_evolucion&sbm=7" title="Evoluci&oacute;n"><i>Evoluci&oacute;n</i></a></li>				
+									</ul>
+								</article>	
+							</div>
+							<div>
+								<ul class="acordeon_link">
+									<li><a class="link" href="./?url=escala_edmont&sbm=7" Title="Escala de Edmonton">Escala de Edmonton</a></li>
+								</ul>
+							</div>
 						</div>
-					</div>
 
 
-				</div>	
+					</div>	';
+		}
+		$cont.='
 				
 				<!--Contenido-->
 				<!--Diseño del contenido de la página-->
-				<div class="span10" id="contenido">
+				<div class="span'.$span.'" id="contenido">
 					'.$this->latino($this->derecha).'
 				</div>
 				<!--Fin del Contenido-->
@@ -778,8 +791,11 @@ class Diseno {
 			';
 			
 			if(!empty($_SESSION['idu'])){
+					if($_SESSION['idgu'] == 5){
+							$style='style="display:none"';
+					}
 					$cont.= '						
-						<div class="row-fluid">
+						<div class="row-fluid" '.$style.'>
 							<div class="span12">	
 								<!--Nav-->
 								<div class="navbar">
@@ -801,25 +817,25 @@ class Diseno {
 													</li>';
 												}else{
 													if($_SESSION['idgu'] <> 4){
-														$cont.='
-														<li '.$activo5.'>
-															<a href="#" id="show5" title="Inicio"><img src="./iconos/inicio.png"style="width:30px; heigth:30px;"/> Inicio</a>
-														</li>
-														<li '.$activo1.'>
-															<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
-														</li>
-														<li '.$activo2.'>
-															<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
-														</li>
-														<li '.$activo3.'>
-															<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
-														</li>
-														<li>
-															<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
-														</li>';													
-
+														if($_SESSION['idgu'] <> 5){
+															$cont.='
+															<li '.$activo5.'>
+																<a href="#" id="show5" title="Inicio"><img src="./iconos/inicio.png"style="width:30px; heigth:30px;"/> Inicio</a>
+															</li>
+															<li '.$activo1.'>
+																<a href="#" id="show1" title="Atenci&oacute;n Domiciliaria"><img src="./iconos/atencion_domiciliaria.png"style="width:30px; heigth:30px;"/> Domiciliaria</a>
+															</li>
+															<li '.$activo2.'>
+																<a href="#" id="show2" title="Atenci&oacute;n Ambulatoria"><img src="./iconos/atencion_ambulatoria.png" style="width:30px; heigth:30px;"/> Ambulatoria</a>
+															</li>
+															<li '.$activo3.'>
+																<a href="#" id="show3" title="Atenci&oacute;n Hospitalaria"><img src="./iconos/atencion_hospitalaria.png" style="width:30px; heigth:30px;"/> Hospitalaria</a>
+															</li>
+															<li>
+																<a href="http://gisespanama.org/RedSocialCPPanama/" title="Red Social"><img src="./iconos/social.png" style="width:30px; heigth:30px;"/> Red Social</a>
+															</li>';													
+														}
 													}else{
-
 														$cont.='
 															<li '.$activo6.'>
 															<a href="#" id="show6" title="Datos del Paciente"><img src="./iconos/paciente.png" style="width:30px; heigth:30px;"/> Datos del Paciente</a>
