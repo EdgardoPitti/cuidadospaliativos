@@ -21,6 +21,7 @@
 	$comillas = "'";
 	$ds = new Diseno();
 	$sbm = $_GET['sbm'];
+	$sw = $_GET['sw'];
 	$busqueda = $_POST['busqueda'];
 	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
@@ -79,78 +80,92 @@
 		$active = 'active';
 		$noactive='';
 	}
-
+	$sw = $_GET['sw'];
+	if($sw <> 1){
+		$msj = 'Sistema de B&uacute;squeda y ';
+	}else{
+		$active = 'active';
+		$noactive = '';
+	}
 	$cont.='
 		<div class="row-fluid">
 			<div class="span12">
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Sistema de B&uacute;squeda y Captura de Datos de los Pacientes</h3>		
-				<div class="tabbable" id="tabs-2">
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">'.$msj.'Captura de Datos de los Pacientes</h3>		
+				<div class="tabbable" id="tabs-2">';
+	if($sw <> 1){
+		$cont.='
 					<ul class="nav nav-tabs">
 						<li class="'.$noactive.'""><a href="#tab1" data-toggle="tab">Buscar</a></li>
 						<li class="'.$active.'""><a href="#tab2" data-toggle="tab">'.$label.'</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane '.$noactive.'" id="tab1">
-							<center>		
-								<div class="row-fluid">
-									<div class="span12">
-										<form method="POST" aut ocomplete="off"  action="./?url=nuevopaciente&sbm='.$sbm.'">
-											<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> 
-											<button type="submit" class="btn"><img src="./iconos/search.png"></button>							
-										</form>
-										<table>	
-											<tr>
-												<td>Nombre: </td>
-												<td><input type="text" name="nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" disabled></td>
-											</tr>
-											<tr>
-												<td>Apellido: </td>
-												<td><input type="text" name="nombre" value="'.$datos->obtener('APELLIDO_PATERNO').'" disabled></td>
-											</tr>
-											<tr>
-												<td>Sexo: </td>
-												<td>';						
-							if($idsexo == 2){
-								$value='checked';
-								$novalue='';
-							}else{
-								$novalue='checked';
-								$value='';
-							}
-							$cont.='
-													<input type="radio" name="sexo" value="2" '.$value.' disabled> Femenino
-													<input type="radio" name="sexo" value="1"  '.$novalue.' disabled> Masculino							
-												</td>
-											</tr>
-											<tr>
-												<td>Tipo de Sangre: </td>
-												<td>
-													<select name="tiposangre" disabled>
-														<option value="0"></option>';
-						$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
-						while($x){
-								if($tiposangre->obtener('ID_TIPO_SANGUINEO') == $idtiposangre){
-									$value='selected';
+					</ul>';
+	}
+	$cont.='
+					<div class="tab-content">';
+	if($sw <> 1){
+		$cont.='
+							<div class="tab-pane '.$noactive.'" id="tab1">
+								<center>		
+									<div class="row-fluid">
+										<div class="span12">
+											<form method="POST" aut ocomplete="off"  action="./?url=nuevopaciente&sbm='.$sbm.'">
+												<input type="text" id="busqueda" name="busqueda" placeholder="Buscar Paciente" class="search-query ac_input" /> 
+												<button type="submit" class="btn"><img src="./iconos/search.png"></button>							
+											</form>
+											<table>	
+												<tr>
+													<td>Nombre: </td>
+													<td><input type="text" name="nombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" disabled></td>
+												</tr>
+												<tr>
+													<td>Apellido: </td>
+													<td><input type="text" name="nombre" value="'.$datos->obtener('APELLIDO_PATERNO').'" disabled></td>
+												</tr>
+												<tr>
+													<td>Sexo: </td>
+													<td>';						
+								if($idsexo == 2){
+									$value='checked';
+									$novalue='';
 								}else{
+									$novalue='checked';
 									$value='';
 								}
 								$cont.='
-																	<option value="'.$tiposangre->obtener('ID_TIPO_SANGUINEO').'" '.$value.'>'.$tiposangre->obtener('TIPO_SANGRE').'</option>
-								';
-								$x = $tiposangre->releer();
-						}		
-
+														<input type="radio" name="sexo" value="2" '.$value.' disabled> Femenino
+														<input type="radio" name="sexo" value="1"  '.$novalue.' disabled> Masculino							
+													</td>
+												</tr>
+												<tr>
+													<td>Tipo de Sangre: </td>
+													<td>
+														<select name="tiposangre" disabled>
+															<option value="0"></option>';
+							$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
+							while($x){
+									if($tiposangre->obtener('ID_TIPO_SANGUINEO') == $idtiposangre){
+										$value='selected';
+									}else{
+										$value='';
+									}
 									$cont.='
-													</select>
-												</td>
-											</tr>
-										</table>
+																		<option value="'.$tiposangre->obtener('ID_TIPO_SANGUINEO').'" '.$value.'>'.$tiposangre->obtener('TIPO_SANGRE').'</option>
+									';
+									$x = $tiposangre->releer();
+							}		
+
+										$cont.='
+														</select>
+													</td>
+												</tr>
+											</table>
+										</div>
 									</div>
-								</div>
-							</center>
-						</div>
+								</center>
+							</div>';
+	}
+	$cont.='
 						<div class="tab-pane '.$active.'" id="tab2">
-							<form action="./?url=agregardatospaciente&sbm='.$sbm.'&id='.$datos->obtener('ID_PACIENTE').$cambio.'" method="post" id="form" style="display:block;position:relative">
+							<form action="./?url=agregardatospaciente&sbm='.$sbm.'&id='.$datos->obtener('ID_PACIENTE').$cambio.'&sw1='.$sw.'" method="post" id="form" style="display:block;position:relative">
 								<div class="row-fluid">
 									<div class="span6">
 										<fieldset>
@@ -288,7 +303,7 @@
 														<tr>
 															<td>
 																<select id="tiposangre" name="tiposangre" style="width:100px" onChange="valida(this.value)" required="required">
-																	<option value="0">SELECCIONE TIPO DE SANGRE</option>';																	
+																	<option value="1">SELECCIONE TIPO DE SANGRE</option>';																	
 						$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
 						while($x){
 								if($tiposangre->obtener('ID_TIPO_SANGUINEO') == $idtiposangre){
@@ -309,7 +324,7 @@
 													</tr>
 													<tr>
 														<td><select id="etnia" name="etnia" onChange="valida(this.value)" required="required">
-																<option value="0">SELECCIONE ETNIA</option>';																
+																<option value="1">SELECCIONE ETNIA</option>';																
 						$e = $etnia->buscardonde("ID_ETNIA > 0");
 						while ($e){
 								if($etnia->obtener('ID_ETNIA') == $idetnia){
@@ -381,7 +396,7 @@
 														</tr>';
 
 
-						if($sbm <> 6){
+							if($sbm <> 6 AND !empty($sbm)){
 										$cont.='
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Usuario:</td>	
@@ -438,27 +453,16 @@
 
 
 
-								}else{
-											$cont.='
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-													<tr><td></td></tr>
-
-											';
-
 								}
 								$fecha = $datos->obtener('FECHA_INGRESO');
 								if(empty($fecha)){
 									$fecha = $ds->dime('fecha');
 								}
 								$cont.='
+														<tr><td style="text-align:left;padding-left:17%;">Cuidador Primario:</td></tr>
+														<tr><td><input type="text" id="cuidador" name="cuidador" placeholder="Nombre Cuidador"></td></tr>
+														<tr><td style="text-align:left;padding-left:17%;">Parentezco Cuidador :</td></tr>
+														<tr><td><input type="text" id="parentezco" name="parentezco" placeholder="Parentezco Cuidador"></td></tr>
 														<tr><td style="text-align:left;padding-left:17%;">Fecha de Ingreso: </td></tr>
 														<tr><td><input type="date" id="fecha_ingreso" name="fecha_ingreso" value="'.$fecha.'" readonly></td></tr>
 													</tbody>
