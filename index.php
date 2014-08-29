@@ -430,8 +430,27 @@
                         $("#busqueda").val(data[1]); 
                     });  
             });	            
+        </script>	
+        <script type="text/javascript">
+            $('document').ready(function() {
+                    var palabra =""; // Término a buscar
+                    // Evento al escribir sobre el cuadro de texto
+                    $("#medicamentos").keypress(function() {
+                       palabra = $("#medicamentos").val(); // Completa la palabra
+                    });
+
+                    $("#medicamentos").autocomplete("./mvc/vista/buscar_medicamento.php?buscar="+palabra, {                        
+                        matchContains: true,
+                        mustMatch: true,
+                        selectFirst: false
+                    });
+					$("#medicamentos").result(function(event, data, formatted) {
+                        $("#medicamentos").val(data[0]); 
+                        $("#idmedicamentos").val(data[1]);
+                    });  
+            });	            
         </script>				
-		<script type="text/javascript">			
+		  <script type="text/javascript">			
             $('document').ready(function() {
                     var palabra =""; // Término a buscar
                     // Evento al escribir sobre el cuadro de texto

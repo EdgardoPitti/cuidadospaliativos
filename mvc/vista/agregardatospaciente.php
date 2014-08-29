@@ -16,7 +16,7 @@
 		//Variable utilizada como Switch para controlar de que vista viene
 		$sw = $_GET['sw'];
 		$idpaciente = $_GET['id'];
-		$fecha = $_POST['fechanacimiento'];
+		
 		//Si esta vacio el idpaciente quiere decir que es un paciente nuevo o que estan editando alguno
 		$datos = $datospaciente->buscardonde('NO_CEDULA = "'.$_POST['cedula'].'" OR ID_PACIENTE = '.$idpaciente.'');
 		if(empty($idpaciente)){
@@ -55,11 +55,27 @@
 		//Se llama la funcion de diseño llamada edad mandandole la fecha desglozada para obtener la edad
 		$edad = $ds->edad($dia,$mes,$anio);
 		//Se Almacenan los valores correspondientes y se salva
+		if(empty($sw1)){
+			$res_transitoria = $_POST['residenciatransitoria'];		
+		}else{
+			if($_POST['checkresidencia'] == 1) {
+				$res_permanente =$_POST['tiporesidencia'];
+				$res_transitoria = '';
+			}else {
+				$res_permanente = '';
+				$res_transitoria = $_POST['tiporesidencia'];
+			}		
+		}		
 		$residencia->colocar("ID_PROVINCIA", $_POST['provincias']);
 		$residencia->colocar("ID_DISTRITO", $_POST['distritos']);
 		$residencia->colocar("ID_CORREGIMIENTO", $_POST['corregimientos']);
-		$residencia->colocar("ID_ZONA", $_POST['zona']);
-		$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
+		if(empty($sw1)) {
+			$residencia->colocar("ID_ZONA", $_POST['zona']);
+			$residencia->colocar("DETALLE", $_POST['direcciondetallada']);
+		}else{
+			$residencia->colocar("ID_ZONA", 1);
+			$residencia->colocar("DETALLE", $res_permanente);
+		}
 		$residencia->salvar();
 		//
 		if(!$datos){
@@ -75,7 +91,7 @@
 		$datospaciente->colocar("APELLIDO_MATERNO", $_POST['segundoapellido']);
 		$datospaciente->colocar("ID_ESTADO_CIVIL", $_POST['estadocivil']);
 		$datospaciente->colocar("ID_SEXO", $_POST['sexo']);
-		$datospaciente->colocar("FECHA_NACIMIENTO",''.$fecha.'' );
+		$datospaciente->colocar("FECHA_NACIMIENTO", $_POST['fechanacimiento'] );
 		$datospaciente->colocar("LUGAR_NACIMIENTO", $_POST['lugarnacimiento']);
 		$datospaciente->colocar("EDAD_PACIENTE", $edad);
 		$datospaciente->colocar("ID_ETNIA", $_POST['etnia']);
@@ -87,7 +103,7 @@
 		$datospaciente->colocar("E_MAIL", $_POST['correo']);
 		$datospaciente->colocar("OCUPACION", $_POST['ocupacion']);
 		$datospaciente->colocar("ID_RESIDENCIA_HABITUAL", $idresidencia);
-		$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $_POST['residenciatransitoria']);
+		$datospaciente->colocar("RESIDENCIA_TRANSITORIA", $res_transitoria);
 		$datospaciente->colocar("FECHA_INGRESO", $_POST['fecha_ingreso']);
 		$datospaciente->colocar("NOMBRE_PADRE", $_POST['nombrepadre']);
 		$datospaciente->colocar("NOMBRE_MADRE", $_POST['nombremadre']);
