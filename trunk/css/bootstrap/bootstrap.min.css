@@ -306,7 +306,41 @@
 @media(min-width: 768px){
 	.featurette .lead{font-size:100%;}
 }
+/*Paneles de SOAP*/
+.panel{
+	background:#fff;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+.panel-primary{
+	border: 1px solid #258ECD;	
+}
+.panel-header{
+	background: #258ECD;
+	width: 100%;
+	max-height: 35px;
+}
+.panel-header h5{
+	color:#fff;	
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow:0px 1px 1px #3d3d3d;
+	padding: 5px 0px 5px 12px;
+	margin-top: 0px;
+}
 
+.panel-body{
+	background: #fff;
+}
+.bordediv{
+	margin-top:-10px;
+	border-right:1px solid #adadad; 
+}
+@media(max-width:767px){
+	.bordediv{
+		border-bottom: 1px solid #adadad;	
+	}
+}
  .clearfix{*zoom:1}
  
  .clearfix:before,

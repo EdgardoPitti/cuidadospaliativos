@@ -24,26 +24,43 @@
 	list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 	$cont.='
 				<div class="row-fluid">
+					<a href="./?url=inicio" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
+				</div>
+				<div class="row-fluid">
 					<div class="span4">
 						<fieldset>
 							<legend>
-								Paciente
+								Datos del Paciente
 							</legend>
-								<table class="table2">											
-									<tr>
-										<td colspan="3"><h5>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</h5></td>
-									</tr>
-									<tr>
-										<td>'.$personas->obtener('NO_CEDULA').'</td>
-										<td>'.$tiposangre->obtener('TIPO_SANGRE').'</td>
-										<td>'.$sexo.'</td>
-									</tr>
-									<tr>
-										<td>'.$ds->edad($dia,$mes,$anio).' A&ntilde;os</td>									
-										<td>'.$personas->obtener('CUIDADOR').'</td>
-										<td>'.$personas->obtener('PARENTEZCO_CUIDADOR').'</td>
-									</tr>
-								</table>
+								<div class="row-fluid" style="margin-top:-15px;">
+									<div class="span6">
+										<center>
+											<img src="./iconos/paciente.png" style="max-height:110px">
+										</center>
+									</div>
+									<div class="span6">
+										<table>											
+											<tr>
+												<td><strong>'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</strong></td>
+											</tr>
+											<tr>
+												<td>'.$personas->obtener('NO_CEDULA').'</td>
+											</tr>
+											<tr>													
+												<td>'.$ds->edad($dia,$mes,$anio).' A&ntilde;os</td>									
+											</tr>
+											</tr>
+												<td>'.$sexo.'</td>
+											<tr>
+											<tr>
+												<td><strong>Cuidador:</strong> '.$personas->obtener('CUIDADOR').'</td>
+											</tr>
+											<tr>
+												<td><strong>Parentezco:</strong> '.$personas->obtener('PARENTEZCO_CUIDADOR').'</td>
+											</tr>
+										</table>
+									</div>								
+								</div>								
 						</fieldset>
 					</div>
 					<div class="span4">

@@ -26,17 +26,33 @@
 	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
 	}
-	
+	if($sw == 1){
+		$idnacionalidad = 62;
+		echo '
+		<script language="JavaScript" type="text/JavaScript">
+			$(document).ready(function(){				
+				$("#checkseguro").click(function() {  
+			        if($("#checkseguro").is('.$comillas.':checked'.$comillas.')) {
+							document.getElementById("numeroseguro").value = document.getElementById("cedula").value;
+			        } else {  
+			            document.getElementById("numeroseguro").value = "";
+			        }  
+			    });  
+			 });
+		</script>
+		';	
+	}
 	$script = '
-		<script language="javascript">
+		<script language="JavaScript" type="text/JavaScript">
 			$(document).ready(function(){
 				$('.$comillas.'input[type="submit"]'.$comillas.').attr('.$comillas.'disabled'.$comillas.','.$comillas.'disabled'.$comillas.');	
 			});
 			function valida(dato) {
 				$('.$comillas.'input[type="submit"]'.$comillas.').removeAttr('.$comillas.'disabled'.$comillas.');
-			}
+			}			
 		</script>';
 
+	
 	$act = $_GET['act'];
 	
 	if(!empty($busqueda)){
@@ -185,18 +201,16 @@
 														</tr>
 														<tr>
 															<td><select id="nacionalidad" name="nacionalidad" onChange="valida(this.value)" required="required">
-																	<option value="0">SELECCIONE NACIONALIDAD</option>';
-																							
-						$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');
+																	<option value="0">SELECCIONE NACIONALIDAD</option>';						
+						$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');						
 						while($n){
 								if($nacionalidades->obtener('ID_NACIONALIDAD') == $idnacionalidad){
-									$value='selected';
+									$value='selected';								
 								}else{
-									$value='';
+										$value='';	
 								}
-								$cont.='
-																	<option value="'.$nacionalidades->obtener('ID_NACIONALIDAD').'" '.$value.'>'.$ds->latino($nacionalidades->obtener('NACIONALIDAD')).'</option>
-								';
+										$cont.='
+																	<option value="'.$nacionalidades->obtener('ID_NACIONALIDAD').'" '.$value.'>'.$ds->latino($nacionalidades->obtener('NACIONALIDAD')).'</option>';
 								$n = $nacionalidades->releer();
 						}
 						$cont.='								</select>
@@ -227,7 +241,10 @@
 															<td style="text-align:left;padding-left:17%;">N&ordm; de Seguro:</td>	
 														</tr>
 														<tr>
-															<td><input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N&ordm; Seguro" ></td>
+															<td>
+																<label class="checkbox" style="width:140px;margin:0px auto"><input type="checkbox" name="checkseguro" id="checkseguro" > <strong>Utilizar N&ordm; de C&eacute;dula</strong></label>																										
+																<input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N&ordm; Seguro" >
+															</td>
 														</tr>
 													</tbody>
 												</table>
@@ -571,25 +588,27 @@
 												</table>	
 													
 											<table class="table">
-												<tbody>
+												<tbody>';
+				if($sw <> 1) {	
+										$cont.='													
 													<tr>
 														<td style="text-align:left;padding-left:17%;">Zona:</td>
 													</tr>
 													<tr>
 														<td><select id="zona" name="zona" onChange="valida(this.value)" required="required">
 																<option value="0">SELECCIONE ZONA</option>';
-				$z = $zona->buscardonde('ID_ZONA > 0');
-				while($z){
-					if($zona->obtener('ID_ZONA') == $idzona){
-						$value='selected';
-					}else{
-						$value='';
-					}
-					$cont.='
+					$z = $zona->buscardonde('ID_ZONA > 0');
+					while($z){
+						if($zona->obtener('ID_ZONA') == $idzona){
+							$value='selected';
+						}else{
+							$value='';
+						}
+						$cont.='
 																<option value="'.$zona->obtener('ID_ZONA').'" '.$value.'>'.$zona->obtener('ZONA').'</option>
-					';
-					$z = $zona->releer();
-				}
+						';
+						$z = $zona->releer();
+					}
 
 				$cont.='									</select>
 														</td>
@@ -605,7 +624,23 @@
 													</tr>
 													<tr>
 														<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria" onChange="valida(this.value)">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
+													</tr>';
+				}else{
+					$cont.='
+													<tr>
+														<td style="text-align:left;padding-left:17%;">
+															<div style="width:100%;display:inline-block">
+																<label class="radio inline" for="checkresidencia"><input type="radio" name="checkresidencia" id="checkresidencia" value="1"><b> Residencia Permanente</b></label>				
+																<label class="radio inline" for="checkresidencia2"><input type="radio" name="checkresidencia" id="checkresidencia2" value="0"><b> Residencia Transitoria</b></label>
+															</div>
+														</td>
 													</tr>
+													<tr>
+														<td><textarea class="textarea" id="tiporesidencia" name="tiporesidencia" placeholder="Residencia" onChange="valida(this.value)"></textarea></td>
+													</tr>
+													';				
+				}
+				$cont.='
 												</tbody>
 											</table>
 										</fieldset>

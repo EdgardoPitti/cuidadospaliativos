@@ -12,7 +12,9 @@
 
 	$busqueda = $_POST['buscar'];
 	$idpaciente = $_GET['idp'];
+	$idsoap = $_GET['idsoap'];
 	$sbm = $_GET['sbm'];
+	$sw = $_GET['sw'];
 	/*variables para la segunda pestaña*/
 	$tab2 = $_GET['tab2'];
 	$search = $_POST['search'];
@@ -31,17 +33,28 @@
 		$active = '';
 		$noactive = 'active';		
 	}
-	$cont='
+	if(!empty($sw)){
+		$cont.='
+		<div class="row-fluid">
+			<a href="./?url=soap&id='.$idpaciente.'" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
+		</div>';
+	}
+	$cont.='
 		<center>
 			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">ESAS-R</h3>
 		</center>
 		<div class="tabbable" id="tabs-2">
 			<ul class="nav nav-tabs">
-				<li class="'.$noactive.'"><a href="#tab1" data-toggle="tab">Datos ESAS-R</a></li>
-				<li class="'.$active.'"><a href="#tab2" data-toggle="tab">Gr&aacute;fica ESAS-R</a></li>
+				<li class="'.$noactive.'"><a href="#tab1" data-toggle="tab">Datos ESAS-R</a></li>';
+		if(empty($sw)) {
+			$cont.='	<li class="'.$active.'"><a href="#tab2" data-toggle="tab">Gr&aacute;fica ESAS-R</a></li>';
+		}
+		$cont.='
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane '.$noactive.'" id="tab1">
+				<div class="tab-pane '.$noactive.'" id="tab1">';
+			if(empty($sw)){
+				$cont.='	
 					<center '.$style.'>
 						<form class="form-search" method="POST" action="./?url=escala_edmont&sbm='.$sbm.'">
 							<div class="input-group">
@@ -55,11 +68,21 @@
 						  	</div>			    
 						</form>
 					</center>
-				'.$div.'
-	';
-	if(!empty($busqueda)){
+				'.$div.'';
+			
+				$condicion = 'NO_CEDULA = "'.$busqueda.'"';
+				$sbmenu = '&sbm='.$sbm.'';
+				$switch = '';
+				$ids = '';			
+			}else {		
+				$condicion = 'ID_PACIENTE = '.$idpaciente.'';
+				$switch = '&sw=1';
+				$sbmenu = '';
+				$ids = '&idsoap='.$idsoap;
+			}	
+	if(!empty($busqueda) OR !empty($sw)){
 
-		$paciente->buscardonde('NO_CEDULA = "'.$busqueda.'"');
+		$paciente->buscardonde($condicion);
 		$tiposanguineo->buscardonde('ID_TIPO_SANGUINEO = '.$paciente->obtener('ID_TIPO_SANGUINEO').'');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$paciente->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$distritos->buscardonde('ID_DISTRITO = '.$residencia->obtener('ID_DISTRITO').'');
@@ -119,7 +142,7 @@
 						</fieldset>
 					</div>	
 				</div>	
-				<form method="POST" action="./?url=agregar_escala_edmont&sbm='.$sbm.'&idp='.$paciente->obtener('ID_PACIENTE').'" >
+				<form method="POST" action="./?url=agregar_escala_edmont'.$sbmenu.'&idp='.$paciente->obtener('ID_PACIENTE').''.$switch.''.$ids.'" >
 					<center style="margin-top:5px;">
 						<table>
 							<tr>
@@ -306,8 +329,8 @@
 									<div class="span12">
 										<div id="slider7" style="width:95%;"></div>
 								 		<div style="width:95%;margin-top:10px">
-											<span size="8" class="left" style="float:left;">Sin Apetito</span>
-											<span size="8" class="right" style="float:right;">Buen Apetito</span>
+											<span size="8" class="left" style="float:left;">M&aacute;ximo Apetito</span>
+											<span size="8" class="right" style="float:right;">Sin Apetito</span>
 										</div>
 									</div>
 								</div>
