@@ -103,10 +103,16 @@
 		$active = 'active';
 		$noactive = '';
 	}
-	$cont.='
+	if($sw == 1) {
+		$regresar='
+		<a href="./?url=inicio" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>';
+	}else{
+		$regresar='';	
+	}
+	$cont.='		
 		<div class="row-fluid">
-			<div class="span12">
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">'.$msj.'Captura de Datos de los Pacientes</h3>		
+			<div class="span12">		
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">'.$regresar.''.$msj.'Captura de Datos de los Pacientes</h3>	
 				<div class="tabbable" id="tabs-2">';
 	if($sw <> 1){
 		$cont.='
