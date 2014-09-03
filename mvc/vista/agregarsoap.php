@@ -53,8 +53,7 @@
 			
 			$sql = 'SELECT MAX(ID_IMPRESION_DIAGNOSTICA) AS id FROM impresion_diagnostica';
 			$matriz = $ds->db->obtenerArreglo($sql);
-			$id_imp = $matriz[0][id];
-			$id_impresion = $id_imp;
+			$id_impresion = $matriz[0][id];		
 				
 		}
 		
@@ -69,8 +68,9 @@
 		$det_soap->salvar();
 		
 		$impresion_diag = '&impresion='.$id_impresion.'';
-	}
-	if($sw == 4) {
+		
+	}elseif($sw == 4) {
+		
 		$cuidados->nuevo();
 		$cuidados->colocar('ID_PACIENTE', $idp);
 		$cuidados->colocar('ID_TRAZABILIDAD', $idtrazabilidad);
@@ -80,11 +80,12 @@
 		
 		$sql = 'SELECT MAX(ID_CUIDADOS_TRATAMIENTOS) AS id FROM cuidados_tratamientos';
 		$matriz = $ds->db->obtenerArreglo($sql);
-		$id_cuidado = $matriz[0]id];
+		$id_cuidado = $matriz[0][id];
 		
 		$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
 		$det_soap->colocar('ID_CUIDADOS_TRATAMIENTOS', $id_cuidado);
 		$det_soap->salvar();
+		
 		
 		$recetas->colocar('ID_CUIDADOS_TRATAMIENTOS', $id_cuidado);
 		$recetas->colocar('ID_PACIENTE', $idp);
@@ -115,5 +116,5 @@
 	$sql = 'SELECT max(ID_SOAP) as id FROM soap';
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$id = $matriz[0][id];
-	//echo '<script>alert("Datos Almacenados Correctamente");location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.'"</script>';
+	echo '<script>alert("Datos Almacenados Correctamente");location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.'"</script>';
 ?>
