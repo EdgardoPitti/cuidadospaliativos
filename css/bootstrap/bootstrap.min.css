@@ -334,11 +334,12 @@
 }
 .bordediv{
 	margin-top:-10px;
-	border-right:1px solid #adadad; 
+	border-left:1px solid #adadad; 
+	padding-left: 30px;
 }
 @media(max-width:767px){
 	.bordediv{
-		border-bottom: 1px solid #adadad;	
+		border-top: 1px solid #adadad;	
 	}
 }
  .clearfix{*zoom:1}
