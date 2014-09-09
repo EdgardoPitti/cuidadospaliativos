@@ -270,6 +270,7 @@
 			$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
 			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 			$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+			
 			$cont.='
 				<div class="row-fluid">
 					<div class="panel panel-primary">
@@ -280,7 +281,12 @@
 							<center>
 								<form class="form-inline" method="POST" action="./?url=agregarsoap&id='.$idpaciente.'&sw=1&t='.$t.''.$ids.'">
 									Motivo de la Consulta:
-									<textarea name="motivo" placeholder="Motivo de la Consulta">'.$soap->obtener('MOTIVO_CONSULTA').'</textarea>
+								';
+			if(!empty($soap->obtener('MOTIVO_CONSULTA'))){
+				$img = '<img src="./iconos/save.png">';
+			}
+			$cont.='
+									<textarea name="motivo" placeholder="Motivo de la Consulta">'.$soap->obtener('MOTIVO_CONSULTA').'</textarea>'.$img.'
 									<button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar</button>
 								</form>
 							</center>
@@ -295,8 +301,14 @@
 						<div class="panel-body">
 							<center>
 								<form class="form-inline" method="POST" action="./?url=agregarsoap&id='.$idpaciente.'&sw=2&t='.$t.''.$ids.'">
-									Objetivo de la Consulta:
-									<textarea name="objetivo" placeholder="Objetivo de la Consulta">'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>
+									Objetivo de la Consulta:';
+			if(!empty($soap->obtener('OBJETIVO_CONSULTA'))){
+				$img = '<img src="./iconos/save.png">';
+			}else{
+				$img = '';
+			}
+			$cont.='
+									<textarea name="objetivo" placeholder="Objetivo de la Consulta">'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
 									<button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar</button>
 								</form>
 							</center>
@@ -629,9 +641,15 @@
 										<table class="table2">											
 											<tr>
 												<td>Observaciones</td>
-											</tr>
+											</tr>';
+			if(!empty($soap->obtener('OBSERVACIONES'))){
+				$img = '<img src="./iconos/save.png">';
+			}else{
+				$img = '';
+			}
+			$cont.='
 											<tr>
-												<td><textarea name="observaciones" placeholder="Observaciones">'.$soap->obtener('OBSERVACIONES').'</textarea></td>
+												<td><textarea name="observaciones" placeholder="Observaciones">'.$soap->obtener('OBSERVACIONES').'</textarea>'.$img.'</td>
 											</tr>
 											<tr>
 												<td><button type="submit" class="btn btn-primary">Guardar</button></td>											

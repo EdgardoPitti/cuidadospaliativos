@@ -119,5 +119,5 @@
 	$sql = 'SELECT max(ID_SOAP) as id FROM soap';
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$id = $matriz[0][id];
-	echo '<script>alert("Datos Almacenados Correctamente");location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.'"</script>';
+	echo '<script>location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.'"</script>';
 ?>
