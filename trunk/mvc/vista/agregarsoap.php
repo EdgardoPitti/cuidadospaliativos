@@ -64,7 +64,7 @@
 		$det_imp_diag->salvar();
 		
 		$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
-		$det_soap->colocar('ID_IMPRESION_DIAGNOSTICA', $id_imp);
+		$det_soap->colocar('ID_IMPRESION_DIAGNOSTICA', $id_impresion);
 		$det_soap->salvar();
 		
 		$impresion_diag = '&impresion='.$id_impresion.'';
@@ -111,8 +111,11 @@
 		$det_recetas->colocar('ID_PERIODO_TRATAMIENTO', $_POST['periodo']);
 		$det_recetas->colocar('OTRAS_INDICACIONES', $_POST['observaciones']);
 		$det_recetas->salvar();
+	}elseif($sw == 5) {
+		$soap->buscardonde('ID_SOAP = '.$idsoap.'');	
+		$soap->colocar('OBSERVACIONES', $_POST['observaciones']);
+		$soap->salvar();	
 	}
-	
 	$sql = 'SELECT max(ID_SOAP) as id FROM soap';
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$id = $matriz[0][id];

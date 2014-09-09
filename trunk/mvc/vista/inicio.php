@@ -29,7 +29,7 @@
 					  					<td>Introduzca nombre o c&eacute;dula del Paciente</td>
 					  				</tr>
 					  				<tr align="center">
-					  					<td><input type="search" class="form-control" placeholder="Nombre o C&eacute;dula" name="buscar" id="busqueda"><button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button></td>
+					  					<td><input type="search" class="form-control" placeholder="Nombre o C&eacute;dula" name="buscar" id="busqueda"><button class="btn-orange" type="submit"><img src="./iconos/search.png"/></button></td>
 						  			</tr>
 						  		</table>			  			
 						  	</div>			    

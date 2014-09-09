@@ -38,6 +38,7 @@
 		<div class="row-fluid">
 			<a href="./?url=soap&id='.$idpaciente.'" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
 		</div>';
+		$search = 1;
 	}
 	$cont.='
 		<center>
@@ -45,11 +46,8 @@
 		</center>
 		<div class="tabbable" id="tabs-2">
 			<ul class="nav nav-tabs">
-				<li class="'.$noactive.'"><a href="#tab1" data-toggle="tab">Datos ESAS-R</a></li>';
-		if(empty($sw)) {
-			$cont.='	<li class="'.$active.'"><a href="#tab2" data-toggle="tab">Gr&aacute;fica ESAS-R</a></li>';
-		}
-		$cont.='
+				<li class="'.$noactive.'"><a href="#tab1" data-toggle="tab">Datos ESAS-R</a></li>
+				<li class="'.$active.'"><a href="#tab2" data-toggle="tab">Gr&aacute;fica ESAS-R</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane '.$noactive.'" id="tab1">';
@@ -430,9 +428,11 @@
 		</div>';		
 	}	
 	$comillas = "'";
-	
+	$grafica = $_GET['grafica'];
 	$cont.='
-		<div class="tab-pane '.$active.'" id="tab2">	
+		<div class="tab-pane '.$active.'" id="tab2">	';
+		if(empty($sw)){
+			$cont.='
 			<center>
 				<form class="form-search" method="POST" action="./?url=escala_edmont&sbm='.$sbm.'&tab2=true">
 					<div class="input-group">
@@ -446,12 +446,15 @@
 				  	</div>			    
 				</form>
 			</center>';
-		$grafica = $_GET['grafica'];	
-		if(!($grafica)) {
+		}else{
+			$grafica = true;
+			$switch ='&sw=1';; 
+		}
+		if($grafica == false) {
 			$cedula = $_POST['cedpaciente'];
 			$condicion = 'NO_CEDULA = "'.$cedula.'"';
 		}else {
-			$idp = $_GET['idp'];
+			$idp = $_GET['idp'];			
 			$condicion = 'ID_PACIENTE = '.$idp.'';
 		}	
 		if(!empty($search) OR $grafica == true){
@@ -515,7 +518,7 @@
 				</div>	
 			</div><hr>
 			<center>
-				<form class="form-search" method="POST" action="./?url=escala_edmont&sbm='.$sbm.'&tab2=true&grafica=true&idp='.$paciente->obtener('ID_PACIENTE').'">
+				<form class="form-search" method="POST" action="./?url=escala_edmont&sbm='.$sbm.'&tab2=true&grafica=true&idp='.$paciente->obtener('ID_PACIENTE').''.$switch.'">
 					Graficar desde <input type="date" name="fechainicial" id="fechainicial" placeholder="AAAA-MM-DD"> Hasta <input type="date" name="fechafinal" id="fechafinal" placeholder="AAAA-MM-DD">
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>				
 				</form>			
