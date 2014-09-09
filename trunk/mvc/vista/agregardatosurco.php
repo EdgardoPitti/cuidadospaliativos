@@ -5,6 +5,7 @@
 	$surco = new Accesatabla('surco');
 	$profesional = new Accesatabla('datos_profesionales_salud');
 	$idpaciente = $_GET['idp'];
+	$idsoap = $_GET['idsoap'];
 	$trazabilidad = new Accesatabla('trazabilidad');
 	$historiapaciente = new Accesatabla('historia_paciente');
 	$examenfisico = new Accesatabla('examen_fisico');
@@ -12,9 +13,10 @@
 	$resultados = new Accesatabla('resultados_examen_diagnostico');
 	$diagnostico = new Accesatabla('diagnostico');	
 	$detallediagnostico = new Accesatabla('detalle_diagnostico');
+	$detallesoap = new Accesatabla('detalle_soap');
 	$sbm = $_GET['sbm'];
 
-	if($_SESSION['idgu'] <> 3 AND $_SESSION['idgu'] <> 4){
+	if($_SESSION['idgu'] < 3){
 		echo '<script>alert("No tiene permitido entrar a estas vistas.")</script><SCRIPT languague="JAVASCRIPT">location.href = "./?url=inicio"</SCRIPT>';
 	}else{
 		$fecha = '"';
@@ -95,6 +97,14 @@
 			$x = $tipoexamen->releer();
 
 		}
-		echo '<script language="javascript">location.href="./?url=domiciliaria_surco&sbm='.$sbm.'"</script>';
+		if(empty($idsoap)){
+			echo '<script language="javascript">location.href="./?url=domiciliaria_surco&sbm='.$sbm.'"</script>';
+		}else{
+			$detallesoap->buscardonde('ID_SOAP = '.$idsoap.'');
+			$detallesoap->colocar('ID_SURCO', $idsurco);
+			$detallesoap->salvar();
+			echo '<script language="javascript">location.href="./?url=soap&idsoap='.$idsoap.'&id='.$idpaciente.'"</script>';
+		}
+		
 	}
 ?>

@@ -645,7 +645,7 @@
 											<td>SURCO</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.'" class="btn btn-primary">SURCO</a></td>
+											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" class="btn btn-primary">SURCO</a></td>
 										</tr>
 									</table>
 								</div>
