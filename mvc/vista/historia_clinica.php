@@ -67,30 +67,30 @@
 		</div>
 		<div class="row-fluid" style="border:1px solid #e3e3e3;margin-top:-10px;width:99.9%;">
 			<div class="span12" style="margin:15px 0px 0px 15px;">
-				Fecha: <span style="text-decoration:underline;font-weight:bold;">&nbsp;'.$soap->obtener('FECHA').'&nbsp;</span><br>
+				Fecha: <span style="text-decoration:underline;font-weight:bold;">'.$soap->obtener('FECHA').'</span><br>
 				
-				<h3 style="text-decoration:underline;">&nbsp;Datos del Paciente&nbsp;</h3>
+				<h3 style="text-decoration:underline;">Datos del Paciente</h3>
 				<div class="row-fluid">
 					<div class="span4">
-						Nombre: <span style="text-decoration:underline;">&nbsp;'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'&nbsp;</span>											
+						Nombre: <span style="text-decoration:underline;">'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</span>											
 					</div>
 					<div class="span4">
-						Edad: <span style="text-decoration:underline;">&nbsp;'.$ds->edad($dia,$mes,$anio).' A&ntilde;os &nbsp;</span> Sexo: <span style="text-decoration:underline;">&nbsp;'.$sexo.'&nbsp;</span>									
+						Edad: <span style="text-decoration:underline;">'.$ds->edad($dia,$mes,$anio).' A&ntilde;os </span> Sexo: <span style="text-decoration:underline;">'.$sexo.'</span>									
 					</div>
 					<div class="span4">
-						Cuidador: <span style="text-decoration:underline;">&nbsp;'.$paciente->obtener('CUIDADOR').'&nbsp;</span> Parentezco: <span style="text-decoration:underline;">&nbsp;'.$paciente->obtener('PARENTEZCO_CUIDADOR').'&nbsp;</span>
+						Cuidador: <span style="text-decoration:underline;">'.$paciente->obtener('CUIDADOR').'</span> Parentezco: <span style="text-decoration:underline;">'.$paciente->obtener('PARENTEZCO_CUIDADOR').'</span>
 					</div>				
 				</div>
 				<div class="row-fluid">
 					<h3 style="background:#e9e9e9;padding-top:7px;margin-left:-15px;padding-bottom:7px;width:100%;text-align:center;">Datos SOAP</h3>	
 				</div>				
 					
-				<h3 style="text-decoration:underline;">&nbsp;Consultas&nbsp;</h3>
+				<h3 style="text-decoration:underline;">Consultas</h3>
 				
-				Motivo de la Consulta: <span style="text-decoration:underline;">&nbsp;'.$soap->obtener('MOTIVO_CONSULTA').'&nbsp;</span><br>
-				Objetivo de la Consulta: <span style="text-decoration:underline;">&nbsp;'.$soap->obtener('OBJETIVO_CONSULTA').'&nbsp;</span><br>		
+				Motivo de la Consulta: <span style="text-decoration:underline;"> '.$soap->obtener('MOTIVO_CONSULTA').' </span><br>
+				Objetivo de la Consulta: <span style="text-decoration:underline;"> '.$soap->obtener('OBJETIVO_CONSULTA').' </span><br>		
 				
-				<h3 style="text-decoration:underline;">&nbsp;ESAS-R&nbsp;</h3>';
+				<h3 style="text-decoration:underline;"> ESAS-R </h3>';
 		$sw = 0;
 		if($datos_escala->obtener('DOLOR') >= 7){
 			$cont.= 'Dolor: '.$datos_escala->obtener('DOLOR').'';
@@ -170,7 +170,7 @@
 		}
 	
 	$cont.='				
-				<h3 style="text-decoration:underline;">&nbsp;Impresi&oacute;n Diagn&oacute;stica&nbsp;</h3>
+				<h3 style="text-decoration:underline;">Impresi&oacute;n Diagn&oacute;stica</h3>
 				<center>
 					<div class="overflow overthrow" style="width:90%;">
 						<table class="table2 borde-tabla" >
@@ -202,11 +202,11 @@
 					</div>		
 				</center>
 				
-				<h3 style="text-decoration:underline;">&nbsp;Cuidados y Tratamientos&nbsp;</h3>
-				Cuidados: <span style="text-decoration:underline;">&nbsp;'.$cuidado.'&nbsp;</span><br>
-				Tratamientos: <span style="text-decoration:underline;">&nbsp;'.$tratamiento.'&nbsp;</span>	
+				<h3 style="text-decoration:underline;">Cuidados y Tratamientos</h3>
+				Cuidados: <span style="text-decoration:underline;">'.$cuidado.'</span><br>
+				Tratamientos: <span style="text-decoration:underline;">'.$tratamiento.'</span>	
 				
-				<h3 style="text-decoration:underline;">&nbsp;Observaciones&nbsp;</h3>';
+				<h3 style="text-decoration:underline;">Observaciones</h3>';
 				if(empty($soap->obtener('OBSERVACIONES'))) {
 						$cont.='No tiene ninguna observaci&oacute;n';				
 				}else{
