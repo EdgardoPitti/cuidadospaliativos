@@ -10,7 +10,8 @@
 	if(!empty($idsoap)) {
 		$ids = '&idsoap='.$idsoap.'';
 	}else {
-		$ids='';						
+		$ids='';		
+		$idsoap = 0;				
 	}
 	$impresion = $_GET['impresion'];
 	if(!empty($impresion)){
@@ -37,6 +38,8 @@
 	$verbos = new Accesatabla('verbos_recetas');
 	$unidad = new Accesatabla('unidades_medida');
 	$periodo = new Accesatabla('periodo_tratamiento');
+	$cuadro_medicamento = new Accesatabla('tipos_cuadros_medicamentos');
+	$medicamentos = new Accesatabla('medicamentos');
 	
 	$paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 	if ($paciente->obtener('ID_SEXO') == 1){
@@ -44,9 +47,10 @@
 	}else{
 		$sexo = 'FEMENINO';
 	}
+
 	list($anio, $mes, $dia) = explode("-", $paciente->obtener('FECHA_NACIMIENTO'));
 	
-	$sql = 'SELECT MAX(ID_SOAP) AS id FROM soap WHERE ID_PACIENTE = '.$idpaciente.'';
+	$sql = 'SELECT MAX(ID_SOAP) AS id FROM soap WHERE ID_PACIENTE = '.$idpaciente.' AND ID_SOAP <> '.$idsoap;
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$id_soap = $matriz[0][id];
 	
@@ -55,6 +59,7 @@
 	$sql = 'SELECT MAX(ID_ESCALA) AS ID FROM escala_edmonton WHERE ID_PACIENTE = '.$idpaciente.'';
 	$arreglo = $ds->db->obtenerArreglo($sql);
 	$idescala = $arreglo[0][ID];
+	
 	$datos_escala->buscardonde('ID_ESCALA = '.$idescala.'');	
 	$det_soap->buscardonde('ID_SOAP = '.$id_soap.'');
 	
@@ -66,6 +71,13 @@
 	$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
 	$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 	$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+	if(!empty($medicamentos->obtener('ID_MEDICAMENTO'))){
+		$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
+		$cuidado = $cuidados->obtener('CUIDADOS');
+	}else{
+		$cuidado = 'No posee Cuidado';
+		$tratamiento = 'No posee Tratamiento';
+	}
 	$cont.='
 				<div class="row-fluid">				
 					<a href="./?url=menu_categorias&id='.$idpaciente.'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>	
@@ -80,7 +92,7 @@
 									<div class="span6">
 										<center>
 											<img src="./iconos/paciente.png" style="max-height:110px"><br>
-											<a href="#" class="btn btn-primary">Historial Cl&iacute;nico</a>
+											<a href="./?url=historia_clinica&id='.$idpaciente.'" class="btn btn-primary">Historial Cl&iacute;nico</a>
 										</center>
 									</div>
 									<div class="span6">
@@ -129,10 +141,10 @@
 												<td style="text-align:left;font-weight:bold;padding-left:10px;">Cuidados y Tratamientos</td>										
 											</tr>
 											<tr>
-													<td><b>Cuidado:</b> '.$cuidados->obtener('CUIDADOS').'</td>
+													<td><b>Cuidado:</b> '.$cuidado.'</td>
 											</tr>
 											<tr>
-												<td>'.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'</td>									
+												<td>'.$tratamiento.'</td>									
 											</tr>	
 										</table>
 									</div>';
@@ -415,7 +427,6 @@
 													</tr>
 												</thead>	
 												<tbody>';
-											$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
 											$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
 											while($x) {
 												$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
@@ -432,9 +443,9 @@
 											}		
 									$cont.='
 													<tr>
-														<td><input type="text" name="diagnostico1" id="diagnostico1"></td>
-														<td><input type="text" name="cie1" id="cie1" readonly></td>
-														<td><input type="text" name="observaciones" id="observaciones"></td>
+														<td><input type="text" name="diagnostico1" id="diagnostico1" placeholder="Diagn&oacute;stico"></td>
+														<td><input type="text" name="cie1" id="cie1" placeholder="CIE-10" readonly></td>
+														<td><input type="text" name="observaciones" id="observaciones" placeholder="Observaciones"></td>
 														<td><button type="submit" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir Diagn&oacute;stico</button></td>
 													</tr>
 												</tbody>
@@ -574,7 +585,7 @@
 											}
 												$cont.='
 												</select><br><br>
-												Otras Observaciones: <input type="text" name="observaciones" id="observaciones" value="'.$det_recetas->obtener('OTRAS_INDICACIONES').'"><br><br>
+												Otras Observaciones: <textarea name="observaciones" id="observaciones">'.$det_recetas->obtener('OTRAS_INDICACIONES').'</textarea><br><br>
 												<button type="submit" class="btn btn-primary">Agregar</button>
 									</div>
 								</form>
@@ -587,7 +598,15 @@
 									<h4>A&ntilde;adir Medicamento a Listado</h4>  
 								</div>  
 								<div class="modal-body" align="center">
-									Abreviatura: <input type="text" name="abreviatura" id="abreviatura" placeholder="Abreviatura"><br><br>
+									Cuadro Medicamento: <select name="cuadro_medicamento" id="cuadro_medicamento">
+																<option value=""></option>';
+													$x = $cuadro_medicamento->buscardonde('ID_TIPO_CUADRO > 0');
+													while($x){
+															$cont.='<option value="'.$cuadro_medicamento->obtener('ID_TIPO_CUADRO').'">'.$cuadro_medicamento->obtener('DESCRIPCION').'</option>';
+														$x = $cuadro_medicamento->releer();
+													}
+													$cont.='
+															  </select><br><br>
 									Descripci&oacute;n: <input type="text" name="desc_medicamento" id="desc_medicamento" placeholder="Descripci&oacute;n de Medicamento">
 								</div>
 								<div class="modal-footer">  
@@ -606,14 +625,19 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="span3 offset4">
-									<table class="table2">											
-										<tr>
-											<td>Observaciones</td>
-										</tr>
-										<tr>
-											<td><textarea name="observaciones" placeholder="Observaciones"></textarea></td>
-										</tr>
-									</table>										
+									<form method="POST" action="./?url=agregarsoap&id='.$idpaciente.''.$ids.'&sw=5">							
+										<table class="table2">											
+											<tr>
+												<td>Observaciones</td>
+											</tr>
+											<tr>
+												<td><textarea name="observaciones" placeholder="Observaciones">'.$soap->obtener('OBSERVACIONES').'</textarea></td>
+											</tr>
+											<tr>
+												<td><button type="submit" class="btn btn-primary">Guardar</button></td>											
+											</tr>
+										</table>
+									</form>										
 								</div>
 								<div class="span2">
 									<table class="table2">											

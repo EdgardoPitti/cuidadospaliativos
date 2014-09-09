@@ -34,6 +34,13 @@
 	$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
 	$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 	$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+	if(!empty($medicamentos->obtener('ID_MEDICAMENTO'))){
+		$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
+		$cuidado = $cuidados->obtener('CUIDADOS');
+	}else{
+		$cuidado = 'No posee Cuidado';
+		$tratamiento = 'No posee Tratamiento';
+	}
 	
 	if ($personas->obtener('ID_SEXO') == 1){
 		$sexo = 'MASCULINO';
@@ -47,7 +54,10 @@
 	}
 	list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 	$cont.='
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=inicio" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>Historial Cl&iacute;nico</h3>					
+			
+				<div class="row-fluid">				
+					<a href="./?url=inicio" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>					
+				</div>
 				<div class="row-fluid">
 					<div class="span4">
 						<fieldset>
@@ -106,10 +116,10 @@
 												<td style="text-align:left;font-weight:bold;padding-left:10px;">Cuidados y Tratamientos</td>										
 											</tr>
 											<tr>
-													<td><b>Cuidado:</b> '.$cuidados->obtener('CUIDADOS').'</td>
+													<td><b>Cuidado:</b>'.$cuidado.'</td>
 											</tr>
 											<tr>
-												<td>'.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'</td>									
+												<td>'.$tratamiento.'</td>									
 											</tr>	
 										</table>
 									</div>';
