@@ -28,7 +28,12 @@
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
 		$sw = 1;
 	}else if(empty($cedula)){
-		$cedula = $_GET['idp'];
+		$personas->buscardonde('ID_PACIENTE = '.$_GET['idp'].'');
+		$cedula = $personas->obtener('NO_CEDULA');
+	}
+	$idsoap = $_GET['idsoap'];
+	if(!empty($idsoap)){
+		$ids = '&idsoap='.$idsoap.'';
 	}
 	$ds = new Diseno();
 	$cont='
@@ -138,7 +143,7 @@
 						}
 						
 							$cont.=' 
-							<form id="form" method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'&sbm='.$sbm.'">
+							<form id="form" method="POST" action="./?url=agregardatosurco&idp='.$personas->obtener('ID_PACIENTE').'&sbm='.$sbm.''.$ids.'">
 								<div class="acordeon" style="margin-top:15px;">
 									<div>
 										<input id="acordeon1" name="accordion" type="radio"/>
