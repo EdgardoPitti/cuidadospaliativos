@@ -15,9 +15,9 @@
 	}
 	$impresion = $_GET['impresion'];
 	if(!empty($impresion)){
-		$id_imp = '&idimp='.$impresion.'';	
+		$id_imp = '&idimp='.$impresion.'';		
 	}else {
-		$id_imp = '';	
+		$id_imp = '';			
 	}
 	
 	$datos_escala = new Accesatabla('escala_edmonton');
@@ -261,10 +261,15 @@
 			$soap->buscardonde('ID_SOAP = '.$idsoap.'');
 			$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
 			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').'');
-
+			
 			/*rellenar campos de cuidados y tratamientos*/	
 			$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'));	
 			$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
+			if(!empty($recetas->obtener('ID_RECETA'))){
+				$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';			
+			}else{
+				$enlace = '';			
+			}
 			$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
 			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
 			$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
@@ -287,7 +292,7 @@
 			}
 			$cont.='
 									<textarea name="motivo" placeholder="Motivo de la Consulta">'.$soap->obtener('MOTIVO_CONSULTA').'</textarea>'.$img.'
-									<button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar</button>
+									<button type="submit" class="btn btn-default" style="margin-top:10px">Guardar</button>
 								</form>
 							</center>
 						</div>
@@ -309,7 +314,7 @@
 			}
 			$cont.='
 									<textarea name="objetivo" placeholder="Objetivo de la Consulta">'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
-									<button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar</button>
+									<button type="submit" class="btn btn-default" style="margin-top:10px">Guardar</button>
 								</form>
 							</center>
 						</div>
@@ -489,10 +494,11 @@
 									</div>
 									<div class="span4 bordediv" style="margin-left:0px;">
 											<h4 style="text-align:left;">Tratamientos</h4>
+											'.$enlace.'<br>
+												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD" value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
 												Medicamentos:												
 												<input type="text" name="medicamentos" id="medicamentos" placeholder="Medicamentos" value="'.$medicamentos->obtener('DESCRIPCION').'">
 												<input type="hidden" name="idmedicamentos" id="idmedicamentos" '.$medicamentos->obtener('ID_MEDICAMENTO').'><a data-toggle="modal" href="#add_medicamento" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir a listado</a><br><br>
-												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD" value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
 												Forma: 
 												<select name="forma" id="forma">
 													<option value="0">Forma Farmaceutica</option>
@@ -598,7 +604,7 @@
 												$cont.='
 												</select><br><br>
 												Otras Observaciones: <textarea name="observaciones" id="observaciones">'.$det_recetas->obtener('OTRAS_INDICACIONES').'</textarea><br><br>
-												<button type="submit" class="btn btn-primary">Agregar</button>
+												<button type="submit" class="btn btn-default">Agregar</button>
 									</div>
 								</form>
 							</div>			
@@ -652,7 +658,7 @@
 												<td><textarea name="observaciones" placeholder="Observaciones">'.$soap->obtener('OBSERVACIONES').'</textarea>'.$img.'</td>
 											</tr>
 											<tr>
-												<td><button type="submit" class="btn btn-primary">Guardar</button></td>											
+												<td><button type="submit" class="btn btn-default">Guardar</button></td>											
 											</tr>
 										</table>
 									</form>										
