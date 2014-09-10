@@ -53,12 +53,12 @@
 	$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 	$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 	
-	if(empty($det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'))) {
-		$tratamiento = 'No tiene Tratamientos M&eacute;dicos';
-		$cuidado = 'No tiene Cuidados';	
-	}else{
+	if(!empty($det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'))) {
 		$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
 		$cuidado = $cuidados->obtener('CUIDADOS');
+	}else{
+		$tratamiento = 'No tiene Tratamientos M&eacute;dicos';
+		$cuidado = 'No tiene Cuidados';	
 	}
 	
 	$cont='
@@ -171,6 +171,12 @@
 	
 	$cont.='				
 				<h3 style="text-decoration:underline;">Impresi&oacute;n Diagn&oacute;stica</h3>
+				';
+			$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
+			if(empty($x)) {
+				$cont.='No tiene Impresi&oacute;n Diagn&oacute;stica';
+			}else{
+				$cont.='
 				<center>
 					<div class="overflow overthrow" style="width:90%;">
 						<table class="table2 borde-tabla" >
@@ -182,9 +188,7 @@
 								</tr>
 							</thead>				
 							<tbody>
-						';
-						
-						$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
+						';										
 						while($x) {
 							$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
 							
@@ -200,7 +204,9 @@
 							</tbody>		
 						</table>
 					</div>		
-				</center>
+				</center>';
+				}
+			$cont.='
 				
 				<h3 style="text-decoration:underline;">Cuidados y Tratamientos</h3>
 				Cuidados: <span style="text-decoration:underline;">'.$cuidado.'</span><br>
