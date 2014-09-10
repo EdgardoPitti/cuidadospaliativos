@@ -30,14 +30,14 @@
 	$tipo_surco = $_GET['tiporef'];
 	$tipo_imp = $_GET['visita'];
 	$agenda = $_GET['agenda'];
-	
+	$idreceta = $_GET['idr'];
 	$html='
 <html>
 	<head>
 		<title>Cuidados Paliativos</title>
 	
 		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 		<style type="text/css">
 			.fd-title{background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;}
 			.sub-title{width:100%;border:1px solid #3d3d3d;text-align:center;font-weight:bold;padding:4px 0px;} p{padding:0px;margin:0px;}
@@ -46,7 +46,67 @@
 		</style>
 	</head>
 	<body>';
-	if(!empty($agenda)){
+	
+	if(!empty($idreceta)){
+		$recetas = new Accesatabla('recetas_medicas');
+		$det_recetas = new Accesatabla('detalle_receta');	
+		$formas = new Accesatabla('formas_farmaceuticas');
+		$medicamentos = new Accesatabla('medicamentos');
+		$vias = new Accesatabla('vias_administracion');	
+		$frecuencia = new Accesatabla('frecuencias_tratamientos');
+		$verbos = new Accesatabla('verbos_recetas');
+		$unidad = new Accesatabla('unidades_medida');
+		$periodo = new Accesatabla('periodo_tratamiento');
+		$medicamentos = new Accesatabla('medicamentos');
+		
+		$recetas->buscardonde('ID_RECETA = '.$idreceta.'');
+		$personas->buscardonde('ID_PACIENTE = '.$recetas->obtener('ID_PACIENTE').'');
+		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
+		if($personas->obtener('ID_SEXO') == 1){
+			$sexo = 'MASCULINO';		
+		}else{
+			$sexo = 'FEMENINO';		
+		}
+		$archivofinal = 'Receta-'.$personas->obtener('NO_CEDULA').'';
+		
+		$datos_profesional->buscardonde('ID_PROFESIONAL = '.$recetas->obtener('ID_PROFESIONAL').'');
+		/*DATOS DE LA RECETA*/
+		$det_recetas->buscardonde('ID_RECETA = '.$idreceta.'');
+		$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
+		$formas->buscardonde('ID_TIPO_FORMA = '.$det_recetas->obtener('ID_FORMA').'');
+		$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
+		$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
+		$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+		$unidad->buscardonde('ID_TIPO_UNIDAD = '.$det_recetas->obtener('ID_UNIDAD').'');
+		$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');		
+		$html.='
+			<table style="width:100%;">
+				<tr align="center">
+					<td width="25%"><img src="iconos/minsa.png" style="width:90px;height:90px;"></td>					
+					<td width="50%"><h1 style="text-align:center;">Cuidados Paliativos Panam&aacute;</h1></td>					
+					<td width="25%"><img src="iconos/ION_logo.png" style="width:190px;height:110px"></td>					
+				</tr>
+			</table>					
+				
+			<center><h2 style="font-style:italic;">RECETA</h2></center>
+			
+			<b>Nombre:</b> <span style="text-decoration:underline;">'.$personas->obtener('PRIMER_NOMBRE').' '.$personas->obtener('SEGUNDO_NOMBRE').' '.$personas->obtener('APELLIDO_PATERNO').' '.$personas->obtener('APELLIDO_MATERNO').'</span><br>
+			<b>N&deg; C&eacute;dula:</b> <span style="text-decoration:underline;">'.$personas->obtener('NO_CEDULA').'</span> <b>Edad:</b> <span style="text-decoration:underline;">'.$ds->edad($dia,$mes,$anio).'</span> <b>Sexo:</b> <span style="text-decoration:underline;">'.$sexo.'</span> <b>Fecha:</b> <span style="text-decoration:underline;">'.$recetas->obtener('FECHA_RECETA').'</span><br><br>
+			
+			<hr style="border: 2px solid #000;width:100%;"/>				
+			
+			<h1>Rx</h1>
+				
+			<center><br><br>
+				'.$medicamentos->obtener('DESCRIPCION').' '.$formas->obtener('DESCRIPCION').' '.$det_recetas->obtener('CONCENTRACION').' '.$unidad->obtener('ABREVIATURA').'<br>
+				'.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$frecuencia->obtener('ABREVIATURA').' '.$vias->obtener('ABREVIATURA').' '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'					
+			</center> 
+			<br><br>
+			<b>M&eacute;dico:</b> '.$datos_profesional->obtener('PRIMER_NOMBRE').' '.$datos_profesional->obtener('APELLIDO_PATERNO').'<br><br>
+			
+			<b>Firma:</b> _______________________________________		
+		';
+	}elseif(!empty($agenda)){
 		$archivofinal = 'Agenda-del-'.$_GET['fecha'].'';
 		$cita = new Accesatabla('citas_medicas');
 		
@@ -636,6 +696,7 @@
 			</div>
 			';
 	}	
+	
 
 	$html.='	
 	</body>
@@ -643,7 +704,7 @@
 	require_once("./mvc/modelo/dompdf_config.inc.php");
 	$dompdf = new DOMPDF();
 	$dompdf->set_paper('A4','landscape');//portrait
-	$dompdf->load_html($html);
+	$dompdf->load_html(utf8_encode($html));
 	$dompdf->render();
 	$canvas = $dompdf->get_canvas();
 	$font = Font_Metrics::get_font("helvetica", "bold");
