@@ -247,8 +247,11 @@
 															<td style="text-align:left;padding-left:17%;">N&ordm; de Seguro:</td>	
 														</tr>
 														<tr>
-															<td>
-																<label class="checkbox" style="width:140px;margin:0px auto"><input type="checkbox" name="checkseguro" id="checkseguro" > <strong>Utilizar N&ordm; de C&eacute;dula</strong></label>																										
+															<td>';
+															if($sw == 1){
+																$cont.='<label class="checkbox" style="width:140px;margin:0px auto"><input type="checkbox" name="checkseguro" id="checkseguro" > <strong>Utilizar N&ordm; de C&eacute;dula</strong></label>';																										
+															}
+															$cont.='
 																<input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N&ordm; Seguro" >
 															</td>
 														</tr>

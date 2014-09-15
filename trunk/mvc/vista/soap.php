@@ -154,7 +154,7 @@
 						</fieldset>
 					</div>	
 					<div class="span4">
-						<fieldset>
+						<fieldset style="height:168px;">
 							<legend>
 								ESAS-R
 							</legend>
@@ -167,8 +167,8 @@
 												<tr>
 													<td><b>'.$day.' / '.$ds->dime('mes-'.$month).' / '.$agno.'</b></td>
 												</tr>
-												<tr>
-													<td>';
+											</table>
+											<div class="overthrow" style="overflow:auto;height:75px;margin-top:-5px;text-align:center;">';
 										$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').'');
 										
 										$sw = 0;
@@ -249,9 +249,8 @@
 											$cont.='Dormir: '.$datos_escala->obtener('DORMIR').'';
 										}
 													
-										$cont.='	</td>
-												</tr>								
-											</table>';
+									$cont.='	
+											</div>';
 								}
 	$cont.='
 						</fieldset>
