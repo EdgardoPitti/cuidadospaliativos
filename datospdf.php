@@ -1,19 +1,11 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
+	$ds = new Diseno();
+	
 	$personas = new Accesatabla('datos_pacientes');
-	$residencia = new Accesatabla('residencia_habitual');
-	$provincias = new Accesatabla('provincias');
-	$distritos = new Accesatabla('distritos');
-	$corregimientos = new Accesatabla('corregimientos');
-	$institucion = new Accesatabla('institucion');
+	$residencia = new Accesatabla('residencia_habitual');	
 	$especialidades = new Accesatabla('especialidades_medicas');
-	$surco = new Accesatabla('surco');
-	$cie = new Accesatabla('cie10');
-	$tipoexamen = new Accesatabla('tipo_examen');
-	$frecuencia = new Accesatabla('frecuencia');
-	$historia = new Accesatabla('historia_paciente');
-	$examenfisico = new Accesatabla('examen_fisico');
 	$zona = new Accesatabla('zona');
 	$etnia = new Accesatabla('etnia');
 	$sexo = new Accesatabla('sexo');
@@ -22,21 +14,20 @@
 	$datos_profesional = new Accesatabla('datos_profesionales_salud');
 	$profesional = new Accesatabla('profesionales_salud');
 	$servicios = new Accesatabla('servicios_medicos');		
-
-	$ds = new Diseno();
-	
+		
 	$cedula = $_GET['idpac'];
 	$resp = $_GET['idr'];
 	$tipo_surco = $_GET['tiporef'];
 	$tipo_imp = $_GET['visita'];
 	$agenda = $_GET['agenda'];
 	$idreceta = $_GET['idr'];
+	
 	$html='
 <html>
 	<head>
 		<title>Cuidados Paliativos</title>
 	
-		<link href="./iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
+		<link href="iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 		<style type="text/css">
 			.fd-title{background:#f4f4f4;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;}
@@ -53,29 +44,28 @@
 		$formas = new Accesatabla('formas_farmaceuticas');
 		$medicamentos = new Accesatabla('medicamentos');
 		$vias = new Accesatabla('vias_administracion');	
-		$frecuencia = new Accesatabla('frecuencias_tratamientos');
+		$frecuencia_tratamiento = new Accesatabla('frecuencias_tratamientos');
 		$verbos = new Accesatabla('verbos_recetas');
 		$unidad = new Accesatabla('unidades_medida');
 		$periodo = new Accesatabla('periodo_tratamiento');
-		$medicamentos = new Accesatabla('medicamentos');
 		
-		$recetas->buscardonde('ID_RECETA = '.$idreceta.'');
-		$personas->buscardonde('ID_PACIENTE = '.$recetas->obtener('ID_PACIENTE').'');
+		$recetas->buscardonde('ID_RECETA = '.$idreceta);
+		$personas->buscardonde('ID_PACIENTE = '.$recetas->obtener('ID_PACIENTE'));
 		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
 		if($personas->obtener('ID_SEXO') == 1){
 			$sexo = 'MASCULINO';		
 		}else{
 			$sexo = 'FEMENINO';		
 		}
-		$archivofinal = 'Receta-'.$personas->obtener('NO_CEDULA').'';
+		$archivofinal = 'Receta-'.$personas->obtener('NO_CEDULA');
 		
 		$datos_profesional->buscardonde('ID_PROFESIONAL = '.$recetas->obtener('ID_PROFESIONAL').'');
-		/*DATOS DE LA RECETA*/
+		//DATOS DE LA RECETA
 		$det_recetas->buscardonde('ID_RECETA = '.$idreceta.'');
 		$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
 		$formas->buscardonde('ID_TIPO_FORMA = '.$det_recetas->obtener('ID_FORMA').'');
 		$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
-		$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
+		$frecuencia_tratamiento->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 		$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 		$unidad->buscardonde('ID_TIPO_UNIDAD = '.$det_recetas->obtener('ID_UNIDAD').'');
 		$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');		
@@ -99,7 +89,7 @@
 				
 			<center><br><br>
 				'.$medicamentos->obtener('DESCRIPCION').' '.$formas->obtener('DESCRIPCION').' '.$det_recetas->obtener('CONCENTRACION').' '.$unidad->obtener('ABREVIATURA').'<br>
-				'.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$frecuencia->obtener('ABREVIATURA').' '.$vias->obtener('ABREVIATURA').' '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'					
+				'.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$frecuencia_tratamiento->obtener('DESCRIPCION').' '.$vias->obtener('DESCRIPCION').' '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'					
 			</center> 
 			<br><br>
 			<b>M&eacute;dico:</b> '.$datos_profesional->obtener('PRIMER_NOMBRE').' '.$datos_profesional->obtener('APELLIDO_PATERNO').'<br><br>
@@ -156,12 +146,18 @@
 			';
 		
 		
-	}elseif(empty($tipo_imp)){
+	}elseif(empty($tipo_imp)) {
 		$tiposangre = new Accesatabla('tipos_sanguineos');
 		$resultado = new Accesatabla('resultados_examen_diagnostico');
 		$detallediagnostico = new Accesatabla('detalle_diagnostico');		
 		$respuesta = new Accesatabla('respuesta_referencia');
-
+		$surco = new Accesatabla('surco');
+		$provincias = new Accesatabla('provincias');
+		$distritos = new Accesatabla('distritos');
+		$corregimientos = new Accesatabla('corregimientos');
+		$institucion = new Accesatabla('institucion');
+		$frecuencia = new Accesatabla('frecuencia');	
+	
 		$cont_gral='
 			<center style="margin-top:-30px">
 				<h3 class="fd-title" style="font-size:16px">SISTEMA &Uacute;NICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
@@ -189,7 +185,10 @@
 			
 		if($tipo_surco == 1){
 				$archivofinal='Referencia-'.$ced.'';
-		
+				$cie = new Accesatabla('cie10');
+				$historia = new Accesatabla('historia_paciente');
+				$tipoexamen = new Accesatabla('tipo_examen');
+				$examenfisico = new Accesatabla('examen_fisico');
 				$surco->buscardonde('ID_PACIENTE = '.$personas->obtener('ID_PACIENTE').'');
 				//DATOS A MOSTRAR AL IMPRIMIR
 				$institucion->buscardonde('ID_INSTITUCION = '.$surco->obtener('INSTALACION_REFIERE').'');
@@ -477,6 +476,7 @@
 
 		}else{
 			$archivofinal = 'Respuesta-a-la-Referencia-'.$ced.'';
+			$cie = new Accesatabla('cie10');
 			$respuesta->buscardonde('ID_RESPUESTA_REFERENCIA = '.$resp.'');
 			$institucion->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');					
 			$instalacion_responde = $institucion->obtener('DENOMINACION');
@@ -616,7 +616,7 @@
 	}else{
 		$rvd = new Accesatabla('registro_visitas_domiciliarias');		
 		$detalle = new Accesatabla('detalle_registro_visitas_domiciliarias');
-		
+		$institucion = new Accesatabla('institucion');
 		$inicio = $_GET['inicio'];
 		$final = $_GET['final'];
 		$fecha = $ds->dime('dia').' de '.$ds->dime('mes-'.$ds->dime('mes').'').' de '.$ds->dime('agno');
@@ -696,8 +696,7 @@
 			</div>
 			';
 	}	
-	
-
+		
 	$html.='	
 	</body>
 </html>';
