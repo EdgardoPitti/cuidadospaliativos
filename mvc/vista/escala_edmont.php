@@ -36,7 +36,7 @@
 	if(!empty($sw)){
 		$cont.='
 		<div class="row-fluid">
-			<a href="./?url=soap&id='.$idpaciente.'" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
+			<a href="./?url=soap&id='.$idpaciente.'&idsoap='.$idsoap.'" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
 		</div>';
 		$search = 1;
 	}
