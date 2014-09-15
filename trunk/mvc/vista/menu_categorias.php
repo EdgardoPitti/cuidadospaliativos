@@ -64,7 +64,7 @@
 							<legend>
 								Datos del Paciente
 							</legend>
-								<div class="row-fluid" style="margin-top:-15px;padding-bottom:5px">
+								<div class="row-fluid" style="margin-top:-10px;padding-bottom:5px">
 									<div class="span6">
 										<center>
 											<img src="./iconos/paciente.png" style="max-height:110px">
@@ -104,7 +104,7 @@
 								$cont.='<div style="color:red;text-align:center;height:90px;padding-top:30px;">No se le ha registrado consulta a este paciente.</div>';
 							}else{
 								$cont.='
-									<div style="margin-top:-15px;">	
+									<div style="margin-top:-7px;">	
 										<table class="table2" style="height:86px;">
 											<tr>
 												<td><b>'.$day.' / '.$ds->dime('mes-'.$month).' / '.$agno.'</b></td>
