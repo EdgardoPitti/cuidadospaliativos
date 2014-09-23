@@ -27,7 +27,7 @@
         // Arma la consulta contra la tabla que tiene los datos sobre CIE10
         // observar como se realiza la busqueda del término
         $consultaSQL= 
-            'SELECT ID_CIE10, DESCRIPCION FROM cie10 WHERE DESCRIPCION LIKE "%' 
+            'SELECT ID_CIE10, concat(ID_CIE10," ",DESCRIPCION) as DESCRIPCION FROM cie10 WHERE DESCRIPCION LIKE "%' 
             .strtoupper($palabra).'%" ORDER BY DESCRIPCION'; 
 			
         // Ejecuta la consulta
