@@ -521,7 +521,7 @@
 															<td  style="text-align:left;padding-left:17%;">Celular:</td>
 														</tr>
 														<tr>
-															<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular" onKeyPress="valida(this.value)"></td>
 														</tr>	
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Provincia:</td>
