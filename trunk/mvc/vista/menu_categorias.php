@@ -223,7 +223,11 @@
 											}
 											$cont.='Dormir: '.$datos_escala->obtener('DORMIR').'';
 										}
-													
+										if($sw == 0) {
+											$cont.='No existen valores de ESAS-R para este paciente';						
+										}else {
+											$cont.= '';						
+										}			
 										$cont.='	
 										</div>';
 								}

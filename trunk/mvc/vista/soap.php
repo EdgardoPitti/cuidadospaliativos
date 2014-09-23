@@ -248,6 +248,11 @@
 											}
 											$cont.='Dormir: '.$datos_escala->obtener('DORMIR').'';
 										}
+										if($sw == 0) {
+											$cont.='No existen valores de ESAS-R para este paciente';						
+										}else {
+											$cont.= '';						
+										}
 													
 									$cont.='	
 											</div>';
@@ -491,7 +496,7 @@
 											</tr>
 										</table>					
 									</div>
-									<div class="span4 bordediv" style="margin-left:0px;">
+									<div class="span4 bordediv" style="margin-left:0px;padding-bottom:8px;">
 											<h4 style="text-align:left;">Tratamientos</h4>
 											'.$enlace.'<br>
 												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD" value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
@@ -608,7 +613,7 @@
 								</form>
 							</div>			
 						</div>
-						<form class="form-inline" method="POST" action="./?url=addmedicamento'.$ids.''.$id_imp.'">
+						<form class="form-inline" method="POST" action="./?url=addmedicamento'.$ids.''.$id_imp.'" style="margin:0px">
 							<div id="add_medicamento" class="modal hide fade in" style="display: none; ">  						
 								<div class="modal-header">  
 									<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
