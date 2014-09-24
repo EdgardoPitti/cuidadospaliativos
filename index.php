@@ -22,6 +22,14 @@
       </script>
       <script type="text/javascript">
         $('document').ready(function() {
+				var inputs = document.getElementsByTagName('input');
+				var x = 0;
+				for(var i=0; i<inputs.length; i++){
+					if(inputs[i].getAttribute('type')=='date'){
+						x = 1;
+					}
+				}
+				if(x == 1){
         		 if( $('input[type=date]')[0].type != 'date' ){
 				    	$('input[type=date]').datepicker({ 				    		
 				    		dateFormat: 'yy-mm-dd', 
@@ -34,6 +42,7 @@
 				    		dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ] 
 				    	});
 				  } 
+				}
 			}); 
       </script>
 		<script type="text/javaScript">
