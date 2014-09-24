@@ -92,7 +92,7 @@
 									<div class="span6">
 										<center>
 											<img src="./iconos/paciente.png" style="max-height:110px"><br>
-											<a href="./?url=historia_clinica&id='.$idpaciente.'" class="btn btn-primary">Historial Cl&iacute;nico</a>
+											<a href="./?url=historia_clinica&id='.$idpaciente.''.$ids.'" class="btn btn-primary">Historial Cl&iacute;nico</a>
 										</center>
 									</div>
 									<div class="span6">
@@ -272,10 +272,12 @@
 			$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);
 			if(!empty($recetas->obtener('ID_RECETA'))){
 				$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
-				$disable_obs = '';			
+				$disable_obs = '';	
+				$disable_class = ''; 		
 			}else{
 				$enlace = '';
-				$disable_obs = 'disabled="disabled"';			
+				$disable_obs = 'disabled="disabled"';	
+				$disable_class = 'disabled'; 		
 			}
 			$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
 			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
@@ -296,7 +298,7 @@
 								';
 			if(!empty($soap->obtener('MOTIVO_CONSULTA'))){
 				$img = '<img src="./iconos/save.png">';
-				$disable_obj = '';
+				$disable_obj = '';				
 			}else{
 				$img = '';
 				$disable_obj = 'disabled="disabled"';
@@ -321,9 +323,11 @@
 			if(!empty($soap->obtener('OBJETIVO_CONSULTA'))){
 				$img = '<img src="./iconos/save.png">';
 				$disable_esas = '';
+				$disable_class = ''; 
 			}else{
 				$img = '';
 				$disable_esas = 'disabled="disabled"';
+				$disable_class = 'disabled'; 
 			}
 			$cont.='
 									<textarea name="objetivo" placeholder="Objetivo de la Consulta" '.$disable_obj.'>'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
@@ -434,7 +438,7 @@
 									</div>
 									<div class="span2">
 										<center style="margin-bottom:15px;">
-											<a href="./?url=escala_edmont&idp='.$idpaciente.'&sw=1'.$ids.'" class="btn btn-primary" '.$disable_esas.'>Escala EDMONTON</a>
+											<a href="./?url=escala_edmont&idp='.$idpaciente.'&sw=1'.$ids.'" class="btn btn-primary '.$disable_class.'" '.$disable_esas.'>Escala EDMONTON</a>
 										</center>								
 									</div>
 								</div>
@@ -477,7 +481,7 @@
 										}		
 									$cont.='
 													<tr>
-														<td><input type="text" name="diagnostico1" id="diagnostico1" placeholder="Diagn&oacute;stico" ></td>
+														<td><input type="text" name="diagnostico1" id="diagnostico1" '.$disable_diag.' placeholder="Diagn&oacute;stico" ></td>
 														<td><input type="text" name="cie1" id="cie1" placeholder="CIE-10" readonly="readonly"></td>
 														<td><input type="text" name="observaciones" id="observaciones" placeholder="Observaciones" '.$disable_diag.'></td>
 														<td><button type="submit" class="btn btn-primary" '.$disable_diag.'><i class="icon-plus icon-white"></i> A&ntilde;adir Diagn&oacute;stico</button></td>
@@ -518,7 +522,7 @@
 									<div class="span4 bordediv" style="margin-left:0px;padding-bottom:8px;">
 											<h4 style="text-align:left;">Tratamientos</h4>
 											'.$enlace.'<br>
-												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required" value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
+												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required"  value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
 												Medicamentos:												
 												<input type="text" name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable_med.' required="required" value="'.$medicamentos->obtener('DESCRIPCION').'">
 												<input type="hidden" name="idmedicamentos" id="idmedicamentos" '.$medicamentos->obtener('ID_MEDICAMENTO').'><a data-toggle="modal" href="#add_medicamento" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir a listado</a><br><br>
@@ -694,7 +698,7 @@
 											<td>Contacto Telef&oacute;nico</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=contacto_telefonico&idp='.$idpaciente.''.$ids.'&sw=1" '.$disable_obs.' class="btn btn-primary">Contacto Telef&oacute;nico</a></td>
+											<td><a href="./?url=contacto_telefonico&idp='.$idpaciente.''.$ids.'&sw=1" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">Contacto Telef&oacute;nico</a></td>
 										</tr>
 									</table>
 								</div>
@@ -709,7 +713,7 @@
 											<td>SURCO</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" '.$disable_obs.' class="btn btn-primary">SURCO</a></td>
+											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">SURCO</a></td>
 										</tr>
 									</table>
 								</div>';
