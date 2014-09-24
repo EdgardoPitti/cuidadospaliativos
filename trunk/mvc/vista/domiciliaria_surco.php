@@ -34,11 +34,12 @@
 	$idsoap = $_GET['idsoap'];
 	if(!empty($idsoap)){
 		$ids = '&idsoap='.$idsoap.'';
+		$enlace = '<a href="./?url=soap&id='.$_GET['idp'].'&idsoap='.$idsoap.'&t='.$_GET['t'].'" class="btn btn-primary pull-left" title="Regresar" style="position:relative;top:-5px;left:10px;"><i class="icon-arrow-left icon-white"></i></a>';
 	}
 	$ds = new Diseno();
 	$cont='
 			<center>
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> Sistema Único de Referencia y Contra-Referencia (SURCO)</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">'.$enlace.' Sistema Único de Referencia y Contra-Referencia (SURCO)</h3>
 				<form class="form-search" method="POST" action="./?url=domiciliaria_surco&sbm='.$sbm.'">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="Cédula o Nombre" name="cedula" required="required">
