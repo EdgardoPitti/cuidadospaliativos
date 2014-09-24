@@ -10,24 +10,38 @@
 		<!--CSS: Menú Principal-->	
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css"/>
-               
+		<link href="./css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+      <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />          
         <script type="text/javascript" src="js/jquery.js"></script>   
         <script type="text/javascript" src="js/jquery.validate.js"></script>
-        <script type="text/javaScript">
-
+      <script type="text/javaScript">
             $().ready(function() {
                 // Utilizado para el validar required de una vista
-                $("#form").validate();               
-            });
-        </script>
+                $("#form").validate();               				    
+            });            
+      </script>
+      <script type="text/javascript">
+        $('document').ready(function() {
+        		 if( $('input[type=date]')[0].type != 'date' ){
+				    	$('input[type=date]').datepicker({ 				    		
+				    		dateFormat: 'yy-mm-dd', 
+				    		changeMonth: true, 
+				    		changeYear: true, 
+				    		yearRange: "1930:2100",
+				    		monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+				    		monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
+				    		dayNames: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+				    		dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ] 
+				    	});
+				  } 
+			}); 
+      </script>
 		<script type="text/javaScript">
-
             $().ready(function() {
                 //Se aplica si existe un segundo formulario dentro de una misma vista
                 $("#form2").validate();               
             });
-        </script>        
+      </script>        
 		<script language="JavaScript" type="text/JavaScript">
 			//funcion para la seleccion de dropdown anidados
 			$(document).ready(function(){
@@ -508,5 +522,6 @@
 	<script src="js/overthrow/overthrow-toss.js"></script>
 	<script src="js/overthrow/overthrow-init.js"></script>
 	<script src="js/overthrow/anchorscroll.overthrow.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
 	<script src='./js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
 </html>

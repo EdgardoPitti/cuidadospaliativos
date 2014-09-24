@@ -15,9 +15,9 @@
 	}
 	$impresion = $_GET['impresion'];
 	if(!empty($impresion)){
-		$id_imp = '&idimp='.$impresion.'';		
+		$id_imp = '&idimp='.$impresion.'';				
 	}else {
-		$id_imp = '';			
+		$id_imp = '';			 		
 	}
 	
 	$datos_escala = new Accesatabla('escala_edmonton');
@@ -130,7 +130,7 @@
 							}else{
 								$cont.='
 									<div style="margin-top:-7px;padding-bottom:5px;">	
-										<table class="table2" style="height:86px;">
+										<table class="table2" style="height:86px;margin-bottom:0px;">
 											<tr>
 												<td><b>'.$day.' / '.$ds->dime('mes-'.$month).' / '.$agno.'</b></td>
 											</tr>
@@ -262,17 +262,20 @@
 					</div>
 				</div>						
 				';
-			$soap->buscardonde('ID_SOAP = '.$idsoap.'');
-			$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
-			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').'');
+			$soap->buscardonde('ID_SOAP = '.$idsoap);
+			$det_soap->buscardonde('ID_SOAP = '.$idsoap);
+			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA'));
 			
 			/*rellenar campos de cuidados y tratamientos*/	
-			$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'));	
-			$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
+			$id_cuidado = $det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS');
+			$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
+			$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);
 			if(!empty($recetas->obtener('ID_RECETA'))){
-				$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';			
+				$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
+				$disable_obs = '';			
 			}else{
-				$enlace = '';			
+				$enlace = '';
+				$disable_obs = 'disabled="disabled"';			
 			}
 			$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
 			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
@@ -293,6 +296,10 @@
 								';
 			if(!empty($soap->obtener('MOTIVO_CONSULTA'))){
 				$img = '<img src="./iconos/save.png">';
+				$disable_obj = '';
+			}else{
+				$img = '';
+				$disable_obj = 'disabled="disabled"';
 			}
 			$cont.='
 									<textarea name="motivo" placeholder="Motivo de la Consulta">'.$soap->obtener('MOTIVO_CONSULTA').'</textarea>'.$img.'
@@ -313,12 +320,14 @@
 									Objetivo de la Consulta:';
 			if(!empty($soap->obtener('OBJETIVO_CONSULTA'))){
 				$img = '<img src="./iconos/save.png">';
+				$disable_esas = '';
 			}else{
 				$img = '';
+				$disable_esas = 'disabled="disabled"';
 			}
 			$cont.='
-									<textarea name="objetivo" placeholder="Objetivo de la Consulta">'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
-									<button type="submit" class="btn btn-default" style="margin-top:10px">Guardar</button>
+									<textarea name="objetivo" placeholder="Objetivo de la Consulta" '.$disable_obj.'>'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
+									<button type="submit" class="btn btn-default" '.$disable_obj.' style="margin-top:10px">Guardar</button>
 								</form>
 							</center>
 						</div>
@@ -413,7 +422,11 @@
 			}
 			$cont.='Dormir: '.$datos_escala->obtener('DORMIR').'';
 		}
-	
+		if($sw == 0){
+			$disable_diag = 'disabled="disabled"';					
+		}else {
+			$disable_diag = '';		
+		}
 	$cont.='
 												</td>										
 											</tr>
@@ -421,7 +434,7 @@
 									</div>
 									<div class="span2">
 										<center style="margin-bottom:15px;">
-											<a href="./?url=escala_edmont&idp='.$idpaciente.'&sw=1'.$ids.'" class="btn btn-primary">Escala EDMONTON</a>
+											<a href="./?url=escala_edmont&idp='.$idpaciente.'&sw=1'.$ids.'" class="btn btn-primary" '.$disable_esas.'>Escala EDMONTON</a>
 										</center>								
 									</div>
 								</div>
@@ -448,26 +461,26 @@
 													</tr>
 												</thead>	
 												<tbody>';
-											$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
-											while($x) {
-												$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
-												
-												$cont.='
-													<tr>
-														<td>'.$cie10->obtener('DESCRIPCION').'</td>
-														<td>'.$cie10->obtener('ID_CIE10').'</td>
-														<td>'.$det_imp_diag->obtener('OBSERVACION').'</td>
-														<td></td>												
-													</tr>											
-												';		
-												$x = $det_imp_diag->releer();								
-											}		
+										$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
+										while($x) {
+											$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
+											
+											$cont.='
+												<tr>
+													<td>'.$cie10->obtener('DESCRIPCION').'</td>
+													<td>'.$cie10->obtener('ID_CIE10').'</td>
+													<td>'.$det_imp_diag->obtener('OBSERVACION').'</td>
+													<td></td>												
+												</tr>											
+											';		
+											$x = $det_imp_diag->releer();								
+										}		
 									$cont.='
 													<tr>
-														<td><input type="text" name="diagnostico1" id="diagnostico1" placeholder="Diagn&oacute;stico"></td>
-														<td><input type="text" name="cie1" id="cie1" placeholder="CIE-10" readonly></td>
-														<td><input type="text" name="observaciones" id="observaciones" placeholder="Observaciones"></td>
-														<td><button type="submit" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir Diagn&oacute;stico</button></td>
+														<td><input type="text" name="diagnostico1" id="diagnostico1" placeholder="Diagn&oacute;stico" ></td>
+														<td><input type="text" name="cie1" id="cie1" placeholder="CIE-10" readonly="readonly"></td>
+														<td><input type="text" name="observaciones" id="observaciones" placeholder="Observaciones" '.$disable_diag.'></td>
+														<td><button type="submit" class="btn btn-primary" '.$disable_diag.'><i class="icon-plus icon-white"></i> A&ntilde;adir Diagn&oacute;stico</button></td>
 													</tr>
 												</tbody>
 											</table>
@@ -484,27 +497,33 @@
 							<h5>Cuidados/Tratamientos</h5>
 						</div>
 						<div class="panel-body">
-							<div class="row">
-								<form class="form-inline" method="POST" action="./?url=agregarsoap&sw=4&id='.$idpaciente.''.$ids.'">			
+							<div class="row">';
+							if(!empty($det_soap->obtener('ID_IMPRESION_DIAGNOSTICA'))) {
+								$disable_med = '';							
+							}else {
+								$disable_med = 'disabled="disabled"';							
+							}
+							$cont.='
+								<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=4&id='.$idpaciente.''.$ids.'">			
 									<div class="span3 offset3">
 										<table class="table2" style="margin-right:20px">											
 											<tr>
 												<td><h4>Cuidados</h4></td>
 											</tr>
 											<tr>											
-												<td><textarea name="cuidados" placeholder="Cuidados">'.$cuidados->obtener('CUIDADOS').'</textarea></td>
+												<td><textarea name="cuidados" placeholder="Cuidados" '.$disable_med.'>'.$cuidados->obtener('CUIDADOS').'</textarea></td>
 											</tr>
 										</table>					
 									</div>
 									<div class="span4 bordediv" style="margin-left:0px;padding-bottom:8px;">
 											<h4 style="text-align:left;">Tratamientos</h4>
 											'.$enlace.'<br>
-												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD" value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
+												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required" value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
 												Medicamentos:												
-												<input type="text" name="medicamentos" id="medicamentos" placeholder="Medicamentos" value="'.$medicamentos->obtener('DESCRIPCION').'">
+												<input type="text" name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable_med.' required="required" value="'.$medicamentos->obtener('DESCRIPCION').'">
 												<input type="hidden" name="idmedicamentos" id="idmedicamentos" '.$medicamentos->obtener('ID_MEDICAMENTO').'><a data-toggle="modal" href="#add_medicamento" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir a listado</a><br><br>
 												Forma: 
-												<select name="forma" id="forma">
+												<select name="forma" id="forma" required="required" '.$disable_med.'>
 													<option value="0">Forma Farmaceutica</option>
 													';										
 											$x = $formas->buscardonde('ID_TIPO_FORMA > 0');																								
@@ -521,8 +540,8 @@
 											}
 												$cont.='
 												</select>
-												Concentraci&oacute;n: <input type="text" name="concentracion" id="concentracion" value="'.$det_recetas->obtener('CONCENTRACION').'" style="width:45px">
-												<select name="unidad" id="unidad">
+												Concentraci&oacute;n: <input type="text" name="concentracion" id="concentracion" required="required" '.$disable_med.' value="'.$det_recetas->obtener('CONCENTRACION').'" style="width:45px">
+												<select name="unidad" id="unidad" required="required" '.$disable_med.'>
 													<option value="0">Unidad</option>';										
 											$x = $unidad->buscardonde('ID_TIPO_UNIDAD > 0');																								
 											while($x){
@@ -539,7 +558,7 @@
 												$cont.='
 												</select>
 												<br><br>
-												Dosis: <select name="verbos" id="verbos">
+												Dosis: <select name="verbos" id="verbos" required="required" '.$disable_med.'>
 													<option value="0">Dosis</option>';										
 											$x = $verbos->buscardonde('ID_VERBO > 0');																								
 											while($x){
@@ -555,8 +574,8 @@
 											}
 												$cont.='
 												</select>
-												<input style="width:45px;" type="text" name="cantdosis" id="cantdosis" value="'.$det_recetas->obtener('DOSIS').'">
-												<select name="frecuencia" id="frecuencia" style="width:70px">
+												<input style="width:45px;" type="text" name="cantdosis" id="cantdosis" required="required" '.$disable_med.' value="'.$det_recetas->obtener('DOSIS').'">
+												<select name="frecuencia" id="frecuencia" required="required" '.$disable_med.' style="width:70px">
 													<option value="0">Frec.</option>';										
 											$x = $frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO > 0');																								
 											while($x){
@@ -573,7 +592,7 @@
 												$cont.='
 												</select>											
 												V&iacute;a: 
-												<select name="via" id="via" style="width:60px">
+												<select name="via" id="via" required="required" '.$disable_med.' style="width:60px">
 													<option value="0">V&iacute;a</option>';										
 											$x = $vias->buscardonde('ID_VIA > 0');																								
 											while($x){
@@ -590,8 +609,8 @@
 												$cont.='
 												</select>												
 												<br><br>
-												Tratamiento por: <input type="text" name="tratamiento" id="tratamiento" value="'.$det_recetas->obtener('TRATAMIENTO').'" style="width:75px;">
-												<select name="periodo" id="periodo">
+												Tratamiento por: <input type="text" name="tratamiento" id="tratamiento" required="required" '.$disable_med.' value="'.$det_recetas->obtener('TRATAMIENTO').'" style="width:75px;">
+												<select name="periodo" id="periodo" required="required" '.$disable_med.'>
 													<option value="0">Periodo</option>';										
 											$x = $periodo->buscardonde('ID_PERIODO > 0');																								
 											while($x){
@@ -607,8 +626,8 @@
 											}
 												$cont.='
 												</select><br><br>
-												Otras Observaciones: <textarea name="observaciones" id="observaciones">'.$det_recetas->obtener('OTRAS_INDICACIONES').'</textarea><br><br>
-												<button type="submit" class="btn btn-default">Agregar</button>
+												Otras Observaciones: <textarea name="observaciones" id="observaciones" '.$disable_med.'>'.$det_recetas->obtener('OTRAS_INDICACIONES').'</textarea><br><br>
+												<button type="submit" class="btn btn-default" '.$disable_med.'>Agregar</button>
 									</div>
 								</form>
 							</div>			
@@ -659,10 +678,10 @@
 			}
 			$cont.='
 											<tr>
-												<td><textarea name="observaciones" placeholder="Observaciones">'.$soap->obtener('OBSERVACIONES').'</textarea>'.$img.'</td>
+												<td><textarea name="observaciones" placeholder="Observaciones" '.$disable_obs.'>'.$soap->obtener('OBSERVACIONES').'</textarea>'.$img.'</td>
 											</tr>
 											<tr>
-												<td><button type="submit" class="btn btn-default">Guardar</button></td>											
+												<td><button type="submit" class="btn btn-default" '.$disable_obs.'>Guardar</button></td>											
 											</tr>
 										</table>
 									</form>										
@@ -673,7 +692,7 @@
 											<td>SURCO</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" class="btn btn-primary">SURCO</a></td>
+											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" '.$disable_obs.' class="btn btn-primary">SURCO</a></td>
 										</tr>
 									</table>
 								</div>

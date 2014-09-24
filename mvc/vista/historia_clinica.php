@@ -192,7 +192,7 @@
 													<th>Observaci&oacute;n</th>	
 												</tr>
 											</thead>				
-											<tbody>
+											<tbody style="background:#fff;">
 										';										
 										while($x) {
 											$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
