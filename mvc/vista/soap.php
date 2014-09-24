@@ -92,7 +92,7 @@
 									<div class="span6">
 										<center>
 											<img src="./iconos/paciente.png" style="max-height:110px"><br>
-											<a href="./?url=historia_clinica&id='.$idpaciente.''.$ids.'" class="btn btn-primary">Historial Cl&iacute;nico</a>
+											<a href="./?url=historia_clinica&id='.$idpaciente.''.$ids.'&t='.$_GET['t'].'" class="btn btn-primary">Historial Cl&iacute;nico</a>
 										</center>
 									</div>
 									<div class="span6">
@@ -698,7 +698,7 @@
 											<td>Contacto Telef&oacute;nico</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=contacto_telefonico&idp='.$idpaciente.''.$ids.'&sw=1" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">Contacto Telef&oacute;nico</a></td>
+											<td><a href="./?url=contacto_telefonico&idp='.$idpaciente.''.$ids.'&sw=1&t='.$_GET['t'].'" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">Contacto Telef&oacute;nico</a></td>
 										</tr>
 									</table>
 								</div>
@@ -713,7 +713,7 @@
 											<td>SURCO</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">SURCO</a></td>
+											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'&t='.$_GET['t'].'" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">SURCO</a></td>
 										</tr>
 									</table>
 								</div>';

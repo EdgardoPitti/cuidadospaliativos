@@ -34,7 +34,7 @@
 	}
 	if(!empty($_GET['idp'])){
 		$cont.='<div class="row-fluid">				
-					<a href="./?url=soap&id='.$id.'&t=2&idsoap='.$_GET['idsoap'].'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>	
+					<a href="./?url=soap&id='.$id.'&t=2&idsoap='.$_GET['idsoap'].'&t='.$_GET['t'].'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>	
 				</div>	
 			';
 	}
