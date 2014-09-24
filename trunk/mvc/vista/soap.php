@@ -522,7 +522,7 @@
 									<div class="span4 bordediv" style="margin-left:0px;padding-bottom:8px;">
 											<h4 style="text-align:left;">Tratamientos</h4>
 											'.$enlace.'<br>
-												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required"  value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
+												Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required" '.$disable_med.' value="'.$recetas->obtener('FECHA_RECETA').'"> <br><br>
 												Medicamentos:												
 												<input type="text" name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable_med.' required="required" value="'.$medicamentos->obtener('DESCRIPCION').'">
 												<input type="hidden" name="idmedicamentos" id="idmedicamentos" '.$medicamentos->obtener('ID_MEDICAMENTO').'><a data-toggle="modal" href="#add_medicamento" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir a listado</a><br><br>
