@@ -5,7 +5,10 @@
 	$atencion = new Accesatabla('atencion_paciente');
 	$sbm = $_GET['sbm'];
 	$id = $_GET['id'];
-	if($_SESSION['idgu'] <> 3 AND $_SESSION['idgu'] <> 4){
+	if(!empty($_GET['idsoap'])){
+		$url = '<script>location.href="./?url=soap&id='.$_GET['id'].'&idsoap='.$_GET['idsoap'].'&t=2"</script>';
+	}
+	if($_SESSION['idgu'] < 3){
 		if($_SESSION['idgu'] == 1){
 			$vista = 'ambulatoria_atencionalpaciente&sbm=2&id='.$id.'';
 		}else{
@@ -25,11 +28,16 @@
 		$atencion->colocar("TELEFONO", $_POST['telefono']);
 		$atencion->colocar("MOTIVO", $_POST['motivo']);
 		$atencion->salvar();
-		if($sbm == 8){
-			$url = 'contacto_telefonico';
+		if(empty($_GET['idsoap'])){
+			if($sbm == 8){
+				$url = 'contacto_telefonico';
+			}else{
+				$url = 'ambulatoria_atencionalpaciente';
+			}
+			echo '<script>alert("Datos Ingresados Correctamente"); location.href="./?url='.$url.'&id='.$id.'&sbm='.$sbm.'"</script>';	
 		}else{
-			$url = 'ambulatoria_atencionalpaciente';
+			echo $url;
 		}
-		echo '<script>alert("Datos Ingresados Correctamente"); location.href="./?url='.$url.'&id='.$id.'&sbm='.$sbm.'"</script>';	
+		
 	}
 ?>

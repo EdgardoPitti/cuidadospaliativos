@@ -17,21 +17,29 @@
 	$rda = new Accesatabla('registro_diario_actividades');
 	$detalle = new Accesatabla('detalle_rda');
 	$actividad = new Accesatabla('actividad');
-	
+	$idsoap = '&idsoap='.$_GET['idsoap'];
 	$ds = new Diseno();
 	$sw = 0;
-
 	$sbm = $_GET['sbm'];
 
 	$buscar = $_POST['buscar'];
 	$id = $_GET['id'];
+	if(empty($id)){
+		$id = $_GET['idp'];
+	}
+	
 	if(!empty($id)){
 		$personas->buscardonde('ID_PACIENTE = '.$id.'');
 		$buscar = $personas->obtener('NO_CEDULA');
 	}
-	
+	if(!empty($_GET['idp'])){
+		$cont.='<div class="row-fluid">				
+					<a href="./?url=soap&id='.$id.'&t=2&idsoap='.$_GET['idsoap'].'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>	
+				</div>	
+			';
+	}
 	$cont.='
-	    <center>
+		<center>
 			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Contacto Telef&oacute;nico</h3>
 		</center>
 		';
@@ -104,8 +112,8 @@
 					</div>	
 				</div>';
 	}		
-	
-	$cont.='
+	if(empty($_GET['idp'])){
+		$cont.='
 			<div class="row-fluid">
 				<div class="span12">					
 					<div align="center">
@@ -119,8 +127,10 @@
 							'.$agnadir.'
 						</form>
 					</div>
-					'.$mostrar.'
 					';
+	}
+	$cont.= $mostrar;
+					
 	if(!empty($mostrar)){
 		$idpaciente = $personas->obtener('ID_PACIENTE');
 		$i = $interconsulta->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY FECHA');
@@ -280,7 +290,7 @@
 					
 				
 				<!--AGREGAR OBSERVACIONES-->
-				<form id="form" method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm=8">
+				<form id="form" method="POST" action="./?url=add_atencion_paciente'.$idsoap.'&id='.$idpaciente.'&sw='.$_GET['sw'].'&sbm=8">
 					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  

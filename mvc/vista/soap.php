@@ -685,7 +685,24 @@
 											</tr>
 										</table>
 									</form>										
+								</div>';
+			if($t == 2){
+				$cont.='
+								<div class="span2">
+									<table class="table2">											
+										<tr>
+											<td>Contacto Telef&oacute;nico</td>
+										</tr>
+										<tr>
+											<td><a href="./?url=contacto_telefonico&idp='.$idpaciente.''.$ids.'&sw=1" '.$disable_obs.' class="btn btn-primary">Contacto Telef&oacute;nico</a></td>
+										</tr>
+									</table>
 								</div>
+				';
+			}
+			if($t == 1){
+							$cont.='
+			
 								<div class="span2">
 									<table class="table2">											
 										<tr>
@@ -695,7 +712,9 @@
 											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'" '.$disable_obs.' class="btn btn-primary">SURCO</a></td>
 										</tr>
 									</table>
-								</div>
+								</div>';
+			}
+			$cont.='
 							</div>
 						</div>
 					</div>
