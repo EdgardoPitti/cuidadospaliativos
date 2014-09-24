@@ -22,7 +22,7 @@
 							</tr>
 							<tr align="center">
 								<td>
-									<input type="date" name="inicio" placeholder="AAAA-MM-DD" id="test" size="120px"> hasta <input type="date" id="test" placeholder="AAAA-MM-DD" name="final">
+									<input type="date" name="inicio" placeholder="AAAA-MM-DD" id="test1" size="120px"> hasta <input type="date" id="test2" placeholder="AAAA-MM-DD" name="final">
 									<button class="btn btn-default" style="margin-bottom:10px;"type="submit"><img src="./iconos/search.png"/></button>
 								</td>
 							</tr>					
