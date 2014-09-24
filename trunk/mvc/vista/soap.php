@@ -438,7 +438,7 @@
 									</div>
 									<div class="span2">
 										<center style="margin-bottom:15px;">
-											<a href="./?url=escala_edmont&idp='.$idpaciente.'&sw=1'.$ids.'" class="btn btn-primary '.$disable_class.'" '.$disable_esas.'>Escala EDMONTON</a>
+											<a href="./?url=escala_edmont&idp='.$idpaciente.'&sw=1'.$ids.'&t='.$_GET['t'].'" class="btn btn-primary '.$disable_class.'" '.$disable_esas.'>Escala EDMONTON</a>
 										</center>								
 									</div>
 								</div>

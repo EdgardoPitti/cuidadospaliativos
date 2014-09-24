@@ -36,7 +36,7 @@
 	if(!empty($sw)){
 		$cont.='
 		<div class="row-fluid">
-			<a href="./?url=soap&id='.$idpaciente.'&idsoap='.$idsoap.'" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
+			<a href="./?url=soap&id='.$idpaciente.'&idsoap='.$idsoap.'&t='.$_GET['t'].'" class="btn btn-primary pull-left" style="float:left;position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>
 		</div>';
 		$search = 1;
 	}
@@ -154,15 +154,26 @@
 										<option value="4">ASISTIDO POR EL CUIDADOR</option>
 					  				</select>
 					  			</td>
-					  		</tr>
+					  		</tr>';
+			if($_GET['t'] == 1){
+				$d = 'selected';
+			}
+			if($_GET['t'] == 2){
+				$a = 'selected';
+			}
+			if($_GET['t'] == 3){
+				$h = 'selected';
+			}
+
+					  	$cont.='
 				  			<tr>
 				  				<td>Categor&iacute;a:</td>
 				  				<td colspan="2"> 
 					  				<select name="categoria" id="categoria">
 					  					<option value="0">SELECCIONAR</option>
-					  					<option value="1">DOMICILIARIA</option>
-										<option value="2">AMBULATORIA</option>
-										<option value="3">HOSPITALARIA</option>
+					  					<option value="1" '.$d.'>DOMICILIARIA</option>
+										<option value="2" '.$a.'>AMBULATORIA</option>
+										<option value="3" '.$h.'>HOSPITALARIA</option>
 					  				</select>
 					  			</td>
 					  		</tr>
