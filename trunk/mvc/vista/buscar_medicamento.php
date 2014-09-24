@@ -27,7 +27,7 @@
 		//Procuren que si las tablas de las base de datos están en minúsculas, realizar las consultas 
 		// en minúsculas
 		
-	$consultaSQL = 'SELECT DESCRIPCION, ID_MEDICAMENTO FROM medicamentos WHERE concat(DESCRIPCION) LIKE "%'.$palabra.'%" ORDER BY DESCRIPCION'; 
+	$consultaSQL = 'SELECT DESCRIPCION, ID_MEDICAMENTO FROM medicamentos WHERE concat(DESCRIPCION) LIKE "%'.strtoupper($palabra).'%" ORDER BY DESCRIPCION'; 
 
         // Ejecuta la consulta
 

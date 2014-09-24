@@ -105,7 +105,7 @@
 							}else{
 								$cont.='
 									<div style="margin-top:-7px;">	
-										<table class="table2" style="height:86px;">
+										<table class="table2" style="height:86px;margin-bottom:0px;">
 											<tr>
 												<td><b>'.$day.' / '.$ds->dime('mes-'.$month).' / '.$agno.'</b></td>
 											</tr>
