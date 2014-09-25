@@ -13,7 +13,7 @@
 	}else{
 		if(empty($idp)){
 			$usuarios->nuevo();
-			$usuarios->colocar("ID_GRUPO_USUARIO", 3);
+			$usuarios->colocar("ID_GRUPO_USUARIO", $_POST['grupo_usuario']);
 			$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
 			$usuarios->colocar("NO_IDENTIFICACION", $_POST['usuario']);
 			$usuarios->salvar();
@@ -77,6 +77,10 @@
 		$datos_prof_salud->colocar('TELEFONO_CELULAR',$_POST['celular']);
 		$datos_prof_salud->colocar('E_MAIL',$_POST['email']);
 		$datos_prof_salud->salvar();
+		
+		$usuarios->colocar("ID_GRUPO_USUARIO", $_POST['grupo_usuario']);
+		$usuarios->salvar();
+		
 		if(!empty($idp)){
 			$prof_salud->colocar('ID_ESPECIALIDAD_MEDICA',$_POST['especialidad']);	
 			$prof_salud->salvar();
