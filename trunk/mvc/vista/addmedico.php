@@ -10,6 +10,7 @@
 	$preferencias = new Accesatabla('preferencias_recuperacion_acceso');
 	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
 	$usuarios = new Accesatabla('usuarios');
+	$grupos = new Accesatabla('grupos_usuarios');
 	if(empty($cedula)){
 		$cedula = $_GET['idp'];
 	}
@@ -117,6 +118,25 @@
 							$email = 'selected';
 						}	
 						$cont.='			
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Grupo de Usuario:</td>
+							<td>
+								<select name="grupo_usuario" id="grupo_usuario" required="required">
+									<option value="0"></option>';
+					$g = $grupos->buscardonde('ID_GRUPO_USUARIO > 2');
+					while($g){
+							if($usuarios->obtener('ID_GRUPO_USUARIO') == $grupos->obtener('ID_GRUPO_USUARIO')){
+								$selected = 'selected';
+							}else{
+								$selected = '';
+							}
+							$cont.='<option value="'.$grupos->obtener('ID_GRUPO_USUARIO').'" '.$selected.'>'.$grupos->obtener('DESCRIPCION').'</option>';
+							$g = $grupos->releer();
+					}
+					$cont.='
 								</select>
 							</td>
 						</tr>
