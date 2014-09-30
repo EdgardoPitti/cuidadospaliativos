@@ -5,8 +5,10 @@
 	$atencion = new Accesatabla('atencion_paciente');
 	$sbm = $_GET['sbm'];
 	$id = $_GET['id'];
-	if(!empty($_GET['idsoap'])){
+	$sw = 0;
+	if(!empty($_GET['idsoap']) || $_GET['s'] == 1){
 		$url = '<script>location.href="./?url=soap&id='.$_GET['id'].'&idsoap='.$_GET['idsoap'].'&t=2"</script>';
+		$sw = 1;
 	}
 	if($_SESSION['idgu'] < 3){
 		if($_SESSION['idgu'] == 1){
@@ -28,7 +30,7 @@
 		$atencion->colocar("TELEFONO", $_POST['telefono']);
 		$atencion->colocar("MOTIVO", $_POST['motivo']);
 		$atencion->salvar();
-		if(empty($_GET['idsoap'])){
+		if($sw == 0){
 			if($sbm == 8){
 				$url = 'contacto_telefonico';
 			}else{

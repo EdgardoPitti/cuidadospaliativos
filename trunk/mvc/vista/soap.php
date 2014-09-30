@@ -40,6 +40,10 @@
 	$periodo = new Accesatabla('periodo_tratamiento');
 	$cuadro_medicamento = new Accesatabla('tipos_cuadros_medicamentos');
 	$medicamentos = new Accesatabla('medicamentos');
+	$profesional = new Accesatabla('profesionales_salud');
+	$datosprofesional = new Accesatabla('datos_profesionales_salud');
+	$especialidad = new Accesatabla('especialidades_medicas');
+	$atencion = new Accesatabla('atencion_paciente');
 	
 	$paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 	if ($paciente->obtener('ID_SEXO') == 1){
@@ -285,6 +289,137 @@
 			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 			$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 			
+			if($t == 2){
+				$cont.='
+						<div class="row-fluid">
+							<div class="panel panel-primary">
+								<div class="panel-header">
+									<h5>Contacto Telef&oacute;nico</h5>
+								</div>
+								<div class="panel-body">
+									<center>
+										<div class="centrar_botones">
+										<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
+									</center>
+								</div>';
+			
+		$a = $atencion->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY ID_ATENCION DESC');
+		if($a){
+				$cont.='
+					<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenciones del Paciente</h3></center>
+					<div class="overflow overthrow" style="max-height:150px;">
+								<table class="table2 borde-tabla table-hover">
+									<thead>
+										<tr class="fd-table">
+											<th>#</th>
+											<th>Fecha</th>
+											<th>Profesional</th>
+											<th>Especialidad</th>
+											<th>Hora Inicio</th>
+											<th>Hora Fin</th>
+											<th>Minutos Utilizados</th>
+											<th>Motivo</th>
+											<th>Observacion</th>
+											<th>Tipo Contacto</th>
+											<th>E-Mail / Telefono</th>
+										</tr>
+									</thead>
+									<tbody>';
+				$n = 1;
+				while($a){								
+					$profesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
+					$datosprofesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
+					$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
+					$segundo_nombre = $datosprofesional->obtener('SEGUNDO_NOMBRE');
+					$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
+					if($atencion->obtener('TIPO_CONTACTO') == 1){
+						$tipo = 'Tel&eacute;fono';
+						$contacto = $atencion->obtener('TELEFONO');
+					}else{
+						$tipo = 'Correo Electr&oacute;nico';
+						$contacto = $atencion->obtener('E_MAIL');
+					}
+					$cont.='
+											<tr>
+												<td>'.$n.'.</td>
+												<td>'.$atencion->obtener('FECHA').'</td>
+												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
+												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+												<td>'.$atencion->obtener('HORA_INICIO').'</td>
+												<td>'.$atencion->obtener('HORA_FIN').'</td>
+												<td>'.$atencion->obtener('MINUTOS_UTILIZADOS').'</td>
+												<td>'.$atencion->obtener('MOTIVO').'</td>
+												<td>'.$atencion->obtener('OBSERVACION').'</td>
+												<td>'.$tipo.'</td>
+												<td>'.$contacto.'</td>
+											</tr>';
+					$n++;
+					$a = $atencion->releer();
+				}
+				$cont.='
+									</tbody>
+								</table>					
+										<!--AGREGAR OBSERVACIONES-->
+										<form id="form" method="POST" action="./?url=add_atencion_paciente'.$ids.'&id='.$idpaciente.'&s=1">
+											<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
+												<div class="modal-header">  
+													<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+													<h4>Agregar Observaciones</h4>  
+												</div>  
+												<div class="modal-body" align="center"> 
+														<table class="overthrow" style="overflow-y:auto;">
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
+																<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
+																<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>
+																<td><input type="number" id="minutos" name="minutos" min="1" max="360" required style="width:140px;margin-bottom:3px;"></td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Tipo de Contacto: </h5></td>
+																<td>
+																	<select id="tipo" name="tipo" required style="width:140px;margin-bottom:3px;">
+																		<option value="0">SELECCIONE TIPO CONTACTO</option>
+																		<option value="1">Tel&eacute;fono</option>
+																		<option value="2">Correo Electr&oacute;nico</option>
+																	</select>
+																</td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Tel&eacute;fono: </h5></td>
+																<td><input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono" style="width:140px;margin-bottom:3px;"></td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Correo Electr&oacute;nico: </h5></td>
+																<td><input type="email" id="email" name="email" placeholder="Correo Electr&oacute;nico" style="width:140px;margin-bottom:3px;"></td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Motivo:</h5></td>
+																<td><input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
+															</tr>
+															<tr>
+																<td><h5 style="margin-bottom:3px;">Observaciones:</h5> </td>
+																<td><textarea id="observacion" class="textarea" name="observacion" required placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
+															</tr>
+														</table>										
+												</div>  
+												<div class="modal-footer">  
+													<button type="submit" class="btn btn-primary btn-small">Guardar</button>  
+													<button type="submit" class="btn btn-default btn-small" data-dismiss="modal">Cerrar</button>  
+												</div>  
+											</div>  
+										</form>
+									</center>
+								</div>
+							</div> 
+						</div>';
+			}
+		}
 			$cont.='
 				<div class="row-fluid">
 					<div class="panel panel-primary">
@@ -690,20 +825,6 @@
 										</table>
 									</form>										
 								</div>';
-			if($t == 2){
-				$cont.='
-								<div class="span2">
-									<table class="table2">											
-										<tr>
-											<td>Contacto Telef&oacute;nico</td>
-										</tr>
-										<tr>
-											<td><a href="./?url=contacto_telefonico&idp='.$idpaciente.''.$ids.'&sw=1&t='.$_GET['t'].'" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">Contacto Telef&oacute;nico</a></td>
-										</tr>
-									</table>
-								</div>
-				';
-			}
 			if($t == 1){
 							$cont.='
 			

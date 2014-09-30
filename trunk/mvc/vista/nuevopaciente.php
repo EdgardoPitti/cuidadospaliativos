@@ -486,9 +486,9 @@
 								}
 								$cont.='
 														<tr><td style="text-align:left;padding-left:17%;">Cuidador Primario:</td></tr>
-														<tr><td><input type="text" id="cuidador" name="cuidador" placeholder="Nombre Cuidador"></td></tr>
+														<tr><td><input type="text" id="cuidador" name="cuidador" placeholder="Nombre Cuidador" value="'.$datos->obtener('CUIDADOR').'" onKeyPress="valida(this.value)"></td></tr>
 														<tr><td style="text-align:left;padding-left:17%;">Parentezco Cuidador :</td></tr>
-														<tr><td><input type="text" id="parentezco" name="parentezco" placeholder="Parentezco Cuidador"></td></tr>
+														<tr><td><input type="text" id="parentezco" name="parentezco" placeholder="Parentezco Cuidador" value="'.$datos->obtener('PARENTEZCO_CUIDADOR').'" onKeyPress="valida(this.value)"></td></tr>
 														<tr><td style="text-align:left;padding-left:17%;">Fecha de Ingreso: </td></tr>
 														<tr><td><input type="date" id="fecha_ingreso" name="fecha_ingreso" value="'.$fecha.'" readonly></td></tr>
 													</tbody>
