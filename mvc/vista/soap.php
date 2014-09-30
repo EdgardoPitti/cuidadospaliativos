@@ -102,7 +102,7 @@
 									<div class="span6">
 										<table>											
 											<tr>
-												<td><strong>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</strong></td>
+												<td><strong>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</strong>&nbsp;&nbsp;<a href="./?url=nuevopaciente&id='.$idpaciente.'&sw=1">(Editar)</a></td>
 											</tr>
 											<tr>
 												<td>'.$paciente->obtener('NO_CEDULA').'</td>
