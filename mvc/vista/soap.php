@@ -102,7 +102,7 @@
 									<div class="span6">
 										<table>											
 											<tr>
-												<td><strong>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</strong>&nbsp;&nbsp;<a href="./?url=nuevopaciente&id='.$idpaciente.'&sw=1">(Editar)</a></td>
+												<td><strong>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</strong>&nbsp;<a href="./?url=nuevopaciente&id='.$idpaciente.'&sw=1&s=1">(Editar)</a></td>
 											</tr>
 											<tr>
 												<td>'.$paciente->obtener('NO_CEDULA').'</td>
@@ -261,7 +261,7 @@
 									$cont.='	
 											</div>';
 								}
-	$cont.='
+			$cont.='
 						</fieldset>
 					</div>
 				</div>						
@@ -303,62 +303,63 @@
 									</center>
 								</div>';
 			
-		$a = $atencion->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY ID_ATENCION DESC');
-		if($a){
-				$cont.='
-					<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenciones del Paciente</h3></center>
-					<div class="overflow overthrow" style="max-height:150px;">
-								<table class="table2 borde-tabla table-hover">
-									<thead>
-										<tr class="fd-table">
-											<th>#</th>
-											<th>Fecha</th>
-											<th>Profesional</th>
-											<th>Especialidad</th>
-											<th>Hora Inicio</th>
-											<th>Hora Fin</th>
-											<th>Minutos Utilizados</th>
-											<th>Motivo</th>
-											<th>Observacion</th>
-											<th>Tipo Contacto</th>
-											<th>E-Mail / Telefono</th>
-										</tr>
-									</thead>
-									<tbody>';
-				$n = 1;
-				while($a){								
-					$profesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
-					$datosprofesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
-					$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
-					$segundo_nombre = $datosprofesional->obtener('SEGUNDO_NOMBRE');
-					$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
-					if($atencion->obtener('TIPO_CONTACTO') == 1){
-						$tipo = 'Tel&eacute;fono';
-						$contacto = $atencion->obtener('TELEFONO');
-					}else{
-						$tipo = 'Correo Electr&oacute;nico';
-						$contacto = $atencion->obtener('E_MAIL');
-					}
-					$cont.='
-											<tr>
-												<td>'.$n.'.</td>
-												<td>'.$atencion->obtener('FECHA').'</td>
-												<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
-												<td>'.$especialidad->obtener('DESCRIPCION').'</td>
-												<td>'.$atencion->obtener('HORA_INICIO').'</td>
-												<td>'.$atencion->obtener('HORA_FIN').'</td>
-												<td>'.$atencion->obtener('MINUTOS_UTILIZADOS').'</td>
-												<td>'.$atencion->obtener('MOTIVO').'</td>
-												<td>'.$atencion->obtener('OBSERVACION').'</td>
-												<td>'.$tipo.'</td>
-												<td>'.$contacto.'</td>
-											</tr>';
-					$n++;
-					$a = $atencion->releer();
-				}
-				$cont.='
-									</tbody>
-								</table>					
+					$a = $atencion->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY ID_ATENCION DESC');
+					if($a){
+							$cont.='
+								<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenciones del Paciente</h3></center>
+								<div class="overflow overthrow" style="max-height:150px;">
+										<table class="table2 borde-tabla table-hover">
+											<thead>
+												<tr class="fd-table">
+													<th>#</th>
+													<th>Fecha</th>
+													<th>Profesional</th>
+													<th>Especialidad</th>
+													<th>Hora Inicio</th>
+													<th>Hora Fin</th>
+													<th>Minutos Utilizados</th>
+													<th>Motivo</th>
+													<th>Observacion</th>
+													<th>Tipo Contacto</th>
+													<th>E-Mail / Telefono</th>
+												</tr>
+											</thead>
+											<tbody>';
+							$n = 1;
+							while($a){								
+								$profesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
+								$datosprofesional->buscardonde('ID_PROFESIONAL = '.$atencion->obtener('ID_PROFESIONAL').'');
+								$especialidad->buscardonde('ID_ESPECIALIDAD_MEDICA = '.$profesional->obtener('ID_ESPECIALIDAD_MEDICA').'');
+								$segundo_nombre = $datosprofesional->obtener('SEGUNDO_NOMBRE');
+								$segundo_apellido = $datosprofesional->obtener('APELLIDO_MATERNO');
+								if($atencion->obtener('TIPO_CONTACTO') == 1){
+									$tipo = 'Tel&eacute;fono';
+									$contacto = $atencion->obtener('TELEFONO');
+								}else{
+									$tipo = 'Correo Electr&oacute;nico';
+									$contacto = $atencion->obtener('E_MAIL');
+								}
+									$cont.='
+												<tr>
+													<td>'.$n.'.</td>
+													<td>'.$atencion->obtener('FECHA').'</td>
+													<td>'.$datosprofesional->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datosprofesional->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
+													<td>'.$especialidad->obtener('DESCRIPCION').'</td>
+													<td>'.$atencion->obtener('HORA_INICIO').'</td>
+													<td>'.$atencion->obtener('HORA_FIN').'</td>
+													<td>'.$atencion->obtener('MINUTOS_UTILIZADOS').'</td>
+													<td>'.$atencion->obtener('MOTIVO').'</td>
+													<td>'.$atencion->obtener('OBSERVACION').'</td>
+													<td>'.$tipo.'</td>
+													<td>'.$contacto.'</td>
+												</tr>';
+								$n++;
+								$a = $atencion->releer();
+							}
+								$cont.='
+											</tbody>
+										</table>	
+								
 										<!--AGREGAR OBSERVACIONES-->
 										<form id="form" method="POST" action="./?url=add_atencion_paciente'.$ids.'&id='.$idpaciente.'&s=1">
 											<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
@@ -414,12 +415,11 @@
 												</div>  
 											</div>  
 										</form>
-									</center>
-								</div>
-							</div> 
-						</div>';
+									</div>';
+						}
+				$cont.='		</div>
+							</div> 		';
 			}
-		}
 			$cont.='
 				<div class="row-fluid">
 					<div class="panel panel-primary">
