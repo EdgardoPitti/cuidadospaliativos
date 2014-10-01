@@ -104,8 +104,17 @@
 		$noactive = '';
 	}
 	if($sw == 1) {
+		if($_GET['s'] == 1){
+			$url = 'soap';
+		}else{
+			if($_GET['s'] == 2){
+				$url = 'menu_categorias';
+			}else{
+				$url = 'inicio';
+			}
+		}
 		$regresar='
-		<a href="./?url=inicio" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>';
+		<a href="./?url='.$url.'&id='.$_GET['id'].'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>';
 	}else{
 		$regresar='';	
 	}
