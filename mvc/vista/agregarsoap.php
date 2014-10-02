@@ -17,6 +17,8 @@
 	$t = $_GET['t'];
 	$sw = $_GET['sw'];	
 	$id_impresion = $_GET['idimp'];
+	$cuidado = $_GET['idc'];
+	$receta = $_GET['idr'];
 	
 	$fecha = '"';
 	$fecha .= $ds->dime('fecha');
@@ -70,13 +72,16 @@
 		$impresion_diag = '&impresion='.$id_impresion.'';
 		
 	}elseif($sw == 4) {
-		
-		$cuidados->nuevo();
+		if(empty($cuidado)) {		
+			$cuidados->nuevo();
+		}else {
+			$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$cuidado.'');					
+		}
 		$cuidados->colocar('ID_PACIENTE', $idp);
 		$cuidados->colocar('ID_TRAZABILIDAD', $idtrazabilidad);
 		$cuidados->colocar('FECHA', $ds->dime('fecha'));
 		$cuidados->colocar('CUIDADOS', $_POST['cuidados']);
-		$cuidados->salvar();
+		$cuidados->salvar();									
 		
 		$sql = 'SELECT MAX(ID_CUIDADOS_TRATAMIENTOS) AS id FROM cuidados_tratamientos';
 		$matriz = $ds->db->obtenerArreglo($sql);
@@ -86,18 +91,27 @@
 		$det_soap->colocar('ID_CUIDADOS_TRATAMIENTOS', $id_cuidado);
 		$det_soap->salvar();
 		
-		
-		$recetas->colocar('ID_CUIDADOS_TRATAMIENTOS', $id_cuidado);
-		$recetas->colocar('ID_PACIENTE', $idp);
-		$recetas->colocar('ID_PROFESIONAL', $_SESSION['idp']);
-		$recetas->colocar('ID_TRAZABILIDAD', $idtrazabilidad);
-		$recetas->colocar('FECHA_RECETA', $_POST['fechareceta']);
-		$recetas->salvar();
-		
+		$idc = '&idc='.$id_cuidado.'';
+		$idr = '&idr='.$receta.'';
+			
+	}elseif($sw == 5){
+		if(empty($receta)) {
+			$recetas->colocar('ID_CUIDADOS_TRATAMIENTOS', $cuidado);
+			$recetas->colocar('ID_PACIENTE', $idp);
+			$recetas->colocar('ID_PROFESIONAL', $_SESSION['idp']);
+			$recetas->colocar('ID_TRAZABILIDAD', $idtrazabilidad);
+			$recetas->colocar('FECHA_RECETA', $_POST['fechareceta']);
+			$recetas->salvar();
+		}
 		$sql = 'SELECT MAX(ID_RECETA) AS ID FROM recetas_medicas';
 		$matriz = $ds->db->obtenerArreglo($sql);
 		$id_receta = $matriz[0][ID];
-		
+		if(!empty($_GET['rid'])) {
+			echo $_GET['rid'];
+			$det_recetas->buscardonde('ID_DETALLE_RECETA = '.$_GET['rid'].'');		
+		}else {
+			$det_recetas->nuevo();
+		}
 		$det_recetas->colocar('ID_RECETA', $id_receta);
 		$det_recetas->colocar('ID_MEDICAMENTO', $_POST['idmedicamentos']);
 		$det_recetas->colocar('ID_FORMA', $_POST['forma']);
@@ -111,7 +125,11 @@
 		$det_recetas->colocar('ID_PERIODO_TRATAMIENTO', $_POST['periodo']);
 		$det_recetas->colocar('OTRAS_INDICACIONES', $_POST['observaciones']);
 		$det_recetas->salvar();
-	}elseif($sw == 5) {
+		
+		$idr = '&idr='.$id_receta.'';
+		$idc = '&idc='.$cuidado.'';
+		
+	}elseif($sw == 6) {
 		$soap->buscardonde('ID_SOAP = '.$idsoap.'');	
 		$soap->colocar('OBSERVACIONES', $_POST['observaciones']);
 		$soap->salvar();	
@@ -119,5 +137,5 @@
 	$sql = 'SELECT max(ID_SOAP) as id FROM soap';
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$id = $matriz[0][id];
-	echo '<script>location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.'"</script>';
+	echo '<script>location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.''.$idc.''.$idr.'"</script>';
 ?>
