@@ -282,7 +282,6 @@
 								</div>
 								<div class="panel-body">
 									<center>
-										<div class="centrar_botones">
 										<p><a data-toggle="modal" href="#ag_obser" class="btn btn-primary">Agregar Observaciones</a></p>  
 									</center>
 								</div>';
@@ -291,7 +290,7 @@
 					if($a){
 							$cont.='
 								<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenciones del Paciente</h3></center>
-								<div class="overflow overthrow" style="max-height:150px;">
+									<div class="overflow overthrow" style="max-height:150px;">
 										<table class="table2 borde-tabla table-hover">
 											<thead>
 												<tr class="fd-table">
@@ -344,65 +343,67 @@
 											</tbody>
 										</table>	
 								
-										<!--AGREGAR OBSERVACIONES-->
-										<form id="form" method="POST" action="./?url=add_atencion_paciente'.$ids.'&id='.$idpaciente.'&s=1">
-											<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
-												<div class="modal-header">  
-													<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
-													<h4>Agregar Observaciones</h4>  
-												</div>  
-												<div class="modal-body" align="center"> 
-														<table class="overthrow" style="overflow-y:auto;">
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
-																<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
-																<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>
-																<td><input type="number" id="minutos" name="minutos" min="1" max="360" required style="width:140px;margin-bottom:3px;"></td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Tipo de Contacto: </h5></td>
-																<td>
-																	<select id="tipo" name="tipo" required style="width:140px;margin-bottom:3px;">
-																		<option value="0">SELECCIONE TIPO CONTACTO</option>
-																		<option value="1">Tel&eacute;fono</option>
-																		<option value="2">Correo Electr&oacute;nico</option>
-																	</select>
-																</td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Tel&eacute;fono: </h5></td>
-																<td><input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono" style="width:140px;margin-bottom:3px;"></td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Correo Electr&oacute;nico: </h5></td>
-																<td><input type="email" id="email" name="email" placeholder="Correo Electr&oacute;nico" style="width:140px;margin-bottom:3px;"></td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Motivo:</h5></td>
-																<td><input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
-															</tr>
-															<tr>
-																<td><h5 style="margin-bottom:3px;">Observaciones:</h5> </td>
-																<td><textarea id="observacion" class="textarea" name="observacion" required placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
-															</tr>
-														</table>										
-												</div>  
-												<div class="modal-footer">  
-													<button type="submit" class="btn btn-primary btn-small">Guardar</button>  
-													<button type="submit" class="btn btn-default btn-small" data-dismiss="modal">Cerrar</button>  
-												</div>  
-											</div>  
-										</form>
 									</div>';
 						}
 				$cont.='		</div>
-							</div> 		';
+							</div> 		
+							
+						<!--AGREGAR OBSERVACIONES-->
+						<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
+							<form id="form" method="POST" action="./?url=add_atencion_paciente'.$ids.'&id='.$idpaciente.'&s=1">
+								<div class="modal-header">  
+									<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+									<h4>Agregar Observaciones</h4>  
+								</div>  
+								<div class="modal-body" align="center"> 
+										<table class="overthrow" style="overflow-y:auto;">
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
+												<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
+												<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>
+												<td><input type="number" id="minutos" name="minutos" min="1" max="360" required style="width:140px;margin-bottom:3px;"></td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Tipo de Contacto: </h5></td>
+												<td>
+													<select id="tipo" name="tipo" required style="width:140px;margin-bottom:3px;">
+														<option value="0">SELECCIONE TIPO CONTACTO</option>
+														<option value="1">Tel&eacute;fono</option>
+														<option value="2">Correo Electr&oacute;nico</option>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Tel&eacute;fono: </h5></td>
+												<td><input type="text" id="telefono" name="telefono" placeholder="Tel&eacute;fono" style="width:140px;margin-bottom:3px;"></td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Correo Electr&oacute;nico: </h5></td>
+												<td><input type="email" id="email" name="email" placeholder="Correo Electr&oacute;nico" style="width:140px;margin-bottom:3px;"></td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Motivo:</h5></td>
+												<td><input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
+											</tr>
+											<tr>
+												<td><h5 style="margin-bottom:3px;">Observaciones:</h5> </td>
+												<td><textarea id="observacion" class="textarea" name="observacion" required placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
+											</tr>
+										</table>										
+								</div>  
+								<div class="modal-footer">  
+									<button type="submit" class="btn btn-primary btn-small">Guardar</button>  
+									<button type="submit" class="btn btn-default btn-small" data-dismiss="modal">Cerrar</button>  
+								</div>  
+							</form>							
+						</div>  
+							';
 			}
 			$cont.='
 				<div class="row-fluid">
@@ -572,7 +573,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="span8 offset2">
-									<form method="post" action="./?url=agregarsoap&id='.$idpaciente.''.$ids.'&sw=3'.$id_imp.'">	
+									<form method="post" action="./?url=agregarsoap&id='.$idpaciente.''.$ids.'&sw=3&t='.$_GET['t'].''.$id_imp.'">	
 										<div class="overflow overthrow" style="max-height:170px;padding:0px 10px 0px 10px;">									
 											<table class="table2 borde-tabla">
 												<thead>											
@@ -645,22 +646,37 @@
 						</div>
 						<div class="panel-body">
 							<div class="row-fluid">';
-							if(!empty($det_soap->obtener('ID_IMPRESION_DIAGNOSTICA'))) {
-								$disable_med = '';							
-							}else {
-								$disable_med = '';							
+							if(!empty($det_soap->obtener('ID_IMPRESION_DIAGNOSTICA'))) {																								
+								$disable_cuadro = '';															
+							}else {														
+								$disable_cuadro = 'disabled="disabled"';
 							}
+							if(!empty($cuidados->obtener('CUIDADOS'))) {
+									$disable_med = '';
+									$disableMedClass = ''; 							
+									$img = '<img src="./iconos/save.png">';	
+							}else{
+									$disable_med = 'disabled="disabled"';							
+									$disableMedClass = 'disabled';
+									$img =''; 	
+							}		
 							$cont.='
 								<div class="span12" style="padding-left:10px;">
-									<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=4&id='.$idpaciente.''.$ids.''.$cuidado.''.$receta.'">			
-										<h4>Cuidados</h4>
-											<textarea name="cuidados" placeholder="Cuidados" '.$disable_med.'>'.$cuidados->obtener('CUIDADOS').'</textarea>
-											<input type="submit" class="btn btn-default" value="Guardar Cuidado"/>
+									<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=4&t='.$_GET['t'].'&id='.$idpaciente.''.$ids.''.$cuidado.''.$receta.'">			
+										<center>											
+											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Cuidados</h4>
+											<textarea name="cuidados" placeholder="Cuidados" '.$disable_cuadro.'>'.$cuidados->obtener('CUIDADOS').'</textarea>'.$img.'
+											<div>
+												<button type="submit" class="btn btn-default" '.$disable_cuadro.' style="margin-top:5px;">Guardar Cuidado</button>
+											</div>
+										</center>
 									</form>
-									<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=5&id='.$idpaciente.''.$ids.''.$cuidado.''.$receta.'">
-										<h4 style="text-align:left;">Tratamientos</h4>
-											<a data-toggle="modal" href="#" data-target="#add_medicamento" class="btn btn-primary"><i class="icon-plus icon-white"></i> A&ntilde;adir Nuevo Medicamento</a><br/><br/>																				
+									<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=5&t='.$_GET['t'].'&id='.$idpaciente.''.$ids.''.$cuidado.''.$receta.'">
+										<center>										
+											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Tratamientos</h4>
+											<a data-toggle="modal" href="#" data-target="#add_medicamento" class="btn btn-primary '.$disableMedClass.'" '.$disable_med.'><i class="icon-plus icon-white"></i> A&ntilde;adir Nuevo Medicamento</a><br/><br/>																				
 											Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required" '.$disable_med.' value="'.$recetas->obtener('FECHA_RECETA').'">
+										</center>
 											<div class="overflow overthrow" style="max-height:170px;margin-top:10px;">												
 												<table class="table2 borde-tabla">
 													<thead>
@@ -708,7 +724,7 @@
 															<td>'.$periodo->obtener('DESCRIPCION').'</td>
 															<td>'.$indicaciones.'</td>
 															<td>
-																<a data-toggle="modal" href="#modalMedicamento" id="'.$det_recetas->obtener('ID_DETALLE_RECETA').'_'.$medicamentos->obtener('DESCRIPCION').'_'.$idpaciente.'_'.$idsoap.'_'.$idc.'_'.$idr.'" class="btn btn-small btn-success" title="Editar Medicamento"><i class="icon-pencil icon-white"></i></a>
+																<!--a data-toggle="modal" href="#modalMedicamento" id="'.$det_recetas->obtener('ID_DETALLE_RECETA').'_'.$medicamentos->obtener('DESCRIPCION').'_'.$idpaciente.'_'.$idsoap.'_'.$idc.'_'.$idr.'" class="btn btn-small btn-success" title="Editar Medicamento"><i class="icon-pencil icon-white"></i></a-->
 															</td>														
 														</tr>
 													';
