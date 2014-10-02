@@ -14,7 +14,7 @@
       <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />          
       <script type="text/javascript" src="js/jquery.js"></script>   
       <script type="text/javascript" src="js/jquery.validate.js"></script>
-      <script type="text/javascript" src="js/autocompletar.js"></script>
+      
       <script type="text/javaScript">
             $().ready(function() {
                 // Utilizado para el validar required de una vista
@@ -51,7 +51,7 @@
                 //Se aplica si existe un segundo formulario dentro de una misma vista
                 $("#form2").validate();               
             });
-      </script>        
+      </script>  
 		<script language="JavaScript" type="text/JavaScript">
 			//funcion para la seleccion de dropdown anidados
 			$(document).ready(function(){
@@ -107,5 +107,6 @@
 	<script src="js/overthrow/overthrow-init.js"></script>
 	<script src="js/overthrow/anchorscroll.overthrow.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/autocompletar.js"></script>
 	<script src='js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
 </html>
