@@ -23,6 +23,9 @@
 	$sbm = $_GET['sbm'];
 	$sw = $_GET['sw'];
 	$busqueda = $_POST['busqueda'];
+	if(!empty($_GET['idsoap'])){
+		$ids = '&idsoap='.$_GET['idsoap'].'';
+	}
 	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
 	}
@@ -114,7 +117,7 @@
 			}
 		}
 		$regresar='
-		<a href="./?url='.$url.'&id='.$_GET['id'].'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>';
+		<a href="./?url='.$url.'&id='.$_GET['id'].''.$ids.'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>';
 	}else{
 		$regresar='';	
 	}
