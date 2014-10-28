@@ -5,7 +5,7 @@
 
 	$idpaciente = $_GET['id'];	
 	$idsoap = $_GET['idsoap'];
-	
+	$t = $_GET['t'];
 	$datos_escala = new Accesatabla('escala_edmonton');
 	$paciente = new Accesatabla('datos_pacientes');
 	$tiposangre = new Accesatabla('tipos_sanguineos');	
@@ -37,7 +37,7 @@
 
 	$cont='
 		<div class="row-fluid">
-			<h2 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=soap&id='.$idpaciente.'&idsoap='.$idsoap.'&t='.$_GET['t'].'" class="btn btn-primary pull-left" title="Regresar" style="position:relative;top:-5px;left:10px;"><i class="icon-arrow-left icon-white"></i></a>Historia Cl&iacute;nica</h2>	
+			<h2 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"><a href="./?url=soap&id='.$idpaciente.'&t='.$t.'" class="btn btn-primary pull-left" title="Regresar" style="position:relative;top:-5px;left:10px;"><i class="icon-arrow-left icon-white"></i></a>Historia Cl&iacute;nica</h2>	
 		</div>
 		<div class="row-fluid" style="border:1px solid #e3e3e3;margin-top:-10px;width:99.9%;">
 			<div class="span12" style="margin:15px 0px 0px 15px;">					
@@ -55,24 +55,31 @@
 				</div>
 				<div class="row-fluid">
 					<h3 style="background:#e9e9e9;padding-top:7px;margin-left:-15px;padding-bottom:7px;width:100%;text-align:center;">Datos SOAP</h3>	
-				</div>				
-				<div class="acordeon" style="width:98%;margin-bottom:5px;">';
-				
-				$n = 1;
-				$y = $soap->buscardonde('ID_PACIENTE = '.$idpaciente.'');
-				while($y){
-					$cont.='
-					<div>
-						<input id="acordeon'.$n.'" name="accordion" type="radio"/>
-						<label for="acordeon'.$n.'" style="margin-top:5px;">SOAP ('.$soap->obtener('FECHA').')</label>
-						<article>	
-							<h3 style="text-decoration:underline;">Consultas</h3>
-				
-							Motivo de la Consulta: <span style="text-decoration:underline;"> '.$soap->obtener('MOTIVO_CONSULTA').' </span><br>
-							Objetivo de la Consulta: <span style="text-decoration:underline;"> '.$soap->obtener('OBJETIVO_CONSULTA').' </span><br>		
-							
-							<h3 style="text-decoration:underline;"> ESAS-R </h3>';
-						
+				</div>	
+				<div class="overflow overthrow" style="width:94%;">			
+					<table class="table2 borde-tabla">
+						<thead>
+							<tr class="fd-table">
+								<th style="min-width:80px;">Fecha</th>
+								<th>Consultas</th>
+								<th style="min-width:80px;">ESAS-R</th>
+								<th>Impresi&oacute;n Diagn&oacute;stica</th>
+								<th style="min-width:325px;width:325px;">Cuidados y Tratamientos</th>
+								<th>Observaciones</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>';
+			$y = $soap->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+			while($y){
+				$cont.='
+								<td style="vertical-align:center;">'.$soap->obtener('FECHA').'</td>
+								<td>
+									<strong>Motivo de la Consulta:</strong> <span style="text-decoration:underline;"> '.$soap->obtener('MOTIVO_CONSULTA').' </span><br>
+									<strong>Objetivo de la Consulta:</strong> <span style="text-decoration:underline;"> '.$soap->obtener('OBJETIVO_CONSULTA').' </span>
+								</td>
+								<td>';
 						$det_soap->buscardonde('ID_SOAP = '.$soap->obtener('ID_SOAP').'');
 						$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').'');	
 						$sw = 0;
@@ -153,87 +160,120 @@
 							$cont.='Dormir: '.$datos_escala->obtener('DORMIR').'';
 						}
 						if($sw == 0) {
-							$cont.='No existen valores de ESAS-R para esta fecha ('.$soap->obtener('FECHA').')';						
+							$cont.='No existen valores de ESAS-R registrados';						
 						}else {
 							$cont.= '';						
-						}
-										
-					$det_soap->buscardonde('ID_SOAP = '.$soap->obtener('ID_SOAP').'');	
-					$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'));	
-					$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
-					$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
-					$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
-					$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
-					$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
-					$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
-					
-					if(!empty($det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'))) {
-						$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
-						$cuidado = $cuidados->obtener('CUIDADOS');
-					}else{
-						$tratamiento = 'No tiene Tratamientos M&eacute;dicos';
-						$cuidado = 'No tiene Cuidados';	
-					}
-					
-					$cont.='				
-								<h3 style="text-decoration:underline;">Impresi&oacute;n Diagn&oacute;stica</h3>
-								';
+						}	
+					$cont.='							
+								</td>
+								<td>';																							
+														
 							$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
 							if(empty($x)) {
 								$cont.='No tiene Impresi&oacute;n Diagn&oacute;stica';
 							}else{
 								$cont.='
-								<center>
-									<div class="overflow overthrow" style="width:90%;">
-										<table class="table2 borde-tabla" >
-											<thead>
-												<tr class="fd-table">
-													<th>Diagn&oacute;stico</th>
-													<th>CIE-10</th>
-													<th>Observaci&oacute;n</th>	
-												</tr>
-											</thead>				
-											<tbody style="background:#fff;">
-										';										
+									<center>
+										<div class="overflow overthrow" style="width:400px;">
+											<table class="table2 borde-tabla">
+												<thead>
+													<tr class="fd-tabla-gris">
+														<th style="width:150px;">Diagn&oacute;stico</th>
+														<th style="width:50px;">CIE-10</th>
+														<th style="width:200px;">Observaci&oacute;n</th>	
+													</tr>
+												</thead>				
+												<tbody style="background:#fff;">
+											';										
 										while($x) {
 											$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
 											
 										$cont.='
-												<tr>
-													<td>'.$cie10->obtener('DESCRIPCION').'</td>
-													<td>'.$cie10->obtener('ID_CIE10').'</td>
-													<td>'.$det_imp_diag->obtener('OBSERVACION').'</td>														
-												</tr>';
+													<tr>
+														<td>'.$cie10->obtener('DESCRIPCION').'</td>
+														<td>'.$cie10->obtener('ID_CIE10').'</td>
+														<td>'.$det_imp_diag->obtener('OBSERVACION').'</td>														
+													</tr>';
 											$x = $det_imp_diag->releer();								
 										}	 
+							}
 							$cont.='
-											</tbody>		
-										</table>
-									</div>		
-								</center>';
+												</tbody>		
+											</table>
+										</div>
+									</center>
+								</td>
+								';
+								//ID_IMPRESION PARA EDITAR
+								$impresion = $det_imp_diag->obtener('ID_IMPRESION_DIAGNOSTICA');
+								
+								$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'));								
+								if(!empty($det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'))) {
+									$cuidado = $cuidados->obtener('CUIDADOS');
+									$id_cuidado = '&idc='.$cuidados->obtener('ID_CUIDADOS_TRATAMIENTOS');
+								}else {
+									$cuidado = 'No tiene Cuidados';	
+									$id_cuidado = '';
 								}
+								$cont.='
+									<td>
+									<strong>Cuidados:</strong> <span style="text-decoration:underline;">'.$cuidado.'</span><br>								
+								';
+													
+						$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
+						$z = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
+						$num = 0;
+						while($z) {
+							$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');								
+							$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
+							$unidad->buscardonde('ID_TIPO_UNIDAD = '.$det_recetas->obtener('ID_UNIDAD'));
+							$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
+							$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+							
+							
+							if(!empty($det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'))) {
+								$n = '#'.$num += 1;
+								$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' de '.$det_recetas->obtener('CONCENTRACION').''.$unidad->obtener('ABREVIATURA').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
+						
+								$id_receta = '&idr='.$det_recetas->obtener('ID_RECETA');		
+							}else{
+								$n = '';
+								$tratamiento = 'No tiene Tratamientos M&eacute;dicos';
+								$id_receta = '';
+							}	
 							$cont.='
-								
-								<h3 style="text-decoration:underline;">Cuidados y Tratamientos</h3>
-								Cuidados: <span style="text-decoration:underline;">'.$cuidado.'</span><br>
-								Tratamientos: <span style="text-decoration:underline;">'.$tratamiento.'</span>	
-								
-								<h3 style="text-decoration:underline;">Observaciones</h3>';
-								if(empty($soap->obtener('OBSERVACIONES'))) {
+									<strong>Tratamientos '.$n.':</strong> <span style="text-decoration:underline;">'.$tratamiento.'</span><br><br>';									
+						
+							$z = $det_recetas->releer();						
+						}
+						$cont.='
+								</td>
+								<td>';
+									if(empty($soap->obtener('OBSERVACIONES'))) {
 										$cont.='No tiene ninguna observaci&oacute;n';				
-								}else{
+									}else{
 										$cont.= $soap->obtener('OBSERVACIONES');				
-								}
-						
-							$cont.='
-						</article>
-					</div>';
-						$y = $soap->releer();
-						$n++;
-					}
-						
-					$cont.='					
+									}
+								$cont.='
+								</td>
+								<td>
+									<a href="./?url=soap&idsoap='.$soap->obtener('ID_SOAP').'&id='.$idpaciente.'&impresion='.$impresion.''.$id_cuidado.''.$id_receta.'&t='.$t.'" class="btn btn-success btn-small"><i class="icon-pencil icon-white"></i></a>
+								</td>
+							</tr>';
+				$y = $soap->releer();			
+			}
+			
+			$cont.='
+						</tbody>					
+					</table>				
 				</div>
+				
+				
+				
+				
+				
+				
+				
 									
 			</div>
 		</div>		

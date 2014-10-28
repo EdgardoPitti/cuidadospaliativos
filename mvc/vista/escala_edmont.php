@@ -140,7 +140,7 @@
 						</fieldset>
 					</div>	
 				</div>	
-				<form method="POST" action="./?url=agregar_escala_edmont'.$sbmenu.'&idp='.$paciente->obtener('ID_PACIENTE').''.$switch.''.$ids.'" >
+				<form method="POST" action="./?url=agregar_escala_edmont'.$sbmenu.'&idp='.$paciente->obtener('ID_PACIENTE').''.$switch.''.$ids.'&t='.$_GET['t'].'" >
 					<center style="margin-top:5px;">
 						<table>
 							<tr>
