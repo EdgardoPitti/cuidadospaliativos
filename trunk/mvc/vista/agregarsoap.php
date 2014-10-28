@@ -134,8 +134,12 @@
 		$soap->colocar('OBSERVACIONES', $_POST['observaciones']);
 		$soap->salvar();	
 	}
-	$sql = 'SELECT max(ID_SOAP) as id FROM soap';
-	$matriz = $ds->db->obtenerArreglo($sql);
-	$id = $matriz[0][id];
+	if(empty($idsoap)){
+		$sql = 'SELECT max(ID_SOAP) as id FROM soap';
+		$matriz = $ds->db->obtenerArreglo($sql);
+		$id = $matriz[0][id];
+	}else {
+		$id = $idsoap;	
+	}
 	echo '<script>location.href="./?url=soap&id='.$idp.'&t='.$t.'&idsoap='.$id.''.$impresion_diag.''.$idc.''.$idr.'"</script>';
 ?>

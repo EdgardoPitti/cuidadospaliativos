@@ -101,6 +101,47 @@
 	
 	<script src="js/bootstrap.js"></script>	
 	<script src='js/show_hide.js'></script>	
+	<script type="text/javascript">
+		
+	   function getVarsUrl(){
+		    var url= location.search.replace("?", "");
+		    var arrUrl = url.split("&");
+		    var urlObj={};   
+		    for(var i=0; i<arrUrl.length; i++){
+		        var x= arrUrl[i].split("=");
+		        urlObj[x[0]]=x[1]
+		    }
+		    return urlObj;
+		} 
+	   function obtener(id){
+	   	
+  		  var parametros = getVarsUrl();		
+  		  				
+        var actionPage = './?url=addmedicamento&idsoap='+parametros.idsoap+'&id='+parametros.id+'&impresion='+parametros.impresion+'&t='+parametros.t+'&idc='+parametros.idc+'&idr='+parametros.idr;
+		  var Form = document.getElementsByClassName("receta"); 
+		//alert(document.location.href);
+		  $.getJSON("./mvc/vista/edit_medicamento.php",            
+			  { receta: id }, 
+			  function(data){
+			  	 var valor = data.receta;
+			    var newAction= actionPage + "&receta=" +valor; 
+			  					  
+				 $(".receta").attr("action", newAction);			  	 
+			    $('.idmedicamento').val(data.medicid);
+			    $('.medicamento').val(data.medicamento);
+			    $('.forma').val(data.forma);
+			    $('.concentracion').val(data.concent);
+			    $('.unidad').val(data.unidad);
+			    $('.dosis').val(data.dosis);
+			    $('.cant').val(data.cantidad);
+			    $('.frec').val(data.frecuencia);
+			    $('.via').val(data.via);
+			    $('.tratamiento').val(data.frecuencia);
+			    $('.periodo').val(data.periodo);
+			    $('.indicacion').val(data.indicaciones);
+		  	});
+		}
+	</script>
 	<script src='js/overthrow/overthrow-detect.js'></script>	
 	<script src="js/overthrow/overthrow-polyfill.js"></script>
 	<script src="js/overthrow/overthrow-toss.js"></script>

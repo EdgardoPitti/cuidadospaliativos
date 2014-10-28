@@ -34,7 +34,7 @@
 		$det_soap->colocar('ID_SOAP', $idsoap);
 		$det_soap->colocar('ID_ESCALA', $id);
 		$det_soap->salvar();
-		echo '<script>alert("ESAS-R almacenado exitosamente");location.href="./?url=soap&id='.$idp.'&idsoap='.$idsoap.'";</script>';	
+		echo '<script>alert("ESAS-R almacenado exitosamente");location.href="./?url=soap&id='.$idp.'&idsoap='.$idsoap.'&t='.$_GET['t'].'";</script>';	
 	}else {
 		echo '<script>alert("ESAS-R almacenado exitosamente");location.href="./?url=escala_edmont&sbm='.$sbm.'";</script>';
 	}

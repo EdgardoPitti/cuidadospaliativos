@@ -260,5 +260,20 @@ $('document').ready(function() {
    	$("#medicamentos").val(data[0]); 
 		$("#idmedicamentos").val(data[1]);
 	}); 
+	
+	
+	// Evento al escribir sobre el cuadro de texto
+	$("#medicamento").keypress(function() {
+		palabra = $("#medicamento").val(); // Completa la palabra
+	});
+	$("#medicamento").autocomplete("./mvc/vista/buscar_medicamento.php?buscar="+palabra, {                        
+		matchContains: true,
+		mustMatch: true,
+		selectFirst: false
+	});
+	$("#medicamento").result(function(event, data, formatted) {
+   	$("#medicamento").val(data[0]); 
+		$("#idmedicamento").val(data[1]);
+	}); 
 /***** Fin de Búsquedas de medicamentos ****/			                        
 });            
