@@ -70,10 +70,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>';
+							';
 			$y = $soap->buscardonde('ID_PACIENTE = '.$idpaciente.'');
 			while($y){
 				$cont.='
+							<tr>
 								<td style="vertical-align:center;">'.$soap->obtener('FECHA').'</td>
 								<td>
 									<strong>Motivo de la Consulta:</strong> <span style="text-decoration:underline;"> '.$soap->obtener('MOTIVO_CONSULTA').' </span><br>
@@ -196,12 +197,13 @@
 													</tr>';
 											$x = $det_imp_diag->releer();								
 										}	 
-							}
 							$cont.='
 												</tbody>		
 											</table>
 										</div>
-									</center>
+									</center>';
+							}
+							$cont.='
 								</td>
 								';
 								//ID_IMPRESION PARA EDITAR
@@ -266,15 +268,7 @@
 			$cont.='
 						</tbody>					
 					</table>				
-				</div>
-				
-				
-				
-				
-				
-				
-				
-									
+				</div>			
 			</div>
 		</div>		
 		';	
