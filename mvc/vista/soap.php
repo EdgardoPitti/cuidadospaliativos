@@ -843,7 +843,7 @@
 											</div>											
 									</form>
 									<div id="modalMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										<form method="POST" class="receta">
+										<form method="POST" id="form_receta" class="receta" action="">
 										  <div class="modal-header">
 										    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 										    <h3 id="myModalLabel">Editar Tratamiento</h3>
