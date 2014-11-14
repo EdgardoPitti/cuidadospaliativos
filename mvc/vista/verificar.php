@@ -14,6 +14,7 @@
 	if($u){
 		$_SESSION['idu'] = $usuarios->obtener('ID_USUARIO');
 		$_SESSION['idgu'] = $usuarios->obtener('ID_GRUPO_USUARIO');
+		$_SESSION['terminos'] = $usuarios->obtener('TERMINOS');
 		$p = $pacientes->buscardonde('ID_USUARIO = '.$usuarios->obtener('ID_USUARIO').'');
 		$pr = $profesional->buscardonde('ID_USUARIO = '.$usuarios->obtener('ID_USUARIO').'');
 		if($p <> 1 AND $pr <> 1){
