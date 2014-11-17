@@ -95,6 +95,7 @@
 								<div class="modal-footer">
 									<form method="POST" action="./?url=termino&id='.$_SESSION['idu'].'">
 										<button id="boton" type="submit" class="btn btn-default pull-right" disabled="disabled">Continuar</button>
+										<a class="btn btn-link pull-left" href="./?url=logout">Cerrar Sesi&oacute;n</a>
 									</form>
 								</div>
 							</div><!-- /.modal-content -->
