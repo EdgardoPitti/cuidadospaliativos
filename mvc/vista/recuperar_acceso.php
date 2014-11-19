@@ -48,11 +48,7 @@
 			$cont.= 'Sus datos han sido enviado a su correo.<br><br>
 						<a href="./?url=login" title="Ir a Login">Ir a Login.</a>			
 			';
-			if(mail("ed_joel28@hotmail.com","Recuperacion de Acceso","Sus datos son \nUsuario: Cachii\nPassword: Cachii")){
-				echo 'Se envio el Correo';
-			}else{
-				echo 'No se envio el Correo';
-			}
+			mail("ed_joel28@hotmail.com","Recuperacion de Acceso","Sus datos para ingresar al sistema de Gestión de Cuidados Paliativos Panamá son: \nUsuario: ".$u->obtener('NO_IDENTIFICACION')."\nPassword: ".$u->obtener('CLAVE_ACCESO')."");
 		}elseif($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){
 			$cont.= 'Tel&eacute;fono: '.$autenticacion->obtener('TELEFONO_PREFERENCIAL').'<br><br>
 						<a href="./?url=login">Ir a Login.</a>';
