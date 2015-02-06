@@ -86,11 +86,11 @@
 		    <div class="row-fluid">
 		        <div class="span12">
 		            <div class="page-footer marketing-container">  
-				<div class="featurette">
-					<img class="featurette-image pull-right" src="./iconos/UTP.png" style="width:40px;height:40px;margin-top:-5px;">
-			                <img class="featurette-image pull-right" src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin:-3px 5px 0px;">
-					<p class="lead" style="padding-top:4px">Derechos Reservados 2013-2014</p>
-			       </div> 
+							<div class="featurette">
+								<img class="featurette-image pull-right" src="./iconos/UTP.png" style="width:40px;height:40px;margin-top:-5px;">
+						      <img class="featurette-image pull-right" src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin:-3px 5px 0px;">
+								<p class="lead" style="padding-top:4px">Derechos Reservados 2013-2014</p>
+						   </div> 
 			
 		            </div>
 		        </div>
@@ -108,6 +108,6 @@
 	<script src="js/overthrow/overthrow-init.js"></script>
 	<script src="js/overthrow/anchorscroll.overthrow.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/autocompletar.js"></script>
+	<script src="js/autocompletar.js"></script>
 	<script src='js/jquery.autocomplete.js'></script>  <!-- Scripts para el Autocomplete -->
 </html>

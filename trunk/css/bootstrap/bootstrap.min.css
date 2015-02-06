@@ -13,6 +13,7 @@
  .centrar_botones{
 	margin:30px auto;/*para atencion al paciente*/
  }
+/*css para modal de terminos*/
  .modal-header-info {
     color:#fff;
     padding:9px 15px;
@@ -24,6 +25,15 @@
     -moz-border-radius-topright: 5px;
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
+}
+body .modal-width{
+	width: 75%;
+	margin:0px -45% auto;
+}
+@media(max-width:767px){
+	body .modal-width{
+		margin:0px auto;
+	}
 }
  .fondo_azul{
 	color:#fff;

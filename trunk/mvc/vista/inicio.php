@@ -17,7 +17,7 @@
 	if($_SESSION['terminos'] ==  0){
 		echo '
 					<!-- Modal -->
-					<div class="modal fade modal-width" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal modal-width fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header modal-header-info">
@@ -29,7 +29,7 @@
 										</center>
 										
 										<div class="row-fluid" align="justify">
-											<div class="spam12">
+											<div class="span12" style="padding:0px 20px;">
 										
 												La gesti&oacute;n de los pacientes que est&aacute;n en el programa de cuidados paliativos mediante un software en nube implica la recogida, almacenamiento y posterior utilizaci&oacute;n de la informaci&oacute;n para su an&aacute;lisis o para la realizaci&oacute;n de estudios espec&iacute;ficos. La existencia de algunas variables, fundamentalmente las relativas a la salud, obliga que estos datos, deben estar especialmente protegidos. El Programa de Gesti&oacute;n de Pacientes en Cuidados Paliativos debe mantener y garantizar la confidencialidad absoluta de su contenido, tanto durante su funcionamiento habitual como en la presentaci&oacute;n de resultados.<br><br>
 												
@@ -87,7 +87,7 @@
 														</ul>
 												</ol>
 											</div><br>
-											<label class="checkbox pull-right">
+											<label class="checkbox pull-right" style="padding-right:20px;">
 												<h4><input type="checkbox" id="acepto" name="acepto" onClick="Habilita()"> He le&iacute;do y acepto los T&eacute;rminos y Condiciones.</h4>
 											</label>
 										</div>
@@ -103,9 +103,7 @@
 					</div><!-- /.modal -->
 					<!-- Modal -->
 					<script>
-						$(function(){
-							$(".modal-width").css("width", "75%");
-							$(".modal-width").css("margin", "0px -45% auto");
+						$(function(){							
 							$("#info").modal({
 								show: true,
 								backdrop: "static",
