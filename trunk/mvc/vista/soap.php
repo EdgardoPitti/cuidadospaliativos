@@ -624,8 +624,11 @@
 				</div>';
 				/*rellenar campos de cuidados y tratamientos*/	
 				$id_cuidado = $det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS');
+				if($id_cuidado == 0){
+					$id_cuidado = '"" AND ID_CUIDADOS_TRATAMIENTOS <> 0';
+				}
 				$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
-				$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);
+				$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
 				if(!empty($recetas->obtener('ID_RECETA'))){
 					$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
 					$disable_obs = '';	
