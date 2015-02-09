@@ -10,11 +10,9 @@
 	$idr = $_GET['idr']; //id_receta
 	
 	if(!empty($idsoap)) {
-		$ids = '&idsoap='.$idsoap.'';
-		$idsoap = ' = '.$_GET['idsoap'].'';
+		$ids = '&idsoap='.$idsoap.'';		
 	}else {
 		$ids='';		
-		$idsoap = '<> 0';				
 	}
 	$impresion = $_GET['impresion'];
 	if(!empty($impresion)){
@@ -57,11 +55,9 @@
 
 	list($anio, $mes, $dia) = explode("-", $paciente->obtener('FECHA_NACIMIENTO'));
 	
-	$sql = 'SELECT MAX(ID_SOAP) AS id FROM soap WHERE ID_PACIENTE = '.$idpaciente.' AND ID_SOAP '.$idsoap;
+	$sql = 'SELECT MAX(ID_SOAP) AS id FROM soap WHERE ID_PACIENTE = '.$idpaciente.'';
 	$matriz = $ds->db->obtenerArreglo($sql);
 	$id_soap = $matriz[0][id];
-	
-	$idsoap = $_GET['idsoap'];
 	
 	$soap->buscardonde('ID_SOAP = '.$id_soap.'');
 	list($agno, $month, $day) = explode("-", $soap->obtener('FECHA'));
