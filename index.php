@@ -66,28 +66,66 @@
 				});				
 			});
 		</script>	
-		<script src="js/modernizr.js"></script>	
+		<script src="js/modernizr.js"></script>			
 		<script type="text/javascript">
-			(function ($) {
-				// check for "required" input support with modernizr
-				if (!Modernizr.input.required) {
-					// parse through each required input
-					$('form').find('input[required]').each(function () {
-			
-						// add a class to each required field with "required" & the input type
-						// using the normal "getAttribute" method because jQuery's attr always returns "text"
-						$(this).attr('class', 'required ' + this.getAttribute('type')).removeAttr('required');
-			
-					});
-			
-					// call jQuery validate plugin on each form
-					$('form').each(function () {
-						$(this).validate();
-					});
-			
-				} 
-			
-			}(jQuery));
+			window.onload = function() {
+			    // get the form and its input elements
+			    var form = document.forms[0],
+			        inputs = form.elements;
+
+			    // if no autofocus, put the focus in the first field
+			    if (!Modernizr.input.autofocus) {
+			        inputs[0].focus();
+			    }
+			    // if required not supported, emulate it
+			    if (!Modernizr.input.required) {			    	
+			        form.onsubmit = function() {
+			            var required = [], att, val;
+			            // loop through input elements looking for required
+			            for (var i = 0; i < inputs.length; i++) {
+			                att = inputs[i].getAttribute('required');
+			                // if required, get the value and trim whitespace
+			                if (att != null) {
+			                    val = inputs[i].value;
+			                    // if the value is empty, add to required array
+			                    if (val.replace(/^\s+|\s+$/g, '') == '') {
+			                        required.push(inputs[i].name);
+			                    }
+			                }
+			            }
+			            // show alert if required array contains any elements
+			            if (required.length > 0) {
+			                alert('ERROR: Existen campos obligatorios'); 
+			            	$('form').validate();
+			                // prevent the form from being submitted
+			                return false;
+			            }
+			        };
+			    }
+			}
+	/*		//This will execute when your page is loaded
+    $(function(){
+        //Required attribute fallback
+        $('form').submit(function() {
+            if (!attributeSupported("required") || ($.browser.safari)) {
+                   //If required attribute is not supported or browser is Safari (Safari thinks that it has this attribute, but it does not work), then check all fields that has required attribute
+                   $("form [required]").each(function(index) {
+                         if (!$(this).val()) {
+                               //If at least one required value is empty, then ask to fill all required fields.
+                               //alert("Existen campos obligatorios.");
+                               $('form').validate();
+
+                               return false;
+                         }
+                   });
+            }
+	  		return false; //This is a test form and I'm not going to submit it
+	        });
+	    });
+	    //This checks if a specific attribute is supported
+	    function attributeSupported(attribute) {
+	        return (attribute in document.createElement("input"));
+	    }*/
 		</script>
 	</head>
 	<body> 				
