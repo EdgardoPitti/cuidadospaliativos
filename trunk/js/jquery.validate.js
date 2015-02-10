@@ -684,7 +684,7 @@ $.extend($.validator, {
 				label.html(message);
 			} else {
 				// create label
-				label = $("<" + this.settings.errorElement + " style='color:#f00;'>")
+				label = $("<" + this.settings.errorElement + " style='color:#f00;font-size:12px;'>")
 					.attr("for", this.idOrName(element))
 					.addClass(this.settings.errorClass)
 					.html(message || "");
