@@ -66,6 +66,29 @@
 				});				
 			});
 		</script>	
+		<script src="js/modernizr.js"></script>	
+		<script type="text/javascript">
+			(function ($) {
+				// check for "required" input support with modernizr
+				if (!Modernizr.input.required) {
+					// parse through each required input
+					$('form').find('input[required]').each(function () {
+			
+						// add a class to each required field with "required" & the input type
+						// using the normal "getAttribute" method because jQuery's attr always returns "text"
+						$(this).attr('class', 'required ' + this.getAttribute('type')).removeAttr('required');
+			
+					});
+			
+					// call jQuery validate plugin on each form
+					$('form').each(function () {
+						$(this).validate();
+					});
+			
+				} 
+			
+			}(jQuery));
+		</script>
 	</head>
 	<body> 				
 		<div class="container-fluid">			   
