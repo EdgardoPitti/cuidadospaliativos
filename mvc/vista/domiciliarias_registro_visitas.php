@@ -76,8 +76,7 @@
 							</table>';
 	$cont.='
 		<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Pacientes</h3>
-			
-		<form  id="form2" method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm='.$sbm.'">';
+		';
 		$d = $detalle_rvd->buscardonde('SECUENCIA > 0 AND ID_RVD = '.$idrvd.'');
 		if($d){
 			$cont.='
@@ -92,6 +91,7 @@
 								<th>Observaciones</th>
 							</tr>
 						</thead>
+						<tbody>
 				';
 				while($d){
 					$paciente->buscardonde('ID_PACIENTE = '.$detalle_rvd->obtener('ID_PACIENTE').'');
@@ -99,19 +99,18 @@
 					$segundoa = $paciente->obtener('APELLIDO_MATERNO');
 					$categoria->buscardonde('ID_CATEGORIA = '.$detalle_rvd->obtener('ID_CATEGORIA').'');
 					$programa->buscardonde('ID_PROGRAMA = '.$detalle_rvd->obtener('ID_PROGRAMA').'');
-					$cont.='
-						<tbody>
+					$cont.='						
 							<tr>
 								<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$segundon[0].'. '.$paciente->obtener('APELLIDO_PATERNO').' '.$segundoa[0].'.</td>
 								<td>'.$categoria->obtener('CATEGORIA').'</td>
 								<td>'.$programa->obtener('PROGRAMA').'</td>
 								<td>'.$detalle_rvd->obtener('OBSERVACIONES').'</td>
-							</tr>
-						</tbody>
+							</tr>						
 					';
 					$d = $detalle_rvd->releer();
 				}
 				$cont.='
+						</tbody>
 					</table>
 				</div>
 			</center>
@@ -126,7 +125,7 @@
 			$c = $categoria->releer();
 		}
 		$cont.='
-					
+				<form  id="form2" method="POST" action="./?url=agregar_datos_rvd&sw=3&id='.$idrvd.'&sbm='.$sbm.'">
 						<span style="text-align:center;">'.$_SESSION[errorpa].'</span>
 						<fieldset>
 							<legend>

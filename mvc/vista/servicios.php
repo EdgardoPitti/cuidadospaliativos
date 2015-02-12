@@ -7,7 +7,7 @@
 	$id = $_GET['id'];
 	$comillas = "'";
 	if(!empty($id)){
-		$img = '<a href="./?url=servicios&sbm=5" title="A&ntilde;adir Servicio M&eacute;dico"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=servicios&sbm=5" title="A&ntilde;adir Servicio M&eacute;dico" class="btn btn-default"><i class="icon-plus"></i> A&ntilde;adir Servicio</a><br><br>';
 	}
 	$cont.='
 			<center>
@@ -33,7 +33,7 @@
 								<td>'.$n.'.</td>
 								<td class="service">'.$servicios->obtener('DESCRIPCION').'</td>
 								<td>'.$tiempos->obtener('DURACION').'</td>
-								<td><a href="./?url=servicios&id='.$servicios->obtener('ID_SERVICIO').'&sbm=5"><img src="./iconos/search.png"></a></td>
+								<td><a href="./?url=servicios&id='.$servicios->obtener('ID_SERVICIO').'&sbm=5" class="btn btn-primary" title="Editar Servicio"><i class="icon-edit icon-white"></i></a></td>
 							</tr>
 		';
 		$n++;
@@ -49,7 +49,7 @@
 					<table>
 						<tr>
 							<td>Servicio M&eacute;dico: </td>
-							<td><input type="text" id="servicio" name="servicio" placeholder="Servicio M&eacute;dico" value="'.$servicios->obtener('DESCRIPCION').'" required></td>
+							<td><input type="text" id="servicio" name="servicio" placeholder="Servicio M&eacute;dico" value="'.$servicios->obtener('DESCRIPCION').'" required="required"></td>
 						<tr>						
 						<tr>
 							<td>Tiempo de Atenci&oacute;n: </td>

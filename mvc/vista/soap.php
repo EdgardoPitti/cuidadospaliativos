@@ -56,7 +56,7 @@
 	list($anio, $mes, $dia) = explode("-", $paciente->obtener('FECHA_NACIMIENTO'));
 	
 	$sql = 'SELECT MAX(ID_SOAP) AS id FROM soap WHERE ID_PACIENTE = '.$idpaciente.'';
-	$matriz = $ds->db->obtenerArreglo($sql);
+	$matriz = $ds->db->obtenerArreglo($sql);	
 	$id_soap = $matriz[0][id];
 	
 	$soap->buscardonde('ID_SOAP = '.$id_soap.'');
@@ -174,7 +174,7 @@
 												</tr>
 											</table>
 											<div class="overthrow" style="overflow:auto;height:75px;margin-top:-5px;text-align:center;">';
-										$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').'');
+										//$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').'');
 										
 										$sw = 0;
 										if($datos_escala->obtener('DOLOR') >= 7){
@@ -267,6 +267,7 @@
 					</div>
 				</div>						
 				';
+			
 			$soap->buscardonde('ID_SOAP = '.$idsoap);
 			$det_soap->buscardonde('ID_SOAP = '.$idsoap);
 			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA'));
@@ -423,7 +424,7 @@
 				$disable_obj = 'disabled="disabled"';
 			}
 			$cont.='
-									<textarea name="motivo" placeholder="Motivo de la Consulta">'.$soap->obtener('MOTIVO_CONSULTA').'</textarea>'.$img.'
+									<textarea name="motivo" placeholder="Motivo de la Consulta" required="required">'.$soap->obtener('MOTIVO_CONSULTA').'</textarea>'.$img.'
 									<button type="submit" class="btn btn-default" style="margin-top:10px">Guardar</button>
 								</form>
 							</center>
@@ -449,7 +450,7 @@
 				$disable_class = 'disabled'; 
 			}
 			$cont.='
-									<textarea name="objetivo" placeholder="Objetivo de la Consulta" '.$disable_obj.'>'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
+									<textarea name="objetivo" placeholder="Objetivo de la Consulta" required="required" '.$disable_obj.'>'.$soap->obtener('OBJETIVO_CONSULTA').'</textarea>'.$img.'
 									<button type="submit" class="btn btn-default" '.$disable_obj.' style="margin-top:10px">Guardar</button>
 								</form>
 							</center>

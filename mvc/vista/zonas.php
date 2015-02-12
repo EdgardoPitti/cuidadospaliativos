@@ -7,7 +7,7 @@
 	$comillas = "'";
 	
 	if(!empty($id)){
-		$img = '<a href="./?url=zonas&sbm=5" title="A&ntilde;adir Zonas"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=zonas&sbm=5" title="A&ntilde;adir Zonas" class="btn btn-default"><i class="icon-plus"></i> A&ntilde;adir Zona</a><br><br>';
 	}
 	$cont.='
 			<center>
@@ -30,7 +30,7 @@
 							<tr>
 								<td>'.$n.'.</td>
 								<td class="nombzona">'.$zonas->obtener('ZONA').'</td>
-								<td><a href="./?url=zonas&id='.$zonas->obtener('ID_ZONA').'&sbm=5"><img src="./iconos/search.png"></a></td>					
+								<td><a href="./?url=zonas&id='.$zonas->obtener('ID_ZONA').'&sbm=5" class="btn btn-primary" title="Editar Zona"><i class="icon-edit icon-white"></i></a></td>					
 							</tr>
 		';
 		$n++;

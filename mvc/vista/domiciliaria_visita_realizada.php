@@ -35,7 +35,7 @@
 				$r = $rvd->buscardonde('ID_RVD > 0 ORDER BY FECHA');
 				$p = '';				
 			}else{
-				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');
+				$r = $rvd->buscardonde('FECHA BETWEEN "'.$inicio.'" AND "'.$final.'"  ORDER BY FECHA');					
 				if($r <> 0){
 					if(!empty($inicio) and !empty($final)){
 						$cont.='<div style="float:right;margin-bottom:4px;" >
@@ -46,13 +46,13 @@
 				}
 				$p = ' desde '.$inicio.' hasta '.$final.'';				
 			}
-						
 			$cont.='
 				
 				<center style="float:none;clear:both;">
 					';
 			$cont.='<div class="overflow overthrow">';
 			if($r){
+				$return = '';
 				$cont.='
 					
 						<table class="table2 borde-tabla table-hover">
@@ -71,6 +71,7 @@
 				';
 			}else{
 				$cont.='<div style="color:red;">No estan registradas Actividades '.$p.'.</div>';
+				$return = '<a href="./?url=domiciliaria_visita_realizada&sbm='.$sbm.'" title="Retornar" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i></a>';
 			}
 			while($r){
 				$institucion->buscardonde('ID_INSTITUCION = '.$rvd->obtener('ID_INSTITUCION').'');
@@ -101,6 +102,7 @@
 					</div>
 				</center>
 				<center>
+					'.$return.'
 					<a href="./?url=domiciliarias_registro_visitas&sbm='.$sbm.'" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
 				</center>
 			</div>

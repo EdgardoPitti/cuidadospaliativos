@@ -40,7 +40,7 @@
 						<td class="id_equipo_medico">'.$equipos->obtener('ID_EQUIPO_MEDICO').'</td>
 						<td>'.$datos->obtener('NO_CEDULA').' '.$datos->obtener('PRIMER_NOMBRE').' '.$segundo_nombre[0].'. '.$datos->obtener('APELLIDO_PATERNO').' '.$segundo_apellido[0].'.</td>
 						<td>'.$especialidades->obtener('DESCRIPCION').'</td>
-						<td><a href="./?url=equipos&id='.$equipos->obtener('ID_EQUIPO_MEDICO').'&sbm=5"><img src="./iconos/search.png"></a></td>
+						<td><a href="./?url=equipos&id='.$equipos->obtener('ID_EQUIPO_MEDICO').'&sbm=5" class="btn btn-primary" title="Editar Equipo"><i class="icon-search icon-white"></i></a></td>
 					</tr>
 			';
 			$n++;
