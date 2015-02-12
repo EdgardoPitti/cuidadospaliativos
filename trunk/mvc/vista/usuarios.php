@@ -80,7 +80,7 @@
 								<td>'.$cedula.'</td>
 								<td>'.$nombre.'</td>
 								<td>'.$grupo->obtener('DESCRIPCION').'</td>
-								<td><a href="./?url=usuarios&id='.$usuarios->obtener('ID_USUARIO').'&sbm=5"><img src="./iconos/search.png"></a></td>
+								<td><a href="./?url=usuarios&id='.$usuarios->obtener('ID_USUARIO').'&sbm=5" class="btn btn-primary" title="Editar Usuario"><i class="icon-edit icon-white"></i></a></td>
 							</tr>
 		';
 		$n++;

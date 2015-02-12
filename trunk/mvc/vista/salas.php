@@ -6,7 +6,7 @@
 	$id = $_GET['id'];
 	$comillas = "'";
 	if(!empty($id)){
-		$img = '<a href="./?url=salas&sbm=5" title="A&ntilde;adir Sala"><img src="./iconos/plus.png"></a><br><br>';
+		$img = '<a href="./?url=salas&sbm=5" title="A&ntilde;adir Sala" class="btn btn-default"><i class="icon-plus"></i> A&ntilde;adir Sala</a><br><br>';
 	}
 	$cont.='
 			<center>			
@@ -30,7 +30,7 @@
 					<tr>
 						<td><strong>'.$n.'.</strong></td>
 						<td class="nombresala">'.$sala->obtener('SALA').'</td>
-						<td><a href="./?url=salas&id='.$sala->obtener('ID_SALA').'&sbm=5"><img src="./iconos/search.png"></a></td>
+						<td><a href="./?url=salas&id='.$sala->obtener('ID_SALA').'&sbm=5" class="btn btn-primary" title="Editar Sala"><i class="icon-edit icon-white"></i></a></td>
 					</tr>
 		';
 		$n++;
