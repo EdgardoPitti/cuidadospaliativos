@@ -67,11 +67,22 @@
 					<button class="btn btn-default" type="submit"><img src="./iconos/search.png"/></button>
 			</form>
 			<b style="float:none;clear:both">Citas del '.$fecha.'</b>	
-		</center>
+		</center>';
+		
+		$cita_paciente = $citas->buscardonde('FECHA = "'.$date.'" AND RESERVADA = 1');
+		if($cita_paciente != false) {
+			$cont.='
 			<div style="float:right;postion:absolute;right:0px;top:0px;bottom:0px">
 				<a href="datospdf.php?agenda=1&imprimir=1&fecha='.$fechaelegida.'" title="Imprimir Agenda" class="btn btn-default" target="_blank" onclick="window.open(this.href); return false;"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a>
 				<a href="datospdf.php?agenda=1&fecha='.$fechaelegida.'" title="Descargar Agenda" class="btn btn-default"><img src="./iconos/download.png" width="24px"> Descargar</a>
-			</div>
+			</div>';
+		}else {
+			$cont.='
+			<span style="text-align:center;">				
+				<div style="color:RED;padding-top:7px">No existen citas registradas en este d&iacute;a.</div>
+			</span>';
+		}
+		$cont.='
 		<div class="row-fluid overthrow" style="width: 100%; height: 520px; overflow-y: scroll;float:none;clear:both">
 			<div class="span2">
 				<a href="./?url=domiciliaria_agenda&sbm='.$sbm.'" title="Ir a Dia" style="background:none;border:none;text-decoration:none;">				
@@ -84,7 +95,7 @@
 					</article>
 				</a>';
 	$x = 1; 
-	While($x < 6){
+	while($x < 6){
 		if($x == 1){
 			$next = explode("-",$ds->diasig($ds->dime('dia'), $ds->dime('mes'),$ds->dime('agno')));	
 		}else{
@@ -120,8 +131,8 @@
 		}else{
 			$condicion = 'AND ID_EQUIPO_MEDICO = '.$_POST['equipo'].'';
 		}
-		$c = $citas->buscardonde('FECHA = "'.$date.'" AND HORA = "'.$hora.'" AND RESERVADA = 1 '.$condicion.'');
-		if($c){
+		$cita_paciente = $citas->buscardonde('FECHA = "'.$date.'" AND HORA = "'.$hora.'" AND RESERVADA = 1 '.$condicion.'');
+		if($cita_paciente){
 			$cont.='
 								<td>
 						<div class="overflow overthrow" style="max-height:170px;padding:0px 5px;" align="center">
@@ -136,7 +147,7 @@
 									</tr>
 								</thead>
 			';
-			while($c){
+			while($cita_paciente){
 				$paciente->buscardonde('ID_PACIENTE = '.$citas->obtener('ID_PACIENTE').'');
 				$profesional->buscardonde('ID_PROFESIONAL = '.$citas->obtener('ID_PROFESIONAL').'');
 				$servicio->buscardonde('ID_SERVICIO = '.$citas->obtener('ID_SERVICIO').'');
@@ -148,11 +159,11 @@
 										<td>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$profesional->obtener('SEGUNDO_NOMBRE').' '.$profesional->obtener('APELLIDO_PATERNO').' '.$profesional->obtener('APELLIDO_MATERNO').'</td>
 										<td>'.$servicio->obtener('DESCRIPCION').'</td>
-										<td><a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm='.$sbm.'" title="Editar Cita"><img src="./iconos/search.png"></a></td>
+										<td><a href="./?url=nueva_cita&id='.$citas->obtener('ID_CITA').'&sbm='.$sbm.'" title="Editar Cita" class="btn btn-primary"><i class="icon-edit icon-white"></i></a></td>
 									</tr>
 								</tbody>							
 				';
-				$c = $citas->releer();
+				$cita_paciente = $citas->releer();
 			}
 			$cont.='			
 							</table>
@@ -161,7 +172,9 @@
 								</td>';
 		}else{
 			$cont.='		
-							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;"><a href="./?url=nueva_cita&h='.$x.'&sbm='.$sbm.'&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a></td>';
+							<td style="width:350px;height:30px;;text-align:left;padding-top:10px;text-align:center;">
+								<a href="./?url=nueva_cita&h='.$x.'&sbm='.$sbm.'&c='.$contador.'" title="Nueva Citra a las '.$hora.'"><img src="./iconos/plus.png"></a>
+							</td>';
 		}
 		$cont.='		</tr>';
 		
