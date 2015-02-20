@@ -6,10 +6,11 @@
 	
 	$cedula = $_POST['buscar'];
 	$sw = $_GET['sw'];
-	if(empty($paciente->buscardonde('NO_CEDULA = "'.$cedula.'"')) AND $sw == 1){
+	$dato_paciente = $paciente->buscardonde('NO_CEDULA = "'.$cedula.'"');
+	if(empty($dato_paciente) AND $sw == 1){
 			$msj = 'Paciente no Encontrado';
 	}else{
-			if(!empty($paciente->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
+			if(!empty($dato_paciente)){
 				$paciente->buscardonde('NO_CEDULA = "'.$cedula.'"');
 				echo '<script>location.href="./?url=menu_categorias&id='.$paciente->obtener('ID_PACIENTE').'";</script>';	
 			}

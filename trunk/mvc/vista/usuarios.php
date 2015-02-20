@@ -13,10 +13,7 @@
 	$autenticacion = new Accesatabla('datos_autenticacion_usuario');
 	$id = $_GET['id'];
 	$comillas = "'";
-	
-	if(!empty($id)){
-		$img = '<a href="./?url=usuarios&sbm=5" title="A&ntilde;adir Usuario Administrador" class="btn btn-primary">A&ntilde;adir Usuario Administrador</a><br><br>';
-	}
+	$sbm = $_GET['sbm'];
 	
 	$cont.='
 			<script>
@@ -35,6 +32,9 @@
 			<center>
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Agregar Administradores o Editar Usuarios</h3>		
 				<label for="search_string">Buscar No. de Identificaci&oacuten:</label> <input type="text" id="search_string" Placeholder="Filtrar" />
+				<div>
+					<a href="./?url=usuarios&sbm='.$sbm.'" title="A&ntilde;adir Usuario Administrador" class="btn btn-primary" style="position:absolute;right:20px;">A&ntilde;adir Usuario Administrador</a><br><br>
+				</div>
 				<div class="overflow overthrow" style="max-height:300px;overflow-y:auto;">
 					<table class="table2 borde-tabla table-hover" id="usuarios">
 						<thead>
@@ -92,8 +92,7 @@
 	$cont.='
 						</tbody>
 					</table>
-				</div>
-					'.$img.'
+				</div>					
 				<form id="form" method="POST" action="./?url=addusuario&id='.$id.'&sbm=5" >
 					<table>
 						<tr>
