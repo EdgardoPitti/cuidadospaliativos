@@ -65,7 +65,7 @@
 	$arreglo = $ds->db->obtenerArreglo($sql);
 	$idescala = $arreglo[0][ID];
 	
-	$datos_escala->buscardonde('ID_ESCALA = '.$idescala.'');	
+	$datos_escala->buscardonde('ID_ESCALA = '.$idescala.' AND FECHA = "'.$soap->obtener('FECHA').'"');	//Compara junto a la fecha
 	$det_soap->buscardonde('ID_SOAP = '.$id_soap.'');
 	
 	/*rellenar campos de cuidados y tratamientos*/	
@@ -76,7 +76,8 @@
 	$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
 	$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 	$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
-	if(!empty($medicamentos->obtener('ID_MEDICAMENTO'))){
+	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
+	if(!empty($medica)){
 		$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
 		$cuidado = $cuidados->obtener('CUIDADOS');
 	}else{
@@ -103,7 +104,7 @@
 									<div class="span6">
 										<table>											
 											<tr>
-												<td><strong>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</strong>&nbsp;<a href="./?url=nuevopaciente&id='.$idpaciente.'&sw=1&s=1'.$ids.'">(Editar)</a></td>
+												<td><strong>'.$paciente->obtener('PRIMER_NOMBRE').' '.$paciente->obtener('SEGUNDO_NOMBRE').' '.$paciente->obtener('APELLIDO_PATERNO').' '.$paciente->obtener('APELLIDO_MATERNO').'</strong>&nbsp;<a href="./?url=nuevopaciente&id='.$idpaciente.'&sw=1&s=1&t='.$t.''.$ids.'">(Editar)</a></td>
 											</tr>
 											<tr>
 												<td>'.$paciente->obtener('NO_CEDULA').'</td>
@@ -416,7 +417,8 @@
 								<form class="form-inline" method="POST" action="./?url=agregarsoap&id='.$idpaciente.'&sw=1&t='.$t.''.$ids.'">
 									Motivo de la Consulta:
 								';
-			if(!empty($soap->obtener('MOTIVO_CONSULTA'))){
+			$mot_consul = $soap->obtener('MOTIVO_CONSULTA');
+			if(!empty($mot_consul)){
 				$img = '<img src="./iconos/save.png">';
 				$disable_obj = '';				
 			}else{
@@ -440,7 +442,8 @@
 							<center>
 								<form class="form-inline" method="POST" action="./?url=agregarsoap&id='.$idpaciente.'&sw=2&t='.$t.''.$ids.'">
 									Objetivo de la Consulta:';
-			if(!empty($soap->obtener('OBJETIVO_CONSULTA'))){
+			$obj_consul = $soap->obtener('OBJETIVO_CONSULTA');
+			if(!empty($obj_consul)){
 				$img = '<img src="./iconos/save.png">';
 				$disable_esas = '';
 				$disable_class = ''; 
@@ -574,7 +577,8 @@
 							<div class="row">
 								<div class="span8 offset2">
 								';
-								if(!empty($det_soap->obtener('ID_IMPRESION_DIAGNOSTICA'))) {
+								$id_imp_diag = $det_soap->obtener('ID_IMPRESION_DIAGNOSTICA');
+								if(!empty($id_imp_diag)) {
 									$id_imp = '&idimp='.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'';;								
 								}else{
 									$id_imp ='';
@@ -630,7 +634,8 @@
 				}
 				$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
 				$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
-				if(!empty($recetas->obtener('ID_RECETA'))){
+				$idreceta = $recetas->obtener('ID_RECETA');
+				if(!empty($idreceta)){
 					$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
 					$disable_obs = '';	
 					$disable_class = ''; 		
@@ -657,12 +662,15 @@
 						</div>
 						<div class="panel-body">
 							<div class="row-fluid">';
-							if(!empty($det_soap->obtener('ID_IMPRESION_DIAGNOSTICA'))) {																								
+							$id_imp_diag = $det_soap->obtener('ID_IMPRESION_DIAGNOSTICA');
+							if(!empty($id_imp_diag)) {																								
 								$disable_cuadro = '';															
 							}else {														
 								$disable_cuadro = 'disabled="disabled"';
 							}
-							if(!empty($cuidados->obtener('CUIDADOS'))) {
+
+							$care = $cuidados->obtener('CUIDADOS');
+							if(!empty($care)) {
 									$disable_med = '';
 									$disableMedClass = ''; 							
 									$img = '<img src="./iconos/save.png">';	
@@ -676,7 +684,7 @@
 									<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=4&t='.$_GET['t'].'&id='.$idpaciente.''.$ids.''.$cuidado.''.$receta.'">			
 										<center>											
 											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Cuidados</h4>
-											<textarea name="cuidados" placeholder="Cuidados" '.$disable_cuadro.'>'.$cuidados->obtener('CUIDADOS').'</textarea>'.$img.'
+											<textarea name="cuidados" placeholder="Cuidados" required="required" '.$disable_cuadro.'>'.$cuidados->obtener('CUIDADOS').'</textarea>'.$img.'
 											<div>
 												<button type="submit" class="btn btn-default" '.$disable_cuadro.' style="margin-top:5px;">Guardar Cuidado</button>
 											</div>
@@ -686,7 +694,7 @@
 										<center>										
 											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Tratamientos</h4>
 											<a data-toggle="modal" href="#" data-target="#add_medicamento" class="btn btn-primary '.$disableMedClass.'" '.$disable_med.'><i class="icon-plus icon-white"></i> A&ntilde;adir Nuevo Medicamento</a><br/><br/>																				
-											Fecha: <input type="date" name="fechareceta" id="fechareceta"  placeholder="AAAA-MM-DD"  required="required" '.$disable_med.' value="'.$recetas->obtener('FECHA_RECETA').'">
+											Fecha: <input type="date" name="fechareceta" id="fechareceta" placeholder="AAAA-MM-DD"  required="required" '.$disable_med.' value="'.$recetas->obtener('FECHA_RECETA').'">
 										</center>
 											<div class="overflow overthrow" style="max-height:170px;margin-top:10px;">												
 												<table class="table2 borde-tabla">
@@ -716,7 +724,8 @@
 													$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');
 													$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');
 													$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
-													if(!empty($det_recetas->obtener('OTRAS_INDICACIONES'))) {
+													$otra_indic = $det_recetas->obtener('OTRAS_INDICACIONES');
+													if(!empty($otra_indic)) {
 														$indicaciones = $det_recetas->obtener('OTRAS_INDICACIONES');													
 													}else {
 														$indicaciones = "Ninguna Observaci&oacute;n";													
@@ -1027,7 +1036,8 @@
 											<tr>
 												<td>Observaciones</td>
 											</tr>';
-			if(!empty($soap->obtener('OBSERVACIONES'))){
+			$obs_soap = $soap->obtener('OBSERVACIONES');
+			if(!empty($obs_soap)){
 				$img = '<img src="./iconos/save.png">';
 			}else{
 				$img = '';

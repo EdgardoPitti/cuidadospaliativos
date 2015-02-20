@@ -23,6 +23,7 @@
 	$sbm = $_GET['sbm'];
 	$sw = $_GET['sw'];
 	$busqueda = $_POST['busqueda'];
+	$ids=''; //idsoap vacio
 	if(!empty($_GET['idsoap'])){
 		$ids = '&idsoap='.$_GET['idsoap'].'';
 	}
@@ -108,7 +109,7 @@
 	}
 	if($sw == 1) {
 		if($_GET['s'] == 1){
-			$url = 'soap';
+			$url = 'soap&t='.$_GET['t'].'';
 		}else{
 			if($_GET['s'] == 2){
 				$url = 'menu_categorias';

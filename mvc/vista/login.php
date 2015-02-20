@@ -15,11 +15,11 @@
 								<center>
 									<div class="input-prepend">
 									  <span class="add-on"><i class="icon-user"></i></span>
-									  <input type="text" id="username" name="username" placeholder="Usuario" required>
+									  <input type="text" id="username" name="username" placeholder="Usuario" required="required">
 									</div><br>
 									<div class="input-prepend">
 									  <span class="add-on"><i class="icon-lock"></i></span>
-									  <input type="password" id="password" name="password" placeholder="Contrase&ntilde;a" required>
+									  <input type="password" id="password" name="password" placeholder="Contrase&ntilde;a" required="required">
 									</div>																		
 									<div align="center">
 										<button type="submit" name="submit" class="btn btn-primary btn-block"><b>Iniciar</b></button>
