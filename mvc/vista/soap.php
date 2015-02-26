@@ -7,7 +7,7 @@
 	$idpaciente = $_GET['id'];
 	$idsoap = $_GET['idsoap'];
 	$idc = $_GET['idc']; //id_cuidado
-	$idr = $_GET['idr']; //id_receta
+	$idr = $_GET['idrecipe']; //id_receta
 	
 	if(!empty($idsoap)) {
 		$ids = '&idsoap='.$idsoap.'';		
@@ -84,9 +84,19 @@
 		$cuidado = 'No posee Cuidado';
 		$tratamiento = 'No posee Tratamiento';
 	}
+	
+	if($t == 1) {	
+		$opcion = 'Domiciliaria';	
+	}elseif($t == 2) {
+		$opcion = 'Ambulatoria';	
+	}else {
+		$opcion = 'Hospitalaria';	
+	}
+	
+	$enlace = '<a href="./?url=menu_categorias&id='.$idpaciente.'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>';
 	$cont.='
-				<div class="row-fluid">				
-					<a href="./?url=menu_categorias&id='.$idpaciente.'" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;" title="Regresar"><i class="icon-arrow-left icon-white"></i></a>	
+				<div class="row-fluid">		
+					<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">'.$enlace.' Categor&iacute;a: '.$opcion.'</h3>									
 				</div>				
 				<div class="row-fluid">
 					<div class="span4" style="margin-bottom:10px;">
@@ -360,21 +370,31 @@
 										<table class="overthrow" style="overflow-y:auto;">
 											<tr>
 												<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
-												<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
+												<td>
+													<div class="input-append bootstrap-timepicker" style="margin-bottom:0px;">
+										            <input type="text" id="hora_inicio" name="hora_inicio" required="required" style="width:112px;marg in-bottom:3px;">
+										            <span class="add-on"><i class="icon-time"></i></span>
+										        </div>
+												</td>
 											</tr>
 											<tr>
 												<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
-												<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
+												<td>
+													<div class="input-append bootstrap-timepicker" style="margin-bottom:0px;">
+										            <input type="text" id="hora_fin" name="hora_fin" required="required" style="width:112px;marg in-bottom:3px;">
+										            <span class="add-on"><i class="icon-time"></i></span>
+										        </div>
+									        </td>
 											</tr>
 											<tr>
 												<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>
-												<td><input type="number" id="minutos" name="minutos" min="1" max="360" required style="width:140px;margin-bottom:3px;"></td>
+												<td><input type="number" id="minutos" name="minutos" min="1" max="360" required="required" style="width:140px;margin-bottom:3px;"></td>
 											</tr>
 											<tr>
 												<td><h5 style="margin-bottom:3px;">Tipo de Contacto: </h5></td>
 												<td>
-													<select id="tipo" name="tipo" required style="width:140px;margin-bottom:3px;">
-														<option value="0">SELECCIONE TIPO CONTACTO</option>
+													<select id="tipo" name="tipo" required="required" style="width:140px;margin-bottom:3px;">
+														<option value>SELECCIONE TIPO CONTACTO</option>
 														<option value="1">Tel&eacute;fono</option>
 														<option value="2">Correo Electr&oacute;nico</option>
 													</select>
@@ -390,11 +410,11 @@
 											</tr>
 											<tr>
 												<td><h5 style="margin-bottom:3px;">Motivo:</h5></td>
-												<td><input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
+												<td><input type="text" name="motivo" required="required" placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
 											</tr>
 											<tr>
 												<td><h5 style="margin-bottom:3px;">Observaciones:</h5> </td>
-												<td><textarea id="observacion" class="textarea" name="observacion" required placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
+												<td><textarea id="observacion" class="textarea" name="observacion" required="required" placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
 											</tr>
 										</table>										
 								</div>  
@@ -636,7 +656,7 @@
 				$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
 				$idreceta = $recetas->obtener('ID_RECETA');
 				if(!empty($idreceta)){
-					$enlace = '<a href="datospdf.php?idr='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
+					$enlace = '<a href="datospdf.php?idrecipe='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
 					$disable_obs = '';	
 					$disable_class = ''; 		
 				}else{
@@ -650,7 +670,7 @@
 					$cuidado = '';				
 				}
 				if(!empty($idr)) {
-					$receta = '&idr='.$idr.'';
+					$receta = '&idrecipe='.$idr.'';
 				}else {
 					$receta = '';
 				}
@@ -988,8 +1008,8 @@
 										  	</center>
 										  </div>
 										  <div class="modal-footer">
-										    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 										    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+										    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 										  </div>
 									   </form>
 									</div>									
@@ -1013,7 +1033,7 @@
 													}
 													$cont.='
 															  </select><br><br>
-									Descripci&oacute;n: <input type="text" name="desc_medicamento" id="desc_medicamento" placeholder="Descripci&oacute;n de Medicamento">
+									Nombre del Medicamento: <input type="text" name="desc_medicamento" id="desc_medicamento" placeholder="Nombre del Medicamento">
 								</div>
 								<div class="modal-footer">  
 									<button type="submit" class="btn btn-primary">Guardar</button>  

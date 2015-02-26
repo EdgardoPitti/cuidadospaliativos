@@ -300,11 +300,21 @@
 								<table class="overthrow" style="overflow-y:auto;">
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
-										<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
+										<td>
+											<div class="input-append bootstrap-timepicker" style="margin-bottom:0px;">
+								            <input type="text" id="hora_inicio" name="hora_inicio" required="required" style="width:112px;marg in-bottom:3px;">
+								            <span class="add-on"><i class="icon-time"></i></span>
+								        </div>
+										</td>
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
-										<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
+										<td>
+											<div class="input-append bootstrap-timepicker" style="margin-bottom:0px;">
+								            <input type="text" id="hora_fin" name="hora_fin" required="required" style="width:112px;marg in-bottom:3px;">
+								            <span class="add-on"><i class="icon-time"></i></span>
+								        </div>
+										</td>
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>

@@ -9,10 +9,24 @@
 	$sbm = $_GET['sbm'];
 	$inicio = $_POST['inicio'];
 	$final = $_POST['final'];
+	
+	//QUICKVIEW
+	$return_menu = '';
+	if($sbm == 7){
+		$return_menu = '<a href="./?url=menu_diario_actividades&sbm='.$sbm.'&t=7" title="Retornar" class="btn btn-primary pull-left" style="position:relative;top:-5px;left:10px;"><i class="icon-arrow-left icon-white"></i></a>';
+	}
+	$tipo = '';
+	if($t == 1){
+		$tipo = '<i style="font-size:14px;">(Atenci&oacute;n Domiciliaria)</i>'; 
+	}elseif($t == 2) {
+		$tipo = '<i style="font-size:14px;">(Atenci&oacute;n Ambulatoria)</i>';
+	}else {
+		$tipo = '<i style="font-size:14px;">(Atenci&oacute;n Hospitalaria)</i>';		
+	}		
 	$cont.='
 		<div class="row-fluid">
 			<div class="span12">
-				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Registro Diario de Actividades</h3>
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">'.$return_menu.' Registro Diario de Actividades '.$tipo.'</h3>
 
 			<center>
 				<form method="POST" action="./?url=domiciliarias_diario_actividades&sbm='.$sbm.'&t='.$t.'">
@@ -53,6 +67,7 @@
 							</thead>';
 	}else{
 		$cont.='<center><div style="color:red;">No estan registradas Actividades'.$p.'.</div></center>';
+		$return = '<a href="./?url=domiciliarias_diario_actividades&sbm='.$sbm.'&t='.$t.'" title="Retornar" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i></a>';
 	}
 	$n = 1;
 	while($r){
@@ -84,6 +99,7 @@
 					</table>
 				</div>
 			<center>
+				'.$return.'
 				<a href="./?url=domiciliarias_registro_actividades&sbm='.$sbm.'&t='.$t.'" title="Agregar Nuevo Registro" class="btn btn-primary">Agregar</a>
 			</center>
 		</div>

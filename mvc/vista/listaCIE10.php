@@ -1,13 +1,12 @@
 <?php
 	// Se recibe el término o palabra a buscar digitada desde el formulario 
-    $palabra = $_REQUEST['buscar']; 
+    $palabra = $_REQUEST['q']; 
     
      // Llama a la función obtenerTerminosCIE10() pasando el valor de la palabra
      // a buscar y realizando las consultas contra la base de datos. Se imprime 
      // la lista devuelta, que es capturada por la llamada AJAX que está viva en
      // el navegador y la devuelve a este, pasandola al control de texto.
-	echo $palabra;
-    echo obtenerTerminosCIE10($palabra);
+	  echo obtenerTerminosCIE10($palabra);
     flush();
     
     // =========================================================================
@@ -27,8 +26,7 @@
         // Arma la consulta contra la tabla que tiene los datos sobre CIE10
         // observar como se realiza la busqueda del término
         $consultaSQL= 
-            'SELECT ID_CIE10, concat(ID_CIE10," ",DESCRIPCION) as DESCRIPCION FROM cie10 WHERE DESCRIPCION LIKE "%' 
-            .strtoupper($palabra).'%" ORDER BY DESCRIPCION'; 
+            'SELECT ID_CIE10, concat(ID_CIE10," ",DESCRIPCION) as DESCRIPCION FROM cie10 WHERE concat(ID_CIE10," ",DESCRIPCION) LIKE "%'.strtoupper($palabra).'%" ORDER BY DESCRIPCION LIMIT 10;'; 
 			
         // Ejecuta la consulta
         $datos = mysqli_query($conexionBD, $ds->latino($consultaSQL));

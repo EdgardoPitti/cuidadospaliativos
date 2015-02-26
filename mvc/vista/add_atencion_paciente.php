@@ -32,11 +32,11 @@
 		$atencion->salvar();
 		if($sw == 0){
 			if($sbm == 8){
-				$url = 'contacto_telefonico';
+				$url = 'contacto_telefonico&id='.$id.'&sbm='.$sbm.'';
 			}else{
-				$url = 'ambulatoria_atencionalpaciente';
+				$url = 'ambulatoria_atencionalpaciente&id='.$id.'&sbm='.$sbm.'';
 			}
-			echo '<script>alert("Datos Ingresados Correctamente"); location.href="./?url='.$url.'&id='.$id.'&sbm='.$sbm.'"</script>';	
+			echo '<script>alert("Datos Ingresados Correctamente"); location.href="./?url='.$url.'"</script>';	
 		}else{
 			echo $url;
 		}

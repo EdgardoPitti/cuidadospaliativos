@@ -13,6 +13,7 @@
 	$profesional = new Accesatabla('profesionales_salud');
 	$datosprofesional = new Accesatabla('datos_profesionales_salud');
 	$especialidad = new Accesatabla('especialidades_medicas');
+	$sbm = $_GET['sbm'];
 	$cedula = $_POST['cedula'];
 	if(!empty($cedula) and !($personas->buscardonde('NO_CEDULA = "'.$cedula.'"'))){
 		$sw = 1;
@@ -23,7 +24,7 @@
 	$cont='
 			<center>
 				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;"> Interconsulta</h3>
-				<form class="form-search" method="POST" action="./?url=ambulatoria_interconsulta&sbm=2">
+				<form class="form-search" method="POST" action="./?url=ambulatoria_interconsulta&sbm='.$sbm.'">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" id="busqueda" placeholder="C&eacute;dula o Nombre" name="cedula" required>
 					  <span class="input-group-btn">

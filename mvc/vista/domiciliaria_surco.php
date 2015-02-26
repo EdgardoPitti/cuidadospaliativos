@@ -50,7 +50,7 @@
 				</form>
 			</center>';
 	if ($sw == 1 AND !empty($cedula)){
-			$cont.='<center>Paciente no encontrado...<a href="./?url=nuevopaciente&sbm='.$sbm.'"><img src="./iconos/add_profesional.png" title="Añadir Paciente"></a></center>';
+			$cont.='<center><a href="./?url=nuevopaciente&sbm=5">Paciente no encontrado...A&ntilde;adir</a></center>';
 	}else if($sw == 0 AND !empty($cedula)){ 
 		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
@@ -139,7 +139,7 @@
 							$cont.='
 									
 										<a href="datospdf.php?idpac='.$cedula.'&tiporef=1&imprimir=1"class="btn" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><img src="./iconos/imprimir.png" width="24px"> Imprimir</a> 																	
-										<a href="datospdf.php?idpac='.$cedula.'&tiporef=1" type="submit" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
+										<a href="datospdf.php?idpac='.$cedula.'&tiporef=1" class="btn" title="Descargar"><img src="./iconos/download.png" width="24px"> Descargar</a> 
 									';
 						}
 						

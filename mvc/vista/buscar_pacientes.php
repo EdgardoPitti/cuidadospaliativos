@@ -2,7 +2,7 @@
     
 	// Se recibe el t�rmino o palabra a buscar digitada desde el formulario 
    
-	$palabra = $_GET['buscar']; 
+	$palabra = $_GET['q']; 
 
 	echo obtenerPacientes($palabra);
 	flush();
@@ -27,7 +27,7 @@
 		//Procuren que si las tablas de las base de datos están en minúsculas, realizar las consultas 
 		// en minúsculas
 		
-	$consultaSQL = 'SELECT NO_CEDULA, concat(NO_CEDULA," ",PRIMER_NOMBRE," ",APELLIDO_PATERNO) AS NOMBRE FROM datos_pacientes WHERE concat(NO_CEDULA," ",PRIMER_NOMBRE," ",APELLIDO_PATERNO) LIKE "%'.$palabra.'%" ORDER BY NO_CEDULA'; 
+	$consultaSQL = 'SELECT NO_CEDULA, concat(NO_CEDULA," ",PRIMER_NOMBRE," ",APELLIDO_PATERNO) AS NOMBRE FROM datos_pacientes WHERE concat(NO_CEDULA," ",PRIMER_NOMBRE," ",APELLIDO_PATERNO) LIKE "%'.$palabra.'%" ORDER BY NO_CEDULA LIMIT 100;'; 
 
         // Ejecuta la consulta
 

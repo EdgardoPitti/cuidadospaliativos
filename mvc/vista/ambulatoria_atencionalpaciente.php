@@ -42,7 +42,7 @@
 	if(empty($buscar) or $sw == 1){	
 		if($sw == 1){
 			$agnadir='
-					<a href="./?url=nuevopaciente&sbm=5">Paciente no Encotrado...A&ntilde;adir</a>';	
+					<a href="./?url=nuevopaciente&sbm=5">Paciente no encotrado...A&ntilde;adir</a>';	
 		}
 	}else{
 		
@@ -346,7 +346,7 @@
 				</div>
 				
 				<!--AGREGAR OBSERVACIONES-->
-				<form id="form" method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm=2">
+				<form id="form" method="POST" action="./?url=add_atencion_paciente&id='.$idpaciente.'&sbm='.$sbm.'">
 					<div id="ag_obser" class="modal hide fade in" style="display: none; ">  						
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
@@ -355,22 +355,32 @@
 						<div class="modal-body" align="center"> 
 								<table class="overthrow" style="overflow-y:auto;">
 									<tr>
-										<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>
-										<td><input type="time" id="hora_inicio" name="hora_inicio" style="width:140px;margin-bottom:3px;"></td>
+										<td><h5 style="margin-bottom:3px;">Hora Inicio:</h5></td>										
+										<td>
+											<div class="input-append bootstrap-timepicker" style="margin-bottom:0px;">
+								            <input type="text" id="hora_inicio" name="hora_inicio" required="required" style="width:112px;marg in-bottom:3px;">
+								            <span class="add-on"><i class="icon-time"></i></span>
+								        </div>
+								      </td>
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Hora Fin:</h5></td>
-										<td><input type="time" id="hora_fin" name="hora_fin" style="width:140px;margin-bottom:3px;"></td>
+										<td>
+											<div class="input-append bootstrap-timepicker" style="margin-bottom:0px;">
+								            <input type="text" id="hora_fin" name="hora_fin" required="required" style="width:112px;marg in-bottom:3px;">
+								            <span class="add-on"><i class="icon-time"></i></span>
+								        </div>
+								      </td>
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Minutos Utilizados: </h5></td>
-										<td><input type="number" id="minutos" name="minutos" min="1" max="360" required style="width:140px;margin-bottom:3px;"></td>
+										<td><input type="number" id="minutos" name="minutos" min="1" max="360" required="required" style="width:140px;margin-bottom:3px;"></td>
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Tipo de Contacto: </h5></td>
 										<td>
-											<select id="tipo" name="tipo" required style="width:140px;margin-bottom:3px;">
-												<option value="0">SELECCIONE TIPO CONTACTO</option>
+											<select id="tipo" name="tipo" required="required" style="width:140px;margin-bottom:3px;">
+												<option value>SELECCIONE TIPO CONTACTO</option>
 												<option value="1">Tel&eacute;fono</option>
 												<option value="2">Correo Electr&oacute;nico</option>
 											</select>
@@ -386,11 +396,11 @@
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Motivo:</h5></td>
-										<td><input type="text" name="motivo" required placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
+										<td><input type="text" name="motivo" required="required" placeholder="Motivo de Atenci&oacute;n" style="width:140px;margin-bottom:3px;"></td>
 									</tr>
 									<tr>
 										<td><h5 style="margin-bottom:3px;">Observaciones:</h5> </td>
-										<td><textarea id="observacion" class="textarea" name="observacion" required placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
+										<td><textarea id="observacion" class="textarea" name="observacion" required="required" placeholder="Observaci&oacute;nes" style="height:25px;width:140px;margin-bottom:3px;"></textarea></td>
 									</tr>
 								</table>										
 						</div>  
@@ -402,7 +412,7 @@
 				</form>
 				
 				<!--RESPONDER INTERCONSULTA-->
-				<form id="form2" method="POST" action="./?url=add_resp_interconsulta&id='.$idpaciente.'&sbm=2">
+				<form id="form2" method="POST" action="./?url=add_resp_interconsulta&id='.$idpaciente.'&sbm='.$sbm.'">
 					<div id="res_inter" class="modal hide fade in" style="display: none; ">  
 						<div class="modal-header">  
 							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
