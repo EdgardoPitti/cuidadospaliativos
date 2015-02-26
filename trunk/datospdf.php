@@ -20,7 +20,7 @@
 	$tipo_surco = $_GET['tiporef'];
 	$tipo_imp = $_GET['visita'];
 	$agenda = $_GET['agenda'];
-	$idreceta = $_GET['idr'];
+	$idreceta = $_GET['idrecipe'];
 	
 	$html='
 <html>
@@ -162,8 +162,7 @@
 			<center style="margin-top:-30px">
 				<h3 class="fd-title" style="font-size:16px">SISTEMA &Uacute;NICO DE REFERENCIA Y CONTRA-REFERENCIA (SURCO)</h3>				
 			</center>';
-		$personas->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PACIENTE = "'.$cedula.'"');
-		$ced = $personas->obtener('NO_CEDULA');
+		$personas->buscardonde('NO_CEDULA = "'.$cedula.'"');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$personas->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$tiposangre->buscardonde('ID_TIPO_SANGUINEO = '.$personas->obtener('ID_TIPO_SANGUINEO').'');
 		$provincias->buscardonde('ID_PROVINCIA = '.$residencia->obtener('ID_PROVINCIA').'');
@@ -179,12 +178,64 @@
 		}else{
 			$asegurado = 'NO ASEGURADO';
 		}
-		
+		list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
+		$edad = $ds->edad($dia,$mes,$anio);
 		
 		$html .= $cont_gral;		
-			
+		
+		$dato_paciente = '
+				<h3 style="font-weight:bold;text-align:center;text-decoration:underline">Identificaci&oacute;n del Paciente</h3>
+					<table width="100%">						
+						<tr align="center">
+							<td style="border-bottom:1px solid #333;">'.$personas->obtener('PRIMER_NOMBRE').'</td>
+							<td style="border-bottom:1px solid #333;">'.$personas->obtener('SEGUNDO_NOMBRE').'</td>
+							<td style="border-bottom:1px solid #333;">'.$personas->obtener('APELLIDO_PATERNO').'</td>
+							<td style="border-bottom:1px solid #333;">'.$personas->obtener('APELLIDO_MATERNO').'</td>
+						</tr>
+						<tr style="font-size:12px">
+							<th>Primer Nombre</th>
+							<th>Segundo Nombre</th>
+							<th>Primer Apellido</th>
+							<th>Segundo Apellido</th>
+						</tr>
+					</table>
+					<table width="100%">	
+						<tr align="center">	
+							<td width="15px">C&eacute;dula: </td>
+							<td style="border-bottom:1px solid #333;">'.$cedula.'</td>
+							<td></td>
+							<td width="15px">Tel&eacute;fono: </td>
+							<td style="border-bottom:1px solid #333;">'.$personas->obtener('TELEFONO_CASA').'</td>
+							<td></td>
+							<td width="15px">Celular: </td>
+							<td style="border-bottom:1px solid #333;">'.$personas->obtener('TELEFONO_CELULAR').'</td>
+						</tr>
+					</table>
+					<table width="100%">
+						<tr>
+							<td>Edad: <span style="text-decoration:underline;">'.$edad.' a&ntilde;os</span></td>
+							<td></td>
+							<td>A&ntilde;os: <span style="text-decoration:underline;">'.$anio.'</span></td>
+							<td></td>
+							<td>Meses: <span style="text-decoration:underline;">'.$mes.'</span></td>
+							<td></td>
+							<td>D&iacute;as: <span style="text-decoration:underline;">'.$dia.'</span></td>
+							<td></td>';
+							if($personas->obtener('ID_SEXO') == 1){
+								$masc = '<img src="iconos/gancho.png">';
+							}else{
+								$fem = '<img src="iconos/gancho.png">';
+							}
+						$dato_paciente.='	
+							<td>
+								Sexo: &nbsp;&nbsp;&nbsp;&nbsp;<span style="border:1px solid #333;padding:3px;">F</span> '.$fem.' 
+									  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:1px solid #333;padding:3px;">M</span> '.$masc.'	
+							</td>
+						</tr>
+					</table>';
+					
 		if($tipo_surco == 1){
-				$archivofinal='Referencia-'.$ced.'';
+				$archivofinal='Referencia-'.$cedula.'';
 				$cie = new Accesatabla('cie10');
 				$historia = new Accesatabla('historia_paciente');
 				$tipoexamen = new Accesatabla('tipo_examen');
@@ -227,7 +278,7 @@
 								$minutos = '0'; 
 								$minutos .=  $ds->dime('minuto');
 							}
-							list($anio, $mes, $dia) = explode("-", $personas->obtener('FECHA_NACIMIENTO'));
+							
 					$html.='
 							<td>
 								<table width="100%" style="font-size:14px" cellspacing="0">									
@@ -249,57 +300,9 @@
 								</table>
 							</td>
 						</tr>						
-					</table>
-					<h3 style="font-weight:bold;text-align:center;text-decoration:underline">Identificaci&oacute;n del Paciente</h3>
-					<table width="100%">						
-						<tr align="center">
-							<td style="border-bottom:1px solid #333;">'.$personas->obtener('PRIMER_NOMBRE').'</td>
-							<td style="border-bottom:1px solid #333;">'.$personas->obtener('SEGUNDO_NOMBRE').'</td>
-							<td style="border-bottom:1px solid #333;">'.$personas->obtener('APELLIDO_PATERNO').'</td>
-							<td style="border-bottom:1px solid #333;">'.$personas->obtener('APELLIDO_MATERNO').'</td>
-						</tr>
-						<tr style="font-size:12px">
-							<th>Primer Nombre</th>
-							<th>Segundo Nombre</th>
-							<th>Primer Apellido</th>
-							<th>Segundo Apellido</th>
-						</tr>
-					</table>
-					<table width="100%">	
-						<tr align="center">	
-							<td width="15px">C&eacute;dula: </td>
-							<td style="border-bottom:1px solid #333;">'.$ced.'</td>
-							<td></td>
-							<td width="15px">Tel&eacute;fono: </td>
-							<td style="border-bottom:1px solid #333;">'.$personas->obtener('TELEFONO_CASA').'</td>
-							<td></td>
-							<td width="15px">Celular: </td>
-							<td style="border-bottom:1px solid #333;">'.$personas->obtener('TELEFONO_CELULAR').'</td>
-						</tr>
-					</table>
-					<table width="100%">
-						<tr>
-							<td>Edad: <span style="text-decoration:underline;">'.$personas->obtener('EDAD_PACIENTE').'</span></td>
-							<td></td>
-							<td>A&ntilde;os: <span style="text-decoration:underline;">'.$anio.'</span></td>
-							<td></td>
-							<td>Meses: <span style="text-decoration:underline;">'.$mes.'</span></td>
-							<td></td>
-							<td>D&iacute;as: <span style="text-decoration:underline;">'.$dia.'</span></td>
-							<td></td>';
-							if($personas->obtener('ID_SEXO') == 1){
-								$masc = '<img src="iconos/gancho.png">';
-							}else{
-								$fem = '<img src="iconos/gancho.png">';
-							}
-						$html.='	
-							<td>
-								Sexo: &nbsp;&nbsp;&nbsp;&nbsp;<span style="border:1px solid #333;padding:3px;">F</span> '.$fem.' 
-									  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="border:1px solid #333;padding:3px;">M</span> '.$masc.'	
-							</td>
-						</tr>
 					</table>';
-				$zona->buscardonde('ID_ZONA = '.$residencia->obtener('ID_ZONA').'');
+			$html.= $dato_paciente;
+			$zona->buscardonde('ID_ZONA = '.$residencia->obtener('ID_ZONA').'');
 			$html.='		
 					<span style="width:100%;font-weight:bold;text-decoration:underline;">Direcci&oacute;n</span>
 					<table width="100%">						
@@ -307,7 +310,7 @@
 							<td  width="13%" style="border-bottom:1px solid #333;">'.$provincias->obtener('PROVINCIA').'</td>
 							<td  width="20%" style="border-bottom:1px solid #333;">'.$distritos->obtener('DISTRITO').'</td>
 							<td  width="20%" style="border-bottom:1px solid #333;">'.$corregimientos->obtener('CORREGIMIENTO').'</td>
-							<td  width="27%" style="border-bottom:1px solid #333;"></td>
+							<td  width="27%" style="border-bottom:1px solid #333;">'.$residencia->obtener('DETALLE').'</td>
 							<td  width="20%" style="border-bottom:1px solid #333;">'.$zona->obtener('ZONA').'</td>
 						</tr>
 						<tr style="font-size:12px">
@@ -475,7 +478,7 @@
 				</table>';
 
 		}else{
-			$archivofinal = 'Respuesta-a-la-Referencia-'.$ced.'';
+			$archivofinal = 'Respuesta-a-la-Referencia-'.$cedula.'';
 			$cie = new Accesatabla('cie10');
 			$respuesta->buscardonde('ID_RESPUESTA_REFERENCIA = '.$resp.'');
 			$institucion->buscardonde('ID_INSTITUCION = '.$respuesta->obtener('INSTITUCION_RESPONDE').'');					
@@ -534,7 +537,9 @@
 								</table>
 							</td>
 						</tr>						
-					</table>
+					</table>';
+				$html.= $dato_paciente; //datos generales del paciente
+				$html.= '<br><br>	
 					<div class="sub-title" style="margin:8px 0px;">Respuesta a la Referencia</div>';
 					$detallediagnostico->buscardonde('ID_DIAGNOSTICO = '.$respuesta->obtener('ID_DIAGNOSTICO').'');
 					$cie->buscardonde('ID_CIE10 = "'.$detallediagnostico->obtener('ID_CIE10').'"');
@@ -578,7 +583,7 @@
 							<td align="right">Fecha: </td>
 							<td><p style="text-decoration:underline">'.$respuesta->obtener('FECHA').'</p></td>
 						</tr> 
-					</table>
+					</table><br><br><br>
 					<div class="sub-title" style="margin:8px 0px;">Datos del Profesional</div>';
 
 			$datos_profesional->buscardonde('ID_PROFESIONAL = '.$respuesta->obtener('ID_PROFESIONAL').'');
@@ -700,6 +705,7 @@
 	$html.='	
 	</body>
 </html>';
+
 	require_once("./mvc/modelo/dompdf_config.inc.php");
 	$dompdf = new DOMPDF();
 	$dompdf->set_paper('A4','landscape');//portrait

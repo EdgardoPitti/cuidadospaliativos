@@ -10,6 +10,7 @@
 		<!--CSS: Menú Principal-->	
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="css/bootstrap-timepicker.min.css" rel="stylesheet"/>
 		<link href="css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
       <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />          
       <script type="text/javascript" src="js/jquery.js"></script>   
@@ -104,6 +105,16 @@
 			    }
 			}
 		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('#hora_inicio').timepicker({
+					minuteStep: 1				
+				});
+				$('#hora_fin').timepicker({
+					minuteStep: 1				
+				});
+			});
+		</script>		
 	</head>
 	<body> 				
 		<div class="container-fluid">			   
@@ -140,6 +151,7 @@
 	<script src="js/bootstrap.js"></script>	
 	<script src='js/show_hide.js'></script>
 	<script src="js/get.js"></script>	
+	<script src="js/bootstrap-timepicker.min.js"></script>
 	<script src='js/overthrow/overthrow-detect.js'></script>	
 	<script src="js/overthrow/overthrow-polyfill.js"></script>
 	<script src="js/overthrow/overthrow-toss.js"></script>

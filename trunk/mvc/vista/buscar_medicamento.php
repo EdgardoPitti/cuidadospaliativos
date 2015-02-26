@@ -2,7 +2,7 @@
     
 	// Se recibe el t�rmino o palabra a buscar digitada desde el formulario 
    
-	$palabra = $_GET['buscar']; 
+	$palabra = $_REQUEST['q']; 
 
 	echo obtenerPacientes($palabra);
 	flush();
@@ -27,7 +27,7 @@
 		//Procuren que si las tablas de las base de datos están en minúsculas, realizar las consultas 
 		// en minúsculas
 		
-	$consultaSQL = 'SELECT DESCRIPCION, ID_MEDICAMENTO FROM medicamentos WHERE concat(DESCRIPCION) LIKE "%'.strtoupper($palabra).'%" ORDER BY DESCRIPCION'; 
+	$consultaSQL = 'SELECT DESCRIPCION, ID_MEDICAMENTO FROM medicamentos WHERE DESCRIPCION LIKE "%'.strtoupper($palabra).'%" ORDER BY DESCRIPCION LIMIT 100;'; 
 
         // Ejecuta la consulta
 

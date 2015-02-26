@@ -18,7 +18,7 @@
 	$sw = $_GET['sw'];	
 	$id_impresion = $_GET['idimp'];
 	$cuidado = $_GET['idc'];
-	$receta = $_GET['idr'];
+	$receta = $_GET['idrecipe'];
 	
 	$fecha = '"';
 	$fecha .= $ds->dime('fecha');
@@ -92,7 +92,7 @@
 		$det_soap->salvar();
 		
 		$idc = '&idc='.$id_cuidado.'';
-		$idr = '&idr='.$receta.'';
+		$idr = '&idrecipe='.$receta.'';
 			
 	}elseif($sw == 5){
 		if(empty($receta)) {
@@ -126,7 +126,7 @@
 		$det_recetas->colocar('OTRAS_INDICACIONES', $_POST['observaciones']);
 		$det_recetas->salvar();
 		
-		$idr = '&idr='.$id_receta.'';
+		$idr = '&idrecipe='.$id_receta.'';
 		$idc = '&idc='.$cuidado.'';
 		
 	}elseif($sw == 6) {

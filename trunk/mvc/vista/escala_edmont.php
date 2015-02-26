@@ -146,8 +146,8 @@
 							<tr>
 				  				<td>Completado por:</td>
 				  				<td colspan="2"> 
-					  				<select name="completado" id="completado">
-					  					<option value="0">SELECCIONAR</option>
+					  				<select name="completado" id="completado" required="required">
+					  					<option value>SELECCIONAR</option>
 					  					<option value="1">PACIENTE</option>
 										<option value="2">FAMILIAR DEL PACIENTE</option>
 										<option value="3">PROFESIONAL M&Eacute;DICO</option>
@@ -169,8 +169,8 @@
 				  			<tr>
 				  				<td>Categor&iacute;a:</td>
 				  				<td colspan="2"> 
-					  				<select name="categoria" id="categoria">
-					  					<option value="0">SELECCIONAR</option>
+					  				<select name="categoria" id="categoria" required="required">
+					  					<option value>SELECCIONAR</option>
 					  					<option value="1" '.$d.'>DOMICILIARIA</option>
 										<option value="2" '.$a.'>AMBULATORIA</option>
 										<option value="3" '.$h.'>HOSPITALARIA</option>

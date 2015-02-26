@@ -14,7 +14,7 @@ $('document').ready(function() {
    // las coincidencias de la palabra, completando el texto con
    // una lista de sugerencias. Igualmente, se reciben, los ID's
    // que coinciden con los términos buscados.
-   $("#diagnostico1").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+   $("#diagnostico1").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
    	matchContains: true,
    	mustMatch: true,
       selectFirst: false
@@ -31,7 +31,7 @@ $('document').ready(function() {
 	$("#diagnostico2").keypress(function() {
    	palabra = $("#diagnostico2").val(); // Completa la palabra
    });
-	$("#diagnostico2").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnostico2").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
    	matchContains: true,
       mustMatch: true,
       selectFirst: false
@@ -44,7 +44,7 @@ $('document').ready(function() {
 	$("#diagnostico3").keypress(function() {
    	palabra = $("#diagnostico3").val(); // Completa la palabra
    });
-   $("#diagnostico3").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+   $("#diagnostico3").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
    	matchContains: true,
       mustMatch: true,
       selectFirst: false
@@ -57,7 +57,7 @@ $('document').ready(function() {
 	$("#diagnostico4").keypress(function() {
 		palabra = $("#diagnostico4").val(); // Completa la palabra
 	});
-	$("#diagnostico4").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnostico4").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -70,7 +70,7 @@ $('document').ready(function() {
 	$("#diagnostico5").keypress(function() {
 		palabra = $("#diagnostico5").val(); // Completa la palabra
 	});
-	$("#diagnostico5").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnostico5").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -83,7 +83,7 @@ $('document').ready(function() {
 	$("#diagnostico6").keypress(function() {
 		palabra = $("#diagnostico6").val(); // Completa la palabra
 	});
-	$("#diagnostico6").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnostico6").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -96,7 +96,7 @@ $('document').ready(function() {
 	$("#diagnostico7").keypress(function() {
 		palabra = $("#diagnostico7").val(); // Completa la palabra
 	});
-	$("#diagnostico7").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnostico7").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -109,7 +109,7 @@ $('document').ready(function() {
 	$("#diagnostico8").keypress(function() {
 		palabra = $("#diagnostico8").val(); // Completa la palabra
 	});
-	$("#diagnostico8").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnostico8").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -122,7 +122,7 @@ $('document').ready(function() {
 	$("#diagnosticorespuesta").keypress(function() {
 		palabra = $("#diagnosticorespuesta").val(); // Completa la palabra
 	});
-	$("#diagnosticorespuesta").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnosticorespuesta").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -136,7 +136,7 @@ $('document').ready(function() {
 	$("#diagnostico").keypress(function() {
 		palabra = $("#diagnostico").val(); // Completa la palabra
 	});
-	$("#diagnosticorespuesta").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+	$("#diagnosticorespuesta").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -149,7 +149,7 @@ $('document').ready(function() {
 	$("#diagnostico").keypress(function() {
 		palabra = $("#diagnostico").val(); // Completa la palabra
 	});
-   $("#diagnostico").autocomplete("./mvc/vista/listaCIE10.php?buscar="+palabra, {                        
+   $("#diagnostico").autocomplete("./mvc/vista/listaCIE10.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -166,7 +166,7 @@ $('document').ready(function() {
 	$("#buscar_profesional").keypress(function() {
 		palabra = $("#profesional").val(); // Completa la palabra
 	});
-	$("#buscar_profesional").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+	$("#buscar_profesional").autocomplete("./mvc/vista/buscar_personal.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false				
@@ -179,12 +179,13 @@ $('document').ready(function() {
 	$("#profesional").keypress(function() {
 		palabra = $("#profesional").val(); // Completa la palabra
 	});
-	$("#profesional").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+	$("#profesional").autocomplete("./mvc/vista/buscar_personal.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
 	});  
 	$("#profesional").result(function(event, data, formatted) {
+		console.log(data);
 		$("#cedprofesional").val(data[1]);
 	});
 
@@ -192,7 +193,7 @@ $('document').ready(function() {
 	$("#profesional2").keypress(function() {
 		palabra = $("#profesional2").val(); // Completa la palabra
 	});
-	$("#profesional2").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+	$("#profesional2").autocomplete("./mvc/vista/buscar_personal.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -205,7 +206,7 @@ $('document').ready(function() {
 	$("#profesional3").keypress(function() {
 		palabra = $("#profesional3").val(); // Completa la palabra
 	});
-	$("#profesional3").autocomplete("./mvc/vista/buscar_personal.php?buscar="+palabra, {                        
+	$("#profesional3").autocomplete("./mvc/vista/buscar_personal.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -222,7 +223,7 @@ $('document').ready(function() {
    $("#busqueda").keypress(function() {
 		palabra = $("#busqueda").val(); // Completa la palabra
 	});
-	$("#busqueda").autocomplete("./mvc/vista/buscar_pacientes.php?buscar="+palabra, {                        
+	$("#busqueda").autocomplete("./mvc/vista/buscar_pacientes.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -234,7 +235,7 @@ $('document').ready(function() {
 	$("#paciente").keypress(function() {
 		palabra = $("#paciente").val(); // Completa la palabra
 	});
-   $("#paciente").autocomplete("./mvc/vista/buscar_pacientes.php?buscar="+palabra, {                        
+   $("#paciente").autocomplete("./mvc/vista/buscar_pacientes.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -251,7 +252,7 @@ $('document').ready(function() {
 	$("#medicamentos").keypress(function() {
 		palabra = $("#medicamentos").val(); // Completa la palabra
 	});
-	$("#medicamentos").autocomplete("./mvc/vista/buscar_medicamento.php?buscar="+palabra, {                        
+	$("#medicamentos").autocomplete("./mvc/vista/buscar_medicamento.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false
@@ -266,7 +267,7 @@ $('document').ready(function() {
 	$("#medicamento").keypress(function() {
 		palabra = $("#medicamento").val(); // Completa la palabra
 	});
-	$("#medicamento").autocomplete("./mvc/vista/buscar_medicamento.php?buscar="+palabra, {                        
+	$("#medicamento").autocomplete("./mvc/vista/buscar_medicamento.php"+palabra, {                        
 		matchContains: true,
 		mustMatch: true,
 		selectFirst: false

@@ -236,7 +236,8 @@
 								</div>
 						</fieldset>
 					</div>
-				</div>		
+				</div>	
+				<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;text-align:center;">Seleccione una categor&iacute;a</h3>	
 				<center>
 				<div class="centrar_botones">
 					<p><a href="./?url=soap&t=1&id='.$idpaciente.'" class="btn btn-primary">Domiciliaria</a></p>  

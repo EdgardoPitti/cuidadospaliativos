@@ -31,7 +31,7 @@
 	    <center>
 			<h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Registro de Admisión-Egreso (RAE)</h3>
 		</center>
-					<center>
+			<center>
 				<form class="form-search" method="POST" action="./?url=hospitalaria_rae_evolucion&sbm='.$sbm.'">
 					<div class="input-group">
 					  Buscar paciente: <input type="search" class="form-control" placeholder="Cédula" name="buscar" id="busqueda">
@@ -50,7 +50,7 @@
 	if((empty($buscar) or $sw == 1) and empty($idpaciente)){
 		if($sw == 1){
 			$cont.='<center>
-						Paciente no Encotrado...<a href="./?url=nuevopaciente&sbm='.$sbm.'"><img src="./iconos/add_profesional.png" title="A&ntilde;adir"></a>
+						<a href="./?url=nuevopaciente&sbm=5">Paciente no Encotrado...A&ntilde;adir</a>
 					</center>
 			';
 		}
