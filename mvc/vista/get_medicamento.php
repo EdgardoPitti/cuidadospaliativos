@@ -20,6 +20,7 @@
 		'dosis' => $det[0][ID_DOSIS],
 		'cantidad' => $det[0][DOSIS],
 		'frecuencia' => $det[0][ID_FRECUENCIA_TRATAMIENTO],
+		'tratamiento' => $det[0][TRATAMIENTO],
 		'via' => $det[0][ID_VIA],	
 		'periodo' => $det[0][ID_PERIODO_TRATAMIENTO],
 		'indicaciones' => UTF8_encode($indicaciones)
