@@ -1,6 +1,9 @@
 <?php
+	//Vista para agregar la atención de un paciente
+	//Se incluyen los modelos a utilizar
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
+	//Se instancian las funciones y las tablas de las base de datos
 	$ds = new Diseno();
 	$atencion = new Accesatabla('atencion_paciente');
 	$sbm = $_GET['sbm'];
