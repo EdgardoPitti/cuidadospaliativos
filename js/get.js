@@ -24,7 +24,7 @@ function obtener(id){
 	    $('.cant').val(data.cantidad);
 	    $('.frec').val(data.frecuencia);
 	    $('.via').val(data.via);
-	    $('.tratamiento').val(data.frecuencia);
+	    $('.tratamiento').val(data.tratamiento);
 	    $('.periodo').val(data.periodo);
 	    $('.indicacion').val(data.indicaciones);
   	});
