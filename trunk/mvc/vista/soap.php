@@ -778,7 +778,7 @@
 										$fecha = $recetas->obtener('FECHA_RECETA');
 										$sw_receta = 1;
 									}
-									
+									$sw_form = 0;
 									//Recetas
 									$cont.='
 										<a data-toggle="modal" href="#" data-target="#add_medicamento" class="btn btn-primary '.$disableClass.'"><i class="icon-plus icon-white"></i> A&ntilde;adir Nuevo Medicamento</a><br/><br/>																				
@@ -821,69 +821,15 @@
 																';
 																$d = $det_recetas->releer();
 															}
-													
-														$cont.='
-																<tr>
-																	<td> 
-																		<textarea name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable.' required="required" st yle="min-width:115px;"></textarea>
-																		<input type="hidden" name="idmedicamentos" id="idmedicamentos">			
-																	</td>
-																	<td><input style="width:45px;" type="text" name="cantdosis" id="cantdosis" '.$disable.' required="required"></td>
-																	<td>
-																		<select name="frecuencia" id="frecuencia" required="required" style="width:70px" '.$disable.'>
-																			<option value="0">Frec.</option>';	
-															$x = $frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO > 0');																								
-															while($x){
-																$cont.='
-																				<option value="'.$frecuencia->obtener('ID_FRECUENCIA_TRATAMIENTO').'" '.$value.'>'.$frecuencia->obtener('ABREVIATURA').'</option>											
-																';
-																$x = $frecuencia->releer();
-															}
-															$cont.='
-																			</select>			
-																		</td>
-																		<td>
-																			<select name="via" id="via" required="required" '.$disable.' style="width:60px">';
-															$x = $vias->buscardonde('ID_VIA > 0');																								
-															while($x){	
-																$cont.='
-																				<option value="'.$vias->obtener('ID_VIA').'" '.$value.'>'.$vias->obtener('ABREVIATURA').'</option>											
-																';
-																$x = $vias->releer();
-															}
-															$cont.='
-																			</select>
-																		</td>
-																		<td><input type="text" name="tratamiento" id="tratamiento" required="required" '.$disable.' style="width:75px;"></td>
-																		<td>
-																			<select name="periodo" id="periodo" required="required" style="width:95px;" '.$disable.'>
-																				<option value="0">Periodo</option>';										
-															$x = $periodo->buscardonde('ID_PERIODO > 0');																								
-															while($x){	
-																$cont.='
-																					<option value="'.$periodo->obtener('ID_PERIODO').'" '.$value.'>'.$periodo->obtener('DESCRIPCION').'</option>											
-																';
-																$x = $periodo->releer();
-															}
-															$cont.='
-																			</select>
-																		</td>
-																		<td>
-																			<textarea name="observaciones" id="observaciones" style="width:110px;" '.$disable.'></textarea>	
-																		</td>
-																		<td>
-																			<button type="submit" class="btn btn-default '.$disableClass.'">Agregar</button>												
-																		</td>														
-																	</tr>
-																';
 													}else{
-															
+														
 														$sql = 'SELECT MAX(ID_DETALLE_RECETA) as id from detalle_receta where id_receta = '.$receta_id.'';
 														$matriz = $ds->db->obtenerArreglo($sql);
 														$id_detalle = $matriz[0][id];
 														$x = $det_recetas->buscardonde('ID_DETALLE_RECETA = '.$id_detalle.'');
 														
 														while($x) {
+															$sw_form = 1;
 																$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');
 
 																$otra_indic = $det_recetas->obtener('OTRAS_INDICACIONES');
@@ -965,7 +911,62 @@
 														}
 
 													}
-													
+													if($sw_form == 0){
+														$cont.='
+																<tr>
+																	<td> 
+																		<textarea name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable.' required="required" st yle="min-width:115px;"></textarea>
+																		<input type="hidden" name="idmedicamentos" id="idmedicamentos">			
+																	</td>
+																	<td><input style="width:45px;" type="text" name="cantdosis" id="cantdosis" '.$disable.' required="required"></td>
+																	<td>
+																		<select name="frecuencia" id="frecuencia" required="required" style="width:70px" '.$disable.'>
+																			<option value="0">Frec.</option>';	
+															$x = $frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO > 0');																								
+															while($x){
+																$cont.='
+																				<option value="'.$frecuencia->obtener('ID_FRECUENCIA_TRATAMIENTO').'" '.$value.'>'.$frecuencia->obtener('ABREVIATURA').'</option>											
+																';
+																$x = $frecuencia->releer();
+															}
+															$cont.='
+																			</select>			
+																		</td>
+																		<td>
+																			<select name="via" id="via" required="required" '.$disable.' style="width:60px">';
+															$x = $vias->buscardonde('ID_VIA > 0');																								
+															while($x){	
+																$cont.='
+																				<option value="'.$vias->obtener('ID_VIA').'" '.$value.'>'.$vias->obtener('ABREVIATURA').'</option>											
+																';
+																$x = $vias->releer();
+															}
+															$cont.='
+																			</select>
+																		</td>
+																		<td><input type="text" name="tratamiento" id="tratamiento" required="required" '.$disable.' style="width:75px;"></td>
+																		<td>
+																			<select name="periodo" id="periodo" required="required" style="width:95px;" '.$disable.'>
+																				<option value="0">Periodo</option>';										
+															$x = $periodo->buscardonde('ID_PERIODO > 0');																								
+															while($x){	
+																$cont.='
+																					<option value="'.$periodo->obtener('ID_PERIODO').'" '.$value.'>'.$periodo->obtener('DESCRIPCION').'</option>											
+																';
+																$x = $periodo->releer();
+															}
+															$cont.='
+																			</select>
+																		</td>
+																		<td>
+																			<textarea name="observaciones" id="observaciones" style="width:110px;" '.$disable.'></textarea>	
+																		</td>
+																		<td>
+																			<button type="submit" class="btn btn-default '.$disableClass.'">Agregar</button>												
+																		</td>														
+																	</tr>
+																';
+													}
 													
 													
 													
