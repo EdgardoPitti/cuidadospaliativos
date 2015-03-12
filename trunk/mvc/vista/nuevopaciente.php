@@ -88,7 +88,7 @@
 	if(!$act_boton){
 		$boton ='<input type="submit" class="btn btn-primary" value="Guardar"/>';
 	}else{
-		$cont.=$script;
+		//$cont.=$script;
 		$cambio ='&ch=1';
 		$boton = '<input type="submit" class="btn btn-primary" value="Guardar Cambios"/>';
 	}
@@ -213,13 +213,13 @@
 															<td style="text-align:left;padding-left:17%;">C&eacute;dula:</td>														
 														</tr>
 														<tr>
-															<td><input type="text" id="cedula" name="cedula" value="'.$datos->obtener('NO_CEDULA').'" placeholder="C&eacute;dula" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="text" id="cedula" name="cedula" value="'.$datos->obtener('NO_CEDULA').'" placeholder="C&eacute;dula"   required="required"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Nacionalidad:</td>
 														</tr>
 														<tr>
-															<td><select id="nacionalidad" name="nacionalidad" onChange="valida(this.value)" required="required">
+															<td><select id="nacionalidad" name="nacionalidad"   required="required">
 																	<option value="0">SELECCIONE NACIONALIDAD</option>';						
 						$n = $nacionalidades->buscardonde('ID_NACIONALIDAD > 0');						
 						while($n){
@@ -283,31 +283,31 @@
 															<td style="text-align:left;padding-left:17%;">Primer Nombre:</td>														
 														</tr>
 														<tr>
-															<td><input type="text" id="primernombre" name="primernombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" placeholder="Primer Nombre" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="text" id="primernombre" name="primernombre" value="'.$datos->obtener('PRIMER_NOMBRE').'" placeholder="Primer Nombre"  required="required"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Segundo Nombre:</td>
 														</tr>
 														<tr>
-															<td><input type="text" id="segundonombre" name="segundonombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'" placeholder="Segundo Nombre" onKeyPress="valida(this.value)"></td>
+															<td><input type="text" id="segundonombre" name="segundonombre" value="'.$datos->obtener('SEGUNDO_NOMBRE').'" placeholder="Segundo Nombre"  ></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Primer Apellido:</td>
 														</tr>
 														<tr>
-															<td><input type="text" id="primerapellido" name="primerapellido" value="'.$datos->obtener('APELLIDO_PATERNO').'" placeholder="Primer Apellido" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="text" id="primerapellido" name="primerapellido" value="'.$datos->obtener('APELLIDO_PATERNO').'" placeholder="Primer Apellido"   required="required"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Segundo Apellido:</td>
 														</tr>
 														<tr>
-															<td><input type="text" id="segundoapellido" name="segundoapellido" value="'.$datos->obtener('APELLIDO_MATERNO').'" placeholder="Segundo Apellido" onKeyPress="valida(this.value)"></td>
+															<td><input type="text" id="segundoapellido" name="segundoapellido" value="'.$datos->obtener('APELLIDO_MATERNO').'" placeholder="Segundo Apellido"  ></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Fecha de Nacimiento:</td>	
 														</tr>
 														<tr>
-															<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$fecha.'" onChange="valida(this.value)" placeholder="AAAA-MM-DD" required="required" max="'.$ds->dime('agno').'-12-31" min="1915-01-01"></td>
+															<td><input type="date" id="fechanacimiento" name="fechanacimiento" value="'.$fecha.'"  placeholder="AAAA-MM-DD" required="required" max="'.$ds->dime('agno').'-12-31" min="1915-01-01"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Lugar de Nacimiento:</td>	
@@ -320,7 +320,7 @@
 														</tr>
 														<tr>
 															<td>
-																<select id="sexo" name="sexo" onChange="valida(this.value)" required="required">
+																<select id="sexo" name="sexo"   required="required">
 																	<option value="">SELECCIONE SEXO</option>';
 						$s = $sexo->buscardonde('ID_SEXO > 0');
 						while($s){
@@ -341,7 +341,7 @@
 														</tr>
 														<tr>
 															<td>
-																<select id="tiposangre" name="tiposangre" style="width:100px" onChange="valida(this.value)" required="required">
+																<select id="tiposangre" name="tiposangre" style="width:100px"   required="required">
 																	<option value="1">SELECCIONE TIPO DE SANGRE</option>';																	
 						$x = $tiposangre->buscardonde("ID_TIPO_SANGUINEO > 0");
 						while($x){
@@ -362,7 +362,7 @@
 														<td style="text-align:left;padding-left:17%;">Etnia:</td>
 													</tr>
 													<tr>
-														<td><select id="etnia" name="etnia" onChange="valida(this.value)" required="required">
+														<td><select id="etnia" name="etnia"   required="required">
 																<option value="1">SELECCIONE ETNIA</option>';																
 						$e = $etnia->buscardonde("ID_ETNIA > 0");
 						while ($e){
@@ -441,20 +441,20 @@
 															<td style="text-align:left;padding-left:17%;">Usuario:</td>	
 														</tr>
 														<tr>
-															<td><input type="text" id="usuario"  name="usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" placeholder="Usuario" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="text" id="usuario"  name="usuario" value="'.$usuarios->obtener('NO_IDENTIFICACION').'" placeholder="Usuario"   required="required"></td>
 														</tr>
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Contrase&ntilde;a:</td>	
 														</tr>
 														<tr>
-															<td><input type="password" id="pass"  name="pass" value="'.$usuarios->obtener('CLAVE_ACCESO').'" placeholder="Contrase&ntilde;a" onKeyPress="valida(this.value)" required="required"></td>
+															<td><input type="password" id="pass"  name="pass" value="'.$usuarios->obtener('CLAVE_ACCESO').'" placeholder="Contrase&ntilde;a"   required="required"></td>
 														</tr>
 														<tr>
 																<td style="text-align:left;padding-left:17%;">Recuperaci&oacute;n de Acceso: </td>
 														</tr>                                                                           
 														<tr>
 																<td>
-																	<select name="preferencia" id="preferencia" onChange="valida(this.value)" required>
+																	<select name="preferencia" id="preferencia"  required>
 																		<option value="0">SELECCIONE PREFERENCIA</option>
 																		<option value="1" '.$preguntas.'>Pregunta</option>
 																		<option value="3" '.$email.'>Correo</option>
@@ -487,7 +487,7 @@
 																<td style="text-align:left;padding-left:17%;">Respuesta pregunta: </td>
 														</tr>                                                                           
 														<tr>
-																<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta" onChange="valida(this.value)" value="'.$respuesta.'"></td>
+																<td><input type="text" id="respuesta" name="respuesta" placeholder="Respuesta Pregunta"   value="'.$respuesta.'"></td>
 														</tr>';
 
 
@@ -499,9 +499,9 @@
 								}
 								$cont.='
 														<tr><td style="text-align:left;padding-left:17%;">Cuidador Primario:</td></tr>
-														<tr><td><input type="text" id="cuidador" name="cuidador" placeholder="Nombre Cuidador" value="'.$datos->obtener('CUIDADOR').'" onKeyPress="valida(this.value)"></td></tr>
+														<tr><td><input type="text" id="cuidador" name="cuidador" placeholder="Nombre Cuidador" value="'.$datos->obtener('CUIDADOR').'"  ></td></tr>
 														<tr><td style="text-align:left;padding-left:17%;">Parentezco Cuidador :</td></tr>
-														<tr><td><input type="text" id="parentezco" name="parentezco" placeholder="Parentezco Cuidador" value="'.$datos->obtener('PARENTEZCO_CUIDADOR').'" onKeyPress="valida(this.value)"></td></tr>
+														<tr><td><input type="text" id="parentezco" name="parentezco" placeholder="Parentezco Cuidador" value="'.$datos->obtener('PARENTEZCO_CUIDADOR').'"  ></td></tr>
 														<tr><td style="text-align:left;padding-left:17%;">Fecha de Ingreso: </td></tr>
 														<tr><td><input type="date" id="fecha_ingreso" name="fecha_ingreso" value="'.$fecha.'" readonly></td></tr>
 													</tbody>
@@ -534,14 +534,14 @@
 															<td  style="text-align:left;padding-left:17%;">Celular:</td>
 														</tr>
 														<tr>
-															<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular" onKeyPress="valida(this.value)"></td>
+															<td><input type="text" id="celular" name="celular" value="'.$datos->obtener('TELEFONO_CELULAR').'" placeholder="Celular"  ></td>
 														</tr>	
 														<tr>
 															<td style="text-align:left;padding-left:17%;">Provincia:</td>
 														</tr>
 														<tr>
 															<td>
-																<select id="provincias" name="provincias" onChange="valida(this.value)" required="required"> 
+																<select id="provincias" name="provincias"   required="required"> 
 																	<option value="">SELECCIONE PROVINCIA</option>';
 												$cont.= 
 										$x = $provincias->buscardonde('ID_PROVINCIA > 0');
@@ -564,7 +564,7 @@
 														</tr>
 														<tr>
 															<td>
-																<select style="width:140px" id="distritos" name="distritos" onChange="valida(this.value)" required="required">
+																<select style="width:140px" id="distritos" name="distritos"   required="required">
 																	<option value="0">SELECCIONE DISTRITO</option>';
 					$d = $distritos->buscardonde('ID_DISTRITO > 0 AND ID_PROVINCIA = '.$idprovincia.'');
 					while($d){
@@ -586,7 +586,7 @@
 														</tr>
 														<tr>
 															<td>
-																<select style="width:140px" id="corregimientos" name="corregimientos" onChange="valida(this.value)" required="required">
+																<select style="width:140px" id="corregimientos" name="corregimientos"   required="required">
 																	<option value="0">SELECCIONE CORREGIMIENTO</option>';
 																				
 					$d = $corregimientos->buscardonde('ID_CORREGIMIENTO > 0 AND ID_DISTRITO = '.$iddistrito.'');
@@ -617,7 +617,7 @@
 														<td style="text-align:left;padding-left:17%;">Zona:</td>
 													</tr>
 													<tr>
-														<td><select id="zona" name="zona" onChange="valida(this.value)" required="required">
+														<td><select id="zona" name="zona"   required="required">
 																<option value="0">SELECCIONE ZONA</option>';
 					$z = $zona->buscardonde('ID_ZONA > 0');
 					while($z){
@@ -645,7 +645,7 @@
 														<td style="text-align:left;padding-left:17%;">Residencia Transitoria:</td>
 													</tr>
 													<tr>
-														<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria" onChange="valida(this.value)">'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
+														<td><textarea  class="textarea" id="residenciatransitoria" name="residenciatransitoria" placeholder="Residencia Transitoria"  >'.$datos->obtener('RESIDENCIA_TRANSITORIA').'</textarea></td>
 													</tr>';
 				}else{
 					$cont.='
@@ -658,7 +658,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td><textarea class="textarea" id="tiporesidencia" name="tiporesidencia" placeholder="Residencia" onChange="valida(this.value)"></textarea></td>
+														<td><textarea class="textarea" id="tiporesidencia" name="tiporesidencia" placeholder="Residencia"  ></textarea></td>
 													</tr>
 													';				
 				}

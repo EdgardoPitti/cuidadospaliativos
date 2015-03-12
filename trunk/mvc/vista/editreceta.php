@@ -8,14 +8,10 @@
 	$idpaciente = $_GET['id'];
 	$t = $_GET['t'];
 	$idc = $_GET['idc'];
-	$idr = $_GET['idr'];
+	$idr = $_GET['idrecipe'];
 	
 	$det_receta->buscardonde('ID_DETALLE_RECETA = '.$idreceta);
 	$det_receta->colocar('ID_MEDICAMENTO', $_POST['idmedicamento']);
-	$det_receta->colocar('ID_FORMA', $_POST['forma']);
-	$det_receta->colocar('CONCENTRACION', $_POST['concentracion']);
-	$det_receta->colocar('ID_UNIDAD', $_POST['unidad']);
-	$det_receta->colocar('ID_DOSIS', $_POST['verbos']);
 	$det_receta->colocar('DOSIS', $_POST['cantdosis']);
 	$det_receta->colocar('ID_FRECUENCIA_TRATAMIENTO', $_POST['frecuencia']);
 	$det_receta->colocar('ID_VIA', $_POST['via']);
@@ -24,5 +20,5 @@
 	$det_receta->colocar('OTRAS_INDICACIONES', $_POST['observaciones']);
 	$det_receta->salvar();
 	
-	echo '<script>location.href="./?url=soap&idsoap='.$idsoap.'&id='.$idpaciente.'&impresion='.$idimp.'&t='.$t.'&idc='.$idc.'&idr='.$idr.'"</script>';
+	echo '<script>location.href="./?url=soap&idsoap='.$idsoap.'&id='.$idpaciente.'&impresion='.$idimp.'&t='.$t.'&idc='.$idc.'&idrecipe='.$idr.'"</script>';
 ?>

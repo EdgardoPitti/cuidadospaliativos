@@ -13,7 +13,6 @@
 	$det_recetas = new Accesatabla('detalle_receta');	
 	$medicamentos = new Accesatabla('medicamentos');
 	$frecuencia = new Accesatabla('frecuencias_tratamientos');
-	$verbos = new Accesatabla('verbos_recetas');
 	$periodo = new Accesatabla('periodo_tratamiento');
 	$idpaciente = $_GET['id'];
 	
@@ -31,13 +30,12 @@
 	$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
 	$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
 	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
-	$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
 	$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 	$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
 	if(!empty($medica)){
-		$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
 		$cuidado = $cuidados->obtener('CUIDADOS');
+		$tratamiento = ''.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
 	}else{
 		$cuidado = 'No posee Cuidado';
 		$tratamiento = 'No posee Tratamiento';
@@ -100,7 +98,7 @@
 						<fieldset>
 							<legend>
 								&Uacute;ltima Consulta
-							</legend>';
+							</legend>';							
 							if(empty($id_soap)){
 								$cont.='<div style="color:red;text-align:center;height:90px;padding-top:30px;">No se le ha registrado consulta a este paciente.</div>';
 							}else{
