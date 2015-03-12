@@ -72,13 +72,12 @@
 	$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'));	
 	$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
 	$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
-	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');		
-	$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
+	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
 	$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 	$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
 	if(!empty($medica)){
-		$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
+		$tratamiento = ''.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
 		$cuidado = $cuidados->obtener('CUIDADOS');
 	}else{
 		$cuidado = 'No posee Cuidado';
@@ -569,7 +568,8 @@
 			}
 			$cont.='Dormir: '.$datos_escala->obtener('DORMIR').'';
 		}
-		if($sw == 0){
+		
+		if(!$det_soap->obtener('ID_ESCALA')){			
 			$disable_diag = 'disabled="disabled"';					
 		}else {
 			$disable_diag = '';		
@@ -657,11 +657,9 @@
 				$idreceta = $recetas->obtener('ID_RECETA');
 				if(!empty($idreceta)){
 					$enlace = '<a href="datospdf.php?idrecipe='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
-					$disable_obs = '';	
 					$disable_class = ''; 		
 				}else{
 					$enlace = '';
-					$disable_obs = 'disabled="disabled"';	
 					$disable_class = 'disabled'; 		
 				}
 				if(!empty($idc)) {
@@ -690,13 +688,13 @@
 							}
 
 							$care = $cuidados->obtener('CUIDADOS');
-							if(!empty($care)) {
-									$disable_med = '';
-									$disableMedClass = ''; 							
+							if(!empty($care)) {		
+									$disable = '';
+									$disableClass = '';	
 									$img = '<img src="./iconos/save.png">';	
-							}else{
-									$disable_med = 'disabled="disabled"';							
-									$disableMedClass = 'disabled';
+							}else{									
+									$disable = 'disabled="disabled"';
+									$disableClass = 'disabled';
 									$img =''; 	
 							}		
 							$cont.='
@@ -712,35 +710,32 @@
 									</form>
 									<form class="form-inline" id="form" method="POST" action="./?url=agregarsoap&sw=5&t='.$_GET['t'].'&id='.$idpaciente.''.$ids.''.$cuidado.''.$receta.'">
 										<center>										
-											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Tratamientos</h4>
-											<a data-toggle="modal" href="#" data-target="#add_medicamento" class="btn btn-primary '.$disableMedClass.'" '.$disable_med.'><i class="icon-plus icon-white"></i> A&ntilde;adir Nuevo Medicamento</a><br/><br/>																				
-											Fecha: <input type="date" name="fechareceta" id="fechareceta" placeholder="AAAA-MM-DD"  required="required" '.$disable_med.' value="'.$recetas->obtener('FECHA_RECETA').'">
-										</center>
+											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Tratamientos</h4>';
+											
+									$z = $recetas->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY FECHA_RECETA DESC');																				
+									if($z == true){
+										$receta_id = $recetas->obtener('ID_RECETA');
+										$cont.='
+											<!-- HISTORIAL DE MEDICAMENTOS -->
+											<h4 style="backgr ound:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;text-decoration:underline">Historial de Medicamentos</h4>																						
 											<div class="overflow overthrow" style="max-height:170px;margin-top:10px;">												
 												<table class="table2 borde-tabla">
 													<thead>
 														<tr class="fd-table">
+															<th>Fecha Aplicaci&oacute;n</th>
 															<th style="min-width:165px;">Medicamento</th>
-															<th style="min-width:165px;">Forma Farmac&eacute;utica</th>
-															<th>Concentraci&oacute;n</th>
-															<th style="min-width:100px;">Unidad</th>
-															<th style="min-width:100px;">Dosis</th>
 															<th>Cant. Dosis</th>
 															<th>Frecuencia</th>
 															<th>V&iacute;a</th>
 															<th>Tratamiento</th>
 															<th style="min-width:120px;">Peri&oacute;do</th>
-															<th style="min-width:100px;">Otras Observaciones</th>		
-															<th></th>												
+															<th style="min-width:100px;">Otras Observaciones</th>											
 														</tr>
 													</thead>
 													<tbody>';
-												$x = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
-												while($x) {
+												while($z) {
+													$det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA'));
 													$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');
-													$formas->buscardonde('ID_TIPO_FORMA = '.$det_recetas->obtener('ID_FORMA').'');
-													$unidad->buscardonde('ID_TIPO_UNIDAD = '.$det_recetas->obtener('ID_UNIDAD').'');
-													$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
 													$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');
 													$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');
 													$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
@@ -752,17 +747,121 @@
 													}
 													$cont.='
 														<tr>
+															<td>'.$recetas->obtener('FECHA_RECETA').'</td>
 															<td>'.$medicamentos->obtener('DESCRIPCION').'</td>
-															<td>'.$formas->obtener('DESCRIPCION').'</td>
-															<td>'.$det_recetas->obtener('CONCENTRACION').'</td>
-															<td>'.$unidad->obtener('ABREVIATURA').'</td>
-															<td>'.$verbos->obtener('DESCRIPCION').'</td>
 															<td>'.$det_recetas->obtener('DOSIS').'</td>
 															<td>'.$frecuencia->obtener('ABREVIATURA').'</td>
 															<td>'.$vias->obtener('ABREVIATURA').'</td>
 															<td>'.$det_recetas->obtener('TRATAMIENTO').'</td>
 															<td>'.$periodo->obtener('DESCRIPCION').'</td>
-															<td>'.$indicaciones.'</td>
+															<td>'.$indicaciones.'</td>												
+														</tr>
+													';
+													$z = $recetas->releer();
+												}
+									$cont.='
+													</tbody>
+												</table>
+											</div><br>											
+									';
+									}
+									
+									$cont.='
+										<a data-toggle="modal" href="#" data-target="#add_medicamento" class="btn btn-primary '.$disableClass.'"><i class="icon-plus icon-white"></i> A&ntilde;adir Nuevo Medicamento</a><br/><br/>																				
+										Fecha: <input type="date" name="fechareceta" id="fechareceta" placeholder="AAAA-MM-DD" '.$disable.' required="required" value="'.$recetas->obtener('FECHA_RECETA').'">
+										</center>
+											<div class="overflow overthrow" style="max-height:170px;margin-top:10px;">												
+												<table class="table2 borde-tabla">
+													<thead>
+														<tr class="fd-table">
+															<th style="min-width:165px;">Medicamento</th>
+															<th>Cant. Dosis</th>
+															<th>Frecuencia</th>
+															<th>V&iacute;a</th>
+															<th>Tratamiento</th>
+															<th style="min-width:120px;">Peri&oacute;do</th>
+															<th style="min-width:100px;">Otras Observaciones</th>		
+															<th></th>												
+														</tr>
+													</thead>
+													<tbody>';
+													
+												$x = $det_recetas->buscardonde('ID_RECETA = '.$receta_id.'');
+												while($x) {
+													$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');
+													//$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');
+													//$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');
+													//$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+													$otra_indic = $det_recetas->obtener('OTRAS_INDICACIONES');
+													if(!empty($otra_indic)) {
+														$indicaciones = $det_recetas->obtener('OTRAS_INDICACIONES');													
+													}else {
+														$indicaciones = "Ninguna Observaci&oacute;n";													
+													}
+													$cont.='
+														<tr>
+															<td> 
+																<textarea name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable.' required="required" st yle="min-width:115px;">'.$medicamentos->obtener('DESCRIPCION').'</textarea>
+																<input type="hidden" name="idmedicamentos" id="idmedicamentos" value="'.$medicamentos->obtener('ID_MEDICAMENTO').'">			
+															</td>
+															<td><input style="width:45px;" type="text" name="cantdosis" id="cantdosis" '.$disable.' required="required" value="'.$det_recetas->obtener('DOSIS').'"></td>
+															<td>
+																<select name="frecuencia" id="frecuencia" required="required" style="width:70px" '.$disable.'>
+																	<option value="0">Frec.</option>';	
+											$x = $frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO > 0');																								
+											while($x){
+												if($frecuencia->obtener('ID_FRECUENCIA_TRATAMIENTO') == $det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO')){
+													$value = 'selected="selected"';												
+												}else {
+													$value = '';
+												}		
+												$cont.='
+																	<option value="'.$frecuencia->obtener('ID_FRECUENCIA_TRATAMIENTO').'" '.$value.'>'.$frecuencia->obtener('ABREVIATURA').'</option>											
+												';
+												$x = $frecuencia->releer();
+											}
+											$cont.='
+																</select>			
+															</td>
+															<td>
+																<select name="via" id="via" required="required" '.$disable.' style="width:60px">';
+											$x = $vias->buscardonde('ID_VIA > 0');																								
+											while($x){	
+												if($vias->obtener('ID_VIA') == $det_recetas->obtener('ID_VIA')){
+													$value = 'selected="selected"';												
+												}else {
+													$value = '';
+												}												
+												$cont.='
+																	<option value="'.$vias->obtener('ID_VIA').'" '.$value.'>'.$vias->obtener('ABREVIATURA').'</option>											
+												';
+												$x = $vias->releer();
+											}
+											$cont.='
+																</select>
+															</td>
+															<td><input type="text" name="tratamiento" id="tratamiento" required="required" '.$disable.' style="width:75px;" value="'.$det_recetas->obtener('TRATAMIENTO').'"></td>
+															<td>
+																<select name="periodo" id="periodo" required="required" style="width:95px;" '.$disable.'>
+																	<option value="0">Periodo</option>';										
+												$x = $periodo->buscardonde('ID_PERIODO > 0');																								
+												while($x){	
+													if($periodo->obtener('ID_PERIODO') == $det_recetas->obtener('ID_PERIODO_TRATAMIENTO')){
+														$value = 'selected="selected"';												
+													}else {
+														$value = '';
+													}												
+													$cont.='
+																		<option value="'.$periodo->obtener('ID_PERIODO').'" '.$value.'>'.$periodo->obtener('DESCRIPCION').'</option>											
+													';
+													$x = $periodo->releer();
+												}
+												$cont.='
+																</select>
+															</td>
+															<td>
+																<textarea name="observaciones" id="observaciones" style="width:110px;" '.$disable.'>'.$indicaciones.'</textarea>	
+															</td>
 															<td>
 																<a href="#modalMedicamento" onclick="obtener('.$det_recetas->obtener('ID_DETALLE_RECETA').')" id=""  class="btn btn-success btn-small" data-toggle="modal"  title="Editar Tratamiento""><span class="icon-pencil icon-white"></span></a>																
 															</td>														
@@ -773,61 +872,19 @@
 												$cont.='
 														<tr>
 															<td>
-																<input type="text" name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable_med.' required="required" style="min-width:115px;">
+																<textarea name="medicamentos" id="medicamentos" placeholder="Medicamentos" '.$disable.' required="required" st yle="min-width:115px;"></textarea>
 																<input type="hidden" name="idmedicamentos" id="idmedicamentos">													
-															</td>
-															<td>
-																<select name="forma" id="forma" required="required" '.$disable_med.' style="width:150px;">
-																	<option value="0">Forma Farmaceutica</option>';										
-											$x = $formas->buscardonde('ID_TIPO_FORMA > 0');																								
-											while($x){												
-												$cont.='
-																	<option value="'.$formas->obtener('ID_TIPO_FORMA').'" '.$value.'>'.$formas->obtener('DESCRIPCION').'</option>											
-												';
-												$x = $formas->releer();
-											}
-												$cont.='
-																</select>
-															</td>
-															<td>
-																<input type="text" name="concentracion" id="concentracion" required="required" '.$disable_med.' style="width:45px">															
 															</td>															
 															<td>
-																<select name="unidad" id="unidad" required="required" '.$disable_med.' style="width:90px;">
-																	<option value="0">Unidad</option>';										
-														$x = $unidad->buscardonde('ID_TIPO_UNIDAD > 0');																								
-														while($x){															
-															$cont.='
-																	<option value="'.$unidad->obtener('ID_TIPO_UNIDAD').'" '.$value.'>'.$unidad->obtener('ABREVIATURA').'</option>											
-															';
-															$x = $unidad->releer();
-														}
-													$cont.='
-																</select>															
+																<input style="width:45px;" type="text" name="cantdosis" id="cantdosis" '.$disable.' required="required">															
 															</td>
 															<td>
-																<select name="verbos" id="verbos" required="required" '.$disable_med.' style="width:73px;">
-																	<option value="0">Dosis</option>';										
-											$x = $verbos->buscardonde('ID_VERBO > 0');																								
-											while($x){												
-												$cont.='
-																	<option value="'.$verbos->obtener('ID_VERBO').'" '.$value.'>'.$verbos->obtener('DESCRIPCION').'</option>											
-												';
-												$x = $verbos->releer();
-											}
-												$cont.='
-																</select>															
-															</td>
-															<td>
-																<input style="width:45px;" type="text" name="cantdosis" id="cantdosis" required="required" '.$disable_med.'>															
-															</td>
-															<td>
-																<select name="frecuencia" id="frecuencia" required="required" '.$disable_med.' style="width:70px">
+																<select name="frecuencia" id="frecuencia" required="required" style="width:70px" '.$disable.'>
 																	<option value="0">Frec.</option>';										
 											$x = $frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO > 0');																								
 											while($x){												
 												$cont.='
-																	<option value="'.$frecuencia->obtener('ID_FRECUENCIA_TRATAMIENTO').'" '.$value.'>'.$frecuencia->obtener('ABREVIATURA').'</option>											
+																	<option value="'.$frecuencia->obtener('ID_FRECUENCIA_TRATAMIENTO').'">'.$frecuencia->obtener('ABREVIATURA').'</option>											
 												';
 												$x = $frecuencia->releer();
 											}
@@ -835,12 +892,12 @@
 																</select>																	
 															</td>
 															<td>
-																<select name="via" id="via" required="required" '.$disable_med.' style="width:60px">
+																<select name="via" id="via" required="required" '.$disable.' style="width:60px">
 																	<option value="0">V&iacute;a</option>';										
 											$x = $vias->buscardonde('ID_VIA > 0');																								
 											while($x){												
 												$cont.='
-																	<option value="'.$vias->obtener('ID_VIA').'" '.$value.'>'.$vias->obtener('ABREVIATURA').'</option>											
+																	<option value="'.$vias->obtener('ID_VIA').'">'.$vias->obtener('ABREVIATURA').'</option>											
 												';
 												$x = $vias->releer();
 											}
@@ -848,15 +905,15 @@
 																</select>															
 															</td>
 															<td>
-																<input type="text" name="tratamiento" id="tratamiento" required="required" '.$disable_med.' style="width:75px;">															
+																<input type="text" name="tratamiento" id="tratamiento" required="required" '.$disable.' style="width:75px;">															
 															</td>
 															<td>
-																<select name="periodo" id="periodo" required="required" '.$disable_med.' style="width:95px;">
+																<select name="periodo" id="periodo" required="required" style="width:95px;" '.$disable.'>
 																	<option value="0">Periodo</option>';										
 											$x = $periodo->buscardonde('ID_PERIODO > 0');																								
 											while($x){												
 												$cont.='
-																	<option value="'.$periodo->obtener('ID_PERIODO').'" '.$value.'>'.$periodo->obtener('DESCRIPCION').'</option>											
+																	<option value="'.$periodo->obtener('ID_PERIODO').'">'.$periodo->obtener('DESCRIPCION').'</option>											
 												';
 												$x = $periodo->releer();
 											}
@@ -864,16 +921,19 @@
 																</select>															
 															</td>
 															<td>
-																<textarea name="observaciones" id="observaciones" style="width:110px;" '.$disable_med.'></textarea>															
+																<textarea name="observaciones" id="observaciones" style="width:110px;" '.$disable.'></textarea>															
 															</td>														
 															<td>
-																<button type="submit" class="btn btn-default" '.$disable_med.'>Agregar</button>												
+																<button type="submit" class="btn btn-default '.$disableClass.'">Agregar</button>												
 															</td>
 														</tr>
 													</tbody>
 												</table>												
 											</div>											
 									</form>
+									
+									<!-- Formulario PopUp para editar receta -->									
+									
 									<div id="modalMedicamento" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										<form method="POST" id="form_receta" class="receta" action="">
 										  <div class="modal-header">
@@ -890,59 +950,7 @@
 										  					<input type="text" name="medicamento" id="medicamento" class="medicamento" placeholder="Medicamentos" required="required" style="width:135px;">
 													 		<input type="hidden" name="idmedicamento" id="idmedicamento" class="idmedicamento">
 										  				</td>
-										  			</tr>
-										  			<tr>
-										  				<td>Forma Farmac&eacute;utica:</td>
-										  				<td>
-										  					<select name="forma" id="forma" class="forma" required="required">
-																<option value="0">Forma Farmaceutica</option>';										
-														$x = $formas->buscardonde('ID_TIPO_FORMA > 0');																								
-														while($x){												
-															$cont.='
-																<option value="'.$formas->obtener('ID_TIPO_FORMA').'">'.$formas->obtener('DESCRIPCION').'</option>											
-															';
-															$x = $formas->releer();
-														}
-															$cont.='
-														 </select>
-										  				</td>
-										  			</tr>
-										  			<tr>
-										  				<td>Concentraci&oacute;n:</td>
-										  				<td><input type="text" name="concentracion" id="concentracion" class="concentracion" required="required" style="width:135px;"></td>
-										  			</tr>
-										  			<tr>
-										  				<td>Unidad:</td>
-										  				<td>
-										  					<select name="unidad" id="unidad" class="unidad" required="required">
-																<option value="0">Unidad</option>';										
-													$x = $unidad->buscardonde('ID_TIPO_UNIDAD > 0');																								
-													while($x){															
-														$cont.='
-																<option value="'.$unidad->obtener('ID_TIPO_UNIDAD').'">'.$unidad->obtener('ABREVIATURA').'</option>											
-														';
-														$x = $unidad->releer();
-													}
-												$cont.='
-															</select>	
-										  				</td>
-										  			</tr>
-										  			<tr>
-										  				<td>Dosis:</td>
-										  				<td>
-										  					<select name="verbos" id="verbos" class="dosis" required="required">
-																<option value="0">Dosis</option>';										
-										$x = $verbos->buscardonde('ID_VERBO > 0');																								
-										while($x){												
-											$cont.='
-																<option value="'.$verbos->obtener('ID_VERBO').'">'.$verbos->obtener('DESCRIPCION').'</option>											
-											';
-											$x = $verbos->releer();
-										}
-											$cont.='
-															</select>
-										  				</td>
-										  			</tr>
+										  			</tr>										  			
 										  			<tr>
 										  				<td>Cant. Dosis:</td>
 										  				<td><input  type="text" name="cantdosis" id="cantdosis" class="cant" required="required" style="width:135px;"></td>
@@ -1064,10 +1072,10 @@
 			}
 			$cont.='
 											<tr>
-												<td><textarea name="observaciones" placeholder="Observaciones" '.$disable_obs.'>'.$soap->obtener('OBSERVACIONES').'</textarea>'.$img.'</td>
+												<td><textarea name="observaciones" placeholder="Observaciones" '.$disable.'>'.$soap->obtener('OBSERVACIONES').'</textarea>'.$img.'</td>
 											</tr>
 											<tr>
-												<td><button type="submit" class="btn btn-default" '.$disable_obs.'>Guardar</button></td>											
+												<td><button type="submit" class="btn btn-default '.$disableClass.'">Guardar</button></td>											
 											</tr>
 										</table>
 									</form>										
@@ -1081,7 +1089,7 @@
 											<td>SURCO</td>
 										</tr>
 										<tr>
-											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'&t='.$_GET['t'].'" '.$disable_obs.' class="btn btn-primary '.$disable_class.'">SURCO</a></td>
+											<td><a href="./?url=domiciliaria_surco&idp='.$idpaciente.''.$ids.'&t='.$_GET['t'].'" class="btn btn-primary '.$disableClass.'">SURCO</a></td>
 										</tr>
 									</table>
 								</div>';

@@ -257,7 +257,7 @@ $('document').ready(function() {
 		mustMatch: true,
 		selectFirst: false
 	});
-	$("#medicamentos").result(function(event, data, formatted) {
+	$("#medicamentos").result(function(event, data, formatted) {		
    	$("#medicamentos").val(data[0]); 
 		$("#idmedicamentos").val(data[1]);
 	}); 

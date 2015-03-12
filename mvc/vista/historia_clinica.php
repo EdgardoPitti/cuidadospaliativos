@@ -236,17 +236,15 @@
 							$num = 0;
 							while($z) {
 								$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');								
-								$verbos->buscardonde('ID_VERBO = '.$det_recetas->obtener('ID_DOSIS').'');
-								$unidad->buscardonde('ID_TIPO_UNIDAD = '.$det_recetas->obtener('ID_UNIDAD'));
 								$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 								$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 								
 								$id_cuid_trat = $det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS');
 								if(!empty($id_cuid_trat)) {
 									$n = '#'.$num += 1;
-									$tratamiento = ''.$verbos->obtener('DESCRIPCION').' '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' de '.$det_recetas->obtener('CONCENTRACION').''.$unidad->obtener('ABREVIATURA').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
+									$tratamiento = ''.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'';
 							
-									$id_receta = '&idr='.$det_recetas->obtener('ID_RECETA');		
+									$id_receta = '&idrecipe='.$det_recetas->obtener('ID_RECETA');		
 								}else{
 									$n = '';
 									$tratamiento = 'No tiene Tratamientos M&eacute;dicos';

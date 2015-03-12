@@ -107,17 +107,12 @@
 		$matriz = $ds->db->obtenerArreglo($sql);
 		$id_receta = $matriz[0][ID];
 		if(!empty($_GET['rid'])) {
-			echo $_GET['rid'];
 			$det_recetas->buscardonde('ID_DETALLE_RECETA = '.$_GET['rid'].'');		
 		}else {
 			$det_recetas->nuevo();
 		}
 		$det_recetas->colocar('ID_RECETA', $id_receta);
 		$det_recetas->colocar('ID_MEDICAMENTO', $_POST['idmedicamentos']);
-		$det_recetas->colocar('ID_FORMA', $_POST['forma']);
-		$det_recetas->colocar('CONCENTRACION', $_POST['concentracion']);
-		$det_recetas->colocar('ID_UNIDAD', $_POST['unidad']);
-		$det_recetas->colocar('ID_DOSIS', $_POST['verbos']);
 		$det_recetas->colocar('DOSIS', $_POST['cantdosis']);
 		$det_recetas->colocar('ID_FRECUENCIA_TRATAMIENTO', $_POST['frecuencia']);
 		$det_recetas->colocar('ID_VIA', $_POST['via']);
