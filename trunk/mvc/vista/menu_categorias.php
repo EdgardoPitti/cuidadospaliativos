@@ -32,19 +32,21 @@
 	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
 	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
 	if(!empty($medica)){
-		While($x){
+		while($x){
 			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
 			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 			$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 			$tratamiento .= ''.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
 			$x = $det_recetas->releer();
 		}
-		$cuidado = $cuidados->obtener('CUIDADOS');
 	}else{
-		$cuidado = 'No posee Cuidado';
 		$tratamiento = 'No posee Tratamiento';
 	}
-	
+	if(empty($cuidados->obtener('CUIDADOS'))){
+		$cuidado = 'No posee Cuidado';
+	}else{
+		$cuidado = $cuidados->obtener('CUIDADOS');
+	}
 	if ($personas->obtener('ID_SEXO') == 1){
 		$sexo = 'MASCULINO';
 	}else{
