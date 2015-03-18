@@ -74,12 +74,13 @@
 	$x = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
 	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
 	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
+	$cant_trat = 1;
 	if(!empty($medica)){
-		While($x){
+		while($x){
 			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
 			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 			$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
-			$tratamiento .= ''.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
+			$tratamiento .= $cant_trat++.') '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
 			$x = $det_recetas->releer();
 		}
 		$cuidado = $cuidados->obtener('CUIDADOS');
@@ -163,7 +164,11 @@
 													<td><b>Cuidado:</b> '.$cuidado.'</td>
 											</tr>
 											<tr>
-												<td>'.$tratamiento.'</td>									
+												<td>
+													<div class="overthrow" style="height:45px;overflow:auto;">
+														'.$tratamiento.'
+													</div>
+												</td>									
 											</tr>	
 										</table>
 									</div>';
@@ -772,7 +777,8 @@
 									$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
 									$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').' AND ID_CUIDADOS_TRATAMIENTOS <> 0');
 									$sw_receta = 0;
-									if(empty($recetas->obtener('ID_RECETA'))){	
+									$r=$recetas->obtener('ID_RECETA');
+									if(empty($r)){	
 										$fecha = $ds->dime('fecha');
 									}else{
 										$fecha = $recetas->obtener('FECHA_RECETA');
@@ -1070,7 +1076,7 @@
 								</div>
 							</div>			
 						</div>
-						<form class="form-inline" method="POST" action="./?url=addmedicamento'.$ids.''.$id_imp.'" style="margin:0px">
+						<form class="form-inline" method="POST" action="./?url=addmedicamento&id='.$idpaciente.''.$ids.''.$id_imp.'&t='.$t.''.$cuidado.''.$receta.'" style="margin:0px">
 							<div id="add_medicamento" class="modal hide fade in" style="display: none; ">  						
 								<div class="modal-header">  
 									<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  

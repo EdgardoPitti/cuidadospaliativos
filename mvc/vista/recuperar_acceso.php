@@ -48,8 +48,8 @@
 			$cont.= 'Sus datos han sido enviado a su correo.<br><br>
 						<a href="./?url=login" title="Ir a Login">Ir a Login.</a>			
 			';
-			$para = "ed_joel28@hotmail.com";
-			$titulo = "Recuperacion de Acceso Sistema de Gestión de Cuidados Paliativos Panamá";
+			$para = $autenticacion->obtener('E_MAIL_PREFERENCIAL');
+			$titulo = "Recuperacion de Acceso Sistema de Gesti&oacute;n de Cuidados Paliativos Panamá";
 			$mensaje = "Sus datos para ingresar al sistema de Gestión de Cuidados Paliativos Panamá son: \nUsuario: ".$usuarios->obtener('NO_IDENTIFICACION')."\nPassword: ".$usuarios->obtener('CLAVE_ACCESO')."";
 			$cabeceras = 'From: soporte@gisespanama.org';
 			mail($para,$titulo,$mensaje,$cabeceras);
