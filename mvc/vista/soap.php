@@ -69,10 +69,10 @@
 	$det_soap->buscardonde('ID_SOAP = '.$id_soap.'');
 	
 	/*rellenar campos de cuidados y tratamientos*/	
-	$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS'));	
-	$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').'');
-	$x = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').'');
-	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
+	$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').' AND ID_CUIDADOS_TRATAMIENTOS <> 0');	
+	$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').' AND ID_CUIDADOS_TRATAMIENTOS <> 0');
+	$x = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').' AND ID_RECETA <> 0');
+	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').' AND ID_MEDICAMENTO <> 0');	
 	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
 	$cant_trat = 1;
 	if(!empty($medica)){
