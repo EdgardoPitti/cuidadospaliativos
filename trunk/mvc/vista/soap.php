@@ -46,7 +46,7 @@
 	$especialidad = new Accesatabla('especialidades_medicas');
 	$atencion = new Accesatabla('atencion_paciente');
 	
-	$paciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
+	$paciente->buscardonde('ID_PACIENTE = '.$idpaciente.' AND ID_PACIENTE <> 0');
 	if ($paciente->obtener('ID_SEXO') == 1){
 		$sexo = 'MASCULINO';
 	}else{
@@ -59,14 +59,14 @@
 	$matriz = $ds->db->obtenerArreglo($sql);	
 	$id_soap = $matriz[0][id];
 	
-	$soap->buscardonde('ID_SOAP = '.$id_soap.'');
+	$soap->buscardonde('ID_SOAP = '.$id_soap.' AND ID_SOAP <> 0');
 	list($agno, $month, $day) = explode("-", $soap->obtener('FECHA'));
 	$sql = 'SELECT MAX(ID_ESCALA) AS ID FROM escala_edmonton WHERE ID_PACIENTE = '.$idpaciente.'';
 	$arreglo = $ds->db->obtenerArreglo($sql);
 	$idescala = $arreglo[0][ID];
 	
-	$datos_escala->buscardonde('ID_ESCALA = '.$idescala.' AND FECHA = "'.$soap->obtener('FECHA').'"');	//Compara junto a la fecha
-	$det_soap->buscardonde('ID_SOAP = '.$id_soap.'');
+	$datos_escala->buscardonde('ID_ESCALA = '.$idescala.' AND FECHA = "'.$soap->obtener('FECHA').'" AND ID_ESCALA <> 0');	//Compara junto a la fecha
+	$det_soap->buscardonde('ID_SOAP = '.$id_soap.' AND ID_SOAP <> 0');
 	
 	/*rellenar campos de cuidados y tratamientos*/	
 	$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').' AND ID_CUIDADOS_TRATAMIENTOS <> 0');	
@@ -77,8 +77,8 @@
 	$cant_trat = 1;
 	if(!empty($medica)){
 		while($x){
-			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
-			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
+			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').' AND ID_MEDICAMENTO <> 0');	
+			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').' AND ID_FRECUENCIA_TRATAMIENTO <> 0');	
 			$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
 			$tratamiento .= $cant_trat++.') '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
 			$x = $det_recetas->releer();
@@ -290,9 +290,9 @@
 				</div>						
 				';
 			
-			$soap->buscardonde('ID_SOAP = '.$idsoap);
-			$det_soap->buscardonde('ID_SOAP = '.$idsoap);
-			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA'));
+			$soap->buscardonde('ID_SOAP = '.$idsoap ' AND ID_SOAP <> 0');
+			$det_soap->buscardonde('ID_SOAP = '.$idsoap.' AND ID_SOAP <> 0');
+			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').' AND ID_ESCALA <> 0');
 						
 			
 			if($t == 2){
@@ -308,7 +308,7 @@
 									</center>
 								</div>';
 			
-					$a = $atencion->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY ID_ATENCION DESC');
+					$a = $atencion->buscardonde('ID_PACIENTE = '.$idpaciente.' AND ID_PACIENTE <> 0 ORDER BY ID_ATENCION DESC');
 					if($a){
 							$cont.='
 								<center><h3 style="background:#e9e9e9;padding-top:7px;padding-bottom:7px;width:100%;">Atenciones del Paciente</h3></center>
@@ -629,7 +629,7 @@
 												</thead>	
 												<tbody>';
 												
-									$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').'');
+									$x = $det_imp_diag->buscardonde('ID_IMPRESION_DIAGNOSTICA = '.$det_soap->obtener('ID_IMPRESION_DIAGNOSTICA').' AND ID_IMPRESION_DIAGNOSTICA <> 0');
 									while($x) {
 										$cie10->buscardonde('ID_CIE10 = "'.$det_imp_diag->obtener('ID_CIE10').'"');
 										
@@ -664,8 +664,8 @@
 				if($id_cuidado == 0){
 					$id_cuidado = '"" AND ID_CUIDADOS_TRATAMIENTOS <> 0';
 				}
-				$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
-				$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado);	
+				$cuidados->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado.' AND ID_CUIDADOS_TRATAMIENTOS <> 0');	
+				$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$id_cuidado.' AND ID_CUIDADOS_TRATAMIENTOS <> 0');	
 				$idreceta = $recetas->obtener('ID_RECETA');
 				if(!empty($idreceta)){
 					$enlace = '<a href="datospdf.php?idrecipe='.$recetas->obtener('ID_RECETA').'&imprimir=1" class="btn btn-primary" title="Imprimir" target="_blank" onclick="window.open(this.href); return false;"><i class="icon-print icon-white"></i> Imp. Receta</a><br>';
@@ -724,7 +724,7 @@
 										<center>										
 											<h4 style="background:#e9e9e9;margin-left:-9px;padding:7px 4px 7px 5px;width:100%;">Tratamientos</h4>';
 											
-									$z = $recetas->buscardonde('ID_PACIENTE = '.$idpaciente.' ORDER BY ID_RECETA DESC');																				
+									$z = $recetas->buscardonde('ID_PACIENTE = '.$idpaciente.' AND ID_PACIENTE <> 0 ORDER BY ID_RECETA DESC');																				
 									if($z == true){
 										$cont.='
 											<!-- HISTORIAL DE MEDICAMENTOS -->
@@ -745,12 +745,12 @@
 													</thead>
 													<tbody>';
 												while($z) {
-													$d = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').' ORDER BY ID_DETALLE_RECETA DESC');
+													$d = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').' AND ID_RECETA <> 0 ORDER BY ID_DETALLE_RECETA DESC');
 													while($d){
-														$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');
-														$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');
+														$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').' AND ID_MEDICAMENTO <> 0');
+														$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').' AND ID_FRECUENCIA_TRATAMIENTO <> 0');
 														$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');
-														$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+														$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').' AND ID_PERIODO <> 0');
 														$cont.='
 															<tr>
 																<td>'.$recetas->obtener('FECHA_RECETA').'</td>
@@ -777,7 +777,7 @@
 									$sql = 'Select max(ID_RECETA) as id from recetas_medicas where ID_PACIENTE = '.$idpaciente.' ';
 									$matriz = $ds->db->ObtenerArreglo($sql);									
 									$receta_id = $matriz[0][id];
-									$det_soap->buscardonde('ID_SOAP = '.$idsoap.'');
+									$det_soap->buscardonde('ID_SOAP = '.$idsoap.' AND ID_SOAP <> 0');
 									$recetas->buscardonde('ID_CUIDADOS_TRATAMIENTOS = '.$det_soap->obtener('ID_CUIDADOS_TRATAMIENTOS').' AND ID_CUIDADOS_TRATAMIENTOS <> 0');
 									$sw_receta = 0;
 									$r=$recetas->obtener('ID_RECETA');
@@ -809,12 +809,12 @@
 													</thead>
 													<tbody>';
 													if($sw_receta == 1){
-															$d = $det_recetas->buscardonde('ID_RECETA = '.$receta_id.'');
+															$d = $det_recetas->buscardonde('ID_RECETA = '.$receta_id.' AND ID_RECETA <> 0');
 															While($d){
-																$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');
-																$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');
-																$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').'');
-																$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
+																$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').' AND ID_MEDICAMENTO <> 0');
+																$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').' AND ID_FRECUENCIA_TRATAMIENTO <> 0');
+																$vias->buscardonde('ID_VIA = '.$det_recetas->obtener('ID_VIA').' AND ID_VIA <> 0');
+																$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').' AND ID_PERIODO_TRATAMIENTO <> 0');
 																$cont.='
 																	<tr>
 																		<td>'.$medicamentos->obtener('DESCRIPCION').'</td>
@@ -835,11 +835,11 @@
 														$sql = 'SELECT MAX(ID_DETALLE_RECETA) as id from detalle_receta where id_receta = '.$receta_id.'';
 														$matriz = $ds->db->obtenerArreglo($sql);
 														$id_detalle = $matriz[0][id];
-														$x = $det_recetas->buscardonde('ID_DETALLE_RECETA = '.$id_detalle.'');
+														$x = $det_recetas->buscardonde('ID_DETALLE_RECETA = '.$id_detalle.' AND ID_DETALLE_RECETA <> 0');
 														
 														while($x) {
 															$sw_form = 1;
-																$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');
+																$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').' AND ID_MEDICAMENTO <> 0');
 
 																$otra_indic = $det_recetas->obtener('OTRAS_INDICACIONES');
 																if(!empty($otra_indic)) {
