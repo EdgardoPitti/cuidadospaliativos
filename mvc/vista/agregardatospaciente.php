@@ -112,8 +112,15 @@
 		$datospaciente->salvar();
 		//
 		if($sbm <> 6){
-			$usuarios->colocar("NO_IDENTIFICACION", $_POST['usuario']);
-			$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
+			if(empty($_POST['usuario'])){
+				$no_identificacion = $_POST['cedula'];
+				$pass = strtolower($_POST['primernombre'].''.$_POST['primerapellido']);
+			}else{
+				$no_identificacion = $_POST['usuario'];
+				$pass = $_POST['pass'];
+			}
+			$usuarios->colocar("NO_IDENTIFICACION", $no_identificacion);
+			$usuarios->colocar("CLAVE_ACCESO", $pass);
 			$usuarios->colocar("ID_GRUPO_USUARIO", 2);
 			$usuarios->salvar();
 		}
