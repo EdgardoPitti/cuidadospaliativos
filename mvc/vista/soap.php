@@ -736,7 +736,7 @@
 														<tr class="fd-table">
 															<th>Fecha Aplicaci&oacute;n</th>
 															<th style="min-width:165px;">Medicamento</th>
-															<th>Cant. Dosis</th>
+															<th>Cantidad</th>
 															<th>Frecuencia</th>
 															<th>V&iacute;a</th>
 															<th>Tratamiento</th>
@@ -799,7 +799,7 @@
 													<thead>
 														<tr class="fd-table">
 															<th style="min-width:165px;">Medicamento</th>
-															<th>Cant. Dosis</th>
+															<th>Cantidad</th>
 															<th>Frecuencia</th>
 															<th>V&iacute;a</th>
 															<th>Tratamiento</th>
