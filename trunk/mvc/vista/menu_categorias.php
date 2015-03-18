@@ -42,7 +42,8 @@
 	}else{
 		$tratamiento = 'No posee Tratamiento';
 	}
-	if(empty($cuidados->obtener('CUIDADOS'))){
+	$c = $cuidados->obtener('CUIDADOS'),
+	if(empty($c)){
 		$cuidado = 'No posee Cuidado';
 	}else{
 		$cuidado = $cuidados->obtener('CUIDADOS');

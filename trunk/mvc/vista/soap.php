@@ -86,7 +86,8 @@
 	}else{
 		$tratamiento = 'No posee Tratamiento';
 	}
-	if(empty($cuidados->obtener('CUIDADOS'))){
+	$c = $cuidados->obtener('CUIDADOS');
+	if(empty($c)){
 		$cuidado = 'No posee Cuidado';
 	}else{
 		$cuidado = $cuidados->obtener('CUIDADOS');
@@ -290,7 +291,7 @@
 				</div>						
 				';
 			
-			$soap->buscardonde('ID_SOAP = '.$idsoap ' AND ID_SOAP <> 0');
+			$soap->buscardonde('ID_SOAP = '.$idsoap.' AND ID_SOAP <> 0');
 			$det_soap->buscardonde('ID_SOAP = '.$idsoap.' AND ID_SOAP <> 0');
 			$datos_escala->buscardonde('ID_ESCALA = '.$det_soap->obtener('ID_ESCALA').' AND ID_ESCALA <> 0');
 						
