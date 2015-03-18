@@ -31,18 +31,19 @@
 	$x = $det_recetas->buscardonde('ID_RECETA = '.$recetas->obtener('ID_RECETA').' AND ID_RECETA <> 0');
 	$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').' AND ID_MEDICAMENTO <> 0');	
 	$medica = $medicamentos->obtener('ID_MEDICAMENTO');
+	$cant_trat = 1;
 	if(!empty($medica)){
 		while($x){
 			$medicamentos->buscardonde('ID_MEDICAMENTO = '.$det_recetas->obtener('ID_MEDICAMENTO').'');	
 			$frecuencia->buscardonde('ID_FRECUENCIA_TRATAMIENTO = '.$det_recetas->obtener('ID_FRECUENCIA_TRATAMIENTO').'');	
 			$periodo->buscardonde('ID_PERIODO = '.$det_recetas->obtener('ID_PERIODO_TRATAMIENTO').'');
-			$tratamiento .= ''.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
+			$tratamiento .=  $cant_trat++.') '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
 			$x = $det_recetas->releer();
 		}
 	}else{
 		$tratamiento = 'No posee Tratamiento';
 	}
-	$c = $cuidados->obtener('CUIDADOS'),
+	$c = $cuidados->obtener('CUIDADOS');
 	if(empty($c)){
 		$cuidado = 'No posee Cuidado';
 	}else{
@@ -125,7 +126,11 @@
 													<td><b>Cuidado:</b>'.$cuidado.'</td>
 											</tr>
 											<tr>
-												<td>'.$tratamiento.'</td>									
+												<td>
+													<div class="overthrow" style="height:45px;overflow:auto;">
+														'.$tratamiento.'
+													</div>
+												</td>									
 											</tr>	
 										</table>
 									</div>';
