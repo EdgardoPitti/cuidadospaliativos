@@ -83,10 +83,13 @@
 			$tratamiento .= $cant_trat++.') '.$det_recetas->obtener('DOSIS').' '.$medicamentos->obtener('DESCRIPCION').' '.$frecuencia->obtener('ABREVIATURA').' POR '.$det_recetas->obtener('TRATAMIENTO').' '.$periodo->obtener('DESCRIPCION').'<br>';
 			$x = $det_recetas->releer();
 		}
-		$cuidado = $cuidados->obtener('CUIDADOS');
 	}else{
-		$cuidado = 'No posee Cuidado';
 		$tratamiento = 'No posee Tratamiento';
+	}
+	if(empty($cuidados->obtener('CUIDADOS'))){
+		$cuidado = 'No posee Cuidado';
+	}else{
+		$cuidado = $cuidados->obtener('CUIDADOS');
 	}
 	
 	if($t == 1) {	
