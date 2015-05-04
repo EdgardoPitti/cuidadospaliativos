@@ -138,7 +138,7 @@
 							<div class="featurette">
 								<img class="featurette-image pull-right" src="./iconos/UTP.png" style="width:40px;height:40px;margin-top:-5px;">
 						      <img class="featurette-image pull-right" src="./iconos/giseslogotrans.png" style="width:100px;border-radius:7px;margin:-3px 5px 0px;">
-								<p class="lead" style="padding-top:4px">Derechos Reservados 2013-2014</p>
+								<p class="lead" style="padding-top:4px">Derechos Reservados</p>
 						   </div> 
 			
 		            </div>
