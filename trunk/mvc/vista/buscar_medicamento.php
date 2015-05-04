@@ -15,7 +15,7 @@
 		$ds = new diseno();
 
 		// Conexi�n a la base de datos, cambiar los par�metros si se requiere
-		$conexionBD = mysqli_connect('localhost','root','sql','admproy_cuidados_paliativos_panama');
+		$conexionBD = mysqli_connect('localhost','root','sql','paliativos');
 		//$conexionBD = mysqli_connect('mysql3000.mochahost.com','admproy_panama','cppanama2014','admproy_cuidados_paliativos_panama'); 
         
         if (!$conexionBD) {

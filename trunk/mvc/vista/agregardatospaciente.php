@@ -36,9 +36,7 @@
 				$residencia->nuevo();
 				$usuarios->nuevo();
 				//se crea un nuevo
-				$datospaciente->nuevo();
-				//Si el registro es nuevo es necesario colocar la cedula, en caso contrario no
-				$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
+				$datospaciente->nuevo();				
 			}
 		}else{
 			$datospaciente->buscardonde('ID_PACIENTE = '.$idpaciente.'');
@@ -84,6 +82,7 @@
 				//Se almacena el id max en la variable $idresidencia
 				$idresidencia = $id[0][id];
 		}
+		$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
 		$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
 		$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
 		$datospaciente->colocar("SEGUNDO_NOMBRE", $_POST['segundonombre']);

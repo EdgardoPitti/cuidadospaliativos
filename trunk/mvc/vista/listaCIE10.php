@@ -18,7 +18,7 @@
 		include_once('../modelo/diseno.php');	
 		$ds = new diseno();
         // Conexión a la base de datos, cambiar los parámetros si se requiere
-        $conexionBD = mysqli_connect('localhost','root','sql','cuidados_paliativos_panama');
+        $conexionBD = mysqli_connect('localhost','root','sql','paliativos');
 		//$conexionBD = mysqli_connect('mysql3000.mochahost.com','admproy_panama','cppanama2014','admproy_cuidados_paliativos_panama'); 
         if (!$conexionBD) {
             die('No se pudo conectar: ' . mysqli_error($conexionBD));

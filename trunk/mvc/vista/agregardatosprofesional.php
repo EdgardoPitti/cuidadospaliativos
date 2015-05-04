@@ -37,10 +37,10 @@
 		}else{
 			$datos_prof_salud->buscardonde('ID_PROFESIONAL = '.$idp.'');
 			$prof_salud->buscardonde('ID_PROFESIONAL = '.$idp.'');
-			$usuarios->buscardonde('ID_USUARIO = '.$prof_salud->obtener('ID_USUARIO').'');
-			$preferencias->buscardonde('ID_USUARIO = '.$prof_salud->obtener('ID_USUARIO').'');
-			$autenticacion->buscardonde('ID_USUARIO = '.$prof_salud->obtener('ID_USUARIO').'');
 			$idusuario = $prof_salud->obtener('ID_USUARIO');
+			$usuarios->buscardonde('ID_USUARIO = '.$idusuario.'');
+			$preferencias->buscardonde('ID_USUARIO = '.$idusuario.'');
+			$autenticacion->buscardonde('ID_USUARIO = '.$idusuario.'');
 		}
 		
 		$pregunta = 0;
@@ -79,6 +79,8 @@
 		$datos_prof_salud->salvar();
 		
 		$usuarios->colocar("ID_GRUPO_USUARIO", $_POST['grupo_usuario']);
+		$usuarios->colocar("CLAVE_ACCESO", $_POST['pass']);
+		$usuarios->colocar("NO_IDENTIFICACION", $_POST['usuario']);
 		$usuarios->salvar();
 		
 		if(!empty($idp)){
@@ -86,6 +88,6 @@
 			$prof_salud->salvar();
 		}
 		include_once('./mvc/vista/addmedico.php');
-		echo '<SCRIPT LANGUAGE="javascript">location.href = "./?url=addmedico&idp='.$idp.'&&sbm=5"</SCRIPT>';
+		echo '<SCRIPT LANGUAGE="javascript">location.href = "./?url=addmedico&idp='.$idp.'&sbm=5"</SCRIPT>';
 	}
 ?>

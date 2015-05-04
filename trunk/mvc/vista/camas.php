@@ -47,7 +47,7 @@
 					</table>
 				</div>
 				'.$img.'
-				<form id="form" method="POST" action="./?url=addcama&id='.$id.'">
+				<form id="form" method="POST" action="./?url=addcama&id='.$id.'&sbm='.$_GET['sbm'].'">
 					<table>
 						<tr>
 							<td>Cama: </td>

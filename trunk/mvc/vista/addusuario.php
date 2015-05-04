@@ -11,12 +11,14 @@
 		$id = $_GET['id'];
 		if(!empty($id)){
 			$usuario->buscardonde('ID_USUARIO = '.$id.'');
+			$grupo = $usuario->obtener('ID_GRUPO_USUARIO');
 		}else{
 			$usuario->nuevo();
+			$grupo = 1;
 		}
 		$usuario->colocar("NO_IDENTIFICACION", $_POST['no_identificacion']);
 		$usuario->colocar("CLAVE_ACCESO", $_POST['clave']);
-		$usuario->colocar("ID_GRUPO_USUARIO", 1);
+		$usuario->colocar("ID_GRUPO_USUARIO", $grupo);
 		$usuario->salvar();
 		if(!empty($id)){
 			$preferencias->buscardonde('ID_USUARIO = '.$id.'');
