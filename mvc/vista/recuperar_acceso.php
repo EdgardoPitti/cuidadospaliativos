@@ -49,8 +49,8 @@
 						<a href="./?url=login" title="Ir a Login">Ir a Login.</a>			
 			';
 			$para = $autenticacion->obtener('E_MAIL_PREFERENCIAL');
-			$titulo = "Recuperacion de Acceso Sistema de Gesti&oacute;n de Cuidados Paliativos Panamá";
-			$mensaje = "Sus datos para ingresar al sistema de Gestión de Cuidados Paliativos Panamá son: \nUsuario: ".$usuarios->obtener('NO_IDENTIFICACION')."\nPassword: ".$usuarios->obtener('CLAVE_ACCESO')."";
+			$titulo = "Recuperacion de Acceso Sistema de Gestion de Cuidados Paliativos Panama";
+			$mensaje = "Sus datos para ingresar al sistema de Gestion de Cuidados Paliativos Panama son: \nUsuario: ".$usuarios->obtener('NO_IDENTIFICACION')."\nPassword: ".$usuarios->obtener('CLAVE_ACCESO')."";
 			$cabeceras = 'From: soporte@gisespanama.org';
 			mail($para,$titulo,$mensaje,$cabeceras);
 		}elseif($preferencias->obtener('USAR_TELEFONO_PREFERENCIAL') == 1){

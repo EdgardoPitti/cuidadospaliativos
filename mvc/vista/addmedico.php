@@ -40,7 +40,7 @@
 						  </span>
 						</div>
 				</form>';
-	$d = $datos->buscardonde('NO_CEDULA = "'.$cedula.'" OR ID_PROFESIONAL = "'.$cedula.'"');
+	$d = $datos->buscardonde('NO_CEDULA = "'.$cedula.'"');
 	if($d){
 		$readonly = 'readonly';
 		$profesional->buscardonde('ID_PROFESIONAL = '.$datos->obtener('ID_PROFESIONAL').'');
