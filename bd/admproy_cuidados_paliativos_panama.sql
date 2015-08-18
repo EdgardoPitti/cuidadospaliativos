@@ -1,11 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 3.4.11.1
--- http://www.phpmyadmin.net
---
--- Servidor: mysql3000.mochahost.com
--- Tiempo de generación: 06-03-2015 a las 08:27:03
--- Versión del servidor: 5.5.42
--- Versión de PHP: 5.4.23
+CREATE DATABASE  IF NOT EXISTS `admproy_cuidados_paliativos_panama` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `admproy_cuidados_paliativos_panama`;
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
