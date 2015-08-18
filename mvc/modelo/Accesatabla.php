@@ -1,4 +1,5 @@
 <?php	class Accesatabla {
+	
 	private $db=null, $estatabla, $esnuevo, $registro, $totaldelineas, $estalinea, $totaldecampos=0, $ultimosql='' ;
 	private $cambiados = array () , $contenido = array ();
 	private $tipocampo = array () , $loscampos = array ();

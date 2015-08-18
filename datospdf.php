@@ -1,8 +1,8 @@
 <?php
 	include_once('./mvc/modelo/Accesatabla.php');
 	include_once('./mvc/modelo/diseno.php');
+	error_reporting(E_ALL & E_NOTICE & E_WARNING & E_DEPRECATED);
 	$ds = new Diseno();
-	
 	$personas = new Accesatabla('datos_pacientes');
 	$residencia = new Accesatabla('residencia_habitual');	
 	$especialidades = new Accesatabla('especialidades_medicas');
@@ -14,19 +14,17 @@
 	$datos_profesional = new Accesatabla('datos_profesionales_salud');
 	$profesional = new Accesatabla('profesionales_salud');
 	$servicios = new Accesatabla('servicios_medicos');		
-		
 	$cedula = $_GET['idpac'];
 	$resp = $_GET['idr'];
 	$tipo_surco = $_GET['tiporef'];
 	$tipo_imp = $_GET['visita'];
 	$agenda = $_GET['agenda'];
 	$idreceta = $_GET['idrecipe'];
-	
 	$html='
 <html>
 	<head>
 		<title>Cuidados Paliativos</title>
-	
+		
 		<link href="iconos/logo_medicina.ico" type="image/x-icon" rel="shortcut icon" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 		<style type="text/css">
@@ -288,7 +286,7 @@
 										<td style="border:1px solid #333;">'.$ds->dime('agno').'</td>
 										<td style="border:1px solid #333;">'.$hora.'</td>
 										<td style="border:1px solid #333;">'.$minutos.'</td>
-										<td>'.date(A).'</td>
+										<td>'.date('A').'</td>
 									</tr>
 									<tr align="center" style="font-size:12px;font-weight:bold;">
 										<td>D</td>

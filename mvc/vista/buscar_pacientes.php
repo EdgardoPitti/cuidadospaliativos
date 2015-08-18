@@ -1,7 +1,7 @@
 <?php
     
 	// Se recibe el t�rmino o palabra a buscar digitada desde el formulario 
-   
+    error_reporting(E_ALL & E_NOTICE & E_WARNING & E_DEPRECATED);
 	$palabra = $_GET['q']; 
 
 	echo obtenerPacientes($palabra);
@@ -15,7 +15,7 @@
 		$ds = new diseno();
 
 		// Conexi�n a la base de datos, cambiar los par�metros si se requiere
-		$conexionBD = mysqli_connect('localhost','root','sql','paliativos');
+		$conexionBD = mysqli_connect('localhost','root','sql','admproy_cuidados_paliativos_panama');
 		//$conexionBD = mysqli_connect('mysql3000.mochahost.com','admproy_panama','cppanama2014','admproy_cuidados_paliativos_panama'); 
         
         if (!$conexionBD) {
