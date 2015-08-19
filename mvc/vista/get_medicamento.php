@@ -1,7 +1,7 @@
 <?php
+	error_reporting(E_ALL & E_NOTICE & E_WARNING & E_DEPRECATED);
 	include_once('../modelo/db.php');
 	$db = new Db();
-		
    $id_receta = $_GET['receta'];
    	
 	
