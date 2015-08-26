@@ -113,6 +113,7 @@
 								<th>Act./Prof.</th>
 								<th>Estado</th>
 								<th>Referido</th>
+								<th></th>
 							</tr>';
 			$n = 1;
 			$d = $detalle_rda->buscardonde('ID_RDA = '.$idrda.'');
@@ -152,6 +153,7 @@
 								<td>'.$profesional->obtener('PRIMER_NOMBRE').' '.$segundonombre[0].'. '.$profesional->obtener('APELLIDO_PATERNO').' '.$segundoapellido[0].'.</td>
 								<td>'.$estado_paciente->obtener('LETRA_ESTADO').'</td>
 								<td>'.$referido.'</td>
+								<td><a href="#mostrar_rda" class="btn btn-success" id="'.$idrda.'" data-toggle="modal" onclick="mostrar(this)">Mostrar</a></td>
 							</tr>';
 				$d = $detalle_rda->releer();
 				$n++;
@@ -164,8 +166,65 @@
 				</center>
 		';
 		}
-		
-		
+		$cont.='
+		<div id="mostrar_rda" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			    <h3 id="myModalLabel">Mostrar Registro Diario de Actividades</h3>
+			</div>
+			<div class="modal-body">
+				<table class="table" width="50%">
+					<tr>
+						<th style="text-align:left;">Zona:</th>
+						<td id="zona"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Paciente:</th>
+						<td id="paciente"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Frecuencia:</th>
+						<td id="frecuencia"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Tipo De Atenci&oacute;n:</th>
+						<td id="tipo_atencion"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">CIE-10:</th>
+						<td id="cie10"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Diag./Prof.:</th>
+						<td id="prof_diag"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Actividad:</th>
+						<td id="actividad"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Act./Prof.:</th>
+						<td id="prof_act"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Estado:</th>
+						<td id="estado"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Referido:</th>
+						<td id="referido"></td>
+					</tr>
+					<tr>
+						<th style="text-align:left;">Observaciones:</th>
+						<td id="observacion"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+			    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+			</div>
+		</div>
+		';
 		$z = $zona->buscardonde('ID_ZONA > 0');
 		while($z){
 				$zon .='

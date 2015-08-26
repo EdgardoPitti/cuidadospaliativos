@@ -29,3 +29,22 @@ function obtener(id){
 	    $('.indicacion').val(data.indicaciones);
   	});
 }
+
+function mostrar(btn){
+	$.getJSON('./mvc/vista/get_rda.php',
+		{rda: btn.id},
+		function(data){
+			$('#zona').html(data.zona);
+			$('#paciente').html(data.paciente);
+			$('#frecuencia').html(data.frecuencia);
+			$('#tipo_atencion').html(data.tipo_atencion);
+			$('#cie10').html(data.cie10);
+			$('#prof_diag').html(data.prof_diag);
+			$('#actividad').html(data.actividad);
+			$('#prof_act').html(data.prof_act);
+			$('#estado').html(data.estado);
+			$('#referido').html(data.referido);
+			$('#observacion').html(data.observacion);
+		}
+	);
+}
