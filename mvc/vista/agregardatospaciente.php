@@ -83,7 +83,8 @@
 				$idresidencia = $id[0][id];
 		}
 		$datospaciente->colocar("NO_CEDULA", $_POST['cedula']);
-		$datospaciente->colocar("SEGURO_SOCIAL", $_POST['numeroseguro']);
+		$datospaciente->colocar("SEGURO_SOCIAL", $_POST['cedula']);
+		$datospaciente->colocar("TIPO_SEGURO", $_POST['tipo_seguro']);
 		$datospaciente->colocar("PRIMER_NOMBRE", $_POST['primernombre']);
 		$datospaciente->colocar("SEGUNDO_NOMBRE", $_POST['segundonombre']);
 		$datospaciente->colocar("APELLIDO_PATERNO", $_POST['primerapellido']);

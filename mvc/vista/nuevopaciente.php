@@ -30,22 +30,7 @@
 	if(empty($busqueda)){
 		$busqueda = $_GET['id'];
 	}
-	if($sw == 1){
-		$idnacionalidad = 62;
-		echo '
-		<script language="JavaScript" type="text/JavaScript">
-			$(document).ready(function(){				
-				$("#checkseguro").click(function() {  
-			        if($("#checkseguro").is('.$comillas.':checked'.$comillas.')) {
-							document.getElementById("numeroseguro").value = document.getElementById("cedula").value;
-			        } else {  
-			            document.getElementById("numeroseguro").value = "";
-			        }  
-			    });  
-			 });
-		</script>
-		';	
-	}
+	$idnacionalidad = 62;
 	$script = '
 		<script language="JavaScript" type="text/JavaScript">
 			$(document).ready(function(){
@@ -56,9 +41,22 @@
 			}			
 		</script>';
 
-	
 	$act = $_GET['act'];
 	
+	echo '
+       <script language="JavaScript" type="text/JavaScript">
+           $(document).ready(function(){                                                
+               $("#tipopaciente").change(function() {  
+	               if($("#tipopaciente").val() == 1) {
+			          $(".mostrar_tipo").css("display", "block");
+                   }else{  
+		              $(".mostrar_tipo").css("display", "none");
+	               }  
+               });  
+		    });
+       </script>';              
+
+
 	if(!empty($busqueda)){
 		$act_boton = $datos->buscardonde('NO_CEDULA = "'.$busqueda.'" OR ID_PACIENTE = '.$busqueda.'');		
 		$idnacionalidad = $datos->obtener('ID_NACIONALIDAD');
@@ -66,6 +64,7 @@
 		$idestadocivil = $datos->obtener('ID_ESTADO_CIVIL');
 		$idsexo = $datos->obtener('ID_SEXO');
 		$idtipopaciente = $datos->obtener('ID_TIPO_PACIENTE');
+		$tiposeguro = $datos->obtener('TIPO_SEGURO');
 		$idetnia = $datos->obtener('ID_ETNIA');
 		$residencia->buscardonde('ID_RESIDENCIA_HABITUAL = '.$datos->obtener('ID_RESIDENCIA_HABITUAL').'');
 		$idzona = $residencia->obtener('ID_ZONA');
@@ -253,20 +252,37 @@
 							';
 							$t = $tipopaciente->releer();
 						}
+						if($idtipopaciente == 1){
+							$style = '';
+							if($tiposeguo == 1){
+								$uno = 'selected';
+								$dos = '';
+								$tres = '';
+							}elseif($tiposeguro == 2){
+								$uno = '';
+								$dos = 'selected';
+								$tres = '';
+							}elseif($tiposeguro == 3){
+								$uno = '';
+								$dos = '';
+								$tres = 'selected';
+							}
+						}else{
+							$style = 'style="display:none;"';
+						}
 						$cont.='								</select>	
 															</td>
 														</tr>
-														<tr>
-															<td style="text-align:left;padding-left:17%;">N&ordm; de Seguro:</td>	
+														<tr class="mostrar_tipo" '.$style.'>
+															<td style="text-align:left;padding-left:17%;">Tipo de Seguro:</td>
 														</tr>
-														<tr>
-															<td>';
-															if($sw == 1){
-																$cont.='<label class="checkbox" style="width:140px;margin:0px auto"><input type="checkbox" name="checkseguro" id="checkseguro" > <strong>Utilizar N&ordm; de C&eacute;dula</strong></label>';																										
-															}
-															$cont.='
-																<input type="text" id="numeroseguro" name="numeroseguro" value="'.$datos->obtener('SEGURO_SOCIAL').'" placeholder="N&ordm; Seguro" >
-															</td>
+														<tr class="mostrar_tipo" '.$style.'>
+															<td><select id="tipo_seguro" name="tipo_seguro">
+																	<option value="1" '.$uno.'>TIPO DE SEGURO</option>
+																	<option value="2" '.$dos.'>DEPENDIENTE</option>
+																	<option value="3" '.$tres.'>BENEFICIARIO</option>
+																</select>
+															<td/>
 														</tr>
 													</tbody>
 												</table>
@@ -503,7 +519,7 @@
 														<tr><td style="text-align:left;padding-left:17%;">Parentezco Cuidador :</td></tr>
 														<tr><td><input type="text" id="parentezco" name="parentezco" placeholder="Parentezco Cuidador" value="'.$datos->obtener('PARENTEZCO_CUIDADOR').'"  ></td></tr>
 														<tr><td style="text-align:left;padding-left:17%;">Fecha de Ingreso: </td></tr>
-														<tr><td><input type="date" id="fecha_ingreso" name="fecha_ingreso" value="'.$fecha.'" readonly></td></tr>
+														<tr><td><input type="date" id="fecha_ingreso" name="fecha_ingreso" value="'.$fecha.'"></td></tr>
 													</tbody>
 												</table>
 												
