@@ -584,6 +584,11 @@ class Diseno {
 							</div>
 							<div>
 								<ul class="acordeon_link">
+									<li><a href="./?url=trazabilidad&sbm=5" class="link" title="Ver Trazabilidad de Usuarios"> Trazabilidad Usuarios</a></li>
+								</ul>
+							</div>
+							<div>
+								<ul class="acordeon_link">
 									<li><a href="./?url=addmedico&sbm=5" class="link" title="Editar Profesionales">Profesionales</a></li>
 								</ul>
 							</div>
